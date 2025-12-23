@@ -1,0 +1,43 @@
+book_filename: "Data-Science-con-R"
+output_dir: "docs"
+delete_merged_file: true
+language:
+  label:
+    fig: "FIGURE "
+    tab: "TABLE "
+  ui:
+    edit: "Edit"
+    chapter_name: "Chapter "
+rmd_files: [
+  "index.Rmd",
+  "01.intro/introduction.Rmd",
+  "02.fundamentals/01.objects.Rmd",
+  "02.fundamentals/02.functions.Rmd",
+  "02.fundamentals/03.data_frames.Rmd",
+  "02.fundamentals/04.advanced_techniques.Rmd",
+  "03.visualization/ggplot.Rmd",
+  "03.visualization/gapminder.Rmd", 
+  "04.statistics/discrete.Rmd",
+  "04.statistics/continuous.Rmd",
+  "04.statistics/inference.Rmd",
+  "05.wrangling/importing-data.Rmd",
+  "05.wrangling/text-mining.Rmd",
+  "06.machine-learning/intro.Rmd",
+  "06.machine-learning/sml.Rmd",
+  "06.machine-learning/uml.Rmd",
+  "07.real-cases/introduction.Rmd",
+  "07.real-cases/real-estate-analysis.Rmd",
+  "07.real-cases/google-analytics-case.Rmd", 
+  "08.genai/intro_llm.Rmd",
+  "08.genai/llm_api.Rmd",
+  "09.appendix/ethics_checklist.Rmd",
+  "references.Rmd"
+]
+
+rmd_files-temp: [
+  "index.Rmd",
+  "05.wrangling/text-mining.Rmd", #<this is wrong
+]
+
+before_chapter_script: "_common.R"
+

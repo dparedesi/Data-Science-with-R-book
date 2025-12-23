@@ -1,0 +1,90 @@
+# LLMs as an Analysis Engine {#genai-api}
+
+In the previous section, we used AI as a coding assistant. Now, we will use it as a data processing engine.
+
+## The Evolution of NLP
+
+We saw in Chapter 5 (@ref(text-mining)) how to perform **Sentiment Analysis** using the `syuzhet` package and the NRC Lexicon. This approach is "Bag of Words"—it looks up each word in a dictionary.
+
+*   **Lexicon Approach:** "This movie was not bad." -> "Bad" is negative -> **Negative Sentiment** (fails to catch negation).
+*   **LLM Approach:** "This movie was not bad." -> Understands nuance -> **Positive/Neutral Sentiment**.
+
+## Interacting with APIs from R
+
+To use an LLM (like GPT-4o or Claude 3.5 Sonnet) from R, we typically use an API (Application Programming Interface). While there are packages like `elmer` or `openai` being developed, knowing how to do it with `httr2` is a fundamental skill.
+
+### Prerequisite: API Keys
+You need an API key from a provider (OpenAI, Anthropic, etc.). 
+**Never hardcode your key in a script.** Store it in your `.Renviron` file:
+
+```r
+# In your .Renviron file
+OPENAI_API_KEY="sk-..."
+```
+
+### Making a Request
+Here is a function to analyze sentiment using an LLM.
+
+```{r eval=FALSE}
+library(httr2)
+library(jsonlite)
+
+analyze_sentiment_llm <- function(text_input) {
+  
+  api_key <- Sys.getenv("OPENAI_API_KEY")
+  
+  # 1. Create the request
+  req <- request("https://api.openai.com/v1/chat/completions") |> 
+    req_headers(Authorization = paste("Bearer", api_key)) |> 
+    req_body_json(list(
+      model = "gpt-4o-mini",
+      messages = list(
+        list(role = "system", content = "You are a sentiment analysis bot. Respond ONLY with one word: 'Positive', 'Negative', or 'Neutral'."),
+        list(role = "user", content = text_input)
+      ),
+      temperature = 0
+    ))
+  
+  # 2. Perform the request
+  response <- req_perform(req)
+  
+  # 3. Parse the result
+  result <- response |> resp_body_json()
+  return(result$choices[[1]]$message$content)
+}
+
+# Testing it
+analyze_sentiment_llm("I absolutely hated the popcorn, but the movie was a masterpiece.")
+# LLM Result: "Positive" (likely, as it understands the core subject is the movie)
+```
+
+## Zero-Shot Classification
+
+One of the most powerful abilities of LLMs is **Zero-Shot Classification**. You don't need to train a model; you just describe the categories.
+
+Imagine you have customer feedback and want to categorize it into: "Pricing", "Usability", or "Feature Request".
+
+**Prompt:**
+> "Classify the following text into one of these categories: [Pricing, Usability, Feature Request]. Text: 'I can't find the export button.'"
+
+**R Implementation:**
+You would wrap the above prompt in a function similar to `analyze_sentiment_llm`. This replaces complex supervised learning pipelines for many simple tasks.
+
+## Text Cleaning with LLMs
+
+Another major use case is data cleaning. 
+
+**Scenario:** You have a column `Job_Title` with values like "Sr. Data Scientist", "Senior Data Scientist", "Data Scientist II", "Data Science Lead". You want to standardize them.
+
+Instead of writing 50 regex rules, you can send the unique values to an LLM:
+
+> "Map the following list of job titles to a standard taxonomy: [Data Scientist, Data Analyst, Data Engineer]. Return a CSV format."
+
+This approach turns unstructured text into structured data with minimal code.
+
+## Summary
+
+*   LLMs capture context that lexicons miss.
+*   `httr2` is your friend for connecting R to the AI ecosystem.
+*   Always handle API keys securely.
+*   AI is not free—monitor your usage costs.

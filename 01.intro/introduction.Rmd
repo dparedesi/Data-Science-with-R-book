@@ -1,0 +1,122 @@
+# Introduction {-}
+
+Data science requires a multidisciplinary approach that combines statistics, programming, data mining, and business understanding. This book is designed to help you develop those skills through practical examples in R.
+
+```{r, echo=FALSE}
+knitr::include_graphics(file.path(img_path,"multidisciplinaria.png"))
+```
+
+## Why R? {-}
+R is a language created by statisticians for data analysis. Its versatility makes it a powerful tool for exploring, modeling, and visualizing data.
+
+## Installing R {-}
+You can download R from the Comprehensive R Archive Network (**CRAN**).
+
+1. Search for CRAN on Google:
+
+```{r, echo=FALSE}
+knitr::include_graphics(file.path(img_path,"CRAN-google.png"))
+```
+
+2. Once on the CRAN page, select the version for your operating system: Linux, Mac OS X, or Windows:
+
+```{r, echo=FALSE}
+knitr::include_graphics(file.path(img_path,"CRAN-website.png"))
+```
+
+Here the steps for Windows are shown, but the steps are similar for Linux or Mac OS X.
+
+3. On the CRAN website, we need to install `base` which includes all the basic packages you need to get started. Later, in the following chapters, we will see how to install other additional packages.
+
+```{r, echo=FALSE}
+knitr::include_graphics(file.path(img_path,"CRAN-windows.png"))
+```
+
+4. Click on the first link to get the most recent version:
+
+```{r, echo=FALSE}
+knitr::include_graphics(file.path(img_path,"CRAN-64-bits.png"))
+```
+
+Then, open the installer you just downloaded to install R and follow the on-screen instructions.
+
+## Installing RStudio {-}
+Although you could already start using R in console mode, we are going to install RStudio, an integrated development environment (IDE), which will facilitate our work with R.
+
+1. Search for RStudio on Google:
+
+```{r, echo=FALSE}
+knitr::include_graphics(file.path(img_path,"rstudio-google.png"))
+```
+
+2. You should see the website as it appears below. Once there, go to the upper right menu and click on **DOWNLOAD**
+
+```{r, echo=FALSE}
+knitr::include_graphics(file.path(img_path,"rstudio-website-0.png"))
+```
+
+3. Then scroll down until you find the download options. Select the **Free** RStudio Desktop option.
+
+```{r, echo=FALSE}
+knitr::include_graphics(file.path(img_path,"rstudio-website-1.png"))
+```
+
+4. It will show you the button to download according to your operating system. You can also download from the list below the **Download** button.
+
+```{r, echo=FALSE}
+knitr::include_graphics(file.path(img_path,"rstudio-website-2.png"))
+```
+
+Once the installer is downloaded, open it and follow the on-screen instructions.
+
+## RStudio Sections {-}
+When you start RStudio for the first time, you will see 3 sections:
+
+```{r, echo=FALSE}
+knitr::include_graphics(file.path(img_path,"VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_16.png"))
+```
+
+One of the great advantages of R over point-and-click analysis software is that we can save our work as Scripts.
+
+To create a new Script, you can click on File, then New File, and then on **R Script**.
+
+```{r, echo=FALSE}
+knitr::include_graphics(file.path(img_path,"VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_42.png"))
+```
+
+This way we will have the 4 sections, or panels, of RStudio:
+```{r, echo=FALSE}
+knitr::include_graphics(file.path(img_path,"rstudio.png"))
+```
+
+* **Code editor**: The code editor for Scripts where we can save our Scripts.
+* **R console**: The R **console** where we will see the result of the execution of our Scripts.
+* **Environment/History**: Here we will mainly see the variables/functions as we create them.
+* **Other panes**: Finally a section with additional tabs. Here we will see our created plots, for example.
+
+## Testing RStudio {-}
+To test that we have installed it correctly, go to the console section and calculate how much 13 multiplied by 265 is. Click on the **console section**, type in the console and then press **Enter**
+
+```{r eval=TRUE}
+13 * 265
+```
+
+You should have gotten `3445` as a result in the same way you observe lines above. With the difference of the symbol `##`. This symbol in this book will serve to differentiate the result that our R Scripts yield. Thus, if you do not see the symbol `##` it is R code, and what is with `##` simulates the result seen in the console.
+
+You will also see before the number `3445` the number 1 in brackets: `[1]`. This is because each Script can yield a set of solutions/results. In brackets it tells you which solution number it shows you. In this case the solution is unique, but later we will see when there are more results from your Script.
+
+You can get the same result if you write in the **Scripts section**, and not in the console, that will allow you to make several calculations. For example, on one hand I can do 28 * 27 and then I can calculate a sum 65 + 35
+
+```{r eval=FALSE}
+#Calculating 28 multiplied by 27:
+28 * 27
+
+#Adding 65 + 35:
+65 + 35
+```
+
+To execute from the scripts section we can select all the lines and then click on **Run** in the upper right part or press **Ctrl** + **Enter**. Keep in mind that the `#` sign makes that line a comment.
+
+Try selecting all the text, then selecting only the sum line and click on **Run**. You will see that it only executes what you select.
+
+You are now ready to start learning R.

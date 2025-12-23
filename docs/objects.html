@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Objects | Data Science with R</title>
+  <meta name="description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Objects | Data Science with R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Objects | Data Science with R" />
+  
+  <meta name="twitter:description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  
+
+<meta name="author" content="Author: Mg. Daniel Paredes Inilupu" />
+
+
+<meta name="date" content="2025-12-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction.html"/>
+<link rel="next" href="functions.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics: Sin Vista -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VJJ963010J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VJJ963010J');
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics: Vista -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165839710-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-165839710-1');
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics: Agentedec4mbio -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-17876479-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-17876479-1');
+</script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Science with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#why-r"><i class="fa fa-check"></i>Why R?</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#installing-r"><i class="fa fa-check"></i>Installing R</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#installing-rstudio"><i class="fa fa-check"></i>Installing RStudio</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#rstudio-sections"><i class="fa fa-check"></i>RStudio Sections</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#testing-rstudio"><i class="fa fa-check"></i>Testing RStudio</a></li>
+</ul></li>
+<li class="part"><span><b>I Fundamentals and Key Tools</b></span></li>
+<li class="chapter" data-level="1" data-path="objects.html"><a href="objects.html"><i class="fa fa-check"></i><b>1</b> Objects</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="objects.html"><a href="objects.html#what-are-objects-in-r"><i class="fa fa-check"></i><b>1.1</b> What are objects in R?</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="objects.html"><a href="objects.html#r-as-an-object-oriented-language"><i class="fa fa-check"></i><b>1.1.1</b> R as an object-oriented language</a></li>
+<li class="chapter" data-level="1.1.2" data-path="objects.html"><a href="objects.html#the-power-of-abstraction"><i class="fa fa-check"></i><b>1.1.2</b> The power of abstraction</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="objects.html"><a href="objects.html#variables-the-first-objects-on-your-journey"><i class="fa fa-check"></i><b>1.2</b> Variables: The first objects on your journey</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="objects.html"><a href="objects.html#creating-variables-in-r"><i class="fa fa-check"></i><b>1.2.1</b> Creating variables in R</a></li>
+<li class="chapter" data-level="1.2.2" data-path="objects.html"><a href="objects.html#operations-with-variables"><i class="fa fa-check"></i><b>1.2.2</b> Operations with variables</a></li>
+<li class="chapter" data-level="1.2.3" data-path="objects.html"><a href="objects.html#best-practices-for-naming-variables"><i class="fa fa-check"></i><b>1.2.3</b> Best practices for naming variables</a></li>
+<li class="chapter" data-level="1.2.4" data-path="objects.html"><a href="objects.html#data-types"><i class="fa fa-check"></i><b>1.2.4</b> Data types</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="objects.html"><a href="objects.html#object-types-for-complex-data"><i class="fa fa-check"></i><b>1.3</b> Object types for complex data</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="objects.html"><a href="objects.html#vectors-organizing-information-of-the-same-type"><i class="fa fa-check"></i><b>1.3.1</b> Vectors: organizing information of the same type</a></li>
+<li class="chapter" data-level="1.3.2" data-path="objects.html"><a href="objects.html#lists-grouping-objects-of-different-types"><i class="fa fa-check"></i><b>1.3.2</b> Lists: grouping objects of different types</a></li>
+<li class="chapter" data-level="1.3.3" data-path="objects.html"><a href="objects.html#matrices-organizing-data-in-rows-and-columns"><i class="fa fa-check"></i><b>1.3.3</b> Matrices: organizing data in rows and columns</a></li>
+<li class="chapter" data-level="1.3.4" data-path="objects.html"><a href="objects.html#arrays-multidimensional-matrices"><i class="fa fa-check"></i><b>1.3.4</b> Arrays: multidimensional matrices</a></li>
+<li class="chapter" data-level="1.3.5" data-path="objects.html"><a href="objects.html#factors-representing-categorical-data"><i class="fa fa-check"></i><b>1.3.5</b> Factors: representing categorical data</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="objects.html"><a href="objects.html#the-universe-of-objects-in-r"><i class="fa fa-check"></i><b>1.4</b> The Universe of Objects in R</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="objects.html"><a href="objects.html#philosophy-of-objects-in-r"><i class="fa fa-check"></i><b>1.4.1</b> Philosophy of objects in R</a></li>
+<li class="chapter" data-level="1.4.2" data-path="objects.html"><a href="objects.html#comparison-with-other-languages"><i class="fa fa-check"></i><b>1.4.2</b> Comparison with other languages</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="objects.html"><a href="objects.html#exercises"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>2</b> Functions</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="functions.html"><a href="functions.html#introduction-to-the-world-of-functions"><i class="fa fa-check"></i><b>2.1</b> Introduction to the world of functions</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="functions.html"><a href="functions.html#what-are-functions"><i class="fa fa-check"></i><b>2.1.1</b> What are functions?</a></li>
+<li class="chapter" data-level="2.1.2" data-path="functions.html"><a href="functions.html#why-use-functions"><i class="fa fa-check"></i><b>2.1.2</b> Why use functions?</a></li>
+<li class="chapter" data-level="2.1.3" data-path="functions.html"><a href="functions.html#first-functions-exploring-basic-r-functions"><i class="fa fa-check"></i><b>2.1.3</b> First functions: exploring basic R functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="functions.html"><a href="functions.html#anatomy-of-a-function"><i class="fa fa-check"></i><b>2.2</b> Anatomy of a function</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="functions.html"><a href="functions.html#arguments-the-ingredients-of-the-function"><i class="fa fa-check"></i><b>2.2.1</b> Arguments: the ingredients of the function</a></li>
+<li class="chapter" data-level="2.2.2" data-path="functions.html"><a href="functions.html#body-the-instructions-of-the-function"><i class="fa fa-check"></i><b>2.2.2</b> Body: the instructions of the function</a></li>
+<li class="chapter" data-level="2.2.3" data-path="functions.html"><a href="functions.html#return-value-the-result-of-the-function"><i class="fa fa-check"></i><b>2.2.3</b> Return value: the result of the function</a></li>
+<li class="chapter" data-level="2.2.4" data-path="functions.html"><a href="functions.html#examples-creating-simple-functions-step-by-step"><i class="fa fa-check"></i><b>2.2.4</b> Examples: creating simple functions step by step</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="functions.html"><a href="functions.html#mastering-the-use-of-functions"><i class="fa fa-check"></i><b>2.3</b> Mastering the use of functions</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="functions.html"><a href="functions.html#functions-with-a-variable-number-of-arguments-...-adapting-to-different-situations"><i class="fa fa-check"></i><b>2.3.1</b> Functions with a variable number of arguments (<code>...</code>): Adapting to different situations</a></li>
+<li class="chapter" data-level="2.3.2" data-path="functions.html"><a href="functions.html#variable-scope-local-and-global-variables"><i class="fa fa-check"></i><b>2.3.2</b> Variable scope: local and global variables</a></li>
+<li class="chapter" data-level="2.3.3" data-path="functions.html"><a href="functions.html#examples-functions-to-calculate-taxes-discounts-etc."><i class="fa fa-check"></i><b>2.3.3</b> Examples: functions to calculate taxes, discounts, etc.</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="functions.html"><a href="functions.html#higher-order-functions"><i class="fa fa-check"></i><b>2.4</b> Higher-order functions</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="functions.html"><a href="functions.html#lapply-and-sapply-applying-a-function-to-each-element"><i class="fa fa-check"></i><b>2.4.1</b> <code>lapply()</code> and <code>sapply()</code>: applying a function to each element</a></li>
+<li class="chapter" data-level="2.4.2" data-path="functions.html"><a href="functions.html#apply-applying-a-function-to-rows-or-columns"><i class="fa fa-check"></i><b>2.4.2</b> <code>apply()</code>: applying a function to rows or columns</a></li>
+<li class="chapter" data-level="2.4.3" data-path="functions.html"><a href="functions.html#mapply-applying-a-function-to-multiple-arguments"><i class="fa fa-check"></i><b>2.4.3</b> <code>mapply()</code>: applying a function to multiple arguments</a></li>
+<li class="chapter" data-level="2.4.4" data-path="functions.html"><a href="functions.html#examples-data-analysis-with-higher-order-functions"><i class="fa fa-check"></i><b>2.4.4</b> Examples: data analysis with higher-order functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="functions.html"><a href="functions.html#closures-functions-with-memory"><i class="fa fa-check"></i><b>2.5</b> Closures: functions with memory</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="functions.html"><a href="functions.html#concept-functions-that-remember"><i class="fa fa-check"></i><b>2.5.1</b> Concept: functions that “remember”</a></li>
+<li class="chapter" data-level="2.5.2" data-path="functions.html"><a href="functions.html#applications-creating-counters-functions-with-internal-state"><i class="fa fa-check"></i><b>2.5.2</b> Applications: creating counters, functions with internal state</a></li>
+<li class="chapter" data-level="2.5.3" data-path="functions.html"><a href="functions.html#examples-simulating-a-game-creating-an-operation-history"><i class="fa fa-check"></i><b>2.5.3</b> Examples: simulating a game, creating an operation history</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="functions.html"><a href="functions.html#debugging-and-error-handling-solving-the-mysteries-of-your-code"><i class="fa fa-check"></i><b>2.6</b> Debugging and error handling: solving the mysteries of your code</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="functions.html"><a href="functions.html#identifying-errors-common-error-messages-in-r"><i class="fa fa-check"></i><b>2.6.1</b> Identifying errors: common error messages in R</a></li>
+<li class="chapter" data-level="2.6.2" data-path="functions.html"><a href="functions.html#debugging-tools-debug-traceback"><i class="fa fa-check"></i><b>2.6.2</b> Debugging tools: <code>debug()</code>, <code>traceback()</code></a></li>
+<li class="chapter" data-level="2.6.3" data-path="functions.html"><a href="functions.html#error-handling-trycatch"><i class="fa fa-check"></i><b>2.6.3</b> Error handling: <code>tryCatch()</code></a></li>
+<li class="chapter" data-level="2.6.4" data-path="functions.html"><a href="functions.html#examples-debugging-functions-with-errors-handling-exceptions"><i class="fa fa-check"></i><b>2.6.4</b> Examples: debugging functions with errors, handling exceptions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="functions.html"><a href="functions.html#exercises-1"><i class="fa fa-check"></i><b>2.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>3</b> Data Frames</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-frames.html"><a href="data-frames.html#introduction-to-data-frames"><i class="fa fa-check"></i><b>3.1</b> Introduction to Data Frames</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="data-frames.html"><a href="data-frames.html#what-are-data-frames"><i class="fa fa-check"></i><b>3.1.1</b> What are data frames?</a></li>
+<li class="chapter" data-level="3.1.2" data-path="data-frames.html"><a href="data-frames.html#why-data-frames"><i class="fa fa-check"></i><b>3.1.2</b> Why data frames?</a></li>
+<li class="chapter" data-level="3.1.3" data-path="data-frames.html"><a href="data-frames.html#data-frames-in-action-exploring-information-about-the-united-states"><i class="fa fa-check"></i><b>3.1.3</b> Data Frames in action: exploring information about the United States</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="data-frames.html"><a href="data-frames.html#creating-data-frames-building-your-database-for-the-move"><i class="fa fa-check"></i><b>3.2</b> Creating Data Frames: Building your database for the move</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="data-frames.html"><a href="data-frames.html#importing-data-from-files-csv-excel"><i class="fa fa-check"></i><b>3.2.1</b> Importing data from files: CSV, Excel</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-frames.html"><a href="data-frames.html#creating-data-frames-manually"><i class="fa fa-check"></i><b>3.2.2</b> Creating data frames manually</a></li>
+<li class="chapter" data-level="3.2.3" data-path="data-frames.html"><a href="data-frames.html#examples"><i class="fa fa-check"></i><b>3.2.3</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="data-frames.html"><a href="data-frames.html#exploring-data-frames-discovering-the-secrets-of-your-data"><i class="fa fa-check"></i><b>3.3</b> Exploring Data Frames: Discovering the secrets of your data</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data-frames.html"><a href="data-frames.html#accessing-rows-columns-and-cells"><i class="fa fa-check"></i><b>3.3.1</b> Accessing rows, columns, and cells</a></li>
+<li class="chapter" data-level="3.3.2" data-path="data-frames.html"><a href="data-frames.html#functions-for-exploring-data-frames"><i class="fa fa-check"></i><b>3.3.2</b> Functions for exploring data frames</a></li>
+<li class="chapter" data-level="3.3.3" data-path="data-frames.html"><a href="data-frames.html#examples-exploring-data-frames-with-move-information"><i class="fa fa-check"></i><b>3.3.3</b> Examples: exploring data frames with move information</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="data-frames.html"><a href="data-frames.html#manipulating-data-frames-transforming-your-data"><i class="fa fa-check"></i><b>3.4</b> Manipulating Data Frames: Transforming your data</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="data-frames.html"><a href="data-frames.html#introduction-to-the-pipeline-operator"><i class="fa fa-check"></i><b>3.4.1</b> Introduction to the pipeline operator (<code>|&gt;</code>)</a></li>
+<li class="chapter" data-level="3.4.2" data-path="data-frames.html"><a href="data-frames.html#transforming-a-table-with-mutate"><i class="fa fa-check"></i><b>3.4.2</b> Transforming a table with <code>mutate()</code></a></li>
+<li class="chapter" data-level="3.4.3" data-path="data-frames.html"><a href="data-frames.html#filtering-data-selecting-cities-that-interest-you"><i class="fa fa-check"></i><b>3.4.3</b> Filtering data: selecting cities that interest you</a></li>
+<li class="chapter" data-level="3.4.4" data-path="data-frames.html"><a href="data-frames.html#sorting-data-finding-the-safest-cities"><i class="fa fa-check"></i><b>3.4.4</b> Sorting data: finding the safest cities</a></li>
+<li class="chapter" data-level="3.4.5" data-path="data-frames.html"><a href="data-frames.html#aggregating-and-summarizing-data-obtaining-general-overview"><i class="fa fa-check"></i><b>3.4.5</b> Aggregating and summarizing data: obtaining general overview</a></li>
+<li class="chapter" data-level="3.4.6" data-path="data-frames.html"><a href="data-frames.html#joining-data-frames-combining-information"><i class="fa fa-check"></i><b>3.4.6</b> Joining data frames: combining information</a></li>
+<li class="chapter" data-level="3.4.7" data-path="data-frames.html"><a href="data-frames.html#examples-1"><i class="fa fa-check"></i><b>3.4.7</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="data-frames.html"><a href="data-frames.html#exercises-2"><i class="fa fa-check"></i><b>3.5</b> Exercises</a></li>
+<li class="chapter" data-level="3.6" data-path="data-frames.html"><a href="data-frames.html#data-frames-in-plots"><i class="fa fa-check"></i><b>3.6</b> Data frames in plots</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="data-frames.html"><a href="data-frames.html#scatter-plots"><i class="fa fa-check"></i><b>3.6.1</b> Scatter plots</a></li>
+<li class="chapter" data-level="3.6.2" data-path="data-frames.html"><a href="data-frames.html#histograms"><i class="fa fa-check"></i><b>3.6.2</b> Histograms</a></li>
+<li class="chapter" data-level="3.6.3" data-path="data-frames.html"><a href="data-frames.html#box-plot"><i class="fa fa-check"></i><b>3.6.3</b> Box plot</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="data-frames.html"><a href="data-frames.html#data-interpretation"><i class="fa fa-check"></i><b>3.7</b> Data interpretation</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="data-frames.html"><a href="data-frames.html#quartiles"><i class="fa fa-check"></i><b>3.7.1</b> Quartiles</a></li>
+<li class="chapter" data-level="3.7.2" data-path="data-frames.html"><a href="data-frames.html#interpretation-of-box-plot"><i class="fa fa-check"></i><b>3.7.2</b> Interpretation of box plot</a></li>
+<li class="chapter" data-level="3.7.3" data-path="data-frames.html"><a href="data-frames.html#examples-2"><i class="fa fa-check"></i><b>3.7.3</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="data-frames.html"><a href="data-frames.html#exercises-3"><i class="fa fa-check"></i><b>3.8</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="advanced-techniques.html"><a href="advanced-techniques.html"><i class="fa fa-check"></i><b>4</b> Advanced Techniques</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="advanced-techniques.html"><a href="advanced-techniques.html#metaprogramming-writing-code-that-writes-code"><i class="fa fa-check"></i><b>4.1</b> Metaprogramming: writing code that writes code</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="advanced-techniques.html"><a href="advanced-techniques.html#manipulating-expressions-the-art-of-sculpting-code"><i class="fa fa-check"></i><b>4.1.1</b> Manipulating expressions: The art of sculpting code</a></li>
+<li class="chapter" data-level="4.1.2" data-path="advanced-techniques.html"><a href="advanced-techniques.html#examples-3"><i class="fa fa-check"></i><b>4.1.2</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="advanced-techniques.html"><a href="advanced-techniques.html#functional-programming-a-new-paradigm"><i class="fa fa-check"></i><b>4.2</b> Functional programming: a new paradigm</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="advanced-techniques.html"><a href="advanced-techniques.html#basic-principles-of-functional-programming"><i class="fa fa-check"></i><b>4.2.1</b> Basic principles of functional programming</a></li>
+<li class="chapter" data-level="4.2.2" data-path="advanced-techniques.html"><a href="advanced-techniques.html#higher-order-functions-in-r"><i class="fa fa-check"></i><b>4.2.2</b> Higher-order functions in R</a></li>
+<li class="chapter" data-level="4.2.3" data-path="advanced-techniques.html"><a href="advanced-techniques.html#examples-4"><i class="fa fa-check"></i><b>4.2.3</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="advanced-techniques.html"><a href="advanced-techniques.html#r6-the-future-of-oop-in-r"><i class="fa fa-check"></i><b>4.3</b> R6: The future of OOP in R</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="advanced-techniques.html"><a href="advanced-techniques.html#the-r6-package-classes-methods-encapsulation-and-inheritance"><i class="fa fa-check"></i><b>4.3.1</b> The R6 package: Classes, methods, encapsulation, and inheritance</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="advanced-techniques.html"><a href="advanced-techniques.html#exercises-4"><i class="fa fa-check"></i><b>4.4</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>II Data Visualization and Summarization</b></span></li>
+<li class="chapter" data-level="5" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html"><i class="fa fa-check"></i><b>5</b> Ggplot and dplyr</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#creating-the-ggplot-object"><i class="fa fa-check"></i><b>5.1</b> Creating the ggplot object</a></li>
+<li class="chapter" data-level="5.2" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#aesthetic-mapping-layer"><i class="fa fa-check"></i><b>5.2</b> Aesthetic mapping layer</a></li>
+<li class="chapter" data-level="5.3" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#geoms-layer"><i class="fa fa-check"></i><b>5.3</b> Geoms layer</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#tweaking-aes-and-geoms"><i class="fa fa-check"></i><b>5.3.1</b> Tweaking aes and geoms</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#scale-layer"><i class="fa fa-check"></i><b>5.4</b> Scale layer</a></li>
+<li class="chapter" data-level="5.5" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#label-title-and-legend-layer"><i class="fa fa-check"></i><b>5.5</b> Label, title and legend layer</a></li>
+<li class="chapter" data-level="5.6" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#reference-lines"><i class="fa fa-check"></i><b>5.6</b> Reference lines</a></li>
+<li class="chapter" data-level="5.7" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#changing-the-plot-style"><i class="fa fa-check"></i><b>5.7</b> Changing the plot style</a></li>
+<li class="chapter" data-level="5.8" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#summarizing-data-with-dplyr"><i class="fa fa-check"></i><b>5.8</b> Summarizing data with dplyr</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#summarize-function"><i class="fa fa-check"></i><b>5.8.1</b> Summarize function</a></li>
+<li class="chapter" data-level="5.8.2" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#group-by-function"><i class="fa fa-check"></i><b>5.8.2</b> Group By Function</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#exercises-5"><i class="fa fa-check"></i><b>5.9</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="gapminder.html"><a href="gapminder.html"><i class="fa fa-check"></i><b>6</b> Gapminder</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="gapminder.html"><a href="gapminder.html#initial-gapminder-plots"><i class="fa fa-check"></i><b>6.1</b> Initial gapminder plots</a></li>
+<li class="chapter" data-level="6.2" data-path="gapminder.html"><a href="gapminder.html#facets"><i class="fa fa-check"></i><b>6.2</b> Facets</a></li>
+<li class="chapter" data-level="6.3" data-path="gapminder.html"><a href="gapminder.html#time-series"><i class="fa fa-check"></i><b>6.3</b> Time series</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="gapminder.html"><a href="gapminder.html#individual-time-series"><i class="fa fa-check"></i><b>6.3.1</b> Individual time series</a></li>
+<li class="chapter" data-level="6.3.2" data-path="gapminder.html"><a href="gapminder.html#multiple-time-series"><i class="fa fa-check"></i><b>6.3.2</b> Multiple time series</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="gapminder.html"><a href="gapminder.html#exercises-6"><i class="fa fa-check"></i><b>6.4</b> Exercises</a></li>
+<li class="chapter" data-level="6.5" data-path="gapminder.html"><a href="gapminder.html#histograms-with-ggplot"><i class="fa fa-check"></i><b>6.5</b> Histograms with ggplot</a></li>
+<li class="chapter" data-level="6.6" data-path="gapminder.html"><a href="gapminder.html#box-plots-with-ggplot"><i class="fa fa-check"></i><b>6.6</b> Box plots with ggplot</a></li>
+<li class="chapter" data-level="6.7" data-path="gapminder.html"><a href="gapminder.html#comparison-of-distributions"><i class="fa fa-check"></i><b>6.7</b> Comparison of distributions</a></li>
+<li class="chapter" data-level="6.8" data-path="gapminder.html"><a href="gapminder.html#exercises-7"><i class="fa fa-check"></i><b>6.8</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>III Statistics</b></span></li>
+<li class="chapter" data-level="" data-path="introduction-to-probabilities.html"><a href="introduction-to-probabilities.html"><i class="fa fa-check"></i>Introduction to Probabilities</a></li>
+<li class="chapter" data-level="7" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html"><i class="fa fa-check"></i><b>7</b> Discrete Probabilities</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#calculation-using-the-mathematical-definition"><i class="fa fa-check"></i><b>7.1</b> Calculation using the mathematical definition</a></li>
+<li class="chapter" data-level="7.2" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#monte-carlo-simulation-for-discrete-variables"><i class="fa fa-check"></i><b>7.2</b> Monte Carlo Simulation for Discrete Variables</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#other-functions-to-create-vectors"><i class="fa fa-check"></i><b>7.2.1</b> Other functions to create vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#exercises-8"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
+<li class="chapter" data-level="7.4" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#combinations-and-permutations"><i class="fa fa-check"></i><b>7.4</b> Combinations and Permutations</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#permutations"><i class="fa fa-check"></i><b>7.4.1</b> Permutations</a></li>
+<li class="chapter" data-level="7.4.2" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#combinations"><i class="fa fa-check"></i><b>7.4.2</b> Combinations</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#sufficient-experiments-with-monte-carlo-simulation"><i class="fa fa-check"></i><b>7.5</b> Sufficient Experiments with Monte Carlo Simulation</a></li>
+<li class="chapter" data-level="7.6" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#case-birthdays-in-classrooms"><i class="fa fa-check"></i><b>7.6</b> Case: Birthdays in Classrooms</a></li>
+<li class="chapter" data-level="7.7" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#exercises-9"><i class="fa fa-check"></i><b>7.7</b> Exercises</a></li>
+<li class="chapter" data-level="7.8" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#integrative-exercise"><i class="fa fa-check"></i><b>7.8</b> Integrative Exercise</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#monty-hall-problem"><i class="fa fa-check"></i><b>7.8.1</b> Monty Hall Problem</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html"><i class="fa fa-check"></i><b>8</b> Continuous Probabilities</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#empirical-distribution"><i class="fa fa-check"></i><b>8.1</b> Empirical Distribution</a></li>
+<li class="chapter" data-level="8.2" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#theoretical-distribution"><i class="fa fa-check"></i><b>8.2</b> Theoretical Distribution</a></li>
+<li class="chapter" data-level="8.3" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#exercises-10"><i class="fa fa-check"></i><b>8.3</b> Exercises</a></li>
+<li class="chapter" data-level="8.4" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#monte-carlo-simulation-for-continuous-variables"><i class="fa fa-check"></i><b>8.4</b> Monte Carlo Simulation for Continuous Variables</a></li>
+<li class="chapter" data-level="8.5" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#exercises-11"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>9</b> Statistical Inference</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="statistical-inference.html"><a href="statistical-inference.html#expected-value"><i class="fa fa-check"></i><b>9.1</b> Expected Value</a></li>
+<li class="chapter" data-level="9.2" data-path="statistical-inference.html"><a href="statistical-inference.html#central-limit-theorem"><i class="fa fa-check"></i><b>9.2</b> Central Limit Theorem</a></li>
+<li class="chapter" data-level="9.3" data-path="statistical-inference.html"><a href="statistical-inference.html#exercises-12"><i class="fa fa-check"></i><b>9.3</b> Exercises</a></li>
+<li class="chapter" data-level="9.4" data-path="statistical-inference.html"><a href="statistical-inference.html#parameter-estimation-method"><i class="fa fa-check"></i><b>9.4</b> Parameter Estimation Method</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="statistical-inference.html"><a href="statistical-inference.html#margin-of-error"><i class="fa fa-check"></i><b>9.4.1</b> Margin of Error</a></li>
+<li class="chapter" data-level="9.4.2" data-path="statistical-inference.html"><a href="statistical-inference.html#confidence-intervals"><i class="fa fa-check"></i><b>9.4.2</b> Confidence Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="statistical-inference.html"><a href="statistical-inference.html#spread-estimation"><i class="fa fa-check"></i><b>9.5</b> Spread Estimation</a></li>
+<li class="chapter" data-level="9.6" data-path="statistical-inference.html"><a href="statistical-inference.html#estimates-outside-election-polls"><i class="fa fa-check"></i><b>9.6</b> Estimates Outside Election Polls</a></li>
+<li class="chapter" data-level="9.7" data-path="statistical-inference.html"><a href="statistical-inference.html#exercises-13"><i class="fa fa-check"></i><b>9.7</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>IV Data Wrangling</b></span></li>
+<li class="chapter" data-level="" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="10" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html"><i class="fa fa-check"></i><b>10</b> Data import and consolidation</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#importing-from-files"><i class="fa fa-check"></i><b>10.1</b> Importing from files</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#working-directory"><i class="fa fa-check"></i><b>10.1.1</b> Working Directory</a></li>
+<li class="chapter" data-level="10.1.2" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#readr-and-readxl-packages"><i class="fa fa-check"></i><b>10.1.2</b> readr and readxl packages</a></li>
+<li class="chapter" data-level="10.1.3" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#importing-files-from-the-internet"><i class="fa fa-check"></i><b>10.1.3</b> Importing files from the internet</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#tidy-data"><i class="fa fa-check"></i><b>10.2</b> Tidy data</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#transforming-to-tidy-data"><i class="fa fa-check"></i><b>10.2.1</b> Transforming to tidy data</a></li>
+<li class="chapter" data-level="10.2.2" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#separate-function"><i class="fa fa-check"></i><b>10.2.2</b> separate function</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#exercises-14"><i class="fa fa-check"></i><b>10.3</b> Exercises</a></li>
+<li class="chapter" data-level="10.4" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#joining-tables"><i class="fa fa-check"></i><b>10.4</b> Joining tables</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#join-functions"><i class="fa fa-check"></i><b>10.4.1</b> Join functions</a></li>
+<li class="chapter" data-level="10.4.2" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#joining-without-a-common-identifier"><i class="fa fa-check"></i><b>10.4.2</b> Joining without a common identifier</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#web-scraping"><i class="fa fa-check"></i><b>10.5</b> Web Scraping</a></li>
+<li class="chapter" data-level="10.6" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#exercises-15"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html"><i class="fa fa-check"></i><b>11</b> String processing and text mining</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#basic-functions"><i class="fa fa-check"></i><b>11.1</b> Basic functions</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#replacing-characters"><i class="fa fa-check"></i><b>11.1.1</b> Replacing characters</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#regular-expressions"><i class="fa fa-check"></i><b>11.2</b> Regular expressions</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#alternation"><i class="fa fa-check"></i><b>11.2.1</b> Alternation</a></li>
+<li class="chapter" data-level="11.2.2" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#anchoring"><i class="fa fa-check"></i><b>11.2.2</b> Anchoring</a></li>
+<li class="chapter" data-level="11.2.3" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#repetitions"><i class="fa fa-check"></i><b>11.2.3</b> Repetitions</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#from-strings-to-dates"><i class="fa fa-check"></i><b>11.3</b> From strings to dates</a></li>
+<li class="chapter" data-level="11.4" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#exercises-16"><i class="fa fa-check"></i><b>11.4</b> Exercises</a></li>
+<li class="chapter" data-level="11.5" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#text-mining-word-cloud"><i class="fa fa-check"></i><b>11.5</b> Text Mining: Word Cloud</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#importing-data"><i class="fa fa-check"></i><b>11.5.1</b> Importing data</a></li>
+<li class="chapter" data-level="11.5.2" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#text-cleaning"><i class="fa fa-check"></i><b>11.5.2</b> Text cleaning</a></li>
+<li class="chapter" data-level="11.5.3" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#creating-the-corpus"><i class="fa fa-check"></i><b>11.5.3</b> Creating the Corpus</a></li>
+<li class="chapter" data-level="11.5.4" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#nd-data-cleaning"><i class="fa fa-check"></i><b>11.5.4</b> 2nd Data Cleaning</a></li>
+<li class="chapter" data-level="11.5.5" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#word-frequency"><i class="fa fa-check"></i><b>11.5.5</b> Word frequency</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#text-mining-sentiment-analysis"><i class="fa fa-check"></i><b>11.6</b> Text Mining: Sentiment Analysis</a></li>
+<li class="chapter" data-level="11.7" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#exercises-17"><i class="fa fa-check"></i><b>11.7</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>V Machine learning</b></span></li>
+<li class="chapter" data-level="" data-path="introduction-2.html"><a href="introduction-2.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="12" data-path="supervised-learning.html"><a href="supervised-learning.html"><i class="fa fa-check"></i><b>12</b> Supervised Learning</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="supervised-learning.html"><a href="supervised-learning.html#classification-and-regression"><i class="fa fa-check"></i><b>12.1</b> Classification and Regression</a></li>
+<li class="chapter" data-level="12.2" data-path="supervised-learning.html"><a href="supervised-learning.html#knn-k-nearest-neighbors"><i class="fa fa-check"></i><b>12.2</b> kNN: k-Nearest Neighbors</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="supervised-learning.html"><a href="supervised-learning.html#two-variables-as-input"><i class="fa fa-check"></i><b>12.2.1</b> Two variables as input</a></li>
+<li class="chapter" data-level="12.2.2" data-path="supervised-learning.html"><a href="supervised-learning.html#multiple-variables-as-input"><i class="fa fa-check"></i><b>12.2.2</b> Multiple variables as input</a></li>
+<li class="chapter" data-level="12.2.3" data-path="supervised-learning.html"><a href="supervised-learning.html#diverse-values-of-k"><i class="fa fa-check"></i><b>12.2.3</b> Diverse values of k</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="supervised-learning.html"><a href="supervised-learning.html#tidymodels-framework"><i class="fa fa-check"></i><b>12.3</b> tidymodels Framework</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="supervised-learning.html"><a href="supervised-learning.html#creation-of-training-and-test-data"><i class="fa fa-check"></i><b>12.3.1</b> Creation of training and test data</a></li>
+<li class="chapter" data-level="12.3.2" data-path="supervised-learning.html"><a href="supervised-learning.html#training-our-prediction-algorithm"><i class="fa fa-check"></i><b>12.3.2</b> Training our prediction algorithm</a></li>
+<li class="chapter" data-level="12.3.3" data-path="supervised-learning.html"><a href="supervised-learning.html#data-pre-processing-with-recipes"><i class="fa fa-check"></i><b>12.3.3</b> Data Pre-processing with Recipes</a></li>
+<li class="chapter" data-level="12.3.4" data-path="supervised-learning.html"><a href="supervised-learning.html#creating-a-workflow"><i class="fa fa-check"></i><b>12.3.4</b> Creating a Workflow</a></li>
+<li class="chapter" data-level="12.3.5" data-path="supervised-learning.html"><a href="supervised-learning.html#parameter-tuning-with-cross-validation"><i class="fa fa-check"></i><b>12.3.5</b> Parameter Tuning with Cross-Validation</a></li>
+<li class="chapter" data-level="12.3.6" data-path="supervised-learning.html"><a href="supervised-learning.html#finalizing-the-model"><i class="fa fa-check"></i><b>12.3.6</b> Finalizing the Model</a></li>
+<li class="chapter" data-level="12.3.7" data-path="supervised-learning.html"><a href="supervised-learning.html#testing-the-prediction-model"><i class="fa fa-check"></i><b>12.3.7</b> Testing the prediction model</a></li>
+<li class="chapter" data-level="12.3.8" data-path="supervised-learning.html"><a href="supervised-learning.html#model-evaluation-with-yardstick"><i class="fa fa-check"></i><b>12.3.8</b> Model Evaluation with yardstick</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="supervised-learning.html"><a href="supervised-learning.html#confusion-matrix"><i class="fa fa-check"></i><b>12.4</b> Confusion Matrix</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="supervised-learning.html"><a href="supervised-learning.html#accuracy"><i class="fa fa-check"></i><b>12.4.1</b> Accuracy</a></li>
+<li class="chapter" data-level="12.4.2" data-path="supervised-learning.html"><a href="supervised-learning.html#sensitivity"><i class="fa fa-check"></i><b>12.4.2</b> Sensitivity</a></li>
+<li class="chapter" data-level="12.4.3" data-path="supervised-learning.html"><a href="supervised-learning.html#specificity"><i class="fa fa-check"></i><b>12.4.3</b> Specificity</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="supervised-learning.html"><a href="supervised-learning.html#exercises-18"><i class="fa fa-check"></i><b>12.5</b> Exercises</a></li>
+<li class="chapter" data-level="12.6" data-path="supervised-learning.html"><a href="supervised-learning.html#simple-linear-regression"><i class="fa fa-check"></i><b>12.6</b> Simple Linear Regression</a></li>
+<li class="chapter" data-level="12.7" data-path="supervised-learning.html"><a href="supervised-learning.html#multiple-linear-regression"><i class="fa fa-check"></i><b>12.7</b> Multiple Linear Regression</a></li>
+<li class="chapter" data-level="12.8" data-path="supervised-learning.html"><a href="supervised-learning.html#standard-method-for-evaluating-accuracy"><i class="fa fa-check"></i><b>12.8</b> Standard Method for Evaluating Accuracy</a></li>
+<li class="chapter" data-level="12.9" data-path="supervised-learning.html"><a href="supervised-learning.html#selection-of-the-most-optimal-model"><i class="fa fa-check"></i><b>12.9</b> Selection of the Most Optimal Model</a>
+<ul>
+<li class="chapter" data-level="12.9.1" data-path="supervised-learning.html"><a href="supervised-learning.html#k-nearest-neighbors-model"><i class="fa fa-check"></i><b>12.9.1</b> k-Nearest Neighbors Model</a></li>
+<li class="chapter" data-level="12.9.2" data-path="supervised-learning.html"><a href="supervised-learning.html#generalized-linear-model---glm"><i class="fa fa-check"></i><b>12.9.2</b> Generalized Linear Model - GLM</a></li>
+<li class="chapter" data-level="12.9.3" data-path="supervised-learning.html"><a href="supervised-learning.html#random-forest-model"><i class="fa fa-check"></i><b>12.9.3</b> Random Forest Model</a></li>
+<li class="chapter" data-level="12.9.4" data-path="supervised-learning.html"><a href="supervised-learning.html#support-vector-machine-model---svm"><i class="fa fa-check"></i><b>12.9.4</b> Support Vector Machine Model - SVM</a></li>
+<li class="chapter" data-level="12.9.5" data-path="supervised-learning.html"><a href="supervised-learning.html#naive-bayes-model"><i class="fa fa-check"></i><b>12.9.5</b> Naive Bayes Model</a></li>
+<li class="chapter" data-level="12.9.6" data-path="supervised-learning.html"><a href="supervised-learning.html#model-comparison"><i class="fa fa-check"></i><b>12.9.6</b> Model Comparison</a></li>
+<li class="chapter" data-level="12.9.7" data-path="supervised-learning.html"><a href="supervised-learning.html#predicting-using-the-best-model"><i class="fa fa-check"></i><b>12.9.7</b> Predicting using the best model</a></li>
+</ul></li>
+<li class="chapter" data-level="12.10" data-path="supervised-learning.html"><a href="supervised-learning.html#exercises-19"><i class="fa fa-check"></i><b>12.10</b> Exercises</a></li>
+<li class="chapter" data-level="12.11" data-path="supervised-learning.html"><a href="supervised-learning.html#ethics-bias-in-algorithmic-decision-making"><i class="fa fa-check"></i><b>12.11</b> Ethics: Bias in Algorithmic Decision Making</a>
+<ul>
+<li class="chapter" data-level="12.11.1" data-path="supervised-learning.html"><a href="supervised-learning.html#the-risk-of-proxy-variables"><i class="fa fa-check"></i><b>12.11.1</b> The Risk of Proxy Variables</a></li>
+<li class="chapter" data-level="12.11.2" data-path="supervised-learning.html"><a href="supervised-learning.html#feedback-loops"><i class="fa fa-check"></i><b>12.11.2</b> Feedback Loops</a></li>
+<li class="chapter" data-level="12.11.3" data-path="supervised-learning.html"><a href="supervised-learning.html#what-can-we-do"><i class="fa fa-check"></i><b>12.11.3</b> What can we do?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>13</b> Unsupervised Learning</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#k-means-clustering"><i class="fa fa-check"></i><b>13.1</b> K-Means Clustering</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#clustering-with-k-2"><i class="fa fa-check"></i><b>13.1.1</b> Clustering with k = 2</a></li>
+<li class="chapter" data-level="13.1.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#clustering-with-k-3"><i class="fa fa-check"></i><b>13.1.2</b> Clustering with k &gt;= 3</a></li>
+<li class="chapter" data-level="13.1.3" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#determination-of-optimal-clusters"><i class="fa fa-check"></i><b>13.1.3</b> Determination of Optimal Clusters</a></li>
+<li class="chapter" data-level="13.1.4" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#k-means-for-more-than-2-variables"><i class="fa fa-check"></i><b>13.1.4</b> k-means for more than 2 variables</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#hierarchical-clustering"><i class="fa fa-check"></i><b>13.2</b> Hierarchical Clustering</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#clustering-with-two-variables"><i class="fa fa-check"></i><b>13.2.1</b> Clustering with two variables</a></li>
+<li class="chapter" data-level="13.2.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#determination-of-optimal-clusters-1"><i class="fa fa-check"></i><b>13.2.2</b> Determination of Optimal Clusters</a></li>
+<li class="chapter" data-level="13.2.3" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#obtain-the-grouping"><i class="fa fa-check"></i><b>13.2.3</b> Obtain the grouping</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#dimensionality-reduction"><i class="fa fa-check"></i><b>13.3</b> Dimensionality Reduction</a></li>
+<li class="chapter" data-level="13.4" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#exercises-20"><i class="fa fa-check"></i><b>13.4</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>VI Real Cases</b></span></li>
+<li class="chapter" data-level="" data-path="introduction-3.html"><a href="introduction-3.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="14" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html"><i class="fa fa-check"></i><b>14</b> Case Study: Real Estate Market Analysis</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#objectives"><i class="fa fa-check"></i><b>14.1</b> Objectives</a></li>
+<li class="chapter" data-level="14.2" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#loading-libraries"><i class="fa fa-check"></i><b>14.2</b> Loading Libraries</a></li>
+<li class="chapter" data-level="14.3" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#exploring-the-data"><i class="fa fa-check"></i><b>14.3</b> Exploring the Data</a></li>
+<li class="chapter" data-level="14.4" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#data-cleaning"><i class="fa fa-check"></i><b>14.4</b> Data Cleaning</a></li>
+<li class="chapter" data-level="14.5" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#exploratory-analysis"><i class="fa fa-check"></i><b>14.5</b> Exploratory Analysis</a>
+<ul>
+<li class="chapter" data-level="14.5.1" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#market-volume-over-time"><i class="fa fa-check"></i><b>14.5.1</b> Market Volume Over Time</a></li>
+<li class="chapter" data-level="14.5.2" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#comparing-cities"><i class="fa fa-check"></i><b>14.5.2</b> Comparing Cities</a></li>
+</ul></li>
+<li class="chapter" data-level="14.6" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#creating-indicators"><i class="fa fa-check"></i><b>14.6</b> Creating Indicators</a></li>
+<li class="chapter" data-level="14.7" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#conclusions"><i class="fa fa-check"></i><b>14.7</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="google-analytics-from-r.html"><a href="google-analytics-from-r.html"><i class="fa fa-check"></i><b>15</b> Google Analytics from R</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="google-analytics-from-r.html"><a href="google-analytics-from-r.html#problem"><i class="fa fa-check"></i><b>15.1</b> Problem</a></li>
+<li class="chapter" data-level="15.2" data-path="google-analytics-from-r.html"><a href="google-analytics-from-r.html#access-to-data"><i class="fa fa-check"></i><b>15.2</b> Access to data</a></li>
+<li class="chapter" data-level="15.3" data-path="google-analytics-from-r.html"><a href="google-analytics-from-r.html#visualization"><i class="fa fa-check"></i><b>15.3</b> Visualization</a></li>
+<li class="chapter" data-level="15.4" data-path="google-analytics-from-r.html"><a href="google-analytics-from-r.html#conclusion"><i class="fa fa-check"></i><b>15.4</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="genai-intro.html"><a href="genai-intro.html"><i class="fa fa-check"></i><b>16</b> Data Science in the Age of AI</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="genai-intro.html"><a href="genai-intro.html#what-is-a-large-language-model"><i class="fa fa-check"></i><b>16.1</b> What is a Large Language Model?</a></li>
+<li class="chapter" data-level="16.2" data-path="genai-intro.html"><a href="genai-intro.html#coding-with-ai-the-pair-programmer"><i class="fa fa-check"></i><b>16.2</b> Coding with AI: The “Pair Programmer”</a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="genai-intro.html"><a href="genai-intro.html#explaining-complex-code"><i class="fa fa-check"></i><b>16.2.1</b> 1. Explaining Complex Code</a></li>
+<li class="chapter" data-level="16.2.2" data-path="genai-intro.html"><a href="genai-intro.html#generating-boilerplate"><i class="fa fa-check"></i><b>16.2.2</b> 2. Generating Boilerplate</a></li>
+<li class="chapter" data-level="16.2.3" data-path="genai-intro.html"><a href="genai-intro.html#regex-the-ultimate-use-case"><i class="fa fa-check"></i><b>16.2.3</b> 3. Regex: The Ultimate Use Case</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="genai-intro.html"><a href="genai-intro.html#ethics-risks-in-the-ai-era"><i class="fa fa-check"></i><b>16.3</b> Ethics &amp; Risks in the AI Era</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="genai-intro.html"><a href="genai-intro.html#hallucinations-fabrication"><i class="fa fa-check"></i><b>16.3.1</b> 1. Hallucinations &amp; Fabrication</a></li>
+<li class="chapter" data-level="16.3.2" data-path="genai-intro.html"><a href="genai-intro.html#the-reproducibility-crisis"><i class="fa fa-check"></i><b>16.3.2</b> 2. The Reproducibility Crisis</a></li>
+<li class="chapter" data-level="16.3.3" data-path="genai-intro.html"><a href="genai-intro.html#data-privacy-ip"><i class="fa fa-check"></i><b>16.3.3</b> 3. Data Privacy &amp; IP</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="genai-api.html"><a href="genai-api.html"><i class="fa fa-check"></i><b>17</b> LLMs as an Analysis Engine</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="genai-api.html"><a href="genai-api.html#the-evolution-of-nlp"><i class="fa fa-check"></i><b>17.1</b> The Evolution of NLP</a></li>
+<li class="chapter" data-level="17.2" data-path="genai-api.html"><a href="genai-api.html#interacting-with-apis-from-r"><i class="fa fa-check"></i><b>17.2</b> Interacting with APIs from R</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="genai-api.html"><a href="genai-api.html#prerequisite-api-keys"><i class="fa fa-check"></i><b>17.2.1</b> Prerequisite: API Keys</a></li>
+<li class="chapter" data-level="17.2.2" data-path="genai-api.html"><a href="genai-api.html#making-a-request"><i class="fa fa-check"></i><b>17.2.2</b> Making a Request</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="genai-api.html"><a href="genai-api.html#zero-shot-classification"><i class="fa fa-check"></i><b>17.3</b> Zero-Shot Classification</a></li>
+<li class="chapter" data-level="17.4" data-path="genai-api.html"><a href="genai-api.html#text-cleaning-with-llms"><i class="fa fa-check"></i><b>17.4</b> Text Cleaning with LLMs</a></li>
+<li class="chapter" data-level="17.5" data-path="genai-api.html"><a href="genai-api.html#summary"><i class="fa fa-check"></i><b>17.5</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="ethics-checklist.html"><a href="ethics-checklist.html"><i class="fa fa-check"></i><b>18</b> Appendix A: Responsible AI Checklist</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="ethics-checklist.html"><a href="ethics-checklist.html#data-quality-lineage"><i class="fa fa-check"></i><b>18.1</b> 1. Data Quality &amp; lineage</a></li>
+<li class="chapter" data-level="18.2" data-path="ethics-checklist.html"><a href="ethics-checklist.html#fairness-bias"><i class="fa fa-check"></i><b>18.2</b> 2. Fairness &amp; Bias</a></li>
+<li class="chapter" data-level="18.3" data-path="ethics-checklist.html"><a href="ethics-checklist.html#transparency-explainability"><i class="fa fa-check"></i><b>18.3</b> 3. Transparency &amp; Explainability</a></li>
+<li class="chapter" data-level="18.4" data-path="ethics-checklist.html"><a href="ethics-checklist.html#genai-specifics"><i class="fa fa-check"></i><b>18.4</b> 4. GenAI Specifics</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Science with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="objects" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Objects<a href="objects.html#objects" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In the world of programming, an <strong>object</strong> is like a container that holds information. This information can be of different types: numbers, text, complex data, and even code. The important thing is that an object groups everything necessary to represent an entity or concept.</p>
+<p>In R, practically everything is an object. The variables we will use to store data, the functions we will use to process that data, and even the data itself, are objects.</p>
+<div id="what-are-objects-in-r" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> What are objects in R?<a href="objects.html#what-are-objects-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Imagine you are organizing your move to the United States. Each item you pack in a box (clothes, books, appliances) can be considered an object. Each object has characteristics that define it: a name, a type, a size, a weight, etc.</p>
+<p>In R, objects also have characteristics that define them. These characteristics are called <strong>attributes</strong>. Some common attributes are:</p>
+<ul>
+<li><strong>Name:</strong> The name we give to the object to be able to refer to it.</li>
+<li><strong>Type:</strong> The type of data the object contains (numeric, character, logical, etc.).</li>
+<li><strong>Class:</strong> The class of the object, which defines its structure and behavior (vector, list, data frame, function, etc.).</li>
+<li><strong>Length:</strong> The amount of elements the object contains (if it is a vector, a list, etc.).</li>
+</ul>
+<div id="r-as-an-object-oriented-language" class="section level3 hasAnchor" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> R as an object-oriented language<a href="objects.html#r-as-an-object-oriented-language" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R is an <strong>object-oriented</strong> programming language. This means it relies on the concept of objects to organize and process information.</p>
+<p>Object-oriented programming has several advantages:</p>
+<ul>
+<li><strong>Modularity:</strong> Objects allow dividing a program into smaller, manageable parts.</li>
+<li><strong>Reusability:</strong> Objects can be reused in different parts of the program or in other programs.</li>
+<li><strong>Encapsulation:</strong> Objects hide implementation details, facilitating their use and maintenance.</li>
+</ul>
+</div>
+<div id="the-power-of-abstraction" class="section level3 hasAnchor" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> The power of abstraction<a href="objects.html#the-power-of-abstraction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The concept of an object allows us to <strong>abstract</strong> the complexity of the real world. Instead of thinking about the details of how data is stored and processed in computer memory, we can think in terms of objects representing real-world entities.</p>
+<p>For example, instead of thinking of a series of numbers representing the temperatures of different cities, we can think of a “temperatures” object containing all that information.</p>
+<p>This abstraction facilitates understanding and handling information, allowing us to focus on the logic of the problem we want to solve.</p>
+</div>
+</div>
+<div id="variables-the-first-objects-on-your-journey" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Variables: The first objects on your journey<a href="objects.html#variables-the-first-objects-on-your-journey" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before we start packing for our move to the United States, we need to know what things we will take. Each object we decide to take is represented in R as a <strong>variable</strong>.</p>
+<p>Think of variables as labels we put on each object. For example, we could use the variable <code>state</code> to save the name of the state we are moving to, or the variable <code>num_suitcases</code> to save the number of suitcases we will take.</p>
+<div id="creating-variables-in-r" class="section level3 hasAnchor" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Creating variables in R<a href="objects.html#creating-variables-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In R, we don’t need to declare a variable before using it. We simply assign it a value using the <code>&lt;-</code> symbol.</p>
+<p><strong>Example:</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="objects.html#cb3-1" tabindex="-1"></a><span class="co"># Assign the value &quot;California&quot; to the variable &quot;state&quot;</span></span>
+<span id="cb3-2"><a href="objects.html#cb3-2" tabindex="-1"></a>state <span class="ot">&lt;-</span> <span class="st">&quot;California&quot;</span></span>
+<span id="cb3-3"><a href="objects.html#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="objects.html#cb3-4" tabindex="-1"></a><span class="co"># Assign the value 5 to the variable &quot;num_suitcases&quot;</span></span>
+<span id="cb3-5"><a href="objects.html#cb3-5" tabindex="-1"></a>num_suitcases <span class="ot">&lt;-</span> <span class="dv">5</span></span></code></pre></div>
+<p>To see the value we have saved in a variable, we simply type its name in the RStudio console and press Enter.</p>
+<p><strong>Example:</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="objects.html#cb4-1" tabindex="-1"></a>state <span class="ot">&lt;-</span> <span class="st">&quot;California&quot;</span></span>
+<span id="cb4-2"><a href="objects.html#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="objects.html#cb4-3" tabindex="-1"></a>state</span>
+<span id="cb4-4"><a href="objects.html#cb4-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;California&quot;</span></span></code></pre></div>
+<p>When executing this code, you will see the value <code>"California"</code> appear in the console.</p>
+</div>
+<div id="operations-with-variables" class="section level3 hasAnchor" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Operations with variables<a href="objects.html#operations-with-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can also use variables to perform operations. For example, if we want to calculate the total cost of our plane trip, we could use the variables <code>ticket_price</code> and <code>num_people</code>.</p>
+<p><strong>Example:</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="objects.html#cb5-1" tabindex="-1"></a>ticket_price <span class="ot">&lt;-</span> <span class="dv">300</span></span>
+<span id="cb5-2"><a href="objects.html#cb5-2" tabindex="-1"></a>num_people <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb5-3"><a href="objects.html#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="objects.html#cb5-4" tabindex="-1"></a>total_cost <span class="ot">&lt;-</span> ticket_price <span class="sc">*</span> num_people</span>
+<span id="cb5-5"><a href="objects.html#cb5-5" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="objects.html#cb5-6" tabindex="-1"></a>total_cost</span>
+<span id="cb5-7"><a href="objects.html#cb5-7" tabindex="-1"></a><span class="co">#&gt; [1] 1200</span></span></code></pre></div>
+<p>In this example, we first assign values to the variables <code>ticket_price</code> and <code>num_people</code>. Then, we multiply these variables to calculate the <code>total_cost</code> and display its value in the console.</p>
+</div>
+<div id="best-practices-for-naming-variables" class="section level3 hasAnchor" number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> Best practices for naming variables<a href="objects.html#best-practices-for-naming-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Watch out for capitalization!</strong></p>
+<p>R is case-sensitive. If you create a variable called <code>state</code> and then try to access it as <code>State</code>, R will not find it.</p>
+<p><strong>Descriptive names</strong></p>
+<p>It is important to use descriptive names for variables, clearly indicating what information they contain. Instead of using variables like <code>x</code> or <code>y</code>, it is better to use names like <code>ticket_price</code> or <code>num_suitcases</code>.</p>
+<p><strong>Rules for naming variables</strong></p>
+<ul>
+<li>Variable names can contain letters, numbers, and underscores (<code>_</code>).</li>
+<li>They cannot start with a number.</li>
+<li>They cannot contain spaces.</li>
+<li>R is case-sensitive.</li>
+</ul>
+</div>
+<div id="data-types" class="section level3 hasAnchor" number="1.2.4">
+<h3><span class="header-section-number">1.2.4</span> Data types<a href="objects.html#data-types" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Variables in R can contain different types of data:</p>
+<ul>
+<li><p><strong>Numeric:</strong> Represent numbers, such as the population of a city or the cost of a plane ticket.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="objects.html#cb6-1" tabindex="-1"></a>chicago_population <span class="ot">&lt;-</span> <span class="dv">2700000</span></span>
+<span id="cb6-2"><a href="objects.html#cb6-2" tabindex="-1"></a>ticket_price <span class="ot">&lt;-</span> <span class="dv">300</span></span></code></pre></div></li>
+<li><p><strong>Character:</strong> Represent text, such as the name of a state or a city.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="objects.html#cb7-1" tabindex="-1"></a>state <span class="ot">&lt;-</span> <span class="st">&quot;California&quot;</span></span>
+<span id="cb7-2"><a href="objects.html#cb7-2" tabindex="-1"></a>city <span class="ot">&lt;-</span> <span class="st">&quot;Los Angeles&quot;</span></span></code></pre></div></li>
+<li><p><strong>Logical:</strong> Represent truth values: <code>TRUE</code> or <code>FALSE</code>. We could use a logical variable to indicate if we want to visit a city or not.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="objects.html#cb8-1" tabindex="-1"></a>visit_chicago <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb8-2"><a href="objects.html#cb8-2" tabindex="-1"></a>visit_miami <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span></code></pre></div></li>
+</ul>
+</div>
+</div>
+<div id="object-types-for-complex-data" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Object types for complex data<a href="objects.html#object-types-for-complex-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The variables we have seen so far are very useful for storing individual information, such as the name of a city or the number of suitcases we will carry on our move. However, in the real world, we often need to work with more complex datasets.</p>
+<p>Imagine you want to save the names of all the cities you plan to visit on your trip to the United States. Would you have to create a variable for each city? That would be very tedious!</p>
+<p>Fortunately, R offers other types of objects that allow us to organize and manipulate information more efficiently. Let’s look at some of them:</p>
+<div id="vectors-organizing-information-of-the-same-type" class="section level3 hasAnchor" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Vectors: organizing information of the same type<a href="objects.html#vectors-organizing-information-of-the-same-type" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Vectors are like trains transporting a series of objects of the same type. They can be numbers, text, or logical values, but all elements of a vector must be of the same type. For example, we could use a vector to save the name of each state in the United States, or a vector to save the population of each state.</p>
+<p><strong>Creating vectors:</strong> To create a vector, we can use the <code>c()</code> function (which stands for “combine”) and list the elements we want to include, separated by commas.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="objects.html#cb9-1" tabindex="-1"></a><span class="co"># Create a vector with the names of some states</span></span>
+<span id="cb9-2"><a href="objects.html#cb9-2" tabindex="-1"></a>states <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;California&quot;</span>, <span class="st">&quot;Texas&quot;</span>, <span class="st">&quot;Florida&quot;</span>, <span class="st">&quot;New York&quot;</span>)</span>
+<span id="cb9-3"><a href="objects.html#cb9-3" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="objects.html#cb9-4" tabindex="-1"></a><span class="co"># Create a vector with the population of each state (in millions)</span></span>
+<span id="cb9-5"><a href="objects.html#cb9-5" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">39.2</span>, <span class="fl">29.0</span>, <span class="fl">21.4</span>, <span class="fl">19.4</span>) </span></code></pre></div>
+<p>If we want to know the amount of data our vector has, its length, we will use the <code>length()</code> function. The <code>class()</code> function tells us the class of the object, that is, what type of data it contains.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="objects.html#cb10-1" tabindex="-1"></a><span class="fu">length</span>(population)  </span>
+<span id="cb10-2"><a href="objects.html#cb10-2" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span>
+<span id="cb10-3"><a href="objects.html#cb10-3" tabindex="-1"></a><span class="fu">class</span>(states)     </span>
+<span id="cb10-4"><a href="objects.html#cb10-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span>
+<span id="cb10-5"><a href="objects.html#cb10-5" tabindex="-1"></a><span class="fu">class</span>(population)   </span>
+<span id="cb10-6"><a href="objects.html#cb10-6" tabindex="-1"></a><span class="co">#&gt; [1] &quot;numeric&quot;</span></span></code></pre></div>
+<p>We can use the <code>names()</code> function to assign names to the elements of a vector. This can be useful for identifying each element.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="objects.html#cb11-1" tabindex="-1"></a><span class="fu">names</span>(population) <span class="ot">&lt;-</span> states</span>
+<span id="cb11-2"><a href="objects.html#cb11-2" tabindex="-1"></a>population</span>
+<span id="cb11-3"><a href="objects.html#cb11-3" tabindex="-1"></a><span class="co">#&gt; California      Texas    Florida   New York </span></span>
+<span id="cb11-4"><a href="objects.html#cb11-4" tabindex="-1"></a><span class="co">#&gt;       39.2       29.0       21.4       19.4</span></span></code></pre></div>
+<p>In addition to <code>c()</code>, there are other useful functions for creating vectors:</p>
+<ul>
+<li><p><code>seq()</code>: Creates a sequence of numbers. We can specify the start value, the end value, and the increment.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="objects.html#cb12-1" tabindex="-1"></a><span class="co"># Create a vector with numbers from 1 to 10</span></span>
+<span id="cb12-2"><a href="objects.html#cb12-2" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>)</span>
+<span id="cb12-3"><a href="objects.html#cb12-3" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="objects.html#cb12-4" tabindex="-1"></a><span class="co"># Create a vector with numbers from 2 to 20, by 2</span></span>
+<span id="cb12-5"><a href="objects.html#cb12-5" tabindex="-1"></a>even_numbers <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)</span></code></pre></div></li>
+<li><p><code>rep()</code>: Repeats a value or a vector a specified number of times.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="objects.html#cb13-1" tabindex="-1"></a><span class="co"># Create a vector with the value 1 repeated 5 times</span></span>
+<span id="cb13-2"><a href="objects.html#cb13-2" tabindex="-1"></a>ones <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">5</span>)</span>
+<span id="cb13-3"><a href="objects.html#cb13-3" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="objects.html#cb13-4" tabindex="-1"></a><span class="co"># Create a vector with the sequence &quot;A&quot;, &quot;B&quot; repeated 3 times</span></span>
+<span id="cb13-5"><a href="objects.html#cb13-5" tabindex="-1"></a>letters <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dv">3</span>)  <span class="co"># Output: &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot;</span></span></code></pre></div></li>
+</ul>
+<p><strong>Accessing vector elements:</strong> Each element of a vector has a position, indicated by a number in brackets. The first element is at position 1, the second at position 2, and so on.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="objects.html#cb14-1" tabindex="-1"></a><span class="co"># Show the first element of the &quot;states&quot; vector</span></span>
+<span id="cb14-2"><a href="objects.html#cb14-2" tabindex="-1"></a>states[<span class="dv">1</span>]  <span class="co"># Output: &quot;California&quot;</span></span>
+<span id="cb14-3"><a href="objects.html#cb14-3" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="objects.html#cb14-4" tabindex="-1"></a><span class="co"># Show the third element of the &quot;population&quot; vector</span></span>
+<span id="cb14-5"><a href="objects.html#cb14-5" tabindex="-1"></a>population[<span class="dv">3</span>]  <span class="co"># Output: 21.4</span></span></code></pre></div>
+<p>We can also access multiple elements at once using the <code>:</code> operator. For example, to access elements from the second to the fourth of the <code>states</code> vector:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="objects.html#cb15-1" tabindex="-1"></a>states[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>]</span>
+<span id="cb15-2"><a href="objects.html#cb15-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Texas&quot;    &quot;Florida&quot;  &quot;New York&quot;</span></span></code></pre></div>
+<p><strong>Operations with vectors:</strong> We can perform mathematical operations with numeric vectors. For example, if we want to calculate the total population of the four states, we can use the <code>+</code> operator to sum the elements of the <code>population</code> vector.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="objects.html#cb16-1" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">39.2</span>, <span class="fl">29.0</span>, <span class="fl">21.4</span>, <span class="fl">19.4</span>) </span>
+<span id="cb16-2"><a href="objects.html#cb16-2" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="objects.html#cb16-3" tabindex="-1"></a>population[<span class="dv">1</span>] <span class="sc">+</span> population[<span class="dv">2</span>] <span class="sc">+</span> population[<span class="dv">3</span>] <span class="sc">+</span> population[<span class="dv">4</span>]  </span>
+<span id="cb16-4"><a href="objects.html#cb16-4" tabindex="-1"></a><span class="co">#&gt; [1] 109</span></span></code></pre></div>
+<p>If we want to perform the same operation more concisely, R allows us to sum all elements of a vector directly:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="objects.html#cb17-1" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">39.2</span>, <span class="fl">29.0</span>, <span class="fl">21.4</span>, <span class="fl">19.4</span>) </span>
+<span id="cb17-2"><a href="objects.html#cb17-2" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="objects.html#cb17-3" tabindex="-1"></a><span class="fu">sum</span>(population)  </span>
+<span id="cb17-4"><a href="objects.html#cb17-4" tabindex="-1"></a><span class="co">#&gt; [1] 109</span></span></code></pre></div>
+<p>R also offers other tools for performing operations with vectors. For example, if we want to calculate the square root of the population of each state:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="objects.html#cb18-1" tabindex="-1"></a><span class="fu">sqrt</span>(population)  </span>
+<span id="cb18-2"><a href="objects.html#cb18-2" tabindex="-1"></a><span class="co">#&gt; [1] 6.260990 5.385165 4.626013 4.404543</span></span></code></pre></div>
+<p>In this case, the <code>sqrt()</code> function calculates the square root of each element of the <code>population</code> vector individually. This is possible because many functions in R are vectorized, meaning they can operate directly on vectors, element by element. Vectorized functions are very efficient as they avoid the need to write loops to process each element of the vector separately.
+We will explore functions in R and how to use them for more complex data analysis in greater depth later.</p>
+<p><strong>Vector coercion:</strong> Unlike other programming languages, R tries to interpret or change a value when it encounters an error. For example, if we try to convert a character vector to numeric, R will convert the elements it can and replace the ones it cannot with <code>NA</code>.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="objects.html#cb19-1" tabindex="-1"></a>example <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;3&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;6&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;bridge&quot;</span>, <span class="st">&quot;4&quot;</span>)</span>
+<span id="cb19-2"><a href="objects.html#cb19-2" tabindex="-1"></a><span class="fu">as.numeric</span>(example)</span>
+<span id="cb19-3"><a href="objects.html#cb19-3" tabindex="-1"></a><span class="co">#&gt; Warning: NAs introduced by coercion</span></span>
+<span id="cb19-4"><a href="objects.html#cb19-4" tabindex="-1"></a><span class="co">#&gt; [1]  3 NA  6 NA NA  4</span></span></code></pre></div>
+<p><strong>Sorting vectors:</strong> We can sort the elements of a vector using the <code>sort()</code> function.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="objects.html#cb20-1" tabindex="-1"></a>districts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Comas&quot;</span>, <span class="st">&quot;Lince&quot;</span>, <span class="st">&quot;Miraflores&quot;</span>, <span class="st">&quot;Lurigancho&quot;</span>, <span class="st">&quot;Chorrillos&quot;</span>)</span>
+<span id="cb20-2"><a href="objects.html#cb20-2" tabindex="-1"></a><span class="fu">sort</span>(districts) </span>
+<span id="cb20-3"><a href="objects.html#cb20-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Chorrillos&quot; &quot;Comas&quot;      &quot;Lince&quot;      &quot;Lurigancho&quot; &quot;Miraflores&quot;</span></span></code></pre></div>
+<p>We can also order a vector using its indices with the <code>order()</code> function. This way, we get a vector with the positions the elements of the original vector would occupy if they were sorted. This can be useful when we want to sort a vector based on another vector or when we want to preserve the original vector without modifying it.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="objects.html#cb21-1" tabindex="-1"></a>indices <span class="ot">&lt;-</span> <span class="fu">order</span>(districts)  <span class="co"># Output: 5 1 2 4 3</span></span>
+<span id="cb21-2"><a href="objects.html#cb21-2" tabindex="-1"></a>districts[indices]</span>
+<span id="cb21-3"><a href="objects.html#cb21-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Chorrillos&quot; &quot;Comas&quot;      &quot;Lince&quot;      &quot;Lurigancho&quot; &quot;Miraflores&quot;</span></span></code></pre></div>
+<p><strong>NA in vectors:</strong> If a vector contains NA values, some operations may return NA. We can use the <code>is.na()</code> function to identify NA values and filter them.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="objects.html#cb22-1" tabindex="-1"></a>example_na <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">3</span>, <span class="dv">19</span>, <span class="cn">NA</span>, <span class="dv">89</span>, <span class="dv">45</span>, <span class="cn">NA</span>, <span class="dv">86</span>, <span class="dv">5</span>, <span class="dv">18</span>, <span class="dv">28</span>, <span class="cn">NA</span>)</span>
+<span id="cb22-2"><a href="objects.html#cb22-2" tabindex="-1"></a>example_no_na <span class="ot">&lt;-</span> example_na[<span class="sc">!</span><span class="fu">is.na</span>(example_na)]</span>
+<span id="cb22-3"><a href="objects.html#cb22-3" tabindex="-1"></a><span class="fu">mean</span>(example_no_na)  <span class="co"># Output: 38.66667</span></span>
+<span id="cb22-4"><a href="objects.html#cb22-4" tabindex="-1"></a><span class="co">#&gt; [1] 35.66667</span></span></code></pre></div>
+</div>
+<div id="lists-grouping-objects-of-different-types" class="section level3 hasAnchor" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Lists: grouping objects of different types<a href="objects.html#lists-grouping-objects-of-different-types" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Lists are like containers that can hold different types of objects. Imagine a box where you can put clothes, books, tools, and any other object you need. In R, lists allow you to group diverse information into a single object.</p>
+<p><strong>Creating lists:</strong> To create a list, we use the <code>list()</code> function and specify the elements we want to include, separated by commas. Each element can have a name, indicated with the <code>=</code> symbol.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="objects.html#cb23-1" tabindex="-1"></a><span class="co"># Create a list with information about a city</span></span>
+<span id="cb23-2"><a href="objects.html#cb23-2" tabindex="-1"></a>city_info <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">name =</span> <span class="st">&quot;San Francisco&quot;</span>, </span>
+<span id="cb23-3"><a href="objects.html#cb23-3" tabindex="-1"></a>                  <span class="at">population =</span> <span class="dv">880000</span>, </span>
+<span id="cb23-4"><a href="objects.html#cb23-4" tabindex="-1"></a>                  <span class="at">cost_of_living =</span> <span class="fl">3.8</span>, </span>
+<span id="cb23-5"><a href="objects.html#cb23-5" tabindex="-1"></a>                  <span class="at">climate =</span> <span class="st">&quot;Temperate&quot;</span>)</span></code></pre></div>
+<p><strong>Accessing list elements:</strong> To access the elements of a list, we can use their names or their positions.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="objects.html#cb24-1" tabindex="-1"></a><span class="co"># Access the &quot;name&quot; element of the &quot;city_info&quot; list</span></span>
+<span id="cb24-2"><a href="objects.html#cb24-2" tabindex="-1"></a>city_info<span class="sc">$</span>name  <span class="co"># Output: &quot;San Francisco&quot;</span></span>
+<span id="cb24-3"><a href="objects.html#cb24-3" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="objects.html#cb24-4" tabindex="-1"></a><span class="co"># Access the second element of the &quot;city_info&quot; list</span></span>
+<span id="cb24-5"><a href="objects.html#cb24-5" tabindex="-1"></a>city_info[[<span class="dv">2</span>]]  <span class="co"># Output: 880000</span></span></code></pre></div>
+</div>
+<div id="matrices-organizing-data-in-rows-and-columns" class="section level3 hasAnchor" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> Matrices: organizing data in rows and columns<a href="objects.html#matrices-organizing-data-in-rows-and-columns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Matrices are like tables that organize information in rows and columns. All elements of a matrix must be of the same type.</p>
+<p><strong>Creating matrices:</strong> To create a matrix, we use the <code>matrix()</code> function. We must specify the data we want to include, the number of rows (<code>nrow</code>), and the number of columns (<code>ncol</code>).</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="objects.html#cb25-1" tabindex="-1"></a><span class="co"># Create a matrix with distances between cities (in miles)</span></span>
+<span id="cb25-2"><a href="objects.html#cb25-2" tabindex="-1"></a>city_distances <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2600</span>, <span class="dv">2100</span>, <span class="dv">950</span>, </span>
+<span id="cb25-3"><a href="objects.html#cb25-3" tabindex="-1"></a>                           <span class="dv">2600</span>, <span class="dv">0</span>, <span class="dv">1100</span>, <span class="dv">2700</span>, </span>
+<span id="cb25-4"><a href="objects.html#cb25-4" tabindex="-1"></a>                           <span class="dv">2100</span>, <span class="dv">1100</span>, <span class="dv">0</span>, <span class="dv">2100</span>, </span>
+<span id="cb25-5"><a href="objects.html#cb25-5" tabindex="-1"></a>                           <span class="dv">950</span>, <span class="dv">2700</span>, <span class="dv">2100</span>, <span class="dv">0</span>), </span>
+<span id="cb25-6"><a href="objects.html#cb25-6" tabindex="-1"></a>                         <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">4</span>)</span>
+<span id="cb25-7"><a href="objects.html#cb25-7" tabindex="-1"></a>city_distances</span>
+<span id="cb25-8"><a href="objects.html#cb25-8" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></span>
+<span id="cb25-9"><a href="objects.html#cb25-9" tabindex="-1"></a><span class="co">#&gt; [1,]    0 2600 2100  950</span></span>
+<span id="cb25-10"><a href="objects.html#cb25-10" tabindex="-1"></a><span class="co">#&gt; [2,] 2600    0 1100 2700</span></span>
+<span id="cb25-11"><a href="objects.html#cb25-11" tabindex="-1"></a><span class="co">#&gt; [3,] 2100 1100    0 2100</span></span>
+<span id="cb25-12"><a href="objects.html#cb25-12" tabindex="-1"></a><span class="co">#&gt; [4,]  950 2700 2100    0</span></span></code></pre></div>
+<p><strong>Accessing matrix elements:</strong> To access the elements of a matrix, we use brackets and specify the row and column of the element we want.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="objects.html#cb26-1" tabindex="-1"></a><span class="co"># Access the element in row 1, column 3 of the &quot;city_distances&quot; matrix</span></span>
+<span id="cb26-2"><a href="objects.html#cb26-2" tabindex="-1"></a>city_distances[<span class="dv">1</span>, <span class="dv">3</span>] </span>
+<span id="cb26-3"><a href="objects.html#cb26-3" tabindex="-1"></a><span class="co">#&gt; [1] 2100</span></span></code></pre></div>
+</div>
+<div id="arrays-multidimensional-matrices" class="section level3 hasAnchor" number="1.3.4">
+<h3><span class="header-section-number">1.3.4</span> Arrays: multidimensional matrices<a href="objects.html#arrays-multidimensional-matrices" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Arrays are like matrices that have more than two dimensions. Imagine a matrix that, in addition to rows and columns, has depth. In R, arrays allow you to organize data in more complex structures.</p>
+<p><strong>Creating arrays:</strong> To create an array, we use the <code>array()</code> function.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="objects.html#cb27-1" tabindex="-1"></a><span class="co"># Create an array with maximum and minimum temperatures of </span></span>
+<span id="cb27-2"><a href="objects.html#cb27-2" tabindex="-1"></a><span class="co"># three cities during the summer months (June, July, August)</span></span>
+<span id="cb27-3"><a href="objects.html#cb27-3" tabindex="-1"></a>temperatures <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">28</span>, <span class="dv">30</span>, <span class="dv">22</span>, <span class="dv">25</span>, <span class="dv">28</span>,  <span class="co"># City 1</span></span>
+<span id="cb27-4"><a href="objects.html#cb27-4" tabindex="-1"></a>                        <span class="dv">28</span>, <span class="dv">20</span>, <span class="dv">32</span>, <span class="dv">25</span>, <span class="dv">18</span>, <span class="dv">30</span>,  <span class="co"># City 2</span></span>
+<span id="cb27-5"><a href="objects.html#cb27-5" tabindex="-1"></a>                        <span class="dv">22</span>, <span class="dv">25</span>, <span class="dv">28</span>, <span class="dv">18</span>, <span class="dv">23</span>, <span class="dv">25</span>), <span class="co"># City 3</span></span>
+<span id="cb27-6"><a href="objects.html#cb27-6" tabindex="-1"></a>                      <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">3</span>))  <span class="co"># 3 cities, 2 temperatures (max/min), 3 months</span></span>
+<span id="cb27-7"><a href="objects.html#cb27-7" tabindex="-1"></a>temperatures</span>
+<span id="cb27-8"><a href="objects.html#cb27-8" tabindex="-1"></a><span class="co">#&gt; , , 1</span></span>
+<span id="cb27-9"><a href="objects.html#cb27-9" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb27-10"><a href="objects.html#cb27-10" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2]</span></span>
+<span id="cb27-11"><a href="objects.html#cb27-11" tabindex="-1"></a><span class="co">#&gt; [1,]   25   22</span></span>
+<span id="cb27-12"><a href="objects.html#cb27-12" tabindex="-1"></a><span class="co">#&gt; [2,]   28   25</span></span>
+<span id="cb27-13"><a href="objects.html#cb27-13" tabindex="-1"></a><span class="co">#&gt; [3,]   30   28</span></span>
+<span id="cb27-14"><a href="objects.html#cb27-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb27-15"><a href="objects.html#cb27-15" tabindex="-1"></a><span class="co">#&gt; , , 2</span></span>
+<span id="cb27-16"><a href="objects.html#cb27-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb27-17"><a href="objects.html#cb27-17" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2]</span></span>
+<span id="cb27-18"><a href="objects.html#cb27-18" tabindex="-1"></a><span class="co">#&gt; [1,]   28   25</span></span>
+<span id="cb27-19"><a href="objects.html#cb27-19" tabindex="-1"></a><span class="co">#&gt; [2,]   20   18</span></span>
+<span id="cb27-20"><a href="objects.html#cb27-20" tabindex="-1"></a><span class="co">#&gt; [3,]   32   30</span></span>
+<span id="cb27-21"><a href="objects.html#cb27-21" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb27-22"><a href="objects.html#cb27-22" tabindex="-1"></a><span class="co">#&gt; , , 3</span></span>
+<span id="cb27-23"><a href="objects.html#cb27-23" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb27-24"><a href="objects.html#cb27-24" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2]</span></span>
+<span id="cb27-25"><a href="objects.html#cb27-25" tabindex="-1"></a><span class="co">#&gt; [1,]   22   18</span></span>
+<span id="cb27-26"><a href="objects.html#cb27-26" tabindex="-1"></a><span class="co">#&gt; [2,]   25   23</span></span>
+<span id="cb27-27"><a href="objects.html#cb27-27" tabindex="-1"></a><span class="co">#&gt; [3,]   28   25</span></span></code></pre></div>
+<p><strong>Accessing array elements:</strong> To access the elements of an array, we use brackets and specify the position of the element in each dimension.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="objects.html#cb28-1" tabindex="-1"></a><span class="co"># Access the maximum temperature of city 2 in July</span></span>
+<span id="cb28-2"><a href="objects.html#cb28-2" tabindex="-1"></a>temperatures[<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>] </span>
+<span id="cb28-3"><a href="objects.html#cb28-3" tabindex="-1"></a><span class="co">#&gt; [1] 20</span></span></code></pre></div>
+</div>
+<div id="factors-representing-categorical-data" class="section level3 hasAnchor" number="1.3.5">
+<h3><span class="header-section-number">1.3.5</span> Factors: representing categorical data<a href="objects.html#factors-representing-categorical-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Factors are a special type of object used to represent categorical data, that is, data that can be classified into groups. For example, the type of climate (“warm”, “temperate”, “cold”), the region of a country (“north”, “south”, “east”, “west”), or the type of housing (“house”, “apartment”).</p>
+<p><strong>Creating factors:</strong> To create a factor, we use the <code>factor()</code> function.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="objects.html#cb29-1" tabindex="-1"></a><span class="co"># Create a factor with climate types of different cities</span></span>
+<span id="cb29-2"><a href="objects.html#cb29-2" tabindex="-1"></a>climate_types <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;Temperate&quot;</span>, <span class="st">&quot;Warm&quot;</span>, <span class="st">&quot;Cold&quot;</span>))</span></code></pre></div>
+<p><strong>Levels of a factor:</strong> The different values a factor can take are called levels. In the previous example, the levels of the <code>climate_types</code> factor are “Temperate”, “Warm”, and “Cold”.</p>
+<p><strong>Utility of factors:</strong> Factors are very useful for data analysis, as they allow grouping and comparing information efficiently. For example, we could use the <code>climate_types</code> factor to analyze how the cost of living varies in cities with different climates.</p>
+</div>
+</div>
+<div id="the-universe-of-objects-in-r" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> The Universe of Objects in R<a href="objects.html#the-universe-of-objects-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Throughout this chapter, we have explored the different types of objects inhabiting the R universe. From the simplest variables to multidimensional arrays, each object plays an important role in building our data analyses.</p>
+<div id="philosophy-of-objects-in-r" class="section level3 hasAnchor" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Philosophy of objects in R<a href="objects.html#philosophy-of-objects-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In R, everything is an object. This philosophy has profound implications for how code is written and executed. By treating everything as an object, R promotes consistency, modularity, and reuse.</p>
+<p>Objects allow us to encapsulate information and behavior, facilitating code organization and maintenance. Furthermore, the ability to create our own objects gives us great power to model and solve complex problems.</p>
+<p>By understanding the philosophy of objects in R, we can make the most of the language’s capabilities for data analysis.</p>
+</div>
+<div id="comparison-with-other-languages" class="section level3 hasAnchor" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> Comparison with other languages<a href="objects.html#comparison-with-other-languages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>While many modern programming languages use the object-oriented paradigm, R has a particular approach. In languages like Python or Java, creating classes and objects is a fundamental part of the language. In R, while it is possible to create classes and objects, the language focuses more on the use of functions to manipulate and transform data.</p>
+<p>This difference is due in part to R’s history as a language for statistical analysis. In this context, functions are a natural tool for performing calculations and analyses.</p>
+</div>
+</div>
+<div id="exercises" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> Exercises<a href="objects.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that you know the different types of objects in R, it’s time to put your knowledge to the test.</p>
+<ol style="list-style-type: decimal">
+<li>Create the following variables:</li>
+</ol>
+<ul>
+<li><code>city_name</code>: Store the name of the US city you would like to move to.</li>
+<li><code>population</code>: Store the population of that city (you can search for it online).</li>
+<li><code>distance</code>: Store the distance in kilometers from your current city to the US city.</li>
+<li><code>want_to_live_there</code>: Store a logical value (<code>TRUE</code> or <code>FALSE</code>) indicating if you really would like to live in that city.</li>
+</ul>
+<details>
+<summary type="button">
+Solution
+</summary>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="objects.html#cb30-1" tabindex="-1"></a>city_name <span class="ot">&lt;-</span> <span class="st">&quot;Seattle&quot;</span></span>
+<span id="cb30-2"><a href="objects.html#cb30-2" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="dv">724745</span> </span>
+<span id="cb30-3"><a href="objects.html#cb30-3" tabindex="-1"></a>distance <span class="ot">&lt;-</span> <span class="dv">8340</span>  <span class="co"># Approximate distance from Lima, Peru</span></span>
+<span id="cb30-4"><a href="objects.html#cb30-4" tabindex="-1"></a>want_to_live_there <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span></code></pre></div>
+</details>
+<ol start="2" style="list-style-type: decimal">
+<li>Create a vector called <code>nearby_cities</code> containing the names of three cities near the city you chose in the previous exercise.</li>
+</ol>
+<details>
+<summary type="button">
+Solution
+</summary>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="objects.html#cb31-1" tabindex="-1"></a>nearby_cities <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Tacoma&quot;</span>, <span class="st">&quot;Bellevue&quot;</span>, <span class="st">&quot;Everett&quot;</span>)</span></code></pre></div>
+</details>
+<ol start="3" style="list-style-type: decimal">
+<li>Create a list called <code>my_list</code> containing the following elements:</li>
+</ol>
+<ul>
+<li>Your name.</li>
+<li>Your age.</li>
+<li>A vector with the names of your three favorite colors.</li>
+<li>A logical value indicating if you like chocolate.</li>
+</ul>
+<details>
+<summary type="button">
+Solution
+</summary>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="objects.html#cb32-1" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">name =</span> <span class="st">&quot;Ana&quot;</span>, </span>
+<span id="cb32-2"><a href="objects.html#cb32-2" tabindex="-1"></a>                <span class="at">age =</span> <span class="dv">30</span>, </span>
+<span id="cb32-3"><a href="objects.html#cb32-3" tabindex="-1"></a>                <span class="at">favorite_colors =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>), </span>
+<span id="cb32-4"><a href="objects.html#cb32-4" tabindex="-1"></a>                <span class="at">likes_chocolate =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+</details>
+<ol start="4" style="list-style-type: decimal">
+<li>Create a matrix called <code>monthly_expenses</code> containing your estimated monthly expenses in the following categories:</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th>Category</th>
+<th>January</th>
+<th>February</th>
+<th>March</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Housing</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Transport</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Food</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Entertainment</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Complete the matrix with numerical values.</p>
+<details>
+<summary type="button">
+Solution
+</summary>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="objects.html#cb33-1" tabindex="-1"></a>monthly_expenses <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1500</span>, <span class="dv">1500</span>, <span class="dv">1500</span>,  <span class="co"># Housing</span></span>
+<span id="cb33-2"><a href="objects.html#cb33-2" tabindex="-1"></a>                             <span class="dv">300</span>,  <span class="dv">250</span>,  <span class="dv">350</span>,   <span class="co"># Transport</span></span>
+<span id="cb33-3"><a href="objects.html#cb33-3" tabindex="-1"></a>                             <span class="dv">500</span>,  <span class="dv">400</span>,  <span class="dv">550</span>,   <span class="co"># Food</span></span>
+<span id="cb33-4"><a href="objects.html#cb33-4" tabindex="-1"></a>                             <span class="dv">200</span>,  <span class="dv">150</span>,  <span class="dv">250</span>),  <span class="co"># Entertainment</span></span>
+<span id="cb33-5"><a href="objects.html#cb33-5" tabindex="-1"></a>                           <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">3</span>,</span>
+<span id="cb33-6"><a href="objects.html#cb33-6" tabindex="-1"></a>                           <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;Housing&quot;</span>, <span class="st">&quot;Transport&quot;</span>, <span class="st">&quot;Food&quot;</span>, <span class="st">&quot;Entertainment&quot;</span>),</span>
+<span id="cb33-7"><a href="objects.html#cb33-7" tabindex="-1"></a>                                           <span class="fu">c</span>(<span class="st">&quot;January&quot;</span>, <span class="st">&quot;February&quot;</span>, <span class="st">&quot;March&quot;</span>)))</span></code></pre></div>
+</details>
+<ol start="5" style="list-style-type: decimal">
+<li>Create a factor called <code>climate_types</code> containing the names of the different climate types in the United States (you can use “Temperate”, “Warm”, “Cold”, etc.). Assign labels to the factor levels to make them more descriptive (for example, “Cold climate”, “Temperate climate”, etc.).</li>
+</ol>
+<details>
+<summary type="button">
+Solution
+</summary>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="objects.html#cb34-1" tabindex="-1"></a>climate_types <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;Temperate&quot;</span>, <span class="st">&quot;Warm&quot;</span>, <span class="st">&quot;Cold&quot;</span>, <span class="st">&quot;Warm&quot;</span>, <span class="st">&quot;Temperate&quot;</span>),</span>
+<span id="cb34-2"><a href="objects.html#cb34-2" tabindex="-1"></a>                     <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Cold&quot;</span>, <span class="st">&quot;Temperate&quot;</span>, <span class="st">&quot;Warm&quot;</span>),</span>
+<span id="cb34-3"><a href="objects.html#cb34-3" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Cold climate&quot;</span>, <span class="st">&quot;Temperate climate&quot;</span>, <span class="st">&quot;Warm climate&quot;</span>))</span>
+<span id="cb34-4"><a href="objects.html#cb34-4" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="objects.html#cb34-5" tabindex="-1"></a>climate_types</span></code></pre></div>
+</details>
+<ol start="6" style="list-style-type: decimal">
+<li>Create a vector called <code>cities_to_visit</code> with the names of 5 cities you would like to visit in the United States. Then, create another vector called <code>days_per_city</code> with the number of days you would like to spend in each city. Finally, create a third vector called <code>daily_cost</code> with the estimated daily cost in each city (in dollars).</li>
+</ol>
+<details>
+<summary type="button">
+Solution
+</summary>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="objects.html#cb35-1" tabindex="-1"></a>cities_to_visit <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;New York&quot;</span>, <span class="st">&quot;Los Angeles&quot;</span>, <span class="st">&quot;Chicago&quot;</span>, <span class="st">&quot;San Francisco&quot;</span>, <span class="st">&quot;Miami&quot;</span>)</span>
+<span id="cb35-2"><a href="objects.html#cb35-2" tabindex="-1"></a>days_per_city <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">2</span>)  </span>
+<span id="cb35-3"><a href="objects.html#cb35-3" tabindex="-1"></a>daily_cost <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">200</span>, <span class="dv">180</span>, <span class="dv">150</span>, <span class="dv">220</span>, <span class="dv">170</span>)</span></code></pre></div>
+</details>
+<ol start="7" style="list-style-type: decimal">
+<li>Create a vector called <code>max_temperatures</code> with the average maximum temperatures (in Celsius) of the cities you want to visit during the month of July. Then, create a vector called <code>min_temperatures</code> with the average minimum temperatures. Finally, create a matrix containing these two vectors as columns, and name the rows with the names of the cities.</li>
+</ol>
+<details>
+<summary type="button">
+Solution
+</summary>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="objects.html#cb36-1" tabindex="-1"></a>max_temperatures <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">29</span>, <span class="dv">28</span>, <span class="dv">27</span>, <span class="dv">22</span>, <span class="dv">31</span>)  <span class="co"># Max temperatures in July</span></span>
+<span id="cb36-2"><a href="objects.html#cb36-2" tabindex="-1"></a>min_temperatures <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">21</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">15</span>, <span class="dv">25</span>)  <span class="co"># Min temperatures in July</span></span>
+<span id="cb36-3"><a href="objects.html#cb36-3" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="objects.html#cb36-4" tabindex="-1"></a><span class="co"># Create the matrix</span></span>
+<span id="cb36-5"><a href="objects.html#cb36-5" tabindex="-1"></a>temperatures <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(max_temperatures, min_temperatures), <span class="at">nrow =</span> <span class="dv">5</span>, <span class="at">ncol =</span> <span class="dv">2</span>,</span>
+<span id="cb36-6"><a href="objects.html#cb36-6" tabindex="-1"></a>                       <span class="at">dimnames =</span> <span class="fu">list</span>(cities_to_visit, <span class="fu">c</span>(<span class="st">&quot;Maximum&quot;</span>, <span class="st">&quot;Minimum&quot;</span>)))</span>
+<span id="cb36-7"><a href="objects.html#cb36-7" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="objects.html#cb36-8" tabindex="-1"></a>temperatures</span>
+<span id="cb36-9"><a href="objects.html#cb36-9" tabindex="-1"></a><span class="co">#&gt;               Maximum Minimum</span></span>
+<span id="cb36-10"><a href="objects.html#cb36-10" tabindex="-1"></a><span class="co">#&gt; New York           29      21</span></span>
+<span id="cb36-11"><a href="objects.html#cb36-11" tabindex="-1"></a><span class="co">#&gt; Los Angeles        28      18</span></span>
+<span id="cb36-12"><a href="objects.html#cb36-12" tabindex="-1"></a><span class="co">#&gt; Chicago            27      19</span></span>
+<span id="cb36-13"><a href="objects.html#cb36-13" tabindex="-1"></a><span class="co">#&gt; San Francisco      22      15</span></span>
+<span id="cb36-14"><a href="objects.html#cb36-14" tabindex="-1"></a><span class="co">#&gt; Miami              31      25</span></span></code></pre></div>
+</details>
+<ol start="8" style="list-style-type: decimal">
+<li>Create a three-dimensional array containing information about the climate of the cities you want to visit. The first dimension should represent the cities, the second dimension should represent the months of the year (“January”, “February”, …, “December”), and the third dimension should represent two variables: “Temperature” and “Precipitation”. You can use dummy values to fill the array.</li>
+</ol>
+<details>
+<summary type="button">
+Solution
+</summary>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="objects.html#cb37-1" tabindex="-1"></a><span class="co"># Create an array with dimensions 5 cities x 12 months x 2 variables</span></span>
+<span id="cb37-2"><a href="objects.html#cb37-2" tabindex="-1"></a>climate <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">12</span>, <span class="dv">2</span>),</span>
+<span id="cb37-3"><a href="objects.html#cb37-3" tabindex="-1"></a>                <span class="at">dimnames =</span> <span class="fu">list</span>(cities_to_visit,</span>
+<span id="cb37-4"><a href="objects.html#cb37-4" tabindex="-1"></a>                                month.name,</span>
+<span id="cb37-5"><a href="objects.html#cb37-5" tabindex="-1"></a>                                <span class="fu">c</span>(<span class="st">&quot;Temperature&quot;</span>, <span class="st">&quot;Precipitation&quot;</span>)))</span>
+<span id="cb37-6"><a href="objects.html#cb37-6" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="objects.html#cb37-7" tabindex="-1"></a><span class="co"># Fill the array with dummy values (example)</span></span>
+<span id="cb37-8"><a href="objects.html#cb37-8" tabindex="-1"></a>climate[,, <span class="st">&quot;Temperature&quot;</span>] <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">10</span><span class="sc">:</span><span class="dv">35</span>, <span class="dv">60</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)  <span class="co"># Temperatures between 10 and 35 degrees</span></span>
+<span id="cb37-9"><a href="objects.html#cb37-9" tabindex="-1"></a>climate[,, <span class="st">&quot;Precipitation&quot;</span>] <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">60</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)  <span class="co"># Precipitation between 0 and 100 mm</span></span>
+<span id="cb37-10"><a href="objects.html#cb37-10" tabindex="-1"></a></span>
+<span id="cb37-11"><a href="objects.html#cb37-11" tabindex="-1"></a>climate</span>
+<span id="cb37-12"><a href="objects.html#cb37-12" tabindex="-1"></a><span class="co">#&gt; , , Temperature</span></span>
+<span id="cb37-13"><a href="objects.html#cb37-13" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb37-14"><a href="objects.html#cb37-14" tabindex="-1"></a><span class="co">#&gt;               January February March April May June July August September</span></span>
+<span id="cb37-15"><a href="objects.html#cb37-15" tabindex="-1"></a><span class="co">#&gt; New York           35       32    11    27  22   26   10     30        10</span></span>
+<span id="cb37-16"><a href="objects.html#cb37-16" tabindex="-1"></a><span class="co">#&gt; Los Angeles        33       21    25    19  16   14   23     33        15</span></span>
+<span id="cb37-17"><a href="objects.html#cb37-17" tabindex="-1"></a><span class="co">#&gt; Chicago            24       35    28    16  34   29   32     12        25</span></span>
+<span id="cb37-18"><a href="objects.html#cb37-18" tabindex="-1"></a><span class="co">#&gt; San Francisco      32       28    24    23  14   28   17     22        18</span></span>
+<span id="cb37-19"><a href="objects.html#cb37-19" tabindex="-1"></a><span class="co">#&gt; Miami              26       18    22    30  22   34   29     15        15</span></span>
+<span id="cb37-20"><a href="objects.html#cb37-20" tabindex="-1"></a><span class="co">#&gt;               October November December</span></span>
+<span id="cb37-21"><a href="objects.html#cb37-21" tabindex="-1"></a><span class="co">#&gt; New York           33       34       28</span></span>
+<span id="cb37-22"><a href="objects.html#cb37-22" tabindex="-1"></a><span class="co">#&gt; Los Angeles        26       10       29</span></span>
+<span id="cb37-23"><a href="objects.html#cb37-23" tabindex="-1"></a><span class="co">#&gt; Chicago            35       15       19</span></span>
+<span id="cb37-24"><a href="objects.html#cb37-24" tabindex="-1"></a><span class="co">#&gt; San Francisco      33       10       14</span></span>
+<span id="cb37-25"><a href="objects.html#cb37-25" tabindex="-1"></a><span class="co">#&gt; Miami              19       17       23</span></span>
+<span id="cb37-26"><a href="objects.html#cb37-26" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb37-27"><a href="objects.html#cb37-27" tabindex="-1"></a><span class="co">#&gt; , , Precipitation</span></span>
+<span id="cb37-28"><a href="objects.html#cb37-28" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb37-29"><a href="objects.html#cb37-29" tabindex="-1"></a><span class="co">#&gt;               January February March April May June July August September</span></span>
+<span id="cb37-30"><a href="objects.html#cb37-30" tabindex="-1"></a><span class="co">#&gt; New York           84       45    56    13  65   83   43     43        14</span></span>
+<span id="cb37-31"><a href="objects.html#cb37-31" tabindex="-1"></a><span class="co">#&gt; Los Angeles        17       10    56    32  59   89   31     75         6</span></span>
+<span id="cb37-32"><a href="objects.html#cb37-32" tabindex="-1"></a><span class="co">#&gt; Chicago            81      100    60    78  97   60   32     48        35</span></span>
+<span id="cb37-33"><a href="objects.html#cb37-33" tabindex="-1"></a><span class="co">#&gt; San Francisco      83       58    71    37  22   17   98     62        49</span></span>
+<span id="cb37-34"><a href="objects.html#cb37-34" tabindex="-1"></a><span class="co">#&gt; Miami              30        3    48    73  29   61   16     56        85</span></span>
+<span id="cb37-35"><a href="objects.html#cb37-35" tabindex="-1"></a><span class="co">#&gt;               October November December</span></span>
+<span id="cb37-36"><a href="objects.html#cb37-36" tabindex="-1"></a><span class="co">#&gt; New York           85       96        2</span></span>
+<span id="cb37-37"><a href="objects.html#cb37-37" tabindex="-1"></a><span class="co">#&gt; Los Angeles         1       35       45</span></span>
+<span id="cb37-38"><a href="objects.html#cb37-38" tabindex="-1"></a><span class="co">#&gt; Chicago            11       73        5</span></span>
+<span id="cb37-39"><a href="objects.html#cb37-39" tabindex="-1"></a><span class="co">#&gt; San Francisco      18       22       37</span></span>
+<span id="cb37-40"><a href="objects.html#cb37-40" tabindex="-1"></a><span class="co">#&gt; Miami              84       60       13</span></span></code></pre></div>
+</details>
+<ol start="9" style="list-style-type: decimal">
+<li>Imagine you have a vector with the daily maximum temperatures of a US city for a year. Create a program that, using only the concepts learned in this chapter (variables, vectors, matrices, arrays, and factors), identifies the longest streak of consecutive days with maximum temperatures above a given threshold (for example, 25 degrees Celsius).</li>
+</ol>
+<details>
+<summary type="button">
+Solution
+</summary>
+<p>This exercise requires efficient vector handling and algorithmic logic to identify the longest streak. Here is a possible solution:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="objects.html#cb38-1" tabindex="-1"></a><span class="co"># Create a vector with dummy maximum temperatures for a year</span></span>
+<span id="cb38-2"><a href="objects.html#cb38-2" tabindex="-1"></a>temperatures <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">10</span><span class="sc">:</span><span class="dv">35</span>, <span class="dv">365</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb38-3"><a href="objects.html#cb38-3" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="objects.html#cb38-4" tabindex="-1"></a><span class="co"># Define the temperature threshold</span></span>
+<span id="cb38-5"><a href="objects.html#cb38-5" tabindex="-1"></a>threshold <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb38-6"><a href="objects.html#cb38-6" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="objects.html#cb38-7" tabindex="-1"></a><span class="co"># Create a logical vector indicating if the temperature exceeds the threshold</span></span>
+<span id="cb38-8"><a href="objects.html#cb38-8" tabindex="-1"></a>hot_days <span class="ot">&lt;-</span> temperatures <span class="sc">&gt;</span> threshold</span>
+<span id="cb38-9"><a href="objects.html#cb38-9" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="objects.html#cb38-10" tabindex="-1"></a><span class="co"># Initialize variables to track the longest streak</span></span>
+<span id="cb38-11"><a href="objects.html#cb38-11" tabindex="-1"></a>current_streak <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb38-12"><a href="objects.html#cb38-12" tabindex="-1"></a>longest_streak <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb38-13"><a href="objects.html#cb38-13" tabindex="-1"></a>start_longest_streak <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb38-14"><a href="objects.html#cb38-14" tabindex="-1"></a></span>
+<span id="cb38-15"><a href="objects.html#cb38-15" tabindex="-1"></a><span class="co"># Iterate through the hot days vector</span></span>
+<span id="cb38-16"><a href="objects.html#cb38-16" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(hot_days)) {</span>
+<span id="cb38-17"><a href="objects.html#cb38-17" tabindex="-1"></a>  <span class="cf">if</span> (hot_days[i]) {</span>
+<span id="cb38-18"><a href="objects.html#cb38-18" tabindex="-1"></a>    current_streak <span class="ot">&lt;-</span> current_streak <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb38-19"><a href="objects.html#cb38-19" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb38-20"><a href="objects.html#cb38-20" tabindex="-1"></a>    <span class="cf">if</span> (current_streak <span class="sc">&gt;</span> longest_streak) {</span>
+<span id="cb38-21"><a href="objects.html#cb38-21" tabindex="-1"></a>      longest_streak <span class="ot">&lt;-</span> current_streak</span>
+<span id="cb38-22"><a href="objects.html#cb38-22" tabindex="-1"></a>      start_longest_streak <span class="ot">&lt;-</span> i <span class="sc">-</span> current_streak</span>
+<span id="cb38-23"><a href="objects.html#cb38-23" tabindex="-1"></a>    }</span>
+<span id="cb38-24"><a href="objects.html#cb38-24" tabindex="-1"></a>    current_streak <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb38-25"><a href="objects.html#cb38-25" tabindex="-1"></a>  }</span>
+<span id="cb38-26"><a href="objects.html#cb38-26" tabindex="-1"></a>}</span>
+<span id="cb38-27"><a href="objects.html#cb38-27" tabindex="-1"></a></span>
+<span id="cb38-28"><a href="objects.html#cb38-28" tabindex="-1"></a><span class="co"># Show the longest streak and its position</span></span>
+<span id="cb38-29"><a href="objects.html#cb38-29" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;The longest streak of hot days is:&quot;</span>, longest_streak, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb38-30"><a href="objects.html#cb38-30" tabindex="-1"></a><span class="co">#&gt; The longest streak of hot days is: 8</span></span>
+<span id="cb38-31"><a href="objects.html#cb38-31" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Starts on day:&quot;</span>, start_longest_streak, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb38-32"><a href="objects.html#cb38-32" tabindex="-1"></a><span class="co">#&gt; Starts on day: 116</span></span></code></pre></div>
+<p>This code uses a <code>for</code> loop to traverse the hot days vector and two variables (<code>current_streak</code> and <code>longest_streak</code>) to track the longest streak.</p>
+</details>
+<ol start="10" style="list-style-type: decimal">
+<li>Imagine you have a vector with the daily stock prices of a company for a year. Create a program that, using only the concepts learned in this chapter, determines the time period in which you could have bought and sold the shares to obtain the maximum profit. Assume you can only buy and sell once.</li>
+</ol>
+<details>
+<summary type="button">
+Solution
+</summary>
+<p>This exercise is a variant of the classic “maximize stock profit” problem. Solving it optimally can be complex, but with the concepts from chapter 1, we can create an algorithm that finds a solution (though not necessarily the optimal one).</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="objects.html#cb39-1" tabindex="-1"></a><span class="co"># Create a vector with dummy stock prices for a year</span></span>
+<span id="cb39-2"><a href="objects.html#cb39-2" tabindex="-1"></a>prices <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">50</span><span class="sc">:</span><span class="dv">150</span>, <span class="dv">365</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb39-3"><a href="objects.html#cb39-3" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="objects.html#cb39-4" tabindex="-1"></a><span class="co"># Initialize variables to track max profit</span></span>
+<span id="cb39-5"><a href="objects.html#cb39-5" tabindex="-1"></a>max_profit <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb39-6"><a href="objects.html#cb39-6" tabindex="-1"></a>buy_day <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb39-7"><a href="objects.html#cb39-7" tabindex="-1"></a>sell_day <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb39-8"><a href="objects.html#cb39-8" tabindex="-1"></a></span>
+<span id="cb39-9"><a href="objects.html#cb39-9" tabindex="-1"></a><span class="co"># Iterate through the prices vector</span></span>
+<span id="cb39-10"><a href="objects.html#cb39-10" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(prices) <span class="sc">-</span> <span class="dv">1</span>)) {</span>
+<span id="cb39-11"><a href="objects.html#cb39-11" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> (i <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span><span class="fu">length</span>(prices)) {</span>
+<span id="cb39-12"><a href="objects.html#cb39-12" tabindex="-1"></a>    profit <span class="ot">&lt;-</span> prices[j] <span class="sc">-</span> prices[i]</span>
+<span id="cb39-13"><a href="objects.html#cb39-13" tabindex="-1"></a>    <span class="cf">if</span> (profit <span class="sc">&gt;</span> max_profit) {</span>
+<span id="cb39-14"><a href="objects.html#cb39-14" tabindex="-1"></a>      max_profit <span class="ot">&lt;-</span> profit</span>
+<span id="cb39-15"><a href="objects.html#cb39-15" tabindex="-1"></a>      buy_day <span class="ot">&lt;-</span> i</span>
+<span id="cb39-16"><a href="objects.html#cb39-16" tabindex="-1"></a>      sell_day <span class="ot">&lt;-</span> j</span>
+<span id="cb39-17"><a href="objects.html#cb39-17" tabindex="-1"></a>    }</span>
+<span id="cb39-18"><a href="objects.html#cb39-18" tabindex="-1"></a>  }</span>
+<span id="cb39-19"><a href="objects.html#cb39-19" tabindex="-1"></a>}</span>
+<span id="cb39-20"><a href="objects.html#cb39-20" tabindex="-1"></a></span>
+<span id="cb39-21"><a href="objects.html#cb39-21" tabindex="-1"></a><span class="co"># Show max profit and buy/sell days</span></span>
+<span id="cb39-22"><a href="objects.html#cb39-22" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Maximum profit:&quot;</span>, max_profit, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb39-23"><a href="objects.html#cb39-23" tabindex="-1"></a><span class="co">#&gt; Maximum profit: 100</span></span>
+<span id="cb39-24"><a href="objects.html#cb39-24" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Buy day:&quot;</span>, buy_day, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb39-25"><a href="objects.html#cb39-25" tabindex="-1"></a><span class="co">#&gt; Buy day: 3</span></span>
+<span id="cb39-26"><a href="objects.html#cb39-26" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Sell day:&quot;</span>, sell_day, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb39-27"><a href="objects.html#cb39-27" tabindex="-1"></a><span class="co">#&gt; Sell day: 80</span></span></code></pre></div>
+This code uses two nested <code>for</code> loops to compare all possible pairs of buy and sell days.
+</details>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": true,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": null
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": null,
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

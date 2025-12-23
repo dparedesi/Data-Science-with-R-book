@@ -1,0 +1,25 @@
+# Appendix A: Responsible AI Checklist {#ethics-checklist}
+
+As we conclude this book, use this checklist before deploying any model or analysis to production.
+
+## 1. Data Quality & lineage
+- [ ] **Provenance:** Do I know exactly where this data came from?
+- [ ] **Consent:** Was the data collected with consent? Does it contain PII?
+- [ ] **Representation:** Does the training data match the real-world population it will be applied to?
+
+## 2. Fairness & Bias
+- [ ] **Protected Classes:** Have I checked performance across different groups (Gender, Age, Ethnicity)?
+- [ ] **Proxy Variables:** Are there variables (like Zip Code) acting as proxies for protected classes?
+- [ ] **Impact:** Who could be harmed if this model makes a mistake? (e.g., Denying a loan vs. Recommending a bad movie).
+
+## 3. Transparency & Explainability
+- [ ] **Documentation:** Is the model card created? (Inputs, Outputs, Limitations).
+- [ ] **Explainability:** Can I explain to a non-technical stakeholder *why* the model made a specific prediction?
+- [ ] **Feedback Loop:** Is there a mechanism for users to report errors or contest decisions?
+
+## 4. GenAI Specifics
+- [ ] **Fact-Checking:** Have I verified AI-generated code/facts against reliable sources?
+- [ ] **Security:** Have I ensured no sensitive data is being sent to public APIs?
+- [ ] **Attribution:** Am I transparent about which parts of the work were AI-generated?
+
+> "With great power comes great responsibility." — *Stan Lee (and every Data Scientist)*

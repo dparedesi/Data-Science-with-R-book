@@ -1,0 +1,152 @@
+# Case Study: Real Estate Market Analysis
+
+In this case study, we will apply our data transformation and visualization skills to analyzing the real estate market. We will use the `txhousing` dataset provided by the `ggplot2` package, which contains information about housing sales in Texas.
+
+This dataset allows us to explore similar concepts to financial invoice factoring (tracking value over time, comparing categories, and analyzing volume) but with a much more stable and standardized data source.
+
+## Objectives
+
+1.  **Data Cleaning**: Handle missing values and format dates.
+2.  **Transformation**: Aggregate data by city and year to find trends.
+3.  **Visualization**: Create time-series plots to analyze market health.
+4.  **Analysis**: Identify cities with the highest growth and stability.
+
+## Loading Libraries
+
+We will use the core `tidyverse` libraries.
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(lubridate)
+library(scales)
+library(ggthemes)
+```
+
+## Exploring the Data
+
+First, let's load and inspect the data.
+
+```{r}
+data("txhousing")
+glimpse(txhousing)
+```
+
+The dataset contains:
+-   `city`: Name of the city.
+-   `year`, `month`: Date components.
+-   `sales`: Number of sales.
+-   `volume`: Total value of sales.
+-   `median`: Median sale price.
+-   `listings`: Total active listings.
+-   `inventory`: "Months inventory": amount of time it would take to sell all current listings at current sales pace.
+-   `date`: Date in decimal format (e.g., 2000.08).
+
+## Data Cleaning
+
+Real-world data often has missing values (`NA`). Let's check how many missing values we have in the `sales` column.
+
+```{r}
+sum(is.na(txhousing$sales))
+```
+
+We see there are records with no sales data. For our analysis of market volume, we should remove these incomplete records. We will creating a clean dataset `housing_clean`.
+
+We will also create a proper `date` column using `lubridate::make_date()`, which is easier to work with than the decimal date.
+
+```{r}
+housing_clean <- txhousing |> 
+  filter(!is.na(sales)) |> 
+  mutate(date_proper = make_date(year, month, 1)) |> 
+  select(-date) # Remove the decimal date
+```
+
+## Exploratory Analysis
+
+### Market Volume Over Time
+
+Let's look at the total sales volume across all of Texas over time. This gives us a "macro" view of the market, similar to how we might look at total portfolio value in a financial context.
+
+```{r}
+# Aggregate by date
+total_market <- housing_clean |> 
+  group_by(date_proper) |> 
+  summarise(
+    total_sales = sum(sales),
+    total_volume = sum(volume, na.rm = TRUE)
+  )
+
+# Plot Volume
+total_market |> 
+  ggplot(aes(x = date_proper, y = total_volume)) +
+  geom_line(color = "steelblue") +
+  scale_y_continuous(labels = label_dollar(scale = 1e-9, suffix = "B")) +
+  theme_minimal() +
+  labs(
+    title = "Total Texas Housing Market Volume",
+    subtitle = "Monthly Total Sales Volume (Billions)",
+    x = "Year",
+    y = "Volume ($)"
+  )
+```
+
+We can clearly see the seasonality (peaks in summer) and the impact of the 2008 financial crisis (dip around 2008-2010), followed by a strong recovery.
+
+### Comparing Cities
+
+Just as we might compare different companies or portfolios, let's compare the median housing prices in the major cities. We'll focus on the "Big 4" Texas cities: Austin, Dallas, Houston, and San Antonio.
+
+```{r}
+major_cities <- c("Austin", "Dallas", "Houston", "San Antonio")
+
+city_trends <- housing_clean |> 
+  filter(city %in% major_cities)
+
+city_trends |> 
+  ggplot(aes(x = date_proper, y = median, color = city)) +
+  geom_line(alpha = 0.7) +
+  theme_minimal() +
+  scale_y_continuous(labels = label_dollar()) +
+  labs(
+    title = "Median Housing Prices in Major Cities",
+    x = "Year",
+    y = "Median Price",
+    color = "City"
+  )
+```
+
+Austin (green) clearly shows the steepest growth curve, especially post-2012.
+
+## Creating Indicators
+
+In financial analysis, we often create ratios. Here, let's look at **Inventory**, which is a measure of supply vs. demand.
+-   **High Inventory**: Buyer's market (prices might drop).
+-   **Low Inventory**: Seller's market (prices might rise).
+
+Let's look at the average inventory per year for these cities.
+
+```{r}
+city_inventory <- city_trends |> 
+  group_by(city, year) |> 
+  summarise(avg_inventory = mean(inventory, na.rm = TRUE), .groups = "drop")
+
+city_inventory |> 
+  ggplot(aes(x = year, y = avg_inventory, color = city)) +
+  geom_line(size = 1) +
+  theme_fivethirtyeight() +
+  labs(
+    title = "Market Health: Months of Inventory",
+    subtitle = "Lower means simpler to sell (Seller's Market)",
+    color = "City"
+  )
+```
+
+We see a convergence around 2014-2015 where inventory became very tight across all major cities.
+
+## Conclusions
+
+Through this case study, we accessed a standardized dataset (`txhousing`) and performed key Data Science tasks:
+1.  **Cleaning**: Handling `NA`s and formatting dates.
+2.  **Aggregation**: Summarizing millions of dollars of volume into a clear trend line.
+3.  **Comparison**: Benchmarking different categories (Cities) against each other.
+
+This workflow is identical to what is required for analyzing invoice portfolios, stock tickers, or customer churn cohorts, but uses a reliable data source that ensures our code is reproducible.

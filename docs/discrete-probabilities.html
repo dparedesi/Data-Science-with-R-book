@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Discrete Probabilities | Data Science with R</title>
+  <meta name="description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Discrete Probabilities | Data Science with R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Discrete Probabilities | Data Science with R" />
+  
+  <meta name="twitter:description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  
+
+<meta name="author" content="Author: Mg. Daniel Paredes Inilupu" />
+
+
+<meta name="date" content="2025-12-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction-to-probabilities.html"/>
+<link rel="next" href="continuous-probabilities.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics: Sin Vista -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VJJ963010J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VJJ963010J');
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics: Vista -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165839710-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-165839710-1');
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics: Agentedec4mbio -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-17876479-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-17876479-1');
+</script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Science with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#why-r"><i class="fa fa-check"></i>Why R?</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#installing-r"><i class="fa fa-check"></i>Installing R</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#installing-rstudio"><i class="fa fa-check"></i>Installing RStudio</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#rstudio-sections"><i class="fa fa-check"></i>RStudio Sections</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#testing-rstudio"><i class="fa fa-check"></i>Testing RStudio</a></li>
+</ul></li>
+<li class="part"><span><b>I Fundamentals and Key Tools</b></span></li>
+<li class="chapter" data-level="1" data-path="objects.html"><a href="objects.html"><i class="fa fa-check"></i><b>1</b> Objects</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="objects.html"><a href="objects.html#what-are-objects-in-r"><i class="fa fa-check"></i><b>1.1</b> What are objects in R?</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="objects.html"><a href="objects.html#r-as-an-object-oriented-language"><i class="fa fa-check"></i><b>1.1.1</b> R as an object-oriented language</a></li>
+<li class="chapter" data-level="1.1.2" data-path="objects.html"><a href="objects.html#the-power-of-abstraction"><i class="fa fa-check"></i><b>1.1.2</b> The power of abstraction</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="objects.html"><a href="objects.html#variables-the-first-objects-on-your-journey"><i class="fa fa-check"></i><b>1.2</b> Variables: The first objects on your journey</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="objects.html"><a href="objects.html#creating-variables-in-r"><i class="fa fa-check"></i><b>1.2.1</b> Creating variables in R</a></li>
+<li class="chapter" data-level="1.2.2" data-path="objects.html"><a href="objects.html#operations-with-variables"><i class="fa fa-check"></i><b>1.2.2</b> Operations with variables</a></li>
+<li class="chapter" data-level="1.2.3" data-path="objects.html"><a href="objects.html#best-practices-for-naming-variables"><i class="fa fa-check"></i><b>1.2.3</b> Best practices for naming variables</a></li>
+<li class="chapter" data-level="1.2.4" data-path="objects.html"><a href="objects.html#data-types"><i class="fa fa-check"></i><b>1.2.4</b> Data types</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="objects.html"><a href="objects.html#object-types-for-complex-data"><i class="fa fa-check"></i><b>1.3</b> Object types for complex data</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="objects.html"><a href="objects.html#vectors-organizing-information-of-the-same-type"><i class="fa fa-check"></i><b>1.3.1</b> Vectors: organizing information of the same type</a></li>
+<li class="chapter" data-level="1.3.2" data-path="objects.html"><a href="objects.html#lists-grouping-objects-of-different-types"><i class="fa fa-check"></i><b>1.3.2</b> Lists: grouping objects of different types</a></li>
+<li class="chapter" data-level="1.3.3" data-path="objects.html"><a href="objects.html#matrices-organizing-data-in-rows-and-columns"><i class="fa fa-check"></i><b>1.3.3</b> Matrices: organizing data in rows and columns</a></li>
+<li class="chapter" data-level="1.3.4" data-path="objects.html"><a href="objects.html#arrays-multidimensional-matrices"><i class="fa fa-check"></i><b>1.3.4</b> Arrays: multidimensional matrices</a></li>
+<li class="chapter" data-level="1.3.5" data-path="objects.html"><a href="objects.html#factors-representing-categorical-data"><i class="fa fa-check"></i><b>1.3.5</b> Factors: representing categorical data</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="objects.html"><a href="objects.html#the-universe-of-objects-in-r"><i class="fa fa-check"></i><b>1.4</b> The Universe of Objects in R</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="objects.html"><a href="objects.html#philosophy-of-objects-in-r"><i class="fa fa-check"></i><b>1.4.1</b> Philosophy of objects in R</a></li>
+<li class="chapter" data-level="1.4.2" data-path="objects.html"><a href="objects.html#comparison-with-other-languages"><i class="fa fa-check"></i><b>1.4.2</b> Comparison with other languages</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="objects.html"><a href="objects.html#exercises"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>2</b> Functions</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="functions.html"><a href="functions.html#introduction-to-the-world-of-functions"><i class="fa fa-check"></i><b>2.1</b> Introduction to the world of functions</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="functions.html"><a href="functions.html#what-are-functions"><i class="fa fa-check"></i><b>2.1.1</b> What are functions?</a></li>
+<li class="chapter" data-level="2.1.2" data-path="functions.html"><a href="functions.html#why-use-functions"><i class="fa fa-check"></i><b>2.1.2</b> Why use functions?</a></li>
+<li class="chapter" data-level="2.1.3" data-path="functions.html"><a href="functions.html#first-functions-exploring-basic-r-functions"><i class="fa fa-check"></i><b>2.1.3</b> First functions: exploring basic R functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="functions.html"><a href="functions.html#anatomy-of-a-function"><i class="fa fa-check"></i><b>2.2</b> Anatomy of a function</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="functions.html"><a href="functions.html#arguments-the-ingredients-of-the-function"><i class="fa fa-check"></i><b>2.2.1</b> Arguments: the ingredients of the function</a></li>
+<li class="chapter" data-level="2.2.2" data-path="functions.html"><a href="functions.html#body-the-instructions-of-the-function"><i class="fa fa-check"></i><b>2.2.2</b> Body: the instructions of the function</a></li>
+<li class="chapter" data-level="2.2.3" data-path="functions.html"><a href="functions.html#return-value-the-result-of-the-function"><i class="fa fa-check"></i><b>2.2.3</b> Return value: the result of the function</a></li>
+<li class="chapter" data-level="2.2.4" data-path="functions.html"><a href="functions.html#examples-creating-simple-functions-step-by-step"><i class="fa fa-check"></i><b>2.2.4</b> Examples: creating simple functions step by step</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="functions.html"><a href="functions.html#mastering-the-use-of-functions"><i class="fa fa-check"></i><b>2.3</b> Mastering the use of functions</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="functions.html"><a href="functions.html#functions-with-a-variable-number-of-arguments-...-adapting-to-different-situations"><i class="fa fa-check"></i><b>2.3.1</b> Functions with a variable number of arguments (<code>...</code>): Adapting to different situations</a></li>
+<li class="chapter" data-level="2.3.2" data-path="functions.html"><a href="functions.html#variable-scope-local-and-global-variables"><i class="fa fa-check"></i><b>2.3.2</b> Variable scope: local and global variables</a></li>
+<li class="chapter" data-level="2.3.3" data-path="functions.html"><a href="functions.html#examples-functions-to-calculate-taxes-discounts-etc."><i class="fa fa-check"></i><b>2.3.3</b> Examples: functions to calculate taxes, discounts, etc.</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="functions.html"><a href="functions.html#higher-order-functions"><i class="fa fa-check"></i><b>2.4</b> Higher-order functions</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="functions.html"><a href="functions.html#lapply-and-sapply-applying-a-function-to-each-element"><i class="fa fa-check"></i><b>2.4.1</b> <code>lapply()</code> and <code>sapply()</code>: applying a function to each element</a></li>
+<li class="chapter" data-level="2.4.2" data-path="functions.html"><a href="functions.html#apply-applying-a-function-to-rows-or-columns"><i class="fa fa-check"></i><b>2.4.2</b> <code>apply()</code>: applying a function to rows or columns</a></li>
+<li class="chapter" data-level="2.4.3" data-path="functions.html"><a href="functions.html#mapply-applying-a-function-to-multiple-arguments"><i class="fa fa-check"></i><b>2.4.3</b> <code>mapply()</code>: applying a function to multiple arguments</a></li>
+<li class="chapter" data-level="2.4.4" data-path="functions.html"><a href="functions.html#examples-data-analysis-with-higher-order-functions"><i class="fa fa-check"></i><b>2.4.4</b> Examples: data analysis with higher-order functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="functions.html"><a href="functions.html#closures-functions-with-memory"><i class="fa fa-check"></i><b>2.5</b> Closures: functions with memory</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="functions.html"><a href="functions.html#concept-functions-that-remember"><i class="fa fa-check"></i><b>2.5.1</b> Concept: functions that “remember”</a></li>
+<li class="chapter" data-level="2.5.2" data-path="functions.html"><a href="functions.html#applications-creating-counters-functions-with-internal-state"><i class="fa fa-check"></i><b>2.5.2</b> Applications: creating counters, functions with internal state</a></li>
+<li class="chapter" data-level="2.5.3" data-path="functions.html"><a href="functions.html#examples-simulating-a-game-creating-an-operation-history"><i class="fa fa-check"></i><b>2.5.3</b> Examples: simulating a game, creating an operation history</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="functions.html"><a href="functions.html#debugging-and-error-handling-solving-the-mysteries-of-your-code"><i class="fa fa-check"></i><b>2.6</b> Debugging and error handling: solving the mysteries of your code</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="functions.html"><a href="functions.html#identifying-errors-common-error-messages-in-r"><i class="fa fa-check"></i><b>2.6.1</b> Identifying errors: common error messages in R</a></li>
+<li class="chapter" data-level="2.6.2" data-path="functions.html"><a href="functions.html#debugging-tools-debug-traceback"><i class="fa fa-check"></i><b>2.6.2</b> Debugging tools: <code>debug()</code>, <code>traceback()</code></a></li>
+<li class="chapter" data-level="2.6.3" data-path="functions.html"><a href="functions.html#error-handling-trycatch"><i class="fa fa-check"></i><b>2.6.3</b> Error handling: <code>tryCatch()</code></a></li>
+<li class="chapter" data-level="2.6.4" data-path="functions.html"><a href="functions.html#examples-debugging-functions-with-errors-handling-exceptions"><i class="fa fa-check"></i><b>2.6.4</b> Examples: debugging functions with errors, handling exceptions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="functions.html"><a href="functions.html#exercises-1"><i class="fa fa-check"></i><b>2.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>3</b> Data Frames</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-frames.html"><a href="data-frames.html#introduction-to-data-frames"><i class="fa fa-check"></i><b>3.1</b> Introduction to Data Frames</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="data-frames.html"><a href="data-frames.html#what-are-data-frames"><i class="fa fa-check"></i><b>3.1.1</b> What are data frames?</a></li>
+<li class="chapter" data-level="3.1.2" data-path="data-frames.html"><a href="data-frames.html#why-data-frames"><i class="fa fa-check"></i><b>3.1.2</b> Why data frames?</a></li>
+<li class="chapter" data-level="3.1.3" data-path="data-frames.html"><a href="data-frames.html#data-frames-in-action-exploring-information-about-the-united-states"><i class="fa fa-check"></i><b>3.1.3</b> Data Frames in action: exploring information about the United States</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="data-frames.html"><a href="data-frames.html#creating-data-frames-building-your-database-for-the-move"><i class="fa fa-check"></i><b>3.2</b> Creating Data Frames: Building your database for the move</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="data-frames.html"><a href="data-frames.html#importing-data-from-files-csv-excel"><i class="fa fa-check"></i><b>3.2.1</b> Importing data from files: CSV, Excel</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-frames.html"><a href="data-frames.html#creating-data-frames-manually"><i class="fa fa-check"></i><b>3.2.2</b> Creating data frames manually</a></li>
+<li class="chapter" data-level="3.2.3" data-path="data-frames.html"><a href="data-frames.html#examples"><i class="fa fa-check"></i><b>3.2.3</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="data-frames.html"><a href="data-frames.html#exploring-data-frames-discovering-the-secrets-of-your-data"><i class="fa fa-check"></i><b>3.3</b> Exploring Data Frames: Discovering the secrets of your data</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data-frames.html"><a href="data-frames.html#accessing-rows-columns-and-cells"><i class="fa fa-check"></i><b>3.3.1</b> Accessing rows, columns, and cells</a></li>
+<li class="chapter" data-level="3.3.2" data-path="data-frames.html"><a href="data-frames.html#functions-for-exploring-data-frames"><i class="fa fa-check"></i><b>3.3.2</b> Functions for exploring data frames</a></li>
+<li class="chapter" data-level="3.3.3" data-path="data-frames.html"><a href="data-frames.html#examples-exploring-data-frames-with-move-information"><i class="fa fa-check"></i><b>3.3.3</b> Examples: exploring data frames with move information</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="data-frames.html"><a href="data-frames.html#manipulating-data-frames-transforming-your-data"><i class="fa fa-check"></i><b>3.4</b> Manipulating Data Frames: Transforming your data</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="data-frames.html"><a href="data-frames.html#introduction-to-the-pipeline-operator"><i class="fa fa-check"></i><b>3.4.1</b> Introduction to the pipeline operator (<code>|&gt;</code>)</a></li>
+<li class="chapter" data-level="3.4.2" data-path="data-frames.html"><a href="data-frames.html#transforming-a-table-with-mutate"><i class="fa fa-check"></i><b>3.4.2</b> Transforming a table with <code>mutate()</code></a></li>
+<li class="chapter" data-level="3.4.3" data-path="data-frames.html"><a href="data-frames.html#filtering-data-selecting-cities-that-interest-you"><i class="fa fa-check"></i><b>3.4.3</b> Filtering data: selecting cities that interest you</a></li>
+<li class="chapter" data-level="3.4.4" data-path="data-frames.html"><a href="data-frames.html#sorting-data-finding-the-safest-cities"><i class="fa fa-check"></i><b>3.4.4</b> Sorting data: finding the safest cities</a></li>
+<li class="chapter" data-level="3.4.5" data-path="data-frames.html"><a href="data-frames.html#aggregating-and-summarizing-data-obtaining-general-overview"><i class="fa fa-check"></i><b>3.4.5</b> Aggregating and summarizing data: obtaining general overview</a></li>
+<li class="chapter" data-level="3.4.6" data-path="data-frames.html"><a href="data-frames.html#joining-data-frames-combining-information"><i class="fa fa-check"></i><b>3.4.6</b> Joining data frames: combining information</a></li>
+<li class="chapter" data-level="3.4.7" data-path="data-frames.html"><a href="data-frames.html#examples-1"><i class="fa fa-check"></i><b>3.4.7</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="data-frames.html"><a href="data-frames.html#exercises-2"><i class="fa fa-check"></i><b>3.5</b> Exercises</a></li>
+<li class="chapter" data-level="3.6" data-path="data-frames.html"><a href="data-frames.html#data-frames-in-plots"><i class="fa fa-check"></i><b>3.6</b> Data frames in plots</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="data-frames.html"><a href="data-frames.html#scatter-plots"><i class="fa fa-check"></i><b>3.6.1</b> Scatter plots</a></li>
+<li class="chapter" data-level="3.6.2" data-path="data-frames.html"><a href="data-frames.html#histograms"><i class="fa fa-check"></i><b>3.6.2</b> Histograms</a></li>
+<li class="chapter" data-level="3.6.3" data-path="data-frames.html"><a href="data-frames.html#box-plot"><i class="fa fa-check"></i><b>3.6.3</b> Box plot</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="data-frames.html"><a href="data-frames.html#data-interpretation"><i class="fa fa-check"></i><b>3.7</b> Data interpretation</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="data-frames.html"><a href="data-frames.html#quartiles"><i class="fa fa-check"></i><b>3.7.1</b> Quartiles</a></li>
+<li class="chapter" data-level="3.7.2" data-path="data-frames.html"><a href="data-frames.html#interpretation-of-box-plot"><i class="fa fa-check"></i><b>3.7.2</b> Interpretation of box plot</a></li>
+<li class="chapter" data-level="3.7.3" data-path="data-frames.html"><a href="data-frames.html#examples-2"><i class="fa fa-check"></i><b>3.7.3</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="data-frames.html"><a href="data-frames.html#exercises-3"><i class="fa fa-check"></i><b>3.8</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="advanced-techniques.html"><a href="advanced-techniques.html"><i class="fa fa-check"></i><b>4</b> Advanced Techniques</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="advanced-techniques.html"><a href="advanced-techniques.html#metaprogramming-writing-code-that-writes-code"><i class="fa fa-check"></i><b>4.1</b> Metaprogramming: writing code that writes code</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="advanced-techniques.html"><a href="advanced-techniques.html#manipulating-expressions-the-art-of-sculpting-code"><i class="fa fa-check"></i><b>4.1.1</b> Manipulating expressions: The art of sculpting code</a></li>
+<li class="chapter" data-level="4.1.2" data-path="advanced-techniques.html"><a href="advanced-techniques.html#examples-3"><i class="fa fa-check"></i><b>4.1.2</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="advanced-techniques.html"><a href="advanced-techniques.html#functional-programming-a-new-paradigm"><i class="fa fa-check"></i><b>4.2</b> Functional programming: a new paradigm</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="advanced-techniques.html"><a href="advanced-techniques.html#basic-principles-of-functional-programming"><i class="fa fa-check"></i><b>4.2.1</b> Basic principles of functional programming</a></li>
+<li class="chapter" data-level="4.2.2" data-path="advanced-techniques.html"><a href="advanced-techniques.html#higher-order-functions-in-r"><i class="fa fa-check"></i><b>4.2.2</b> Higher-order functions in R</a></li>
+<li class="chapter" data-level="4.2.3" data-path="advanced-techniques.html"><a href="advanced-techniques.html#examples-4"><i class="fa fa-check"></i><b>4.2.3</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="advanced-techniques.html"><a href="advanced-techniques.html#r6-the-future-of-oop-in-r"><i class="fa fa-check"></i><b>4.3</b> R6: The future of OOP in R</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="advanced-techniques.html"><a href="advanced-techniques.html#the-r6-package-classes-methods-encapsulation-and-inheritance"><i class="fa fa-check"></i><b>4.3.1</b> The R6 package: Classes, methods, encapsulation, and inheritance</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="advanced-techniques.html"><a href="advanced-techniques.html#exercises-4"><i class="fa fa-check"></i><b>4.4</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>II Data Visualization and Summarization</b></span></li>
+<li class="chapter" data-level="5" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html"><i class="fa fa-check"></i><b>5</b> Ggplot and dplyr</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#creating-the-ggplot-object"><i class="fa fa-check"></i><b>5.1</b> Creating the ggplot object</a></li>
+<li class="chapter" data-level="5.2" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#aesthetic-mapping-layer"><i class="fa fa-check"></i><b>5.2</b> Aesthetic mapping layer</a></li>
+<li class="chapter" data-level="5.3" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#geoms-layer"><i class="fa fa-check"></i><b>5.3</b> Geoms layer</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#tweaking-aes-and-geoms"><i class="fa fa-check"></i><b>5.3.1</b> Tweaking aes and geoms</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#scale-layer"><i class="fa fa-check"></i><b>5.4</b> Scale layer</a></li>
+<li class="chapter" data-level="5.5" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#label-title-and-legend-layer"><i class="fa fa-check"></i><b>5.5</b> Label, title and legend layer</a></li>
+<li class="chapter" data-level="5.6" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#reference-lines"><i class="fa fa-check"></i><b>5.6</b> Reference lines</a></li>
+<li class="chapter" data-level="5.7" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#changing-the-plot-style"><i class="fa fa-check"></i><b>5.7</b> Changing the plot style</a></li>
+<li class="chapter" data-level="5.8" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#summarizing-data-with-dplyr"><i class="fa fa-check"></i><b>5.8</b> Summarizing data with dplyr</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#summarize-function"><i class="fa fa-check"></i><b>5.8.1</b> Summarize function</a></li>
+<li class="chapter" data-level="5.8.2" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#group-by-function"><i class="fa fa-check"></i><b>5.8.2</b> Group By Function</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#exercises-5"><i class="fa fa-check"></i><b>5.9</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="gapminder.html"><a href="gapminder.html"><i class="fa fa-check"></i><b>6</b> Gapminder</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="gapminder.html"><a href="gapminder.html#initial-gapminder-plots"><i class="fa fa-check"></i><b>6.1</b> Initial gapminder plots</a></li>
+<li class="chapter" data-level="6.2" data-path="gapminder.html"><a href="gapminder.html#facets"><i class="fa fa-check"></i><b>6.2</b> Facets</a></li>
+<li class="chapter" data-level="6.3" data-path="gapminder.html"><a href="gapminder.html#time-series"><i class="fa fa-check"></i><b>6.3</b> Time series</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="gapminder.html"><a href="gapminder.html#individual-time-series"><i class="fa fa-check"></i><b>6.3.1</b> Individual time series</a></li>
+<li class="chapter" data-level="6.3.2" data-path="gapminder.html"><a href="gapminder.html#multiple-time-series"><i class="fa fa-check"></i><b>6.3.2</b> Multiple time series</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="gapminder.html"><a href="gapminder.html#exercises-6"><i class="fa fa-check"></i><b>6.4</b> Exercises</a></li>
+<li class="chapter" data-level="6.5" data-path="gapminder.html"><a href="gapminder.html#histograms-with-ggplot"><i class="fa fa-check"></i><b>6.5</b> Histograms with ggplot</a></li>
+<li class="chapter" data-level="6.6" data-path="gapminder.html"><a href="gapminder.html#box-plots-with-ggplot"><i class="fa fa-check"></i><b>6.6</b> Box plots with ggplot</a></li>
+<li class="chapter" data-level="6.7" data-path="gapminder.html"><a href="gapminder.html#comparison-of-distributions"><i class="fa fa-check"></i><b>6.7</b> Comparison of distributions</a></li>
+<li class="chapter" data-level="6.8" data-path="gapminder.html"><a href="gapminder.html#exercises-7"><i class="fa fa-check"></i><b>6.8</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>III Statistics</b></span></li>
+<li class="chapter" data-level="" data-path="introduction-to-probabilities.html"><a href="introduction-to-probabilities.html"><i class="fa fa-check"></i>Introduction to Probabilities</a></li>
+<li class="chapter" data-level="7" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html"><i class="fa fa-check"></i><b>7</b> Discrete Probabilities</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#calculation-using-the-mathematical-definition"><i class="fa fa-check"></i><b>7.1</b> Calculation using the mathematical definition</a></li>
+<li class="chapter" data-level="7.2" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#monte-carlo-simulation-for-discrete-variables"><i class="fa fa-check"></i><b>7.2</b> Monte Carlo Simulation for Discrete Variables</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#other-functions-to-create-vectors"><i class="fa fa-check"></i><b>7.2.1</b> Other functions to create vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#exercises-8"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
+<li class="chapter" data-level="7.4" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#combinations-and-permutations"><i class="fa fa-check"></i><b>7.4</b> Combinations and Permutations</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#permutations"><i class="fa fa-check"></i><b>7.4.1</b> Permutations</a></li>
+<li class="chapter" data-level="7.4.2" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#combinations"><i class="fa fa-check"></i><b>7.4.2</b> Combinations</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#sufficient-experiments-with-monte-carlo-simulation"><i class="fa fa-check"></i><b>7.5</b> Sufficient Experiments with Monte Carlo Simulation</a></li>
+<li class="chapter" data-level="7.6" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#case-birthdays-in-classrooms"><i class="fa fa-check"></i><b>7.6</b> Case: Birthdays in Classrooms</a></li>
+<li class="chapter" data-level="7.7" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#exercises-9"><i class="fa fa-check"></i><b>7.7</b> Exercises</a></li>
+<li class="chapter" data-level="7.8" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#integrative-exercise"><i class="fa fa-check"></i><b>7.8</b> Integrative Exercise</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#monty-hall-problem"><i class="fa fa-check"></i><b>7.8.1</b> Monty Hall Problem</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html"><i class="fa fa-check"></i><b>8</b> Continuous Probabilities</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#empirical-distribution"><i class="fa fa-check"></i><b>8.1</b> Empirical Distribution</a></li>
+<li class="chapter" data-level="8.2" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#theoretical-distribution"><i class="fa fa-check"></i><b>8.2</b> Theoretical Distribution</a></li>
+<li class="chapter" data-level="8.3" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#exercises-10"><i class="fa fa-check"></i><b>8.3</b> Exercises</a></li>
+<li class="chapter" data-level="8.4" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#monte-carlo-simulation-for-continuous-variables"><i class="fa fa-check"></i><b>8.4</b> Monte Carlo Simulation for Continuous Variables</a></li>
+<li class="chapter" data-level="8.5" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#exercises-11"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>9</b> Statistical Inference</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="statistical-inference.html"><a href="statistical-inference.html#expected-value"><i class="fa fa-check"></i><b>9.1</b> Expected Value</a></li>
+<li class="chapter" data-level="9.2" data-path="statistical-inference.html"><a href="statistical-inference.html#central-limit-theorem"><i class="fa fa-check"></i><b>9.2</b> Central Limit Theorem</a></li>
+<li class="chapter" data-level="9.3" data-path="statistical-inference.html"><a href="statistical-inference.html#exercises-12"><i class="fa fa-check"></i><b>9.3</b> Exercises</a></li>
+<li class="chapter" data-level="9.4" data-path="statistical-inference.html"><a href="statistical-inference.html#parameter-estimation-method"><i class="fa fa-check"></i><b>9.4</b> Parameter Estimation Method</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="statistical-inference.html"><a href="statistical-inference.html#margin-of-error"><i class="fa fa-check"></i><b>9.4.1</b> Margin of Error</a></li>
+<li class="chapter" data-level="9.4.2" data-path="statistical-inference.html"><a href="statistical-inference.html#confidence-intervals"><i class="fa fa-check"></i><b>9.4.2</b> Confidence Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="statistical-inference.html"><a href="statistical-inference.html#spread-estimation"><i class="fa fa-check"></i><b>9.5</b> Spread Estimation</a></li>
+<li class="chapter" data-level="9.6" data-path="statistical-inference.html"><a href="statistical-inference.html#estimates-outside-election-polls"><i class="fa fa-check"></i><b>9.6</b> Estimates Outside Election Polls</a></li>
+<li class="chapter" data-level="9.7" data-path="statistical-inference.html"><a href="statistical-inference.html#exercises-13"><i class="fa fa-check"></i><b>9.7</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>IV Data Wrangling</b></span></li>
+<li class="chapter" data-level="" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="10" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html"><i class="fa fa-check"></i><b>10</b> Data import and consolidation</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#importing-from-files"><i class="fa fa-check"></i><b>10.1</b> Importing from files</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#working-directory"><i class="fa fa-check"></i><b>10.1.1</b> Working Directory</a></li>
+<li class="chapter" data-level="10.1.2" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#readr-and-readxl-packages"><i class="fa fa-check"></i><b>10.1.2</b> readr and readxl packages</a></li>
+<li class="chapter" data-level="10.1.3" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#importing-files-from-the-internet"><i class="fa fa-check"></i><b>10.1.3</b> Importing files from the internet</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#tidy-data"><i class="fa fa-check"></i><b>10.2</b> Tidy data</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#transforming-to-tidy-data"><i class="fa fa-check"></i><b>10.2.1</b> Transforming to tidy data</a></li>
+<li class="chapter" data-level="10.2.2" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#separate-function"><i class="fa fa-check"></i><b>10.2.2</b> separate function</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#exercises-14"><i class="fa fa-check"></i><b>10.3</b> Exercises</a></li>
+<li class="chapter" data-level="10.4" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#joining-tables"><i class="fa fa-check"></i><b>10.4</b> Joining tables</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#join-functions"><i class="fa fa-check"></i><b>10.4.1</b> Join functions</a></li>
+<li class="chapter" data-level="10.4.2" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#joining-without-a-common-identifier"><i class="fa fa-check"></i><b>10.4.2</b> Joining without a common identifier</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#web-scraping"><i class="fa fa-check"></i><b>10.5</b> Web Scraping</a></li>
+<li class="chapter" data-level="10.6" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#exercises-15"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html"><i class="fa fa-check"></i><b>11</b> String processing and text mining</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#basic-functions"><i class="fa fa-check"></i><b>11.1</b> Basic functions</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#replacing-characters"><i class="fa fa-check"></i><b>11.1.1</b> Replacing characters</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#regular-expressions"><i class="fa fa-check"></i><b>11.2</b> Regular expressions</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#alternation"><i class="fa fa-check"></i><b>11.2.1</b> Alternation</a></li>
+<li class="chapter" data-level="11.2.2" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#anchoring"><i class="fa fa-check"></i><b>11.2.2</b> Anchoring</a></li>
+<li class="chapter" data-level="11.2.3" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#repetitions"><i class="fa fa-check"></i><b>11.2.3</b> Repetitions</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#from-strings-to-dates"><i class="fa fa-check"></i><b>11.3</b> From strings to dates</a></li>
+<li class="chapter" data-level="11.4" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#exercises-16"><i class="fa fa-check"></i><b>11.4</b> Exercises</a></li>
+<li class="chapter" data-level="11.5" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#text-mining-word-cloud"><i class="fa fa-check"></i><b>11.5</b> Text Mining: Word Cloud</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#importing-data"><i class="fa fa-check"></i><b>11.5.1</b> Importing data</a></li>
+<li class="chapter" data-level="11.5.2" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#text-cleaning"><i class="fa fa-check"></i><b>11.5.2</b> Text cleaning</a></li>
+<li class="chapter" data-level="11.5.3" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#creating-the-corpus"><i class="fa fa-check"></i><b>11.5.3</b> Creating the Corpus</a></li>
+<li class="chapter" data-level="11.5.4" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#nd-data-cleaning"><i class="fa fa-check"></i><b>11.5.4</b> 2nd Data Cleaning</a></li>
+<li class="chapter" data-level="11.5.5" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#word-frequency"><i class="fa fa-check"></i><b>11.5.5</b> Word frequency</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#text-mining-sentiment-analysis"><i class="fa fa-check"></i><b>11.6</b> Text Mining: Sentiment Analysis</a></li>
+<li class="chapter" data-level="11.7" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#exercises-17"><i class="fa fa-check"></i><b>11.7</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>V Machine learning</b></span></li>
+<li class="chapter" data-level="" data-path="introduction-2.html"><a href="introduction-2.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="12" data-path="supervised-learning.html"><a href="supervised-learning.html"><i class="fa fa-check"></i><b>12</b> Supervised Learning</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="supervised-learning.html"><a href="supervised-learning.html#classification-and-regression"><i class="fa fa-check"></i><b>12.1</b> Classification and Regression</a></li>
+<li class="chapter" data-level="12.2" data-path="supervised-learning.html"><a href="supervised-learning.html#knn-k-nearest-neighbors"><i class="fa fa-check"></i><b>12.2</b> kNN: k-Nearest Neighbors</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="supervised-learning.html"><a href="supervised-learning.html#two-variables-as-input"><i class="fa fa-check"></i><b>12.2.1</b> Two variables as input</a></li>
+<li class="chapter" data-level="12.2.2" data-path="supervised-learning.html"><a href="supervised-learning.html#multiple-variables-as-input"><i class="fa fa-check"></i><b>12.2.2</b> Multiple variables as input</a></li>
+<li class="chapter" data-level="12.2.3" data-path="supervised-learning.html"><a href="supervised-learning.html#diverse-values-of-k"><i class="fa fa-check"></i><b>12.2.3</b> Diverse values of k</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="supervised-learning.html"><a href="supervised-learning.html#tidymodels-framework"><i class="fa fa-check"></i><b>12.3</b> tidymodels Framework</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="supervised-learning.html"><a href="supervised-learning.html#creation-of-training-and-test-data"><i class="fa fa-check"></i><b>12.3.1</b> Creation of training and test data</a></li>
+<li class="chapter" data-level="12.3.2" data-path="supervised-learning.html"><a href="supervised-learning.html#training-our-prediction-algorithm"><i class="fa fa-check"></i><b>12.3.2</b> Training our prediction algorithm</a></li>
+<li class="chapter" data-level="12.3.3" data-path="supervised-learning.html"><a href="supervised-learning.html#data-pre-processing-with-recipes"><i class="fa fa-check"></i><b>12.3.3</b> Data Pre-processing with Recipes</a></li>
+<li class="chapter" data-level="12.3.4" data-path="supervised-learning.html"><a href="supervised-learning.html#creating-a-workflow"><i class="fa fa-check"></i><b>12.3.4</b> Creating a Workflow</a></li>
+<li class="chapter" data-level="12.3.5" data-path="supervised-learning.html"><a href="supervised-learning.html#parameter-tuning-with-cross-validation"><i class="fa fa-check"></i><b>12.3.5</b> Parameter Tuning with Cross-Validation</a></li>
+<li class="chapter" data-level="12.3.6" data-path="supervised-learning.html"><a href="supervised-learning.html#finalizing-the-model"><i class="fa fa-check"></i><b>12.3.6</b> Finalizing the Model</a></li>
+<li class="chapter" data-level="12.3.7" data-path="supervised-learning.html"><a href="supervised-learning.html#testing-the-prediction-model"><i class="fa fa-check"></i><b>12.3.7</b> Testing the prediction model</a></li>
+<li class="chapter" data-level="12.3.8" data-path="supervised-learning.html"><a href="supervised-learning.html#model-evaluation-with-yardstick"><i class="fa fa-check"></i><b>12.3.8</b> Model Evaluation with yardstick</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="supervised-learning.html"><a href="supervised-learning.html#confusion-matrix"><i class="fa fa-check"></i><b>12.4</b> Confusion Matrix</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="supervised-learning.html"><a href="supervised-learning.html#accuracy"><i class="fa fa-check"></i><b>12.4.1</b> Accuracy</a></li>
+<li class="chapter" data-level="12.4.2" data-path="supervised-learning.html"><a href="supervised-learning.html#sensitivity"><i class="fa fa-check"></i><b>12.4.2</b> Sensitivity</a></li>
+<li class="chapter" data-level="12.4.3" data-path="supervised-learning.html"><a href="supervised-learning.html#specificity"><i class="fa fa-check"></i><b>12.4.3</b> Specificity</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="supervised-learning.html"><a href="supervised-learning.html#exercises-18"><i class="fa fa-check"></i><b>12.5</b> Exercises</a></li>
+<li class="chapter" data-level="12.6" data-path="supervised-learning.html"><a href="supervised-learning.html#simple-linear-regression"><i class="fa fa-check"></i><b>12.6</b> Simple Linear Regression</a></li>
+<li class="chapter" data-level="12.7" data-path="supervised-learning.html"><a href="supervised-learning.html#multiple-linear-regression"><i class="fa fa-check"></i><b>12.7</b> Multiple Linear Regression</a></li>
+<li class="chapter" data-level="12.8" data-path="supervised-learning.html"><a href="supervised-learning.html#standard-method-for-evaluating-accuracy"><i class="fa fa-check"></i><b>12.8</b> Standard Method for Evaluating Accuracy</a></li>
+<li class="chapter" data-level="12.9" data-path="supervised-learning.html"><a href="supervised-learning.html#selection-of-the-most-optimal-model"><i class="fa fa-check"></i><b>12.9</b> Selection of the Most Optimal Model</a>
+<ul>
+<li class="chapter" data-level="12.9.1" data-path="supervised-learning.html"><a href="supervised-learning.html#k-nearest-neighbors-model"><i class="fa fa-check"></i><b>12.9.1</b> k-Nearest Neighbors Model</a></li>
+<li class="chapter" data-level="12.9.2" data-path="supervised-learning.html"><a href="supervised-learning.html#generalized-linear-model---glm"><i class="fa fa-check"></i><b>12.9.2</b> Generalized Linear Model - GLM</a></li>
+<li class="chapter" data-level="12.9.3" data-path="supervised-learning.html"><a href="supervised-learning.html#random-forest-model"><i class="fa fa-check"></i><b>12.9.3</b> Random Forest Model</a></li>
+<li class="chapter" data-level="12.9.4" data-path="supervised-learning.html"><a href="supervised-learning.html#support-vector-machine-model---svm"><i class="fa fa-check"></i><b>12.9.4</b> Support Vector Machine Model - SVM</a></li>
+<li class="chapter" data-level="12.9.5" data-path="supervised-learning.html"><a href="supervised-learning.html#naive-bayes-model"><i class="fa fa-check"></i><b>12.9.5</b> Naive Bayes Model</a></li>
+<li class="chapter" data-level="12.9.6" data-path="supervised-learning.html"><a href="supervised-learning.html#model-comparison"><i class="fa fa-check"></i><b>12.9.6</b> Model Comparison</a></li>
+<li class="chapter" data-level="12.9.7" data-path="supervised-learning.html"><a href="supervised-learning.html#predicting-using-the-best-model"><i class="fa fa-check"></i><b>12.9.7</b> Predicting using the best model</a></li>
+</ul></li>
+<li class="chapter" data-level="12.10" data-path="supervised-learning.html"><a href="supervised-learning.html#exercises-19"><i class="fa fa-check"></i><b>12.10</b> Exercises</a></li>
+<li class="chapter" data-level="12.11" data-path="supervised-learning.html"><a href="supervised-learning.html#ethics-bias-in-algorithmic-decision-making"><i class="fa fa-check"></i><b>12.11</b> Ethics: Bias in Algorithmic Decision Making</a>
+<ul>
+<li class="chapter" data-level="12.11.1" data-path="supervised-learning.html"><a href="supervised-learning.html#the-risk-of-proxy-variables"><i class="fa fa-check"></i><b>12.11.1</b> The Risk of Proxy Variables</a></li>
+<li class="chapter" data-level="12.11.2" data-path="supervised-learning.html"><a href="supervised-learning.html#feedback-loops"><i class="fa fa-check"></i><b>12.11.2</b> Feedback Loops</a></li>
+<li class="chapter" data-level="12.11.3" data-path="supervised-learning.html"><a href="supervised-learning.html#what-can-we-do"><i class="fa fa-check"></i><b>12.11.3</b> What can we do?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>13</b> Unsupervised Learning</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#k-means-clustering"><i class="fa fa-check"></i><b>13.1</b> K-Means Clustering</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#clustering-with-k-2"><i class="fa fa-check"></i><b>13.1.1</b> Clustering with k = 2</a></li>
+<li class="chapter" data-level="13.1.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#clustering-with-k-3"><i class="fa fa-check"></i><b>13.1.2</b> Clustering with k &gt;= 3</a></li>
+<li class="chapter" data-level="13.1.3" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#determination-of-optimal-clusters"><i class="fa fa-check"></i><b>13.1.3</b> Determination of Optimal Clusters</a></li>
+<li class="chapter" data-level="13.1.4" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#k-means-for-more-than-2-variables"><i class="fa fa-check"></i><b>13.1.4</b> k-means for more than 2 variables</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#hierarchical-clustering"><i class="fa fa-check"></i><b>13.2</b> Hierarchical Clustering</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#clustering-with-two-variables"><i class="fa fa-check"></i><b>13.2.1</b> Clustering with two variables</a></li>
+<li class="chapter" data-level="13.2.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#determination-of-optimal-clusters-1"><i class="fa fa-check"></i><b>13.2.2</b> Determination of Optimal Clusters</a></li>
+<li class="chapter" data-level="13.2.3" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#obtain-the-grouping"><i class="fa fa-check"></i><b>13.2.3</b> Obtain the grouping</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#dimensionality-reduction"><i class="fa fa-check"></i><b>13.3</b> Dimensionality Reduction</a></li>
+<li class="chapter" data-level="13.4" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#exercises-20"><i class="fa fa-check"></i><b>13.4</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>VI Real Cases</b></span></li>
+<li class="chapter" data-level="" data-path="introduction-3.html"><a href="introduction-3.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="14" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html"><i class="fa fa-check"></i><b>14</b> Case Study: Real Estate Market Analysis</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#objectives"><i class="fa fa-check"></i><b>14.1</b> Objectives</a></li>
+<li class="chapter" data-level="14.2" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#loading-libraries"><i class="fa fa-check"></i><b>14.2</b> Loading Libraries</a></li>
+<li class="chapter" data-level="14.3" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#exploring-the-data"><i class="fa fa-check"></i><b>14.3</b> Exploring the Data</a></li>
+<li class="chapter" data-level="14.4" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#data-cleaning"><i class="fa fa-check"></i><b>14.4</b> Data Cleaning</a></li>
+<li class="chapter" data-level="14.5" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#exploratory-analysis"><i class="fa fa-check"></i><b>14.5</b> Exploratory Analysis</a>
+<ul>
+<li class="chapter" data-level="14.5.1" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#market-volume-over-time"><i class="fa fa-check"></i><b>14.5.1</b> Market Volume Over Time</a></li>
+<li class="chapter" data-level="14.5.2" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#comparing-cities"><i class="fa fa-check"></i><b>14.5.2</b> Comparing Cities</a></li>
+</ul></li>
+<li class="chapter" data-level="14.6" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#creating-indicators"><i class="fa fa-check"></i><b>14.6</b> Creating Indicators</a></li>
+<li class="chapter" data-level="14.7" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#conclusions"><i class="fa fa-check"></i><b>14.7</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="google-analytics-from-r.html"><a href="google-analytics-from-r.html"><i class="fa fa-check"></i><b>15</b> Google Analytics from R</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="google-analytics-from-r.html"><a href="google-analytics-from-r.html#problem"><i class="fa fa-check"></i><b>15.1</b> Problem</a></li>
+<li class="chapter" data-level="15.2" data-path="google-analytics-from-r.html"><a href="google-analytics-from-r.html#access-to-data"><i class="fa fa-check"></i><b>15.2</b> Access to data</a></li>
+<li class="chapter" data-level="15.3" data-path="google-analytics-from-r.html"><a href="google-analytics-from-r.html#visualization"><i class="fa fa-check"></i><b>15.3</b> Visualization</a></li>
+<li class="chapter" data-level="15.4" data-path="google-analytics-from-r.html"><a href="google-analytics-from-r.html#conclusion"><i class="fa fa-check"></i><b>15.4</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="genai-intro.html"><a href="genai-intro.html"><i class="fa fa-check"></i><b>16</b> Data Science in the Age of AI</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="genai-intro.html"><a href="genai-intro.html#what-is-a-large-language-model"><i class="fa fa-check"></i><b>16.1</b> What is a Large Language Model?</a></li>
+<li class="chapter" data-level="16.2" data-path="genai-intro.html"><a href="genai-intro.html#coding-with-ai-the-pair-programmer"><i class="fa fa-check"></i><b>16.2</b> Coding with AI: The “Pair Programmer”</a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="genai-intro.html"><a href="genai-intro.html#explaining-complex-code"><i class="fa fa-check"></i><b>16.2.1</b> 1. Explaining Complex Code</a></li>
+<li class="chapter" data-level="16.2.2" data-path="genai-intro.html"><a href="genai-intro.html#generating-boilerplate"><i class="fa fa-check"></i><b>16.2.2</b> 2. Generating Boilerplate</a></li>
+<li class="chapter" data-level="16.2.3" data-path="genai-intro.html"><a href="genai-intro.html#regex-the-ultimate-use-case"><i class="fa fa-check"></i><b>16.2.3</b> 3. Regex: The Ultimate Use Case</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="genai-intro.html"><a href="genai-intro.html#ethics-risks-in-the-ai-era"><i class="fa fa-check"></i><b>16.3</b> Ethics &amp; Risks in the AI Era</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="genai-intro.html"><a href="genai-intro.html#hallucinations-fabrication"><i class="fa fa-check"></i><b>16.3.1</b> 1. Hallucinations &amp; Fabrication</a></li>
+<li class="chapter" data-level="16.3.2" data-path="genai-intro.html"><a href="genai-intro.html#the-reproducibility-crisis"><i class="fa fa-check"></i><b>16.3.2</b> 2. The Reproducibility Crisis</a></li>
+<li class="chapter" data-level="16.3.3" data-path="genai-intro.html"><a href="genai-intro.html#data-privacy-ip"><i class="fa fa-check"></i><b>16.3.3</b> 3. Data Privacy &amp; IP</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="genai-api.html"><a href="genai-api.html"><i class="fa fa-check"></i><b>17</b> LLMs as an Analysis Engine</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="genai-api.html"><a href="genai-api.html#the-evolution-of-nlp"><i class="fa fa-check"></i><b>17.1</b> The Evolution of NLP</a></li>
+<li class="chapter" data-level="17.2" data-path="genai-api.html"><a href="genai-api.html#interacting-with-apis-from-r"><i class="fa fa-check"></i><b>17.2</b> Interacting with APIs from R</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="genai-api.html"><a href="genai-api.html#prerequisite-api-keys"><i class="fa fa-check"></i><b>17.2.1</b> Prerequisite: API Keys</a></li>
+<li class="chapter" data-level="17.2.2" data-path="genai-api.html"><a href="genai-api.html#making-a-request"><i class="fa fa-check"></i><b>17.2.2</b> Making a Request</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="genai-api.html"><a href="genai-api.html#zero-shot-classification"><i class="fa fa-check"></i><b>17.3</b> Zero-Shot Classification</a></li>
+<li class="chapter" data-level="17.4" data-path="genai-api.html"><a href="genai-api.html#text-cleaning-with-llms"><i class="fa fa-check"></i><b>17.4</b> Text Cleaning with LLMs</a></li>
+<li class="chapter" data-level="17.5" data-path="genai-api.html"><a href="genai-api.html#summary"><i class="fa fa-check"></i><b>17.5</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="ethics-checklist.html"><a href="ethics-checklist.html"><i class="fa fa-check"></i><b>18</b> Appendix A: Responsible AI Checklist</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="ethics-checklist.html"><a href="ethics-checklist.html#data-quality-lineage"><i class="fa fa-check"></i><b>18.1</b> 1. Data Quality &amp; lineage</a></li>
+<li class="chapter" data-level="18.2" data-path="ethics-checklist.html"><a href="ethics-checklist.html#fairness-bias"><i class="fa fa-check"></i><b>18.2</b> 2. Fairness &amp; Bias</a></li>
+<li class="chapter" data-level="18.3" data-path="ethics-checklist.html"><a href="ethics-checklist.html#transparency-explainability"><i class="fa fa-check"></i><b>18.3</b> 3. Transparency &amp; Explainability</a></li>
+<li class="chapter" data-level="18.4" data-path="ethics-checklist.html"><a href="ethics-checklist.html#genai-specifics"><i class="fa fa-check"></i><b>18.4</b> 4. GenAI Specifics</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Science with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="discrete-probabilities" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Discrete Probabilities<a href="discrete-probabilities.html#discrete-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>We will start with some basic principles of categorical data. Probabilities of this type are called discrete probabilities. Understanding the basic principles of discrete probabilities will help us understand continuous probabilities which are the most common in data science applications.</p>
+<p>Recall that a discrete variable is a variable that cannot take some values within a minimum countable set, that is, it does not accept any value, only those that belong to the set.</p>
+<p>For example, if we have 4 women and 6 men seated in a room and we were to raffle 1 prize, intuitively we would know that the probability that the winner is a man is 60%.</p>
+<div id="calculation-using-the-mathematical-definition" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Calculation using the mathematical definition<a href="discrete-probabilities.html#calculation-using-the-mathematical-definition" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The probability we obtained by intuition in the previous example can be expressed as follows:</p>
+<p><span class="math inline">\(P(A) = probability\ of\ event\ A = \frac{Times\ event\ A\ can\ occur}{Total\ possible\ outcomes}\)</span></p>
+<p><span class="math inline">\(P(Winner\ is\ man) = \frac{6}{10} = 60\%\)</span></p>
+</div>
+<div id="monte-carlo-simulation-for-discrete-variables" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Monte Carlo Simulation for Discrete Variables<a href="discrete-probabilities.html#monte-carlo-simulation-for-discrete-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Monte Carlo simulation or method is a statistical method used to solve complex mathematical problems through the generation of random variables. In this case the problem is not complex, but Monte Carlo can be used to familiarize ourselves with a method that we will use constantly.</p>
+<p>We will use Monte Carlo simulation to estimate the proportion we would obtain if we repeated this experiment randomly a determined number of times. That is, the probability of the event using this estimation would be the proportion of times that event occurred in our simulation.</p>
+<p>In R we can easily create random samples using the <code>sample()</code> function. For example, let’s create a vector of students and then use the <code>sample()</code> function to choose one at random.</p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="discrete-probabilities.html#cb280-1" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;woman&quot;</span>, <span class="st">&quot;woman&quot;</span>, <span class="st">&quot;woman&quot;</span>, <span class="st">&quot;woman&quot;</span>, <span class="st">&quot;man&quot;</span>, </span>
+<span id="cb280-2"><a href="discrete-probabilities.html#cb280-2" tabindex="-1"></a>                 <span class="st">&quot;man&quot;</span>, <span class="st">&quot;man&quot;</span>, <span class="st">&quot;man&quot;</span>, <span class="st">&quot;man&quot;</span>, <span class="st">&quot;man&quot;</span>)</span>
+<span id="cb280-3"><a href="discrete-probabilities.html#cb280-3" tabindex="-1"></a></span>
+<span id="cb280-4"><a href="discrete-probabilities.html#cb280-4" tabindex="-1"></a><span class="fu">sample</span>(students, <span class="dv">1</span>)</span></code></pre></div>
+<p>We could also use the <code>rep()</code> function to create the <code>students</code> vector faster. To do this we would enter as the first argument a vector and as the second another vector indicating how many times we want them to be created. Thus, we would create the students vector faster.</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="discrete-probabilities.html#cb281-1" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;woman&quot;</span>, <span class="st">&quot;man&quot;</span>), <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>))</span>
+<span id="cb281-2"><a href="discrete-probabilities.html#cb281-2" tabindex="-1"></a></span>
+<span id="cb281-3"><a href="discrete-probabilities.html#cb281-3" tabindex="-1"></a>students</span>
+<span id="cb281-4"><a href="discrete-probabilities.html#cb281-4" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;woman&quot; &quot;woman&quot; &quot;woman&quot; &quot;woman&quot; &quot;man&quot;   &quot;man&quot;   &quot;man&quot;   &quot;man&quot;   &quot;man&quot;  </span></span>
+<span id="cb281-5"><a href="discrete-probabilities.html#cb281-5" tabindex="-1"></a><span class="co">#&gt; [10] &quot;man&quot;</span></span></code></pre></div>
+<p>Now we have to simulate a determined number of times the experiment of picking a random element. For this we will use the <code>replicate()</code> function. Let’s replicate this experiment 100 times:</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="discrete-probabilities.html#cb282-1" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;woman&quot;</span>, <span class="st">&quot;man&quot;</span>), <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>))</span>
+<span id="cb282-2"><a href="discrete-probabilities.html#cb282-2" tabindex="-1"></a></span>
+<span id="cb282-3"><a href="discrete-probabilities.html#cb282-3" tabindex="-1"></a>n_times <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb282-4"><a href="discrete-probabilities.html#cb282-4" tabindex="-1"></a></span>
+<span id="cb282-5"><a href="discrete-probabilities.html#cb282-5" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">replicate</span>(n_times, {</span>
+<span id="cb282-6"><a href="discrete-probabilities.html#cb282-6" tabindex="-1"></a>  <span class="fu">sample</span>(students, <span class="dv">1</span>)</span>
+<span id="cb282-7"><a href="discrete-probabilities.html#cb282-7" tabindex="-1"></a>  })</span>
+<span id="cb282-8"><a href="discrete-probabilities.html#cb282-8" tabindex="-1"></a></span>
+<span id="cb282-9"><a href="discrete-probabilities.html#cb282-9" tabindex="-1"></a>results</span>
+<span id="cb282-10"><a href="discrete-probabilities.html#cb282-10" tabindex="-1"></a><span class="co">#&gt;   [1] &quot;man&quot;   &quot;man&quot;   &quot;man&quot;   &quot;man&quot;   &quot;woman&quot; &quot;woman&quot; &quot;man&quot;   &quot;woman&quot; &quot;woman&quot;</span></span>
+<span id="cb282-11"><a href="discrete-probabilities.html#cb282-11" tabindex="-1"></a><span class="co">#&gt;  [10] &quot;man&quot;   &quot;woman&quot; &quot;man&quot;   &quot;man&quot;   &quot;man&quot;   &quot;man&quot;   &quot;man&quot;   &quot;man&quot;   &quot;man&quot;  </span></span>
+<span id="cb282-12"><a href="discrete-probabilities.html#cb282-12" tabindex="-1"></a><span class="co">#&gt;  [19] &quot;woman&quot; &quot;man&quot;   &quot;woman&quot; &quot;woman&quot; &quot;man&quot;   &quot;woman&quot; &quot;man&quot;   &quot;man&quot;   &quot;man&quot;  </span></span>
+<span id="cb282-13"><a href="discrete-probabilities.html#cb282-13" tabindex="-1"></a><span class="co">#&gt;  [28] &quot;man&quot;   &quot;woman&quot; &quot;woman&quot; &quot;woman&quot; &quot;man&quot;   &quot;man&quot;   &quot;man&quot;   &quot;man&quot;   &quot;man&quot;  </span></span>
+<span id="cb282-14"><a href="discrete-probabilities.html#cb282-14" tabindex="-1"></a><span class="co">#&gt;  [37] &quot;man&quot;   &quot;man&quot;   &quot;man&quot;   &quot;man&quot;   &quot;man&quot;   &quot;woman&quot; &quot;man&quot;   &quot;man&quot;   &quot;man&quot;  </span></span>
+<span id="cb282-15"><a href="discrete-probabilities.html#cb282-15" tabindex="-1"></a><span class="co">#&gt;  [46] &quot;woman&quot; &quot;man&quot;   &quot;man&quot;   &quot;man&quot;   &quot;man&quot;   &quot;woman&quot; &quot;woman&quot; &quot;woman&quot; &quot;man&quot;  </span></span>
+<span id="cb282-16"><a href="discrete-probabilities.html#cb282-16" tabindex="-1"></a><span class="co">#&gt;  [55] &quot;man&quot;   &quot;man&quot;   &quot;man&quot;   &quot;man&quot;   &quot;woman&quot; &quot;man&quot;   &quot;woman&quot; &quot;man&quot;   &quot;man&quot;  </span></span>
+<span id="cb282-17"><a href="discrete-probabilities.html#cb282-17" tabindex="-1"></a><span class="co">#&gt;  [64] &quot;man&quot;   &quot;woman&quot; &quot;man&quot;   &quot;man&quot;   &quot;man&quot;   &quot;woman&quot; &quot;woman&quot; &quot;man&quot;   &quot;man&quot;  </span></span>
+<span id="cb282-18"><a href="discrete-probabilities.html#cb282-18" tabindex="-1"></a><span class="co">#&gt;  [73] &quot;man&quot;   &quot;man&quot;   &quot;man&quot;   &quot;man&quot;   &quot;woman&quot; &quot;man&quot;   &quot;woman&quot; &quot;man&quot;   &quot;man&quot;  </span></span>
+<span id="cb282-19"><a href="discrete-probabilities.html#cb282-19" tabindex="-1"></a><span class="co">#&gt;  [82] &quot;woman&quot; &quot;woman&quot; &quot;woman&quot; &quot;man&quot;   &quot;woman&quot; &quot;man&quot;   &quot;woman&quot; &quot;woman&quot; &quot;man&quot;  </span></span>
+<span id="cb282-20"><a href="discrete-probabilities.html#cb282-20" tabindex="-1"></a><span class="co">#&gt;  [91] &quot;woman&quot; &quot;man&quot;   &quot;woman&quot; &quot;man&quot;   &quot;man&quot;   &quot;man&quot;   &quot;man&quot;   &quot;man&quot;   &quot;woman&quot;</span></span>
+<span id="cb282-21"><a href="discrete-probabilities.html#cb282-21" tabindex="-1"></a><span class="co">#&gt; [100] &quot;man&quot;</span></span></code></pre></div>
+<p>We can see what the result was for each of the 100 draws we simulated.</p>
+<p>Now we will use the <code>table()</code> function to transform our <code>results</code> vector into a summary table that shows us how many times each value appeared.</p>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="discrete-probabilities.html#cb283-1" tabindex="-1"></a><span class="fu">table</span>(results)</span>
+<span id="cb283-2"><a href="discrete-probabilities.html#cb283-2" tabindex="-1"></a><span class="co">#&gt; results</span></span>
+<span id="cb283-3"><a href="discrete-probabilities.html#cb283-3" tabindex="-1"></a><span class="co">#&gt;   man woman </span></span>
+<span id="cb283-4"><a href="discrete-probabilities.html#cb283-4" tabindex="-1"></a><span class="co">#&gt;    67    33</span></span></code></pre></div>
+<p>If we store this result in a vector <code>tabla_results</code>, we can then use the <code>prop.table()</code> function to know the proportion of each value:</p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="discrete-probabilities.html#cb284-1" tabindex="-1"></a>tabla_results <span class="ot">&lt;-</span> <span class="fu">table</span>(results)</span>
+<span id="cb284-2"><a href="discrete-probabilities.html#cb284-2" tabindex="-1"></a></span>
+<span id="cb284-3"><a href="discrete-probabilities.html#cb284-3" tabindex="-1"></a><span class="fu">prop.table</span>(tabla_results)</span>
+<span id="cb284-4"><a href="discrete-probabilities.html#cb284-4" tabindex="-1"></a><span class="co">#&gt; results</span></span>
+<span id="cb284-5"><a href="discrete-probabilities.html#cb284-5" tabindex="-1"></a><span class="co">#&gt;   man woman </span></span>
+<span id="cb284-6"><a href="discrete-probabilities.html#cb284-6" tabindex="-1"></a><span class="co">#&gt;  0.67  0.33</span></span></code></pre></div>
+<p>We should not worry if the probability that it is a man has not come out exactly 60%. Recall that we are estimating the probability using a method that depends on the number of times we simulate the experiment. The more times we repeat the experiment the closer we will be to the value. For example, let’s replicate this experiment now 10,000 times.</p>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="discrete-probabilities.html#cb285-1" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;woman&quot;</span>, <span class="st">&quot;man&quot;</span>), <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>))</span>
+<span id="cb285-2"><a href="discrete-probabilities.html#cb285-2" tabindex="-1"></a></span>
+<span id="cb285-3"><a href="discrete-probabilities.html#cb285-3" tabindex="-1"></a>n_times <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb285-4"><a href="discrete-probabilities.html#cb285-4" tabindex="-1"></a></span>
+<span id="cb285-5"><a href="discrete-probabilities.html#cb285-5" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">replicate</span>(n_times, {</span>
+<span id="cb285-6"><a href="discrete-probabilities.html#cb285-6" tabindex="-1"></a>  </span>
+<span id="cb285-7"><a href="discrete-probabilities.html#cb285-7" tabindex="-1"></a>  <span class="fu">sample</span>(students, <span class="dv">1</span>)</span>
+<span id="cb285-8"><a href="discrete-probabilities.html#cb285-8" tabindex="-1"></a></span>
+<span id="cb285-9"><a href="discrete-probabilities.html#cb285-9" tabindex="-1"></a>  })</span>
+<span id="cb285-10"><a href="discrete-probabilities.html#cb285-10" tabindex="-1"></a></span>
+<span id="cb285-11"><a href="discrete-probabilities.html#cb285-11" tabindex="-1"></a>tabla_results <span class="ot">&lt;-</span> <span class="fu">table</span>(results)</span>
+<span id="cb285-12"><a href="discrete-probabilities.html#cb285-12" tabindex="-1"></a></span>
+<span id="cb285-13"><a href="discrete-probabilities.html#cb285-13" tabindex="-1"></a><span class="fu">prop.table</span>(tabla_results)</span>
+<span id="cb285-14"><a href="discrete-probabilities.html#cb285-14" tabindex="-1"></a><span class="co">#&gt; results</span></span>
+<span id="cb285-15"><a href="discrete-probabilities.html#cb285-15" tabindex="-1"></a><span class="co">#&gt;    man  woman </span></span>
+<span id="cb285-16"><a href="discrete-probabilities.html#cb285-16" tabindex="-1"></a><span class="co">#&gt; 0.5954 0.4046</span></span></code></pre></div>
+<p>We see how the value converges to 60%. We should not worry if the value varies by a few digits from the one presented in this book given that we are simulating a random event.</p>
+<p>Finally, for this simple example we could also have used the <code>mean()</code> function. Although this calculates the average of a set of numbers, we could convert our <code>students</code> vector to numerical values, where each value is converted to 1 or 0 depending on some condition.</p>
+<p>To do this, R makes the conversion of vectors to 1 and 0 very simple using the comparator operator <code>==</code>:</p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="discrete-probabilities.html#cb286-1" tabindex="-1"></a>students <span class="sc">==</span> <span class="st">&quot;man&quot;</span></span>
+<span id="cb286-2"><a href="discrete-probabilities.html#cb286-2" tabindex="-1"></a><span class="co">#&gt;  [1] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</span></span></code></pre></div>
+<p>When we apply the <code>mean()</code> function to this result, it coerces <code>TRUE</code> values to <code>1</code> and <code>FALSE</code> values to <code>0</code>. Thus, if we apply the average of this list, we would have the percentage of men and with it the probability that when choosing a person it is a man:</p>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="discrete-probabilities.html#cb287-1" tabindex="-1"></a><span class="fu">mean</span>(students <span class="sc">==</span> <span class="st">&quot;man&quot;</span>)</span>
+<span id="cb287-2"><a href="discrete-probabilities.html#cb287-2" tabindex="-1"></a><span class="co">#&gt; [1] 0.6</span></span></code></pre></div>
+<div id="other-functions-to-create-vectors" class="section level3 hasAnchor" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> Other functions to create vectors<a href="discrete-probabilities.html#other-functions-to-create-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We have already learned the <code>rep()</code> function to create vectors faster. Another function we find in R is the <code>expand.grid(x, y)</code> function which creates a data frame of all combinations between vectors <code>x</code> and <code>y</code>.</p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="discrete-probabilities.html#cb288-1" tabindex="-1"></a>greetings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Hola&quot;</span>, <span class="st">&quot;Chau&quot;</span>)</span>
+<span id="cb288-2"><a href="discrete-probabilities.html#cb288-2" tabindex="-1"></a>names_list <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Andrés&quot;</span>, <span class="st">&quot;Josep&quot;</span>, <span class="st">&quot;Alonso&quot;</span>, <span class="st">&quot;Andrés&quot;</span>, <span class="st">&quot;Cesar&quot;</span>, <span class="st">&quot;Jeremy&quot;</span>)</span>
+<span id="cb288-3"><a href="discrete-probabilities.html#cb288-3" tabindex="-1"></a></span>
+<span id="cb288-4"><a href="discrete-probabilities.html#cb288-4" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">saludo =</span> greetings, <span class="at">nombre =</span> names_list)</span>
+<span id="cb288-5"><a href="discrete-probabilities.html#cb288-5" tabindex="-1"></a>result</span>
+<span id="cb288-6"><a href="discrete-probabilities.html#cb288-6" tabindex="-1"></a><span class="co">#&gt;    saludo nombre</span></span>
+<span id="cb288-7"><a href="discrete-probabilities.html#cb288-7" tabindex="-1"></a><span class="co">#&gt; 1    Hola Andrés</span></span>
+<span id="cb288-8"><a href="discrete-probabilities.html#cb288-8" tabindex="-1"></a><span class="co">#&gt; 2    Chau Andrés</span></span>
+<span id="cb288-9"><a href="discrete-probabilities.html#cb288-9" tabindex="-1"></a><span class="co">#&gt; 3    Hola  Josep</span></span>
+<span id="cb288-10"><a href="discrete-probabilities.html#cb288-10" tabindex="-1"></a><span class="co">#&gt; 4    Chau  Josep</span></span>
+<span id="cb288-11"><a href="discrete-probabilities.html#cb288-11" tabindex="-1"></a><span class="co">#&gt; 5    Hola Alonso</span></span>
+<span id="cb288-12"><a href="discrete-probabilities.html#cb288-12" tabindex="-1"></a><span class="co">#&gt; 6    Chau Alonso</span></span>
+<span id="cb288-13"><a href="discrete-probabilities.html#cb288-13" tabindex="-1"></a><span class="co">#&gt; 7    Hola Andrés</span></span>
+<span id="cb288-14"><a href="discrete-probabilities.html#cb288-14" tabindex="-1"></a><span class="co">#&gt; 8    Chau Andrés</span></span>
+<span id="cb288-15"><a href="discrete-probabilities.html#cb288-15" tabindex="-1"></a><span class="co">#&gt; 9    Hola  Cesar</span></span>
+<span id="cb288-16"><a href="discrete-probabilities.html#cb288-16" tabindex="-1"></a><span class="co">#&gt; 10   Chau  Cesar</span></span>
+<span id="cb288-17"><a href="discrete-probabilities.html#cb288-17" tabindex="-1"></a><span class="co">#&gt; 11   Hola Jeremy</span></span>
+<span id="cb288-18"><a href="discrete-probabilities.html#cb288-18" tabindex="-1"></a><span class="co">#&gt; 12   Chau Jeremy</span></span></code></pre></div>
+<p>Finally, we have the <code>paste(x,y)</code> function, which concatenates two strings or vectors of strings adding a space in the middle.</p>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="discrete-probabilities.html#cb289-1" tabindex="-1"></a><span class="fu">paste</span>(result<span class="sc">$</span>saludo, result<span class="sc">$</span>nombre)</span>
+<span id="cb289-2"><a href="discrete-probabilities.html#cb289-2" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;Hola Andrés&quot; &quot;Chau Andrés&quot; &quot;Hola Josep&quot;  &quot;Chau Josep&quot;  &quot;Hola Alonso&quot;</span></span>
+<span id="cb289-3"><a href="discrete-probabilities.html#cb289-3" tabindex="-1"></a><span class="co">#&gt;  [6] &quot;Chau Alonso&quot; &quot;Hola Andrés&quot; &quot;Chau Andrés&quot; &quot;Hola Cesar&quot;  &quot;Chau Cesar&quot; </span></span>
+<span id="cb289-4"><a href="discrete-probabilities.html#cb289-4" tabindex="-1"></a><span class="co">#&gt; [11] &quot;Hola Jeremy&quot; &quot;Chau Jeremy&quot;</span></span></code></pre></div>
+<p>Thus, we can easily generate, for example, a deck of cards distributed in 4 suits: hearts, diamonds, spades, and clubs. The cards of each suit are numbered from 1 to 10, where 1 is the Ace, and followed by Jack, Queen, and King.</p>
+<p>To do this, we would have to create a vector of suits and a vector of numbers to then create the combinationl and have the complete deck.</p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="discrete-probabilities.html#cb290-1" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Ace&quot;</span>, <span class="st">&quot;Two&quot;</span>, <span class="st">&quot;Three&quot;</span>, <span class="st">&quot;Four&quot;</span>, <span class="st">&quot;Five&quot;</span>, <span class="st">&quot;Six&quot;</span>, <span class="st">&quot;Seven&quot;</span>, </span>
+<span id="cb290-2"><a href="discrete-probabilities.html#cb290-2" tabindex="-1"></a>             <span class="st">&quot;Eight&quot;</span>, <span class="st">&quot;Nine&quot;</span>, <span class="st">&quot;Ten&quot;</span>, <span class="st">&quot;Jack&quot;</span>, <span class="st">&quot;Queen&quot;</span>, <span class="st">&quot;King&quot;</span>)</span>
+<span id="cb290-3"><a href="discrete-probabilities.html#cb290-3" tabindex="-1"></a>suits <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;of Hearts&quot;</span>, <span class="st">&quot;of Diamonds&quot;</span>, <span class="st">&quot;of Spades&quot;</span>, <span class="st">&quot;of Clubs&quot;</span>)</span>
+<span id="cb290-4"><a href="discrete-probabilities.html#cb290-4" tabindex="-1"></a></span>
+<span id="cb290-5"><a href="discrete-probabilities.html#cb290-5" tabindex="-1"></a><span class="co"># Create card combinations</span></span>
+<span id="cb290-6"><a href="discrete-probabilities.html#cb290-6" tabindex="-1"></a>combination <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">numero =</span> numbers, <span class="at">palo =</span> suits)</span>
+<span id="cb290-7"><a href="discrete-probabilities.html#cb290-7" tabindex="-1"></a></span>
+<span id="cb290-8"><a href="discrete-probabilities.html#cb290-8" tabindex="-1"></a><span class="co"># Concatenate vectors to have our final combination</span></span>
+<span id="cb290-9"><a href="discrete-probabilities.html#cb290-9" tabindex="-1"></a><span class="fu">paste</span>(combination<span class="sc">$</span>numero, combination<span class="sc">$</span>palo)</span>
+<span id="cb290-10"><a href="discrete-probabilities.html#cb290-10" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;Ace of Hearts&quot;     &quot;Two of Hearts&quot;     &quot;Three of Hearts&quot;  </span></span>
+<span id="cb290-11"><a href="discrete-probabilities.html#cb290-11" tabindex="-1"></a><span class="co">#&gt;  [4] &quot;Four of Hearts&quot;    &quot;Five of Hearts&quot;    &quot;Six of Hearts&quot;    </span></span>
+<span id="cb290-12"><a href="discrete-probabilities.html#cb290-12" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;Seven of Hearts&quot;   &quot;Eight of Hearts&quot;   &quot;Nine of Hearts&quot;   </span></span>
+<span id="cb290-13"><a href="discrete-probabilities.html#cb290-13" tabindex="-1"></a><span class="co">#&gt; [10] &quot;Ten of Hearts&quot;     &quot;Jack of Hearts&quot;    &quot;Queen of Hearts&quot;  </span></span>
+<span id="cb290-14"><a href="discrete-probabilities.html#cb290-14" tabindex="-1"></a><span class="co">#&gt; [13] &quot;King of Hearts&quot;    &quot;Ace of Diamonds&quot;   &quot;Two of Diamonds&quot;  </span></span>
+<span id="cb290-15"><a href="discrete-probabilities.html#cb290-15" tabindex="-1"></a><span class="co">#&gt; [16] &quot;Three of Diamonds&quot; &quot;Four of Diamonds&quot;  &quot;Five of Diamonds&quot; </span></span>
+<span id="cb290-16"><a href="discrete-probabilities.html#cb290-16" tabindex="-1"></a><span class="co">#&gt; [19] &quot;Six of Diamonds&quot;   &quot;Seven of Diamonds&quot; &quot;Eight of Diamonds&quot;</span></span>
+<span id="cb290-17"><a href="discrete-probabilities.html#cb290-17" tabindex="-1"></a><span class="co">#&gt; [22] &quot;Nine of Diamonds&quot;  &quot;Ten of Diamonds&quot;   &quot;Jack of Diamonds&quot; </span></span>
+<span id="cb290-18"><a href="discrete-probabilities.html#cb290-18" tabindex="-1"></a><span class="co">#&gt; [25] &quot;Queen of Diamonds&quot; &quot;King of Diamonds&quot;  &quot;Ace of Spades&quot;    </span></span>
+<span id="cb290-19"><a href="discrete-probabilities.html#cb290-19" tabindex="-1"></a><span class="co">#&gt; [28] &quot;Two of Spades&quot;     &quot;Three of Spades&quot;   &quot;Four of Spades&quot;   </span></span>
+<span id="cb290-20"><a href="discrete-probabilities.html#cb290-20" tabindex="-1"></a><span class="co">#&gt; [31] &quot;Five of Spades&quot;    &quot;Six of Spades&quot;     &quot;Seven of Spades&quot;  </span></span>
+<span id="cb290-21"><a href="discrete-probabilities.html#cb290-21" tabindex="-1"></a><span class="co">#&gt; [34] &quot;Eight of Spades&quot;   &quot;Nine of Spades&quot;    &quot;Ten of Spades&quot;    </span></span>
+<span id="cb290-22"><a href="discrete-probabilities.html#cb290-22" tabindex="-1"></a><span class="co">#&gt; [37] &quot;Jack of Spades&quot;    &quot;Queen of Spades&quot;   &quot;King of Spades&quot;   </span></span>
+<span id="cb290-23"><a href="discrete-probabilities.html#cb290-23" tabindex="-1"></a><span class="co">#&gt; [40] &quot;Ace of Clubs&quot;      &quot;Two of Clubs&quot;      &quot;Three of Clubs&quot;   </span></span>
+<span id="cb290-24"><a href="discrete-probabilities.html#cb290-24" tabindex="-1"></a><span class="co">#&gt; [43] &quot;Four of Clubs&quot;     &quot;Five of Clubs&quot;     &quot;Six of Clubs&quot;     </span></span>
+<span id="cb290-25"><a href="discrete-probabilities.html#cb290-25" tabindex="-1"></a><span class="co">#&gt; [46] &quot;Seven of Clubs&quot;    &quot;Eight of Clubs&quot;    &quot;Nine of Clubs&quot;    </span></span>
+<span id="cb290-26"><a href="discrete-probabilities.html#cb290-26" tabindex="-1"></a><span class="co">#&gt; [49] &quot;Ten of Clubs&quot;      &quot;Jack of Clubs&quot;     &quot;Queen of Clubs&quot;   </span></span>
+<span id="cb290-27"><a href="discrete-probabilities.html#cb290-27" tabindex="-1"></a><span class="co">#&gt; [52] &quot;King of Clubs&quot;</span></span></code></pre></div>
+<p>Once our deck is created we can inquire some probabilities easily with the created vector.</p>
+<p>Let’s calculate the probability that when choosing a card it is “King of Diamonds”:</p>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="discrete-probabilities.html#cb291-1" tabindex="-1"></a><span class="co"># Store the combinationl in the variable deck</span></span>
+<span id="cb291-2"><a href="discrete-probabilities.html#cb291-2" tabindex="-1"></a>deck <span class="ot">&lt;-</span> <span class="fu">paste</span>(combination<span class="sc">$</span>numero, combination<span class="sc">$</span>palo)</span>
+<span id="cb291-3"><a href="discrete-probabilities.html#cb291-3" tabindex="-1"></a></span>
+<span id="cb291-4"><a href="discrete-probabilities.html#cb291-4" tabindex="-1"></a><span class="fu">mean</span>(deck <span class="sc">==</span> <span class="st">&quot;King of Diamonds&quot;</span>)</span>
+<span id="cb291-5"><a href="discrete-probabilities.html#cb291-5" tabindex="-1"></a><span class="co">#&gt; [1] 0.01923077</span></span></code></pre></div>
+<p>Or we can also calculate the probability that when choosing a card it is some Queen:</p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="discrete-probabilities.html#cb292-1" tabindex="-1"></a><span class="co"># First create the vector of &quot;Queen of...&quot;</span></span>
+<span id="cb292-2"><a href="discrete-probabilities.html#cb292-2" tabindex="-1"></a>queens <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;Queen&quot;</span>, suits)</span>
+<span id="cb292-3"><a href="discrete-probabilities.html#cb292-3" tabindex="-1"></a></span>
+<span id="cb292-4"><a href="discrete-probabilities.html#cb292-4" tabindex="-1"></a><span class="co"># Probability calculation</span></span>
+<span id="cb292-5"><a href="discrete-probabilities.html#cb292-5" tabindex="-1"></a><span class="fu">mean</span>(deck <span class="sc">%in%</span> queens)</span>
+<span id="cb292-6"><a href="discrete-probabilities.html#cb292-6" tabindex="-1"></a><span class="co">#&gt; [1] 0.07692308</span></span></code></pre></div>
+</div>
+</div>
+<div id="exercises-8" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Exercises<a href="discrete-probabilities.html#exercises-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol start="64" style="list-style-type: decimal">
+<li>Store in the variable <code>prob</code> the probability that when rolling a die you do <strong>not</strong> get the number 1. Using the variable <code>prob</code>, now calculate the probability that when rolling 3 times in a row, one after another, in none of those times the number 1 comes out.</li>
+</ol>
+<details>
+<summary type="button">
+Solution
+</summary>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="discrete-probabilities.html#cb293-1" tabindex="-1"></a>prob <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="sc">/</span> <span class="dv">6</span></span>
+<span id="cb293-2"><a href="discrete-probabilities.html#cb293-2" tabindex="-1"></a></span>
+<span id="cb293-3"><a href="discrete-probabilities.html#cb293-3" tabindex="-1"></a>prob <span class="sc">*</span> prob <span class="sc">*</span> prob</span></code></pre></div>
+</details>
+<ol start="65" style="list-style-type: decimal">
+<li>Given a container containing 5 blue marbles, 3 yellow, and 4 gray. What is the probability that if you choose a marble at random it is blue?</li>
+</ol>
+<div align="center">
+<p><img src="img/probabilities-marbles.png" alt="" width="200pt" style="display: block; margin: auto;" /></p>
+</div>
+<details>
+<summary type="button">
+Solution
+</summary>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="discrete-probabilities.html#cb294-1" tabindex="-1"></a>marbles <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;gray&quot;</span>), <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">4</span>))</span>
+<span id="cb294-2"><a href="discrete-probabilities.html#cb294-2" tabindex="-1"></a></span>
+<span id="cb294-3"><a href="discrete-probabilities.html#cb294-3" tabindex="-1"></a><span class="co"># Solution using monte carlo simulation, repeating the event 10,000 times:</span></span>
+<span id="cb294-4"><a href="discrete-probabilities.html#cb294-4" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">10000</span>, {</span>
+<span id="cb294-5"><a href="discrete-probabilities.html#cb294-5" tabindex="-1"></a>  </span>
+<span id="cb294-6"><a href="discrete-probabilities.html#cb294-6" tabindex="-1"></a>  <span class="fu">sample</span>(marbles, <span class="dv">1</span>)</span>
+<span id="cb294-7"><a href="discrete-probabilities.html#cb294-7" tabindex="-1"></a>  </span>
+<span id="cb294-8"><a href="discrete-probabilities.html#cb294-8" tabindex="-1"></a>  })</span>
+<span id="cb294-9"><a href="discrete-probabilities.html#cb294-9" tabindex="-1"></a></span>
+<span id="cb294-10"><a href="discrete-probabilities.html#cb294-10" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(results))</span>
+<span id="cb294-11"><a href="discrete-probabilities.html#cb294-11" tabindex="-1"></a></span>
+<span id="cb294-12"><a href="discrete-probabilities.html#cb294-12" tabindex="-1"></a><span class="co"># Solution using the `mean()` function:</span></span>
+<span id="cb294-13"><a href="discrete-probabilities.html#cb294-13" tabindex="-1"></a><span class="fu">mean</span>(marbles <span class="sc">==</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p>Mathematically it would be:</p>
+<p>Given the event: <span class="math inline">\(X = chosen\ marble\ is\ blue\)</span>:</p>
+<p><span class="math inline">\(P(X)=\frac{5}{5+3+4}=\frac{5}{12}=41.67\%\)</span></p>
+<p>The probability that the marble is blue is 41.67%.</p>
+</details>
+<ol start="66" style="list-style-type: decimal">
+<li>What is the probability that when choosing a marble at random from the previous container it is <strong>not</strong> blue?</li>
+</ol>
+<details>
+<summary type="button">
+Solution
+</summary>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="discrete-probabilities.html#cb295-1" tabindex="-1"></a>marbles <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;gray&quot;</span>), <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">4</span>))</span>
+<span id="cb295-2"><a href="discrete-probabilities.html#cb295-2" tabindex="-1"></a></span>
+<span id="cb295-3"><a href="discrete-probabilities.html#cb295-3" tabindex="-1"></a><span class="fu">mean</span>(marbles <span class="sc">!=</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p>The probability is 58.33%.</p>
+<p>Mathematically it would be:</p>
+<p>Given the event <span class="math inline">\(X = chosen\ marble\ is\ blue\)</span>:</p>
+<p><span class="math inline">\(P(\sim~X)=1-P(X)=1-\frac{5}{12}=1-41.67\%=58.33\%\)</span></p>
+</details>
+<ol start="67" style="list-style-type: decimal">
+<li>Now we are going to take out a marble first, place it outside the box and take out another additional marble from the box. What is the probability that the first one is blue and the second is <strong>not</strong> blue? This time, instead of creating the marble vector, create the numerical variables: blue, yellow and gray assigning as value the number of marbles. Then calculate mathematics probabilities.</li>
+</ol>
+<details>
+<summary type="button">
+Solution
+</summary>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="discrete-probabilities.html#cb296-1" tabindex="-1"></a><span class="co"># Create variables</span></span>
+<span id="cb296-2"><a href="discrete-probabilities.html#cb296-2" tabindex="-1"></a>blue <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb296-3"><a href="discrete-probabilities.html#cb296-3" tabindex="-1"></a>yellow <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb296-4"><a href="discrete-probabilities.html#cb296-4" tabindex="-1"></a>gray <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb296-5"><a href="discrete-probabilities.html#cb296-5" tabindex="-1"></a></span>
+<span id="cb296-6"><a href="discrete-probabilities.html#cb296-6" tabindex="-1"></a><span class="co"># Calculate probability that the first marble is blue:</span></span>
+<span id="cb296-7"><a href="discrete-probabilities.html#cb296-7" tabindex="-1"></a>p_1 <span class="ot">&lt;-</span> blue <span class="sc">/</span> (blue <span class="sc">+</span> yellow <span class="sc">+</span> gray)</span>
+<span id="cb296-8"><a href="discrete-probabilities.html#cb296-8" tabindex="-1"></a></span>
+<span id="cb296-9"><a href="discrete-probabilities.html#cb296-9" tabindex="-1"></a><span class="co"># First calculate the probability that the second is blue:</span></span>
+<span id="cb296-10"><a href="discrete-probabilities.html#cb296-10" tabindex="-1"></a>p_aux <span class="ot">&lt;-</span> (blue <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">/</span> (blue <span class="sc">-</span> <span class="dv">1</span> <span class="sc">+</span> yellow <span class="sc">+</span> gray)</span>
+<span id="cb296-11"><a href="discrete-probabilities.html#cb296-11" tabindex="-1"></a></span>
+<span id="cb296-12"><a href="discrete-probabilities.html#cb296-12" tabindex="-1"></a><span class="co"># Calculate the complement because they ask that the second is NOT blue:</span></span>
+<span id="cb296-13"><a href="discrete-probabilities.html#cb296-13" tabindex="-1"></a>p_2 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p_aux</span>
+<span id="cb296-14"><a href="discrete-probabilities.html#cb296-14" tabindex="-1"></a></span>
+<span id="cb296-15"><a href="discrete-probabilities.html#cb296-15" tabindex="-1"></a><span class="co"># Calculate what is asked:</span></span>
+<span id="cb296-16"><a href="discrete-probabilities.html#cb296-16" tabindex="-1"></a>p_1 <span class="sc">*</span> p_2</span></code></pre></div>
+<p>This is called <strong>sampling without replacement</strong>. We have two events, we are taking out two marbles. The second event depends on the first. These two events are not independent of each other.</p>
+</details>
+<ol start="68" style="list-style-type: decimal">
+<li>Now we will repeat the previous experiment, but after taking out the first marble we put it back in the box and take out one more marble at random. What is the probability that the first marble is blue and the second is <strong>not</strong> blue? Modify the R code you created previously to calculate this probability.</li>
+</ol>
+<details>
+<summary type="button">
+Solution
+</summary>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="discrete-probabilities.html#cb297-1" tabindex="-1"></a><span class="co"># Create variables</span></span>
+<span id="cb297-2"><a href="discrete-probabilities.html#cb297-2" tabindex="-1"></a>blue <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb297-3"><a href="discrete-probabilities.html#cb297-3" tabindex="-1"></a>yellow <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb297-4"><a href="discrete-probabilities.html#cb297-4" tabindex="-1"></a>gray <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb297-5"><a href="discrete-probabilities.html#cb297-5" tabindex="-1"></a></span>
+<span id="cb297-6"><a href="discrete-probabilities.html#cb297-6" tabindex="-1"></a><span class="co"># Calculate probability that the first marble is blue:</span></span>
+<span id="cb297-7"><a href="discrete-probabilities.html#cb297-7" tabindex="-1"></a>p_1 <span class="ot">&lt;-</span> blue <span class="sc">/</span> (blue <span class="sc">+</span> yellow <span class="sc">+</span> gray)</span>
+<span id="cb297-8"><a href="discrete-probabilities.html#cb297-8" tabindex="-1"></a></span>
+<span id="cb297-9"><a href="discrete-probabilities.html#cb297-9" tabindex="-1"></a><span class="co"># First calculate the probability that the second is blue:</span></span>
+<span id="cb297-10"><a href="discrete-probabilities.html#cb297-10" tabindex="-1"></a>p_aux <span class="ot">&lt;-</span> blue <span class="sc">/</span> (blue <span class="sc">+</span> yellow <span class="sc">+</span> gray)</span>
+<span id="cb297-11"><a href="discrete-probabilities.html#cb297-11" tabindex="-1"></a></span>
+<span id="cb297-12"><a href="discrete-probabilities.html#cb297-12" tabindex="-1"></a><span class="co"># Calculate the complement because they ask that the second is NOT blue:</span></span>
+<span id="cb297-13"><a href="discrete-probabilities.html#cb297-13" tabindex="-1"></a>p_2 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p_aux</span>
+<span id="cb297-14"><a href="discrete-probabilities.html#cb297-14" tabindex="-1"></a></span>
+<span id="cb297-15"><a href="discrete-probabilities.html#cb297-15" tabindex="-1"></a><span class="co"># Calculate what is asked:</span></span>
+<span id="cb297-16"><a href="discrete-probabilities.html#cb297-16" tabindex="-1"></a>p_1 <span class="sc">*</span> p_2</span></code></pre></div>
+<p>This is called <strong>sampling with replacement</strong>. We have two events, we are taking out two marbles again. The second event does <strong>not</strong> depend on the first. These two events are independent.</p>
+</details>
+</div>
+<div id="combinations-and-permutations" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Combinations and Permutations<a href="discrete-probabilities.html#combinations-and-permutations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Some probability situations involve multiple events. When one of the events affects others, they are called dependent events. For example, when objects are chosen from a list or group and are not returned, the first choice reduces the options for future choices.</p>
+<p>There are two ways to order or combine results of dependent events. <strong>Permutations</strong> are groupings in which the order of objects matters. <strong>Combinations</strong> are groupings in which the content matters but the order does not.</p>
+<p>For this we will use the <code>gtools</code> package, which includes libraries like <code>gtools</code> that provide us with intuitive functionalities to work with permutations and combinations.</p>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="discrete-probabilities.html#cb298-1" tabindex="-1"></a><span class="co"># First install the gtools package</span></span>
+<span id="cb298-2"><a href="discrete-probabilities.html#cb298-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;gtools&quot;</span>)</span>
+<span id="cb298-3"><a href="discrete-probabilities.html#cb298-3" tabindex="-1"></a></span>
+<span id="cb298-4"><a href="discrete-probabilities.html#cb298-4" tabindex="-1"></a><span class="co"># To start using it, load the gtools library</span></span>
+<span id="cb298-5"><a href="discrete-probabilities.html#cb298-5" tabindex="-1"></a><span class="fu">library</span>(gtools)</span></code></pre></div>
+<div id="permutations" class="section level3 hasAnchor" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> Permutations<a href="discrete-probabilities.html#permutations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The order matters when we calculate, for example, the winners of a competition. Suppose we have 10 students who are competing on equal terms for who builds the most accurate machine learning model.</p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="discrete-probabilities.html#cb299-1" tabindex="-1"></a>data_scientists <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Jenny&quot;</span>, <span class="st">&quot;Freddy&quot;</span>, <span class="st">&quot;Yasan&quot;</span>, <span class="st">&quot;Iver&quot;</span>, <span class="st">&quot;Pamela&quot;</span>, <span class="st">&quot;Alexandra&quot;</span>, </span>
+<span id="cb299-2"><a href="discrete-probabilities.html#cb299-2" tabindex="-1"></a>                     <span class="st">&quot;Bladimir&quot;</span>, <span class="st">&quot;Enrique&quot;</span>, <span class="st">&quot;Karen&quot;</span>, <span class="st">&quot;Christiam&quot;</span>)</span></code></pre></div>
+<p>Only the top 3 will receive the prize. In this case the order matters, so we will use the function <code>permutations(total, selection, data)</code> where <code>total</code> indicates the size of the vector, <code>selection</code> indicates the size of the result I want, and finally <code>data</code> is my source vector.</p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="discrete-probabilities.html#cb300-1" tabindex="-1"></a><span class="fu">permutations</span>(<span class="dv">10</span>, <span class="dv">3</span>, <span class="at">v =</span> data_scientists)</span></code></pre></div>
+<p>We have already calculated all possible results. We can calculate on this result the probability that Freddy wins the competition and that Pamela is in second place.</p>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="discrete-probabilities.html#cb301-1" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">permutations</span>(<span class="dv">10</span>, <span class="dv">3</span>, <span class="at">v =</span> data_scientists)</span>
+<span id="cb301-2"><a href="discrete-probabilities.html#cb301-2" tabindex="-1"></a></span>
+<span id="cb301-3"><a href="discrete-probabilities.html#cb301-3" tabindex="-1"></a><span class="co"># Total results: nrow(results)</span></span>
+<span id="cb301-4"><a href="discrete-probabilities.html#cb301-4" tabindex="-1"></a>total <span class="ot">&lt;-</span> <span class="fu">nrow</span>(results)</span>
+<span id="cb301-5"><a href="discrete-probabilities.html#cb301-5" tabindex="-1"></a></span>
+<span id="cb301-6"><a href="discrete-probabilities.html#cb301-6" tabindex="-1"></a><span class="co"># Probability that Freddy wins:</span></span>
+<span id="cb301-7"><a href="discrete-probabilities.html#cb301-7" tabindex="-1"></a><span class="fu">mean</span>(results[, <span class="dv">1</span>] <span class="sc">==</span> <span class="st">&quot;Freddy&quot;</span> <span class="sc">&amp;</span> results[, <span class="dv">2</span>] <span class="sc">==</span> <span class="st">&quot;Pamela&quot;</span>)</span>
+<span id="cb301-8"><a href="discrete-probabilities.html#cb301-8" tabindex="-1"></a><span class="co">#&gt; [1] 0.01111111</span></span></code></pre></div>
+</div>
+<div id="combinations" class="section level3 hasAnchor" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> Combinations<a href="discrete-probabilities.html#combinations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The order does not matter when, for example, we form groups of 2 to participate in the competition.</p>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="discrete-probabilities.html#cb302-1" tabindex="-1"></a><span class="fu">combinations</span>(<span class="dv">10</span>, <span class="dv">2</span>, <span class="at">v =</span> data_scientists)</span></code></pre></div>
+<p>If now only one team is going to win the prize, we could calculate the probability that the team made up of Pamela and Enrique are the ones who win.</p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="discrete-probabilities.html#cb303-1" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">combinations</span>(<span class="dv">10</span>, <span class="dv">2</span>, <span class="at">v =</span> data_scientists)</span>
+<span id="cb303-2"><a href="discrete-probabilities.html#cb303-2" tabindex="-1"></a></span>
+<span id="cb303-3"><a href="discrete-probabilities.html#cb303-3" tabindex="-1"></a><span class="co"># Total results:</span></span>
+<span id="cb303-4"><a href="discrete-probabilities.html#cb303-4" tabindex="-1"></a><span class="fu">nrow</span>(results)</span>
+<span id="cb303-5"><a href="discrete-probabilities.html#cb303-5" tabindex="-1"></a><span class="co">#&gt; [1] 45</span></span>
+<span id="cb303-6"><a href="discrete-probabilities.html#cb303-6" tabindex="-1"></a></span>
+<span id="cb303-7"><a href="discrete-probabilities.html#cb303-7" tabindex="-1"></a><span class="co"># Probability:</span></span>
+<span id="cb303-8"><a href="discrete-probabilities.html#cb303-8" tabindex="-1"></a><span class="fu">mean</span>((results[, <span class="dv">1</span>] <span class="sc">==</span> <span class="st">&quot;Pamela&quot;</span> <span class="sc">&amp;</span> results[, <span class="dv">2</span>] <span class="sc">==</span> <span class="st">&quot;Enrique&quot;</span>) <span class="sc">|</span> </span>
+<span id="cb303-9"><a href="discrete-probabilities.html#cb303-9" tabindex="-1"></a>     (results[, <span class="dv">1</span>] <span class="sc">==</span> <span class="st">&quot;Enrique&quot;</span> <span class="sc">&amp;</span> results[, <span class="dv">2</span>] <span class="sc">==</span> <span class="st">&quot;Pamela&quot;</span>))</span>
+<span id="cb303-10"><a href="discrete-probabilities.html#cb303-10" tabindex="-1"></a><span class="co">#&gt; [1] 0.02222222</span></span></code></pre></div>
+<p>Although we can obtain the probability by calculating all combinations, in R it will be very frequent to use Monte Carlo to estimate the probability by simulation. For the previous case we would not have to generate all combinations, but simply take a sample of two people who would be the members of the winning team. Recall that we have assumed that everyone has equal chances of winning.</p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="discrete-probabilities.html#cb304-1" tabindex="-1"></a><span class="fu">sample</span>(data_scientists, <span class="dv">2</span>)</span></code></pre></div>
+<p>Then, we would have to replicate this experiment over and over again, store the sampling results and calculate the proportion of how many times the winning team was composed of Pamela and Enrique.</p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="discrete-probabilities.html#cb305-1" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb305-2"><a href="discrete-probabilities.html#cb305-2" tabindex="-1"></a></span>
+<span id="cb305-3"><a href="discrete-probabilities.html#cb305-3" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">replicate</span>(n, {</span>
+<span id="cb305-4"><a href="discrete-probabilities.html#cb305-4" tabindex="-1"></a>      equipo <span class="ot">&lt;-</span> <span class="fu">sample</span>(data_scientists, <span class="dv">2</span>)</span>
+<span id="cb305-5"><a href="discrete-probabilities.html#cb305-5" tabindex="-1"></a>      </span>
+<span id="cb305-6"><a href="discrete-probabilities.html#cb305-6" tabindex="-1"></a>      cumple_condicion <span class="ot">&lt;-</span> (equipo[<span class="dv">1</span>] <span class="sc">==</span> <span class="st">&quot;Pamela&quot;</span> <span class="sc">&amp;</span> equipo[<span class="dv">2</span>] <span class="sc">==</span> <span class="st">&quot;Enrique&quot;</span>) <span class="sc">|</span> </span>
+<span id="cb305-7"><a href="discrete-probabilities.html#cb305-7" tabindex="-1"></a>                          (equipo[<span class="dv">2</span>] <span class="sc">==</span> <span class="st">&quot;Pamela&quot;</span> <span class="sc">&amp;</span> equipo[<span class="dv">1</span>] <span class="sc">==</span> <span class="st">&quot;Enrique&quot;</span>)</span>
+<span id="cb305-8"><a href="discrete-probabilities.html#cb305-8" tabindex="-1"></a>      </span>
+<span id="cb305-9"><a href="discrete-probabilities.html#cb305-9" tabindex="-1"></a>      cumple_condicion</span>
+<span id="cb305-10"><a href="discrete-probabilities.html#cb305-10" tabindex="-1"></a>})</span>
+<span id="cb305-11"><a href="discrete-probabilities.html#cb305-11" tabindex="-1"></a></span>
+<span id="cb305-12"><a href="discrete-probabilities.html#cb305-12" tabindex="-1"></a><span class="fu">mean</span>(resultado)</span>
+<span id="cb305-13"><a href="discrete-probabilities.html#cb305-13" tabindex="-1"></a><span class="co">#&gt; [1] 0.0199</span></span></code></pre></div>
+<p>Note that, as we saw previously, the value converges as we increase the number of times we repeat the experiment <code>n</code>. We have simulated repeating the experiment 10 thousand times. However, how many times would it be necessary to replicate the experiment to trust the results of the simulation?</p>
+</div>
+</div>
+<div id="sufficient-experiments-with-monte-carlo-simulation" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Sufficient Experiments with Monte Carlo Simulation<a href="discrete-probabilities.html#sufficient-experiments-with-monte-carlo-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Intuitively we can indicate that the greater the number of experiments the more precise the estimated probability. We can, thus, do several simulations with different number of experiments for each simulation. In this way we could find a reasonable number of experiments for our simulation. To do this, first we create a numerical vector where the number of times we are going to simulate the experiment is indicated. Our vector will contain the following values: 10, 20, 40, 80, 160,…, etc. This means that the first time we will simulate the experiment 10 times, the second 20 times and so on.</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="discrete-probabilities.html#cb306-1" tabindex="-1"></a>n_times <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">*</span><span class="dv">2</span><span class="sc">^</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">17</span>)</span>
+<span id="cb306-2"><a href="discrete-probabilities.html#cb306-2" tabindex="-1"></a>n_times</span>
+<span id="cb306-3"><a href="discrete-probabilities.html#cb306-3" tabindex="-1"></a><span class="co">#&gt;  [1]      20      40      80     160     320     640    1280    2560    5120</span></span>
+<span id="cb306-4"><a href="discrete-probabilities.html#cb306-4" tabindex="-1"></a><span class="co">#&gt; [10]   10240   20480   40960   81920  163840  327680  655360 1310720</span></span></code></pre></div>
+<p>Then, we use the code we created to replicate the experiment to create a function called <code>probabilidad_por_muestra</code>:</p>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="discrete-probabilities.html#cb307-1" tabindex="-1"></a>probabilidad_por_muestra <span class="ot">&lt;-</span> <span class="cf">function</span>(n) {</span>
+<span id="cb307-2"><a href="discrete-probabilities.html#cb307-2" tabindex="-1"></a>  resultado <span class="ot">&lt;-</span> <span class="fu">replicate</span>(n, {</span>
+<span id="cb307-3"><a href="discrete-probabilities.html#cb307-3" tabindex="-1"></a>    equipo <span class="ot">&lt;-</span> <span class="fu">sample</span>(data_scientists, <span class="dv">2</span>)</span>
+<span id="cb307-4"><a href="discrete-probabilities.html#cb307-4" tabindex="-1"></a>    </span>
+<span id="cb307-5"><a href="discrete-probabilities.html#cb307-5" tabindex="-1"></a>    cumple_condicion <span class="ot">&lt;-</span> (equipo[<span class="dv">1</span>] <span class="sc">==</span> <span class="st">&quot;Pamela&quot;</span> <span class="sc">&amp;</span> equipo[<span class="dv">2</span>] <span class="sc">==</span> <span class="st">&quot;Enrique&quot;</span>) <span class="sc">|</span> </span>
+<span id="cb307-6"><a href="discrete-probabilities.html#cb307-6" tabindex="-1"></a>                        (equipo[<span class="dv">2</span>] <span class="sc">==</span> <span class="st">&quot;Pamela&quot;</span> <span class="sc">&amp;</span> equipo[<span class="dv">1</span>] <span class="sc">==</span> <span class="st">&quot;Enrique&quot;</span>)</span>
+<span id="cb307-7"><a href="discrete-probabilities.html#cb307-7" tabindex="-1"></a>    </span>
+<span id="cb307-8"><a href="discrete-probabilities.html#cb307-8" tabindex="-1"></a>    cumple_condicion</span>
+<span id="cb307-9"><a href="discrete-probabilities.html#cb307-9" tabindex="-1"></a>  })</span>
+<span id="cb307-10"><a href="discrete-probabilities.html#cb307-10" tabindex="-1"></a>  </span>
+<span id="cb307-11"><a href="discrete-probabilities.html#cb307-11" tabindex="-1"></a>  <span class="fu">mean</span>(resultado)</span>
+<span id="cb307-12"><a href="discrete-probabilities.html#cb307-12" tabindex="-1"></a>}</span></code></pre></div>
+<p>We already have a function that allows us to replicate the experiment as many times as we want. For example, in the previous section we simulated 10 thousand experiments. Now that we have created the function we would do:</p>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="discrete-probabilities.html#cb308-1" tabindex="-1"></a><span class="co"># Probability using functions:</span></span>
+<span id="cb308-2"><a href="discrete-probabilities.html#cb308-2" tabindex="-1"></a><span class="fu">probabilidad_por_muestra</span>(<span class="dv">10000</span>)</span>
+<span id="cb308-3"><a href="discrete-probabilities.html#cb308-3" tabindex="-1"></a><span class="co">#&gt; [1] 0.0215</span></span></code></pre></div>
+<p>Again, this is a simulation. So every time we execute that function the probability will vary as it is a random sample.</p>
+<p>To apply a function on each of the values of a vector we use the function <code>sapply(vector, function)</code> where <code>vector</code> is the vector where the data on which I want to apply the function is and <code>function</code> is the function I want to apply.</p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="discrete-probabilities.html#cb309-1" tabindex="-1"></a>prob <span class="ot">&lt;-</span> <span class="fu">sapply</span>(n_times, probabilidad_por_muestra)</span>
+<span id="cb309-2"><a href="discrete-probabilities.html#cb309-2" tabindex="-1"></a></span>
+<span id="cb309-3"><a href="discrete-probabilities.html#cb309-3" tabindex="-1"></a>prob</span>
+<span id="cb309-4"><a href="discrete-probabilities.html#cb309-4" tabindex="-1"></a><span class="co">#&gt;  [1] 0.00000000 0.02500000 0.01250000 0.01875000 0.03125000 0.01562500</span></span>
+<span id="cb309-5"><a href="discrete-probabilities.html#cb309-5" tabindex="-1"></a><span class="co">#&gt;  [7] 0.02421875 0.01562500 0.02382812 0.02236328 0.02294922 0.02370605</span></span>
+<span id="cb309-6"><a href="discrete-probabilities.html#cb309-6" tabindex="-1"></a><span class="co">#&gt; [13] 0.02252197 0.02181396 0.02189026 0.02223511 0.02223129</span></span></code></pre></div>
+<p>This gives us the probabilities depending on the number of times we repeat the experiment. Now let’s place these results in a scatter plot to see how it converges</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="discrete-probabilities.html#cb310-1" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb310-2"><a href="discrete-probabilities.html#cb310-2" tabindex="-1"></a>  <span class="at">n =</span> n_times,</span>
+<span id="cb310-3"><a href="discrete-probabilities.html#cb310-3" tabindex="-1"></a>  <span class="at">probabilidad =</span> prob</span>
+<span id="cb310-4"><a href="discrete-probabilities.html#cb310-4" tabindex="-1"></a>)</span>
+<span id="cb310-5"><a href="discrete-probabilities.html#cb310-5" tabindex="-1"></a></span>
+<span id="cb310-6"><a href="discrete-probabilities.html#cb310-6" tabindex="-1"></a>probabilities <span class="sc">|&gt;</span> </span>
+<span id="cb310-7"><a href="discrete-probabilities.html#cb310-7" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb310-8"><a href="discrete-probabilities.html#cb310-8" tabindex="-1"></a>  <span class="fu">aes</span>(n, probabilidad) <span class="sc">+</span></span>
+<span id="cb310-9"><a href="discrete-probabilities.html#cb310-9" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb310-10"><a href="discrete-probabilities.html#cb310-10" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb310-11"><a href="discrete-probabilities.html#cb310-11" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;# of times of the experiment&quot;</span>)</span></code></pre></div>
+<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-404-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p>We can also change the scale to zoom in on the probabilities for smaller experiment number values and add a reference line with the theoretical probability value calculated previously:</p>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="discrete-probabilities.html#cb311-1" tabindex="-1"></a>probabilities <span class="sc">|&gt;</span> </span>
+<span id="cb311-2"><a href="discrete-probabilities.html#cb311-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb311-3"><a href="discrete-probabilities.html#cb311-3" tabindex="-1"></a>  <span class="fu">aes</span>(n, probabilidad) <span class="sc">+</span></span>
+<span id="cb311-4"><a href="discrete-probabilities.html#cb311-4" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb311-5"><a href="discrete-probabilities.html#cb311-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb311-6"><a href="discrete-probabilities.html#cb311-6" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;# of times of the experiment&quot;</span>) <span class="sc">+</span></span>
+<span id="cb311-7"><a href="discrete-probabilities.html#cb311-7" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb311-8"><a href="discrete-probabilities.html#cb311-8" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.022222</span>, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-405-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p>We observe that, for this experiment, repeating the experiment 10 thousand times (x-axis = 3 because it is <span class="math inline">\(10^3\)</span>) already gives us a good approximation to the real value.</p>
+</div>
+<div id="case-birthdays-in-classrooms" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Case: Birthdays in Classrooms<a href="discrete-probabilities.html#case-birthdays-in-classrooms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s review the concepts learned with another example. In a <em>Data Science for Managers</em> class there are 50 students. Using Monte Carlo simulation, let’s estimate what is the probability that there are at least two people who have birthdays on the same day. (Let’s ignore those who have birthdays on February 29).</p>
+<p>First let’s list all the days of the year available for birthdays:</p>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="discrete-probabilities.html#cb312-1" tabindex="-1"></a>days <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">365</span></span></code></pre></div>
+<p>Let’s generate a random sample of 50 numbers from the <code>days</code> vector, but this time with replacement because a person could have the same day, and store it in the <code>colleagues</code> variable.</p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="discrete-probabilities.html#cb313-1" tabindex="-1"></a>colleagues <span class="ot">&lt;-</span> <span class="fu">sample</span>(days, <span class="dv">50</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>To validate if any of the values are repeated we will use the <code>duplicated()</code> function which validates if there are duplicate values within the vector:</p>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="discrete-probabilities.html#cb314-1" tabindex="-1"></a><span class="fu">duplicated</span>(colleagues)</span>
+<span id="cb314-2"><a href="discrete-probabilities.html#cb314-2" tabindex="-1"></a><span class="co">#&gt;  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
+<span id="cb314-3"><a href="discrete-probabilities.html#cb314-3" tabindex="-1"></a><span class="co">#&gt; [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
+<span id="cb314-4"><a href="discrete-probabilities.html#cb314-4" tabindex="-1"></a><span class="co">#&gt; [25] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
+<span id="cb314-5"><a href="discrete-probabilities.html#cb314-5" tabindex="-1"></a><span class="co">#&gt; [37] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE</span></span>
+<span id="cb314-6"><a href="discrete-probabilities.html#cb314-6" tabindex="-1"></a><span class="co">#&gt; [49] FALSE FALSE</span></span></code></pre></div>
+<p>Finally, to determine if there was any <code>TRUE</code> value we use the <code>any()</code> function:</p>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="discrete-probabilities.html#cb315-1" tabindex="-1"></a><span class="fu">any</span>(<span class="fu">duplicated</span>(colleagues))</span>
+<span id="cb315-2"><a href="discrete-probabilities.html#cb315-2" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<p>The result tells us whether it is true or not that there are at least two people who have birthdays on the same day. To estimate by Monte Carlo simulation what the probability is, we have to repeat the experiment many times and take the proportion of how many times we get <code>TRUE</code> as a result.</p>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="discrete-probabilities.html#cb316-1" tabindex="-1"></a><span class="co"># Monte Carlo simulation with 10 thousand repetitions</span></span>
+<span id="cb316-2"><a href="discrete-probabilities.html#cb316-2" tabindex="-1"></a>n_times <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb316-3"><a href="discrete-probabilities.html#cb316-3" tabindex="-1"></a></span>
+<span id="cb316-4"><a href="discrete-probabilities.html#cb316-4" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">replicate</span>(n_times, {    </span>
+<span id="cb316-5"><a href="discrete-probabilities.html#cb316-5" tabindex="-1"></a>    </span>
+<span id="cb316-6"><a href="discrete-probabilities.html#cb316-6" tabindex="-1"></a>    colleagues <span class="ot">&lt;-</span> <span class="fu">sample</span>(days, <span class="dv">50</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb316-7"><a href="discrete-probabilities.html#cb316-7" tabindex="-1"></a>    </span>
+<span id="cb316-8"><a href="discrete-probabilities.html#cb316-8" tabindex="-1"></a>    <span class="co"># Returns a logical value of whether there are duplicates</span></span>
+<span id="cb316-9"><a href="discrete-probabilities.html#cb316-9" tabindex="-1"></a>    <span class="fu">any</span>(<span class="fu">duplicated</span>(colleagues))</span>
+<span id="cb316-10"><a href="discrete-probabilities.html#cb316-10" tabindex="-1"></a>})</span>
+<span id="cb316-11"><a href="discrete-probabilities.html#cb316-11" tabindex="-1"></a></span>
+<span id="cb316-12"><a href="discrete-probabilities.html#cb316-12" tabindex="-1"></a><span class="co"># Probability:</span></span>
+<span id="cb316-13"><a href="discrete-probabilities.html#cb316-13" tabindex="-1"></a><span class="fu">mean</span>(results) </span>
+<span id="cb316-14"><a href="discrete-probabilities.html#cb316-14" tabindex="-1"></a><span class="co">#&gt; [1] 0.9697</span></span></code></pre></div>
+<p>We see that the estimated probability is very high, above 95%. What would happen if I have a room of 25 people?</p>
+<p>To do this, we modify the previous code and create the variable <code>classroom</code> which will indicate the number of students in that class:</p>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="discrete-probabilities.html#cb317-1" tabindex="-1"></a><span class="co"># Monte Carlo simulation with 10 thousand repetitions</span></span>
+<span id="cb317-2"><a href="discrete-probabilities.html#cb317-2" tabindex="-1"></a>n_times <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb317-3"><a href="discrete-probabilities.html#cb317-3" tabindex="-1"></a>classroom <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb317-4"><a href="discrete-probabilities.html#cb317-4" tabindex="-1"></a></span>
+<span id="cb317-5"><a href="discrete-probabilities.html#cb317-5" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">replicate</span>(n_times, {    <span class="co"># Returns a logical vector</span></span>
+<span id="cb317-6"><a href="discrete-probabilities.html#cb317-6" tabindex="-1"></a>    colleagues <span class="ot">&lt;-</span> <span class="fu">sample</span>(days, classroom, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb317-7"><a href="discrete-probabilities.html#cb317-7" tabindex="-1"></a>    <span class="fu">any</span>(<span class="fu">duplicated</span>(colleagues))</span>
+<span id="cb317-8"><a href="discrete-probabilities.html#cb317-8" tabindex="-1"></a>})</span>
+<span id="cb317-9"><a href="discrete-probabilities.html#cb317-9" tabindex="-1"></a></span>
+<span id="cb317-10"><a href="discrete-probabilities.html#cb317-10" tabindex="-1"></a><span class="co"># Probability:</span></span>
+<span id="cb317-11"><a href="discrete-probabilities.html#cb317-11" tabindex="-1"></a><span class="fu">mean</span>(results) </span>
+<span id="cb317-12"><a href="discrete-probabilities.html#cb317-12" tabindex="-1"></a><span class="co">#&gt; [1] 0.5649</span></span></code></pre></div>
+<p>Let’s now create the function <code>estima_probabilidad</code> and estimate using this function the probability of finding at least two people with the same birthday in a room of 25 people. This time we have to specify that the sampling is with “replacement” because by default the <code>sample()</code> function is “without replacement”.</p>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="discrete-probabilities.html#cb318-1" tabindex="-1"></a><span class="co"># Create the function</span></span>
+<span id="cb318-2"><a href="discrete-probabilities.html#cb318-2" tabindex="-1"></a>estima_probabilidad <span class="ot">&lt;-</span> <span class="cf">function</span>(classroom, <span class="at">n_times =</span> <span class="dv">10000</span>){</span>
+<span id="cb318-3"><a href="discrete-probabilities.html#cb318-3" tabindex="-1"></a>    results <span class="ot">&lt;-</span> <span class="fu">replicate</span>(n_times, {    <span class="co"># Returns a logical vector</span></span>
+<span id="cb318-4"><a href="discrete-probabilities.html#cb318-4" tabindex="-1"></a>        colleagues <span class="ot">&lt;-</span> <span class="fu">sample</span>(days, classroom, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb318-5"><a href="discrete-probabilities.html#cb318-5" tabindex="-1"></a>        <span class="fu">any</span>(<span class="fu">duplicated</span>(colleagues))</span>
+<span id="cb318-6"><a href="discrete-probabilities.html#cb318-6" tabindex="-1"></a>    })</span>
+<span id="cb318-7"><a href="discrete-probabilities.html#cb318-7" tabindex="-1"></a></span>
+<span id="cb318-8"><a href="discrete-probabilities.html#cb318-8" tabindex="-1"></a>    <span class="co"># Probability:</span></span>
+<span id="cb318-9"><a href="discrete-probabilities.html#cb318-9" tabindex="-1"></a>    <span class="fu">mean</span>(results) </span>
+<span id="cb318-10"><a href="discrete-probabilities.html#cb318-10" tabindex="-1"></a>}</span>
+<span id="cb318-11"><a href="discrete-probabilities.html#cb318-11" tabindex="-1"></a></span>
+<span id="cb318-12"><a href="discrete-probabilities.html#cb318-12" tabindex="-1"></a><span class="fu">estima_probabilidad</span>(<span class="dv">25</span>)</span>
+<span id="cb318-13"><a href="discrete-probabilities.html#cb318-13" tabindex="-1"></a><span class="co">#&gt; [1] 0.5687</span></span></code></pre></div>
+<p>Finally, if we already have a function that calculates based on the number of people in a room we can create a numerical vector with the total number of people from different rooms and then apply the function we have created. The result can be stored in the variable <code>prob</code>.</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="discrete-probabilities.html#cb319-1" tabindex="-1"></a><span class="co"># Create 80 different classrooms</span></span>
+<span id="cb319-2"><a href="discrete-probabilities.html#cb319-2" tabindex="-1"></a><span class="co"># The first room with 1 person, the last room with 80 people</span></span>
+<span id="cb319-3"><a href="discrete-probabilities.html#cb319-3" tabindex="-1"></a>classrooms <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">80</span></span>
+<span id="cb319-4"><a href="discrete-probabilities.html#cb319-4" tabindex="-1"></a></span>
+<span id="cb319-5"><a href="discrete-probabilities.html#cb319-5" tabindex="-1"></a><span class="co"># Estimate probability depending on the number of students per room</span></span>
+<span id="cb319-6"><a href="discrete-probabilities.html#cb319-6" tabindex="-1"></a>prob <span class="ot">&lt;-</span> <span class="fu">sapply</span>(classrooms, estima_probabilidad)</span>
+<span id="cb319-7"><a href="discrete-probabilities.html#cb319-7" tabindex="-1"></a></span>
+<span id="cb319-8"><a href="discrete-probabilities.html#cb319-8" tabindex="-1"></a>prob</span>
+<span id="cb319-9"><a href="discrete-probabilities.html#cb319-9" tabindex="-1"></a><span class="co">#&gt;  [1] 0.0000 0.0025 0.0083 0.0153 0.0279 0.0392 0.0588 0.0741 0.0988 0.1158</span></span>
+<span id="cb319-10"><a href="discrete-probabilities.html#cb319-10" tabindex="-1"></a><span class="co">#&gt; [11] 0.1443 0.1653 0.1962 0.2230 0.2520 0.2801 0.3223 0.3488 0.3835 0.4014</span></span>
+<span id="cb319-11"><a href="discrete-probabilities.html#cb319-11" tabindex="-1"></a><span class="co">#&gt; [21] 0.4438 0.4770 0.5116 0.5344 0.5714 0.5942 0.6318 0.6571 0.6848 0.7131</span></span>
+<span id="cb319-12"><a href="discrete-probabilities.html#cb319-12" tabindex="-1"></a><span class="co">#&gt; [31] 0.7335 0.7501 0.7777 0.7957 0.8101 0.8255 0.8542 0.8572 0.8801 0.8962</span></span>
+<span id="cb319-13"><a href="discrete-probabilities.html#cb319-13" tabindex="-1"></a><span class="co">#&gt; [41] 0.9055 0.9131 0.9231 0.9354 0.9427 0.9495 0.9556 0.9570 0.9661 0.9660</span></span>
+<span id="cb319-14"><a href="discrete-probabilities.html#cb319-14" tabindex="-1"></a><span class="co">#&gt; [51] 0.9738 0.9747 0.9831 0.9843 0.9867 0.9892 0.9915 0.9909 0.9935 0.9945</span></span>
+<span id="cb319-15"><a href="discrete-probabilities.html#cb319-15" tabindex="-1"></a><span class="co">#&gt; [61] 0.9948 0.9960 0.9961 0.9980 0.9973 0.9983 0.9979 0.9992 0.9989 0.9989</span></span>
+<span id="cb319-16"><a href="discrete-probabilities.html#cb319-16" tabindex="-1"></a><span class="co">#&gt; [71] 0.9989 0.9998 0.9998 1.0000 0.9999 0.9998 0.9999 0.9995 1.0000 0.9998</span></span></code></pre></div>
+<p>Thus, if we place it in a scatter plot we can see how the probability increases as there are more students:</p>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="discrete-probabilities.html#cb320-1" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb320-2"><a href="discrete-probabilities.html#cb320-2" tabindex="-1"></a>  <span class="at">n =</span> classrooms,</span>
+<span id="cb320-3"><a href="discrete-probabilities.html#cb320-3" tabindex="-1"></a>  <span class="at">probabilidad =</span> prob</span>
+<span id="cb320-4"><a href="discrete-probabilities.html#cb320-4" tabindex="-1"></a>)</span>
+<span id="cb320-5"><a href="discrete-probabilities.html#cb320-5" tabindex="-1"></a></span>
+<span id="cb320-6"><a href="discrete-probabilities.html#cb320-6" tabindex="-1"></a>probabilities <span class="sc">|&gt;</span> </span>
+<span id="cb320-7"><a href="discrete-probabilities.html#cb320-7" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb320-8"><a href="discrete-probabilities.html#cb320-8" tabindex="-1"></a>  <span class="fu">aes</span>(n, probabilidad) <span class="sc">+</span></span>
+<span id="cb320-9"><a href="discrete-probabilities.html#cb320-9" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb320-10"><a href="discrete-probabilities.html#cb320-10" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Number of students in each class&quot;</span>)</span></code></pre></div>
+<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-414-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p>We can now impress our friends from different groups by telling them that, if they are in a room of 60 people, “you can bet them” that there are two people in that room who have birthdays on the same day. It is not definitive, but the chances are very much in our favor.</p>
+</div>
+<div id="exercises-9" class="section level2 hasAnchor" number="7.7">
+<h2><span class="header-section-number">7.7</span> Exercises<a href="discrete-probabilities.html#exercises-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol start="69" style="list-style-type: decimal">
+<li>Two students of the <em>Data Science with R</em> course, Alonso and Georgina, usually play chess in their free time. Given Georgina’s experience, she has a 60% chance of winning every time she plays with Alonso. <strong>Without using Monte Carlo simulation</strong> What is the probability that when playing 4 times in a row, Alonso has won at least once.</li>
+</ol>
+<details>
+<summary type="button">
+Solution
+</summary>
+<p>Calculating the probability that Alonso has won at least once is the complement of the probability that Georgina has won all 4 times. Thus, we will first calculate the probability that Georgina has always won and then calculate the complement.</p>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="discrete-probabilities.html#cb321-1" tabindex="-1"></a><span class="co"># Probability that Georgina wins all 4 games</span></span>
+<span id="cb321-2"><a href="discrete-probabilities.html#cb321-2" tabindex="-1"></a>prob <span class="ot">&lt;-</span> <span class="fl">0.6</span><span class="sc">^</span><span class="dv">4</span></span>
+<span id="cb321-3"><a href="discrete-probabilities.html#cb321-3" tabindex="-1"></a></span>
+<span id="cb321-4"><a href="discrete-probabilities.html#cb321-4" tabindex="-1"></a><span class="co"># Probability that Alonso wins at least once</span></span>
+<span id="cb321-5"><a href="discrete-probabilities.html#cb321-5" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> prob</span></code></pre></div>
+</details>
+<ol start="70" style="list-style-type: decimal">
+<li>Estimate the previous probability using Monte Carlo simulation. Use the following code to generate a sample of 4 games, where Alonso has a 60% probability of losing to Georgina.</li>
+</ol>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="discrete-probabilities.html#cb322-1" tabindex="-1"></a>resultado_juegos <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;loses&quot;</span>,<span class="st">&quot;wins&quot;</span>), <span class="dv">4</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.6</span>, <span class="fl">0.4</span>))</span></code></pre></div>
+<details>
+<summary type="button">
+Solution
+</summary>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="discrete-probabilities.html#cb323-1" tabindex="-1"></a><span class="co"># Times I run the simulation</span></span>
+<span id="cb323-2"><a href="discrete-probabilities.html#cb323-2" tabindex="-1"></a>n_times <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb323-3"><a href="discrete-probabilities.html#cb323-3" tabindex="-1"></a></span>
+<span id="cb323-4"><a href="discrete-probabilities.html#cb323-4" tabindex="-1"></a><span class="co"># Generate result of experiments that Alonso wins</span></span>
+<span id="cb323-5"><a href="discrete-probabilities.html#cb323-5" tabindex="-1"></a>alonso_gana <span class="ot">&lt;-</span> <span class="fu">replicate</span>(n_times, {</span>
+<span id="cb323-6"><a href="discrete-probabilities.html#cb323-6" tabindex="-1"></a>    resultado_juegos <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;loses&quot;</span>,<span class="st">&quot;wins&quot;</span>), <span class="dv">4</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.6</span>, <span class="fl">0.4</span>))</span>
+<span id="cb323-7"><a href="discrete-probabilities.html#cb323-7" tabindex="-1"></a>    <span class="fu">any</span>(resultado_juegos <span class="sc">==</span> <span class="st">&quot;wins&quot;</span>)</span>
+<span id="cb323-8"><a href="discrete-probabilities.html#cb323-8" tabindex="-1"></a>})</span>
+<span id="cb323-9"><a href="discrete-probabilities.html#cb323-9" tabindex="-1"></a></span>
+<span id="cb323-10"><a href="discrete-probabilities.html#cb323-10" tabindex="-1"></a><span class="co"># Estimate probability</span></span>
+<span id="cb323-11"><a href="discrete-probabilities.html#cb323-11" tabindex="-1"></a><span class="fu">mean</span>(alonso_gana)</span></code></pre></div>
+</details>
+<ol start="71" style="list-style-type: decimal">
+<li>In the previous exercise we used the probability that Alonso wins as 40%. Now, create the function <code>probabilidad_de_ganar</code> that takes as input the probability <code>p</code> that Alonso wins. Then, assign this sequence <code>seq(0.4, 0.95, 0.025)</code> in a vector <code>p</code> to, finally, apply the created function to each value of vector <code>p</code> and store the result in the variable <code>prob</code>. Report a scatter plot of vector <code>p</code> on the <em>x-axis</em> and vector <code>prob</code> on the <em>y-axis</em></li>
+</ol>
+<details>
+<summary type="button">
+Solution
+</summary>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="discrete-probabilities.html#cb324-1" tabindex="-1"></a><span class="co"># Create function</span></span>
+<span id="cb324-2"><a href="discrete-probabilities.html#cb324-2" tabindex="-1"></a>probabilidad_de_ganar <span class="ot">&lt;-</span> <span class="cf">function</span>(p){</span>
+<span id="cb324-3"><a href="discrete-probabilities.html#cb324-3" tabindex="-1"></a>  n_times <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb324-4"><a href="discrete-probabilities.html#cb324-4" tabindex="-1"></a>  </span>
+<span id="cb324-5"><a href="discrete-probabilities.html#cb324-5" tabindex="-1"></a>  alonso_gana <span class="ot">&lt;-</span> <span class="fu">replicate</span>(n_times, {</span>
+<span id="cb324-6"><a href="discrete-probabilities.html#cb324-6" tabindex="-1"></a>      resultado_juegos <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;loses&quot;</span>,<span class="st">&quot;wins&quot;</span>), <span class="dv">4</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">-</span>p, p))</span>
+<span id="cb324-7"><a href="discrete-probabilities.html#cb324-7" tabindex="-1"></a>      <span class="fu">any</span>(resultado_juegos <span class="sc">==</span> <span class="st">&quot;wins&quot;</span>)</span>
+<span id="cb324-8"><a href="discrete-probabilities.html#cb324-8" tabindex="-1"></a>  })</span>
+<span id="cb324-9"><a href="discrete-probabilities.html#cb324-9" tabindex="-1"></a>  </span>
+<span id="cb324-10"><a href="discrete-probabilities.html#cb324-10" tabindex="-1"></a>  <span class="fu">mean</span>(alonso_gana)</span>
+<span id="cb324-11"><a href="discrete-probabilities.html#cb324-11" tabindex="-1"></a></span>
+<span id="cb324-12"><a href="discrete-probabilities.html#cb324-12" tabindex="-1"></a>}</span>
+<span id="cb324-13"><a href="discrete-probabilities.html#cb324-13" tabindex="-1"></a></span>
+<span id="cb324-14"><a href="discrete-probabilities.html#cb324-14" tabindex="-1"></a><span class="co"># Create vector with different probabilities</span></span>
+<span id="cb324-15"><a href="discrete-probabilities.html#cb324-15" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.4</span>, <span class="fl">0.95</span>, <span class="fl">0.025</span>)</span>
+<span id="cb324-16"><a href="discrete-probabilities.html#cb324-16" tabindex="-1"></a></span>
+<span id="cb324-17"><a href="discrete-probabilities.html#cb324-17" tabindex="-1"></a>prob <span class="ot">&lt;-</span> <span class="fu">sapply</span>(p, probabilidad_de_ganar)</span>
+<span id="cb324-18"><a href="discrete-probabilities.html#cb324-18" tabindex="-1"></a></span>
+<span id="cb324-19"><a href="discrete-probabilities.html#cb324-19" tabindex="-1"></a><span class="fu">plot</span>(p, prob, <span class="at">xlab=</span><span class="st">&quot;p: probability that Alonso wins in each game&quot;</span>, </span>
+<span id="cb324-20"><a href="discrete-probabilities.html#cb324-20" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;prob: prob. that Alonso wins at least one game&quot;</span>)</span></code></pre></div>
+</details>
+</div>
+<div id="integrative-exercise" class="section level2 hasAnchor" number="7.8">
+<h2><span class="header-section-number">7.8</span> Integrative Exercise<a href="discrete-probabilities.html#integrative-exercise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s solve together this exercise that integrates everything we have learned in this chapter, called the Monty Hall problem.</p>
+<div id="monty-hall-problem" class="section level3 hasAnchor" number="7.8.1">
+<h3><span class="header-section-number">7.8.1</span> Monty Hall Problem<a href="discrete-probabilities.html#monty-hall-problem" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Monty Hall was a TV presenter who made famous a contest in his show which we are going to replicate below. We have three doors in front of us:</p>
+<div align="center">
+<p><img src="img/monty-hall-cerradas.png" alt="" width="400pt" style="display: block; margin: auto;" /></p>
+</div>
+<p>Behind one of these doors is a zero-kilometer car, while in the other two there is a goat. We, as contest participants, have to choose together which door to open. Whatever is behind it will be ours.</p>
+<p>Suppose we have chosen door number 2. Once you announce our choice, Monty Hall tells us that he is going to help us and opens a door for us right now. He opens one of the other doors and it turns out there is a goat in door 3 that he opened.</p>
+<div align="center">
+<p><img src="img/monty-hall-abierta.png" alt="" width="400pt" style="display: block; margin: auto;" /></p>
+</div>
+<p>Monty Hall asks us:</p>
+<blockquote>
+<p>I am going to give you a chance to change doors and that will be your final choice, Would you change doors or stick with the door chosen at the beginning?</p>
+</blockquote>
+<p>Intuitively we knew that, when all doors were closed, the car is in one of 3 doors. The probability of winning would be <span class="math inline">\(\frac{1}{3} = 0.3333\)</span> so it didn’t matter which door to choose. But when he opens door number three he gives us information and the first thing we should ask ourselves is whether the probabilities have been affected or not. Although this is an advanced math exercise using change of variable, we can execute a Monte Carlo simulation to estimate the probabilities and solve it without using almost any mathematical formula.</p>
+<p>Let’s start by simulating the experiment. At the beginning we had three doors, door 1, 2 and 3. We will create the variable <code>doors</code>.</p>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="discrete-probabilities.html#cb325-1" tabindex="-1"></a>doors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;door 1&quot;</span>, <span class="st">&quot;door 2&quot;</span>, <span class="st">&quot;door 3&quot;</span>)</span></code></pre></div>
+<p>Then, we know that behind the doors there is a car and two goats distributed randomly. We will use the function <code>sample</code> to order them randomly.</p>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="discrete-probabilities.html#cb326-1" tabindex="-1"></a>prizes <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;car&quot;</span>, <span class="st">&quot;goat&quot;</span>, <span class="st">&quot;goat&quot;</span>))</span></code></pre></div>
+<p>Since Monty Hall knows where the prize is. We are going to create a variable <code>prize_door</code> where we will store where the car is.</p>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="discrete-probabilities.html#cb327-1" tabindex="-1"></a>prize_door <span class="ot">&lt;-</span> doors[prizes <span class="sc">==</span> <span class="st">&quot;car&quot;</span>]</span></code></pre></div>
+<p>Now we choose a door randomly and store our result in the variable <code>choice</code>.</p>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="discrete-probabilities.html#cb328-1" tabindex="-1"></a>choice <span class="ot">&lt;-</span> <span class="fu">sample</span>(doors, <span class="dv">1</span>)</span></code></pre></div>
+<p>Given that we already have the chosen door shown we will simulate Monty Hall choosing the door to open. Since he is the presenter he will choose any door that is not the door where the prize is or your door.</p>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="discrete-probabilities.html#cb329-1" tabindex="-1"></a>door_opened <span class="ot">&lt;-</span> <span class="fu">sample</span>(doors[<span class="sc">!</span>doors <span class="sc">%in%</span> <span class="fu">c</span>(choice, prize_door)],<span class="dv">1</span>)</span></code></pre></div>
+<p>Finally, we are going to put all the code together and in the last line add the comparison of whether the prize door matches our choice. This time we are going to choose not to change doors, so our choice does not vary.</p>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="discrete-probabilities.html#cb330-1" tabindex="-1"></a>doors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;door 1&quot;</span>, <span class="st">&quot;door 2&quot;</span>, <span class="st">&quot;door 3&quot;</span>)</span>
+<span id="cb330-2"><a href="discrete-probabilities.html#cb330-2" tabindex="-1"></a>prizes <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;car&quot;</span>, <span class="st">&quot;goat&quot;</span>, <span class="st">&quot;goat&quot;</span>))</span>
+<span id="cb330-3"><a href="discrete-probabilities.html#cb330-3" tabindex="-1"></a>prize_door <span class="ot">&lt;-</span> doors[prizes <span class="sc">==</span> <span class="st">&quot;car&quot;</span>]</span>
+<span id="cb330-4"><a href="discrete-probabilities.html#cb330-4" tabindex="-1"></a>choice <span class="ot">&lt;-</span> <span class="fu">sample</span>(doors, <span class="dv">1</span>)</span>
+<span id="cb330-5"><a href="discrete-probabilities.html#cb330-5" tabindex="-1"></a>door_opened <span class="ot">&lt;-</span> <span class="fu">sample</span>(doors[<span class="sc">!</span>doors <span class="sc">%in%</span> <span class="fu">c</span>(choice, prize_door)],<span class="dv">1</span>)</span>
+<span id="cb330-6"><a href="discrete-probabilities.html#cb330-6" tabindex="-1"></a></span>
+<span id="cb330-7"><a href="discrete-probabilities.html#cb330-7" tabindex="-1"></a>choice <span class="sc">==</span> prize_door</span></code></pre></div>
+<p>With our experiment created we are going to simulate what would happen if we stick with the choice and what would happen if we change it.</p>
+<div id="stick-with-the-chosen-door" class="section level4 hasAnchor" number="7.8.1.1">
+<h4><span class="header-section-number">7.8.1.1</span> Stick with the chosen door<a href="discrete-probabilities.html#stick-with-the-chosen-door" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Let’s replicate about 10 thousand times to see the proportion of times we would win if we stick with our door.</p>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="discrete-probabilities.html#cb331-1" tabindex="-1"></a>n_times <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb331-2"><a href="discrete-probabilities.html#cb331-2" tabindex="-1"></a></span>
+<span id="cb331-3"><a href="discrete-probabilities.html#cb331-3" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">replicate</span>(n_times, {</span>
+<span id="cb331-4"><a href="discrete-probabilities.html#cb331-4" tabindex="-1"></a>      doors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;door 1&quot;</span>, <span class="st">&quot;door 2&quot;</span>, <span class="st">&quot;door 3&quot;</span>)</span>
+<span id="cb331-5"><a href="discrete-probabilities.html#cb331-5" tabindex="-1"></a>      prizes <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;car&quot;</span>, <span class="st">&quot;goat&quot;</span>, <span class="st">&quot;goat&quot;</span>))</span>
+<span id="cb331-6"><a href="discrete-probabilities.html#cb331-6" tabindex="-1"></a>      prize_door <span class="ot">&lt;-</span> doors[prizes <span class="sc">==</span> <span class="st">&quot;car&quot;</span>]</span>
+<span id="cb331-7"><a href="discrete-probabilities.html#cb331-7" tabindex="-1"></a>      choice <span class="ot">&lt;-</span> <span class="fu">sample</span>(doors, <span class="dv">1</span>)</span>
+<span id="cb331-8"><a href="discrete-probabilities.html#cb331-8" tabindex="-1"></a>      door_opened <span class="ot">&lt;-</span> <span class="fu">sample</span>(doors[<span class="sc">!</span>doors <span class="sc">%in%</span> <span class="fu">c</span>(choice, prize_door)],<span class="dv">1</span>)</span>
+<span id="cb331-9"><a href="discrete-probabilities.html#cb331-9" tabindex="-1"></a>      </span>
+<span id="cb331-10"><a href="discrete-probabilities.html#cb331-10" tabindex="-1"></a>      choice <span class="sc">==</span> prize_door</span>
+<span id="cb331-11"><a href="discrete-probabilities.html#cb331-11" tabindex="-1"></a>})</span>
+<span id="cb331-12"><a href="discrete-probabilities.html#cb331-12" tabindex="-1"></a></span>
+<span id="cb331-13"><a href="discrete-probabilities.html#cb331-13" tabindex="-1"></a><span class="fu">mean</span>(results)</span>
+<span id="cb331-14"><a href="discrete-probabilities.html#cb331-14" tabindex="-1"></a><span class="co">#&gt; [1] 0.326</span></span></code></pre></div>
+<p>We see that the probability obtained by Monte Carlo simulation is an estimation very close to the probability that we had intuitively calculated. That is, if we keep our choice of the door we chose we have a 33.33% probability of winning.</p>
+<p>But, what happens if we change doors? Is the probability of winning the same?</p>
+</div>
+<div id="change-door" class="section level4 hasAnchor" number="7.8.1.2">
+<h4><span class="header-section-number">7.8.1.2</span> Change door<a href="discrete-probabilities.html#change-door" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We are going to use the code and modify it by creating the variable <code>new_choice</code> to make the door change.</p>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="discrete-probabilities.html#cb332-1" tabindex="-1"></a>n_times <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb332-2"><a href="discrete-probabilities.html#cb332-2" tabindex="-1"></a></span>
+<span id="cb332-3"><a href="discrete-probabilities.html#cb332-3" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">replicate</span>(n_times, {</span>
+<span id="cb332-4"><a href="discrete-probabilities.html#cb332-4" tabindex="-1"></a>      doors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;door 1&quot;</span>, <span class="st">&quot;door 2&quot;</span>, <span class="st">&quot;door 3&quot;</span>)</span>
+<span id="cb332-5"><a href="discrete-probabilities.html#cb332-5" tabindex="-1"></a>      prizes <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;car&quot;</span>, <span class="st">&quot;goat&quot;</span>, <span class="st">&quot;goat&quot;</span>))</span>
+<span id="cb332-6"><a href="discrete-probabilities.html#cb332-6" tabindex="-1"></a>      prize_door <span class="ot">&lt;-</span> doors[prizes <span class="sc">==</span> <span class="st">&quot;car&quot;</span>]</span>
+<span id="cb332-7"><a href="discrete-probabilities.html#cb332-7" tabindex="-1"></a>      choice <span class="ot">&lt;-</span> <span class="fu">sample</span>(doors, <span class="dv">1</span>)</span>
+<span id="cb332-8"><a href="discrete-probabilities.html#cb332-8" tabindex="-1"></a>      door_opened <span class="ot">&lt;-</span> <span class="fu">sample</span>(doors[<span class="sc">!</span>doors <span class="sc">%in%</span> <span class="fu">c</span>(choice, prize_door)],<span class="dv">1</span>)</span>
+<span id="cb332-9"><a href="discrete-probabilities.html#cb332-9" tabindex="-1"></a>      </span>
+<span id="cb332-10"><a href="discrete-probabilities.html#cb332-10" tabindex="-1"></a>      new_choice <span class="ot">&lt;-</span> doors[<span class="sc">!</span>doors <span class="sc">%in%</span> <span class="fu">c</span>(choice, door_opened)]</span>
+<span id="cb332-11"><a href="discrete-probabilities.html#cb332-11" tabindex="-1"></a>      </span>
+<span id="cb332-12"><a href="discrete-probabilities.html#cb332-12" tabindex="-1"></a>      new_choice <span class="sc">==</span> prize_door</span>
+<span id="cb332-13"><a href="discrete-probabilities.html#cb332-13" tabindex="-1"></a>})</span>
+<span id="cb332-14"><a href="discrete-probabilities.html#cb332-14" tabindex="-1"></a></span>
+<span id="cb332-15"><a href="discrete-probabilities.html#cb332-15" tabindex="-1"></a><span class="fu">mean</span>(results)</span>
+<span id="cb332-16"><a href="discrete-probabilities.html#cb332-16" tabindex="-1"></a><span class="co">#&gt; [1] 0.6641</span></span></code></pre></div>
+<p>As we see, changing the door in this show gave us a probability of 66.66% of winning, while keeping our choice only 33.33%.</p>
+<p>It may sound counterintuitive, but statistically speaking it is better to change doors instead of trusting our luck and keeping the initial choice.</p>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction-to-probabilities.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="continuous-probabilities.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": true,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": null
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": null,
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

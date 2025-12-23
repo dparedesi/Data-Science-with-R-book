@@ -1,0 +1,4 @@
+# (PART) Real Cases {-}
+
+# Introduction {-}
+Below are some real cases presented based on what has been learned in this book. For the following cases, not only the concepts learned so far will be applied, but some complementary libraries that speed up data processing are also included.

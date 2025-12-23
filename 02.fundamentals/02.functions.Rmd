@@ -1,0 +1,1072 @@
+# Functions
+
+## Introduction to the world of functions
+In the previous chapter, we explored the different types of objects we can use to store and organize information in R. We learned to create variables, vectors, lists, matrices, and arrays, and saw how to access their elements and perform operations with them.
+
+Now, in this chapter, we will go a step further and delve into the world of **functions**. Functions are one of the fundamental pillars of programming in R, allowing us to perform more complex tasks and automate our work.
+
+### What are functions?
+
+Imagine a coffee machine. You provide the ingredients (water, coffee, sugar), and the machine performs a series of steps to produce a cup of coffee. Similarly, a function in R is a set of instructions that receives input data (the **arguments**) and performs a series of operations to produce a result (the **return value**).
+
+Functions allow us to encapsulate a set of instructions into a single block of code, facilitating reuse and code organization. Instead of writing the same instructions over and over again, we can create a function that performs them for us.
+
+### Why use functions?
+
+Functions offer several advantages:
+
+*   **Reusability:** We can use the same function in different parts of our code or in different projects.
+*   **Organization:** Functions help us organize our code into logical blocks, making it easier to read and understand.
+*   **Readability:** By using functions, our code becomes more concise and easier to understand.
+*   **Abstraction:** Functions allow us to abstract the complexity of a task, allowing us to focus on the logic of the problem we want to solve.
+
+### First functions: exploring basic R functions
+
+R already includes a large number of predefined functions that we can use to perform different tasks. Let's look at some examples:
+
+*   `sum()`: Calculates the sum of the elements of a vector.
+
+    ```{r}
+    numbers <- c(1, 2, 3, 4, 5)
+    sum(numbers)  # Output: 15
+    ```
+
+*   `mean()`: Calculates the arithmetic mean of the elements of a vector.
+
+    ```{r}
+    temperatures <- c(25, 28, 26, 29, 27)
+    mean(temperatures)  # Output: 27
+    ```
+
+*   `round()`: Rounds a number to a specific number of decimal places.
+
+    ```{r}
+    pi  # Output: 3.141593
+    round(pi, 2)  # Output: 3.14
+    ```
+
+*   `length()`: Returns the length of a vector (the number of elements it contains).
+
+    ```{r}
+    cities <- c("New York", "Los Angeles", "Chicago")
+    length(cities)  # Output: 3
+    ```
+
+These are just a few of the many predefined functions that R offers. As we progress through the book, we will explore more functions and learn how to use them to perform more complex data analysis.
+
+
+## Anatomy of a function
+
+In the previous section, we saw what functions are and why they are so useful in programming. Now, we are going to delve into the structure of a function, so you can create your own functions and automate tasks in your data analysis.
+
+### Arguments: the ingredients of the function
+
+To make a cup of coffee, you need ingredients: water, coffee, and maybe sugar or milk. Similarly, functions in R need **arguments** to do their job. Arguments are the input data that the function uses to perform its operations.
+
+For example, the `sum()` function needs a vector of numbers as an argument to calculate the sum of its elements.
+
+```{r}
+numbers <- c(1, 2, 3, 4, 5)
+sum(numbers)  # Output: 15
+```
+
+A function's arguments are specified in parentheses after the function name. If a function requires multiple arguments, they are separated by commas.
+
+For example, imagine we want to create a function to calculate the total cost of a plane trip. This function might need the following arguments:
+
+*  `ticket_price`: The price of a plane ticket.
+*  `num_people`: The number of people traveling.
+*  `discount`: An optional discount on the ticket price (for example, for being a student or senior citizen).
+
+The function could be called `calculate_trip_cost` and would be used as follows:
+
+```{r eval = FALSE}
+calculate_trip_cost(ticket_price = 300, num_people = 2, discount = 0.1)
+```
+
+In this case, we are passing three arguments to the function: `ticket_price` with value 300, `num_people` with value 2, and `discount` with value 0.1 (representing a 10% discount).
+
+### Body: the instructions of the function
+
+The **body** of a function is the set of instructions that are executed when the function is called. These instructions can be any valid R code: variable assignments, mathematical operations, conditionals, loops, calls to other functions, etc.
+
+The body of a function is defined within curly braces `{}`.
+
+For example, the body of the function `calculate_trip_cost` could be:
+
+```{r eval = TRUE}
+calculate_trip_cost <- function(ticket_price, num_people, discount = 0) {
+  total_cost <- ticket_price * num_people * (1 - discount)
+  return(total_cost)
+}
+```
+
+In this body, first the total cost of the trip is calculated by multiplying the ticket price by the number of people and by (1 minus the discount). Then, `return()` is used to return the `total_cost`.
+
+Note that in the function definition, the argument `discount` has a default value of 0. This means that if we do not specify a value for `discount` when calling the function, the value 0 will be used.
+
+For example, if we do not specify a value for `discount`, the function uses the default value 0, and the total cost is 600:
+```{r eval = TRUE}
+# Call the function without specifying the discount
+calculate_trip_cost(ticket_price = 300, num_people = 2)
+```
+
+If we want to apply a discount, we can specify it when calling the function:
+
+```{r eval = TRUE}
+calculate_trip_cost(ticket_price = 300, num_people = 2, discount = 0.1)
+```
+
+In this case, the total cost is 540, since a 10% discount is applied.
+
+
+### Return value: the result of the function
+
+The **return value** is the result the function produces after executing its instructions. It can be a simple value (a number, text, a logical value) or a more complex object (a vector, a list, a dataframe).
+
+In R, the return value is specified with the `return()` function. If `return()` is not used, the function will return the result of the last expression evaluated in the body.
+
+In the `calculate_trip_cost` example, the return value is the `total_cost` of the trip, which is a number.
+
+### Examples: creating simple functions step by step
+
+Let's see an example of how to create a simple function that converts degrees Celsius to Fahrenheit:
+
+```{r}
+celsius_to_fahrenheit <- function(celsius) {
+  fahrenheit <- (celsius * 9 / 5) + 32
+  return(fahrenheit)
+}
+```
+
+In this example:
+
+*   `celsius_to_fahrenheit` is the name of the function.
+*   `celsius` is the argument of the function (the temperature in degrees Celsius).
+*   The body of the function calculates the temperature in Fahrenheit using the formula `(celsius * 9 / 5) + 32` and stores it in the variable `fahrenheit`.
+*   The `return()` function returns the value of the variable `fahrenheit`.
+
+Now we can use our function to convert temperatures:
+
+```{r}
+celsius_to_fahrenheit(0)   # Output: 32
+celsius_to_fahrenheit(100)  # Output: 212
+```
+Congratulations! You just created your first function in R. As we progress through the chapter, you will learn to create more complex functions and use them to solve real-world problems.
+
+
+## Mastering the use of functions
+
+We have already seen how to create simple functions with basic arguments, including the possibility of assigning default values. Now, we will explore even more advanced techniques to master the use of functions and write more flexible and efficient code.
+
+### Functions with a variable number of arguments (`...`): Adapting to different situations
+
+Sometimes, we don't know beforehand how many arguments a function will receive. For these cases, R offers us the possibility of defining functions with a variable number of arguments using the three dots (`...`).
+
+For example, the `sum()` function can receive any number of arguments:
+
+```{r}
+sum(1, 2, 3) 
+sum(1, 2, 3, 4, 5)  # Output: 15
+```
+
+We can use the three dots (`...`) to create our own functions that accept a variable number of arguments. For example, a function that calculates the average of several numbers:
+
+```{r}
+calculate_average <- function(...) {
+  numbers <- c(...)
+  average <- mean(numbers)
+  return(average)
+}
+
+calculate_average(1, 2, 3)
+calculate_average(1, 2, 3, 4, 5)
+```
+
+In this example, the three dots (`...`) capture all the arguments passed to the function and store them in the `numbers` vector. Then, the function calculates the average of the numbers in the vector and returns it as a result.
+
+It is important to note that when using `...`, we lose the ability to name the arguments individually. However, we gain flexibility by being able to pass a variable number of arguments to the function.
+
+### Variable scope: local and global variables
+
+The **scope** of a variable refers to the part of the code where the variable is accessible. In R, variables defined inside a function have a **local** scope, meaning they are only accessible within the function. Variables defined outside any function have a **global** scope, meaning they are accessible from anywhere in the code.
+
+For example, in the function `calculate_average`, the variable `numbers` has a local scope:
+
+```{r}
+calculate_average <- function(...) {
+  numbers <- c(...)
+  average <- mean(numbers)
+  return(average)
+}
+```
+
+If we try to access the variable numbers outside the function, we will get an error:
+```{r eval=FALSE}
+numbers  # Error: object 'numbers' not found
+```
+
+This is because `numbers` only exists inside the `calculate_average` function. When the function finishes executing, the local variables defined inside it cease to exist.
+
+On the other hand, if we define a variable outside any function, it will be a global variable:
+
+```{r}
+conversion_rate <- 0.621371  # Conversion rate from kilometers to miles
+```
+
+We can access the `conversion_rate` variable from anywhere in the code, even inside a function:
+
+```{r}
+kilometers_to_miles <- function(kilometers) {
+  miles <- kilometers * conversion_rate
+  return(miles)
+}
+
+kilometers_to_miles(100)
+```
+
+It is important to keep variable scope in mind when writing functions to avoid errors and confusion. If a variable is not defined in the current scope (local), R will look in the global scope. If the variable is not found in any scope, an error will occur.
+
+For example, imagine we want to calculate the total cost of a trip, including the cost of the plane ticket, accommodation, and other expenses. We can create a function that receives these expenses as arguments and calculates the total cost:
+
+```{r}
+calculate_trip_cost <- function(ticket, accommodation, other_expenses) {
+  total_cost <- ticket + accommodation + other_expenses
+  return(total_cost)
+}
+```
+
+If we call this function with expense values, we get the total cost:
+
+```{r}
+calculate_trip_cost(ticket = 300, accommodation = 500, other_expenses = 100) 
+```
+
+Now, imagine we want to apply a tax to the total cost. We could define a global variable `tax_rate`:
+
+```{r}
+tax_rate <- 0.16
+```
+
+And then modify the function to include the tax:
+
+```{r}
+calculate_trip_cost <- function(ticket, accommodation, other_expenses) {
+  total_cost <- ticket + accommodation + other_expenses
+  total_cost <- total_cost * (1 + tax_rate)
+  return(total_cost)
+}
+```
+
+When calling the function again, the total cost will include the tax:
+
+```{r}
+calculate_trip_cost(ticket = 300, accommodation = 500, other_expenses = 100)
+```
+
+In this case, the `calculate_trip_cost` function can access the global variable `tax_rate` because it is not defined locally within the function.
+
+If we try to use a variable that is not defined in any scope, we will get an error:
+
+```{r eval=FALSE}
+calculate_trip_cost <- function(ticket, accommodation, other_expenses) {
+  total_cost <- ticket + accommodation + other_expenses + tip
+  return(total_cost)
+}
+
+calculate_trip_cost(ticket = 300, accommodation = 500, other_expenses = 100)  # Error: object 'tip' not found
+```
+
+In this case, the variable `tip` is not defined either locally or globally, so the function cannot access it.
+
+It is important to understand the concept of variable scope to write functions that work correctly and avoid errors.
+
+### Examples: functions to calculate taxes, discounts, etc.
+
+Functions are very useful for automating repetitive tasks, such as calculating taxes, discounts, or converting units. Let's look at some examples with different levels of difficulty:
+
+**Calculating shipping cost for a package**
+
+```{r}
+calculate_shipping_cost <- function(weight, destination) {
+  if (destination == "local") {
+    cost <- 5 + 0.1 * weight
+  } else if (destination == "national") {
+    cost <- 10 + 0.2 * weight
+  } else {  # destination == "international"
+    cost <- 20 + 0.5 * weight
+  }
+  return(cost)
+}
+
+# Usage example
+package_weight <- 2.5  # Weight in kilograms
+destination <- "national"
+shipping_cost <- calculate_shipping_cost(package_weight, destination)
+
+shipping_cost
+```
+
+In this example, the `calculate_shipping_cost()` function calculates the shipping cost of a package based on its weight and destination. The function uses a conditional structure (`if`-`else if`-`else`) to apply different shipping rates depending on the destination.
+
+**Calculating income tax with brackets**
+
+```{r}
+calculate_income_tax <- function(income) {
+  if (income <= 10000) {
+    rate <- 0.10
+  } else if (income <= 20000) {
+    rate <- 0.15
+  } else {
+    rate <- 0.20
+  }
+  tax <- income * rate
+  return(tax)
+}
+
+# Usage example
+income <- 15000
+tax <- calculate_income_tax(income)
+
+tax
+```
+
+In this example, the `calculate_income_tax()` function calculates a person's income tax based on their income. The function uses a conditional structure (`if`-`else if`-`else`) to apply different tax rates according to the income bracket.
+
+**Calculating trip cost with multiple options**
+
+```{r}
+calculate_trip_cost <- function(origin_city, destination_city, 
+                                 transport_type = "plane", 
+                                 num_people = 1, 
+                                 hotel = NULL, 
+                                 daily_expenses = 100, 
+                                 trip_duration = 7) {
+  
+  # Calculate transport cost
+  if (transport_type == "plane") {
+    transport_cost <- 300 * num_people  # Base price per person
+  } else if (transport_type == "train") {
+    transport_cost <- 150 * num_people  # Base price per person
+  } else {
+    transport_cost <- 0  # Assuming transport is by own car
+  }
+  
+  # Calculate accommodation cost
+  if (!is.null(hotel)) {
+    accommodation_cost <- hotel$price * trip_duration
+  } else {
+    accommodation_cost <- 0  # Assuming staying not at a hotel
+  }
+  
+  # Calculate other expenses
+  other_expenses <- daily_expenses * num_people * trip_duration
+  
+  # Calculate total cost
+  total_cost <- transport_cost + accommodation_cost + other_expenses
+  
+  return(total_cost)
+}
+
+# Usage example
+trip_cost_1 <- calculate_trip_cost(origin_city = "Lima", 
+                                     destination_city = "New York", 
+                                     transport_type = "plane", 
+                                     num_people = 2)
+
+trip_cost_2 <- calculate_trip_cost(origin_city = "Lima", 
+                                     destination_city = "Los Angeles", 
+                                     transport_type = "train", 
+                                     num_people = 3, 
+                                     hotel = list(price = 150), 
+                                     daily_expenses = 120, 
+                                     trip_duration = 10)
+
+trip_cost_1 
+trip_cost_2 
+```
+
+## Higher-order functions
+
+In previous sections, we explored how to create and use functions in R. Now, let's delve into a more advanced concept: **higher-order functions**.
+
+**What are higher-order functions?**
+
+Higher-order functions are functions that can:
+
+*   Receive other functions as arguments.
+*   Return a function as a result.
+
+This type of function allows us to write more flexible and expressive code, and they are a powerful tool for data analysis.
+
+### `lapply()` and `sapply()`: applying a function to each element
+
+Imagine you have a list with information about several US cities, and you want to calculate the population density of each city. You could write a `for` loop to iterate through the list and calculate the density of each city separately. However, R offers a more efficient and elegant way to do this: the `lapply()` function.
+
+`lapply()` (which stands for "list apply") takes two arguments:
+
+*   A list (or a vector).
+*   A function to be applied to each element of the list.
+
+`lapply()` applies the function to each element of the list and returns a new list with the results.
+
+```{r}
+# Create a list with information about cities
+cities <- list(
+  New_York = list(population = 8.4e6, area = 783.8),
+  Los_Angeles = list(population = 3.9e6, area = 1302.0),
+  Chicago = list(population = 2.7e6, area = 606.1)
+)
+
+# Function to calculate population density
+calculate_density <- function(city) {
+  density <- city$population / city$area
+  return(density)
+}
+
+# Calculate population density of each city
+densities <- lapply(cities, calculate_density)
+
+densities
+```
+
+In this example, `lapply()` applies the `calculate_density` function to each element of the `cities` list and returns a new list `densities` with the population density of each city.
+
+The `sapply()` function is similar to `lapply()`, but tries to simplify the result. If the result is a list of vectors of the same type and length, `sapply()` returns a vector or a matrix.
+
+```{r}
+# Calculate population density of each city with sapply()
+densities <- sapply(cities, calculate_density)
+
+densities
+```
+
+In this case, `sapply()` returns a vector with population densities.
+
+### `apply()`: applying a function to rows or columns
+
+The `apply()` function allows us to apply a function to the rows or columns of a matrix or array. It's like having a tool that allows us to go through each row or column of our data table and perform a specific calculation on each one.
+
+For example, if we have a matrix with the maximum and minimum temperatures of different cities, we can use `apply()` to calculate the average temperature of each city.
+
+```{r}
+# Create a matrix with temperatures
+temperatures <- matrix(c(25, 18, 30, 22, 35, 28), nrow = 3, ncol = 2,
+                       dimnames = list(c("New York", "Los Angeles", "Chicago"),
+                                       c("Maximum", "Minimum")))
+
+# Calculate average temperature of each city
+average_temperatures <- apply(temperatures, 1, mean)
+
+average_temperatures
+```
+
+In this example, `apply()` applies the `mean()` function to each row of the `temperatures` matrix (the argument `1` indicates that the function should be applied to rows) and returns a vector with the average temperatures of each city.
+
+If we wanted to calculate the maximum or minimum temperature among all cities, we could use `apply()` with the `max()` or `min()` function, respectively, and apply it to columns (using argument `2`).
+
+```{r}
+# Calculate maximum temperature among all cities
+maximum_temperature <- apply(temperatures, 2, max)
+
+maximum_temperature
+```
+
+### `mapply()`: applying a function to multiple arguments
+
+The `mapply()` function allows us to apply a function to multiple arguments in parallel. It's like having a tool that allows us to take several sets of data and apply the same operation to each corresponding set.
+
+For example, imagine we have two vectors: one with the names of different US cities and another with their respective populations. We want to create a new vector containing the phrase "The city of [city name] has a population of [population] inhabitants". We could use `mapply()` to apply a function combining the city name and its population to each pair of elements from the vectors.
+
+```{r}
+# Create vectors with city names and populations
+cities <- c("New York", "Los Angeles", "Chicago")
+populations <- c(8.4e6, 3.9e6, 2.7e6)
+
+# Function to create the phrase
+create_phrase <- function(city, population) {
+  phrase <- paste("The city of", city, "has a population of", population, "inhabitants.")
+  return(phrase)
+}
+
+# Create vector with phrases
+city_phrases <- mapply(create_phrase, cities, populations)
+
+city_phrases
+```
+
+In this example, `mapply()` applies the `create_phrase` function to the `cities` and `populations` vectors in parallel, taking one element from each vector at a time, and returns a vector with the resulting phrases.
+
+Note that the `create_phrase` function receives two arguments: `city` and `population`. `mapply()` is responsible for taking one element from each vector and passing them as arguments to the function. In the first iteration, it passes "New York" as `city` and 8.4e6 as `population`. In the second iteration, it passes "Los Angeles" and 3.9e6, and so on.
+
+Another example of using `mapply()` would be if we have two vectors with maximum and minimum temperatures of different cities, and we want to calculate the temperature difference between maximum and minimum for each city.
+
+```{r}
+# Create vectors with maximum and minimum temperatures
+maxs <- c(25, 30, 35)
+mins <- c(18, 22, 28)
+
+# Calculate temperature difference for each city
+temp_difference <- mapply(function(max, min) max - min, maxs, mins)
+
+temp_difference
+```
+
+In this example, `mapply()` applies the anonymous function `function(max, min) max - min` to the `maxs` and `mins` vectors in parallel, taking the first element of `maxs` and the first element of `mins`, then the second element of each vector, and so on. For each pair of elements, the anonymous function calculates the difference and returns a vector with the results.
+
+### Examples: data analysis with higher-order functions
+
+Higher-order functions are a powerful tool for data analysis. They allow us to perform complex operations concisely and efficiently. Imagine you have a matrix with information about different states, where each row represents a state and each column a numeric variable, such as population or per capita income. You could use `apply()` to calculate the mean of each column.
+
+```{r}
+# Create a matrix with information about states
+states <- matrix(c(39.2e6, 29.0e6, 21.4e6, 64500, 56100, 50800), nrow = 3, ncol = 2,
+                 dimnames = list(c("California", "Texas", "Florida"),
+                                 c("population", "per_capita_income")))
+
+# Calculate mean of each column
+means <- apply(states, 2, mean)
+
+means
+```
+
+In this example, `apply()` applies the `mean()` function to each column of the states matrix and returns a vector with the means.
+
+Another one would be if we have a list with prices of different hotels in several US cities. You could use `sapply()` to apply a function calculating the tax of each price, or `lapply()` to convert prices from dollars to euros.
+
+You could also use `apply()` to calculate the average price of hotels in each city, or to find the most expensive and cheapest hotel in each city.
+
+As we progress through the book, we will see more examples of how to use higher-order functions to solve real-world problems.
+
+The possibilities are endless, and higher-order functions give you great flexibility to manipulate and analyze your data.
+
+## Closures: functions with memory
+
+Until now, we have seen that functions in R receive arguments, execute a set of instructions, and return a result. However, functions can also have "memory", that is, they can remember information between calls. This is possible thanks to a concept called **closures**.
+
+### Concept: functions that "remember"
+
+A closure is a function that "remembers" the environment in which it was created. This means the function has access to variables that were defined at the time of its creation, even if those variables are no longer in the current scope.
+
+To better understand this concept, let's see an example. Imagine we want to create a function that counts how many times it has been called. We can do this using a closure:
+
+```{r}
+create_counter <- function() {
+  counter <- 0  # Initialize the counter
+
+  # Define the function that increments the counter
+  increment_counter <- function() {
+    counter <<- counter + 1
+    return(counter)
+  }
+
+  return(increment_counter)  # Return the function
+}
+
+# Create a counter
+my_counter <- create_counter()
+
+# Call the counter several times
+my_counter()  
+my_counter()  
+my_counter()  
+```
+
+In this example, the `create_counter()` function creates a `counter` variable and an `increment_counter()` function. The `increment_counter()` function has access to the `counter` variable and increments it by 1 each time it is called. The `create_counter()` function returns the `increment_counter()` function.
+
+When we call `my_counter()`, we are calling the `increment_counter()` function that was created inside `create_counter()`. This function "remembers" the value of the `counter` variable and increments it on each call.
+
+It is important to note that the `counter` variable is not a global variable. It is only accessible within the `increment_counter()` function. This is because `counter` was defined inside the `create_counter()` function, so its scope is local to that function.
+
+However, the `increment_counter()` function "captures" the `counter` variable in its environment, allowing it to access it even after the `create_counter()` function has finished executing.
+
+### Applications: creating counters, functions with internal state
+
+Closures have many applications in programming. Some of the most common are:
+
+*   **Creating counters:** As we saw in the previous example, closures allow us to create functions that maintain an internal state between calls.
+*   **Creating functions with configurable parameters:** We can use closures to create functions that "remember" specific parameters. For example, we could create a function generating functions to convert temperatures from Celsius to Fahrenheit, where the generated function "remembers" the temperature scale it needs to convert.
+*   **Encapsulating data:** Closures allow us to hide data within a function, which can be useful for protecting sensitive information or avoiding naming conflicts. For example, we could create a function generating unique identifiers, where the generated function "remembers" the last generated identifier.
+
+### Examples: simulating a game, creating an operation history
+
+Let's see some more concrete examples of using closures:
+
+*   **Simulating a game:** We can use a closure to simulate a game where the player has to guess a secret number. The closure can "remember" the secret number and keep track of the player's attempts.
+
+*   **Creating an operation history:** We can use a closure to create a function that records operations performed on a variable. The closure can "remember" the operation history and show it when requested.
+
+Closures are a powerful tool that allows us to write more flexible and expressive code. As you become familiar with them, you will discover new ways to apply them in your data analysis.
+
+## Debugging and error handling: solving the mysteries of your code
+
+So far, we have explored the fascinating world of functions in R. We have learned to create, use, and combine them to perform complex tasks. However, on the programming journey, encountering errors is inevitable. Sometimes, our code doesn't work as we expect, and we encounter cryptic error messages that leave us perplexed.
+
+In this section, we will learn to identify, understand, and fix errors in our R code. We will also see how to handle errors gracefully, so our code is more robust and reliable.
+
+
+### Identifying errors: common error messages in R
+
+When our code contains an error, R will show us an error message in the console. These messages can seem intimidating at first, but with a little practice, we will learn to interpret them and use them to find the cause of the error.
+
+Some common error messages in R are:
+
+*   `Error: object 'object_name' not found`: This error occurs when we try to use a variable or function that does not exist. It may be that we misspelled the name, or that the variable or function is not defined in the current scope.
+*   `Error in function_name(arguments): invalid argument`: This error occurs when we pass an invalid argument to a function. For example, if we pass a text vector to a function expecting a numeric vector.
+*   `Error in if (condition) { ... }: argument is of length zero`: This error occurs when the condition in an `if` structure has length zero. This can happen if the condition evaluates to `NULL` or an empty vector.
+*   `Error in for (variable in sequence) { ... }: invalid 'for' loop sequence`: This error occurs when the sequence in a `for` loop is invalid. For example, if the sequence is `NULL` or a vector of length zero.
+
+It is important to read error messages carefully and try to understand what they are telling us. Often, the error message will give us a clue about the cause of the problem.
+
+
+### Debugging tools: `debug()`, `traceback()`
+
+R offers several tools to debug our code and find the cause of errors. Two of the most useful tools are `debug()` and `traceback()`.
+
+*   `debug()`: This function allows us to execute a function step by step, allowing us to inspect the value of variables at each step and understand how the code is executing. To use `debug()`, we simply call the function with the name of the function we want to debug as an argument.
+
+    ```{r eval=FALSE}
+    debug(my_function)
+    ```
+
+    Then, when we call `my_function()`, R will enter debug mode and allow us to execute the code line by line.
+
+*   `traceback()`: This function shows us the sequence of function calls that led to the error. This can be useful for understanding how the error was reached and which functions are involved. To use `traceback()`, simply call the function after an error has occurred.
+
+    ```{r eval=FALSE}
+    traceback()
+    ```
+
+    R will show a list of the functions that were called, starting with the function where the error occurred and ending with the function that started the code execution.
+
+
+### Error handling: `tryCatch()`
+
+Sometimes, we want our code to continue executing even if an error occurs. For this, we can use the `tryCatch()` function.
+
+`tryCatch()` allows us to specify a block of code that will be executed if an error occurs. We can also specify a block of code that will be executed if no error occurs.
+
+```{r eval=FALSE}
+tryCatch(
+  {
+    # Code that might produce an error
+  },
+  error = function(e) {
+    # Code to be executed if an error occurs
+  },
+  finally = {
+    # Code to be executed always, whether or not there is an error
+  }
+)
+```
+
+For example, if we are reading data from a file and the file does not exist, we can use `tryCatch()` to show an error message and continue with code execution.
+
+```{r eval=FALSE}
+tryCatch(
+  {
+    data <- read.csv("my_file.csv")
+  },
+  error = function(e) {
+    print("Error reading file. Please verify the file exists.")
+  }
+)
+```
+
+### Examples: debugging functions with errors, handling exceptions
+
+Let's see some examples of how to use debugging tools and error handling in R:
+
+*   **Debugging a function with `debug()`:**
+
+    Imagine we create a function to calculate a person's Body Mass Index (BMI), but when using it, we get an error. We can use `debug()` to analyze what happens inside the function.
+
+    ```{r eval=FALSE}
+    calculate_bmi <- function(weight, height) {
+      bmi <- weight / (height ^ 2) 
+      return(bmi)
+    }
+
+    debug(calculate_bmi)
+    calculate_bmi(weight = 70, height = 1.75)  # We call the function to start debugging
+    ```
+
+    When executing this code, R will enter debug mode. In the console, we will see a new prompt `Browse[1]>`. We can use commands like `n` (next) to execute the next line of code, `c` (continue) to continue normal execution, or `Q` to exit debug mode. We can also print the value of variables using their name (e.g. `weight`, `height`, `bmi`).
+
+*   **Handling an exception with `tryCatch()`:**
+
+    Suppose we are creating a function to calculate the annual population growth rate of a city. If the initial population is 0, the division will produce an error. We can use `tryCatch()` to handle this situation:
+
+    ```{r}
+    calculate_growth_rate <- function(initial_population, final_population, years) {
+      tryCatch(
+        {
+          rate <- ((final_population / initial_population)^(1 / years) - 1) * 100
+          return(rate)
+        },
+        error = function(e) {
+          message("Error: Initial population cannot be zero.")
+          return(NA)
+        }
+      )
+    }
+
+    calculate_growth_rate(10000, 12000, 5)  # Output: 3.7137...
+    calculate_growth_rate(0, 12000, 5)  # Output: "Error: Initial population cannot be zero." 
+    ```
+
+    In this example, if `initial_population` is 0, `tryCatch()` captures the error and displays a message. Then, it returns `NA` to indicate that calculation could not be performed.
+
+With practice, you will learn to use these tools to debug your code, handle errors, and write more robust and reliable programs.
+
+`r if(params$hidden){"<!--"}`
+## Exercises
+
+It's time to test your skills with functions! Below, you will find a series of exercises with different levels of difficulty.
+
+
+`r ne`. Create a function called `miles_to_kilometers()` converting miles to kilometers. The function should receive a `miles` argument and return the equivalent in kilometers. (Remember that 1 mile equals 1.60934 kilometers).
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+miles_to_kilometers <- function(miles) {
+  kilometers <- miles * 1.60934
+  return(kilometers)
+}
+```
+</details>
+
+`r ne`. Create a function called `triangle_area()` calculating the area of a triangle. The function should receive two arguments: `base` and `height`, and return the triangle's area. (Remember that the area of a triangle is equal to (base * height) / 2).
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+triangle_area <- function(base, height) {
+  area <- (base * height) / 2
+  return(area)
+    }
+```
+</details>
+
+`r ne`. Create a function called `price_with_vat()` calculating the price of a product including VAT. The function should receive two arguments: `price_without_vat` and `vat_rate` (default, 0.16), and return the price with VAT.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+price_with_vat <- function(price_without_vat, vat_rate = 0.16) {
+  price_with_vat <- price_without_vat * (1 + vat_rate)
+  return(price_with_vat)
+}
+```
+</details>
+
+`r ne`. Create a function called `is_even()` determining if a number is even. The function should receive a `number` argument and return `TRUE` if the number is even and `FALSE` if not. (Hint: use the modulo operator `%%`).
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+    is_even <- function(number) {
+      return(number %% 2 == 0)
+    }
+```
+</details>
+
+`r ne`. Create a function called `factorial()` calculating the factorial of a number. The factorial of a positive integer *n*, denoted by *n!*, is the product of all positive integers less than or equal to *n*. For example, 5! = 5 * 4 * 3 * 2 * 1 = 120. (Hint: use a recursive function).
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+factorial <- function(n) {
+  if (n == 0) {
+    return(1)
+  } else {
+    return(n * factorial(n - 1))
+  }
+}
+```
+</details>
+
+`r ne`. Create a function called `fibonacci()` generating a Fibonacci sequence of a given length. The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones. The sequence typically starts with 0 and 1. For example, a Fibonacci sequence of length 10 would be: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+fibonacci <- function(n) {
+  if (n <= 0) {
+    return(numeric(0))
+  } else if (n == 1) {
+    return(0)
+  } else if (n == 2) {
+    return(c(0, 1))
+  } else {
+    fib_seq <- numeric(n)
+    fib_seq[1] <- 0
+    fib_seq[2] <- 1
+    for (i in 3:n) {
+      fib_seq[i] <- fib_seq[i - 1] + fib_seq[i - 2]
+    }
+    return(fib_seq)
+  }
+}
+
+fibonacci(10)
+
+```
+</details>
+
+`r ne`. Create a function called `gcd()` calculating the greatest common divisor (GCD) of two numbers. The GCD of two or more non-zero integers is the largest positive integer that divides them without a remainder. For example, the GCD of 12 and 18 is 6. (Hint: use the Euclidean algorithm).
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+gcd <- function(a, b) {
+  while (b != 0) {
+    temp <- b
+    b <- a %% b
+    a <- temp
+  }
+  return(a)
+}
+```
+</details>
+
+`r ne`. Create a function called `validate_password()` validating a password. The function should receive a `password` argument and return `TRUE` if the password meets the following conditions, and `FALSE` otherwise:
+
+    *   Has at least 8 characters.
+    *   Contains at least one uppercase letter.
+    *   Contains at least one lowercase letter.
+    *   Contains at least one number.
+    *   Contains at least one special character (!@#$%^&*).
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+validate_password <- function(password) {
+  if (nchar(password) < 8) {
+    return(FALSE)
+  }
+  if (!grepl("[A-Z]", password)) {
+    return(FALSE)
+  }
+  if (!grepl("[a-z]", password)) {
+    return(FALSE)
+  }
+  if (!grepl("[0-9]", password)) {
+    return(FALSE)
+  }
+  if (!grepl("[!@#$%^&*]", password)) {
+    return(FALSE)
+  }
+  return(TRUE)
+}
+```
+</details>
+
+`r ne`. Create a function called `apply_discount()` receiving a price calculation function and a discount as arguments. The `apply_discount()` function should return a new function calculating the price with the discount applied.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+apply_discount <- function(price_function, discount) {
+  function(original_price) {
+    discounted_price <- price_function(original_price) * (1 - discount)
+    return(discounted_price)
+  }
+}
+```
+</details>
+
+`r ne`. Create a function called `create_temperature_converter()` receiving a temperature scale as argument ("Celsius", "Fahrenheit" or "Kelvin"). The function should return a function converting temperatures to the specified scale.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+create_temperature_converter <- function(scale) {
+  if (scale == "Celsius") {
+    return(function(temp) (temp - 32) * 5 / 9)  # Fahrenheit to Celsius
+  } else if (scale == "Fahrenheit") {
+    return(function(temp) (temp * 9 / 5) + 32)  # Celsius to Fahrenheit
+  } else if (scale == "Kelvin") {
+    return(function(temp) temp + 273.15)  # Celsius to Kelvin
+  } else {
+    stop("Invalid temperature scale.")
+  }
+}
+```
+</details>
+
+`r ne`. Create a function called `guess_number()` simulating a guess the number game. The function should generate a random number between 1 and 100 and ask the user to guess it. The function should give hints to the user (higher or lower) and count the number of attempts. (Hint: use a closure to store the secret number and the number of attempts).
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+guess_number <- function() {
+  secret_number <- sample(1:100, 1)
+  attempts <- 0
+
+  guess <- function() {
+    attempts <<- attempts + 1
+    cat("Attempt", attempts, ": ")
+    number <- as.numeric(readline())
+    if (is.na(number)) {
+      cat("Please enter a valid number.\n")
+    } else if (number < secret_number) {
+      cat("The secret number is higher.\n")
+    } else if (number > secret_number) {
+      cat("The secret number is lower.\n")
+    } else {
+      cat("You guessed it! The secret number was", secret_number, "\n")
+      cat("It took you", attempts, "attempts.\n")
+    }
+  }
+
+  return(guess)
+}
+
+game <- guess_number()
+
+game()
+
+```
+</details>
+
+
+`r ne`. Create a function that, given a vector of integers, finds the contiguous subsequence with the maximum sum. For example, for the vector `c(-2, 1, -3, 4, -1, 2, 1, -5, 4)`, the contiguous subsequence with the maximum sum is `c(4, -1, 2, 1)`, with a sum of 6.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+max_subsequence <- function(x) {
+  current_max <- 0
+  global_max <- 0
+  start <- 1
+  end <- 1
+  temp_start <- 1
+
+  for (i in 1:length(x)) {
+    current_max <- current_max + x[i]
+    if (current_max > global_max) {
+      global_max <- current_max
+      start <- temp_start
+      end <- i
+    }
+    if (current_max < 0) {
+      current_max <- 0
+      temp_start <- i + 1
+    }
+  }
+  return(list(subsequence = x[start:end], sum = global_max))
+}
+
+test <- c(-2, 1, -3, 4, -1, 2, 1, -5, 4)
+max_subsequence(test)
+
+```
+</details>
+
+`r ne`. Create a function that, given a character vector, determines if it is possible to obtain a palindrome by rearranging its letters. A palindrome is a word or phrase that reads the same left to right as right to left (e.g. "radar").
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+is_palindrome_possible <- function(text) {
+  letters <- strsplit(tolower(text), "")[[1]]
+  frequencies <- table(letters)
+  odds <- sum(frequencies %% 2)
+  return(odds <= 1)
+}
+
+test <- c("radar", "hello", "abb")
+result <- sapply(test, is_palindrome_possible)
+result
+```
+</details>
+
+`r ne`. Create a function that, given a positive integer, determines if it is a prime number. A prime number is a natural number greater than 1 that has no divisors other than 1 and itself.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+is_prime <- function(n) {
+  if (n <= 1) {
+    return(FALSE)
+  }
+  if (n <= 3) {
+    return(TRUE)
+  }
+  if (n %% 2 == 0 || n %% 3 == 0) {
+    return(FALSE)
+  }
+  i <- 5
+  while (i * i <= n) {
+    if (n %% i == 0 || n %% (i + 2) == 0) {
+      return(FALSE)
+    }
+    i <- i + 6
+  }
+  return(TRUE)
+}
+
+```
+The condition `i * i <= n` in the `while` loop limits iterations to the square root of `n`. This optimizes the algorithm, as it is not necessary to check divisors greater than the square root of `n`.
+The increment `i <- i + 6` is based on the observation that all prime numbers greater than 3 can be expressed in the form 6k ± 1. Therefore, only numbers of the form 6k ± 1 need to be checked as possible divisors.
+</details>
+
+`r if(params$hidden){"-->"}`

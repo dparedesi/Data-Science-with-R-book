@@ -1,0 +1,1159 @@
+# String processing and text mining
+
+## Basic functions
+We have already learned how to import data and consolidate it. However, we cannot yet work with this data. We have to validate through string processing and ensure a minimum quality to be able to perform our analyses.
+
+For example, in the previous chapter we imported data from Wikipedia, however we did not focus on whether we could already perform operations or visualizations with our data.
+
+```{r eval=FALSE}
+library(rvest)
+url <- "https://es.wikipedia.org/wiki/Anexo:Pa%C3%ADses_hispanos_por_poblaci%C3%B3n"
+#url <- "https://es.wikipedia.org/wiki/Distribuci%C3%B3n_geogr%C3%A1fica_del_idioma_espa%C3%B1ol" #as a back up URL
+html_data <- read_html(url)
+
+web_tables <- html_data |>
+  html_nodes("body") |>
+  html_nodes("table")
+
+raw_table <- web_tables[[2]] |>
+  html_table()
+
+raw_table <- raw_table |> 
+  setNames(c("N", "pais", "poblacion", "prop_poblacion", "cambio_medio", "link")) 
+
+raw_table <- raw_table |>
+  as_tibble()
+
+raw_table |> head(5)
+
+```
+
+We may not have noticed, but we can observe columns with spaces or commas where there should be numbers. We can validate this not only by analyzing the class of the column, but also if we try to calculate the average of that variable.
+
+```{r eval=FALSE}
+class(raw_table$poblacion)
+
+mean(raw_table$poblacion)
+```
+
+We cannot do a direct conversion to number either because white spaces and commas are characters.
+
+```{r eval=FALSE}
+as.numeric(raw_table$poblacion)
+```
+
+There are so frequent and so many possible use cases that there are already multiple functions for processing strings included in the tidyverse library. Likewise, there is more than one way to process strings. It will always depend on how the raw data is found.
+
+### Replacing characters
+One of the basic functions that we will use the most will be replacing characters. We apply this function when we are sure that this change will not compromise the rest of the data. We have spaces and we have commas. So we could start by replacing one of the two to normalize them using the `str_replace_all(string, pattern, replacement)` function. In the pattern attribute we will use `\\s`, which comes from `space`. We are going to learn first to modify the data stored in a vector and then we will replicate it to our entire table.
+
+```{r eval=FALSE}
+library(tidyverse)
+library(stringr)
+
+population_vector <- tabla_en_bruto$poblacion
+
+population_vector <- str_replace_all(population_vector, "\\s", ",")
+
+population_vector
+```
+
+We have purposely taken all the values to be separated by commas because now we can easily use the `parse_number(vector)` function which not only replaces the commas with empty strings, but also removes any non-numeric value before the first number, which facilitates us if we had monetary values, and also converts the value from character type to numeric type.
+
+```{r eval=FALSE}
+population_vector <- parse_number(population_vector)
+
+# Additional example in case we had a monetary value:
+parse_number("$345,153")
+```
+
+This vector now allows us to perform mathematical operations or visualization of the distribution.
+```{r eval=FALSE}
+# Convert to millions
+population_vector <- population_vector/10^6
+
+# We remove the last value which is the world population:
+length_val <- length(population_vector)
+population_vector <- population_vector[-length_val]
+
+# Visualization
+boxplot(population_vector)
+```
+
+We already know which functions to use to transform the fields of our case. However, we have applied them to vectors. To mutate the columns of our table in raw form we will use the function `mutate(across(columns, function))` using the pipeline operator `|>`. Let's apply the first change of spaces by commas and not only to column 3, population, but also to column 5, medium change.
+
+```{r eval=FALSE}
+raw_table |> 
+  mutate(across(c(3,5), ~str_replace_all(., "\\s", ",")))
+
+```
+
+We have removed from the `str_replace_all` function the `string` attribute and replaced it with a dot `.`. And that dot `.` indicates that it will evaluate for each column `c(3,5)` of our table.
+
+Now, let's apply the parse_number function that we applied previously.
+
+```{r eval=FALSE}
+raw_table |> 
+  mutate(across(c(3,5), ~str_replace_all(., "\\s", ","))) |> 
+  mutate(across(c(3,5), ~parse_number(.)))
+```
+
+## Regular expressions
+A [regular expression](https://stringr.tidyverse.org/articles/regular-expressions.html)^[https://stringr.tidyverse.org/articles/regular-expressions.html] (or regex as it is known in English) is a pattern that describes a set of strings. We have already used regex in the previous section using only the pattern `\\s`. However, usually we will have many more use cases that will require a pattern that can convert a wider range of cases.
+
+Although we could analyze all possible use cases available in the documentation, we learn faster by use cases. Let's analyze a case that will allow us to learn some patterns little by little.
+
+In the `dslabs` library we found and used previously the height data, `heights`, of students from a university expressed in inches.
+
+```{r eval=TRUE}
+library(dslabs)
+data(heights)
+
+heights |> 
+  head(10)
+```
+
+These data were ready to be analyzed. However, that was not how it came from the source. The students had to fill out a survey and even when they were asked for their height in inches, they completed their height in inches, feet, centimeters, writing numbers, letters, etc. We can see the initial data from the form in the `reported_heights` data frame.
+
+```{r eval=TRUE}
+reported_heights |> 
+  head(10)
+```
+
+Although we might think that they entered the data correctly, we do not have to trust and it is always better to validate the quality of our data. There are multiple ways to validate, as we can see below:
+
+```{r eval=TRUE}
+heights <- reported_heights$height
+
+# Validation option 1: Random sample
+sample(heights, 100)
+
+# Validation option 2: convert to numbers and count if there are NAs
+x <- as.numeric(heights)
+sum(is.na(x))
+
+# Validation option 3: add column of those that cannot be converted to number:
+reported_heights |> 
+  mutate(estatuta_numero = as.numeric(height)) |> 
+  filter(is.na(estatuta_numero)) |> 
+  head(10)
+```
+
+We might want to choose to eliminate these NA data as they are not significant with respect to the total of 1,095 data points. However, there are several of these data points that follow a determined pattern and instead of being discarded could be converted to the scale we have in the rest of the data. For example, there are people who entered their height as 5'7", which, for those who remember the conversion, can be converted because 1 foot is 12 inches. So $5*12+7=67$. And so, like that case, we can detect patterns, but we have, again, to be careful in detecting the exact pattern and not a very generic one that can change other use cases. If everyone followed the same pattern $x'y''$ or $x'y$ it would be much easier to convert it to inches by calculating $x*12+y$.
+
+Let's start by extracting our column to a single character vector with all the values that do not convert automatically to number or were entered in inches. We detect this if they measure more than 5 and up to 7 feet (from 1.5m to 2.1 meters). After that we will create the transformations little by little.
+
+```{r eval=TRUE, message=FALSE, warning=FALSE}
+heights_error <- reported_heights |> 
+  filter(is.na(as.numeric(height)) | # Does not convert to number
+         (!is.na(as.numeric(height)) & as.numeric(height) >= 5 &
+            as.numeric(height) <= 7 ) # or entered in feet and not inches
+        ) |> 
+  pull(height)
+
+length(heights_error)
+```
+
+Adding the condition of having entered in feet we have 168 errors. We cannot ignore 15.3% of errors.
+
+We will use the `str_detect(string, pattern)` function that will allow us to detect if a string matches a certain pattern. The result will be a logical value: `TRUE` or `FALSE` that we can use as an index to obtain the values that match in our vector.
+
+```{r eval=TRUE}
+indice <- str_detect(heights_error, "feet")
+
+heights_error[indice] # Match the pattern
+heights_error[!indice] |> # Do not match the pattern
+  head(40) 
+```
+
+### Alternation
+`|` is the alternation operator that will choose between one or more possible values. In our case, we have indicated to detect if there is the word "feet", but we also have "ft" and "foot" to refer to the same thing in our data. Thus, we can create the pattern "feet" or "ft" or "foot".
+
+```{r eval=TRUE}
+indice <- str_detect(heights_error, "feet|ft|foot")
+
+heights_error[indice] # Match
+```
+
+In the same way we can find the variations for inches and other symbols that we can remove:
+
+```{r eval=TRUE}
+indice <- str_detect(heights_error, "inches|in|''|\"|cm|and")
+
+heights_error[indice] # Match
+```
+
+In this case we have entered `''` to detect those who entered that symbol to denote inches and `\"` in case they used double quotes. In this latter case we have used `\` so that it does not generate an error when interpreting as closing the string.
+
+We could already start replacing based on the detected patterns:
+
+```{r eval=TRUE}
+heights_error <- str_replace_all(heights_error, "feet|ft|foot", "'")
+heights_error <- str_replace_all(heights_error, "inches|in|''|\"|cm|and", "")
+
+heights_error |> 
+  head(30)
+```
+
+As an additional effort, we could also look to solve that some people have written words instead of numbers. For this we create a function that replaces each word with a number and apply it to the vector:
+
+```{r eval=TRUE}
+words_to_number <- function(s){
+  str_to_lower(s) |>  
+    str_replace_all("zero", "0") |>
+    str_replace_all("one", "1") |>
+    str_replace_all("two", "2") |>
+    str_replace_all("three", "3") |>
+    str_replace_all("four", "4") |>
+    str_replace_all("five", "5") |>
+    str_replace_all("six", "6") |>
+    str_replace_all("seven", "7") |>
+    str_replace_all("eight", "8") |>
+    str_replace_all("nine", "9") |>
+    str_replace_all("ten", "10") |>
+    str_replace_all("eleven", "11")
+}
+
+heights_error <- words_to_number(heights_error)
+heights_error |> 
+  head(30)
+
+```
+
+### Anchoring
+Now that it is more standardized we can start with regex with more generic characteristics. For example, there is a person who has entered `6'`. It would be convenient to have everything in the form feet plus inches. With which we should have `6'0`. To achieve this we have to create a regex according to this generic situation. We will use the symbol `^` to anchor our validation to "start with" and the symbol `$` to match with the end of the string. Before replacing, let's first see who matches.
+
+```{r eval=TRUE}
+indice <- str_detect(heights_error, "^6'$")
+
+heights_error[indice] # Match
+```
+
+This regex indicates that it starts with `6'` and that the expression ends there. We could still make it more generic to address those who, in the future, write 5 inches (1.52m) or 6 inches (1.82m). For this we will use brackets and inside them we will put all the values that we will accept.
+
+```{r eval=TRUE}
+indice <- str_detect(heights_error, "^[56]'$")
+
+heights_error[indice] # Match
+```
+
+There is still only one result, but our regex is more generic now and we can already use it to replace. Before replacing in our vector we are going to do a test to learn how to create what we need from a pattern.
+
+```{r eval=TRUE}
+prueba <- c("5'", "6'")
+
+str_replace_all(prueba, "^([56])'$", "\\1'0")
+
+```
+
+We have placed between parentheses to indicate that what is inside is our first value and we use `\\1` to refer to that first value. So we are indicating to write the first value, then a quote `'`, and then a zero `0`.
+
+Now we are ready to apply to our entire vector. We are going to make the change to consider not only 5 and 6, but up to the value of 7 inches (2.1m). Likewise, we are going to take the cases in which there is only a number without the foot symbol `'`.
+
+```{r eval=TRUE}
+heights_error <- str_replace_all(heights_error, "^([5-7])'$", "\\1'0")
+heights_error <- str_replace_all(heights_error, "^([5-7])$", "\\1'0")
+
+heights_error |> 
+  head(30)
+```
+
+### Repetitions
+We can control how many times a pattern matches using repetition operators:
+
+Table: (\#tab:date-format) Repetition operators:
+
+|Operator      |Number of times                                         |
+|:------------|:---------------------------------------------------------------|
+|`?`  |0 or 1 time|
+|`+`  |1 or more times|
+|`*`  |0 or more times|
+
+For example, to find all cases where instead of using the foot symbol `'` they entered a comma, a period, or a space we will use the following pattern:
+
+```{r eval=TRUE}
+pattern <- "^([4-7])\\s*[,\\.]\\s*(\\d*)$"
+```
+
+Let's read the pattern:
+
+1. The string starts with a digit ranging from 4 to 7.
+2. `\\s` means that it is followed by a white space, but we use `*` to indicate that this character appears 0 or more times.
+3. After that space we will look for any of the following characters: `,`, a period `\\.` (to which we put double backslash because the period alone in a pattern means "any value").
+4. We use `\\s*` again to look for zero or more white spaces.
+5. Finally we indicate that the string ends there with a digit, to denote that look for any digit we use `\\d`, d for digit. And we add asterisk so that it keeps one or more digits that it finds.
+
+In summary: it starts with a number, then symbols and then a digit. Between the symbols there could be white spaces. That is our pattern.
+
+```{r eval=TRUE}
+index <- str_detect(heights_error, "^([4-7])\\s*[,\\.]\\s*(\\d*)$")
+
+heights_error[index] # Match
+
+```
+
+We already found the values that match the pattern, so we are ready to replace.
+
+```{r eval=TRUE}
+heights_error <- str_replace_all(
+                        heights_error, 
+                        "^([4-7])\\s*[,\\.]\\s*(\\d*)$", "\\1.\\2'0"
+                   )
+
+heights_error |> 
+  head(30)
+```
+
+Another pattern we see now is when before or after the foot symbol `'` there is a white space. Let's make the change with what we learned and include cases where there are decimals:
+
+```{r eval=TRUE}
+index <- str_detect(heights_error, 
+                     "^([4-7]\\.?\\d*)\\s*'\\s*(\\d+\\.?\\d*)\\s*$")
+
+heights_error[index] |> # Match
+  head(30)
+
+heights_error <- str_replace_all(
+                      heights_error, 
+                      "^([4-7]\\.?\\d*)\\s*'\\s*(\\d+\\.?\\d*)\\s*$",
+                      "\\1'\\2"
+                   )
+
+heights_error |> 
+  head(30)
+
+```
+
+Likewise, we have the pattern in which they entered: feet + space + inches without any symbol. Let's make the change with what we learned.
+
+```{r eval=TRUE}
+index <- str_detect(heights_error, "^([4-7])\\s+(\\d*)\\s*$")
+
+heights_error[index] # Match
+
+heights_error <- str_replace_all(
+                      heights_error, 
+                      "^([4-7])\\s+(\\d*)\\s*$", "\\1'\\2"
+                   )
+
+heights_error |> 
+  head(30)
+
+```
+
+We are ready to put all the patterns together and the power of patterns is that they can serve us for future exercises. Thus, we will create a function where we will place each change that we can verify to a string.
+
+```{r eval=TRUE}
+format_errors <- function(cadena){
+  cadena |> 
+    str_replace_all("feet|ft|foot", "'") |> # Change feet for '
+    str_replace_all("inches|in|''|\"|cm|and", "") |> # Remove symbols
+    str_replace_all("^([5-7])'$", "\\1'0") |> # Adds 0 to 5', 6' or 7'
+    str_replace_all("^([5-7])$", "\\1'0") |> # Adds 0 to 5, 6 or 7
+    str_replace_all("^([4-7])\\s*[,\\.]\\s*(\\d*)$", "\\1.\\2'0") |> # Change 5.3' to 5.3'0
+    str_replace_all("^([4-7]\\.?\\d*)\\s*'\\s*(\\d+\\.?\\d*)\\s*$", "\\1'\\2") |> #Removes spaces in middle
+    str_replace_all("^([4-7])\\s+(\\d*)\\s*$", "\\1'\\2") |> # Adds '
+    str_replace("^([12])\\s*,\\s*(\\d*)$", "\\1.\\2") |> # Changes decimals from commas to dots
+    str_trim() #Removes spaces at start and end
+}
+
+```
+
+Thus, we have created two functions that could be useful to us if we were to work with surveys of the same type again.
+
+Before applying it to our entire table let's extract the values to a vector again to apply the created functions.
+
+```{r eval=TRUE, message=FALSE, warning=FALSE}
+heights_error <- reported_heights |> 
+  filter(is.na(as.numeric(height)) | # Does not convert to number
+         (!is.na(as.numeric(height)) & as.numeric(height) >= 5 &
+            as.numeric(height) <= 7 ) # or entered in feet and not inches
+        ) |> 
+  pull(height)
+```
+
+Now let's apply the created functions:
+
+```{r eval=TRUE}
+formatted_heights <- heights_error |> 
+  words_to_number() |> 
+  format_errors()
+
+pattern <- "^([4-7]\\.?\\d*)\\s*'\\s*(\\d+\\.?\\d*)\\s*$"
+indice <- str_detect(formatted_heights, pattern)
+formatted_heights[!indice] # Do not match the pattern
+```
+
+We have managed to reduce from 168 errors of 1095 records, 15.3% of errors, to 12 errors of 1095, 1% of errors. We can now apply to our initial table.
+
+```{r eval=TRUE}
+# Apply created formulas
+heights <- reported_heights |> 
+  mutate(height) |> 
+  mutate(height = words_to_number(height) |> format_errors())
+
+# Get random samples to validate quality
+random_indices <- sample(1:nrow(heights)) 
+heights[random_indices, ] |> 
+  head(15)
+
+```
+
+We still have to do some conversions. However, since they follow a determined pattern we can use the `extract(source_column, new_columns, pattern, remove_source)` function to confirm creating new columns for each value of our pattern.
+
+```{r eval=TRUE}
+pattern <- "^([4-7]\\.?\\d*)\\s*'\\s*(\\d+\\.?\\d*)\\s*$"
+
+heights |> 
+  extract(height, c("feet", "inches"), regex = pattern, remove = FALSE) |> 
+  head(15)
+```
+
+Now that we have the data that matches the pattern in two other columns, and we know they are numbers, we can convert everything to number.
+
+```{r eval=TRUE}
+heights |> 
+  extract(height, c("feet", "inches"), regex = pattern, remove = FALSE) |> 
+  mutate(across(c("height", "feet", "inches"), ~as.numeric(.))) |> 
+  head(15)
+```
+
+Now that our columns are numeric we can perform operations to calculate height.
+
+```{r eval=TRUE}
+heights |> 
+  extract(height, c("feet", "inches"), regex = pattern, remove = FALSE) |> 
+  mutate(across(c("height", "feet", "inches"), ~as.numeric(.))) |> 
+  mutate(fixed_heights = feet*12 + inches) |> 
+  head(15)
+```
+
+Finally, we will do a validation of whether the height is in an interval and/or if it was expressed in centimeters or meters.
+
+```{r eval=TRUE}
+# We assume for a person a minimum 50" (1.2m) and max 84" (2.1m)
+min <- 50
+max <- 84
+
+heights <- heights |> 
+  extract(height, c("feet", "inches"), regex = pattern, remove = FALSE) |> 
+  mutate(across(c("height", "feet", "inches"), ~as.numeric(.))) |> 
+  mutate(fixed_heights = feet*12 + inches) |> 
+  mutate(final_height = case_when(
+    !is.na(height) & between(height, min, max) ~ height, #inches 
+    !is.na(height) & between(height/2.54, min, max) ~ height/2.54, #cm
+    !is.na(height) & between(height*100/2.54, min, max) ~ height*100/2.54, #meters
+    !is.na(fixed_heights) & inches < 12 & 
+      between(fixed_heights, min, max) ~ fixed_heights, #feet'inches
+    TRUE ~ as.numeric(NA)))
+
+# Random Sample:
+random_indices <- sample(1:nrow(heights)) 
+heights[random_indices, ] |> 
+  select(-time_stamp) |> # Shows all columns except time_stamp
+  head(10)
+
+```
+
+We already have our sample validated, we would only have to take the columns we need and start using the object for the analyses we need.
+
+```{r eval=TRUE}
+final_heights <- heights |> 
+  select(gender = sex, heights = final_height)
+
+final_heights |> 
+  head(10)
+
+```
+
+## From strings to dates
+Regularly when we import data, we are not only going to want to transform numeric data. We will also have multiple cases where we need to transform our string to a date in some particular format. For this, we will use the `lubridate` library, included in `tidyverse`, which provides us with diverse functions to make date treatment more accessible.
+
+```{r eval=FALSE}
+library(lubridate)
+```
+
+When the text string is in the ISO 8601 date format (YYYY-MM-DD), we can directly use the `month()`, `day()`, `year()` function.
+
+```{r eval=TRUE}
+dates_char <- c("2010-05-19", "2020-05-06", "2010-02-03")
+
+str(dates_char)
+
+month(dates_char)
+
+```
+
+However, we do not always have the date in that format and `lubridate()` gives other functions that are more flexible when coercing data. Look at this example:
+
+```{r eval=TRUE}
+dates <- c(20090101, "2009-01-02", "2009 01 03", "2009-1-4",
+       "2009-1, 5", "Created on 2009 1 6", "200901 !!! 07")
+
+str(dates)
+
+ymd(dates)
+```
+
+The first data entered was a number, but we already know that it coerces it to text. Then, we have different values entered, but all follow the same pattern. First is the year, then the month and then the day. When we know that first is the year, then month and then day we will use the `ymd()` function to convert all dates to ISO 8601 format.
+
+In the same way, we will have the following functions that we can use depending on the form in which we have the date from our source. In all cases it will be convenient for us to convert to ISO 8601 format. For example here we can see when it correctly recognizes the format and when the formatting fails.
+
+```{r eval=TRUE, warning=FALSE}
+x <- "28/03/89"
+ymd(x)
+mdy(x)
+ydm(x)
+myd(x)
+dmy(x)
+dym(x)
+```
+
+Finally, in the same way that we can use these functions of days, months and years, we can also use to refer to hours, minutes and seconds.
+
+```{r eval=TRUE, warning=FALSE}
+# Format with hours, minutes and seconds
+date_val <- "Feb/2/2012 12:34:56"
+mdy_hms(date_val)
+
+# Additional data: Showing system date:
+now()
+
+```
+
+`r if(params$hidden){"<!--"}`
+
+## Exercises
+
+Before solving the following exercise run this Script:
+
+```{r eval=FALSE}
+ventas <- tibble(
+  mes = c("Abril", "Mayo", "Junio"),
+  ventas = c("s/32,124", "s/35,465", "S/38,332"),
+  ganancias = c("s/8,120", "s/9,432", "s/10,543")
+)
+```
+
+`r ne`. From the `ventas` object convert the sales and profits columns to numeric values.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+# Solution 1
+ventas |> 
+  mutate(across(c(2,3), ~parse_number(.)))
+
+# Alternative solution, longer
+ventas |>
+  mutate(across(c(2,3), ~str_replace_all(., "\\S/|,", ""))) |> 
+  mutate(across(c(2,3), ~as.numeric(.)))
+```
+</details>
+
+
+`r ne`. Given the vector universities:
+
+```{r eval=TRUE}
+universidades <- c("U. Católica de Chile", "Univ Nacional Autónoma de México", 
+                   "Univ. Nacional de Ingeniería", "Universidad de los Andes", 
+                   "U de Barcelona", "California State University")
+```
+
+Clean the data to obtain the full name as shown below:
+```{r eval=TRUE, echo=FALSE}
+universidades |> 
+    str_replace("^Univ\\.?\\s|^U\\.?\\s", "Universidad ")
+```
+
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+universidades |> 
+    str_replace("^Univ\\.?\\s|^U\\.?\\s", "Universidad ")
+```
+</details>
+
+For the following exercises, we are going to work on the survey data conducted prior to Brexit in the UK. Run the Script first:
+
+```{r eval=FALSE}
+library(rvest)
+library(tidyverse)
+url <- "https://en.wikipedia.org/w/index.php?title=Opinion_polling_for_the_United_Kingdom_European_Union_membership_referendum&oldid=896735054"
+tabla <- read_html(url) |> html_nodes("table")
+encuestas <- tabla[[5]] |> html_table(fill = TRUE)
+```
+
+`r ne`. Update the `encuestas` object with the following names `c("fecha", "permanecer", "salir", "no_decide", "spread", "muestra", "encuestadora", "tipo", "notas")`. Not all polls have a percentage value in the `permanecer` (remain) column. Filter the columns so that only values containing the `%` symbol are shown.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+names(encuestas) <- c("fecha", "permanecer", "salir", "no_decide", "spread",
+                  "muestra", "encuestadora", "tipo", "notas")
+encuestas <- encuestas[str_detect(encuestas$permanecer, "%"), ]
+encuestas 
+
+# If we want to validate the number of surveys:
+nrow(encuestas)
+```
+</details>
+
+
+`r ne`. Store the values of the `permanecer` column to the `permanecer` vector and convert the values to the numerical value of the percentage. That is, values from 0 to 1 (0.5 instead of 50%).
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+permanecer <- encuestas$permanecer
+
+# Solution 1:
+porcentajes <- parse_number(permanecer)/100
+
+# Solution 1:
+temp <- str_replace(permanecer, "%", "")
+porcentajes <- as.numeric(temp)/100
+
+# Solution 2:
+temp <- str_remove(permanecer, "%")
+porcentajes <- as.numeric(temp)/100
+
+```
+</details>
+
+
+`r ne`. We find in the `no_decide` column the value of "N/A" when by percentages of `permanecer` plus `salir` sum 100%. Therefore, `no_decide` should be zero in those cases and not "N/A". Store the values of `no_decide` in the `no_decide` vector and transform the "N/A" values to 0%
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+no_decide <- encuestas$no_decide
+
+str_replace(no_decide, "N/A", "0%")
+
+```
+</details>
+
+
+`r ne`. Create the function `formato_porcentaje(cadena)` where you consolidate the transformations performed in the previous exercises. Then test the function with the vector: `c("13.5%", "N/A", "10%")`
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+
+formato_porcentaje <- function(cadena){
+  cadena |> 
+    str_replace("N/A", "0%") |> 
+    parse_number()/100
+}
+
+# Function test:
+prueba <- c("13.5%", "N/A", "10%")
+
+formato_porcentaje(prueba)
+
+```
+</details>
+
+
+`r ne`. Modify the columns of the `encuestas` table to change the necessary values from text to numbers.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+encuestas <- encuestas |> 
+  mutate(across(c("permanecer", "salir", "no_decide", "spread"), ~formato_porcentaje(.))) |> 
+  mutate(across(c("muestra"), ~parse_number(.)))
+```
+</details>
+
+
+`r ne`. Import the following file containing covid cases reported by the Ministry of Health of Peru from the following route: "https://www.datosabiertos.gob.pe/sites/default/files/DATOSABIERTOS_SISCOVID.csv" into the `covidPeru` object. Convert the birth date column to date type and create a histogram with the ages of the infected.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+url <- "https://www.datosabiertos.gob.pe/sites/default/files/DATOSABIERTOS_SISCOVID.csv"
+covidPeru <- read_csv(url)
+
+# We look for those that do not follow the ISO 8601 standard:
+index <- str_detect(covidPeru$FECHA_NACIMIENTO, "\\d{4}-\\d{2}-\\d{2}")
+covidPeru$FECHA_NACIMIENTO[!index]
+
+# We see dates in DD/MM/YYYY format
+# Reemplazamos a formato ISO 8601:
+covidPeru <- covidPeru |> 
+  mutate(across("FECHA_NACIMIENTO", 
+            ~str_replace(., "(\\d{2})/(\\d{2})/(\\d{4})", "\\3-\\2-\\1")
+            ))
+
+# We search again for those that do not follow ISO 8601 standard:
+index <- str_detect(covidPeru$FECHA_NACIMIENTO, "\\d{4}-\\d{2}-\\d{2}")
+covidPeru$FECHA_NACIMIENTO[!index]
+
+# Convert column to date:
+covidPeru <- covidPeru |> 
+  mutate(across("FECHA_NACIMIENTO", ~ymd(.)))
+
+# Now that it is date format we create histogram:
+covidPeru |> 
+  mutate(edad = year(now()) - year(FECHA_NACIMIENTO)) |> 
+  pull(edad) |> 
+  hist()
+```
+</details>
+
+`r if(params$hidden){"-->"}`
+
+## Text Mining: Word Cloud
+Text mining is the discovery by computer of new information, previously unknown, by automatically extracting information from different written resources. Written resources can be websites, books, chats, comments, emails, reviews, articles, etc. Thus, text mining, also known as text data mining, approximately equivalent to text analysis, is the process of deriving high-quality information from text.
+
+The first text mining technique we will learn will be the construction of word clouds. For this, we will need to install packages developed exclusively for text mining and some libraries for text treatment that we had already used like `readr` or `stringr`:
+
+```{r eval=FALSE}
+install.packages("syuzhet")
+install.packages("tm")
+install.packages("wordcloud")
+
+library(syuzhet) # Functions get_
+library(stringr) # Functions str_
+library(tm) # text mining functions
+library(wordcloud) # Create cloud map
+```
+
+### Importing data
+Word maps or word clouds allow us to quickly identify which are the words that are repeated most in a text. They are very useful when we have fields that come from a form, for example, filled out by customers and we want to know what is being talked about more. It also helps us to analyze content in some book, magazine, etc.
+
+We are going to analyze the work "Niebla" written by the author Miguel de Unamuno. We will obtain the text from the [Project Gutenberg](www.gutenberg.org)^[www.gutenberg.org] website, which gives us access to a library of around 60 thousand free books. We will import the text using the `get_text_as_string()` function from the `syuzhet` library to import all the text as a string. This function is very useful if we wish to import large files. Then, we will use the `get_sentences()` function, to create a vector of sentences from the initial text.
+
+```{r eval=TRUE}
+url <- "http://www.gutenberg.org/files/49836/49836-0.txt"
+
+work <- get_text_as_string(url)
+
+sentences <- get_sentences(work)
+
+```
+
+### Text cleaning
+As we have learned previously, we do not have to go straight to analyze. Instead, we have to clean our data. The first thing we will do is eliminate the first rows that do not correspond to the work.
+
+```{r eval=TRUE}
+# We eliminate first rows of notes, prologue, post-prologue
+total_lines <- length(sentences)
+start_line <- 115
+end_line <- total_lines - start_line
+
+clean_text <- sentences[start_line:end_line]
+```
+
+Next we will use a regex to detect special encoding characters, such as line breaks and tabulations. For this we will use the regex `[[:cntrl:]]`. Likewise, we will convert all words to lower case to facilitate comparisons between words. Finally, as we want to analyze the words, we eliminate all punctuation marks.
+
+```{r eval=TRUE}
+clean_text <- clean_text |> 
+  str_replace_all("[[:cntrl:]]", " ") |> 
+  str_to_lower() |> 
+  removePunctuation() |> 
+  str_replace_all("—", " ")
+
+```
+
+On the other hand, the "tm" library, from _text mining_, provides us with functions and vectors to clean our data. We already used the `removePunctuation()` function. However, we also have the `stopwords("spanish")` function that calls a vector with _empty words_, that is, those with little value for analysis, such as some prepositions and fillers. In addition, we will use the `removeWords()` function to remove all words found in our _empty words_ vector.
+
+```{r eval=TRUE}
+clean_text <- removeWords(clean_text, words = stopwords("spanish"))
+```
+
+Finally, we eliminate excessive empty spaces, some of them created by the previous transformations.
+
+```{r eval=TRUE}
+clean_text <- stripWhitespace(clean_text)
+```
+
+### Creating the Corpus
+To be able to create a word map we need to apply the `VectorSource()` function to convert each row to a document and the `Corpus()` function that will allow us to create these documents as a data collection.
+
+```{r eval=TRUE, warning=FALSE}
+collection <- clean_text |> 
+  VectorSource() |>
+  Corpus()
+```
+
+We are ready to create our word map. For this we will use the `wordcloud()` library and the function of the same name.
+
+```{r eval=TRUE, warning=FALSE}
+wordcloud(collection, 
+          min.freq = 5,
+          max.words = 80, 
+          random.order = FALSE, 
+          colors = brewer.pal(name = "Dark2", n = 8)
+          )
+```
+
+### 2nd Data Cleaning
+In text mining we will frequently obtain a result that still requires cleaning more data. For example, we still see words like pronouns of little interest for analysis. We will use the `removeWords()` function again, but this time with a custom vector of the words we wish to remove.
+
+```{r eval=TRUE, warning=FALSE}
+to_remove <- c("usted", "pues", "tal", "tan", "así", "dijo", 
+               "cómo", "sino", "entonces", "aunque", "don", "doña")
+
+clean_text <- removeWords(clean_text, words = to_remove)
+
+collection <- clean_text |> 
+  VectorSource() |>
+  Corpus()
+
+wordcloud(collection, 
+          min.freq = 5,
+          max.words = 80, 
+          random.order = FALSE, 
+          colors = brewer.pal(name = "Dark2", n = 8)
+          )
+```
+
+Augusto and Eugenia, as we can assume, are the protagonists of **Niebla** and much of the action in this book occurs in the "house" of one or another protagonist, discussing relationships between "man" and "woman".
+
+### Word frequency
+We already have a visual idea of the most used words. However, we could also know exactly how many times a certain word appeared. For this we have to convert our collection to a matrix. For this we use the functions together `TermDocumentMatrix()`, `as.matrix()` and `rowSums()` which will leave us with a vector with the word frequency.
+
+```{r eval=TRUE}
+words_vec <- collection |> 
+  TermDocumentMatrix() |> 
+  as.matrix() |> 
+  rowSums() |> 
+  sort(decreasing = TRUE)
+
+words_vec |> 
+  head(20)
+```
+
+With this vector it is easy to convert it to data frame, given that we have the names and values, and visualize it.
+
+```{r eval=TRUE}
+frequencies <- data.frame(
+  palabra = names(words_vec),
+  frecuencia = words_vec
+)
+
+# Visualization of top 10 words:
+frequencies[1:10,] |> 
+  ggplot() +
+  aes(frecuencia, y = reorder(palabra, frecuencia)) +
+  geom_bar(stat = "identity", color = "white", fill = "blue") +
+  geom_text(aes(label = frecuencia, hjust = 1.5), color = "white") +
+  labs(
+    x = NULL,
+    y = "Most used words in the work"
+  )
+
+```
+
+## Text Mining: Sentiment Analysis
+When we analyze texts we are not only going to want to know which are the words that are most utilized in texts, whether these are comments left by our customers, complaint requests, etc. It is also very useful to know the tone of the messages. This technique is known as sentiment analysis, which can be done very easily with the library that we have already used `syuzhet`.
+
+And what better place to analyze message tones than on Twitter. For this, we are going to download a history of Tweets from some Spanish-speaking character from the page vicinitas.io. This page allows us to download an excel given a public account:
+
+https://www.vicinitas.io/free-tools/download-user-tweets.
+
+<div align="center">
+```{r, echo=FALSE}
+knitr::include_graphics(file.path(img_path,"download-user-tweets.png"))
+```
+</div>
+
+For our example, we will use tweets from the account of the lawyer [Rosa María Palacios](https://twitter.com/rmapalacios)^[https://twitter.com/rmapalacios]. For this example the excel has already been uploaded to Github. We will download that excel directly from there to our computer to a temporary file and then we will read it using `read_excel()`.
+
+```{r eval=TRUE}
+url <- "https://dparedesi.github.io/DS-con-R/rmapalacios_user_tweets.xlsx"
+
+# Create a temporary name & path for our file.
+temp_file <- tempfile()
+
+# Download the file to our temp
+download.file(url, temp_file)
+
+# Import the excel
+posts <- read_excel(temp_file)
+
+# Remove the temporary file
+file.remove(temp_file)
+```
+
+We have created our object `posts`, which has in the column `Text` the different _tweets_, _retweets_ and _replies_, performed. Although we could do a data analysis using the other columns, we are going to focus on the content and tone of the Tweets. For this, we are going to eliminate Retweets and replies, keeping only Tweets.
+
+```{r eval=TRUE}
+tweets <- posts |> 
+  filter(`Tweet Type` == "Tweet") |> 
+  pull(Text)
+
+```
+
+With what was learned doing word maps, let's create a map with the content of the publications.
+
+```{r eval=TRUE, warning = FALSE}
+tweets_limpio <- tweets |> 
+  removePunctuation() |> 
+  str_to_lower() |> 
+  str_replace_all("[[:cntrl:]]", " ") |> 
+  removeWords(words = stopwords("spanish")) |> 
+  removeWords(words = c("usted", "pues", "tal", "tan",
+                                      "así", "dijo", "cómo", "sino", 
+                                      "entonces", "aunque", "que"))
+
+collection <- tweets_limpio |> 
+  VectorSource() |>
+  Corpus()
+
+wordcloud(collection, 
+          min.freq = 5,
+          max.words = 80, 
+          random.order = FALSE, 
+          colors = brewer.pal(name = "Dark2", n = 8)
+          )
+```
+
+She is a lawyer, which makes a lot of sense that she posts content of what can or cannot be done. We could be more rigorous and seek to achieve this combination by adding underscores if the pattern is detected, but for the moment we are going to focus on the tone.
+
+With our object `tweets_limpio` we can obtain what the tone is using the function `get_nrc_sentiment()`, which gives us a score for each row of the vector according to the [NRC Emotion Lexicon](https://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm)^[https://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm]. The NRC Emotion Lexicon is a list of words and their associations with eight basic emotions (anger, fear, anticipation, trust, surprise, sadness, joy, and disgust) and two sentiments (negative and positive).
+
+```{r eval=TRUE, warning = FALSE}
+
+result <- get_nrc_sentiment(tweets_limpio, language = "spanish")
+
+result |> 
+  head(10)
+
+```
+
+We can perform some transformations to this data frame, but first we are going to create a translation function. Given that, we still have to translate the headers.
+
+```{r eval=TRUE, warning = FALSE}
+translate_emotions <- function(cadena){
+  case_when(
+    cadena == "anger" ~ "Ira",
+    cadena == "anticipation" ~ "Anticipación",
+    cadena == "disgust" ~ "Aversión",
+    cadena == "fear" ~ "Miedo",
+    cadena == "joy" ~ "Alegría",
+    cadena == "sadness" ~ "Tristeza",
+    cadena == "surprise" ~ "Asombro",
+    cadena == "trust" ~ "Confianza",
+    cadena == "negative" ~ "Negativo",
+    cadena == "positive" ~ "Positivo",
+    TRUE ~ cadena
+  )
+}
+```
+
+Now, with our function ready, we can transform our object `result` to obtain the frequencies of each emotion and sentiment.
+
+```{r eval=TRUE, warning = FALSE}
+# Summary of emotions/sentiments
+sentiments <- result |> 
+  pivot_longer(cols = everything(), names_to = "sentimiento", values_to = "count") |> 
+  mutate(sentimiento = translate_emotions(sentimiento)) |> 
+  group_by(sentimiento) |> 
+  summarise(total = sum(count))
+
+sentiments
+```
+
+We see that we have the 8 emotions plus the 2 sentiments. Let's get the indices of the positive and negative sentiments:
+
+```{r eval=TRUE, warning = FALSE}
+index <- sentiments$sentimiento %in% c("Positivo", "Negativo") 
+```
+
+This vector will serve us to be able to visualize separately the emotions and sentiments.
+
+```{r eval=TRUE, warning = FALSE}
+# Visualization of emotions
+sentiments[!index,] |> 
+  ggplot() +
+  aes(sentimiento, total) +
+  geom_bar(aes(fill = sentimiento), stat = "identity") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  xlab(NULL) +
+  ylab("Total") +
+  ggtitle("Emotions in the Tweets of Rosa María Palacios")
+
+# Visualization of whether they are positive or negative sentiments:
+sentiments[index,] |> 
+  ggplot() +
+  aes(sentimiento, total) +
+  geom_bar(aes(fill = sentimiento), stat = "identity") +
+  xlab(NULL) +
+  ylab("Total") +
+  ggtitle("Sentiments of the Tweets of Rosa María Palacios")
+
+```
+
+This technique is very useful to us as a starting point for future analyses on the tonality of some determined text.
+
+
+`r if(params$hidden){"<!--"}`
+
+## Exercises
+
+For these exercises we will use more books from Project Gutenberg. However, we will extract the text with an R library, the `gutenbergr` library.
+
+```{r eval=FALSE}
+install.packages("gutenbergr")
+
+library(gutenbergr)
+
+# Tibble: list of books in Gutenberg.org
+gutenberg_metadata
+
+# List of books in Spanish
+gutenberg_works(languages = "es")
+```
+
+
+`r ne`. The `gutenberg_download(id)` function downloads the text in a tibble type object with one row for each line. Download the book "El ingenioso hidalgo don Quijote de la Mancha" to the `descarga` object. Store the `text` column in the `obra` object and report the first 50 lines of the object.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+descarga <- gutenberg_download(2000)
+
+obra <- descarga$text
+
+obra[1:50]
+```
+</details>
+
+
+`r ne`. Due to the number of lines in this work, take a random sample of 1,000 lines and store it in the `muestra` object. Remove words, punctuation marks, line breaks and other elements learned during this chapter. Store this transformation in the `muestra_limpia` object.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+
+muestra <- sample(obra, 1000)
+
+muestra_limpia <- muestra |> 
+  str_replace("\xe1", "a") |> # We remove accents
+  str_replace("\xe9", "e") |> # We remove accents
+  str_replace("\xed", "i") |> # We remove accents
+  str_replace("\xf3", "o") |> # We remove accents
+  removePunctuation() |> 
+  str_to_lower() |> 
+  str_replace_all("[[:cntrl:]]", " ") |> 
+  removeWords(words = stopwords("spanish")) |> 
+  removeWords(words = c("usted", "pues", "tal", "tan",
+                                      "así", "dijo", "cómo", "sino", 
+                                      "entonces", "aunque", "que"))
+
+```
+</details>
+
+
+`r ne`. Create a word map from the `muestra_limpia` object.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+
+coleccion <- muestra_limpia |> 
+  VectorSource() |>
+  Corpus()
+
+wordcloud(coleccion, 
+          min.freq = 5,
+          max.words = 80, 
+          random.order = FALSE, 
+          colors = brewer.pal(name = "Dark2", n = 8)
+          )
+
+```
+</details>
+
+
+`r ne`. Perform a sentiment analysis of the sample obtained.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+resultado <- get_nrc_sentiment(muestra_limpia, language = "spanish")
+
+sentimientos <- resultado |> 
+  pivot_longer(cols = everything(), names_to = "sentimiento", values_to = "cantidad") |> 
+  mutate(sentimiento = trad_emociones(sentimiento)) |> 
+  group_by(sentimiento) |> 
+  summarise(total = sum(cantidad))
+
+index <- sentimientos$sentimiento %in% c("Positivo", "Negativo") 
+
+# Visualization of emotions
+sentimientos[!index,] |> 
+  ggplot() +
+  aes(sentimiento, total) +
+  geom_bar(aes(fill = sentimiento), stat = "identity") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  xlab(NULL) +
+  ylab("Total") +
+  ggtitle("Emociones en El Quijote")
+
+# Visualization of whether they are positive or negative sentiments:
+sentimientos[index,] |> 
+  ggplot() +
+  aes(sentimiento, total) +
+  geom_bar(aes(fill = sentimiento), stat = "identity") +
+  xlab(NULL) +
+  ylab("Total") +
+  ggtitle("Sentimientos en El Quijote")
+
+```
+</details>
+
+`r if(params$hidden){"-->"}`

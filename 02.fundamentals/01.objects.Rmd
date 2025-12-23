@@ -1,0 +1,611 @@
+# (PART) Fundamentals and Key Tools {-}
+
+# Objects {#objects}
+
+In the world of programming, an **object** is like a container that holds information. This information can be of different types: numbers, text, complex data, and even code. The important thing is that an object groups everything necessary to represent an entity or concept.
+
+In R, practically everything is an object. The variables we will use to store data, the functions we will use to process that data, and even the data itself, are objects.
+
+## What are objects in R?
+
+Imagine you are organizing your move to the United States. Each item you pack in a box (clothes, books, appliances) can be considered an object. Each object has characteristics that define it: a name, a type, a size, a weight, etc.
+
+In R, objects also have characteristics that define them. These characteristics are called **attributes**. Some common attributes are:
+
+*   **Name:** The name we give to the object to be able to refer to it.
+*   **Type:** The type of data the object contains (numeric, character, logical, etc.).
+*   **Class:** The class of the object, which defines its structure and behavior (vector, list, data frame, function, etc.).
+*   **Length:** The amount of elements the object contains (if it is a vector, a list, etc.).
+
+### R as an object-oriented language
+
+R is an **object-oriented** programming language. This means it relies on the concept of objects to organize and process information.
+
+Object-oriented programming has several advantages:
+
+*   **Modularity:** Objects allow dividing a program into smaller, manageable parts.
+*   **Reusability:** Objects can be reused in different parts of the program or in other programs.
+*   **Encapsulation:** Objects hide implementation details, facilitating their use and maintenance.
+
+### The power of abstraction
+
+The concept of an object allows us to **abstract** the complexity of the real world. Instead of thinking about the details of how data is stored and processed in computer memory, we can think in terms of objects representing real-world entities.
+
+For example, instead of thinking of a series of numbers representing the temperatures of different cities, we can think of a "temperatures" object containing all that information.
+
+This abstraction facilitates understanding and handling information, allowing us to focus on the logic of the problem we want to solve.
+
+## Variables: The first objects on your journey
+
+Before we start packing for our move to the United States, we need to know what things we will take. Each object we decide to take is represented in R as a **variable**.
+
+Think of variables as labels we put on each object. For example, we could use the variable `state` to save the name of the state we are moving to, or the variable `num_suitcases` to save the number of suitcases we will take.
+
+### Creating variables in R
+
+In R, we don't need to declare a variable before using it. We simply assign it a value using the `<-` symbol.
+
+**Example:**
+
+```{r eval=FALSE}
+# Assign the value "California" to the variable "state"
+state <- "California"
+
+# Assign the value 5 to the variable "num_suitcases"
+num_suitcases <- 5
+```
+
+To see the value we have saved in a variable, we simply type its name in the RStudio console and press Enter.
+
+**Example:**
+
+```{r eval=TRUE}
+state <- "California"
+
+state
+```
+
+When executing this code, you will see the value `"California"` appear in the console.
+
+### Operations with variables
+
+We can also use variables to perform operations. For example, if we want to calculate the total cost of our plane trip, we could use the variables `ticket_price` and `num_people`.
+
+**Example:**
+
+```{r eval=TRUE}
+ticket_price <- 300
+num_people <- 4
+
+total_cost <- ticket_price * num_people
+
+total_cost
+```
+
+In this example, we first assign values to the variables `ticket_price` and `num_people`. Then, we multiply these variables to calculate the `total_cost` and display its value in the console.
+
+### Best practices for naming variables
+
+**Watch out for capitalization!**
+
+R is case-sensitive. If you create a variable called `state` and then try to access it as `State`, R will not find it.
+
+**Descriptive names**
+
+It is important to use descriptive names for variables, clearly indicating what information they contain. Instead of using variables like `x` or `y`, it is better to use names like `ticket_price` or `num_suitcases`.
+
+**Rules for naming variables**
+
+*   Variable names can contain letters, numbers, and underscores (`_`).
+*   They cannot start with a number.
+*   They cannot contain spaces.
+*   R is case-sensitive.
+
+### Data types
+
+Variables in R can contain different types of data:
+
+*   **Numeric:** Represent numbers, such as the population of a city or the cost of a plane ticket.
+
+    ```{r eval=FALSE}
+    chicago_population <- 2700000
+    ticket_price <- 300
+    ```
+
+*   **Character:** Represent text, such as the name of a state or a city.
+
+    ```{r eval=FALSE}
+    state <- "California"
+    city <- "Los Angeles"
+    ```
+
+*   **Logical:** Represent truth values: `TRUE` or `FALSE`. We could use a logical variable to indicate if we want to visit a city or not.
+
+    ```{r eval=FALSE}
+    visit_chicago <- TRUE
+    visit_miami <- FALSE
+    ```
+
+## Object types for complex data
+
+The variables we have seen so far are very useful for storing individual information, such as the name of a city or the number of suitcases we will carry on our move. However, in the real world, we often need to work with more complex datasets.
+
+Imagine you want to save the names of all the cities you plan to visit on your trip to the United States. Would you have to create a variable for each city? That would be very tedious!
+
+Fortunately, R offers other types of objects that allow us to organize and manipulate information more efficiently. Let's look at some of them:
+
+### Vectors: organizing information of the same type
+
+Vectors are like trains transporting a series of objects of the same type. They can be numbers, text, or logical values, but all elements of a vector must be of the same type. For example, we could use a vector to save the name of each state in the United States, or a vector to save the population of each state.
+
+**Creating vectors:** To create a vector, we can use the `c()` function (which stands for "combine") and list the elements we want to include, separated by commas.
+
+```{r eval=TRUE}
+# Create a vector with the names of some states
+states <- c("California", "Texas", "Florida", "New York")
+
+# Create a vector with the population of each state (in millions)
+population <- c(39.2, 29.0, 21.4, 19.4) 
+```
+
+If we want to know the amount of data our vector has, its length, we will use the `length()` function. The `class()` function tells us the class of the object, that is, what type of data it contains.
+
+```{r eval=TRUE}
+length(population)  
+class(states)     
+class(population)   
+```
+
+We can use the `names()` function to assign names to the elements of a vector. This can be useful for identifying each element.
+
+```{r eval=TRUE}
+names(population) <- states
+population
+```
+
+In addition to `c()`, there are other useful functions for creating vectors:
+
+*   `seq()`: Creates a sequence of numbers. We can specify the start value, the end value, and the increment.
+
+    ```{r eval=FALSE}
+    # Create a vector with numbers from 1 to 10
+    numbers <- seq(1, 10)
+    
+    # Create a vector with numbers from 2 to 20, by 2
+    even_numbers <- seq(2, 20, by = 2)
+    ```
+
+*   `rep()`: Repeats a value or a vector a specified number of times.
+
+    ```{r eval=FALSE}
+    # Create a vector with the value 1 repeated 5 times
+    ones <- rep(1, 5)
+    
+    # Create a vector with the sequence "A", "B" repeated 3 times
+    letters <- rep(c("A", "B"), 3)  # Output: "A" "B" "A" "B" "A" "B"
+    ```
+
+**Accessing vector elements:** Each element of a vector has a position, indicated by a number in brackets. The first element is at position 1, the second at position 2, and so on.
+
+```{r eval=FALSE}
+# Show the first element of the "states" vector
+states[1]  # Output: "California"
+
+# Show the third element of the "population" vector
+population[3]  # Output: 21.4
+```
+
+We can also access multiple elements at once using the `:` operator. For example, to access elements from the second to the fourth of the `states` vector:
+
+```{r eval=TRUE}
+states[2:4]
+```
+
+**Operations with vectors:** We can perform mathematical operations with numeric vectors. For example, if we want to calculate the total population of the four states, we can use the `+` operator to sum the elements of the `population` vector.
+
+```{r eval=TRUE}
+population <- c(39.2, 29.0, 21.4, 19.4) 
+
+population[1] + population[2] + population[3] + population[4]  
+```
+
+If we want to perform the same operation more concisely, R allows us to sum all elements of a vector directly:
+
+```{r eval=TRUE}
+population <- c(39.2, 29.0, 21.4, 19.4) 
+
+sum(population)  
+```
+
+R also offers other tools for performing operations with vectors. For example, if we want to calculate the square root of the population of each state:
+
+```{r eval=TRUE}
+sqrt(population)  
+```
+
+In this case, the `sqrt()` function calculates the square root of each element of the `population` vector individually. This is possible because many functions in R are vectorized, meaning they can operate directly on vectors, element by element. Vectorized functions are very efficient as they avoid the need to write loops to process each element of the vector separately.
+We will explore functions in R and how to use them for more complex data analysis in greater depth later.
+
+**Vector coercion:** Unlike other programming languages, R tries to interpret or change a value when it encounters an error. For example, if we try to convert a character vector to numeric, R will convert the elements it can and replace the ones it cannot with `NA`.
+
+```{r eval=TRUE}
+example <- c("3", "b", "6", "a", "bridge", "4")
+as.numeric(example)
+```
+
+**Sorting vectors:** We can sort the elements of a vector using the `sort()` function.
+
+```{r eval=TRUE}
+districts <- c("Comas", "Lince", "Miraflores", "Lurigancho", "Chorrillos")
+sort(districts) 
+```
+
+We can also order a vector using its indices with the `order()` function. This way, we get a vector with the positions the elements of the original vector would occupy if they were sorted. This can be useful when we want to sort a vector based on another vector or when we want to preserve the original vector without modifying it.
+
+```{r eval=TRUE}
+indices <- order(districts)  # Output: 5 1 2 4 3
+districts[indices]
+```
+
+**NA in vectors:** If a vector contains NA values, some operations may return NA. We can use the `is.na()` function to identify NA values and filter them.
+
+```{r eval=TRUE}
+example_na <- c(28, 3, 19, NA, 89, 45, NA, 86, 5, 18, 28, NA)
+example_no_na <- example_na[!is.na(example_na)]
+mean(example_no_na)  # Output: 38.66667
+```
+
+### Lists: grouping objects of different types
+
+Lists are like containers that can hold different types of objects. Imagine a box where you can put clothes, books, tools, and any other object you need. In R, lists allow you to group diverse information into a single object.
+
+**Creating lists:** To create a list, we use the `list()` function and specify the elements we want to include, separated by commas. Each element can have a name, indicated with the `=` symbol.
+
+```{r eval=FALSE}
+# Create a list with information about a city
+city_info <- list(name = "San Francisco", 
+                  population = 880000, 
+                  cost_of_living = 3.8, 
+                  climate = "Temperate")
+```
+
+**Accessing list elements:** To access the elements of a list, we can use their names or their positions.
+
+```{r eval=FALSE}
+# Access the "name" element of the "city_info" list
+city_info$name  # Output: "San Francisco"
+
+# Access the second element of the "city_info" list
+city_info[[2]]  # Output: 880000
+```
+
+### Matrices: organizing data in rows and columns
+
+Matrices are like tables that organize information in rows and columns. All elements of a matrix must be of the same type.
+
+**Creating matrices:** To create a matrix, we use the `matrix()` function. We must specify the data we want to include, the number of rows (`nrow`), and the number of columns (`ncol`).
+
+```{r eval=TRUE}
+# Create a matrix with distances between cities (in miles)
+city_distances <- matrix(c(0, 2600, 2100, 950, 
+                           2600, 0, 1100, 2700, 
+                           2100, 1100, 0, 2100, 
+                           950, 2700, 2100, 0), 
+                         nrow = 4, ncol = 4)
+city_distances
+```
+
+**Accessing matrix elements:** To access the elements of a matrix, we use brackets and specify the row and column of the element we want.
+
+```{r eval=TRUE}
+# Access the element in row 1, column 3 of the "city_distances" matrix
+city_distances[1, 3] 
+```
+
+### Arrays: multidimensional matrices
+
+Arrays are like matrices that have more than two dimensions. Imagine a matrix that, in addition to rows and columns, has depth. In R, arrays allow you to organize data in more complex structures.
+
+**Creating arrays:** To create an array, we use the `array()` function.
+
+```{r eval=TRUE}
+# Create an array with maximum and minimum temperatures of 
+# three cities during the summer months (June, July, August)
+temperatures <- array(c(25, 28, 30, 22, 25, 28,  # City 1
+                        28, 20, 32, 25, 18, 30,  # City 2
+                        22, 25, 28, 18, 23, 25), # City 3
+                      dim = c(3, 2, 3))  # 3 cities, 2 temperatures (max/min), 3 months
+temperatures
+```
+
+**Accessing array elements:** To access the elements of an array, we use brackets and specify the position of the element in each dimension.
+
+```{r eval=TRUE}
+# Access the maximum temperature of city 2 in July
+temperatures[2, 1, 2] 
+```
+
+### Factors: representing categorical data
+
+Factors are a special type of object used to represent categorical data, that is, data that can be classified into groups. For example, the type of climate ("warm", "temperate", "cold"), the region of a country ("north", "south", "east", "west"), or the type of housing ("house", "apartment").
+
+**Creating factors:** To create a factor, we use the `factor()` function.
+
+```{r eval=FALSE}
+# Create a factor with climate types of different cities
+climate_types <- factor(c("Temperate", "Warm", "Cold"))
+```
+
+**Levels of a factor:** The different values a factor can take are called levels. In the previous example, the levels of the `climate_types` factor are "Temperate", "Warm", and "Cold".
+
+**Utility of factors:** Factors are very useful for data analysis, as they allow grouping and comparing information efficiently. For example, we could use the `climate_types` factor to analyze how the cost of living varies in cities with different climates.
+
+## The Universe of Objects in R
+
+Throughout this chapter, we have explored the different types of objects inhabiting the R universe. From the simplest variables to multidimensional arrays, each object plays an important role in building our data analyses.
+
+### Philosophy of objects in R
+
+In R, everything is an object. This philosophy has profound implications for how code is written and executed. By treating everything as an object, R promotes consistency, modularity, and reuse.
+
+Objects allow us to encapsulate information and behavior, facilitating code organization and maintenance. Furthermore, the ability to create our own objects gives us great power to model and solve complex problems.
+
+By understanding the philosophy of objects in R, we can make the most of the language's capabilities for data analysis.
+
+### Comparison with other languages
+
+While many modern programming languages use the object-oriented paradigm, R has a particular approach. In languages like Python or Java, creating classes and objects is a fundamental part of the language. In R, while it is possible to create classes and objects, the language focuses more on the use of functions to manipulate and transform data.
+
+This difference is due in part to R's history as a language for statistical analysis. In this context, functions are a natural tool for performing calculations and analyses.
+
+
+
+`r if(params$hidden){"<!--"}`
+## Exercises
+
+Now that you know the different types of objects in R, it's time to put your knowledge to the test.
+
+`r ne`. Create the following variables:
+
+*   `city_name`: Store the name of the US city you would like to move to.
+*   `population`: Store the population of that city (you can search for it online).
+*   `distance`: Store the distance in kilometers from your current city to the US city.
+*   `want_to_live_there`: Store a logical value (`TRUE` or `FALSE`) indicating if you really would like to live in that city.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+city_name <- "Seattle"
+population <- 724745 
+distance <- 8340  # Approximate distance from Lima, Peru
+want_to_live_there <- TRUE
+```
+</details>
+
+`r ne`. Create a vector called `nearby_cities` containing the names of three cities near the city you chose in the previous exercise.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+nearby_cities <- c("Tacoma", "Bellevue", "Everett")
+```
+</details>
+
+`r ne`. Create a list called `my_list` containing the following elements:
+
+*   Your name.
+*   Your age.
+*   A vector with the names of your three favorite colors.
+*   A logical value indicating if you like chocolate.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+my_list <- list(name = "Ana", 
+                age = 30, 
+                favorite_colors = c("blue", "green", "red"), 
+                likes_chocolate = TRUE)
+```
+</details>
+
+`r ne`. Create a matrix called `monthly_expenses` containing your estimated monthly expenses in the following categories:
+
+| Category           | January | February | March |
+|--------------------|-------|---------|-------|
+| Housing            |       |         |       |
+| Transport          |       |         |       |
+| Food               |       |         |       |
+| Entertainment      |       |         |       |
+
+Complete the matrix with numerical values.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+monthly_expenses <- matrix(c(1500, 1500, 1500,  # Housing
+                             300,  250,  350,   # Transport
+                             500,  400,  550,   # Food
+                             200,  150,  250),  # Entertainment
+                           nrow = 4, ncol = 3,
+                           dimnames = list(c("Housing", "Transport", "Food", "Entertainment"),
+                                           c("January", "February", "March")))
+```
+</details>
+
+`r ne`. Create a factor called `climate_types` containing the names of the different climate types in the United States (you can use "Temperate", "Warm", "Cold", etc.). Assign labels to the factor levels to make them more descriptive (for example, "Cold climate", "Temperate climate", etc.).
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+climate_types <- factor(c("Temperate", "Warm", "Cold", "Warm", "Temperate"),
+                     levels = c("Cold", "Temperate", "Warm"),
+                     labels = c("Cold climate", "Temperate climate", "Warm climate"))
+
+climate_types
+```
+</details>
+
+`r ne`. Create a vector called `cities_to_visit` with the names of 5 cities you would like to visit in the United States. Then, create another vector called `days_per_city` with the number of days you would like to spend in each city. Finally, create a third vector called `daily_cost` with the estimated daily cost in each city (in dollars).
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=TRUE}
+cities_to_visit <- c("New York", "Los Angeles", "Chicago", "San Francisco", "Miami")
+days_per_city <- c(5, 4, 3, 6, 2)  
+daily_cost <- c(200, 180, 150, 220, 170)
+```
+</details>
+
+`r ne`. Create a vector called `max_temperatures` with the average maximum temperatures (in Celsius) of the cities you want to visit during the month of July. Then, create a vector called `min_temperatures` with the average minimum temperatures. Finally, create a matrix containing these two vectors as columns, and name the rows with the names of the cities.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=TRUE}
+max_temperatures <- c(29, 28, 27, 22, 31)  # Max temperatures in July
+min_temperatures <- c(21, 18, 19, 15, 25)  # Min temperatures in July
+
+# Create the matrix
+temperatures <- matrix(c(max_temperatures, min_temperatures), nrow = 5, ncol = 2,
+                       dimnames = list(cities_to_visit, c("Maximum", "Minimum")))
+
+temperatures
+```
+</details>
+
+`r ne`. Create a three-dimensional array containing information about the climate of the cities you want to visit. The first dimension should represent the cities, the second dimension should represent the months of the year ("January", "February", ..., "December"), and the third dimension should represent two variables: "Temperature" and "Precipitation". You can use dummy values to fill the array.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=TRUE}
+# Create an array with dimensions 5 cities x 12 months x 2 variables
+climate <- array(dim = c(5, 12, 2),
+                dimnames = list(cities_to_visit,
+                                month.name,
+                                c("Temperature", "Precipitation")))
+
+# Fill the array with dummy values (example)
+climate[,, "Temperature"] <- sample(10:35, 60, replace = TRUE)  # Temperatures between 10 and 35 degrees
+climate[,, "Precipitation"] <- sample(0:100, 60, replace = TRUE)  # Precipitation between 0 and 100 mm
+
+climate
+```
+</details>
+
+`r ne`. Imagine you have a vector with the daily maximum temperatures of a US city for a year. Create a program that, using only the concepts learned in this chapter (variables, vectors, matrices, arrays, and factors), identifies the longest streak of consecutive days with maximum temperatures above a given threshold (for example, 25 degrees Celsius).
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+This exercise requires efficient vector handling and algorithmic logic to identify the longest streak. Here is a possible solution:
+
+```{r eval=TRUE}
+# Create a vector with dummy maximum temperatures for a year
+temperatures <- sample(10:35, 365, replace = TRUE)
+
+# Define the temperature threshold
+threshold <- 25
+
+# Create a logical vector indicating if the temperature exceeds the threshold
+hot_days <- temperatures > threshold
+
+# Initialize variables to track the longest streak
+current_streak <- 0
+longest_streak <- 0
+start_longest_streak <- 0
+
+# Iterate through the hot days vector
+for (i in 1:length(hot_days)) {
+  if (hot_days[i]) {
+    current_streak <- current_streak + 1
+  } else {
+    if (current_streak > longest_streak) {
+      longest_streak <- current_streak
+      start_longest_streak <- i - current_streak
+    }
+    current_streak <- 0
+  }
+}
+
+# Show the longest streak and its position
+cat("The longest streak of hot days is:", longest_streak, "\n")
+cat("Starts on day:", start_longest_streak, "\n")
+```
+This code uses a `for` loop to traverse the hot days vector and two variables (`current_streak` and `longest_streak`) to track the longest streak.
+
+</details>
+
+`r ne`. Imagine you have a vector with the daily stock prices of a company for a year. Create a program that, using only the concepts learned in this chapter, determines the time period in which you could have bought and sold the shares to obtain the maximum profit. Assume you can only buy and sell once.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+  This exercise is a variant of the classic "maximize stock profit" problem. Solving it optimally can be complex, but with the concepts from chapter 1, we can create an algorithm that finds a solution (though not necessarily the optimal one).
+
+```{r eval=TRUE}
+# Create a vector with dummy stock prices for a year
+prices <- sample(50:150, 365, replace = TRUE)
+
+# Initialize variables to track max profit
+max_profit <- 0
+buy_day <- 1
+sell_day <- 1
+
+# Iterate through the prices vector
+for (i in 1:(length(prices) - 1)) {
+  for (j in (i + 1):length(prices)) {
+    profit <- prices[j] - prices[i]
+    if (profit > max_profit) {
+      max_profit <- profit
+      buy_day <- i
+      sell_day <- j
+    }
+  }
+}
+
+# Show max profit and buy/sell days
+cat("Maximum profit:", max_profit, "\n")
+cat("Buy day:", buy_day, "\n")
+cat("Sell day:", sell_day, "\n")
+```
+This code uses two nested `for` loops to compare all possible pairs of buy and sell days.
+</details>
+
+`r if(params$hidden){"-->"}`

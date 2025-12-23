@@ -1,0 +1,109 @@
+# Google Analytics from R
+
+Understanding the audience that enters our website helps us make better decisions, whether these are commercial or content release decisions. We can, thus, insert a visit counter or use Google Analytics to start collecting much more than the total visits.
+
+## Problem
+We have a website to which we already placed the Google Analytics code to understand visit statistics to my website, but I want reports that today the web does not provide us. We need to access the raw data to represent our own reports and access them even without having to enter the Google Analytics website.
+
+## Access to data
+We are going to assume for this case that we already have a google analytics account and we are already tracking data from our website through some view. For this case I am going to use the statistics to the website that you are currently reading.
+
+To access the Google Analytics data we will use the [`googleAnalyticsR`](http://code.markedmondson.me/googleAnalyticsR/articles/v4.html) library. In addition, to quickly manipulate dates from or to we will use the `lubridate` library.
+
+```{r eval=FALSE}
+install.packages("googleAnalyticsR")
+library(googleAnalyticsR)
+library(lubridate)
+```
+
+Then, we have to authenticate. To do this we will use the `ga_auth()` function, which will open a web page to log in with the account in which we have access to Google Analytics.
+
+```{r eval=FALSE}
+ga_auth()
+```
+
+Now that we are authenticated we can bring all our accounts using the `ga_account_list()` function.
+
+```{r include=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
+gar_set_client("gAnalytics.json")
+ga_auth(email = "daparedes281@gmail.com")
+```
+
+```{r eval=FALSE}
+account_list <- ga_account_list()
+```
+
+From here we will search for the row of the website that interests us and from there we will obtain the `viewID` column. The viewID in Google Analytics for this website is the following:
+
+```{r eval=FALSE}
+ga_id <- 218744945
+```
+
+Finally, we need two variables of the date from when to when we want the data.
+
+```{r eval=FALSE}
+from_date <- "2020-01-01"
+to_date <- "2020-03-31"
+```
+
+Or if we wish we can only calculate the information of the last two months, or two days, etc.
+
+```{r eval=FALSE}
+# Two months ago until now
+from_date <- seq(now(), length = 2, by = "-2 months")[2] |> as_date() |> as.character()
+to_date <- now() |> as_date() |> as.character()
+
+from_date
+to_date
+```
+
+Thus, we can already make a call to obtain the data we need using the `google_analytics()` function.
+
+```{r eval=FALSE}
+history <- google_analytics(ga_id,
+                 date_range = c(from_date, to_date),
+                 metrics = "users",
+                 dimensions = "date")
+```
+
+With this data frame we could filter it or visualize it, depending on what we need.
+
+## Visualization
+Now with access to the data we can use the multiple [metrics and dimensions available](https://ga-dev-tools.appspot.com/dimensions-metrics-explorer/). For this case we are going to exemplify visualizing the city from where they visit this website in the last 90 days, which is related to the information in the paragraph of the main page, the preface, of this website (however, for that other calculation it is performed for another period of time).
+
+```{r eval=FALSE}
+# Last 90 days to date
+from_date <- seq(now(), length = 2, by = "-90 days")[2] |> as_date() |> as.character()
+to_date <- now() |> as_date() |> as.character()
+
+# We add the city as a dimension
+history <- google_analytics(ga_id,
+                 date_range = c(from_date, to_date),
+                 metrics = "users",
+                 dimensions = c("cityID", "city"))
+```
+
+As we see, the dimension also allows a vector as input. We will create a histogram with the top 5 cities that visited this website in the last 90 days.
+
+```{r eval=FALSE}
+history |> 
+  filter(city != "(not set)") |>
+  group_by(city) |> 
+  summarise(total = sum(users)) |> 
+  mutate(proportion = total / sum(total)) |> 
+  top_n(5, wt = proportion) |> 
+  mutate(city = reorder(city, proportion, sum)) |> 
+  ggplot() +
+  aes(proportion, city) +
+  geom_col() +
+  labs(
+    x = "Proportion of visits",
+    title = "Proportion of visits by city",
+    y = ""
+  )
+```
+
+Keep in mind that in this case there is an issue of recognition of IPs coming from Lima, Peru, and that is why they do not appear as the first visitor. At the time of performing this analysis they all appeared as "(not set)". However, if the same analysis is done by country and not by city, Peru is recognized and appears as one of the top visiting the web.
+
+## Conclusion
+We see that it is very easy to access Google Analytics data. We can create our own reports directly from R to analyze as many dimensions as we need without having to use the reporting provided by Google Analytics.

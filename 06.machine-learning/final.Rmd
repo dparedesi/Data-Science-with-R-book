@@ -1,0 +1,362 @@
+# Final Project {-}
+
+In this final project, we will evaluate transversal concepts seen throughout the course.
+
+## Instructions: {-}
+
+* All questions are worth the same score.
+* The answers are entirely R code. Save your file with the following format: **firstname_lastname.R**
+* Please order your answers **using comments** clearly pointing out which is the answer.
+* Test your code before moving to the next question.
+* Before sending your code, reopen the file to ensure everything was saved. There are past individual works where only the first questions were sent because they were not saved properly.
+
+## The Case {-}
+The sinking of the **Titanic** is one of the most infamous shipwrecks in history. On April 15, 1912, during her maiden voyage, the widely considered "unsinkable" RMS Titanic sank after colliding with an iceberg. Unfortunately, there were not enough lifeboats for everyone on board, resulting in the death of 1502 out of 2224 passengers and crew. While there was some element of luck involved in surviving, it seems some groups of people were more likely to survive than others.
+
+## Questions {-}
+### Question 1 {-}
+Import data from the path "https://dparedesi.github.io/DS-con-R/titanic/group_1.csv" to object `group_1` and data from the path "https://dparedesi.github.io/DS-con-R/titanic/group_2.csv" to object `group_2`. Optionally you can download from path: "https://dparedesi.github.io/DS-con-R/titanic/diccionario.csv" to object `diccionario` to access the data dictionary and understand headers better.
+
+```{r warning=FALSE}
+url <- "https://dparedesi.github.io/DS-con-R/titanic/group_1.csv"
+group_1 <- read_csv(url)
+group_1
+
+url <- "https://dparedesi.github.io/DS-con-R/titanic/group_2.csv"
+group_2 <- read_csv(url)
+group_2
+```
+
+### Question 2 {-}
+Convert the `Survived` column, for both `group_1` and `group_2`, to Factor data type.
+
+```{r warning=FALSE}
+# Solution 1
+group_1 <- group_1 |>
+  mutate(Survived = as_factor(Survived))
+
+group_2 <- group_2 |>
+  mutate(Survived = as_factor(Survived))
+
+# Solution 2
+group_1 <- group_1 |>
+  mutate(across(c("Survived"),~ as.factor(.)))
+
+group_2 <- group_2 |>
+  mutate(across(c("Survived"),~ as.factor(.)))
+```
+
+### Question 3 {-}
+Report `str()` of `group_1` and `group_2` to validate that the `Survived` field is Factor.
+
+```{r warning=FALSE}
+# Solution 1
+str(group_1)
+str(group_2)
+
+# Solution 2 (without using str)
+class(group_1$Survived)
+class(group_2$Survived)
+```
+
+### Question 4 {-}
+From `group_1`, create a box plot with x-axis: `Survived` and y-axis: `Precio_Ticket`.
+
+```{r warning=FALSE}
+group_1 |>
+  ggplot() +
+  aes(Survived, Precio_Ticket) +
+  geom_boxplot() +
+  xlab("Survived") +
+  ylab("Ticket Price") +
+  ggtitle("Survival vs Ticket Price Boxplot") 
+```
+
+### Question 5 {-}
+From `group_1`, create a scatter plot with x-axis: `Edad` and y-axis: `Precio_Ticket` distinguishing by colors if they survived or not. Add necessary filters so no warning appears.
+
+```{r warning=FALSE}
+group_1 |>
+  filter(!is.na(Edad)) |> 
+  ggplot() +
+  aes(Edad, Precio_Ticket, color = Survived) +
+  geom_point() +
+  xlab("Passenger Age") +
+  ylab("Ticket Price") +
+  ggtitle("Age vs Price Scatter Plot")
+```
+
+### Question 6 {-}
+From `group_1`, obtain a random sample using the `sample()` function from the `Survived` column.
+
+```{r warning=FALSE}
+sample(group_1$Survived, 1)
+```
+
+### Question 7 {-}
+**Using Monte Carlo simulation** and data from `group_1`, what is the probability that if we choose a passenger at random, this person survived?
+
+```{r warning=FALSE}
+N <- 10000
+
+results <- replicate(N, {
+  sample(group_1$Survived, 1)
+})
+
+meets_condition <- results == "Si"
+
+mean(meets_condition)
+```
+
+### Question 8 {-}
+Filter data from `group_1` that does not have any column as `NA` and store it in object: `entrena`. Filter data from `group_2` that does not have any column as `NA` and store it in object: `test`.
+
+It is very common to feel tempted to delete all rows, as the question indicates. However, always before deleting we have to be aware of how much data we are going to eliminate. For this we create a function to detect `NA`s of a determined vector:
+
+```{r warning=FALSE}
+count_NAs <- function(vector){
+  sum(is.na(vector))
+}
+```
+
+Then, we can apply this function to each of the data frame vectors using the `sapply()` function.
+
+```{r warning=FALSE}
+sapply(group_1, count_NAs)
+sapply(group_2, count_NAs)
+```
+
+We see that both in group 1 and group 2, NAs are concentrated in two attributes: Numero_Cabina and Edad. In the case of group 1, if we remove all `NA`s corresponding to cabin number we would be losing 687 out of a total of 891 data points (77% of data). We cannot afford to lose at least 77% of data.
+
+Thus, although in this exercise we could filter data so no column has `NA`, it would be advisable to analyze if we can discard the cabin number.
+
+Data analysis requires training and judgment. In this case we could assume the hypothesis that 1st class had cabin numbers separated from 2nd and 3rd class. Thus, we will take only the first digit and put it in a box plot vs ticket class.
+
+```{r warning=FALSE}
+group_1 |> 
+  filter(!is.na(Numero_Cabina)) |> 
+  mutate(cabina = substr(Numero_Cabina, 1, 1)) |> 
+  ggplot() +
+  aes(ClaseDelTicket, cabina) +
+  geom_boxplot() +
+  geom_point()
+```
+
+Here it is already noticeable that first class had cabins starting with A, B, C, D, E and T separated. Cabin G was exclusive for 3rd class passengers and cabin F was shared. We could zoom in on cabin F:
+
+```{r warning=FALSE}
+group_1 |> 
+  filter(!is.na(Numero_Cabina)) |> 
+  mutate(cabina = substr(Numero_Cabina, 1, 1)) |> 
+  filter(cabina == "F") |> 
+  count(ClaseDelTicket) |> 
+  mutate(proporcion = n /sum(n))
+```
+
+Although we have 61% of cabin F assigned to second class passengers, we have a total of 13 passengers. Including a variable for 13 rows makes no sense and it is better to discard this variable.
+
+```{r warning=FALSE}
+# We remove the Numero_Cabina column
+group_1 <- group_1[ , !names(group_1) == "Numero_Cabina"]
+group_2 <- group_2[ , !names(group_2) == "Numero_Cabina"]
+```
+
+In the case of the age variable it is different. We can look for some other data containing it, but in this case as "business knowledge" we know children were saved first. So, this variable can be significant. Thus, we are going to remove `NA`s from this column, but it would be advisable to create question 9 and 10 with models contemplating age and others not contemplating age to choose the most optimal model.
+
+```{r warning=FALSE}
+# Solution 1:
+train <- group_1 |> 
+  filter(!is.na(Edad) & !is.na(Puerto_embarque)) # Only these two fields have NAs
+
+test <- group_2 |> 
+  filter(!is.na(Edad) & !is.na(Precio_Ticket)) # Only these two fields have NAs
+
+# Solution 2:
+train <- na.omit(group_1)
+test <- na.omit(group_2)
+
+```
+
+### Question 9 {-}
+Using this training and test data create at least 3 Machine learning models to find which is the optimal model.
+
+This question also requires some analysis before starting to create models. Experience will give you this ability. At first, as you may have noticed, you learn by starting to execute and noticing the model doesn't run or results are not what you expected.
+
+Before starting to create models let's always analyze the data we have to remove those data that explain nothing about our outputs. For example: `IdPasajero`. Normally in our databases we will always have to place an Id data to identify the person, it could be DNI, or another primary key. In this case it is a correlative that we can validate if we join training and test data rows using `bind_rows()` function.
+
+```{r warning=FALSE}
+data_total <- bind_rows(train, test)
+
+data_total |> 
+  ggplot() +
+  aes(Sobrevivio, IdPasajero) +
+  geom_boxplot()
+
+data_total |> 
+  mutate(ClaseDelTicket = as.character(ClaseDelTicket)) |> 
+  ggplot() +
+  aes(ClaseDelTicket, IdPasajero) +
+  geom_boxplot()
+```
+
+We see that variable has the same behavior and does not vary by passenger class or if they survived or not. So we eliminate the column:
+
+We recall that to compare models we will use cross-validation. Since we already have a clean train/test split from previous questions, we will create folds from our training data `train`.
+
+```{r warning=FALSE}
+set.seed(28)
+titanic_folds <- vfold_cv(train, v = 5, strata = Sobrevivio)
+```
+
+Then, we ensure using ROC metric:
+
+```{r warning=FALSE}
+titanic_metrics <- metric_set(roc_auc, accuracy, sensitivity, specificity)
+```
+
+And here we will create our models. First, let's define a recipe to handle the preprocessing (removing Id, Name, Ticket, and normalizing numeric variables).
+
+```{r warning=FALSE}
+titanic_recipe <- recipe(Sobrevivio ~ ., data = train) |>
+  step_rm(IdPasajero, Nombre, Ticket) |>
+  step_impute_median(all_numeric_predictors()) |> # Good practice to handle potential NAs
+  step_impute_mode(all_nominal_predictors()) |>
+  step_dummy(all_nominal_predictors(), -Sobrevivio) |>
+  step_normalize(all_numeric_predictors())
+```
+
+And here we just create our models:
+
+```{r warning=FALSE}
+## 1. K-Nearest Neighbors
+knn_spec <- nearest_neighbor(neighbors = tune()) |>
+  set_engine("kknn") |>
+  set_mode("classification")
+
+knn_wf <- workflow() |>
+  add_recipe(titanic_recipe) |>
+  add_model(knn_spec)
+
+knn_res <- tune_grid(
+  knn_wf,
+  resamples = titanic_folds,
+  grid = 10,
+  metrics = titanic_metrics
+)
+
+## 2. Generalized Linear Regression
+glm_spec <- logistic_reg(penalty = tune(), mixture = tune()) |>
+  set_engine("glmnet") |>
+  set_mode("classification")
+
+glm_wf <- workflow() |>
+  add_recipe(titanic_recipe) |>
+  add_model(glm_spec)
+
+glm_res <- tune_grid(
+  glm_wf,
+  resamples = titanic_folds,
+  grid = 10,
+  metrics = titanic_metrics
+)
+
+## 3. Random Forest
+rf_spec <- rand_forest(trees = 1000, mtry = tune(), min_n = tune()) |>
+  set_engine("ranger") |>
+  set_mode("classification")
+
+rf_wf <- workflow() |>
+  add_recipe(titanic_recipe) |>
+  add_model(rf_spec)
+
+rf_res <- tune_grid(
+  rf_wf,
+  resamples = titanic_folds,
+  grid = 10,
+  metrics = titanic_metrics
+)
+
+## 4. Support Vector Machine Model
+svm_spec <- svm_rbf(cost = tune(), rbf_sigma = tune()) |>
+  set_engine("kernlab") |>
+  set_mode("classification")
+
+svm_wf <- workflow() |>
+  add_recipe(titanic_recipe) |>
+  add_model(svm_spec)
+
+svm_res <- tune_grid(
+  svm_wf,
+  resamples = titanic_folds,
+  grid = 10,
+  metrics = titanic_metrics
+)
+
+## 5. Naive Bayes
+nb_spec <- naive_Bayes() |>
+  set_engine("naivebayes") |>
+  set_mode("classification")
+
+nb_wf <- workflow() |>
+  add_recipe(titanic_recipe) |>
+  add_model(nb_spec)
+
+nb_res <- fit_resamples(
+  nb_wf,
+  resamples = titanic_folds,
+  metrics = titanic_metrics
+)
+```
+
+Then we collect metrics and visualize:
+
+```{r warning=FALSE}
+knn_metrics <- collect_metrics(knn_res) |> mutate(model = "kNN")
+glm_metrics <- collect_metrics(glm_res) |> mutate(model = "GLM")
+rf_metrics <- collect_metrics(rf_res) |> mutate(model = "Random Forest")
+svm_metrics <- collect_metrics(svm_res) |> mutate(model = "SVM")
+nb_metrics <- collect_metrics(nb_res) |> mutate(model = "Naive Bayes")
+
+all_metrics <- bind_rows(knn_metrics, glm_metrics, rf_metrics, svm_metrics, nb_metrics)
+
+all_metrics |>
+  filter(.metric == "roc_auc") |>
+  ggplot(aes(x = reorder(model, mean), y = mean, fill = model)) +
+  geom_col() +
+  coord_flip() +
+  labs(y = "ROC AUC", x = "Model", title = "Model Comparison") +
+  theme(legend.position = "none")
+```
+
+### Question 10 {-}
+Use the optimal model created to predict values of whether they survived in the test dataset. Report the Confusion Matrix of prediction vs test data.
+
+I have adjusted one more parameter not seen in class called `tuneGrid` (now `grid` in tune_grid). I used it since I have seen most have managed to create models at the level I taught and can now explore this more advanced parameter.
+
+```{r warning=FALSE}
+# Assuming Random Forest was best (select dynamically based on plot)
+best_rf <- select_best(rf_res, metric = "roc_auc")
+
+final_rf_wf <- finalize_workflow(rf_wf, best_rf)
+final_fit <- fit(final_rf_wf, data = train)
+
+test_predictions <- augment(final_fit, new_data = test)
+
+# Confusion Matrix
+test_predictions |>
+  conf_mat(truth = Sobrevivio, estimate = .pred_class)
+
+# Accuracy
+test_predictions |>
+  accuracy(truth = Sobrevivio, estimate = .pred_class)
+```
+
+On the other hand, I am using the Random Forest model and not SVM because Random Forest was the one coming out first most times when I ran models multiple times.
+
+```{r warning=FALSE}
+optimal_model <- modelo_rf
+
+prediction <- predict(optimal_model, newdata = test_limpio)
+
+confusionMatrix(prediction, test_limpio$Sobrevivio)
+```

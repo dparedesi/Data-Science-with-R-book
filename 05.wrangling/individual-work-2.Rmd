@@ -1,0 +1,94 @@
+
+# Individual Work 2 {-}
+
+This individual work will evaluate the knowledge learned in units 3 and 4. Each question has the same score.
+The answers are entirely R code. Save your file with the following format: firstname_lastname.R The code will be reviewed without considering comments.
+
+## Unit III: Statistics {-}
+
+1. In a cookie box we have 30 chocolate-flavored cookies, 45 coconut-flavored cookies, and 76 strawberry-flavored cookies. Create the vector `galletas` with all these cookies inside and use the `sample()` function to get a random cookie.
+
+```{r eval=TRUE}
+# We create our cookie vector
+sabores <- c("chocolate","coco","fresa")
+veces <- c(30,45,76)
+galletas <- rep(sabores, times = veces)
+
+# We get a random cookie
+sample(galletas, 1)
+```
+
+2. From the previous vector, calculate using Monte Carlo simulation and 10 thousand iterations, what is the probability that when taking a cookie from the box, it is coconut.
+
+```{r eval=TRUE}
+n <- 10000
+
+resultados<-replicate(n, {
+    sample(galletas, 1)
+  }
+)
+
+mean(resultados =="coco")
+```
+
+3. Assuming that the grade distribution of Data Science with R students comes from a normal distribution with an average of 15 and a standard deviation of 1.5, what is the probability that a student obtains a grade higher than 16?
+
+```{r eval=TRUE}
+promedio <- 15
+desv_est <- 1.5
+
+# Probability that a student obtains LESS or EQUAL to 16
+prob <- pnorm(16, promedio, desv_est)
+
+# Probability that a student obtains MORE than 16
+1 - prob
+```
+
+## Unit IV: Data Wrangling {-}
+
+1. Import the file "https://dparedesi.github.io/DS-con-R/rmapalacios_user_tweets.csv" to the object `tuits` and create a histogram of the tweets published taking into account the `UTC` column.
+
+```{r eval=TRUE}
+url<- "https://dparedesi.github.io/DS-con-R/rmapalacios_user_tweets.csv"
+tuits <-read_csv(url)
+
+tuits |> 
+  filter(`Tweet Type` == "Tweet") |> # Try to include only their tweets and not "Retweet" nor "Reply"
+  ggplot(aes(UTC))+
+  geom_histogram(binwidth = 86400, col="white") + # 86400 sec. has each day
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(x = "Date (Day-Month)", y = "Number of tweets", 
+       title = "Histogram of tweets by publication date") +
+  scale_x_datetime(breaks = "1 week", date_labels = "%d-%m")
+```
+
+2. Import the file "https://raw.githubusercontent.com/dparedesi/DS-con-R/master/Carnes-Universitarios-2018.csv" to the object `carnes` and create a histogram of the `Cant_Carnes` column.
+
+```{r eval=TRUE, warning = FALSE}
+url <- "https://raw.githubusercontent.com/dparedesi/DS-con-R/master/Carnes-Universitarios-2018.csv"
+carnes <- read_delim(url, delim = "|")
+
+carnes |> 
+  ggplot() +
+  aes(Cant_Carnes) +
+  geom_histogram(binwidth = 300, col = "white", fill = "blue") +
+  labs(x = "# Cards", y = "Quantity", title = "Histogram of cards")
+
+```
+
+3. Import the file "https://dparedesi.github.io/DS-con-R/indicadores-desarrollo-mundial-pe.csv" to the `indicadoresPE` object and convert it to tidy data.
+
+```{r eval=TRUE, warning = FALSE}
+url <- "https://dparedesi.github.io/DS-con-R/indicadores-desarrollo-mundial-pe.csv"
+indicadoresPE <- read_csv(url)
+
+# Solution 1:
+indicadoresPE_tidy <- indicadoresPE |> 
+  gather(año, valores, `2010`:`2019`, convert = TRUE)
+
+# Solution 2:
+indicadoresPE_tidy_ <- indicadoresPE |> 
+  gather(año, valores, -pais, -codigo, -indicador, -codigo_indicador, convert = TRUE)
+
+indicadoresPE_tidy
+```

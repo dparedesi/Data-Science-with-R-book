@@ -1,0 +1,677 @@
+# Gapminder
+
+[The Gapminder Foundation](https://www.gapminder.org/)^[https://www.gapminder.org/] is a Swedish non-profit organization that promotes global development through the use of statistics that can help reduce common myths and sensationalist stories about global health and economics. An important selection of data is already loaded in the `dslabs` library in the `gapminder` data frame. Our case/problem now will be to answer these two questions:
+
+>1. Is it still reasonable to divide the world between Western countries* and developing countries?
+>2. Is it true that every day we are worse off and rich countries get richer while poor countries get poorer?
+
+(*): Samuel Huntington in 1993 published an article called [Clash of Civilizations](https://web.archive.org/web/20100821191056/http://history.club.fatih.edu.tr/103%20Huntington%20Clash%20of%20Civilizations%20full%20text.htm)^[Full text of Huntington's article (in English)] where he defined Western countries as those located in the regions of North America, Northern/Southern/Western Europe and Australia and New Zealand.
+
+The process we are going to follow to solve the mentioned questions will be:
+
+1. Data Exploration
+2. Data Understanding
+3. Data analysis until finding the relevant ones to solve questions
+4. Visualization and summary
+
+First let's explore the structure of the data frame with `str()`:
+
+```{r eval=TRUE}
+gapminder |> 
+  str()
+```
+
+We have a data frame with more than 10 thousand data points and 9 variables.
+
+Now let's take a look at the data with `head()`:
+
+```{r eval=TRUE}
+gapminder |> 
+  head()
+```
+
+Remember that for library data frames we can usually find the documentation and understand each attribute faster:
+
+```{r eval=FALSE}
+?gapminder
+```
+
+Going directly to the questions would be not leaving that curiosity free to see what else is in the data. Thus, we are going to start with other variables such as infant mortality, fertility or population.
+
+We can filter all the data that are from Peru and select the column country, year, infant mortality and population:
+
+```{r eval=TRUE}
+gapminder |> 
+  filter(country == "Peru") |> 
+  select(country, year, infant_mortality, population)
+```
+
+Let's add a filter to obtain only the data from 2015:
+```{r eval=TRUE}
+gapminder |> 
+  filter(country == "Peru" & year == 2015) |> 
+  select(country, year, infant_mortality, population)
+```
+
+We can make a comparison between Peru and Chile if we create a vector and instead of the `==` operator we use the `%in%` operator that allows evaluating that our data are **in** that vector.
+
+```{r eval=TRUE}
+vector_countries = c("Peru", "Chile")
+
+gapminder |> 
+  filter(country %in% vector_countries & year == 2015) |> 
+  select(country, year, infant_mortality, population)
+```
+
+Infant mortality is measured in number of children who die per 1,000 infants. This means that it already takes into account the population. In 2015 Peru had a higher infant mortality rate than Chile.
+
+## Initial gapminder plots
+However, if we want to analyze global data, comparing country by country would take us much more time. Let's use `ggplot` to see if there is a relationship in our data.
+
+Let's create a scatter plot with data from the **year 1990** of the fertility variable (`fertility`), which is the average number of children per woman, and the life expectancy variable (`life_expectancy`).
+
+```{r eval=TRUE}
+gapminder |> 
+  filter(year == 1990) |> 
+  ggplot() +
+  aes(x = fertility, y = life_expectancy) +
+  geom_point()
+
+```
+
+From this graph we can see that countries where families have 7.5 children have a lower life expectancy. On the other hand, in countries with high life expectancy the average number of children is less than 2 children per family.
+
+As we have done previously, we can color the points according to some other variable. In this case, knowing which continent they belong to could give us a better idea of the data.
+
+```{r eval=TRUE}
+gapminder |> 
+  filter(year == 1990) |> 
+  ggplot() +
+  aes(x = fertility, y = life_expectancy, color = continent) +
+  geom_point()
+
+```
+
+In this graph, groups begin to be seen. Several European countries are in the upper left quadrant, while several African countries are in the lower right quadrant.
+
+## Facets
+Although the previous graph already shows us a correlation of variables, we cannot see how it has changed from one year to another. For this we will use the facet layer (`facet_`).
+
+In the layer `facet_grid(row_variable ~ column_variable)` we replace "row_variable" with the name of our variable or replace it with a `.` if we don't want any of them. For example, from the previous example let's compare how the distribution changed by comparing the year 1960 with the year 2013.
+
+```{r eval=TRUE}
+vector_years <- c(1960, 2013)
+
+gapminder |> 
+  filter(year %in% vector_years) |> 
+  ggplot() +
+  aes(x = fertility, y = life_expectancy, color = continent) +
+  geom_point() +
+  facet_grid(year ~ .)
+```
+
+We can make it even clearer which continent changed the most if we add the continent variable as a column.
+
+```{r eval=TRUE}
+vector_years <- c(1960, 2013)
+
+gapminder |> 
+  filter(year %in% vector_years) |> 
+  ggplot() +
+  aes(x = fertility, y = life_expectancy, color = continent) +
+  geom_point() +
+  facet_grid(year ~ continent)
+```
+
+Having several columns for each continent makes it harder to understand because the columns become smaller. It is recommended to have few columns. So we invert the order between year and continent.
+
+```{r eval=TRUE}
+vector_years <- c(1960, 2013)
+
+gapminder |> 
+  filter(year %in% vector_years) |> 
+  ggplot() +
+  aes(x = fertility, y = life_expectancy, color = continent) +
+  geom_point() +
+  facet_grid(continent ~ year)
+```
+
+Here the change by regions is much more evident and how the majority of countries have reduced fertility per family while increasing life expectancy. We are living longer than in the 60s and in turn having fewer children per family. These phenomena have occurred globally.
+
+We don't always have to show all variables, in this case continents. We can continue applying filters so that it shows us a subset of continents that we want to compare. For example:
+
+```{r eval=TRUE}
+vector_years <- c(1960, 2013)
+vector_continents <- c("Europe", "Asia")
+
+gapminder |> 
+  filter(year %in% vector_years & continent %in% vector_continents) |> 
+  ggplot() +
+  aes(x = fertility, y = life_expectancy, color = continent) +
+  geom_point() +
+  facet_grid(continent ~ year)
+```
+    
+In this case it would be visually better if the continents were not in separate rows, but could still be appreciated in the graph. To do this, we will use the wrap facet (`facet_wrap(~ x)`), where `x` is the variable we want to wrap. In our case it would be the year, instead of appearing in separate rows we can join and transpose them.
+    
+```{r eval=TRUE}
+vector_años <- c(1960, 2013)
+vector_continents <- c("Europe", "Asia")
+
+gapminder |> 
+  filter(year %in% vector_years & continent %in% vector_continents) |> 
+  ggplot() +
+  aes(x = fertility, y = life_expectancy, color = continent) +
+  geom_point() +
+  facet_wrap( ~ year)
+```
+
+We can add more data by adding more data to the vectors. For example, let's add a cut in the middle between 1960 and 2013.
+
+```{r eval=TRUE}
+vector_years <- c(1960, 1985, 2013)
+vector_continents <- c("Europe", "Asia")
+
+gapminder |> 
+  filter(year %in% vector_years & continent %in% vector_continents) |> 
+  ggplot() +
+  aes(x = fertility, y = life_expectancy, color = continent) +
+  geom_point() +
+  facet_wrap( ~ year)
+```
+
+## Time series
+Time series are sequences of data measured at determined moments and ordered chronologically. R allows us to easily plot time series, we only need our data frames to include some time variable.
+
+### Individual time series
+In an individual time series we only analyze how a single variable has evolved, for example the evolution of the fertility rate in Peru. For this we can use a scatter plot with points or with lines.
+
+As we will remember, we use `geom_point()` for points:
+
+```{r eval=TRUE}
+gapminder |> 
+  filter(country == "Peru") |> 
+  ggplot() +
+  aes(x = year, y = fertility) +
+  geom_point()
+```
+
+We get a "warning" indicating that there are values that cannot be drawn because they are `NA` and are not available. This does not prevent showing the graph.
+
+If we want a line graph, which is the most used in time series, we use `geom_line()`:
+
+```{r eval=TRUE}
+gapminder |> 
+  filter(country == "Peru") |> 
+  ggplot() +
+  aes(x = year, y = fertility) +
+  geom_line()
+```
+
+### Multiple time series
+In multiple time series we seek comparison to analyze in a time series how the data evolved. For example, this would be the time series if we compare Peru, Bolivia and Chile:
+
+```{r eval=TRUE}
+countries <- c("Peru", "Bolivia", "Chile")
+
+gapminder |> 
+  filter(country %in% countries) |> 
+  ggplot() +
+  aes(x = year, y = fertility, color = country) +
+  geom_line()
+```
+
+We can also remove the legend and show the name of the countries as labels on the same graph. To do this we will first have to create a data frame using the function `data.frame()` that indicates the coordinates where we want each label to appear:
+
+```{r eval=TRUE}
+countries <- c("Peru", "Bolivia", "Chile")
+
+labels <- data.frame(country_names = countries, x = c(1975, 1965, 1962), y = c(6, 7, 4))
+  
+labels
+```
+
+We will use this to indicate that we want, for example, Bolivia to be written at the intersection of the year 1972 and with a fertility rate of 6.8.
+
+To use these labels in `ggplot` we will edit the arguments in the `geom_text` layer. We will use the `data` attributes to indicate that we want to obtain the data from an external source, and we will include the `aes` layer inside `geom_text` to correlate the data frame we have created with the graph. We must keep in mind that the column name in both data frames must be the same, in this case `country`:
+
+```{r eval=TRUE}
+countries <- c("Peru", "Bolivia", "Chile")
+
+labels <- data.frame(country = countries, x = c(1976, 1972, 1965), y = c(5.2, 6.8, 5.5))
+
+gapminder |> filter(country %in% countries) |>
+  ggplot() +
+  aes(year, fertility, col = country) +
+  geom_line() +
+  geom_text(data = labels, aes(x, y, label = country)) +
+  theme(legend.position = "none")
+
+```
+
+
+## Exercises
+For these exercises we will continue using the `gapminder` data frame.
+
+`r ne`. Create a scatter plot of fertility versus life expectancy for the American continent in 2000. Color the points according to the region they belong to.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+gapminder |>
+  filter( continent == "Americas" & year == 2000) |>
+  ggplot() +
+  aes(fertility, life_expectancy, color = region) +
+  geom_point()
+```
+</details>
+
+> To create a vector of sequences we can use `X:Y`. This creates a vector that goes from number X to number Y
+
+`r ne`. The Vietnam War caused deaths in both the US (United States) and Vietnam. Create a chart that allows visualizing how life expectancy changed in each country. Hint: Filter these two countries, as well as the population from year 1955 to 1990 and this time series in a line chart.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+countries <- c("Vietnam", "United States")
+year_sequence <- 1955:1990
+
+gapminder |>
+  filter(country %in% countries & year %in% year_sequence) |> 
+  ggplot() +
+  aes(year, life_expectancy, color = country) +
+  geom_line()
+```
+</details>
+
+`r ne`. After the Vietnam War, Pol Pot and Khmer Rouge took control of Cambodia from 1975 to 1979 in one of the bloodiest dictatorships in history. Add Cambodia to the previous chart to visualize the impact of this government on life expectancy in that country.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+countries <- c("Vietnam", "United States", "Cambodia")
+year_sequence <- 1955:1990
+
+gapminder |>
+  filter(country %in% countries & year %in% year_sequence) |> 
+  ggplot() +
+  aes(year, life_expectancy, color = country) +
+  geom_line()
+```
+</details>
+
+`r if(params$hidden){"-->"}`
+
+## Histograms with ggplot
+We could continue exploring the data until we understand it much better. Eventually we would get to the GDP (`gdp`) data and in turn we would understand that comparing only GDP alone makes no sense since there are countries with much more population than others. Data transformation is not something new, but we will see that it is something recurrent in our analyzes.
+
+We are going to use a transformation that allows us to obtain how much is the GDP per capita per day in each country in each year
+
+```{r eval=FALSE}
+gapminder <- gapminder |> 
+  mutate(gdp_per_capita_per_day <- gdp/population/365)
+```
+
+We could visualize this variable first by creating a histogram of it. A histogram in ggplot is nothing more than one of the `geoms` we have available, in this case it would be `geom_histogram(binwidth = x)`, where **x** is the width of the bar. For example, let's calculate the distribution of our created variable in the year 2010:
+
+```{r eval=TRUE}
+gapminder |> 
+  mutate(gdp_per_capita_per_day = gdp/population/365) |> 
+  filter(year == 2010) |> 
+  ggplot() +
+  aes(gdp_per_capita_per_day) +
+  geom_histogram(binwidth = 5)
+
+```
+
+We can filter out the **NA** so that we no longer get the low "warnings" with the function we saw previously `is.na()`. In this case since we don't want the **NA** we will negate the function by placing the symbol `!` at the beginning.
+
+```{r eval=TRUE}
+gapminder |> 
+  mutate(gdp_per_capita_per_day = gdp/population/365) |> 
+  filter(year == 2010 & !is.na(gdp_per_capita_per_day)) |> 
+  ggplot() +
+  aes(gdp_per_capita_per_day) +
+  geom_histogram(binwidth = 5)
+
+```
+
+At this point it should be quick to detect that there is a concentration of data from countries with low GDP per capita and we could be tempted to apply a scale transformation on the _x-axis_. Let's try with logarithm in base 2:
+
+```{r eval=TRUE}
+gapminder |> 
+  mutate(gdp_per_capita_per_day = gdp/population/365) |> 
+  filter(year == 2010 & !is.na(gdp_per_capita_per_day)) |> 
+  ggplot() +
+  aes(gdp_per_capita_per_day) +
+  geom_histogram(binwidth = 0.5) + #Change the width to 0.5 due to logarithmic scale
+  scale_x_continuous(trans = "log2")
+
+```
+
+Let's be careful interpreting this data. We cannot say that it is a symmetric distribution, even when with this scale we are tempted to do so. Remember the scale and use it appropriately.
+
+## Box plots with ggplot
+In the same way, box plots are one more `geom` within the available ones, for this we will use the `geom_boxplot()` layer.
+
+For example, let's create a box plot to analyze GDP per capita per day by continent:
+
+```{r eval=TRUE}
+gapminder |> 
+  mutate(gdp_per_capita_per_day = gdp/population/365) |> 
+  filter(year == 2010 & !is.na(gdp_per_capita_per_day)) |> 
+  ggplot() +
+  aes(continent, gdp_per_capita_per_day) +
+  geom_boxplot()
+```
+
+Now let's zoom in. Within each continent we have regions, for example in the Americas we have South America, Central America, North America, and so on with each continent. Let's change the `continent` variable to `region`.
+
+```{r eval=TRUE}
+gapminder |> 
+  mutate(gdp_per_capita_per_day = gdp/population/365) |> 
+  filter(year == 2010 & !is.na(gdp_per_capita_per_day)) |> 
+  ggplot() +
+  aes(region, gdp_per_capita_per_day) +
+  geom_boxplot()
+```
+
+As we can verify: this visualization allows us to infer very little. Before discarding a graph let's think if we can change the configuration to improve the visualization.
+
+The first thing we can improve is the names of the regions. They are in horizontal form, but we could rotate it 45 degrees using the `theme()` layer.
+
+```{r eval=TRUE}
+gapminder |> 
+  mutate(gdp_per_capita_per_day = gdp/population/365) |> 
+  filter(year == 2010 & !is.na(gdp_per_capita_per_day)) |> 
+  ggplot() +
+  aes(region, gdp_per_capita_per_day) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1) )
+```
+
+The names are understood, but if we want to find the top 3 (either by median or average) we would have to look for them one by one. Let's reorder it, but first let's be aware of some previous considerations:
+
+The `region` column is a `Factor` type variable, it is not a character string. Even when visually we did not find a difference, factors are used to categorize data. For example, bronze, silver, platinum customers, etc.
+
+Factors are useful because internally they are replaced by numbers and numbers, at a computational level, are faster to sort. The default sorting is alphabetical, as we can appreciate if we use the `levels` function.
+
+```{r eval=TRUE}
+levels(gapminder$region)
+```
+
+We will use the `reorder()` function to change the order of the factors and since we are altering the dataframe we would have to use it inside the `mutate()` function. The `reorder()` function asks us as the first attribute the factor to reorder, then the vector that we will take into account and finally a grouping function. For example, order based on the median of each region (visually remember that it is the thick line inside each box):
+
+```{r eval=TRUE}
+gapminder |> 
+  mutate(gdp_per_capita_per_day = gdp/population/365) |> 
+  filter(year == 2010 & !is.na(gdp_per_capita_per_day)) |> 
+  mutate(region = reorder(region, gdp_per_capita_per_day, FUN = median)) |> 
+  ggplot() +
+  aes(region, gdp_per_capita_per_day) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+Note that a `mutate` has been placed after filtering the data. This is to guarantee that we are removing the **NA**. Otherwise, we risk that all values are **NA** and the reordering is not performed and remains default.
+
+We see at the far left some regions in Africa, and at the far right Europe and USA. Remember that we can add color according to some variable. In this case let's add color based on the continent:
+
+```{r eval=TRUE}
+gapminder |> 
+  mutate(gdp_per_capita_per_day = gdp/population/365) |> 
+  filter(year == 2010 & !is.na(gdp_per_capita_per_day)) |> 
+  mutate(region = reorder(region, gdp_per_capita_per_day, FUN = median)) |> 
+  ggplot() +
+  aes(region, gdp_per_capita_per_day, color = continent) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+Although we can already differentiate it, in a box plot it is usually the fill (`fill` in English) of the box that is painted. So, let's change the `color` attribute to the `fill` attribute. And let's remove the legend on the _x-axis_. It is not necessary in this case where the regions are self-explanatory.
+
+```{r eval=TRUE}
+gapminder |> 
+  mutate(gdp_per_capita_per_day = gdp/population/365) |> 
+  filter(year == 2010 & !is.na(gdp_per_capita_per_day)) |> 
+  mutate(region = reorder(region, gdp_per_capita_per_day, FUN = median)) |> 
+  ggplot() +
+  aes(region, gdp_per_capita_per_day, fill = continent) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  xlab("")
+```
+
+This graph helps us see the top 5, but since there are several regions concentrated in small values of GDP per capita we visually lose those regions. We need a scale transformation.
+
+If you are thinking of adding a logarithmic scale layer for the _y-axis_ you are on the right track. Let's try:
+
+```{r eval=TRUE}
+gapminder |> 
+  mutate(gdp_per_capita_per_day = gdp/population/365) |> 
+  filter(year == 2010 & !is.na(gdp_per_capita_per_day)) |> 
+  mutate(region = reorder(region, gdp_per_capita_per_day, FUN = median)) |> 
+  ggplot() +
+  aes(region, gdp_per_capita_per_day, fill = continent) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  xlab("") +
+  scale_y_continuous(trans = "log2")
+```
+
+Sometimes it is necessary not only to show the boxes, but also where each of the data points is located. For this we can add the `geom_point()` layer that we had previously used to show the points of each data.
+
+```{r eval=TRUE}
+gapminder |> 
+  mutate(gdp_per_capita_per_day = gdp/population/365) |> 
+  filter(year == 2010 & !is.na(gdp_per_capita_per_day)) |> 
+  mutate(region = reorder(region, gdp_per_capita_per_day, FUN = median)) |> 
+  ggplot() +
+  aes(region, gdp_per_capita_per_day, fill = continent) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  xlab("") +
+  scale_y_continuous(trans = "log2") +
+  geom_point(size = 0.5)
+```
+
+## Comparison of distributions
+To be able to solve the first question of the case we would have to compare the distributions of the "Western" countries versus the developing countries.
+
+For this, since we do not have a column that indicates which are from the West, we are going to create a `western_countries` with the list of regions that fall into this category:
+
+```{r eval=FALSE}
+western_countries <- c("Western Europe", "Northern Europe", "Southern Europe", "Northern America", "Australia and New Zealand")
+```
+
+> We will also use the `ifelse(test, yes, no)` function to create a new column such that if the region is in the West it stores a value, and if it is not in the West it stores another value. It is recommended to read the documentation in `?ifelse`.
+
+Let's add the column for the group each country belongs to:
+
+```{r eval=TRUE}
+western_countries <- c("Western Europe", "Northern Europe", "Southern Europe", "Northern America", "Australia and New Zealand")
+
+gapminder |> 
+  mutate(gdp_per_capita_per_day = gdp/population/365) |> 
+  filter(year == 2010 & !is.na(gdp_per_capita_per_day)) |> 
+  mutate(group = ifelse(region %in% western_countries, "Western", "Developing")) |> 
+  head()
+
+```
+
+Now that we have how to differentiate the countries we can see their distribution until we find how to answer our question. We start by creating a histogram with logarithmic scale in the _x-axis_ and separate it using `facet_grid` based on the group it belongs to:
+
+```{r eval=TRUE}
+western_countries <- c("Western Europe", "Northern Europe", "Southern Europe", "Northern America", "Australia and New Zealand")
+
+gapminder |> 
+  mutate(gdp_per_capita_per_day = gdp/population/365) |> 
+  filter(year == 2010 & !is.na(gdp_per_capita_per_day)) |> 
+  mutate(group = ifelse(region %in% western_countries, "Western", "Developing")) |> 
+  ggplot() +
+  aes(gdp_per_capita_per_day) +
+  geom_histogram(binwidth = 1) +
+  scale_x_continuous(trans = "log2") +
+  facet_grid(. ~ group)
+```
+
+We see that the daily GDP per capita has a distribution with higher values compared to developing countries. However, the picture in one year is not everything. We are ready to see if the separation was the same 40 years back from the date in the example (2010). We are also going to add the `geom_histogram()` layer the color attribute to see the border of the bars which by default are grey.
+
+```{r eval=TRUE}
+western_countries <- c("Western Europe", "Northern Europe", "Southern Europe", "Northern America", "Australia and New Zealand")
+
+gapminder |> 
+  mutate(gdp_per_capita_per_day = gdp/population/365) |> 
+  filter(year %in% c(1970, 2010) & !is.na(gdp_per_capita_per_day)) |> 
+  mutate(group = ifelse(region %in% western_countries, "Western", "Developing")) |> 
+  ggplot() +
+  aes(gdp_per_capita_per_day) +
+  geom_histogram(binwidth = 1, color = "black") +
+  scale_x_continuous(trans = "log2") +
+  facet_grid(year ~ group)
+```
+
+Both groups, both "Western" and "Developing" have improved in that 40-year span, but developing countries have advanced more than Western countries.
+
+So far we have assumed something: that all countries that reported in 2010 also reported data in 1970. To make the comparison finer we have to look for the distribution of countries that have data reported both in 1970 and in 2010.
+
+To do this, we are going to create a vector that lists the countries with data in 1970 and another of those that have data in 2010 and then look for the intersection. Remember that to extract a column we use the `pull()` function.
+
+```{r eval=TRUE}
+western_countries <- c("Western Europe", "Northern Europe", "Southern Europe", "Northern America", "Australia and New Zealand")
+
+list_1 <- gapminder |> 
+  mutate(gdp_per_capita_per_day = gdp/population/365) |> 
+  filter(year %in% c(1970) & !is.na(gdp_per_capita_per_day)) |> 
+  pull(country)
+
+list_2 <- gapminder |> 
+  mutate(gdp_per_capita_per_day = gdp/population/365) |> 
+  filter(year %in% c(2010) & !is.na(gdp_per_capita_per_day)) |> 
+  pull(country)
+
+```
+
+To find the intersection of these two vectors we will use the function `intersect(vector_1, vector_2)`, which will give us the vector we are looking for.
+
+```{r eval=TRUE}
+intersection_vector <- intersect(list_1, list_2)
+```
+
+So, we recreate our histogram including only the countries on this list.
+
+```{r eval=TRUE}
+gapminder |> 
+  mutate(gdp_per_capita_per_day = gdp/population/365) |> 
+  filter(year %in% c(1970, 2010) & !is.na(gdp_per_capita_per_day)) |> 
+  filter(country %in% intersection_vector) |> 
+  mutate(group = ifelse(region %in% western_countries, "Western", "Developing")) |> 
+  ggplot() +
+  aes(gdp_per_capita_per_day) +
+  geom_histogram(binwidth = 1, color = "black") +
+  scale_x_continuous(trans = "log2") +
+  facet_grid(year ~ group)
+```
+
+We see now more clearly with comparable data how there are more countries within the developing region that increased per capita GDP, much more than developing countries. But this first inference is still visual, we need to compare how the median, range, etc. changed. For this we will use a box plot very similar to the previous one, but this time we will edit `geom_boxplot()` so that it shows us in a single graph how each region has changed from 1970 to 2010.
+
+```{r eval=TRUE}
+gapminder |> 
+  mutate(gdp_per_capita_per_day = gdp/population/365) |> 
+  filter(year %in% c(1970, 2010) & !is.na(gdp_per_capita_per_day)) |> 
+  filter(country %in% intersection_vector) |> 
+  mutate(region = reorder(region, gdp_per_capita_per_day, FUN = median)) |> 
+  ggplot() +
+  aes(region, gdp_per_capita_per_day) +
+  geom_boxplot(aes(region, gdp_per_capita_per_day, fill=factor(year))) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  xlab("") +
+  scale_y_continuous(trans = "log2")
+
+```
+
+We see how there are regions within Asia that have grown substantially. As we know from general culture, some countries in Asia are already powers, but today with these graphs we can understand well how much each region has changed until becoming a power.
+
+Therefore, we can now answer both questions of the case:
+
+1. It is not reasonable to continue using the categorization of "Western" and "developing" since there are more and more regions that are poorly represented by those categories, such as East Asia.
+2. It is not true that rich countries get richer while poor countries get poorer. We have seen that developing countries have even higher growth than the growth that Western countries have.
+
+`r if(params$hidden){"<!--"}`
+
+`r if(params$hidden){"<!--"}`
+## Exercises
+
+For this series of exercises we will use the `stars` data frame which tells us attributes of a series of stars such as their temperature, type and magnitude.
+The `magnitude` column is the absolute magnitude, where a more negative value of a star compared to another means it is more luminous.
+
+Make sure to load the data frame with `data(stars)` before starting.
+
+`r ne`. The temperature is in degrees Kelvin. Add the temp_celsius column using the following formula: C = K - 273.15. Report a scatter plot of temperature versus magnitude coloring according to star type. Also, change the scale of the _x-axis_ to logarithmic base 10.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+stars |> 
+  mutate(temp_celsius = temp - 273.15) |> 
+  ggplot() +
+  aes(temp_celsius, magnitude, color = type) +
+  scale_x_log10() +
+  geom_point()
+```
+</details>
+
+`r ne`. Since positive values indicate less brightness, invert the values of the previous graph using the `scale_y_reverse()` layer.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+stars |> 
+  mutate(temp_celsius = temp - 273.15) |> 
+  ggplot() +
+  aes(temp_celsius, magnitude, color = type) +
+  scale_x_log10() +
+  geom_point() +
+  scale_y_reverse()
+```
+</details>
+`r ne`. The Sun is classified as a G-type star. Are G-type stars the most luminous? Create a box plot to compare medians of magnitude and determine which type of stars are the most luminous.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+No, G-type stars are not the most luminous. For this we can elaborate this graph:
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+stars |> 
+  ggplot() +
+  aes(type, magnitude) +
+  geom_boxplot() +
+  scale_y_reverse()
+```
+</details>
+
+`r if(params$hidden){"-->"}`

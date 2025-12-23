@@ -1,0 +1,887 @@
+# Statistical Inference
+To infer means to draw a conclusion from general or particular facts. Statistical inference is a set of methods and techniques that allow deducing characteristics of a population using data from a random sample. The method we are going to use most to infer is the parameter estimation method.
+
+We estimate parameters of a population from a sample because very rarely we will be able to have access to all the data of the population. Such is the case of election polls, disease studies, etc.
+
+Recall previously some concepts such as expected value, standard error, among others, that will be useful to us to make inferences.
+
+## Expected Value
+Let's use the following case to understand this concept intuitively.
+
+> We have been hired in a casino to analyze if it is reasonable to install a roulette with 37 values ranging from 0 to 36. The house wants to open the game with a special offer if the ball lands on 0 or 21 paying 10 to 1. This means that if a player plays and wins we pay him 10 soles and if he loses he would pay us 1 sol.
+
+<div align="center">
+```{r, echo=FALSE, out.width = "300pt"}
+knitr::include_graphics(file.path(img_path,"ruleta-casino.png"))
+```
+</div>
+
+With what we have learned so far we can simulate our game with the case data. We have 37 values, of which in 2 of them give a player a profit of +10 or a loss -1. Let's also define `prob_win` as the probability that a player wins.
+
+```{r eval=TRUE}
+# Total times played
+plays <- 1
+
+# Probability that a player wins each time
+prob_win <- 2/37
+prob_lose <- 1 - prob_win
+
+# Random sample
+sample_vec <- sample(c(10, -1), plays, replace = TRUE, prob = c(prob_win, prob_lose))
+
+sample_vec
+
+```
+
+The distribution of this variable is simple given that it can only take two values: 10 or -1. When we simulate a very large number of games it can be seen how it is distributed according to the indicated probability of winning and losing.
+
+```{r eval=TRUE}
+plays <- 100000
+
+prob_win <- 2/37
+prob_lose <- 1 - prob_win
+
+sample_vec <- sample(c(10, -1), plays, replace = TRUE, prob = c(prob_win, prob_lose))
+
+hist(sample_vec)
+
+```
+
+We have been using Monte Carlo simulation to estimate what the **mean** of the game results would be in real life.
+
+```{r eval=TRUE}
+# Estimation of the mean by Monte Carlo simulation
+mean(sample_vec)
+```
+
+In addition, we have seen that, the more the sample grows, our **mean** in the Monte Carlo simulation converges to a value, in this case the probability of winning mainly in the roulette. That value to which it converges we will call **expected value**, which as its name indicates will be the value we expect to obtain in reality. The more the sample size grows the more our sample mean converges to this expected value. The notation we will use will be $E[X]$.
+
+When there are only two possible results $a$ and $b$ with proportions $p$ and $1-p$ respectively, the expected value will be calculated using this formula:
+
+$E[X] = ap + b(1-p)$
+
+```{r eval=TRUE}
+# Expected Value:
+(10) * prob_win + (-1) * prob_lose
+```
+
+Previously we had calculated the mean using Monte Carlo simulation. If we compare it with the expected value we see how both numbers are approximately the same, as the theory predicts.
+
+<!--
+Likewise, we can calculate the standard deviation which we will call **standard error**. The mathematical notation is $SE[X]$ and we will calculate it using the following formula:
+
+$SE[X] = |a-b|\sqrt{p(1-p)}$
+
+```{r eval=TRUE}
+# Standard error:
+abs(10 - -1)*sqrt(prob_win*prob_lose)
+```
+
+-->
+
+Returning to the simulation of roulette games, a single person does not play so many times. Each person plays about 40 times a day at roulette. Thus, we can generate 40 games that a random player could play and find how much he would win:
+
+```{r eval=TRUE}
+plays <- 40
+
+prob_win <- 2/37
+prob_lose <- 1 - prob_win
+
+sample_vec <- sample(c(10, -1), plays, replace = TRUE, prob = c(prob_win, prob_lose))
+
+sum(sample_vec)
+
+```
+
+Finally, not only one person will play. Let's replicate this sample about 100,000 times to simulate the number of players we would have in a quarter.
+
+```{r eval=TRUE}
+
+players <- 100000
+jugadas <- 40
+
+prob_win <- 2/37
+prob_lose <- 1 - prob_win
+
+winnings_simulation <- replicate(players, {
+  
+  sample_vec <- sample(c(10, -1), jugadas, replace = TRUE, prob = c(prob_win, prob_lose))
+
+  sum(sample_vec)  
+  
+})
+
+```
+
+So far we have done the same as we have learned in previous chapters. However, we could also see how the players' winnings are distributed. And for that it is enough to create a histogram of the result.
+
+```{r eval=TRUE}
+hist(winnings_simulation)
+```
+
+It is not a coincidence that if we create a histogram with all the winnings of all the players the result looks like a normal distribution. In fact, that was the main approach that George Pólya made in 1920 when he presented his **Central Limit Theorem**.
+
+## Central Limit Theorem
+The Central Limit Theorem tells us that if we take several samples of the same size $n$ and in each sample we sum the values within each sample we will obtain a value $S$ (the sum) then we will find that its distribution approximates well to a normal curve.
+
+If we replicate this language to our example it would be: The central limit theorem tells us that if we take samples of 40 games for each player and then calculate for each player the total they won, then we will find that the distribution of the amount won by many players approximates a normal distribution.
+
+Since it is a new distribution, we can calculate its mean and standard deviation. Being samples we will use the learned term **expected value** of the sum to refer to the sample mean and we will add the term of **standard error** of the sum to refer to the sample standard deviation
+
+This would be the formula to calculate the expected value of the sum:
+
+$E[S_n] = n (ap+b(1-p))$
+
+```{r eval=TRUE}
+plays <- 40
+
+prob_win <- 2/37
+prob_lose <- 1 - prob_win
+
+# Expected value of the sum
+E_sum <- plays * ( (10)*prob_win + (-1)*prob_lose )
+E_sum
+```
+
+And to calculate the standard error of the sum we will use the following formula:
+
+$SE[S_n]=\sqrt{n}\ |a-b|\ \sqrt{p(1-p)}$
+
+```{r eval=TRUE}
+plays <- 40
+
+prob_win <- 2/37
+prob_lose <- 1 - prob_win
+
+# Standard error of the sum
+SE_sum <- sqrt(plays) * abs(10 - -1) * sqrt(prob_win*prob_lose)
+SE_sum
+```
+
+With these two theoretical data, the expected value and the standard error, we can graph the normal curve of the sum of winnings of our game.
+
+```{r eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE}
+mean <- E_sum
+sd <- SE_sum
+min <- -75
+max <- +45
+lb <- max
+ub <- max
+
+x <- seq(-4,4, length = 100) * sd + mean
+hx <- dnorm(x, mean, sd)
+
+plot(x, hx, type="n", xlab="Total winnings per player", ylab="",
+     main="Normal distribution of the Sum of Winnings with n=40", axes = FALSE)
+
+i <- x >= lb & x <= ub
+
+lines(x, hx)
+
+polygon(c(lb,x[i],ub), c(0,hx[i],0), col="blue")
+
+area <- pnorm(ub, mean, sd) - pnorm(lb, mean, sd)
+#result <- paste("P( x >", lb, " ) =", round(area, 2))
+#mtext(result,3)
+axis(1, at = round(seq(min, max, 15), 0), pos = 0)
+```
+
+What does this mean? That if theoretically we can already graph the normal curve then we can also calculate the probability that the sum is greater or less than some value. This is the main advantage of the Central Limit Theorem since we can calculate probabilities of the population using this approximation and the data of a single sample.
+
+For example, if we want to know what is the probability that a player wins money after playing 40 times in roulette we would have to calculate the probability that $S$ is greater than **zero**, represented by the blue shaded area:
+
+```{r eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE}
+mean <- E_sum
+sd <- SE_sum
+min <- -75
+max <- +45
+lb <- 0
+ub <- max
+
+x <- seq(-4,4, length = 100) * sd + mean
+hx <- dnorm(x, mean, sd)
+
+plot(x, hx, type="n", xlab="Total winnings per player", ylab="",
+     main="Normal distribution of the Sum of Winnings with n=40", axes = FALSE)
+
+i <- x >= lb & x <= ub
+
+lines(x, hx)
+
+polygon(c(lb,x[i],ub), c(0,hx[i],0), col="blue")
+
+area <- pnorm(ub, mean, sd) - pnorm(lb, mean, sd)
+result <- paste("P( x >", lb, " ) =", round(area, 2))
+mtext(result,3)
+axis(1, at = round(seq(min, max, 15), 0), pos = 0)
+```
+
+To perform this calculation in R we would use the `pnorm` function:
+
+```{r eval=TRUE}
+# Probability of getting more than 0 soles having played 40 games:
+1- pnorm(0, E_sum, SE_sum)
+```
+
+Let's validate that the Monte Carlo simulation approximates this theoretical value we just calculated:
+
+```{r eval=TRUE}
+# Probability of getting more than 0 soles having played 40 games:
+mean(winnings_simulation > 0)
+
+```
+
+We have used two ways to estimate the probability, the theoretical estimation using the central limit theorem and the Monte Carlo simulation. These two numbers are quite close to the real probability. In both cases, the larger the sample, the more reasonable our estimation will be.
+
+On the other hand, the same happens if we wanted to analyze the average and not the sum of the winnings. But for the average case we will use the following formulas:
+
+1. Expected value of the average: $E[\overline{X}]=ap+b(1-p)$.
+2. Standard error of the average: $SE[\overline{X}]=|a-b|\sqrt{\frac{p(1-p) }{n}}$.
+
+`r if(params$hidden){"<!--"}`
+
+## Exercises
+
+The admission exam of the National Univ. of San Marcos consists of 100 multiple choice questions (A, B, C, D, E) with a value of 20 points for each correct question and 1.125 for each wrong answer. We want to analyze what would happen if a student answers all 100 questions randomly and if there are chances of getting a vacancy knowing that minimum 900 points are needed to enter some career.
+
+`r ne`. What is the expected value of the points received by guessing a question?
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+puntaje_a_favor <- 20
+puntaje_en_contra <- -1.125
+  
+prob_correcta <- 1/5
+prob_incorrecta <- 1 - prob_correcta
+
+# Expected value of guessing a question:
+E <- puntaje_a_favor * prob_correcta + puntaje_en_contra * prob_incorrecta
+
+E
+
+```
+</details>
+
+`r ne`. What is the expected value of guessing the 100 questions?
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+# Total questions:
+n <- 100
+
+# Expected value of the sum
+E_suma <- n * E
+
+E_suma
+```
+</details>
+
+`r ne`. What is the standard error of guessing the 100 questions?
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+# Standard error of the sum
+SE_suma <- sqrt(n)*abs(puntaje_a_favor - puntaje_en_contra) * sqrt(prob_correcta*prob_incorrecta)
+
+SE_suma
+```
+</details>
+
+`r ne`. Using the central limit theorem, What is the probability that a student obtains more than 900 points by marking all answers randomly?
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+puntaje_minimo <- 900
+
+# Probability of obtaining less than the minimum:
+prob <- pnorm(puntaje_minimo, E_suma, SE_suma)
+
+# Probability of obtaining more than the minimum:
+1 - prob
+```
+
+This means that the probability that a student obtains the minimum score by guessing all the questions is: `0.0000000000014525`.
+
+Conclusion: let's study before taking the exam. It is not reasonable to take the exam randomly and mark randomly.
+
+</details>
+
+> Recall that `e-n` is the representation of $10^{-n}$.
+
+`r ne`. Using Monte Carlo simulation for the 22,000 applicants who apply each time, calculate the probability that a student obtains more than 900 points by marking all answers randomly.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+total <- 22000
+
+simulacion_admision <- replicate(total, {
+  puntaje_del_examen <- sample(c(puntaje_a_favor, puntaje_en_contra), n, replace = TRUE, prob = c(prob_correcta, prob_incorrecta) )
+
+  sum(puntaje_del_examen)  
+})
+
+# Probability of obtaining more than 900 points:
+mean(simulacion_admision > 900)
+
+# Histogram if we want to see the distribution of points obtained:
+hist(simulacion_admision)
+
+```
+
+We see that the simulation gives us practically the same result. Practically there are no possibilities of entering UNMSM by guessing the answers.
+
+</details>
+
+`r if(params$hidden){"-->"}`
+
+## Parameter Estimation Method
+So far, using Monte Carlo simulation we have built samples randomly, but knowing the probability of occurrence. However, we will not always know the proportion previously. If we have, for example, a population and we want to know how many have been infected by Covid-19, we cannot test everyone. Or if we have the total voters for an election, we cannot survey everyone to know who would win. Not only is it very expensive, but it would take us a lot of time.
+
+The **parameter estimation method** is the procedure used to know the characteristics of a population parameter, from the knowledge of a sample of $n$ respondents
+
+We will analyze this following case.
+
+> We have two political parties: Blue and Red. We do not know how much the total population is, nor the proportion that will vote for one or the other party. The only thing we can do is conduct voting intention polls.
+
+For example, these would be the results of the poll of a random sample of 10 people:
+
+```{r eval=TRUE, echo=FALSE}
+# Results of survey taken to 10 people.
+take_poll(10)
+```
+
+Intuitively we know that we cannot deduce which party will win given that the sample is very small. To know which party will win we need to estimate as precisely as possible the parameter $p$ that represents the proportion of voters of the Blue Party in the population and the parameter $1-p$ that represents the proportion of voters of the Red party.
+
+Making some mathematical transformations to our theoretical estimates seen previously and defining $a=1$ as value if they vote Blue and $b=0$ if they do not vote for Blue, we can obtain the following theoretical estimates for this case:
+
+1. Expected value of each vote:
+
+$E[X]=p$
+
+We see that the value we expect to obtain per vote $E[X]$ matches the parameter $p$ that we are looking for.
+
+2. Expected value of the average of votes:
+
+$E[\overline{X}]=p$
+
+If we do multiple surveys, all of $n$ respondents and calculate the mean $\overline{X}$ of each sample, these samples will follow a normal distribution with an expected value $E[\overline{X}]$ which, as we see, matches the parameter $p$ that we are estimating.
+
+3. Standard error of the average of votes:
+
+$SE[\overline{X}]=\sqrt{\frac{p(1-p) }{n}}$
+
+In the same way as in the previous point, the multiple surveys generate multiple means on which the standard error $SE[\overline{X}]$ can be calculated which will depend on the size $n$ of respondents.
+
+The expected value of the average $E[\overline{X}]$, formula 2, is theoretically equal to the parameter $p$ that we are looking to estimate. However, without knowing how much $p$ is we would have to have multiple samples of $n$ respondents, then calculate the mean for each case $\overline{X}$ and finally calculate the average of these values. This is very expensive, so we will look for another way to estimate $E[\overline{X}]$.
+
+Given that we do not have so far how to estimate $E[\overline{X}]$, and given that we know that $E[\overline{X}]=p$ then we could give several values to $p$ and see the impact on the standard error of the average that we know also depends on $p$.
+
+Let's generate, first, a sequence of parameter $p$, from 0% to 100%, 100 different values:
+
+```{r eval=TRUE}
+p <- seq(0, 1, length=100)
+
+p
+
+```
+
+Thinking of 100 different values of $p$ would be like thinking of 100 different elections where the Blue party and the red one have participation, like the election for mayors nationwide. In some districts the candidate of the Blue party loses with 0%, in others ties at 50% and in others wins clearly with 100% of the votes.
+
+Intuitively we know that if our real proportion was $p=80\%$ for the Blue party, that is that 8 out of every 10 will vote Blue, then it is very likely that in each survey we take we will find that in that district the Blue party has the majority of votes. This is predicted with the formula seen before and also includes the size of the survey $n$ as part of the calculation:
+
+$SE[\overline{X}]=\sqrt{\frac{p(1-p) }{n}}$
+
+That said, let's return to our vector `p` that contains several values of parameter $p$. On those values we can calculate what would happen if we survey groups of 20 people. Knowing the sample size we can calculate the standard error of the average for each of the values of $p$:
+
+```{r eval=TRUE}
+# Total people in each survey:
+n <- 20
+
+# Standard error of the average:
+SE_avg <- sqrt(p*(1-p))/sqrt(n)
+
+SE_avg  
+```
+
+Now let's generate a scatter plot of both the different values of $p$ and the standard errors for each $p$.
+```{r eval=TRUE}
+plot(p, SE_avg, ylim = c(0, 0.12))
+```
+
+Thus, we see how we can obtain different standard errors of the average for different values of $p$.
+
+Intuitively we had the notion of what would happen given a $p=80\%$. Now in the graph we see it better. If the real intention of vote was 80% in that district then when taking several surveys and seeing the results of each survey we would obtain as expected value 80% and as standard error 8.8% or 0.088 as seen in the graph highlighted in blue:
+
+```{r eval=TRUE}
+plot(p, SE_avg, ylim = c(0, 0.12))
+
+coord_x <- 0.8 # Value on X axis
+coord_y <- max(SE_avg[p >= coord_x]) # Value on Y axis for value x
+
+# Add vertical and horizontal reference line
+abline(h = coord_y, v = coord_x, col = "blue", lty = 2)
+```
+
+With these values of $E[\overline{X}]=p=80\%$ and $SE[\overline{X}]=8.8\%$ of standard error we can calculate a range of one standard error around $80\%$, which would go from $71.2\%$ to $88.8\%$ and then calculate what would be the probability that the mean $\overline{X}$ found in one of the surveys falls in this range. Visually it would be:
+
+```{r eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE}
+mean <- 0.8
+sd <- 0.088
+min <- mean - 4*sd
+max <- mean + 4*sd
+lb <- mean - 1*sd
+ub <- mean + 1*sd
+
+x <- seq(-4,4, length = 100) * sd + mean
+hx <- dnorm(x, mean, sd)
+
+plot(x, hx, type="n", xlab="", ylab="",
+     main="Range of 1 standard error of the mean", axes = FALSE)
+
+i <- x >= lb & x <= ub
+
+lines(x, hx)
+
+polygon(c(lb,x[i],ub), c(0,hx[i],0), col="blue")
+
+area <- pnorm(ub, mean, sd) - pnorm(lb, mean, sd)
+result <- paste("P( -1 SE < x > 1 SE ) =", round(area, 2))
+mtext(result,3)
+axis(1, at = round(seq(min, max, sd), 2), pos = 0)
+```
+
+In R, calculating the probability that a data point falls in the range of 1 standard error would be:
+
+```{r eval=TRUE}
+# Calculation of probability that dat is between -1 and 1 standard error:
+pnorm(1) - pnorm(-1)
+```
+
+We can expand to have a greater range of **2 standard errors** around $80\%$ and increase our probability:
+
+```{r eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE}
+mean <- 0.8
+sd <- 0.088
+min <- mean - 4*sd
+max <- mean + 4*sd
+lb <- mean - 2*sd
+ub <- mean + 2*sd
+
+x <- seq(-4,4, length = 100) * sd + mean
+hx <- dnorm(x, mean, sd)
+
+plot(x, hx, type="n", xlab="", ylab="",
+     main="Range of 2 standard errors of the mean", axes = FALSE)
+
+i <- x >= lb & x <= ub
+
+lines(x, hx)
+
+polygon(c(lb,x[i],ub), c(0,hx[i],0), col="blue")
+
+area <- pnorm(ub, mean, sd) - pnorm(lb, mean, sd)
+result <- paste("P( -2 SE < x > 1 SE ) =", round(area, 2))
+mtext(result,3)
+axis(1, at = round(seq(min, max, sd), 2), pos = 0)
+```
+
+In R it would be:
+
+```{r eval=TRUE}
+# Calculation of probability that dat is between -2 and 2 standard errors:
+pnorm(2) - pnorm(-2)
+```
+
+The probability increases to 95%, however how do we interpret this?. We haven't even calculated the real value of the mean $\overline{X}$ of some survey.
+
+Simple, this means that, theoretically, there is a 95% probability that the mean $\overline{X}$ that we find in each survey is in the range of 62% to 98%, two standard errors around $80\%$. 95% of the time in the worst case, in a survey of 20 people, the Blue party would obtain 62% and in the best case 98%, so we could predict that the Blue party will win. Or not?
+
+Several things should make noise to us so far. First, the range so large, from 62% to 98%. Second, we have assumed a scenario: that the Blue voting intention was known and was 80%. That is, we have assumed $p=80\%$ which allowed us to calculate $E[\overline{X}]=80\%$ and place that value at the center of the normal. However, $p$ is unknown and is precisely what we are trying to estimate.
+
+If, on the contrary, the result was tighter, for example $p=55\%$, such a wide range would not serve us. Let's see how it would be:
+
+```{r eval=TRUE}
+plot(p, SE_avg, ylim = c(0, 0.12))
+
+coord_x <- 0.55 # Value on X axis
+coord_y <- max(SE_avg[p >= coord_x]) # Value on Y axis for value x
+
+# Add vertical and horizontal reference line
+abline(h = coord_y, v = coord_x, col = "blue", lty = 2)
+```
+
+If the real voting intention was $55\%$ we would have an expected value of the average $E[\overline{X}]=p=55\%$ and a corresponding standard error of the average $SE[\overline{X}]=11\%$. Again, by Central Limit Theorem we can calculate a range of **two standard errors** around $55\%$:
+
+```{r eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE}
+mean <- 0.55
+sd <- 0.111
+min <- mean - 4*sd
+max <- mean + 4*sd
+lb <- mean - 2*sd
+ub <- mean + 2*sd
+
+x <- seq(-4,4, length = 100) * sd + mean
+hx <- dnorm(x, mean, sd)
+
+plot(x, hx, type="n", xlab="", ylab="",
+     main="Range of 2 standard errors of the mean", axes = FALSE)
+
+i <- x >= lb & x <= ub
+
+lines(x, hx)
+
+polygon(c(lb,x[i],ub), c(0,hx[i],0), col="blue")
+
+area <- pnorm(ub, mean, sd) - pnorm(lb, mean, sd)
+result <- paste("P( -2 SE < x > 1 SE ) =", round(area, 2))
+mtext(result,3)
+axis(1, at = round(seq(min, max, sd), 2), pos = 0)
+```
+
+The calculation of the probability of being in that range in R would be the same because we continue in the range of 2 standard errors. Therefore the probability would be the same.
+
+```{r eval=TRUE}
+# Calculation of probability that dat is between -2 and 2 standard errors:
+pnorm(2) - pnorm(-2)
+```
+
+However, what does change is the range. Now the range goes from 32.8% to 77.2%, two standard errors around the expected value of the average $E[\overline{X}]$. Although the probability is still 95%, that does not help us at all this time because there is 95% that what we find in our sample is a value between 33% and 77%. Some survey samples will give us 33% of votes for Blue and other samples 77%.
+
+And the problem lies in the number of samples taken $n$. If we see again the formula we see how $n$ influences the result.
+
+$SE[\overline{X}]=\sqrt{\frac{p(1-p) }{n}}$
+
+Let's increment then our number of respondents to 500:
+
+```{r eval=TRUE}
+n <- 500
+
+p <- seq(0, 1, length = 100)
+SE_avg <- sqrt(p*(1-p))/sqrt(n)
+
+plot(p, SE_avg, ylim = c(0, 0.12))
+
+```
+
+This sample gives us smaller standard errors. For example, if the real proportion of voters of the Blue party was $p=55\%$ we would have $E[\overline{X}]=p=55\%$ and a $SE[\overline{X}]=2.2\%$:
+
+```{r eval=TRUE}
+plot(p, SE_avg, ylim = c(0, 0.12))
+
+coord_x <- 0.55 # Value on X axis
+coord_y <- max(SE_avg[p >= coord_x]) # Value on Y axis for value x
+
+# Add vertical and horizontal reference line
+abline(h = coord_y, v = coord_x, col = "blue", lty = 2)
+```
+
+If we now calculate a range of two standard errors around $55\%$ we would have a range that goes from $50.6\%$ to $59.4\%$. Again, interpretation is that the mean that we find in our random survey has a 95% probability of being in that range.
+
+We see then that this theoretical prediction, the standard error, becomes smaller as the sample size $n$ increases and in turn depends on the probability of the population $p$ that we do not know. Moreover, with a real value of $p=0.5$, (50%), we have the maximum value of the standard error that we can obtain. Thus, if we correct $p$ at 50%, which would be the extreme of cases, a tie, we can calculate how the value of the standard error of the average changes according to the sample size:
+
+```{r eval=TRUE}
+p <- 0.5
+n <- seq(20, 5000, 20) # number of surveys increases by 20.
+SE_avg <- sqrt(p*(1-p)/n)
+
+plot(n, SE_avg)
+
+abline(h = 0.015, v = 1000, col = "blue", lty = 2) # Add vertical and horizontal reference line
+
+```
+
+A sample of 1,000 people, for example, generates us a maximum standard error of 0.015 or 1.5%.
+
+### Margin of Error
+As we have already seen, we could consider a range of 1 standard error or 2 standard errors around $E[\overline{X}]$ and calculate the probability that our sample mean $\overline{X}$ is in that range. Or what is mathematically the same, we could say that if we build a range of 1 or 2 standard errors around our sample mean $\overline{X}$ there is a determined probability that in that range is included the expected value $E[\overline{X}]$ which is, by formula equal to $p$, the value we want to estimate.
+
+It is crucial then to calculate the standard error of the average $SE[\overline{X}]$, but we see ourselves limited because it depends on $p$.
+
+There is another way to calculate $SE[\overline{X}]$ without using $p$ and is known as the standard error of estimation $\hat{SE}[\overline{X}]$. For this we will use the following formula:
+
+$\hat{SE}[\overline{X}]=\sqrt{\frac{\overline{X}(1-\overline{X})}{n}}$
+
+
+Where, as we already know, $\overline{X}$ is the mean of our sample or sample mean. For our example case, it is the percentage that the Blue party obtained in the survey we conducted.
+
+Now that we have the sample mean $\overline{X}$ and we can already calculate the standard error of estimation $\hat{SE}[\overline{X}]$ we can start building ranges around $\overline{X}$ that increase the probability of finding $p$.
+
+To make communication simpler, we will use by convention the notation **margin of error** to indicate that we are going to take a **range of 2 standard errors of estimation**.
+
+For example, we have a sample of 1100 people and after reviewing the survey results we have a sample mean of $\overline{X}=56\%$ for the Blue party. With this we can estimate the standard error of estimation $\hat{SE}[\overline{X}]$ with the formula we just described and finally calculate the margin of error.
+
+```{r eval=TRUE}
+# Total respondents
+total <- 1100
+
+# Survey results, 56% indicated Blue:
+X_avg <- 0.56
+
+# Standard error estimation
+SE_est <- sqrt(X_avg * (1 - X_avg)/total)
+SE_est
+
+# Margin of error, MoE
+MoE <- 2 * SE_est
+MoE
+```
+
+With this we would have that from a sample of 1100 people, we have estimated 56% voting intention for the Blue party with a margin of error of $+- 2.99\%$.
+
+Finally, let's see examples of the different surveys conducted in April and early May 2020 to measure voting intentions in the US.
+
+```{r, echo=FALSE}
+knitr::include_graphics(file.path(img_path,"encuesta-EEUU.png"))
+```
+
+We see as columns:
+
+* **Poll**: Surveying company that conducted the study (Encuesta)
+* **Date**: Date of the survey (Fecha)
+* **Sample**: Number of respondents varying by pollster (Muestra)
+* **MoE**: Margin of error
+* **Candidates**: Candidates for the presidency. Their percentages do not sum 100% because blanks and nulls are omitted.
+* **Spread**: This is the estimation of by how much one candidate beats the other (Propagación).
+
+If, on the other hand, we ask ourselves why larger surveys are not done, for example 50,000 people, the reason is that:
+
+1. The cost of surveying 50 thousand people is very expensive.
+2. Parameter estimation is a theoretical prediction, if we give a very small margin of error our results could be misinterpreted as absolute truths when we know that:
+2.1 Every person can change their opinion and we are only taking a snapshot of the moment.
+2.2 No matter how much effort is put in, no survey is totally random or they are not done in rural areas.
+2.3 We could survey people who say they will go to vote, but finally they will not do so, etc.
+
+### Confidence Intervals
+Confidence intervals are a very useful concept widely used by Data Scientists. However, it is nothing more than another way of expressing what we have already learned so far.
+
+And it is that a **confidence interval** of 95% tells us that there is a 95% probability that the interval we generate includes the parameter $p$ that we want to estimate. This is nothing more than another way of indicating that we have to build an interval considering the margin of error, that is two standard errors around our sample mean.
+
+For the sample of 1100 people we saw in the previous section, we reported an estimate of 56% with a margin of error of $+- 2.99\%$.
+
+If we now want to use **confidence intervals** in our language we would say: We estimate 56% for the Blue party with a confidence interval of 95%. This confidence interval goes from 53% to 59%.
+
+## Spread Estimation
+Although we are interested in estimating the proportion that the Blue party would obtain $p$, sometimes it is more useful to know the difference (by how much it wins/loses). For example, when we have two parties in the second round of elections not only do we have votes for Blue and Red, but also blank/spoiled. Also, in regular elections we have more than one pollster doing several surveys. So one could give 45% for Blue, 41% for Red. While another can give 41% for Blue and 38% for Red, etc. If we compare surveys, rather than knowing the exact percentage it is more useful to know by how much the blue party wins, since if we see that in all, for example it wins by 4%, with a tiny standard error, then $p$ would not matter much. Only with the difference data we could take get an idea of who will win.
+
+This difference is called _spread_. We had defined that the voting intention for the Blue party was $p$ and for the red party $1-p$. So what we would expect to obtain for the difference would be $p - (1-p)$, that is $2p - 1$.
+
+Standard error of the _spread_:
+
+$SE[spread]=2\sqrt{\frac{p(1-p) }{n}}$
+
+We see that the standard error is twice the standard error of the average, which depends on $p$, and we have already found previously an estimation to not depend on $p$ but on the mean of our sample. So we will use:
+
+$\hat{SE[spread]}=2\sqrt{\frac{\overline{X}(1-\overline{X}) }{n}}$
+
+Let's see with an example these concepts. Let's study the 2016 US elections. In this case we have multiple pollsters, conducting multiple surveys months prior to elections, and mainly two parties competing for president.
+
+We are going to use the `polls_us_election_2016` data frame included in the `dslabs` library which includes data from multiple surveys conducted for the 2016 US elections between Hillary Clinton and Donald Trump. The first thing we will do is explore the data:
+
+```{r eval=FALSE}
+library(dslabs)
+head(polls_us_election_2016)
+```
+
+As we see, we do not have the standard error, nor the confidence interval. So we will proceed to make some mutations applying the formulas learned so far focusing on the voting intention for Hillary Clinton.
+
+```{r eval=TRUE}
+surveys <- polls_us_election_2016 |>
+  filter(state == "U.S.") |> 
+  mutate(X_avg = rawpoll_clinton/100) |>
+  mutate(SE_prom = sqrt((X_avg*(1-X_avg))/samplesize)) |>
+  mutate(inferior = X_avg - 2*SE_prom,
+         superior = X_avg + 2*SE_prom) |>
+  select(pollster, enddate, X_avg, SE_prom, inferior, superior)
+
+# First 5 rows
+surveys |> 
+  head(5)
+```
+
+For example, IPSOS in a survey published on 11/06/16 estimated 42% voting intention for Clinton with a 95% confidence interval in a range going from 39.89% to 44.10%.
+
+Does this data mean that they estimated she would lose? No, given that in this case we are using real data the proportion of votes for Clinton with those for Trump will not sum 100%. In fact, on actual election day Clinton obtained 48.2% and Trump 46.1% of total votes cast. That is real $p$ was 48.2%.
+
+What we could calculate is how many of these pollsters guessed right in their estimation. That is, if in their confidence intervals is the $p=48.2\%$ that Clinton finally obtained. To do this, we will add a column `guessed_right` (guessed_right) with the validation of whether it is in the confidence interval and then use `summarize()` to calculate the percentage of surveys that guessed right.
+
+```{r eval=TRUE}
+surveys |> 
+  mutate(guessed_right = inferior <= 0.482 & 0.482 <= superior) |> 
+  summarize(mean(guessed_right))
+```
+
+Only 28% of published surveys published confidence intervals that included $p$. This, among many other reasons, because at the beginning there are many more undecided who finally decide in the last weeks.
+
+Let's analyze now how many guessed right in the spread. It could be that even though they did not estimate exact $p$ the difference did remain over time. To do this, let's add to our surveys the column `spread` with the difference of votes:
+
+```{r eval=TRUE}
+surveys_spread <- polls_us_election_2016 |>
+  filter(state == "U.S.") |> 
+  mutate(spread = (rawpoll_clinton - rawpoll_trump)/100)
+```
+
+And now we are going to do a trick calculating the spread of our sample:
+
+$spread=2*\overline{X}-1$
+
+We can transform this formula:
+
+$spread-1=2*\overline{X}$
+
+$\frac{spread-1}{2}=\overline{X}$
+
+Or what is the same:
+
+$\overline{X}=\frac{spread-1}{2}$
+
+This formula gives us an approximation of how much $\overline{X}$ would be transformed to a scale of 0 to 100%. With it, let's calculate the standard error and the confidence interval:
+
+```{r eval=TRUE}
+surveys_spread <- surveys_spread |> 
+  mutate(X_avg = (spread + 1)/2) |>
+  mutate(SE_spread = 2*sqrt((X_avg*(1-X_avg))/samplesize)) |>
+  mutate(inferior = spread - 2*SE_spread,
+         superior = spread + 2*SE_spread) |>
+  select(pollster, enddate, spread, SE_spread, inferior, superior)
+
+# First 5 rows
+surveys_spread |> 
+  head(5)
+```
+
+Now let's calculate how many of these pollsters guessed right in their estimation. That is, if in their confidence intervals is the real value of $spread=48.2\%-46.1\%=2.1\%$ that Clinton finally obtained spread. To do this, we will add the column `guessed_right` and then `summarize()`.
+
+```{r eval=TRUE}
+surveys_spread |> 
+  mutate(guessed_right = inferior <= 0.021 & 0.021 <= superior) |> 
+  summarize(mean(guessed_right))
+
+```
+
+In this case we see how 67.3% of the time, surveys correctly estimated the difference in votes favorable to Clinton.
+
+As a clarification, final reminder of this case, even though Clinton obtained more votes she did not win the elections because the US system is different and not necessarily if you win in votes you obtain the presidency.
+
+## Estimates Outside Election Polls
+We have used election polls to understand statistical inference concepts. However, most Data Scientists are not related to voting intention estimation calculations. That does not mean we will not use those concepts. The central limit theorem not only works in election polls. What it means is that we will use some slightly different formulas that apply to more daily life cases.
+
+From what we have learned so far the main change is the formula to calculate the standard error. We will use instead the standard deviation $\sigma$ of the sample to calculate the standard error:
+
+$SE[\overline{X}]=\frac{\sigma}{\sqrt{n}}$
+
+Where $\overline{X}$ is the average of our random sample and $n$ is the sample size.
+
+`r if(params$hidden){"<!--"}`
+
+## Exercises
+
+The most common data a Data Scientist manages comes from people, some attribute/characteristic of them. In these exercises we are going to use the heights data frame that we already used for other purposes in previous chapters.
+
+```{r eval=FALSE}
+library(dslabs)
+data(heights)
+```
+
+`r ne`. Create the vector `x` to extract the heights data of each person. Then report the average and standard deviation of our population. Remember to convert height to meters
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+x <- heights |> 
+  filter(sex == "Male") |>
+  mutate(height_m = height/39.37) |> 
+  pull(height_m)
+
+# Average of the population
+mean(x)
+
+# Standard deviation
+sd(x)
+```
+</details>
+
+> Mathematically we use `x` in lowercase to refer to our total population and `X` to refer to a random sample. We will denote the population mean as $\mu$ and the population standard deviation as $\sigma$
+
+> Most of the time we will not have access to the mean and standard deviation of the population because it is very large and highly expensive.
+
+`r ne`. Let's assume we do not have access to the population. We can only obtain a random sample of 100 people. Create a random sample with replacement and store these values in the vector called `X`. With the data from your sample, build a 95% confidence interval to estimate the average of the population.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+N <- 100
+X <- sample(x, N, replace = TRUE)
+
+# Expected value
+mean(X)
+
+# Standard error
+se <- sd(X)/sqrt(N)
+
+# 95% confidence interval is approx. 2 se
+ic <- c(mean(X) - 2*se, mean(X) + 2*se)
+
+```
+</details>
+
+`r ne`. Using Monte Carlo simulation, repeat this sampling about 10 thousand times and validate the percentage of times that the confidence interval you generate from your sample includes the true population value.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+promedio_real <- mean(x)
+
+N <- 100
+num_veces <- 10000
+
+simulacion <- replicate(num_veces, {
+  X <- sample(x, N, replace = TRUE)
+  se <- sd(X)/sqrt(N)
+  inferior <- mean(X) - 2*se
+  superior <- mean(X) + 2*se
+  between(promedio_real, inferior, superior)
+})
+
+mean(simulacion)
+
+``` 
+</details>
+
+`r if(params$hidden){"-->"}`

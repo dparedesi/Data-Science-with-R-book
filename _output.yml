@@ -1,0 +1,38 @@
+bookdown::gitbook:
+  css: style.css
+  config:
+    toc:
+      collapse: section
+      before: |
+        <li><a href="./">Data Science with R</a></li>
+      after: |
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+    sharing:
+        linkedin: yes
+        all:
+    download: false
+    #download: ["pdf"]
+    edit:
+      #link: https://github.com/dparedesi/Rnotes/%s
+      #text: "Editar"
+      
+#bookdown::epub_book: default
+
+bookdown::pdf_book:
+  toc_appendix: false
+  toc_depth: 3
+  toc_unnumbered: false
+  includes:
+    in_header: preamble.tex
+    #before_title: frontpage.tex
+  latex_engine: xelatex
+  citation_package: natbib
+  template: null
+  pandoc_args: --top-level-division=chapter
+  quote_footer: ["\\VA{", "}{}"]
+  highlight_bw: true
+  keep_tex: yes
+
+
+
+

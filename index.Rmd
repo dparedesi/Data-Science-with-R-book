@@ -1,0 +1,79 @@
+--- 
+title: "Data Science with R"
+subtitle: "Data Analysis and prediction algorithms with R. Second Edition"
+author: "Author: Mg. Daniel Paredes Inilupu"
+date: "`r Sys.Date()`"
+#date: "2024-12-27"
+site: bookdown::bookdown_site
+documentclass: krantz
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+colorlinks: yes
+urlcolor: blue
+geometry: "left=1.5in, right=1.5in, top=1.25in, bottom=1.25in"
+github-repo: rstudio/bookdown-demo
+description: "Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes"
+always_allow_html: yes
+graphics: yes
+output:
+  bookdown::gitbook:
+    includes:
+      in_header: analytics.html
+      #after_body: disqus.html
+    keep_md: yes  # Important: Keep the Markdown files
+params:
+ hidden: false
+ #no_last: "The exercises, as well as some chapters we will learn, will be activated in this book as we progress through the course classes. This excerpt will be enabled for you up to one week after the course ends. "
+---
+
+```{r include=FALSE, warning=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'dslabs', 'tidyverse'
+), 'packages.bib')
+
+img_path <- "img"
+inc <- function(f, x) {if (!f){eval.parent(substitute(x <- x + 1))}}
+ne <- 1
+
+most_freq_countries <- read_csv("img/paises_mas_frec.csv")
+str_countries <- toString(most_freq_countries$text)
+```
+
+# Preface {-}
+Welcome to the second edition of Data Science with R!
+
+This book, initially conceived as a compilation of personal notes to facilitate my learning, has evolved to become a comprehensive resource covering everything from fundamentals to advanced data science techniques.
+
+I have invested over 700 hours in the creation of this book. You can support this effort by purchasing the PDF version on [leanpub](https://leanpub.com/dataScienceConR/). Furthermore, the purchase includes access to future updates and the possibility of making direct inquiries with me for three months regarding the covered topics or their practical application.
+
+In this edition, the latest trends and technologies in data science have been incorporated. This includes updates to the most recent versions of R (4.4.2) and RStudio (2024.12.0), as well as the integration of modern libraries such as keras, tensorflow, xgboost, quanteda, and sparklyr. Interactive visualization tools like plotly and leaflet have also been added.
+
+New sections address crucial topics such as ethics in data science, reproducibility through R Markdown, and version control with Git and GitHub. Additionally, we have strengthened the content on deep learning, time series analysis, text mining, and sentiment analysis.
+
+`r if(params$hidden){"<!--"}`
+The web version available at [bookdown](https://bookdown.org/dparedesi/data-science-con-r/)^[https://bookdown.org/dparedesi/data-science-con-r/] seeks to democratize data science knowledge. Share it and let's contribute together to freeing knowledge.
+`r if(params$hidden){"-->"}`
+
+Just like the first edition, this version is based on exercises designed from practical classroom experiences and activities from the [Professional Certificate in Data Science](https://online-learning.harvard.edu/series/professional-certificate-data-science)^[https://online-learning.harvard.edu/series/professional-certificate-data-science] by **HarvardX**. The code used to generate this book is available on GitHub, encouraging transparency and reproducibility.
+
+We have improved and updated the exercises, incorporating recent practical cases on social network analysis, climate change, and text mining. This allows for the immediate application of what has been learned to real-world problems.
+
+I deeply thank the readers of the first edition for their comments and suggestions, which have been fundamental to improving this version.
+
+This book has reached readers in Mexico, Colombia, Spain, Peru, and Chile, among other countries. I hope this second edition serves as a valuable tool to advance your learning and practice of data science.
+
+If you have questions or suggestions, you can write to me at dparedesi@uni.pe. I usually respond within a maximum of 48 hours.
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+
+# Acknowledgments {-}
+
+First and foremost, I want to express my profound gratitude to my wife, Desislava, for her invaluable emotional support during the countless hours I dedicated to organizing ideas and writing code. Her knowledge in R was also key, contributing solutions and perspectives that enriched this work.
+
+A special thanks to [Rafael Irizarry](https://hsph.harvard.edu/profile/rafael-a-irizarry/)^[https://hsph.harvard.edu/profile/rafael-a-irizarry/], a true benchmark in the R world, whose didactic way of teaching advanced techniques allowed me to advance significantly in my learning. I also extend my gratitude to the developers who, with their dedication, continue to create and maintain this wonderful language. This book is nothing more than a compendium and a guide, made possible thanks to the constant effort of those who expand R's libraries and packages.
+
+My gratitude also goes to Briguit Reinaldo, CEO of Cedhinfo, whose tireless work brings the teaching of computer technologies to more people in Peru, inspiring many to explore new opportunities.
+
+Finally, I want to acknowledge the valuable contribution of engineering students from UNI, who participated in grammatical review, paraphrasing, creation of additional exercises, and proposal of new topics to include. Special thanks to [Josep Agama](https://www.linkedin.com/in/josep-agama-749a61190/)^[https://www.linkedin.com/in/josep-agama-749a61190/] and [Andrés Espinoza](https://www.linkedin.com/in/aespinozacontreras/)^[https://www.linkedin.com/in/aespinozacontreras/] for their fundamental contributions in the first three chapters.

@@ -1,0 +1,1043 @@
+# Data Frames
+
+## Introduction to Data Frames
+
+In previous chapters, we explored different types of objects in R, such as variables, vectors, lists, and matrices. These objects allow us to store information in more efficient ways. Now, in this chapter, we will delve into the world of **data frames**, an essential tool for organizing and analyzing information that will help you make the best decision about your move to the United States.
+
+### What are data frames?
+
+Imagine a spreadsheet, with rows and columns organizing information in a tabular way. In R, a data frame is precisely that: a data structure that stores information in a tabular format, with rows representing **observations** (for example, every US city) and columns representing **variables** (such as population, cost of living, crime rate).
+
+Each column of a data frame can contain a different data type: numeric, character, logical, factor, etc. This makes data frames very versatile for storing diverse information.
+
+For example, a data frame about US cities could contain the following columns:
+
+*   `city`: Name of the city (character).
+*   `state`: State the city belongs to (character).
+*   `population`: Population of the city (numeric).
+*   `area`: Area of the city in square kilometers (numeric).
+*   `has_beach`: Logical value indicating if the city has a beach (`TRUE` or `FALSE`).
+
+### Why data frames?
+
+In R, there are various structures for organizing data, such as vectors, lists, and matrices. However, data frames stand out as a fundamental tool in data analysis. Why?
+
+Data frames offer a unique combination of features that make them ideal for representing and manipulating complex information:
+
+*   **Tabular structure:** They organize data in rows and columns, like a spreadsheet, which facilitates visualization and understanding.
+*   **Flexibility in data types:** Each column can contain a different data type (numbers, text, dates, etc.), which allows representing the diversity of real-world information.
+*   **Efficiency in analysis:** Most data analysis functions and packages in R are designed to work with data frames.
+
+In summary, data frames are a versatile and powerful data structure that adapts to the needs of modern data analysis.
+
+### Data Frames in action: exploring information about the United States
+
+In the context of your move to the United States, data frames will be essential for organizing and analyzing the information you need to make the best decision. We can use data frames to store information about:
+
+*   **Crime:** Crime rates in different states.
+*   **Cost of living:** Cost of housing, food, transportation in different cities.
+*   **Climate:** Average temperatures, precipitation, days of sunshine in different regions.
+*   **Demographics:** Population, average age, education level in different states.
+
+With this information organized in data frames, you will be able to perform deeper analyses and make more informed decisions about your move.
+
+## Creating Data Frames: Building your database for the move
+
+Now that you know what data frames are and why they are so important in data analysis, it's time to learn how to create them. In R, we can create data frames in different ways: importing data from external files or creating them manually.
+
+### Importing data from files: CSV, Excel
+
+A common way to create data frames is by importing data from external files, such as CSV (Comma Separated Values) files or Excel files. R offers us functions to read data from different formats.
+
+*   **Importing data from CSV files:** To import data from a CSV file, we use the `read.csv()` function.
+
+    ```{r}
+    url <- "https://dparedesi.github.io/DS-con-R/notas-estudiantes.csv"
+
+    # Import data from a CSV file called "notas-estudiantes.csv"
+    cities <- read.csv(url)
+    
+    cities
+    ```
+
+    The `read.csv()` function has several optional arguments that allow us to customize data import. Some of the most common arguments are:
+
+    *   `header`: Indicates if the file has a header row (`TRUE` or `FALSE`).
+    *   `sep`: Specifies the character used to separate columns (by default, the comma ",").
+    *   `dec`: Specifies the character used to separate decimals (by default, the dot ".").
+
+*   **Importing data from Excel files:** To import data from an Excel file, we can use the `read_excel()` function from the `readxl` package.
+
+    ```{r eval=FALSE}
+    # Install the readxl package (if you don't have it installed)
+    install.packages("readxl")
+    
+    # Load the readxl package
+    library(readxl)
+    
+    # Import data from an Excel file called "states.xlsx"
+    states <- read_excel("states.xlsx")
+    ```
+
+    The `read_excel()` function has several optional arguments, such as `sheet` to specify the spreadsheet to import.
+
+### Creating data frames manually
+
+We can also create data frames manually, combining vectors with the `data.frame()` function.
+
+```{r}
+# Create vectors with information about cities
+cities <- c("New York", "Los Angeles", "Chicago")
+states <- c("New York", "California", "Illinois")
+population <- c(8.4e6, 3.9e6, 2.7e6)
+
+# Create a data frame with city information
+df_cities <- data.frame(city = cities, state = states, population = population)
+
+df_cities
+```
+
+In this example, we create a data frame called `df_cities` with three columns: `city`, `state`, and `population`. Each column is created from a vector. Note that the vectors must have the same length to be combined into a data frame.
+
+### Examples
+
+We can use data frames to organize diverse information about our move to the United States. For example, we could create a data frame with information about different cities, including their cost of living, crime rate, and climate. We could also create a data frame with information about the different states, including their population, gross domestic product (GDP), and education system.
+
+```{r}
+# Create a data frame with information about cities
+df_cities <- data.frame(
+  city = c("New York", "Los Angeles", "Chicago", "Houston"),
+  state = c("New York", "California", "Illinois", "Texas"),
+  cost_of_living = c(3.5, 2.8, 2.5, 2.0),  # In thousands of dollars
+  crime_rate = c(400, 350, 500, 450),  # Per 100,000 inhabitants
+  climate = c("Temperate", "Mediterranean", "Continental", "Subtropical")
+)
+
+df_cities
+
+# Create a data frame with information about states
+df_states <- data.frame(
+  state = c("California", "Texas", "Florida", "New York"),
+  population = c(39.2e6, 29.0e6, 21.4e6, 19.4e6),
+  gdp = c(3.2e12, 1.8e12, 1.1e12, 1.7e12),  # In dollars
+  education_system = c("Good", "Regular", "Good", "Excellent")
+)
+
+df_states
+```
+
+These data frames will allow us to analyze the information more efficiently and make more informed decisions about our move.
+
+## Exploring Data Frames: Discovering the secrets of your data
+
+We have already learned to create data frames, now it is time to explore their content and discover the information they hide. R offers us various tools to examine and understand our data.
+
+### Accessing rows, columns, and cells
+
+A data frame is like a map organized in rows and columns. To access the information we need, we must know how to navigate this map. R provides us with different ways to access rows, columns, and cells of a data frame.
+
+*   **Accessing columns:** We can access a column of a data frame using the `$` operator followed by the column name.
+
+    ```{r eval=TRUE}
+    # Access the "state" column of the "df_cities" data frame
+    df_cities$state
+    ```
+
+    We can also access a column using the data frame name followed by brackets and the column name in quotes.
+
+    ```{r eval=TRUE}
+    # Access the "population" column of the "df_states" data frame
+    df_states["population"]
+    ```
+
+*   **Accessing rows:** We can access a row of a data frame using brackets and the row number.
+
+    ```{r eval=TRUE}
+    # Access the third row of the "df_cities" data frame
+    df_cities[3, ]
+    ```
+
+*   **Accessing cells:** We can access a specific cell of a data frame using brackets and specifying the row and column.
+
+    ```{r eval=TRUE}
+    # Access the cell in row 2, column 3 of the "df_states" data frame
+    df_states[2, 3]
+    ```
+
+*   **Filtering rows with conditions:** We can use logical conditions to filter the rows of a data frame. For example, if we want to get cities with a cost of living less than 3:
+
+    ```{r eval=TRUE}
+    df_cities[df_cities$cost_of_living < 3, ]
+    ```
+
+### Functions for exploring data frames
+
+R offers several useful functions for exploring data frames:
+
+*   `head()`: Shows the first 6 rows of the data frame.
+
+    ```{r eval=TRUE}
+    head(df_cities)
+    ```
+
+*   `tail()`: Shows the last 6 rows of the data frame.
+
+    ```{r eval=TRUE}
+    tail(df_states)
+    ```
+
+*   `str()`: Shows the structure of the data frame, including column names, data type of each column, and the first values of each column.
+
+    ```{r eval=TRUE}
+    str(df_cities)
+    ```
+
+*   `summary()`: Provides descriptive statistics for each column of the data frame, such as mean, median, minimum and maximum values, etc.
+
+    ```{r eval=TRUE}
+    summary(df_states)
+    ```
+
+*   `View()`: Opens a window with an interactive view of the data frame, similar to a spreadsheet.
+
+    ```{r eval=FALSE}
+    View(df_cities)
+    ```
+
+### Examples: exploring data frames with move information
+
+By exploring the data frames we created in the previous section, we can obtain valuable information about US cities and states. For example, we could use `summary()` to get descriptive statistics of the cost of living in different cities, or `View()` to examine information about each state in detail.
+
+```{r eval=TRUE}
+# Get descriptive statistics of cost of living in different cities
+summary(df_cities$cost_of_living)
+
+```
+
+```{r eval=FALSE}
+# Examine detailed information about each state
+View(df_states)
+```
+
+In addition to the mentioned functions, we can use other tools to explore our data frames. For example, we can use the `table()` function to get the frequency of each value in a categorical column, such as the `climate` column in the `df_cities` data frame.
+
+```{r eval=TRUE}
+table(df_cities$climate)
+```
+
+We can also use the `hist()` function to create a histogram of a numeric column, such as the population column in the `df_states` data frame.
+
+```{r eval=TRUE}
+hist(df_states$population)
+```
+
+These are just some ideas of how we can explore our data frames. As you become familiar with R, you will discover new functions and techniques for analyzing and visualizing your data.
+
+## Manipulating Data Frames: Transforming your data
+
+In the previous section, we learned to explore data frames and access the information they contain. Now, we will go a step further and learn to **manipulate** data frames, transforming data to answer specific questions and obtain relevant information for our move.
+
+### Introduction to the pipeline operator (`|>`)
+
+Before manipulating data frames, we will introduce a tool to write more readable and efficient code: the **native pipeline operator** (`|>`). This operator was introduced in R 4.1 (2021) as a built-in language feature, meaning it works without any additional packages.
+
+The pipeline operator allows us to chain several operations sequentially. Instead of writing nested code, we can use the pipeline operator to "pass" the result of one operation to the next.
+
+To use additional data manipulation functions, we'll load the `tidyverse` package, which includes `dplyr` - a package with many useful functions for working with data frames.
+
+A package in R is like a toolbox with additional functions and data for performing specific tasks. To use a package's functions, we must first install it and then load it into our working environment.
+
+To install the `tidyverse` package, we can use the following instruction in the R console:
+
+```{r eval=FALSE}
+install.packages("tidyverse")
+```
+
+This will install `tidyverse` and all the packages it contains, including `dplyr`. Once the package is installed, we can load it with the `library()` function:
+
+```{r}
+library(tidyverse)
+```
+
+Now we can use the pipeline operator `(|>)` and functions from `dplyr.`
+
+For example, if we want to view only the state, population, and total data from the `murders` data frame (from the `dslabs` package), we can use a pipeline:
+
+```{r eval=FALSE}
+install.packages("dslabs")
+```
+
+```{r}
+# Load library and dataset
+library(dslabs)
+data(murders)
+
+# Pipeline
+murders |> select(state, population, total)
+
+```
+
+Code with pipeline is easier to read and understand, as it follows the natural flow of operations. Pipeline creates a view; we are not editing the `murders` data frame.
+
+We can show the first rows using the `head()` function:
+
+```{r}
+head(murders |> select(state, population, total))
+```
+
+We can also use the pipeline operator to show the first rows:
+```{r}
+murders |> select(state, population, total) |> head()
+```
+
+For better readability, we will use one function per line, obtaining the same result:
+```{r}
+murders |>
+  select(state, population, total) |> # Select columns
+  head() # Show first 6 rows
+```
+
+### Transforming a table with `mutate()`
+We can create new columns or modify existing ones using the `mutate()` function. For example, to add a column with the homicide rate per 100,000 inhabitants to the `murders` data frame:
+
+```{r}
+murders |>
+  mutate(ratio = total / population * 100000) |>
+  head()
+```
+This creates a view with the additional `ratio` column.
+
+If we want to modify the `murders` data frame directly, we use the assignment operator `<-`:
+
+```{r}
+murders <- murders |>
+  mutate(ratio = total / population * 100000)
+```
+
+
+### Filtering data: selecting cities that interest you
+
+We can filter rows meeting a condition using the `filter()` function. For example, to get states with less than 1 homicide per 100,000 inhabitants:
+
+```{r}
+# Load dataset
+data(murders)
+
+murders |>
+  mutate(ratio = total / population * 100000) |>
+  filter(ratio < 1)
+```
+
+We can use different operators to create our conditions:
+
+*   `>`: greater than
+*   `<`: less than
+*   `>=`: greater than or equal to
+*   `<=`: less than or equal to
+*   `==`: equal to
+*   `!=`: different from
+
+We can also combine conditions using logical operators:
+
+*   `&`:  AND
+*   `|`:  OR
+*   `!`:  NOT
+
+For example, to filter by ratio less than 1 and West region:
+
+```{r}
+murders |>
+  mutate(ratio = total / population * 100000) |>
+  filter(ratio < 1 & region == "West")
+```
+
+### Sorting data: finding the safest cities
+
+The `arrange()` function from the `dplyr` package allows us to order the rows of a data frame based on one or more columns. Imagine you have a data frame with information about different cities, and you want to order them from safest to least safe, based on their crime rate. Or perhaps you want to order them by cost of living, from cheapest to most expensive. `arrange()` allows you to do this easily.
+
+For example, to order states by homicide rate (from lowest to highest):
+
+```{r}
+murders |>
+  mutate(ratio = total / population * 100000) |>
+  arrange(ratio) |>
+  head()
+```
+
+If we want to sort in descending order, we use the `desc()` function:
+
+```{r}
+murders |>
+  mutate(ratio = total / population * 100000) |>
+  arrange(desc(ratio)) |>
+  head()
+```
+
+We can also sort by multiple columns. For example, if we want to sort first by `region` and then by `state` (in alphabetical order):
+
+```{r}
+murders |> 
+  arrange(region, state) |>
+  head()
+```
+
+### Aggregating and summarizing data: obtaining general overview
+
+The `summarize()` function from the `dplyr` package allows us to calculate descriptive statistics for one or more columns of a data frame. It's like summarizing information from our data frame into a single number or a set of numbers.
+
+For example, to calculate the mean population of states:
+
+```{r}
+murders |>
+  summarize(mean_population = mean(population))
+```
+
+We can combine `summarize()` with `group_by()` to calculate statistics by groups. For example, to calculate average population by region:
+
+```{r}
+murders |>
+  group_by(region) |>
+  summarize(mean_population = mean(population))
+```
+
+### Joining data frames: combining information
+
+Imagine you have two data frames: one with information about cities (name, population, etc.) and another with information about the states those cities belong to (state name, governor, etc.). If you want to combine information from both data frames to have a single data frame with all information about cities and their states, you can use `dplyr` join functions.
+
+`dplyr` offers several functions for joining data frames, such as `left_join()`, `right_join()`, `inner_join()`, and `full_join()`. Each function performs a different type of join, depending on how data frame rows are combined.
+
+The `left_join()` function joins two data frames keeping all rows from the first data frame (the one on the left) and adding columns from the second data frame that match the first data frame's rows. If a row from the first data frame has no match in the second data frame, new columns will have `NA` values.
+
+For example, if we have a data frame with city information and another with state information, we can join them by the `state` column:
+
+```{r}
+df_cities_states <- left_join(df_cities, df_states, by = "state")
+```
+
+The resulting data frame `df_cities_states` will contain information from both data frames combined. If a city in `df_cities` does not have a corresponding state in `df_states`, columns from `df_states` will have `NA` values for that city.
+
+Let's see a concrete example. Suppose we have the following data frames:
+
+```{r}
+df_cities <- data.frame(
+  city = c("New York", "Los Angeles", "Chicago", "Houston"),
+  state = c("New York", "California", "Illinois", "Texas")
+)
+
+df_states <- data.frame(
+  state = c("California", "Texas", "Florida"),
+  governor = c("Gavin Newsom", "Greg Abbott", "Ron DeSantis")
+)
+
+# Join data frames by "state" column
+df_cities_states <- left_join(df_cities, df_states, by = "state")
+
+df_cities_states
+```
+
+In this example, `left_join()` combines `df_cities` and `df_states` data frames by the `state` column. Note that "New York" and "Chicago" cities have `NA` values in the `governor` column, since their states ("New York" and "Illinois") are not present in the `df_states` data frame.
+
+The other join functions (`right_join()`, `inner_join()`, and `full_join()`) work similarly, but with different criteria for combining data frame rows.
+
+*   `right_join()` does the opposite of `left_join()`: keeps all rows from the right data frame and only rows from the left data frame that match.
+*   `inner_join()` only keeps rows that have matches in both data frames.
+*   `full_join()` keeps all rows from both data frames, adding `NA` where there are no matches.
+
+You can consult `dplyr` documentation for more information about these functions.
+
+### Examples
+
+The `dplyr` functions we have seen allow us to perform complex data transformations to answer specific questions about our move to the United States. Let's see some examples with R code:
+
+*   **Filter cities with a good education system and low cost of living:**
+
+    ```{r eval=FALSE}
+    # Assume we have a "df_cities" data frame with information 
+    # about cities, including "education_system" and "cost_of_living" columns
+    
+    df_cities |> 
+      filter(education_system == "Good" & cost_of_living < 2.5)
+    ```
+
+*   **Sort states by their GDP per capita:**
+
+    ```{r eval=FALSE}
+    # Assume we have a "df_states" data frame with information 
+    # about states, including "gdp" and "population" columns
+    
+    df_states |> 
+      mutate(gdp_per_capita = gdp / population) |> 
+      arrange(desc(gdp_per_capita))
+    ```
+
+*   **Join a city data frame with a climate information data frame:**
+
+    ```{r eval=FALSE}
+    # Assume we have a "df_cities" data frame with information 
+    # about cities, including "city" column, and a "df_climate" 
+    # data frame with climate information, including "city" column
+    
+    df_cities_climate <- left_join(df_cities, df_climate, by = "city")
+    ```
+
+With these tools, you will be able to explore and analyze information about the United States to make the best decision about your move.
+
+`r if(params$hidden){"<!--"}`
+
+## Exercises
+
+`r ne`. Report the state abbreviation `abb` and population `population` columns from the `murders` data frame
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+murders |>
+  select(abb, population)
+
+```
+</details>
+
+`r ne`. Report all data frame data that are not from the South region.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+murders |>
+  filter(region != "South")
+
+```
+</details>
+
+> If we want to filter all records that are from the South and West region we will use `%in%` instead of `==` to compare versus a vector
+
+`r ne`. Create the vector `south_and_west` containing values "South" and "West". Then filter records that are from those two regions.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+south_and_west <- c("South", "West")
+  
+murders |>
+  filter(region %in% south_and_west)
+
+```
+</details>
+
+`r ne`. Add the `ratio` column to the `murders` data frame with the murder ratio per 100,000 inhabitants. Then, filter those with a ratio less than 0.5 and are from "South" and "West" regions. Report `state`, `abb`, and `ratio` columns.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+data(murders)
+
+south_and_west <- c("South", "West")
+  
+murders <- murders |>
+  mutate(ratio = total/population*100000) |>
+  filter(ratio < 0.9 & region %in% south_and_west) |>
+  select(state, abb, ratio)
+
+murders
+
+```
+</details>
+
+> To sort using pipeline we use the `arrange(x)` function, where `x` is the name of the column we want to take as reference which will sort in ascending order or `arrange(desc(x))` to sort in descending order.
+
+`r ne`. Modify the code generated in the previous exercise to sort the result by the `ratio` field.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+data(murders)
+
+south_and_west <- c("South", "West")
+  
+murders <- murders |>
+  mutate(ratio = total/population*100000) |>
+  filter(ratio < 0.9 & region %in% south_and_west) |>
+  select(state, abb, ratio) |>
+  arrange(ratio)
+
+murders
+
+```
+So, finally we can know what state options we have to be able to move and solve the presented case.
+</details>
+
+`r if(params$hidden){"-->"}`
+
+## Data frames in plots
+
+Now we will see some functions that allow us to visualize our data. Little by little we will build more complex and visually more aesthetic graphs to present. First let's see the most basic functions R presents us. In the next chapter we will see in more detail graph types and in which situations it is recommended to use one or another graph.
+
+### Scatter plots
+One of the most used plots in R is the scatter plot, which is a type of mathematical diagram using Cartesian coordinates to show values for two variables for a set of data [@jarrell1994, pp. 492]. By default we assume the variables to analyze are independent. Thus, the scatter plot will show the degree of correlation (not causality) between the two variables.
+
+The simplest way to plot a scatter plot is with the `plot(x,y)` function, where `x` and `y` are vectors indicating the _x-axis_ coordinates and _y-axis_ coordinates of each point we want to plot. For example, let's see the relationship between population size and total murders.
+
+```{r eval=TRUE}
+# Let's store population data in the x_axis object
+x_axis <- murders$population
+
+# Let's store total murders data in the y_axis object
+y_axis <- murders$total
+
+# With this code we create the scatter plot
+plot(x_axis, y_axis)
+
+```
+
+We can see a correlation between population and number of cases. Let's transform the `x_axis` dividing by one million (${10}^6$). Thus we will have the x axis expressed in millions.
+
+```{r eval=TRUE}
+x_axis <- murders$population/10^6
+y_axis <- murders$total
+
+plot(x_axis, y_axis)
+
+```
+
+### Histograms
+We can also create histograms from a vector with the `hist` function.
+
+```{r eval=TRUE}
+data(murders)
+
+murders <- murders |>
+  mutate(ratio = total/population*100000)
+
+hist(murders$ratio)
+
+```
+
+The ease R gives us to create graphs will save us time for analysis. From here we can quickly see that most states have a `ratio < 5`.
+
+### Box plot
+
+Finally, R allows us to create box plots easily with the `boxplot` function. So, if we wanted to analyze the distribution of `ratio` we would use the following code:
+
+```{r eval=TRUE}
+boxplot(murders$ratio)
+
+```
+
+## Data interpretation
+We have seen graphs that can be generated with a line of code, but we need to interpret them. To do so, we need to learn or remember some statistics. Throughout this book we will learn statistical concepts not going deep into the math part, but from the practical part and leveraging that functions already exist in R.
+
+Let's remember our case/problem. We have a list of murders in each of the 51 states. If we order them by the total column we would have:
+
+```{r eval=TRUE}
+murders |> 
+  arrange(total) |>
+  head()
+
+```
+
+R provides us with the `summary()` function, which gives us a summary of a vector's data.
+
+```{r eval=TRUE}
+summary(murders$total)
+```
+
+1. `Min.`: Minimum value of vector
+2. `1st Qu.`: First quartile
+3. `Median`: Median or second quartile
+4. `Mean`: Average
+5. `3rd Qu.`: Third quartile
+6. `Max.`: Maximum value of vector
+
+### Quartiles
+To understand quartiles let's visualize total data in an ordered way. To only obtain a single column in pipeline we will use `.$` before the variable name:
+
+```{r eval=TRUE}
+murders |> 
+  arrange(total) |>
+  pull(total)
+```
+
+Quartiles divide our vector into 4 parts with the same amount of data. Given we have 51 values, we would have groups of `51/4 = 12.75`. We would have groups of 13 values (3 groups of 13 elements and one of 12 elements).
+
+For example, the first group would be composed of these numbers:
+
+```{r eval=TRUE, echo=FALSE}
+first13  <- murders |> 
+  arrange(total) |>
+  pull(total)
+
+first13[1:13]
+```
+
+The second group would be composed of these numbers:
+
+```{r eval=TRUE, echo=FALSE}
+first13  <- murders |> 
+  arrange(total) |>
+  pull(total)
+
+first13[14:26]
+```
+And so on. In total 4 groups made up of 25% of data each.
+
+#### First quartile
+Therefore, when we see the 1st quartile, `1st Qu.`, let's think that is the cut indicating up to where I can find 25% of the data.
+
+```{r eval=TRUE}
+summary(murders$total)
+```
+
+In our example `24.5` indicates that every number less than or equal to that number will be within the first 25% of data (25% of 51 data points = 12.75, rounded to 13 data points).
+
+If we list numbers less than or equal to 24.5 we will have this list:
+```{r eval=TRUE}
+murders |>
+  arrange(total) |>
+  filter(total <= 24.5) |>
+  pull(total)
+```
+
+Which is exactly the same list we obtained previously for the first group.
+
+#### Second quartile or median
+The second quartile, also called the median (`Median`), indicates the cut of the second group. The first group contains the first 25% of data, the second group has additional 25%. So this cut would give us exactly the value found in the middle.
+
+```{r eval=TRUE}
+summary(murders$total)
+```
+
+In our example `97` indicates that below that number we will find 50% of total data (50% of 51 data points = 25.5, rounded to 26 data points).
+
+```{r eval=TRUE}
+murders |>
+  arrange(total) |>
+  filter(total <= 97) |>
+  pull(total)
+```
+
+#### Third quartile
+The third quartile is the cut of the third group. Up to the median we already had 50%, if we add another 25% of data we would have 75%.
+
+```{r eval=TRUE}
+summary(murders$total)
+```
+
+In our example `268` indicates that below that number we will find 75% of total data (75% of 51 data points = 26.01, rounded to 26 data points).
+
+### Interpretation of box plot
+We are now ready to create a box plot with total murders and interpret results.
+
+```{r eval=TRUE}
+boxplot(murders$total)
+```
+
+The box starts at value 24.5 (first quartile) and ends at value 268 (third quartile). The thick line represents the median (second quartile), 97 in our example.
+
+Between the first quartile and third quartile (between 24.5 and 97 for our example) we will find 50% of the data, also called interquartile range or `IQR`.
+
+Outside the box we see a vertical line upwards and another downwards, showing the range of our data. Outside those lines we see dots which are atypical data very far from the mean, known as **outliers**.
+
+We can quickly find to which states these extreme data belong if we sort the table descendingly using the `desc` function:
+
+```{r eval=TRUE}
+murders |>
+  arrange(desc(total)) |>
+  head()
+```
+
+We see that in California `1257` cases were reported. That is one of the extreme data points we see in the box plot.
+
+### Examples
+1. Create variable `pop_log10` and store log base 10 data of population (`log10()` function). Perform the same log base 10 transformation for total murders and store it in variable `tot_log10`. Generate a scatter plot of these two variables.
+
+```{r eval=TRUE}
+pop_log10 <- log10(murders$population)
+tot_log10 <- log10(murders$total)
+
+plot(pop_log10, tot_log10)
+```
+
+2. Create a histogram of population in millions (divided by ${10}^6$).
+
+```{r eval=TRUE}
+hist(murders$population/10^6)
+```
+
+3. Create a box plot of population.
+
+```{r eval=TRUE}
+boxplot(murders$population)
+```
+
+`r if(params$hidden){"<!--"}`
+
+## Exercises
+
+Below, you will find a series of exercises with different levels of difficulty. It is time to put into practice what you have learned in this chapter. Remember you can use `dplyr` functions like `filter()`, `arrange()`, `mutate()`, `summarize()`, `group_by()` and `left_join()` to manipulate data frames.
+
+`r ne`. Create a data frame called `my_expenses` with the following columns:
+
+    *   `category`: A factor with categories "Housing", "Transport", "Food", and "Entertainment".
+    *   `january`: Expenses in January for each category.
+    *   `february`: Expenses in February for each category.
+    *   `march`: Expenses in March for each category.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+my_expenses <- data.frame(
+  category = factor(c("Housing", "Transport", "Food", "Entertainment")),
+  january = c(1500, 300, 500, 200),
+  february = c(1500, 250, 400, 150),
+  march = c(1500, 350, 550, 250)
+)
+
+my_expenses
+```
+</details>
+
+`r ne`. Use `head()`, `tail()`, `str()` and `summary()` functions to explore `my_expenses` data frame.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+head(my_expenses)
+tail(my_expenses)
+str(my_expenses)
+summary(my_expenses)
+```
+</details>
+
+`r ne`. Access `february` column of `my_expenses` data frame using `$` operator. Then, access the second row of the data frame using brackets.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+my_expenses$february
+my_expenses[2, ]
+```
+</details>
+
+`r ne`. Filter `my_expenses` data frame to get only rows where expenses in `january` are greater than 400.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+my_expenses |>
+  filter(january > 400)
+```
+</details>
+
+`r ne`. Sort `my_expenses` data frame descendingly by expenses in `march`.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+my_expenses |>
+  arrange(desc(march))
+```
+</details>
+
+`r ne`. Add a column called `total` to `my_expenses` data frame containing the sum of January, February, and March expenses for each category.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+my_expenses <- my_expenses |> 
+  mutate(total = january + february + march)
+```
+</details>
+
+`r ne`. Calculate mean and standard deviation of total expenses for each category in `my_expenses` data frame.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+my_expenses |> 
+  summarize(mean_total = mean(total), 
+            std_total = sd(total))
+```
+</details>
+
+`r ne`. Group `my_expenses` data frame by category and calculate sum of expenses for each month.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+my_expenses |> 
+  group_by(category) |> 
+  summarize(sum_january = sum(january), 
+            sum_february = sum(february), 
+            sum_march = sum(march))
+```
+</details>
+
+`r ne`. Visually analyze the following chart describing total murder distribution by regions. Just by visualizing it, could you point out which region has the smallest data range, ignoring outliers? Which region has the highest median?
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+```{r eval=TRUE, echo=FALSE}
+boxplot(total~region, data=murders)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+  West has the smallest data range and has two outliers. South has the highest median among all regions.
+  
+  Analyzing solely by seeing a chart allows us to put ourselves in the final observer's shoes and understand if decisions can be made just with presented information.
+</details>
+
+`r ne`. Create `south` vector where you store filtered data of total murders occurred in South region. Then, create a histogram of `south` vector.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+south <- murders |>
+  filter(region == "South") |>
+  pull(total)
+
+hist(south)
+```
+</details>
+
+`r ne`. Create a new data frame called `df_cities_climate` combining information from `df_cities` and `df_climate` (you must create `df_climate` data frame with city climate information). Ensure resulting data frame contains all cities from `df_cities`, even if they don't have climate information in `df_climate`.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+df_climate <- data.frame(
+  city = c("New York", "Los Angeles", "Chicago"),
+  average_temperature = c(12.8, 17.7, 10.7),  # In degrees Celsius
+  annual_precipitation = c(1269, 373, 965)  # In millimeters
+)
+
+df_cities_climate <- left_join(df_cities, df_climate, by = "city")
+```
+</details>
+
+`r ne`. Create a data frame with some missing values (`NA`). Then, replace missing values with mean of non-missing values in same column.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+# Create data frame with missing values
+df_with_na <- data.frame(
+  x = c(1, 2, NA, 4, 5),
+  y = c(NA, 7, 8, NA, 10)
+)
+
+df_with_na
+
+# Replace missing values with mean
+df_with_na <- df_with_na |> 
+  mutate(x = ifelse(is.na(x), mean(x, na.rm = TRUE), x),
+         y = ifelse(is.na(y), mean(y, na.rm = TRUE), y))
+
+df_with_na
+```
+</details>
+
+`r ne`. Create a function called `clean_data_frame()` receiving a data frame as argument and replacing missing values with mean of non-missing values in each column.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+clean_data_frame <- function(df) {
+  for (col in names(df)) {
+    if (is.numeric(df[[col]])) {
+      df[[col]] <- ifelse(is.na(df[[col]]), mean(df[[col]], na.rm = TRUE), df[[col]])
+    }
+  }
+  return(df)
+}
+
+## Test created function
+# Create data frame with missing values to test function
+df_test <- data.frame(
+  age = c(25, 30, NA, 28, 35),
+  height = c(1.75, 1.80, 1.65, NA, 1.70),
+  weight = c(70, 80, 75, 65, NA)
+)
+
+df_test
+
+# Apply function to test data frame
+df_clean <- clean_data_frame(df_test)
+
+# Show clean data frame
+df_clean
+
+```
+</details>
+
+
+`r if(params$hidden){"-->"}`
