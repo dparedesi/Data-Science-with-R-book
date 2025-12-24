@@ -5,19 +5,19 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Ggplot and dplyr | Data Science with R</title>
-  <meta name="description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  <meta name="description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Ggplot and dplyr | Data Science with R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta property="og:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
+  <meta name="github-repo" content="dparedesi/Data-Science-with-R-book" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 5 Ggplot and dplyr | Data Science with R" />
   
-  <meta name="twitter:description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  <meta name="twitter:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
   
 
 <meta name="author" content="Author: Mg. Daniel Paredes Inilupu" />
@@ -629,7 +629,7 @@ div.csl-indent {
 <span id="cb201-3"><a href="ggplot-and-dplyr.html#cb201-3" tabindex="-1"></a></span>
 <span id="cb201-4"><a href="ggplot-and-dplyr.html#cb201-4" tabindex="-1"></a>murders <span class="sc">|&gt;</span></span>
 <span id="cb201-5"><a href="ggplot-and-dplyr.html#cb201-5" tabindex="-1"></a>  <span class="fu">ggplot</span>()</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-274-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-274-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>This code only shows us an empty box. This is because we haven’t specified which variables to take from the data frame nor what type of plot we want.</p>
 <p>To add each component of the plot we are creating we will use <em>layers</em>. The <code>ggplot</code> object allows us to add layer by layer which component of the plot we want to add. The symbol to add layers to the <code>ggplot</code> object is the <code>+</code> symbol.</p>
 </div>
@@ -640,7 +640,7 @@ div.csl-indent {
 <span id="cb202-2"><a href="ggplot-and-dplyr.html#cb202-2" tabindex="-1"></a>murders <span class="sc">|&gt;</span></span>
 <span id="cb202-3"><a href="ggplot-and-dplyr.html#cb202-3" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb202-4"><a href="ggplot-and-dplyr.html#cb202-4" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> population, <span class="at">y =</span> total)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-275-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-275-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Now we have a box with the axes marked, but still without any data inside the box.</p>
 </div>
 <div id="geoms-layer" class="section level2 hasAnchor" number="5.3">
@@ -651,14 +651,14 @@ div.csl-indent {
 <span id="cb203-3"><a href="ggplot-and-dplyr.html#cb203-3" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb203-4"><a href="ggplot-and-dplyr.html#cb203-4" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> population, <span class="at">y =</span> total) <span class="sc">+</span></span>
 <span id="cb203-5"><a href="ggplot-and-dplyr.html#cb203-5" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-276-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-276-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>In the same way, we can show lines connecting the data instead of points with the <code>geom_line()</code> function.</p>
 <div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="ggplot-and-dplyr.html#cb204-1" tabindex="-1"></a></span>
 <span id="cb204-2"><a href="ggplot-and-dplyr.html#cb204-2" tabindex="-1"></a>murders <span class="sc">|&gt;</span></span>
 <span id="cb204-3"><a href="ggplot-and-dplyr.html#cb204-3" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb204-4"><a href="ggplot-and-dplyr.html#cb204-4" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> population, <span class="at">y =</span> total) <span class="sc">+</span></span>
 <span id="cb204-5"><a href="ggplot-and-dplyr.html#cb204-5" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-277-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-277-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Up to this point we have created the same scatter plot that we saw in the previous chapter. The power of ggplot lies in the ease of adding components. For example, if we want each point in the scatter plot to have the state name, or even better the abbreviation <code>abb</code>, we just have to add it as a <code>label</code> attribute inside <code>aes</code> and add the <code>geom_text()</code> layer.</p>
 <div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="ggplot-and-dplyr.html#cb205-1" tabindex="-1"></a></span>
 <span id="cb205-2"><a href="ggplot-and-dplyr.html#cb205-2" tabindex="-1"></a>murders <span class="sc">|&gt;</span></span>
@@ -666,7 +666,7 @@ div.csl-indent {
 <span id="cb205-4"><a href="ggplot-and-dplyr.html#cb205-4" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> population, <span class="at">y =</span> total, <span class="at">label=</span>abb) <span class="sc">+</span></span>
 <span id="cb205-5"><a href="ggplot-and-dplyr.html#cb205-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb205-6"><a href="ggplot-and-dplyr.html#cb205-6" tabindex="-1"></a>  <span class="fu">geom_text</span>()</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-278-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-278-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>In this plot we can already see that the upper right point corresponds to <strong>CA</strong> which is the abbreviation for the state of <strong>California</strong>.</p>
 <div id="tweaking-aes-and-geoms" class="section level3 hasAnchor" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Tweaking aes and geoms<a href="ggplot-and-dplyr.html#tweaking-aes-and-geoms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -678,7 +678,7 @@ div.csl-indent {
 <span id="cb206-4"><a href="ggplot-and-dplyr.html#cb206-4" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> population, <span class="at">y =</span> total, <span class="at">label=</span>abb, <span class="at">color=</span>region) <span class="sc">+</span></span>
 <span id="cb206-5"><a href="ggplot-and-dplyr.html#cb206-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb206-6"><a href="ggplot-and-dplyr.html#cb206-6" tabindex="-1"></a>  <span class="fu">geom_text</span>()</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-279-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-279-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Then, we can also edit the attributes of the <code>geoms</code>. For example, let’s make the size of the points larger. To do this we edit inside <code>geom_points()</code>:</p>
 <div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="ggplot-and-dplyr.html#cb207-1" tabindex="-1"></a></span>
 <span id="cb207-2"><a href="ggplot-and-dplyr.html#cb207-2" tabindex="-1"></a>murders <span class="sc">|&gt;</span></span>
@@ -686,7 +686,7 @@ div.csl-indent {
 <span id="cb207-4"><a href="ggplot-and-dplyr.html#cb207-4" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> population, <span class="at">y =</span> total, <span class="at">label=</span>abb, <span class="at">color=</span>region) <span class="sc">+</span></span>
 <span id="cb207-5"><a href="ggplot-and-dplyr.html#cb207-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span></span>
 <span id="cb207-6"><a href="ggplot-and-dplyr.html#cb207-6" tabindex="-1"></a>  <span class="fu">geom_text</span>()</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-280-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-280-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Having increased the size of the points, we can no longer see the text of the state abbreviations well. We can nudge the text on the <em>x-axis</em> or on the <em>y-axis</em>. Since we are talking about several million people, let’s nudge the letters 1.5 million to the right.</p>
 <div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="ggplot-and-dplyr.html#cb208-1" tabindex="-1"></a></span>
 <span id="cb208-2"><a href="ggplot-and-dplyr.html#cb208-2" tabindex="-1"></a>murders <span class="sc">|&gt;</span></span>
@@ -694,7 +694,7 @@ div.csl-indent {
 <span id="cb208-4"><a href="ggplot-and-dplyr.html#cb208-4" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> population, <span class="at">y =</span> total, <span class="at">label=</span>abb, <span class="at">color=</span>region) <span class="sc">+</span></span>
 <span id="cb208-5"><a href="ggplot-and-dplyr.html#cb208-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span></span>
 <span id="cb208-6"><a href="ggplot-and-dplyr.html#cb208-6" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">nudge_x =</span> <span class="dv">1500000</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-281-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-281-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>To avoid entering such large numbers we can transform the population on the x-axis in the <code>aes()</code> function. Thus, once we express the data without counting the millions we would have to nudge the text only 1.5 points to the right:</p>
 <div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="ggplot-and-dplyr.html#cb209-1" tabindex="-1"></a></span>
 <span id="cb209-2"><a href="ggplot-and-dplyr.html#cb209-2" tabindex="-1"></a>murders <span class="sc">|&gt;</span></span>
@@ -702,7 +702,7 @@ div.csl-indent {
 <span id="cb209-4"><a href="ggplot-and-dplyr.html#cb209-4" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> population<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, <span class="at">y =</span> total, <span class="at">label=</span>abb, <span class="at">color=</span>region) <span class="sc">+</span></span>
 <span id="cb209-5"><a href="ggplot-and-dplyr.html#cb209-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span> </span>
 <span id="cb209-6"><a href="ggplot-and-dplyr.html#cb209-6" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">nudge_x =</span> <span class="fl">1.5</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-282-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-282-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>This transformation gives us the same result as before and the <em>x-axis</em> is now easier to understand now that we can see the numbers.</p>
 </div>
 </div>
@@ -717,7 +717,7 @@ div.csl-indent {
 <span id="cb210-6"><a href="ggplot-and-dplyr.html#cb210-6" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">nudge_x =</span> <span class="fl">0.23</span>) <span class="sc">+</span></span>
 <span id="cb210-7"><a href="ggplot-and-dplyr.html#cb210-7" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log2&quot;</span>) <span class="sc">+</span></span>
 <span id="cb210-8"><a href="ggplot-and-dplyr.html#cb210-8" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log2&quot;</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-283-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-283-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>In the same way, we could do the transformation to base 10 logarithm:</p>
 <div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="ggplot-and-dplyr.html#cb211-1" tabindex="-1"></a></span>
 <span id="cb211-2"><a href="ggplot-and-dplyr.html#cb211-2" tabindex="-1"></a>murders <span class="sc">|&gt;</span></span>
@@ -727,7 +727,7 @@ div.csl-indent {
 <span id="cb211-6"><a href="ggplot-and-dplyr.html#cb211-6" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">nudge_x =</span> <span class="fl">0.075</span>) <span class="sc">+</span></span>
 <span id="cb211-7"><a href="ggplot-and-dplyr.html#cb211-7" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log10&quot;</span>) <span class="sc">+</span></span>
 <span id="cb211-8"><a href="ggplot-and-dplyr.html#cb211-8" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log10&quot;</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-284-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-284-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>The transformation of the scale to base 10 logarithm is widely used in statistics and R provides us with a faster function to proceed with this scale transformation, the function <code>scale_x_log10()</code>, which gives us the same result as the previous plot.</p>
 <div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="ggplot-and-dplyr.html#cb212-1" tabindex="-1"></a></span>
 <span id="cb212-2"><a href="ggplot-and-dplyr.html#cb212-2" tabindex="-1"></a>murders <span class="sc">|&gt;</span></span>
@@ -737,7 +737,7 @@ div.csl-indent {
 <span id="cb212-6"><a href="ggplot-and-dplyr.html#cb212-6" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">nudge_x =</span> <span class="fl">0.075</span>) <span class="sc">+</span></span>
 <span id="cb212-7"><a href="ggplot-and-dplyr.html#cb212-7" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
 <span id="cb212-8"><a href="ggplot-and-dplyr.html#cb212-8" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-285-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-285-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="label-title-and-legend-layer" class="section level2 hasAnchor" number="5.5">
 <h2><span class="header-section-number">5.5</span> Label, title and legend layer<a href="ggplot-and-dplyr.html#label-title-and-legend-layer" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -754,7 +754,7 @@ div.csl-indent {
 <span id="cb213-10"><a href="ggplot-and-dplyr.html#cb213-10" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Total number of murders (logarithmic scale)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb213-11"><a href="ggplot-and-dplyr.html#cb213-11" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Gun murders in the US in 2010&quot;</span>) <span class="sc">+</span></span>
 <span id="cb213-12"><a href="ggplot-and-dplyr.html#cb213-12" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Regions&quot;</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-286-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-286-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="reference-lines" class="section level2 hasAnchor" number="5.6">
 <h2><span class="header-section-number">5.6</span> Reference lines<a href="ggplot-and-dplyr.html#reference-lines" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -777,7 +777,7 @@ div.csl-indent {
 <span id="cb214-15"><a href="ggplot-and-dplyr.html#cb214-15" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Gun murders in the US in 2010&quot;</span>) <span class="sc">+</span></span>
 <span id="cb214-16"><a href="ggplot-and-dplyr.html#cb214-16" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Regions&quot;</span>) <span class="sc">+</span></span>
 <span id="cb214-17"><a href="ggplot-and-dplyr.html#cb214-17" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> avg_total)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-287-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-287-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Or we could calculate the murder rate per million inhabitants throughout the US and draw a reference diagonal. In the case of the diagonal we have to express it in the same scale of the axis, therefore we have to convert it to <code>log10</code>.</p>
 <div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="ggplot-and-dplyr.html#cb215-1" tabindex="-1"></a></span>
 <span id="cb215-2"><a href="ggplot-and-dplyr.html#cb215-2" tabindex="-1"></a><span class="co"># Calculate the average rate</span></span>
@@ -799,7 +799,7 @@ div.csl-indent {
 <span id="cb215-18"><a href="ggplot-and-dplyr.html#cb215-18" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Gun murders in the US in 2010&quot;</span>) <span class="sc">+</span></span>
 <span id="cb215-19"><a href="ggplot-and-dplyr.html#cb215-19" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Regions&quot;</span>) <span class="sc">+</span></span>
 <span id="cb215-20"><a href="ggplot-and-dplyr.html#cb215-20" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> ratio_log10)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-288-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-288-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>We can improve this reference line by making it dashed and gray. To do this, simply edit the <code>geom_abline()</code> function as follows:</p>
 <div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="ggplot-and-dplyr.html#cb216-1" tabindex="-1"></a></span>
 <span id="cb216-2"><a href="ggplot-and-dplyr.html#cb216-2" tabindex="-1"></a>murders <span class="sc">|&gt;</span></span>
@@ -814,7 +814,7 @@ div.csl-indent {
 <span id="cb216-11"><a href="ggplot-and-dplyr.html#cb216-11" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Gun murders in the US in 2010&quot;</span>) <span class="sc">+</span></span>
 <span id="cb216-12"><a href="ggplot-and-dplyr.html#cb216-12" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Regions&quot;</span>) <span class="sc">+</span></span>
 <span id="cb216-13"><a href="ggplot-and-dplyr.html#cb216-13" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> ratio_log10, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">&quot;darkgrey&quot;</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-289-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-289-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="changing-the-plot-style" class="section level2 hasAnchor" number="5.7">
 <h2><span class="header-section-number">5.7</span> Changing the plot style<a href="ggplot-and-dplyr.html#changing-the-plot-style" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -834,7 +834,7 @@ div.csl-indent {
 <span id="cb217-13"><a href="ggplot-and-dplyr.html#cb217-13" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Regions&quot;</span>) <span class="sc">+</span></span>
 <span id="cb217-14"><a href="ggplot-and-dplyr.html#cb217-14" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> ratio_log10, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="sc">+</span></span>
 <span id="cb217-15"><a href="ggplot-and-dplyr.html#cb217-15" tabindex="-1"></a>  <span class="fu">theme_economist</span>()</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-290-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-290-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>We still see overlapping abbreviations. We can make the names repel each other using the <code>geom_text_repel()</code> function instead of <code>geom_text()</code> that we are currently using. To use this function we need to call the <strong>ggrepel</strong> library.</p>
 <div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="ggplot-and-dplyr.html#cb218-1" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
 <span id="cb218-2"><a href="ggplot-and-dplyr.html#cb218-2" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
@@ -854,7 +854,7 @@ div.csl-indent {
 <span id="cb218-16"><a href="ggplot-and-dplyr.html#cb218-16" tabindex="-1"></a>  <span class="fu">theme_economist</span>()</span>
 <span id="cb218-17"><a href="ggplot-and-dplyr.html#cb218-17" tabindex="-1"></a><span class="co">#&gt; Warning: ggrepel: 1 unlabeled data points (too many overlaps). Consider</span></span>
 <span id="cb218-18"><a href="ggplot-and-dplyr.html#cb218-18" tabindex="-1"></a><span class="co">#&gt; increasing max.overlaps</span></span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-291-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-291-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>This plot is visually much easier to understand and aesthetically much better than the default plot we created in previous chapters. We can explore more examples at this <a href="https://rstudio-pubs-static.s3.amazonaws.com/228019_f0c39e05758a4a51b435b19dbd321c23.html">link</a>.</p>
 </div>
 <div id="summarizing-data-with-dplyr" class="section level2 hasAnchor" number="5.8">
@@ -950,7 +950,7 @@ div.csl-indent {
 <div id="exercises-5" class="section level2 hasAnchor" number="5.9">
 <h2><span class="header-section-number">5.9</span> Exercises<a href="ggplot-and-dplyr.html#exercises-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This time we are going to perform exercises within the field of biology and for this we must remember the parts of a flower. This way we will give more sense to the problem:</p>
-<p><img src="img/partes-de-flor.png" alt="" width="150pt" style="display: block; margin: auto;" /></p>
+<p><img src="_assets/images/03-visualization/partes-de-flor.png" alt="Botanical diagram showing flower parts: sepal, petal, stamen, and pistil" width="150pt" style="display: block; margin: auto;" /></p>
 <ol start="53" style="list-style-type: decimal">
 <li>Load the <code>iris</code> data frame to your variable environment (<code>data(iris)</code>). In this data frame we find a list of characteristics of 150 flowers of 3 different types of species. Report a scatter plot of the sepal and petal length of the <code>iris</code> data frame.</li>
 </ol>

@@ -5,19 +5,19 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 10 Data import and consolidation | Data Science with R</title>
-  <meta name="description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  <meta name="description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 10 Data import and consolidation | Data Science with R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta property="og:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
+  <meta name="github-repo" content="dparedesi/Data-Science-with-R-book" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 10 Data import and consolidation | Data Science with R" />
   
-  <meta name="twitter:description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  <meta name="twitter:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
   
 
 <meta name="author" content="Author: Mg. Daniel Paredes Inilupu" />
@@ -669,7 +669,7 @@ div.csl-indent {
 <p>The functions we will use the most will be <code>read_csv()</code> and <code>read_excel()</code>. The latter supports .xls and .xlsx extensions.</p>
 <div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="data-import-and-consolidation.html#cb411-1" tabindex="-1"></a>data_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;murders.csv&quot;</span>)</span>
 <span id="cb411-2"><a href="data-import-and-consolidation.html#cb411-2" tabindex="-1"></a><span class="co">#&gt; Rows: 51 Columns: 5</span></span>
-<span id="cb411-3"><a href="data-import-and-consolidation.html#cb411-3" tabindex="-1"></a><span class="co">#&gt; ── Column specification ─────────────────────────────</span></span>
+<span id="cb411-3"><a href="data-import-and-consolidation.html#cb411-3" tabindex="-1"></a><span class="co">#&gt; ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
 <span id="cb411-4"><a href="data-import-and-consolidation.html#cb411-4" tabindex="-1"></a><span class="co">#&gt; Delimiter: &quot;,&quot;</span></span>
 <span id="cb411-5"><a href="data-import-and-consolidation.html#cb411-5" tabindex="-1"></a><span class="co">#&gt; chr (3): state, abb, region</span></span>
 <span id="cb411-6"><a href="data-import-and-consolidation.html#cb411-6" tabindex="-1"></a><span class="co">#&gt; dbl (2): population, total</span></span>
@@ -809,7 +809,7 @@ div.csl-indent {
 <span id="cb420-2"><a href="data-import-and-consolidation.html#cb420-2" tabindex="-1"></a></span>
 <span id="cb420-3"><a href="data-import-and-consolidation.html#cb420-3" tabindex="-1"></a>wide_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(fertility_path)</span>
 <span id="cb420-4"><a href="data-import-and-consolidation.html#cb420-4" tabindex="-1"></a><span class="co">#&gt; Rows: 2 Columns: 57</span></span>
-<span id="cb420-5"><a href="data-import-and-consolidation.html#cb420-5" tabindex="-1"></a><span class="co">#&gt; ── Column specification ─────────────────────────────</span></span>
+<span id="cb420-5"><a href="data-import-and-consolidation.html#cb420-5" tabindex="-1"></a><span class="co">#&gt; ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
 <span id="cb420-6"><a href="data-import-and-consolidation.html#cb420-6" tabindex="-1"></a><span class="co">#&gt; Delimiter: &quot;,&quot;</span></span>
 <span id="cb420-7"><a href="data-import-and-consolidation.html#cb420-7" tabindex="-1"></a><span class="co">#&gt; chr  (1): country</span></span>
 <span id="cb420-8"><a href="data-import-and-consolidation.html#cb420-8" tabindex="-1"></a><span class="co">#&gt; dbl (56): 1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, ...</span></span>
@@ -899,7 +899,7 @@ div.csl-indent {
 <span id="cb424-2"><a href="data-import-and-consolidation.html#cb424-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb424-3"><a href="data-import-and-consolidation.html#cb424-3" tabindex="-1"></a>  <span class="fu">aes</span>(year, fertility, <span class="at">color =</span> country) <span class="sc">+</span></span>
 <span id="cb424-4"><a href="data-import-and-consolidation.html#cb424-4" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-550-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-550-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="pivot_wider-function" class="section level4 hasAnchor" number="10.2.1.2">
 <h4><span class="header-section-number">10.2.1.2</span> pivot_wider function<a href="data-import-and-consolidation.html#pivot_wider-function" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -921,7 +921,7 @@ div.csl-indent {
 <span id="cb426-2"><a href="data-import-and-consolidation.html#cb426-2" tabindex="-1"></a></span>
 <span id="cb426-3"><a href="data-import-and-consolidation.html#cb426-3" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(ruta)</span>
 <span id="cb426-4"><a href="data-import-and-consolidation.html#cb426-4" tabindex="-1"></a><span class="co">#&gt; Rows: 2 Columns: 113</span></span>
-<span id="cb426-5"><a href="data-import-and-consolidation.html#cb426-5" tabindex="-1"></a><span class="co">#&gt; ── Column specification ─────────────────────────────</span></span>
+<span id="cb426-5"><a href="data-import-and-consolidation.html#cb426-5" tabindex="-1"></a><span class="co">#&gt; ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
 <span id="cb426-6"><a href="data-import-and-consolidation.html#cb426-6" tabindex="-1"></a><span class="co">#&gt; Delimiter: &quot;,&quot;</span></span>
 <span id="cb426-7"><a href="data-import-and-consolidation.html#cb426-7" tabindex="-1"></a><span class="co">#&gt; chr   (1): country</span></span>
 <span id="cb426-8"><a href="data-import-and-consolidation.html#cb426-8" tabindex="-1"></a><span class="co">#&gt; dbl (112): 1960_fertility, 1960_life_expectancy, 1961_fertility, 1961_life_e...</span></span>
@@ -1363,7 +1363,7 @@ Solution
 <div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="data-import-and-consolidation.html#cb450-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb450-2"><a href="data-import-and-consolidation.html#cb450-2" tabindex="-1"></a><span class="fu">library</span>(rvest)</span></code></pre></div>
 <p>The function we will use the most will be <code>read_html()</code> and as an argument we will place the url of the web from where we want to extract the data. We are not talking about a url that downloads a text file but a web page like this:</p>
-<p><img src="img/paises-hispanos.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="_assets/images/05-wrangling/paises-hispanos.png" alt="Wikipedia table of Hispanic countries by population" width="80%" style="display: block; margin: auto;" /></p>
 <p>Thus, we will use <code>read_html()</code> to store all the web html and then little by little access the table data in R.</p>
 <div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="data-import-and-consolidation.html#cb451-1" tabindex="-1"></a>data_en_html <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">&quot;https://es.wikipedia.org/wiki/Anexo:Pa%C3%ADses_hispanos_por_poblaci%C3%B3n&quot;</span>)</span>
 <span id="cb451-2"><a href="data-import-and-consolidation.html#cb451-2" tabindex="-1"></a></span>

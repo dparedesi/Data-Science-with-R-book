@@ -1,45 +1,107 @@
 ---
-output: html_document
-editor_options: 
-  chunk_output_type: inline
+output: github_document
 ---
-# Data Science with R - 2nd Edition
 
-Welcome to the source code for the second edition of "Data Science with R". This book has been completely modernized and localized to English to provide a comprehensive guide to data science using the latest R ecosystem tools.
+# Data Science with R <img src="_assets/images/01-introduction/multidisciplinaria.png" align="right" width="150"/>
 
-## Key Features
+<!-- badges: start -->
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+[![R Version](https://img.shields.io/badge/R-4.4.2-blue.svg)](https://cran.r-project.org/)
+<!-- badges: end -->
 
-*   **Modern Tidyverse**: Uses the native pipe (`|>`) and modern `dplyr` verbs across all examples.
-*   **Tidymodels**: Full suite of machine learning chapters (Regression, Classification, Unsupervised Learning) using the `tidymodels` framework.
-*   **Real-World Cases**: Includes a new "Real Estate Analysis" case study using `txhousing` data and static Google Analytics tutorials.
-*   **GenAI Integration**: New chapters on using LLMs and APIs within R workflow.
-*   **Ethics**: Dedicated sections on algorithmic bias and an ethics checklist for data projects.
+> **Data Analysis and Prediction Algorithms with R, Second Edition**
+> 
+> By Daniel Paredes Inilupu
 
-## Building the Book
+## 📖 Read Online
 
-This project uses `bookdown`. To build the book locally:
+**[https://bookdown.org/dparedesi/data-science-con-r/](https://bookdown.org/dparedesi/data-science-con-r/)**
 
-1.  **Setup Environment**:
-    Run the setup script to install all dependencies (CRAN and system requirements).
-    ```r
-    source("setup_dependencies.R")
-    ```
+## 📚 What You'll Learn
 
-2.  **Render**:
-    ```r
-    bookdown::render_book("index.Rmd")
-    ```
+| Part | Topics |
+|------|--------|
+| **I. Fundamentals** | R objects, functions, data frames, tidyverse |
+| **II. Visualization** | ggplot2, gapminder case study |
+| **III. Statistics** | Probability, distributions, inference |
+| **IV. Data Wrangling** | Importing data, text mining |
+| **V. Machine Learning** | tidymodels, classification, regression, clustering |
+| **VI. Applied Cases** | Real estate analysis, Google Analytics |
+| **VII. Generative AI** | LLM APIs, AI-assisted coding |
+| **Appendix** | Ethics checklist |
+
+## ✨ Key Features
+
+- **Modern Tidyverse**: Uses the native pipe (`|>`) and modern `dplyr` verbs
+- **Tidymodels**: Full ML chapters using the `tidymodels` framework
+- **Real-World Cases**: Includes new case studies with real datasets
+- **GenAI Integration**: Covers using LLMs and APIs within R workflow
+- **Ethics**: Dedicated sections on algorithmic bias and ethics checklist
+
+## 🛠️ Technical Stack
+
+- **R**: 4.4.2+
+- **Framework**: [bookdown](https://bookdown.org/)
+- **ML**: [tidymodels](https://www.tidymodels.org/)
+- **Visualization**: [ggplot2](https://ggplot2.tidyverse.org/)
+
+## 🚀 Quick Start
+
+```r
+# Install dependencies
+source("setup_dependencies.R")
+
+# Build the book
+bookdown::render_book("index.Rmd")
+```
 
 The output will be generated in the `docs/` folder.
 
-## Structure
+## 📁 Structure
 
-*   `01.intro` - `04.statistics`: Core R, Visualization, and Statistics.
-*   `05.wrangling`: Data Import and Text Mining.
-*   `06.machine-learning`: Supervised and Unsupervised Learning using `tidymodels`.
-*   `07.real-cases`: Applied case studies.
-*   `08.genai`: Generative AI with R.
+```
+├── 01.intro/          Introduction
+├── 02.fundamentals/   Objects, Functions, Data Frames
+├── 03.visualization/  ggplot2, Gapminder Case Study
+├── 04.statistics/     Probability and Inference
+├── 05.wrangling/      Data Import, Text Mining
+├── 06.machine-learning/  Supervised & Unsupervised Learning
+├── 07.real-cases/     Applied Case Studies
+├── 08.genai/          Generative AI with R
+└── 09.appendix/       Ethics Checklist
+```
 
-## License
+## 📝 Citation
 
-This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+If you use this book in your work, please cite:
+
+```bibtex
+@book{paredes2024datascience,
+  author = {Paredes Inilupu, Daniel},
+  title = {Data Science with R: Data Analysis and Prediction Algorithms},
+  year = {2024},
+  edition = {2nd},
+  publisher = {Leanpub},
+  url = {https://leanpub.com/dataScienceConR/}
+}
+```
+
+## 💰 Support This Work
+
+You can support this effort by purchasing the PDF version on [Leanpub](https://leanpub.com/dataScienceConR/). The purchase includes access to future updates.
+
+## 🤝 Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to report errors, suggest improvements, or submit fixes.
+
+## 📄 License
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
+</a>
+<br />
+This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+
+## 📧 Contact
+
+Questions or suggestions? Email: dparedesi@uni.pe

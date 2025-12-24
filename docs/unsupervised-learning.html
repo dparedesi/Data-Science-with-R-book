@@ -5,19 +5,19 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 13 Unsupervised Learning | Data Science with R</title>
-  <meta name="description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  <meta name="description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 13 Unsupervised Learning | Data Science with R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta property="og:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
+  <meta name="github-repo" content="dparedesi/Data-Science-with-R-book" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 13 Unsupervised Learning | Data Science with R" />
   
-  <meta name="twitter:description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  <meta name="twitter:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
   
 
 <meta name="author" content="Author: Mg. Daniel Paredes Inilupu" />
@@ -642,10 +642,10 @@ div.csl-indent {
 <span id="cb599-6"><a href="unsupervised-learning.html#cb599-6" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb599-7"><a href="unsupervised-learning.html#cb599-7" tabindex="-1"></a>  <span class="fu">aes</span>(x, y) <span class="sc">+</span></span>
 <span id="cb599-8"><a href="unsupervised-learning.html#cb599-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-768-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-768-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>This method allows us to group based on the definition of centroids. We will define as many centroids as groups we want to obtain. Since for this case we know that there must be two teams, we will use 2 centroids (k = 2).</p>
 <p>The k-means algorithm then places these 2 points (centroids) randomly on the plane in a first iteration. Then, it calculates the distance between each center and the other data points. If it is closer to a centroid then it assigns it to centroid 1, otherwise to centroid 2.</p>
-<p><img src="img/kmeans-distance.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="_assets/images/06-machine-learning/kmeans-distance.png" alt="K-means iteration showing data points and distance calculations to two centroids" width="80%" style="display: block; margin: auto;" /></p>
 <p>A first grouping has already been performed. Now each centroid within each group is located at the mean of the other points in its group and another iteration occurs to reassign all points. This iteration is done over and over again until the centroids are fixed.</p>
 <p>To create this model in R we will use the function <code>kmeans(data, centers = k)</code>.</p>
 <div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="unsupervised-learning.html#cb600-1" tabindex="-1"></a>kmeans_model <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(players, <span class="at">centers =</span> <span class="dv">2</span>)</span>
@@ -656,7 +656,7 @@ div.csl-indent {
 <span id="cb600-6"><a href="unsupervised-learning.html#cb600-6" tabindex="-1"></a><span class="co">#&gt; 1 -11.33333 -0.5000000</span></span>
 <span id="cb600-7"><a href="unsupervised-learning.html#cb600-7" tabindex="-1"></a><span class="co">#&gt; 2  14.83333  0.1666667</span></span></code></pre></div>
 <p>This means that for these two centers the average distance to the other points is the minimum, therefore the algorithm assigns them to one group or another. Let’s see approximately where these centers are located if we marked them with an <strong>x</strong>.</p>
-<p><img src="img/kmeans-centers.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="_assets/images/06-machine-learning/kmeans-centers.png" alt="K-means result with two clusters and centroids marked with X" width="80%" style="display: block; margin: auto;" /></p>
 <p>Thus, once the model is created we can obtain the clustering results, team 1 or team 2.</p>
 <div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="unsupervised-learning.html#cb601-1" tabindex="-1"></a>team <span class="ot">&lt;-</span> kmeans_model<span class="sc">$</span>cluster</span></code></pre></div>
 <p>We can add this team assignment as one more column of our <code>players</code> data set to be able to visualize them in R.</p>
@@ -672,7 +672,7 @@ div.csl-indent {
 <span id="cb602-10"><a href="unsupervised-learning.html#cb602-10" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#EE220D&quot;</span>, <span class="st">&quot;#01A2FF&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb602-11"><a href="unsupervised-learning.html#cb602-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
 <span id="cb602-12"><a href="unsupervised-learning.html#cb602-12" tabindex="-1"></a>  </span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-773-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-773-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>We have found two centroids until minimizing the sum of the squared differences between each centroid and the other points in the cluster. We can access and see how much this value is, given that it is part of the model results.</p>
 <div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="unsupervised-learning.html#cb603-1" tabindex="-1"></a><span class="co"># Sum of squares within each cluster</span></span>
 <span id="cb603-2"><a href="unsupervised-learning.html#cb603-2" tabindex="-1"></a>kmeans_model<span class="sc">$</span>withinss</span>
@@ -701,7 +701,7 @@ div.csl-indent {
 <span id="cb604-13"><a href="unsupervised-learning.html#cb604-13" tabindex="-1"></a></span>
 <span id="cb604-14"><a href="unsupervised-learning.html#cb604-14" tabindex="-1"></a>kmeans_model<span class="sc">$</span>tot.withinss</span>
 <span id="cb604-15"><a href="unsupervised-learning.html#cb604-15" tabindex="-1"></a><span class="co">#&gt; [1] 881.25</span></span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-775-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-775-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>In this case we have found that the sum of squares within the clusters is smaller, so we could indicate that this grouping is more optimal than the grouping into two groups. However, the sum of squares is not necessarily the best indicator for choosing how many clusters to create.</p>
 </div>
 <div id="determination-of-optimal-clusters" class="section level3 hasAnchor" number="13.1.3">
@@ -714,7 +714,7 @@ div.csl-indent {
 <h4><span class="header-section-number">13.1.3.1</span> Sum of Squares Method<a href="unsupervised-learning.html#sum-of-squares-method" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>To find the optimal “k” under this method, we will use the <strong>elbow plot</strong>, where we first calculate the total within-cluster sum of squares for different values of “k”. Then, visually we will identify a point where there seems to be a very strong drop followed by a more gradual drop in the slope. To do this, we will use the function <code>fviz_nbclust(data, type, method)</code> and enter our data, the type of algorithm that will be used to group and the measurement method.</p>
 <div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="unsupervised-learning.html#cb606-1" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(players, <span class="at">FUN =</span> kmeans, <span class="at">method =</span> <span class="st">&quot;wss&quot;</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-777-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-777-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>In this case the “elbow” is found at the value k = 2, from there the sum of squares reduces but at a slower rate.</p>
 </div>
 <div id="average-silhouette-method" class="section level4 hasAnchor" number="13.1.3.2">
@@ -722,7 +722,7 @@ div.csl-indent {
 <p>The method described above is a visual aid that makes recognition difficult when the data points are closer. Therefore, it is much more frequent to perform a silhouette analysis <span class="citation">(<a href="#ref-Rousseeuw1987">Rousseeuw 1987</a>)</span>. This approach measures the quality of a clustering. That is, it determines how well each object lies within its group. A high average silhouette width indicates a good clustering. The average silhouette method calculates the average silhouette of observations for different values of “k”. The optimal number of groups “k” is the one that maximizes the average silhouette over a range of possible values for “k”.</p>
 <p>To do this, we change the <code>method</code> parameter in the function and obtain the silhouette analysis.</p>
 <div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="unsupervised-learning.html#cb607-1" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(players, <span class="at">FUN =</span> kmeans, <span class="at">method =</span> <span class="st">&quot;silhouette&quot;</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-778-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-778-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Here it is clearly seen that for a value of <code>k=2</code> we have the best average, making this our optimal number of groups.</p>
 </div>
 </div>
@@ -733,7 +733,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="unsupervised-learning.html#cb608-1" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;http://archive.ics.uci.edu/ml/machine-learning-databases/00292/Wholesale%20customers%20data.csv&quot;</span></span>
 <span id="cb608-2"><a href="unsupervised-learning.html#cb608-2" tabindex="-1"></a>customers <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url)</span>
 <span id="cb608-3"><a href="unsupervised-learning.html#cb608-3" tabindex="-1"></a><span class="co">#&gt; Rows: 440 Columns: 8</span></span>
-<span id="cb608-4"><a href="unsupervised-learning.html#cb608-4" tabindex="-1"></a><span class="co">#&gt; ── Column specification ─────────────────────────────</span></span>
+<span id="cb608-4"><a href="unsupervised-learning.html#cb608-4" tabindex="-1"></a><span class="co">#&gt; ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
 <span id="cb608-5"><a href="unsupervised-learning.html#cb608-5" tabindex="-1"></a><span class="co">#&gt; Delimiter: &quot;,&quot;</span></span>
 <span id="cb608-6"><a href="unsupervised-learning.html#cb608-6" tabindex="-1"></a><span class="co">#&gt; dbl (8): Channel, Region, Fresh, Milk, Grocery, Frozen, Detergents_Paper, De...</span></span>
 <span id="cb608-7"><a href="unsupervised-learning.html#cb608-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
@@ -744,7 +744,7 @@ div.csl-indent {
 <span id="cb609-2"><a href="unsupervised-learning.html#cb609-2" tabindex="-1"></a>  <span class="fu">select</span>(Milk, Grocery, Frozen)</span></code></pre></div>
 <p>Once we have our data we would create a silhouette analysis to determine the best value of “k”.</p>
 <div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="unsupervised-learning.html#cb610-1" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(customers_filtrado, <span class="at">FUN =</span> kmeans, <span class="at">method =</span> <span class="st">&quot;silhouette&quot;</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-781-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-781-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Again, we get that the recommended number of clusters is 2. Let’s create the model for k = 2 and store the resulting cluster.</p>
 <div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="unsupervised-learning.html#cb611-1" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(customers_filtrado, <span class="at">centers =</span> <span class="dv">2</span>)</span>
 <span id="cb611-2"><a href="unsupervised-learning.html#cb611-2" tabindex="-1"></a></span>
@@ -797,16 +797,16 @@ div.csl-indent {
 <span id="cb613-8"><a href="unsupervised-learning.html#cb613-8" tabindex="-1"></a>  <span class="fu">aes</span>(x, y, <span class="at">label =</span> num) <span class="sc">+</span></span>
 <span id="cb613-9"><a href="unsupervised-learning.html#cb613-9" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
 <span id="cb613-10"><a href="unsupervised-learning.html#cb613-10" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">nudge_x =</span> <span class="fl">1.3</span>, <span class="at">nudge_y =</span> <span class="fl">1.3</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-784-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-784-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>This algorithm searches for the two points with the shortest distance, the closest ones, and groups them. Then it searches for another two points with the smallest distance and asks: is the distance between these two new points less than the distance of these points to the previously created group? If the answer is yes, it groups them, otherwise it groups the closest point to the first created group.</p>
 <p>Let’s understand the algorithm graphically. Points 1 and 2 have the lowest hierarchy since they have the shortest distance. Then the algorithm searches for the next two closest points (point 9 and 12) and when comparing with the midpoint of 1 and 2 it opts to create a new group with a slightly higher hierarchy and so on.</p>
-<p><img src="img/hclust-one.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="_assets/images/06-machine-learning/hclust-one.png" alt="Initial hierarchical clustering step linking two closest points" width="80%" style="display: block; margin: auto;" /></p>
 <p>However, now that we have point 7 and 11 and we calculate the distance, it turns out that that distance is not the smallest compared to the distances with the other existing groups. For example, 7 is closer to the midpoint of 1 and 2, and 11 is closer to the midpoint of 5 and 6.</p>
-<p><img src="img/hclust-two.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="_assets/images/06-machine-learning/hclust-two.png" alt="Hierarchical clustering merging additional nearby points into groups" width="80%" style="display: block; margin: auto;" /></p>
 <p>Thus, the algorithm creates a higher hierarchy for this grouping.</p>
-<p><img src="img/hclust-three.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="_assets/images/06-machine-learning/hclust-three.png" alt="Dendrogram showing hierarchical clustering tree structure with higher groupings" width="80%" style="display: block; margin: auto;" /></p>
 <p>The algorithm continues until it finally creates a group that includes everyone as the highest hierarchy. In the following graph we can not only appreciate this but also on the y-axis the distance between each point or group of points.</p>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-788-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-788-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Up to here we haven’t done more than generate hierarchies from the distances which will serve us later to determine how many clusters to generate. Let’s create in R what has been advanced so far. The first thing we will do is calculate the distances between all points. To do this we will use the <code>dist()</code> function.</p>
 <div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="unsupervised-learning.html#cb614-1" tabindex="-1"></a>player_distances <span class="ot">&lt;-</span> <span class="fu">dist</span>(players)</span></code></pre></div>
 <p>With the calculated distances we can create the hierarchical model using the <code>hclust(distance_matrix)</code> function.</p>
@@ -817,7 +817,7 @@ div.csl-indent {
 <p>The visualization we saw is called a dendrogram. To do this we just have to convert our model to dendrogram format.</p>
 <div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="unsupervised-learning.html#cb617-1" tabindex="-1"></a>dend_model <span class="ot">&lt;-</span> <span class="fu">as.dendrogram</span>(hierarchical_model)</span>
 <span id="cb617-2"><a href="unsupervised-learning.html#cb617-2" tabindex="-1"></a><span class="fu">plot</span>(dend_model)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-792-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-792-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>So far we have only seen the hierarchy, but what interests us is the grouping. The grouping is done by the calculated distance (<code>h</code> parameter). Let’s try with a distance of 60. We will use the <code>color_branches</code> and <code>color_labels</code> functions to make the changes visible.</p>
 <div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="unsupervised-learning.html#cb618-1" tabindex="-1"></a>cut_height <span class="ot">&lt;-</span> <span class="dv">60</span></span>
 <span id="cb618-2"><a href="unsupervised-learning.html#cb618-2" tabindex="-1"></a></span>
@@ -826,7 +826,7 @@ div.csl-indent {
 <span id="cb618-5"><a href="unsupervised-learning.html#cb618-5" tabindex="-1"></a>  <span class="fu">color_labels</span>(<span class="at">h =</span> cut_height) <span class="sc">|&gt;</span> </span>
 <span id="cb618-6"><a href="unsupervised-learning.html#cb618-6" tabindex="-1"></a>  <span class="fu">plot</span>()</span>
 <span id="cb618-7"><a href="unsupervised-learning.html#cb618-7" tabindex="-1"></a><span class="co">#&gt; Loading required namespace: colorspace</span></span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-793-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-793-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Since the highest hierarchy distance is approximately 50, then in this case it groups everyone into one large cluster. Let’s try with a lower number, for example 40.</p>
 <div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="unsupervised-learning.html#cb619-1" tabindex="-1"></a>cut_height <span class="ot">&lt;-</span> <span class="dv">40</span></span>
 <span id="cb619-2"><a href="unsupervised-learning.html#cb619-2" tabindex="-1"></a></span>
@@ -835,7 +835,7 @@ div.csl-indent {
 <span id="cb619-5"><a href="unsupervised-learning.html#cb619-5" tabindex="-1"></a>  <span class="fu">color_labels</span>(<span class="at">h =</span> cut_height) <span class="sc">|&gt;</span> </span>
 <span id="cb619-6"><a href="unsupervised-learning.html#cb619-6" tabindex="-1"></a>  <span class="fu">plot</span>() <span class="sc">|&gt;</span> </span>
 <span id="cb619-7"><a href="unsupervised-learning.html#cb619-7" tabindex="-1"></a>  <span class="fu">abline</span>(<span class="at">h =</span> cut_height, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-794-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-794-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>By making a cut at 40 we now have two clusters, in this case the red color and the green color. Let’s try with a lower number, 28.</p>
 <div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="unsupervised-learning.html#cb620-1" tabindex="-1"></a>cut_height <span class="ot">&lt;-</span> <span class="dv">28</span></span>
 <span id="cb620-2"><a href="unsupervised-learning.html#cb620-2" tabindex="-1"></a></span>
@@ -844,7 +844,7 @@ div.csl-indent {
 <span id="cb620-5"><a href="unsupervised-learning.html#cb620-5" tabindex="-1"></a>  <span class="fu">color_labels</span>(<span class="at">h =</span> cut_height) <span class="sc">|&gt;</span> </span>
 <span id="cb620-6"><a href="unsupervised-learning.html#cb620-6" tabindex="-1"></a>  <span class="fu">plot</span>() <span class="sc">|&gt;</span> </span>
 <span id="cb620-7"><a href="unsupervised-learning.html#cb620-7" tabindex="-1"></a>  <span class="fu">abline</span>(<span class="at">h =</span> cut_height, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-795-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-795-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Now we have three clusters and so we could continue until obtaining the clusters we need.</p>
 <p>We must have noticed how impractical it is to use the distances of the hierarchical model because they vary according to the data we have. This model allows us to make cuts not only by distances but also by indicating how many clusters we want, parameter <code>k</code>.</p>
 <div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="unsupervised-learning.html#cb621-1" tabindex="-1"></a>desired_clusters <span class="ot">&lt;-</span> <span class="dv">3</span></span>
@@ -853,14 +853,14 @@ div.csl-indent {
 <span id="cb621-4"><a href="unsupervised-learning.html#cb621-4" tabindex="-1"></a>  <span class="fu">color_branches</span>(<span class="at">k =</span> desired_clusters) <span class="sc">|&gt;</span> </span>
 <span id="cb621-5"><a href="unsupervised-learning.html#cb621-5" tabindex="-1"></a>  <span class="fu">color_labels</span>(<span class="at">k =</span> desired_clusters) <span class="sc">|&gt;</span> </span>
 <span id="cb621-6"><a href="unsupervised-learning.html#cb621-6" tabindex="-1"></a>  <span class="fu">plot</span>()</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-796-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-796-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>We see that it gives us the same grouping whether we use distances or number of desired clusters.</p>
 </div>
 <div id="determination-of-optimal-clusters-1" class="section level3 hasAnchor" number="13.2.2">
 <h3><span class="header-section-number">13.2.2</span> Determination of Optimal Clusters<a href="unsupervised-learning.html#determination-of-optimal-clusters-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To calculate how many clusters are optimal to create we will use the silhouette analysis again, but this time with the argument <code>FUN = hcut</code> to determine that it be evaluated based on a hierarchical model.</p>
 <div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="unsupervised-learning.html#cb622-1" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(players, <span class="at">FUN =</span> hcut, <span class="at">method =</span> <span class="st">&quot;silhouette&quot;</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-797-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-797-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>It is not surprising that the value of <code>k</code> is also 2, which coincides with the number obtained in the k-means model.</p>
 </div>
 <div id="obtain-the-grouping" class="section level3 hasAnchor" number="13.2.3">
@@ -892,7 +892,7 @@ div.csl-indent {
 <span id="cb624-3"><a href="unsupervised-learning.html#cb624-3" tabindex="-1"></a>  <span class="fu">aes</span>(x, y, <span class="at">color =</span> <span class="fu">factor</span>(cluster)) <span class="sc">+</span></span>
 <span id="cb624-4"><a href="unsupervised-learning.html#cb624-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
 <span id="cb624-5"><a href="unsupervised-learning.html#cb624-5" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-799-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-799-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>We see that the grouping is the same as with the previous method, basically because we are talking about two variables and two clusters.</p>
 <p>Both methods learned are very flexible, so the creation of models for more variables follows the same logic learned in these sections.</p>
 </div>

@@ -5,19 +5,19 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 11 String processing and text mining | Data Science with R</title>
-  <meta name="description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  <meta name="description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 11 String processing and text mining | Data Science with R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta property="og:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
+  <meta name="github-repo" content="dparedesi/Data-Science-with-R-book" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 11 String processing and text mining | Data Science with R" />
   
-  <meta name="twitter:description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  <meta name="twitter:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
   
 
 <meta name="author" content="Author: Mg. Daniel Paredes Inilupu" />
@@ -723,54 +723,48 @@ div.csl-indent {
 <span id="cb470-2"><a href="string-processing-and-text-mining.html#cb470-2" tabindex="-1"></a></span>
 <span id="cb470-3"><a href="string-processing-and-text-mining.html#cb470-3" tabindex="-1"></a><span class="co"># Validation option 1: Random sample</span></span>
 <span id="cb470-4"><a href="string-processing-and-text-mining.html#cb470-4" tabindex="-1"></a><span class="fu">sample</span>(heights, <span class="dv">100</span>)</span>
-<span id="cb470-5"><a href="string-processing-and-text-mining.html#cb470-5" tabindex="-1"></a><span class="co">#&gt;   [1] &quot;72&quot;         &quot;69&quot;         &quot;69&quot;         &quot;68&quot;         &quot;70&quot;        </span></span>
-<span id="cb470-6"><a href="string-processing-and-text-mining.html#cb470-6" tabindex="-1"></a><span class="co">#&gt;   [6] &quot;71&quot;         &quot;69&quot;         &quot;69&quot;         &quot;5&#39;6&quot;        &quot;72.83&quot;     </span></span>
-<span id="cb470-7"><a href="string-processing-and-text-mining.html#cb470-7" tabindex="-1"></a><span class="co">#&gt;  [11] &quot;74&quot;         &quot;183&quot;        &quot;70&quot;         &quot;5&#39;10&#39;&#39;&quot;     &quot;72.44&quot;     </span></span>
-<span id="cb470-8"><a href="string-processing-and-text-mining.html#cb470-8" tabindex="-1"></a><span class="co">#&gt;  [16] &quot;87&quot;         &quot;72&quot;         &quot;63&quot;         &quot;72.44&quot;      &quot;72&quot;        </span></span>
-<span id="cb470-9"><a href="string-processing-and-text-mining.html#cb470-9" tabindex="-1"></a><span class="co">#&gt;  [21] &quot;73&quot;         &quot;74&quot;         &quot;70&quot;         &quot;68&quot;         &quot;71&quot;        </span></span>
-<span id="cb470-10"><a href="string-processing-and-text-mining.html#cb470-10" tabindex="-1"></a><span class="co">#&gt;  [26] &quot;87&quot;         &quot;68.8976&quot;    &quot;64.2&quot;       &quot;73.22&quot;      &quot;70&quot;        </span></span>
-<span id="cb470-11"><a href="string-processing-and-text-mining.html#cb470-11" tabindex="-1"></a><span class="co">#&gt;  [31] &quot;183&quot;        &quot;60&quot;         &quot;63&quot;         &quot;65&quot;         &quot;63&quot;        </span></span>
-<span id="cb470-12"><a href="string-processing-and-text-mining.html#cb470-12" tabindex="-1"></a><span class="co">#&gt;  [36] &quot;5.5&quot;        &quot;5&#39; 11\&quot;&quot;    &quot;66&quot;         &quot;72&quot;         &quot;66&quot;        </span></span>
-<span id="cb470-13"><a href="string-processing-and-text-mining.html#cb470-13" tabindex="-1"></a><span class="co">#&gt;  [41] &quot;70&quot;         &quot;71.5&quot;       &quot;71&quot;         &quot;67.7165&quot;    &quot;183&quot;       </span></span>
-<span id="cb470-14"><a href="string-processing-and-text-mining.html#cb470-14" tabindex="-1"></a><span class="co">#&gt;  [46] &quot;67&quot;         &quot;68&quot;         &quot;67&quot;         &quot;68&quot;         &quot;62&quot;        </span></span>
-<span id="cb470-15"><a href="string-processing-and-text-mining.html#cb470-15" tabindex="-1"></a><span class="co">#&gt;  [51] &quot;72&quot;         &quot;25&quot;         &quot;5&#39;5&quot;        &quot;5.5&quot;        &quot;70&quot;        </span></span>
-<span id="cb470-16"><a href="string-processing-and-text-mining.html#cb470-16" tabindex="-1"></a><span class="co">#&gt;  [56] &quot;63&quot;         &quot;65&quot;         &quot;5&#39;7\&quot;&quot;      &quot;63&quot;         &quot;73.2&quot;      </span></span>
-<span id="cb470-17"><a href="string-processing-and-text-mining.html#cb470-17" tabindex="-1"></a><span class="co">#&gt;  [61] &quot;70&quot;         &quot;68.8976378&quot; &quot;5&#39;2\&quot;&quot;      &quot;68&quot;         &quot;68.89&quot;     </span></span>
-<span id="cb470-18"><a href="string-processing-and-text-mining.html#cb470-18" tabindex="-1"></a><span class="co">#&gt;  [66] &quot;5.9&quot;        &quot;70&quot;         &quot;67&quot;         &quot;68&quot;         &quot;63&quot;        </span></span>
-<span id="cb470-19"><a href="string-processing-and-text-mining.html#cb470-19" tabindex="-1"></a><span class="co">#&gt;  [71] &quot;170&quot;        &quot;73&quot;         &quot;72&quot;         &quot;67&quot;         &quot;72.5&quot;      </span></span>
-<span id="cb470-20"><a href="string-processing-and-text-mining.html#cb470-20" tabindex="-1"></a><span class="co">#&gt;  [76] &quot;63&quot;         &quot;70&quot;         &quot;74&quot;         &quot;74&quot;         &quot;5&#39;6&quot;       </span></span>
-<span id="cb470-21"><a href="string-processing-and-text-mining.html#cb470-21" tabindex="-1"></a><span class="co">#&gt;  [81] &quot;71&quot;         &quot;70&quot;         &quot;62&quot;         &quot;67&quot;         &quot;64.5&quot;      </span></span>
-<span id="cb470-22"><a href="string-processing-and-text-mining.html#cb470-22" tabindex="-1"></a><span class="co">#&gt;  [86] &quot;5&#39;7&quot;        &quot;65&quot;         &quot;66&quot;         &quot;68.5&quot;       &quot;64.961&quot;    </span></span>
-<span id="cb470-23"><a href="string-processing-and-text-mining.html#cb470-23" tabindex="-1"></a><span class="co">#&gt;  [91] &quot;180&quot;        &quot;5,3&quot;        &quot;63&quot;         &quot;172&quot;        &quot;77&quot;        </span></span>
-<span id="cb470-24"><a href="string-processing-and-text-mining.html#cb470-24" tabindex="-1"></a><span class="co">#&gt;  [96] &quot;6.1&quot;        &quot;5&#39;7.5&#39;&#39;&quot;    &quot;72&quot;         &quot;22&quot;         &quot;5&#39;12&quot;</span></span>
-<span id="cb470-25"><a href="string-processing-and-text-mining.html#cb470-25" tabindex="-1"></a></span>
-<span id="cb470-26"><a href="string-processing-and-text-mining.html#cb470-26" tabindex="-1"></a><span class="co"># Validation option 2: convert to numbers and count if there are NAs</span></span>
-<span id="cb470-27"><a href="string-processing-and-text-mining.html#cb470-27" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(heights)</span>
-<span id="cb470-28"><a href="string-processing-and-text-mining.html#cb470-28" tabindex="-1"></a><span class="co">#&gt; Warning: NAs introduced by coercion</span></span>
-<span id="cb470-29"><a href="string-processing-and-text-mining.html#cb470-29" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(x))</span>
-<span id="cb470-30"><a href="string-processing-and-text-mining.html#cb470-30" tabindex="-1"></a><span class="co">#&gt; [1] 81</span></span>
-<span id="cb470-31"><a href="string-processing-and-text-mining.html#cb470-31" tabindex="-1"></a></span>
-<span id="cb470-32"><a href="string-processing-and-text-mining.html#cb470-32" tabindex="-1"></a><span class="co"># Validation option 3: add column of those that cannot be converted to number:</span></span>
-<span id="cb470-33"><a href="string-processing-and-text-mining.html#cb470-33" tabindex="-1"></a>reported_heights <span class="sc">|&gt;</span> </span>
-<span id="cb470-34"><a href="string-processing-and-text-mining.html#cb470-34" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">estatuta_numero =</span> <span class="fu">as.numeric</span>(height)) <span class="sc">|&gt;</span> </span>
-<span id="cb470-35"><a href="string-processing-and-text-mining.html#cb470-35" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(estatuta_numero)) <span class="sc">|&gt;</span> </span>
-<span id="cb470-36"><a href="string-processing-and-text-mining.html#cb470-36" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span>
-<span id="cb470-37"><a href="string-processing-and-text-mining.html#cb470-37" tabindex="-1"></a><span class="co">#&gt; Warning: There was 1 warning in `mutate()`.</span></span>
-<span id="cb470-38"><a href="string-processing-and-text-mining.html#cb470-38" tabindex="-1"></a><span class="co">#&gt; ℹ In argument: `estatuta_numero =</span></span>
-<span id="cb470-39"><a href="string-processing-and-text-mining.html#cb470-39" tabindex="-1"></a><span class="co">#&gt;   as.numeric(height)`.</span></span>
-<span id="cb470-40"><a href="string-processing-and-text-mining.html#cb470-40" tabindex="-1"></a><span class="co">#&gt; Caused by warning:</span></span>
-<span id="cb470-41"><a href="string-processing-and-text-mining.html#cb470-41" tabindex="-1"></a><span class="co">#&gt; ! NAs introduced by coercion</span></span>
-<span id="cb470-42"><a href="string-processing-and-text-mining.html#cb470-42" tabindex="-1"></a><span class="co">#&gt;             time_stamp    sex                 height estatuta_numero</span></span>
-<span id="cb470-43"><a href="string-processing-and-text-mining.html#cb470-43" tabindex="-1"></a><span class="co">#&gt; 1  2014-09-02 15:16:28   Male                  5&#39; 4&quot;              NA</span></span>
-<span id="cb470-44"><a href="string-processing-and-text-mining.html#cb470-44" tabindex="-1"></a><span class="co">#&gt; 2  2014-09-02 15:16:37 Female                  165cm              NA</span></span>
-<span id="cb470-45"><a href="string-processing-and-text-mining.html#cb470-45" tabindex="-1"></a><span class="co">#&gt; 3  2014-09-02 15:16:52   Male                    5&#39;7              NA</span></span>
-<span id="cb470-46"><a href="string-processing-and-text-mining.html#cb470-46" tabindex="-1"></a><span class="co">#&gt; 4  2014-09-02 15:16:56   Male                  &gt;9000              NA</span></span>
-<span id="cb470-47"><a href="string-processing-and-text-mining.html#cb470-47" tabindex="-1"></a><span class="co">#&gt; 5  2014-09-02 15:16:56   Male                   5&#39;7&quot;              NA</span></span>
-<span id="cb470-48"><a href="string-processing-and-text-mining.html#cb470-48" tabindex="-1"></a><span class="co">#&gt; 6  2014-09-02 15:17:09 Female                   5&#39;3&quot;              NA</span></span>
-<span id="cb470-49"><a href="string-processing-and-text-mining.html#cb470-49" tabindex="-1"></a><span class="co">#&gt; 7  2014-09-02 15:18:00   Male 5 feet and 8.11 inches              NA</span></span>
-<span id="cb470-50"><a href="string-processing-and-text-mining.html#cb470-50" tabindex="-1"></a><span class="co">#&gt; 8  2014-09-02 15:19:48   Male                   5&#39;11              NA</span></span>
-<span id="cb470-51"><a href="string-processing-and-text-mining.html#cb470-51" tabindex="-1"></a><span class="co">#&gt; 9  2014-09-04 00:46:45   Male                  5&#39;9&#39;&#39;              NA</span></span>
-<span id="cb470-52"><a href="string-processing-and-text-mining.html#cb470-52" tabindex="-1"></a><span class="co">#&gt; 10 2014-09-04 10:29:44   Male                 5&#39;10&#39;&#39;              NA</span></span></code></pre></div>
+<span id="cb470-5"><a href="string-processing-and-text-mining.html#cb470-5" tabindex="-1"></a><span class="co">#&gt;   [1] &quot;5&#39; 11\&quot;&quot; &quot;170&quot;     &quot;72&quot;      &quot;72&quot;      &quot;71&quot;      &quot;70.8661&quot; &quot;5.57&quot;   </span></span>
+<span id="cb470-6"><a href="string-processing-and-text-mining.html#cb470-6" tabindex="-1"></a><span class="co">#&gt;   [8] &quot;61&quot;      &quot;66&quot;      &quot;5&#39;10&#39;&#39;&quot;  &quot;70&quot;      &quot;74&quot;      &quot;73&quot;      &quot;175&quot;    </span></span>
+<span id="cb470-7"><a href="string-processing-and-text-mining.html#cb470-7" tabindex="-1"></a><span class="co">#&gt;  [15] &quot;2&quot;       &quot;69&quot;      &quot;72&quot;      &quot;66&quot;      &quot;68&quot;      &quot;75&quot;      &quot;5.5&quot;    </span></span>
+<span id="cb470-8"><a href="string-processing-and-text-mining.html#cb470-8" tabindex="-1"></a><span class="co">#&gt;  [22] &quot;0&quot;       &quot;71&quot;      &quot;69&quot;      &quot;67&quot;      &quot;73.22&quot;   &quot;5&#39;7.5&#39;&#39;&quot; &quot;68&quot;     </span></span>
+<span id="cb470-9"><a href="string-processing-and-text-mining.html#cb470-9" tabindex="-1"></a><span class="co">#&gt;  [29] &quot;62&quot;      &quot;64&quot;      &quot;70&quot;      &quot;71&quot;      &quot;67&quot;      &quot;61&quot;      &quot;67&quot;     </span></span>
+<span id="cb470-10"><a href="string-processing-and-text-mining.html#cb470-10" tabindex="-1"></a><span class="co">#&gt;  [36] &quot;163&quot;     &quot;69&quot;      &quot;5.11&quot;    &quot;6&quot;       &quot;77&quot;      &quot;68&quot;      &quot;5.51&quot;   </span></span>
+<span id="cb470-11"><a href="string-processing-and-text-mining.html#cb470-11" tabindex="-1"></a><span class="co">#&gt;  [43] &quot;67&quot;      &quot;68&quot;      &quot;176&quot;     &quot;67&quot;      &quot;67&quot;      &quot;67&quot;      &quot;68&quot;     </span></span>
+<span id="cb470-12"><a href="string-processing-and-text-mining.html#cb470-12" tabindex="-1"></a><span class="co">#&gt;  [50] &quot;60&quot;      &quot;70&quot;      &quot;158&quot;     &quot;73.2&quot;    &quot;65&quot;      &quot;168&quot;     &quot;66&quot;     </span></span>
+<span id="cb470-13"><a href="string-processing-and-text-mining.html#cb470-13" tabindex="-1"></a><span class="co">#&gt;  [57] &quot;65&quot;      &quot;70&quot;      &quot;69&quot;      &quot;71&quot;      &quot;66&quot;      &quot;67.3&quot;    &quot;69&quot;     </span></span>
+<span id="cb470-14"><a href="string-processing-and-text-mining.html#cb470-14" tabindex="-1"></a><span class="co">#&gt;  [64] &quot;66&quot;      &quot;66&quot;      &quot;70&quot;      &quot;70.5&quot;    &quot;70&quot;      &quot;69&quot;      &quot;74&quot;     </span></span>
+<span id="cb470-15"><a href="string-processing-and-text-mining.html#cb470-15" tabindex="-1"></a><span class="co">#&gt;  [71] &quot;72&quot;      &quot;68&quot;      &quot;70&quot;      &quot;5,8&quot;     &quot;51&quot;      &quot;69&quot;      &quot;69&quot;     </span></span>
+<span id="cb470-16"><a href="string-processing-and-text-mining.html#cb470-16" tabindex="-1"></a><span class="co">#&gt;  [78] &quot;65&quot;      &quot;69&quot;      &quot;180&quot;     &quot;68&quot;      &quot;67&quot;      &quot;68&quot;      &quot;68.4&quot;   </span></span>
+<span id="cb470-17"><a href="string-processing-and-text-mining.html#cb470-17" tabindex="-1"></a><span class="co">#&gt;  [85] &quot;70.86&quot;   &quot;72.45&quot;   &quot;67&quot;      &quot;69&quot;      &quot;5.8&quot;     &quot;180&quot;     &quot;183&quot;    </span></span>
+<span id="cb470-18"><a href="string-processing-and-text-mining.html#cb470-18" tabindex="-1"></a><span class="co">#&gt;  [92] &quot;180&quot;     &quot;167&quot;     &quot;175&quot;     &quot;74&quot;      &quot;68&quot;      &quot;72&quot;      &quot;67&quot;     </span></span>
+<span id="cb470-19"><a href="string-processing-and-text-mining.html#cb470-19" tabindex="-1"></a><span class="co">#&gt;  [99] &quot;63&quot;      &quot;72.05&quot;</span></span>
+<span id="cb470-20"><a href="string-processing-and-text-mining.html#cb470-20" tabindex="-1"></a></span>
+<span id="cb470-21"><a href="string-processing-and-text-mining.html#cb470-21" tabindex="-1"></a><span class="co"># Validation option 2: convert to numbers and count if there are NAs</span></span>
+<span id="cb470-22"><a href="string-processing-and-text-mining.html#cb470-22" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(heights)</span>
+<span id="cb470-23"><a href="string-processing-and-text-mining.html#cb470-23" tabindex="-1"></a><span class="co">#&gt; Warning: NAs introduced by coercion</span></span>
+<span id="cb470-24"><a href="string-processing-and-text-mining.html#cb470-24" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(x))</span>
+<span id="cb470-25"><a href="string-processing-and-text-mining.html#cb470-25" tabindex="-1"></a><span class="co">#&gt; [1] 81</span></span>
+<span id="cb470-26"><a href="string-processing-and-text-mining.html#cb470-26" tabindex="-1"></a></span>
+<span id="cb470-27"><a href="string-processing-and-text-mining.html#cb470-27" tabindex="-1"></a><span class="co"># Validation option 3: add column of those that cannot be converted to number:</span></span>
+<span id="cb470-28"><a href="string-processing-and-text-mining.html#cb470-28" tabindex="-1"></a>reported_heights <span class="sc">|&gt;</span> </span>
+<span id="cb470-29"><a href="string-processing-and-text-mining.html#cb470-29" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">estatuta_numero =</span> <span class="fu">as.numeric</span>(height)) <span class="sc">|&gt;</span> </span>
+<span id="cb470-30"><a href="string-processing-and-text-mining.html#cb470-30" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(estatuta_numero)) <span class="sc">|&gt;</span> </span>
+<span id="cb470-31"><a href="string-processing-and-text-mining.html#cb470-31" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span>
+<span id="cb470-32"><a href="string-processing-and-text-mining.html#cb470-32" tabindex="-1"></a><span class="co">#&gt; Warning: There was 1 warning in `mutate()`.</span></span>
+<span id="cb470-33"><a href="string-processing-and-text-mining.html#cb470-33" tabindex="-1"></a><span class="co">#&gt; ℹ In argument: `estatuta_numero = as.numeric(height)`.</span></span>
+<span id="cb470-34"><a href="string-processing-and-text-mining.html#cb470-34" tabindex="-1"></a><span class="co">#&gt; Caused by warning:</span></span>
+<span id="cb470-35"><a href="string-processing-and-text-mining.html#cb470-35" tabindex="-1"></a><span class="co">#&gt; ! NAs introduced by coercion</span></span>
+<span id="cb470-36"><a href="string-processing-and-text-mining.html#cb470-36" tabindex="-1"></a><span class="co">#&gt;             time_stamp    sex                 height estatuta_numero</span></span>
+<span id="cb470-37"><a href="string-processing-and-text-mining.html#cb470-37" tabindex="-1"></a><span class="co">#&gt; 1  2014-09-02 15:16:28   Male                  5&#39; 4&quot;              NA</span></span>
+<span id="cb470-38"><a href="string-processing-and-text-mining.html#cb470-38" tabindex="-1"></a><span class="co">#&gt; 2  2014-09-02 15:16:37 Female                  165cm              NA</span></span>
+<span id="cb470-39"><a href="string-processing-and-text-mining.html#cb470-39" tabindex="-1"></a><span class="co">#&gt; 3  2014-09-02 15:16:52   Male                    5&#39;7              NA</span></span>
+<span id="cb470-40"><a href="string-processing-and-text-mining.html#cb470-40" tabindex="-1"></a><span class="co">#&gt; 4  2014-09-02 15:16:56   Male                  &gt;9000              NA</span></span>
+<span id="cb470-41"><a href="string-processing-and-text-mining.html#cb470-41" tabindex="-1"></a><span class="co">#&gt; 5  2014-09-02 15:16:56   Male                   5&#39;7&quot;              NA</span></span>
+<span id="cb470-42"><a href="string-processing-and-text-mining.html#cb470-42" tabindex="-1"></a><span class="co">#&gt; 6  2014-09-02 15:17:09 Female                   5&#39;3&quot;              NA</span></span>
+<span id="cb470-43"><a href="string-processing-and-text-mining.html#cb470-43" tabindex="-1"></a><span class="co">#&gt; 7  2014-09-02 15:18:00   Male 5 feet and 8.11 inches              NA</span></span>
+<span id="cb470-44"><a href="string-processing-and-text-mining.html#cb470-44" tabindex="-1"></a><span class="co">#&gt; 8  2014-09-02 15:19:48   Male                   5&#39;11              NA</span></span>
+<span id="cb470-45"><a href="string-processing-and-text-mining.html#cb470-45" tabindex="-1"></a><span class="co">#&gt; 9  2014-09-04 00:46:45   Male                  5&#39;9&#39;&#39;              NA</span></span>
+<span id="cb470-46"><a href="string-processing-and-text-mining.html#cb470-46" tabindex="-1"></a><span class="co">#&gt; 10 2014-09-04 10:29:44   Male                 5&#39;10&#39;&#39;              NA</span></span></code></pre></div>
 <p>We might want to choose to eliminate these NA data as they are not significant with respect to the total of 1,095 data points. However, there are several of these data points that follow a determined pattern and instead of being discarded could be converted to the scale we have in the rest of the data. For example, there are people who entered their height as 5’7”, which, for those who remember the conversion, can be converted because 1 foot is 12 inches. So <span class="math inline">\(5*12+7=67\)</span>. And so, like that case, we can detect patterns, but we have, again, to be careful in detecting the exact pattern and not a very generic one that can change other use cases. If everyone followed the same pattern <span class="math inline">\(x&#39;y&#39;&#39;\)</span> or <span class="math inline">\(x&#39;y\)</span> it would be much easier to convert it to inches by calculating <span class="math inline">\(x*12+y\)</span>.</p>
 <p>Let’s start by extracting our column to a single character vector with all the values that do not convert automatically to number or were entered in inches. We detect this if they measure more than 5 and up to 7 feet (from 1.5m to 2.1 meters). After that we will create the transformations little by little.</p>
 <div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="string-processing-and-text-mining.html#cb471-1" tabindex="-1"></a>heights_error <span class="ot">&lt;-</span> reported_heights <span class="sc">|&gt;</span> </span>
@@ -1051,22 +1045,22 @@ div.csl-indent {
 <span id="cb489-7"><a href="string-processing-and-text-mining.html#cb489-7" tabindex="-1"></a>random_indices <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(heights)) </span>
 <span id="cb489-8"><a href="string-processing-and-text-mining.html#cb489-8" tabindex="-1"></a>heights[random_indices, ] <span class="sc">|&gt;</span> </span>
 <span id="cb489-9"><a href="string-processing-and-text-mining.html#cb489-9" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">15</span>)</span>
-<span id="cb489-10"><a href="string-processing-and-text-mining.html#cb489-10" tabindex="-1"></a><span class="co">#&gt;              time_stamp    sex  height</span></span>
-<span id="cb489-11"><a href="string-processing-and-text-mining.html#cb489-11" tabindex="-1"></a><span class="co">#&gt; 473 2015-02-05 14:49:08   Male      67</span></span>
-<span id="cb489-12"><a href="string-processing-and-text-mining.html#cb489-12" tabindex="-1"></a><span class="co">#&gt; 234 2014-09-03 23:47:35   Male      65</span></span>
-<span id="cb489-13"><a href="string-processing-and-text-mining.html#cb489-13" tabindex="-1"></a><span class="co">#&gt; 769 2016-01-14 14:33:13   Male      72</span></span>
-<span id="cb489-14"><a href="string-processing-and-text-mining.html#cb489-14" tabindex="-1"></a><span class="co">#&gt; 795 2016-01-25 08:15:50 Female 68.8976</span></span>
-<span id="cb489-15"><a href="string-processing-and-text-mining.html#cb489-15" tabindex="-1"></a><span class="co">#&gt; 92  2014-09-02 15:16:48 Female      63</span></span>
-<span id="cb489-16"><a href="string-processing-and-text-mining.html#cb489-16" tabindex="-1"></a><span class="co">#&gt; 951 2016-03-01 02:38:42   Male   5.7&#39;0</span></span>
-<span id="cb489-17"><a href="string-processing-and-text-mining.html#cb489-17" tabindex="-1"></a><span class="co">#&gt; 329 2014-10-16 03:51:23   Male      71</span></span>
-<span id="cb489-18"><a href="string-processing-and-text-mining.html#cb489-18" tabindex="-1"></a><span class="co">#&gt; 175 2014-09-02 15:17:23   Male      72</span></span>
-<span id="cb489-19"><a href="string-processing-and-text-mining.html#cb489-19" tabindex="-1"></a><span class="co">#&gt; 987 2016-04-25 06:11:53   Male   70.86</span></span>
-<span id="cb489-20"><a href="string-processing-and-text-mining.html#cb489-20" tabindex="-1"></a><span class="co">#&gt; 789 2016-01-25 08:15:45 Female     5&#39;5</span></span>
-<span id="cb489-21"><a href="string-processing-and-text-mining.html#cb489-21" tabindex="-1"></a><span class="co">#&gt; 6   2014-09-02 15:16:16 Female      65</span></span>
-<span id="cb489-22"><a href="string-processing-and-text-mining.html#cb489-22" tabindex="-1"></a><span class="co">#&gt; 398 2014-12-16 04:20:38 Female 66.1416</span></span>
-<span id="cb489-23"><a href="string-processing-and-text-mining.html#cb489-23" tabindex="-1"></a><span class="co">#&gt; 560 2015-05-09 12:58:19   Male      69</span></span>
-<span id="cb489-24"><a href="string-processing-and-text-mining.html#cb489-24" tabindex="-1"></a><span class="co">#&gt; 91  2014-09-02 15:16:48   Male      71</span></span>
-<span id="cb489-25"><a href="string-processing-and-text-mining.html#cb489-25" tabindex="-1"></a><span class="co">#&gt; 85  2014-09-02 15:16:47 Female      62</span></span></code></pre></div>
+<span id="cb489-10"><a href="string-processing-and-text-mining.html#cb489-10" tabindex="-1"></a><span class="co">#&gt;               time_stamp    sex height</span></span>
+<span id="cb489-11"><a href="string-processing-and-text-mining.html#cb489-11" tabindex="-1"></a><span class="co">#&gt; 38   2014-09-02 15:16:31 Female  66.75</span></span>
+<span id="cb489-12"><a href="string-processing-and-text-mining.html#cb489-12" tabindex="-1"></a><span class="co">#&gt; 712  2015-10-05 16:26:29   Male     69</span></span>
+<span id="cb489-13"><a href="string-processing-and-text-mining.html#cb489-13" tabindex="-1"></a><span class="co">#&gt; 132  2014-09-02 15:16:59 Female     62</span></span>
+<span id="cb489-14"><a href="string-processing-and-text-mining.html#cb489-14" tabindex="-1"></a><span class="co">#&gt; 1079 2017-07-14 09:30:26   Male     65</span></span>
+<span id="cb489-15"><a href="string-processing-and-text-mining.html#cb489-15" tabindex="-1"></a><span class="co">#&gt; 917  2016-01-27 06:29:41 Female     64</span></span>
+<span id="cb489-16"><a href="string-processing-and-text-mining.html#cb489-16" tabindex="-1"></a><span class="co">#&gt; 929  2016-02-03 10:30:58   Male  68.89</span></span>
+<span id="cb489-17"><a href="string-processing-and-text-mining.html#cb489-17" tabindex="-1"></a><span class="co">#&gt; 163  2014-09-02 15:17:16 Female     64</span></span>
+<span id="cb489-18"><a href="string-processing-and-text-mining.html#cb489-18" tabindex="-1"></a><span class="co">#&gt; 397  2014-12-15 14:05:22 Female    5&#39;3</span></span>
+<span id="cb489-19"><a href="string-processing-and-text-mining.html#cb489-19" tabindex="-1"></a><span class="co">#&gt; 634  2015-07-18 04:37:21   Male    175</span></span>
+<span id="cb489-20"><a href="string-processing-and-text-mining.html#cb489-20" tabindex="-1"></a><span class="co">#&gt; 921  2016-01-27 11:48:40   Male   73.2</span></span>
+<span id="cb489-21"><a href="string-processing-and-text-mining.html#cb489-21" tabindex="-1"></a><span class="co">#&gt; 494  2015-03-05 15:28:38   Male    168</span></span>
+<span id="cb489-22"><a href="string-processing-and-text-mining.html#cb489-22" tabindex="-1"></a><span class="co">#&gt; 107  2014-09-02 15:16:51 Female     61</span></span>
+<span id="cb489-23"><a href="string-processing-and-text-mining.html#cb489-23" tabindex="-1"></a><span class="co">#&gt; 728  2015-11-09 11:17:08   Male     72</span></span>
+<span id="cb489-24"><a href="string-processing-and-text-mining.html#cb489-24" tabindex="-1"></a><span class="co">#&gt; 370  2014-11-24 15:26:02   Male     67</span></span>
+<span id="cb489-25"><a href="string-processing-and-text-mining.html#cb489-25" tabindex="-1"></a><span class="co">#&gt; 805  2016-01-25 08:16:19   Male     67</span></span></code></pre></div>
 <p>We still have to do some conversions. However, since they follow a determined pattern we can use the <code>extract(source_column, new_columns, pattern, remove_source)</code> function to confirm creating new columns for each value of our pattern.</p>
 <div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="string-processing-and-text-mining.html#cb490-1" tabindex="-1"></a>pattern <span class="ot">&lt;-</span> <span class="st">&quot;^([4-7]</span><span class="sc">\\</span><span class="st">.?</span><span class="sc">\\</span><span class="st">d*)</span><span class="sc">\\</span><span class="st">s*&#39;</span><span class="sc">\\</span><span class="st">s*(</span><span class="sc">\\</span><span class="st">d+</span><span class="sc">\\</span><span class="st">.?</span><span class="sc">\\</span><span class="st">d*)</span><span class="sc">\\</span><span class="st">s*$&quot;</span></span>
 <span id="cb490-2"><a href="string-processing-and-text-mining.html#cb490-2" tabindex="-1"></a></span>
@@ -1095,26 +1089,25 @@ div.csl-indent {
 <span id="cb491-3"><a href="string-processing-and-text-mining.html#cb491-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="st">&quot;height&quot;</span>, <span class="st">&quot;feet&quot;</span>, <span class="st">&quot;inches&quot;</span>), <span class="sc">~</span><span class="fu">as.numeric</span>(.))) <span class="sc">|&gt;</span> </span>
 <span id="cb491-4"><a href="string-processing-and-text-mining.html#cb491-4" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">15</span>)</span>
 <span id="cb491-5"><a href="string-processing-and-text-mining.html#cb491-5" tabindex="-1"></a><span class="co">#&gt; Warning: There was 1 warning in `mutate()`.</span></span>
-<span id="cb491-6"><a href="string-processing-and-text-mining.html#cb491-6" tabindex="-1"></a><span class="co">#&gt; ℹ In argument: `across(c(&quot;height&quot;, &quot;feet&quot;,</span></span>
-<span id="cb491-7"><a href="string-processing-and-text-mining.html#cb491-7" tabindex="-1"></a><span class="co">#&gt;   &quot;inches&quot;), ~as.numeric(.))`.</span></span>
-<span id="cb491-8"><a href="string-processing-and-text-mining.html#cb491-8" tabindex="-1"></a><span class="co">#&gt; Caused by warning:</span></span>
-<span id="cb491-9"><a href="string-processing-and-text-mining.html#cb491-9" tabindex="-1"></a><span class="co">#&gt; ! NAs introduced by coercion</span></span>
-<span id="cb491-10"><a href="string-processing-and-text-mining.html#cb491-10" tabindex="-1"></a><span class="co">#&gt;             time_stamp    sex height feet inches</span></span>
-<span id="cb491-11"><a href="string-processing-and-text-mining.html#cb491-11" tabindex="-1"></a><span class="co">#&gt; 1  2014-09-02 13:40:36   Male     75   NA     NA</span></span>
-<span id="cb491-12"><a href="string-processing-and-text-mining.html#cb491-12" tabindex="-1"></a><span class="co">#&gt; 2  2014-09-02 13:46:59   Male     70   NA     NA</span></span>
-<span id="cb491-13"><a href="string-processing-and-text-mining.html#cb491-13" tabindex="-1"></a><span class="co">#&gt; 3  2014-09-02 13:59:20   Male     68   NA     NA</span></span>
-<span id="cb491-14"><a href="string-processing-and-text-mining.html#cb491-14" tabindex="-1"></a><span class="co">#&gt; 4  2014-09-02 14:51:53   Male     74   NA     NA</span></span>
-<span id="cb491-15"><a href="string-processing-and-text-mining.html#cb491-15" tabindex="-1"></a><span class="co">#&gt; 5  2014-09-02 15:16:15   Male     61   NA     NA</span></span>
-<span id="cb491-16"><a href="string-processing-and-text-mining.html#cb491-16" tabindex="-1"></a><span class="co">#&gt; 6  2014-09-02 15:16:16 Female     65   NA     NA</span></span>
-<span id="cb491-17"><a href="string-processing-and-text-mining.html#cb491-17" tabindex="-1"></a><span class="co">#&gt; 7  2014-09-02 15:16:19 Female     66   NA     NA</span></span>
-<span id="cb491-18"><a href="string-processing-and-text-mining.html#cb491-18" tabindex="-1"></a><span class="co">#&gt; 8  2014-09-02 15:16:21 Female     62   NA     NA</span></span>
-<span id="cb491-19"><a href="string-processing-and-text-mining.html#cb491-19" tabindex="-1"></a><span class="co">#&gt; 9  2014-09-02 15:16:21 Female     66   NA     NA</span></span>
-<span id="cb491-20"><a href="string-processing-and-text-mining.html#cb491-20" tabindex="-1"></a><span class="co">#&gt; 10 2014-09-02 15:16:22   Male     67   NA     NA</span></span>
-<span id="cb491-21"><a href="string-processing-and-text-mining.html#cb491-21" tabindex="-1"></a><span class="co">#&gt; 11 2014-09-02 15:16:22   Male     72   NA     NA</span></span>
-<span id="cb491-22"><a href="string-processing-and-text-mining.html#cb491-22" tabindex="-1"></a><span class="co">#&gt; 12 2014-09-02 15:16:23   Male     NA    6      0</span></span>
-<span id="cb491-23"><a href="string-processing-and-text-mining.html#cb491-23" tabindex="-1"></a><span class="co">#&gt; 13 2014-09-02 15:16:23   Male     69   NA     NA</span></span>
-<span id="cb491-24"><a href="string-processing-and-text-mining.html#cb491-24" tabindex="-1"></a><span class="co">#&gt; 14 2014-09-02 15:16:26   Male     68   NA     NA</span></span>
-<span id="cb491-25"><a href="string-processing-and-text-mining.html#cb491-25" tabindex="-1"></a><span class="co">#&gt; 15 2014-09-02 15:16:26   Male     69   NA     NA</span></span></code></pre></div>
+<span id="cb491-6"><a href="string-processing-and-text-mining.html#cb491-6" tabindex="-1"></a><span class="co">#&gt; ℹ In argument: `across(c(&quot;height&quot;, &quot;feet&quot;, &quot;inches&quot;), ~as.numeric(.))`.</span></span>
+<span id="cb491-7"><a href="string-processing-and-text-mining.html#cb491-7" tabindex="-1"></a><span class="co">#&gt; Caused by warning:</span></span>
+<span id="cb491-8"><a href="string-processing-and-text-mining.html#cb491-8" tabindex="-1"></a><span class="co">#&gt; ! NAs introduced by coercion</span></span>
+<span id="cb491-9"><a href="string-processing-and-text-mining.html#cb491-9" tabindex="-1"></a><span class="co">#&gt;             time_stamp    sex height feet inches</span></span>
+<span id="cb491-10"><a href="string-processing-and-text-mining.html#cb491-10" tabindex="-1"></a><span class="co">#&gt; 1  2014-09-02 13:40:36   Male     75   NA     NA</span></span>
+<span id="cb491-11"><a href="string-processing-and-text-mining.html#cb491-11" tabindex="-1"></a><span class="co">#&gt; 2  2014-09-02 13:46:59   Male     70   NA     NA</span></span>
+<span id="cb491-12"><a href="string-processing-and-text-mining.html#cb491-12" tabindex="-1"></a><span class="co">#&gt; 3  2014-09-02 13:59:20   Male     68   NA     NA</span></span>
+<span id="cb491-13"><a href="string-processing-and-text-mining.html#cb491-13" tabindex="-1"></a><span class="co">#&gt; 4  2014-09-02 14:51:53   Male     74   NA     NA</span></span>
+<span id="cb491-14"><a href="string-processing-and-text-mining.html#cb491-14" tabindex="-1"></a><span class="co">#&gt; 5  2014-09-02 15:16:15   Male     61   NA     NA</span></span>
+<span id="cb491-15"><a href="string-processing-and-text-mining.html#cb491-15" tabindex="-1"></a><span class="co">#&gt; 6  2014-09-02 15:16:16 Female     65   NA     NA</span></span>
+<span id="cb491-16"><a href="string-processing-and-text-mining.html#cb491-16" tabindex="-1"></a><span class="co">#&gt; 7  2014-09-02 15:16:19 Female     66   NA     NA</span></span>
+<span id="cb491-17"><a href="string-processing-and-text-mining.html#cb491-17" tabindex="-1"></a><span class="co">#&gt; 8  2014-09-02 15:16:21 Female     62   NA     NA</span></span>
+<span id="cb491-18"><a href="string-processing-and-text-mining.html#cb491-18" tabindex="-1"></a><span class="co">#&gt; 9  2014-09-02 15:16:21 Female     66   NA     NA</span></span>
+<span id="cb491-19"><a href="string-processing-and-text-mining.html#cb491-19" tabindex="-1"></a><span class="co">#&gt; 10 2014-09-02 15:16:22   Male     67   NA     NA</span></span>
+<span id="cb491-20"><a href="string-processing-and-text-mining.html#cb491-20" tabindex="-1"></a><span class="co">#&gt; 11 2014-09-02 15:16:22   Male     72   NA     NA</span></span>
+<span id="cb491-21"><a href="string-processing-and-text-mining.html#cb491-21" tabindex="-1"></a><span class="co">#&gt; 12 2014-09-02 15:16:23   Male     NA    6      0</span></span>
+<span id="cb491-22"><a href="string-processing-and-text-mining.html#cb491-22" tabindex="-1"></a><span class="co">#&gt; 13 2014-09-02 15:16:23   Male     69   NA     NA</span></span>
+<span id="cb491-23"><a href="string-processing-and-text-mining.html#cb491-23" tabindex="-1"></a><span class="co">#&gt; 14 2014-09-02 15:16:26   Male     68   NA     NA</span></span>
+<span id="cb491-24"><a href="string-processing-and-text-mining.html#cb491-24" tabindex="-1"></a><span class="co">#&gt; 15 2014-09-02 15:16:26   Male     69   NA     NA</span></span></code></pre></div>
 <p>Now that our columns are numeric we can perform operations to calculate height.</p>
 <div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="string-processing-and-text-mining.html#cb492-1" tabindex="-1"></a>heights <span class="sc">|&gt;</span> </span>
 <span id="cb492-2"><a href="string-processing-and-text-mining.html#cb492-2" tabindex="-1"></a>  <span class="fu">extract</span>(height, <span class="fu">c</span>(<span class="st">&quot;feet&quot;</span>, <span class="st">&quot;inches&quot;</span>), <span class="at">regex =</span> pattern, <span class="at">remove =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
@@ -1122,26 +1115,25 @@ div.csl-indent {
 <span id="cb492-4"><a href="string-processing-and-text-mining.html#cb492-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fixed_heights =</span> feet<span class="sc">*</span><span class="dv">12</span> <span class="sc">+</span> inches) <span class="sc">|&gt;</span> </span>
 <span id="cb492-5"><a href="string-processing-and-text-mining.html#cb492-5" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">15</span>)</span>
 <span id="cb492-6"><a href="string-processing-and-text-mining.html#cb492-6" tabindex="-1"></a><span class="co">#&gt; Warning: There was 1 warning in `mutate()`.</span></span>
-<span id="cb492-7"><a href="string-processing-and-text-mining.html#cb492-7" tabindex="-1"></a><span class="co">#&gt; ℹ In argument: `across(c(&quot;height&quot;, &quot;feet&quot;,</span></span>
-<span id="cb492-8"><a href="string-processing-and-text-mining.html#cb492-8" tabindex="-1"></a><span class="co">#&gt;   &quot;inches&quot;), ~as.numeric(.))`.</span></span>
-<span id="cb492-9"><a href="string-processing-and-text-mining.html#cb492-9" tabindex="-1"></a><span class="co">#&gt; Caused by warning:</span></span>
-<span id="cb492-10"><a href="string-processing-and-text-mining.html#cb492-10" tabindex="-1"></a><span class="co">#&gt; ! NAs introduced by coercion</span></span>
-<span id="cb492-11"><a href="string-processing-and-text-mining.html#cb492-11" tabindex="-1"></a><span class="co">#&gt;             time_stamp    sex height feet inches fixed_heights</span></span>
-<span id="cb492-12"><a href="string-processing-and-text-mining.html#cb492-12" tabindex="-1"></a><span class="co">#&gt; 1  2014-09-02 13:40:36   Male     75   NA     NA            NA</span></span>
-<span id="cb492-13"><a href="string-processing-and-text-mining.html#cb492-13" tabindex="-1"></a><span class="co">#&gt; 2  2014-09-02 13:46:59   Male     70   NA     NA            NA</span></span>
-<span id="cb492-14"><a href="string-processing-and-text-mining.html#cb492-14" tabindex="-1"></a><span class="co">#&gt; 3  2014-09-02 13:59:20   Male     68   NA     NA            NA</span></span>
-<span id="cb492-15"><a href="string-processing-and-text-mining.html#cb492-15" tabindex="-1"></a><span class="co">#&gt; 4  2014-09-02 14:51:53   Male     74   NA     NA            NA</span></span>
-<span id="cb492-16"><a href="string-processing-and-text-mining.html#cb492-16" tabindex="-1"></a><span class="co">#&gt; 5  2014-09-02 15:16:15   Male     61   NA     NA            NA</span></span>
-<span id="cb492-17"><a href="string-processing-and-text-mining.html#cb492-17" tabindex="-1"></a><span class="co">#&gt; 6  2014-09-02 15:16:16 Female     65   NA     NA            NA</span></span>
-<span id="cb492-18"><a href="string-processing-and-text-mining.html#cb492-18" tabindex="-1"></a><span class="co">#&gt; 7  2014-09-02 15:16:19 Female     66   NA     NA            NA</span></span>
-<span id="cb492-19"><a href="string-processing-and-text-mining.html#cb492-19" tabindex="-1"></a><span class="co">#&gt; 8  2014-09-02 15:16:21 Female     62   NA     NA            NA</span></span>
-<span id="cb492-20"><a href="string-processing-and-text-mining.html#cb492-20" tabindex="-1"></a><span class="co">#&gt; 9  2014-09-02 15:16:21 Female     66   NA     NA            NA</span></span>
-<span id="cb492-21"><a href="string-processing-and-text-mining.html#cb492-21" tabindex="-1"></a><span class="co">#&gt; 10 2014-09-02 15:16:22   Male     67   NA     NA            NA</span></span>
-<span id="cb492-22"><a href="string-processing-and-text-mining.html#cb492-22" tabindex="-1"></a><span class="co">#&gt; 11 2014-09-02 15:16:22   Male     72   NA     NA            NA</span></span>
-<span id="cb492-23"><a href="string-processing-and-text-mining.html#cb492-23" tabindex="-1"></a><span class="co">#&gt; 12 2014-09-02 15:16:23   Male     NA    6      0            72</span></span>
-<span id="cb492-24"><a href="string-processing-and-text-mining.html#cb492-24" tabindex="-1"></a><span class="co">#&gt; 13 2014-09-02 15:16:23   Male     69   NA     NA            NA</span></span>
-<span id="cb492-25"><a href="string-processing-and-text-mining.html#cb492-25" tabindex="-1"></a><span class="co">#&gt; 14 2014-09-02 15:16:26   Male     68   NA     NA            NA</span></span>
-<span id="cb492-26"><a href="string-processing-and-text-mining.html#cb492-26" tabindex="-1"></a><span class="co">#&gt; 15 2014-09-02 15:16:26   Male     69   NA     NA            NA</span></span></code></pre></div>
+<span id="cb492-7"><a href="string-processing-and-text-mining.html#cb492-7" tabindex="-1"></a><span class="co">#&gt; ℹ In argument: `across(c(&quot;height&quot;, &quot;feet&quot;, &quot;inches&quot;), ~as.numeric(.))`.</span></span>
+<span id="cb492-8"><a href="string-processing-and-text-mining.html#cb492-8" tabindex="-1"></a><span class="co">#&gt; Caused by warning:</span></span>
+<span id="cb492-9"><a href="string-processing-and-text-mining.html#cb492-9" tabindex="-1"></a><span class="co">#&gt; ! NAs introduced by coercion</span></span>
+<span id="cb492-10"><a href="string-processing-and-text-mining.html#cb492-10" tabindex="-1"></a><span class="co">#&gt;             time_stamp    sex height feet inches fixed_heights</span></span>
+<span id="cb492-11"><a href="string-processing-and-text-mining.html#cb492-11" tabindex="-1"></a><span class="co">#&gt; 1  2014-09-02 13:40:36   Male     75   NA     NA            NA</span></span>
+<span id="cb492-12"><a href="string-processing-and-text-mining.html#cb492-12" tabindex="-1"></a><span class="co">#&gt; 2  2014-09-02 13:46:59   Male     70   NA     NA            NA</span></span>
+<span id="cb492-13"><a href="string-processing-and-text-mining.html#cb492-13" tabindex="-1"></a><span class="co">#&gt; 3  2014-09-02 13:59:20   Male     68   NA     NA            NA</span></span>
+<span id="cb492-14"><a href="string-processing-and-text-mining.html#cb492-14" tabindex="-1"></a><span class="co">#&gt; 4  2014-09-02 14:51:53   Male     74   NA     NA            NA</span></span>
+<span id="cb492-15"><a href="string-processing-and-text-mining.html#cb492-15" tabindex="-1"></a><span class="co">#&gt; 5  2014-09-02 15:16:15   Male     61   NA     NA            NA</span></span>
+<span id="cb492-16"><a href="string-processing-and-text-mining.html#cb492-16" tabindex="-1"></a><span class="co">#&gt; 6  2014-09-02 15:16:16 Female     65   NA     NA            NA</span></span>
+<span id="cb492-17"><a href="string-processing-and-text-mining.html#cb492-17" tabindex="-1"></a><span class="co">#&gt; 7  2014-09-02 15:16:19 Female     66   NA     NA            NA</span></span>
+<span id="cb492-18"><a href="string-processing-and-text-mining.html#cb492-18" tabindex="-1"></a><span class="co">#&gt; 8  2014-09-02 15:16:21 Female     62   NA     NA            NA</span></span>
+<span id="cb492-19"><a href="string-processing-and-text-mining.html#cb492-19" tabindex="-1"></a><span class="co">#&gt; 9  2014-09-02 15:16:21 Female     66   NA     NA            NA</span></span>
+<span id="cb492-20"><a href="string-processing-and-text-mining.html#cb492-20" tabindex="-1"></a><span class="co">#&gt; 10 2014-09-02 15:16:22   Male     67   NA     NA            NA</span></span>
+<span id="cb492-21"><a href="string-processing-and-text-mining.html#cb492-21" tabindex="-1"></a><span class="co">#&gt; 11 2014-09-02 15:16:22   Male     72   NA     NA            NA</span></span>
+<span id="cb492-22"><a href="string-processing-and-text-mining.html#cb492-22" tabindex="-1"></a><span class="co">#&gt; 12 2014-09-02 15:16:23   Male     NA    6      0            72</span></span>
+<span id="cb492-23"><a href="string-processing-and-text-mining.html#cb492-23" tabindex="-1"></a><span class="co">#&gt; 13 2014-09-02 15:16:23   Male     69   NA     NA            NA</span></span>
+<span id="cb492-24"><a href="string-processing-and-text-mining.html#cb492-24" tabindex="-1"></a><span class="co">#&gt; 14 2014-09-02 15:16:26   Male     68   NA     NA            NA</span></span>
+<span id="cb492-25"><a href="string-processing-and-text-mining.html#cb492-25" tabindex="-1"></a><span class="co">#&gt; 15 2014-09-02 15:16:26   Male     69   NA     NA            NA</span></span></code></pre></div>
 <p>Finally, we will do a validation of whether the height is in an interval and/or if it was expressed in centimeters or meters.</p>
 <div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="string-processing-and-text-mining.html#cb493-1" tabindex="-1"></a><span class="co"># We assume for a person a minimum 50&quot; (1.2m) and max 84&quot; (2.1m)</span></span>
 <span id="cb493-2"><a href="string-processing-and-text-mining.html#cb493-2" tabindex="-1"></a>min <span class="ot">&lt;-</span> <span class="dv">50</span></span>
@@ -1159,27 +1151,26 @@ div.csl-indent {
 <span id="cb493-14"><a href="string-processing-and-text-mining.html#cb493-14" tabindex="-1"></a>      <span class="fu">between</span>(fixed_heights, min, max) <span class="sc">~</span> fixed_heights, <span class="co">#feet&#39;inches</span></span>
 <span id="cb493-15"><a href="string-processing-and-text-mining.html#cb493-15" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">as.numeric</span>(<span class="cn">NA</span>)))</span>
 <span id="cb493-16"><a href="string-processing-and-text-mining.html#cb493-16" tabindex="-1"></a><span class="co">#&gt; Warning: There was 1 warning in `mutate()`.</span></span>
-<span id="cb493-17"><a href="string-processing-and-text-mining.html#cb493-17" tabindex="-1"></a><span class="co">#&gt; ℹ In argument: `across(c(&quot;height&quot;, &quot;feet&quot;,</span></span>
-<span id="cb493-18"><a href="string-processing-and-text-mining.html#cb493-18" tabindex="-1"></a><span class="co">#&gt;   &quot;inches&quot;), ~as.numeric(.))`.</span></span>
-<span id="cb493-19"><a href="string-processing-and-text-mining.html#cb493-19" tabindex="-1"></a><span class="co">#&gt; Caused by warning:</span></span>
-<span id="cb493-20"><a href="string-processing-and-text-mining.html#cb493-20" tabindex="-1"></a><span class="co">#&gt; ! NAs introduced by coercion</span></span>
-<span id="cb493-21"><a href="string-processing-and-text-mining.html#cb493-21" tabindex="-1"></a></span>
-<span id="cb493-22"><a href="string-processing-and-text-mining.html#cb493-22" tabindex="-1"></a><span class="co"># Random Sample:</span></span>
-<span id="cb493-23"><a href="string-processing-and-text-mining.html#cb493-23" tabindex="-1"></a>random_indices <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(heights)) </span>
-<span id="cb493-24"><a href="string-processing-and-text-mining.html#cb493-24" tabindex="-1"></a>heights[random_indices, ] <span class="sc">|&gt;</span> </span>
-<span id="cb493-25"><a href="string-processing-and-text-mining.html#cb493-25" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>time_stamp) <span class="sc">|&gt;</span> <span class="co"># Shows all columns except time_stamp</span></span>
-<span id="cb493-26"><a href="string-processing-and-text-mining.html#cb493-26" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span>
-<span id="cb493-27"><a href="string-processing-and-text-mining.html#cb493-27" tabindex="-1"></a><span class="co">#&gt;         sex height feet inches fixed_heights final_height</span></span>
-<span id="cb493-28"><a href="string-processing-and-text-mining.html#cb493-28" tabindex="-1"></a><span class="co">#&gt; 118    Male   76.0   NA     NA            NA     76.00000</span></span>
-<span id="cb493-29"><a href="string-processing-and-text-mining.html#cb493-29" tabindex="-1"></a><span class="co">#&gt; 1038   Male   76.0   NA     NA            NA     76.00000</span></span>
-<span id="cb493-30"><a href="string-processing-and-text-mining.html#cb493-30" tabindex="-1"></a><span class="co">#&gt; 184  Female   70.0   NA     NA            NA     70.00000</span></span>
-<span id="cb493-31"><a href="string-processing-and-text-mining.html#cb493-31" tabindex="-1"></a><span class="co">#&gt; 775    Male   75.6   NA     NA            NA     75.60000</span></span>
-<span id="cb493-32"><a href="string-processing-and-text-mining.html#cb493-32" tabindex="-1"></a><span class="co">#&gt; 389    Male  178.0   NA     NA            NA     70.07874</span></span>
-<span id="cb493-33"><a href="string-processing-and-text-mining.html#cb493-33" tabindex="-1"></a><span class="co">#&gt; 1066   Male     NA    6      0            72     72.00000</span></span>
-<span id="cb493-34"><a href="string-processing-and-text-mining.html#cb493-34" tabindex="-1"></a><span class="co">#&gt; 745    Male  167.0   NA     NA            NA     65.74803</span></span>
-<span id="cb493-35"><a href="string-processing-and-text-mining.html#cb493-35" tabindex="-1"></a><span class="co">#&gt; 898    Male   66.0   NA     NA            NA     66.00000</span></span>
-<span id="cb493-36"><a href="string-processing-and-text-mining.html#cb493-36" tabindex="-1"></a><span class="co">#&gt; 1029   Male   67.0   NA     NA            NA     67.00000</span></span>
-<span id="cb493-37"><a href="string-processing-and-text-mining.html#cb493-37" tabindex="-1"></a><span class="co">#&gt; 902  Female   66.0   NA     NA            NA     66.00000</span></span></code></pre></div>
+<span id="cb493-17"><a href="string-processing-and-text-mining.html#cb493-17" tabindex="-1"></a><span class="co">#&gt; ℹ In argument: `across(c(&quot;height&quot;, &quot;feet&quot;, &quot;inches&quot;), ~as.numeric(.))`.</span></span>
+<span id="cb493-18"><a href="string-processing-and-text-mining.html#cb493-18" tabindex="-1"></a><span class="co">#&gt; Caused by warning:</span></span>
+<span id="cb493-19"><a href="string-processing-and-text-mining.html#cb493-19" tabindex="-1"></a><span class="co">#&gt; ! NAs introduced by coercion</span></span>
+<span id="cb493-20"><a href="string-processing-and-text-mining.html#cb493-20" tabindex="-1"></a></span>
+<span id="cb493-21"><a href="string-processing-and-text-mining.html#cb493-21" tabindex="-1"></a><span class="co"># Random Sample:</span></span>
+<span id="cb493-22"><a href="string-processing-and-text-mining.html#cb493-22" tabindex="-1"></a>random_indices <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(heights)) </span>
+<span id="cb493-23"><a href="string-processing-and-text-mining.html#cb493-23" tabindex="-1"></a>heights[random_indices, ] <span class="sc">|&gt;</span> </span>
+<span id="cb493-24"><a href="string-processing-and-text-mining.html#cb493-24" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>time_stamp) <span class="sc">|&gt;</span> <span class="co"># Shows all columns except time_stamp</span></span>
+<span id="cb493-25"><a href="string-processing-and-text-mining.html#cb493-25" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span>
+<span id="cb493-26"><a href="string-processing-and-text-mining.html#cb493-26" tabindex="-1"></a><span class="co">#&gt;         sex height feet inches fixed_heights final_height</span></span>
+<span id="cb493-27"><a href="string-processing-and-text-mining.html#cb493-27" tabindex="-1"></a><span class="co">#&gt; 856  Female  63.00   NA     NA            NA     63.00000</span></span>
+<span id="cb493-28"><a href="string-processing-and-text-mining.html#cb493-28" tabindex="-1"></a><span class="co">#&gt; 1003   Male  68.00   NA     NA            NA     68.00000</span></span>
+<span id="cb493-29"><a href="string-processing-and-text-mining.html#cb493-29" tabindex="-1"></a><span class="co">#&gt; 1059   Male 210.00   NA     NA            NA     82.67717</span></span>
+<span id="cb493-30"><a href="string-processing-and-text-mining.html#cb493-30" tabindex="-1"></a><span class="co">#&gt; 405    Male  71.00   NA     NA            NA     71.00000</span></span>
+<span id="cb493-31"><a href="string-processing-and-text-mining.html#cb493-31" tabindex="-1"></a><span class="co">#&gt; 888  Female  62.00   NA     NA            NA     62.00000</span></span>
+<span id="cb493-32"><a href="string-processing-and-text-mining.html#cb493-32" tabindex="-1"></a><span class="co">#&gt; 300    Male  72.00   NA     NA            NA     72.00000</span></span>
+<span id="cb493-33"><a href="string-processing-and-text-mining.html#cb493-33" tabindex="-1"></a><span class="co">#&gt; 470    Male  71.00   NA     NA            NA     71.00000</span></span>
+<span id="cb493-34"><a href="string-processing-and-text-mining.html#cb493-34" tabindex="-1"></a><span class="co">#&gt; 274    Male  66.00   NA     NA            NA     66.00000</span></span>
+<span id="cb493-35"><a href="string-processing-and-text-mining.html#cb493-35" tabindex="-1"></a><span class="co">#&gt; 427    Male  53.77   NA     NA            NA     53.77000</span></span>
+<span id="cb493-36"><a href="string-processing-and-text-mining.html#cb493-36" tabindex="-1"></a><span class="co">#&gt; 1087 Female  34.00   NA     NA            NA           NA</span></span></code></pre></div>
 <p>We already have our sample validated, we would only have to take the columns we need and start using the object for the analyses we need.</p>
 <div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="string-processing-and-text-mining.html#cb494-1" tabindex="-1"></a>final_heights <span class="ot">&lt;-</span> heights <span class="sc">|&gt;</span> </span>
 <span id="cb494-2"><a href="string-processing-and-text-mining.html#cb494-2" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">gender =</span> sex, <span class="at">heights =</span> final_height)</span>
@@ -1244,7 +1235,7 @@ div.csl-indent {
 <span id="cb499-5"><a href="string-processing-and-text-mining.html#cb499-5" tabindex="-1"></a></span>
 <span id="cb499-6"><a href="string-processing-and-text-mining.html#cb499-6" tabindex="-1"></a><span class="co"># Additional data: Showing system date:</span></span>
 <span id="cb499-7"><a href="string-processing-and-text-mining.html#cb499-7" tabindex="-1"></a><span class="fu">now</span>()</span>
-<span id="cb499-8"><a href="string-processing-and-text-mining.html#cb499-8" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2025-12-23 22:18:49 GMT&quot;</span></span></code></pre></div>
+<span id="cb499-8"><a href="string-processing-and-text-mining.html#cb499-8" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2025-12-23 23:46:14 GMT&quot;</span></span></code></pre></div>
 </div>
 <div id="exercises-16" class="section level2 hasAnchor" number="11.4">
 <h2><span class="header-section-number">11.4</span> Exercises<a href="string-processing-and-text-mining.html#exercises-16" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -1463,7 +1454,7 @@ Solution
 <span id="cb519-4"><a href="string-processing-and-text-mining.html#cb519-4" tabindex="-1"></a>          <span class="at">random.order =</span> <span class="cn">FALSE</span>, </span>
 <span id="cb519-5"><a href="string-processing-and-text-mining.html#cb519-5" tabindex="-1"></a>          <span class="at">colors =</span> <span class="fu">brewer.pal</span>(<span class="at">name =</span> <span class="st">&quot;Dark2&quot;</span>, <span class="at">n =</span> <span class="dv">8</span>)</span>
 <span id="cb519-6"><a href="string-processing-and-text-mining.html#cb519-6" tabindex="-1"></a>          )</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-667-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-667-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="nd-data-cleaning" class="section level3 hasAnchor" number="11.5.4">
 <h3><span class="header-section-number">11.5.4</span> 2nd Data Cleaning<a href="string-processing-and-text-mining.html#nd-data-cleaning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1483,7 +1474,7 @@ Solution
 <span id="cb520-13"><a href="string-processing-and-text-mining.html#cb520-13" tabindex="-1"></a>          <span class="at">random.order =</span> <span class="cn">FALSE</span>, </span>
 <span id="cb520-14"><a href="string-processing-and-text-mining.html#cb520-14" tabindex="-1"></a>          <span class="at">colors =</span> <span class="fu">brewer.pal</span>(<span class="at">name =</span> <span class="st">&quot;Dark2&quot;</span>, <span class="at">n =</span> <span class="dv">8</span>)</span>
 <span id="cb520-15"><a href="string-processing-and-text-mining.html#cb520-15" tabindex="-1"></a>          )</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-668-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-668-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Augusto and Eugenia, as we can assume, are the protagonists of <strong>Niebla</strong> and much of the action in this book occurs in the “house” of one or another protagonist, discussing relationships between “man” and “woman”.</p>
 </div>
 <div id="word-frequency" class="section level3 hasAnchor" number="11.5.5">
@@ -1517,7 +1508,7 @@ Solution
 <span id="cb522-13"><a href="string-processing-and-text-mining.html#cb522-13" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
 <span id="cb522-14"><a href="string-processing-and-text-mining.html#cb522-14" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Most used words in the work&quot;</span></span>
 <span id="cb522-15"><a href="string-processing-and-text-mining.html#cb522-15" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-670-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-670-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="text-mining-sentiment-analysis" class="section level2 hasAnchor" number="11.6">
@@ -1526,7 +1517,7 @@ Solution
 <p>And what better place to analyze message tones than on Twitter. For this, we are going to download a history of Tweets from some Spanish-speaking character from the page vicinitas.io. This page allows us to download an excel given a public account:</p>
 <p><a href="https://www.vicinitas.io/free-tools/download-user-tweets" class="uri">https://www.vicinitas.io/free-tools/download-user-tweets</a>.</p>
 <div align="center">
-<p><img src="img/download-user-tweets.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="_assets/images/05-wrangling/download-user-tweets.png" alt="Vicinitas.io interface for downloading user tweets from Twitter" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 <p>For our example, we will use tweets from the account of the lawyer <a href="https://twitter.com/rmapalacios">Rosa María Palacios</a><a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a>. For this example the excel has already been uploaded to Github. We will download that excel directly from there to our computer to a temporary file and then we will read it using <code>read_excel()</code>.</p>
 <div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="string-processing-and-text-mining.html#cb523-1" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/DS-con-R/rmapalacios_user_tweets.xlsx&quot;</span></span>
@@ -1567,7 +1558,7 @@ Solution
 <span id="cb525-17"><a href="string-processing-and-text-mining.html#cb525-17" tabindex="-1"></a>          <span class="at">random.order =</span> <span class="cn">FALSE</span>, </span>
 <span id="cb525-18"><a href="string-processing-and-text-mining.html#cb525-18" tabindex="-1"></a>          <span class="at">colors =</span> <span class="fu">brewer.pal</span>(<span class="at">name =</span> <span class="st">&quot;Dark2&quot;</span>, <span class="at">n =</span> <span class="dv">8</span>)</span>
 <span id="cb525-19"><a href="string-processing-and-text-mining.html#cb525-19" tabindex="-1"></a>          )</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-674-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-674-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>She is a lawyer, which makes a lot of sense that she posts content of what can or cannot be done. We could be more rigorous and seek to achieve this combination by adding underscores if the pattern is detected, but for the moment we are going to focus on the tone.</p>
 <p>With our object <code>tweets_limpio</code> we can obtain what the tone is using the function <code>get_nrc_sentiment()</code>, which gives us a score for each row of the vector according to the <a href="https://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm">NRC Emotion Lexicon</a><a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a>. The NRC Emotion Lexicon is a list of words and their associations with eight basic emotions (anger, fear, anticipation, trust, surprise, sadness, joy, and disgust) and two sentiments (negative and positive).</p>
 <div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="string-processing-and-text-mining.html#cb526-1" tabindex="-1"></a></span>
@@ -1645,7 +1636,7 @@ Solution
 <span id="cb530-16"><a href="string-processing-and-text-mining.html#cb530-16" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="cn">NULL</span>) <span class="sc">+</span></span>
 <span id="cb530-17"><a href="string-processing-and-text-mining.html#cb530-17" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Total&quot;</span>) <span class="sc">+</span></span>
 <span id="cb530-18"><a href="string-processing-and-text-mining.html#cb530-18" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Sentiments of the Tweets of Rosa María Palacios&quot;</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-679-1.png" alt="" width="80%" style="display: block; margin: auto;" /><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-679-2.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-679-1.png" alt="" width="80%" style="display: block; margin: auto;" /><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-679-2.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>This technique is very useful to us as a starting point for future analyses on the tonality of some determined text.</p>
 </div>
 <div id="exercises-17" class="section level2 hasAnchor" number="11.7">

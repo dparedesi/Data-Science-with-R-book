@@ -12,8 +12,8 @@ link-citations: yes
 colorlinks: yes
 urlcolor: blue
 geometry: "left=1.5in, right=1.5in, top=1.25in, bottom=1.25in"
-github-repo: rstudio/bookdown-demo
-description: "Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes"
+github-repo: dparedesi/Data-Science-with-R-book
+description: "A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes."
 always_allow_html: yes
 graphics: yes
 output:
@@ -33,11 +33,12 @@ knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown', 'dslabs', 'tidyverse'
 ), 'packages.bib')
 
-img_path <- "img"
+# Image path pointing to centralized assets folder
+img_path <- "_assets/images"
 inc <- function(f, x) {if (!f){eval.parent(substitute(x <- x + 1))}}
 ne <- 1
 
-most_freq_countries <- read_csv("img/paises_mas_frec.csv")
+most_freq_countries <- read_csv("_assets/data/paises_mas_frec.csv")
 str_countries <- toString(most_freq_countries$text)
 ```
 

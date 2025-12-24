@@ -4,6 +4,7 @@
 
 # Session Data files
 .RData
+.RDataTmp
 
 # User-specific files
 .Ruserdata
@@ -41,5 +42,12 @@ vignettes/*.pdf
 # Security
 gAnalytics.json
 
+# Build artifacts
 _bookdown_files/
 Data-Science-con-R_files/
+Data-Science-with-R_files/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

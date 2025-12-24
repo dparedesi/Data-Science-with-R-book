@@ -5,19 +5,19 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Gapminder | Data Science with R</title>
-  <meta name="description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  <meta name="description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Gapminder | Data Science with R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta property="og:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
+  <meta name="github-repo" content="dparedesi/Data-Science-with-R-book" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 6 Gapminder | Data Science with R" />
   
-  <meta name="twitter:description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  <meta name="twitter:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
   
 
 <meta name="author" content="Author: Mg. Daniel Paredes Inilupu" />
@@ -753,7 +753,7 @@ div.csl-indent {
 <span id="cb240-3"><a href="gapminder.html#cb240-3" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb240-4"><a href="gapminder.html#cb240-4" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> fertility, <span class="at">y =</span> life_expectancy) <span class="sc">+</span></span>
 <span id="cb240-5"><a href="gapminder.html#cb240-5" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-321-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-321-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>From this graph we can see that countries where families have 7.5 children have a lower life expectancy. On the other hand, in countries with high life expectancy the average number of children is less than 2 children per family.</p>
 <p>As we have done previously, we can color the points according to some other variable. In this case, knowing which continent they belong to could give us a better idea of the data.</p>
 <div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="gapminder.html#cb241-1" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span> </span>
@@ -761,7 +761,7 @@ div.csl-indent {
 <span id="cb241-3"><a href="gapminder.html#cb241-3" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb241-4"><a href="gapminder.html#cb241-4" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> fertility, <span class="at">y =</span> life_expectancy, <span class="at">color =</span> continent) <span class="sc">+</span></span>
 <span id="cb241-5"><a href="gapminder.html#cb241-5" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-322-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-322-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>In this graph, groups begin to be seen. Several European countries are in the upper left quadrant, while several African countries are in the lower right quadrant.</p>
 </div>
 <div id="facets" class="section level2 hasAnchor" number="6.2">
@@ -776,7 +776,7 @@ div.csl-indent {
 <span id="cb242-6"><a href="gapminder.html#cb242-6" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> fertility, <span class="at">y =</span> life_expectancy, <span class="at">color =</span> continent) <span class="sc">+</span></span>
 <span id="cb242-7"><a href="gapminder.html#cb242-7" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb242-8"><a href="gapminder.html#cb242-8" tabindex="-1"></a>  <span class="fu">facet_grid</span>(year <span class="sc">~</span> .)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-323-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-323-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>We can make it even clearer which continent changed the most if we add the continent variable as a column.</p>
 <div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="gapminder.html#cb243-1" tabindex="-1"></a>vector_years <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1960</span>, <span class="dv">2013</span>)</span>
 <span id="cb243-2"><a href="gapminder.html#cb243-2" tabindex="-1"></a></span>
@@ -786,7 +786,7 @@ div.csl-indent {
 <span id="cb243-6"><a href="gapminder.html#cb243-6" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> fertility, <span class="at">y =</span> life_expectancy, <span class="at">color =</span> continent) <span class="sc">+</span></span>
 <span id="cb243-7"><a href="gapminder.html#cb243-7" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb243-8"><a href="gapminder.html#cb243-8" tabindex="-1"></a>  <span class="fu">facet_grid</span>(year <span class="sc">~</span> continent)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-324-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-324-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Having several columns for each continent makes it harder to understand because the columns become smaller. It is recommended to have few columns. So we invert the order between year and continent.</p>
 <div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="gapminder.html#cb244-1" tabindex="-1"></a>vector_years <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1960</span>, <span class="dv">2013</span>)</span>
 <span id="cb244-2"><a href="gapminder.html#cb244-2" tabindex="-1"></a></span>
@@ -796,7 +796,7 @@ div.csl-indent {
 <span id="cb244-6"><a href="gapminder.html#cb244-6" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> fertility, <span class="at">y =</span> life_expectancy, <span class="at">color =</span> continent) <span class="sc">+</span></span>
 <span id="cb244-7"><a href="gapminder.html#cb244-7" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb244-8"><a href="gapminder.html#cb244-8" tabindex="-1"></a>  <span class="fu">facet_grid</span>(continent <span class="sc">~</span> year)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-325-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-325-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Here the change by regions is much more evident and how the majority of countries have reduced fertility per family while increasing life expectancy. We are living longer than in the 60s and in turn having fewer children per family. These phenomena have occurred globally.</p>
 <p>We don’t always have to show all variables, in this case continents. We can continue applying filters so that it shows us a subset of continents that we want to compare. For example:</p>
 <div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="gapminder.html#cb245-1" tabindex="-1"></a>vector_years <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1960</span>, <span class="dv">2013</span>)</span>
@@ -808,7 +808,7 @@ div.csl-indent {
 <span id="cb245-7"><a href="gapminder.html#cb245-7" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> fertility, <span class="at">y =</span> life_expectancy, <span class="at">color =</span> continent) <span class="sc">+</span></span>
 <span id="cb245-8"><a href="gapminder.html#cb245-8" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb245-9"><a href="gapminder.html#cb245-9" tabindex="-1"></a>  <span class="fu">facet_grid</span>(continent <span class="sc">~</span> year)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-326-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-326-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>In this case it would be visually better if the continents were not in separate rows, but could still be appreciated in the graph. To do this, we will use the wrap facet (<code>facet_wrap(~ x)</code>), where <code>x</code> is the variable we want to wrap. In our case it would be the year, instead of appearing in separate rows we can join and transpose them.</p>
 <div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="gapminder.html#cb246-1" tabindex="-1"></a>vector_años <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1960</span>, <span class="dv">2013</span>)</span>
 <span id="cb246-2"><a href="gapminder.html#cb246-2" tabindex="-1"></a>vector_continents <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Europe&quot;</span>, <span class="st">&quot;Asia&quot;</span>)</span>
@@ -819,7 +819,7 @@ div.csl-indent {
 <span id="cb246-7"><a href="gapminder.html#cb246-7" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> fertility, <span class="at">y =</span> life_expectancy, <span class="at">color =</span> continent) <span class="sc">+</span></span>
 <span id="cb246-8"><a href="gapminder.html#cb246-8" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb246-9"><a href="gapminder.html#cb246-9" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="sc">~</span> year)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-327-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-327-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>We can add more data by adding more data to the vectors. For example, let’s add a cut in the middle between 1960 and 2013.</p>
 <div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="gapminder.html#cb247-1" tabindex="-1"></a>vector_years <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1960</span>, <span class="dv">1985</span>, <span class="dv">2013</span>)</span>
 <span id="cb247-2"><a href="gapminder.html#cb247-2" tabindex="-1"></a>vector_continents <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Europe&quot;</span>, <span class="st">&quot;Asia&quot;</span>)</span>
@@ -830,7 +830,7 @@ div.csl-indent {
 <span id="cb247-7"><a href="gapminder.html#cb247-7" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> fertility, <span class="at">y =</span> life_expectancy, <span class="at">color =</span> continent) <span class="sc">+</span></span>
 <span id="cb247-8"><a href="gapminder.html#cb247-8" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb247-9"><a href="gapminder.html#cb247-9" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="sc">~</span> year)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-328-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-328-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="time-series" class="section level2 hasAnchor" number="6.3">
 <h2><span class="header-section-number">6.3</span> Time series<a href="gapminder.html#time-series" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -844,9 +844,9 @@ div.csl-indent {
 <span id="cb248-3"><a href="gapminder.html#cb248-3" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb248-4"><a href="gapminder.html#cb248-4" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> fertility) <span class="sc">+</span></span>
 <span id="cb248-5"><a href="gapminder.html#cb248-5" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb248-6"><a href="gapminder.html#cb248-6" tabindex="-1"></a><span class="co">#&gt; Warning: Removed 1 row containing missing values or values</span></span>
-<span id="cb248-7"><a href="gapminder.html#cb248-7" tabindex="-1"></a><span class="co">#&gt; outside the scale range (`geom_point()`).</span></span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-329-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<span id="cb248-6"><a href="gapminder.html#cb248-6" tabindex="-1"></a><span class="co">#&gt; Warning: Removed 1 row containing missing values or values outside the scale</span></span>
+<span id="cb248-7"><a href="gapminder.html#cb248-7" tabindex="-1"></a><span class="co">#&gt; range (`geom_point()`).</span></span></code></pre></div>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-329-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>We get a “warning” indicating that there are values that cannot be drawn because they are <code>NA</code> and are not available. This does not prevent showing the graph.</p>
 <p>If we want a line graph, which is the most used in time series, we use <code>geom_line()</code>:</p>
 <div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="gapminder.html#cb249-1" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span> </span>
@@ -854,9 +854,9 @@ div.csl-indent {
 <span id="cb249-3"><a href="gapminder.html#cb249-3" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb249-4"><a href="gapminder.html#cb249-4" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> fertility) <span class="sc">+</span></span>
 <span id="cb249-5"><a href="gapminder.html#cb249-5" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span>
-<span id="cb249-6"><a href="gapminder.html#cb249-6" tabindex="-1"></a><span class="co">#&gt; Warning: Removed 1 row containing missing values or values</span></span>
-<span id="cb249-7"><a href="gapminder.html#cb249-7" tabindex="-1"></a><span class="co">#&gt; outside the scale range (`geom_line()`).</span></span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-330-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<span id="cb249-6"><a href="gapminder.html#cb249-6" tabindex="-1"></a><span class="co">#&gt; Warning: Removed 1 row containing missing values or values outside the scale</span></span>
+<span id="cb249-7"><a href="gapminder.html#cb249-7" tabindex="-1"></a><span class="co">#&gt; range (`geom_line()`).</span></span></code></pre></div>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-330-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="multiple-time-series" class="section level3 hasAnchor" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> Multiple time series<a href="gapminder.html#multiple-time-series" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -868,9 +868,9 @@ div.csl-indent {
 <span id="cb250-5"><a href="gapminder.html#cb250-5" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb250-6"><a href="gapminder.html#cb250-6" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> fertility, <span class="at">color =</span> country) <span class="sc">+</span></span>
 <span id="cb250-7"><a href="gapminder.html#cb250-7" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span>
-<span id="cb250-8"><a href="gapminder.html#cb250-8" tabindex="-1"></a><span class="co">#&gt; Warning: Removed 3 rows containing missing values or values</span></span>
-<span id="cb250-9"><a href="gapminder.html#cb250-9" tabindex="-1"></a><span class="co">#&gt; outside the scale range (`geom_line()`).</span></span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-331-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<span id="cb250-8"><a href="gapminder.html#cb250-8" tabindex="-1"></a><span class="co">#&gt; Warning: Removed 3 rows containing missing values or values outside the scale</span></span>
+<span id="cb250-9"><a href="gapminder.html#cb250-9" tabindex="-1"></a><span class="co">#&gt; range (`geom_line()`).</span></span></code></pre></div>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-331-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>We can also remove the legend and show the name of the countries as labels on the same graph. To do this we will first have to create a data frame using the function <code>data.frame()</code> that indicates the coordinates where we want each label to appear:</p>
 <div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="gapminder.html#cb251-1" tabindex="-1"></a>countries <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Peru&quot;</span>, <span class="st">&quot;Bolivia&quot;</span>, <span class="st">&quot;Chile&quot;</span>)</span>
 <span id="cb251-2"><a href="gapminder.html#cb251-2" tabindex="-1"></a></span>
@@ -893,9 +893,9 @@ div.csl-indent {
 <span id="cb252-8"><a href="gapminder.html#cb252-8" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb252-9"><a href="gapminder.html#cb252-9" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> labels, <span class="fu">aes</span>(x, y, <span class="at">label =</span> country)) <span class="sc">+</span></span>
 <span id="cb252-10"><a href="gapminder.html#cb252-10" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb252-11"><a href="gapminder.html#cb252-11" tabindex="-1"></a><span class="co">#&gt; Warning: Removed 3 rows containing missing values or values</span></span>
-<span id="cb252-12"><a href="gapminder.html#cb252-12" tabindex="-1"></a><span class="co">#&gt; outside the scale range (`geom_line()`).</span></span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-333-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<span id="cb252-11"><a href="gapminder.html#cb252-11" tabindex="-1"></a><span class="co">#&gt; Warning: Removed 3 rows containing missing values or values outside the scale</span></span>
+<span id="cb252-12"><a href="gapminder.html#cb252-12" tabindex="-1"></a><span class="co">#&gt; range (`geom_line()`).</span></span></code></pre></div>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-333-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="exercises-6" class="section level2 hasAnchor" number="6.4">
@@ -963,9 +963,9 @@ Solution
 <span id="cb257-4"><a href="gapminder.html#cb257-4" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb257-5"><a href="gapminder.html#cb257-5" tabindex="-1"></a>  <span class="fu">aes</span>(gdp_per_capita_per_day) <span class="sc">+</span></span>
 <span id="cb257-6"><a href="gapminder.html#cb257-6" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>)</span>
-<span id="cb257-7"><a href="gapminder.html#cb257-7" tabindex="-1"></a><span class="co">#&gt; Warning: Removed 9 rows containing non-finite outside the</span></span>
-<span id="cb257-8"><a href="gapminder.html#cb257-8" tabindex="-1"></a><span class="co">#&gt; scale range (`stat_bin()`).</span></span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-341-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<span id="cb257-7"><a href="gapminder.html#cb257-7" tabindex="-1"></a><span class="co">#&gt; Warning: Removed 9 rows containing non-finite outside the scale range</span></span>
+<span id="cb257-8"><a href="gapminder.html#cb257-8" tabindex="-1"></a><span class="co">#&gt; (`stat_bin()`).</span></span></code></pre></div>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-341-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>We can filter out the <strong>NA</strong> so that we no longer get the low “warnings” with the function we saw previously <code>is.na()</code>. In this case since we don’t want the <strong>NA</strong> we will negate the function by placing the symbol <code>!</code> at the beginning.</p>
 <div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="gapminder.html#cb258-1" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span> </span>
 <span id="cb258-2"><a href="gapminder.html#cb258-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gdp_per_capita_per_day =</span> gdp<span class="sc">/</span>population<span class="sc">/</span><span class="dv">365</span>) <span class="sc">|&gt;</span> </span>
@@ -973,7 +973,7 @@ Solution
 <span id="cb258-4"><a href="gapminder.html#cb258-4" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb258-5"><a href="gapminder.html#cb258-5" tabindex="-1"></a>  <span class="fu">aes</span>(gdp_per_capita_per_day) <span class="sc">+</span></span>
 <span id="cb258-6"><a href="gapminder.html#cb258-6" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-342-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-342-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>At this point it should be quick to detect that there is a concentration of data from countries with low GDP per capita and we could be tempted to apply a scale transformation on the <em>x-axis</em>. Let’s try with logarithm in base 2:</p>
 <div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="gapminder.html#cb259-1" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span> </span>
 <span id="cb259-2"><a href="gapminder.html#cb259-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gdp_per_capita_per_day =</span> gdp<span class="sc">/</span>population<span class="sc">/</span><span class="dv">365</span>) <span class="sc">|&gt;</span> </span>
@@ -982,7 +982,7 @@ Solution
 <span id="cb259-5"><a href="gapminder.html#cb259-5" tabindex="-1"></a>  <span class="fu">aes</span>(gdp_per_capita_per_day) <span class="sc">+</span></span>
 <span id="cb259-6"><a href="gapminder.html#cb259-6" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span> <span class="co">#Change the width to 0.5 due to logarithmic scale</span></span>
 <span id="cb259-7"><a href="gapminder.html#cb259-7" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log2&quot;</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-343-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-343-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Let’s be careful interpreting this data. We cannot say that it is a symmetric distribution, even when with this scale we are tempted to do so. Remember the scale and use it appropriately.</p>
 </div>
 <div id="box-plots-with-ggplot" class="section level2 hasAnchor" number="6.6">
@@ -995,7 +995,7 @@ Solution
 <span id="cb260-4"><a href="gapminder.html#cb260-4" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb260-5"><a href="gapminder.html#cb260-5" tabindex="-1"></a>  <span class="fu">aes</span>(continent, gdp_per_capita_per_day) <span class="sc">+</span></span>
 <span id="cb260-6"><a href="gapminder.html#cb260-6" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-344-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-344-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Now let’s zoom in. Within each continent we have regions, for example in the Americas we have South America, Central America, North America, and so on with each continent. Let’s change the <code>continent</code> variable to <code>region</code>.</p>
 <div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="gapminder.html#cb261-1" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span> </span>
 <span id="cb261-2"><a href="gapminder.html#cb261-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gdp_per_capita_per_day =</span> gdp<span class="sc">/</span>population<span class="sc">/</span><span class="dv">365</span>) <span class="sc">|&gt;</span> </span>
@@ -1003,7 +1003,7 @@ Solution
 <span id="cb261-4"><a href="gapminder.html#cb261-4" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb261-5"><a href="gapminder.html#cb261-5" tabindex="-1"></a>  <span class="fu">aes</span>(region, gdp_per_capita_per_day) <span class="sc">+</span></span>
 <span id="cb261-6"><a href="gapminder.html#cb261-6" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-345-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-345-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>As we can verify: this visualization allows us to infer very little. Before discarding a graph let’s think if we can change the configuration to improve the visualization.</p>
 <p>The first thing we can improve is the names of the regions. They are in horizontal form, but we could rotate it 45 degrees using the <code>theme()</code> layer.</p>
 <div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="gapminder.html#cb262-1" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span> </span>
@@ -1013,7 +1013,7 @@ Solution
 <span id="cb262-5"><a href="gapminder.html#cb262-5" tabindex="-1"></a>  <span class="fu">aes</span>(region, gdp_per_capita_per_day) <span class="sc">+</span></span>
 <span id="cb262-6"><a href="gapminder.html#cb262-6" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
 <span id="cb262-7"><a href="gapminder.html#cb262-7" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>) )</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-346-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-346-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>The names are understood, but if we want to find the top 3 (either by median or average) we would have to look for them one by one. Let’s reorder it, but first let’s be aware of some previous considerations:</p>
 <p>The <code>region</code> column is a <code>Factor</code> type variable, it is not a character string. Even when visually we did not find a difference, factors are used to categorize data. For example, bronze, silver, platinum customers, etc.</p>
 <p>Factors are useful because internally they are replaced by numbers and numbers, at a computational level, are faster to sort. The default sorting is alphabetical, as we can appreciate if we use the <code>levels</code> function.</p>
@@ -1038,7 +1038,7 @@ Solution
 <span id="cb264-6"><a href="gapminder.html#cb264-6" tabindex="-1"></a>  <span class="fu">aes</span>(region, gdp_per_capita_per_day) <span class="sc">+</span></span>
 <span id="cb264-7"><a href="gapminder.html#cb264-7" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
 <span id="cb264-8"><a href="gapminder.html#cb264-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-348-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-348-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Note that a <code>mutate</code> has been placed after filtering the data. This is to guarantee that we are removing the <strong>NA</strong>. Otherwise, we risk that all values are <strong>NA</strong> and the reordering is not performed and remains default.</p>
 <p>We see at the far left some regions in Africa, and at the far right Europe and USA. Remember that we can add color according to some variable. In this case let’s add color based on the continent:</p>
 <div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="gapminder.html#cb265-1" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span> </span>
@@ -1049,7 +1049,7 @@ Solution
 <span id="cb265-6"><a href="gapminder.html#cb265-6" tabindex="-1"></a>  <span class="fu">aes</span>(region, gdp_per_capita_per_day, <span class="at">color =</span> continent) <span class="sc">+</span></span>
 <span id="cb265-7"><a href="gapminder.html#cb265-7" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
 <span id="cb265-8"><a href="gapminder.html#cb265-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-349-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-349-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Although we can already differentiate it, in a box plot it is usually the fill (<code>fill</code> in English) of the box that is painted. So, let’s change the <code>color</code> attribute to the <code>fill</code> attribute. And let’s remove the legend on the <em>x-axis</em>. It is not necessary in this case where the regions are self-explanatory.</p>
 <div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="gapminder.html#cb266-1" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span> </span>
 <span id="cb266-2"><a href="gapminder.html#cb266-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gdp_per_capita_per_day =</span> gdp<span class="sc">/</span>population<span class="sc">/</span><span class="dv">365</span>) <span class="sc">|&gt;</span> </span>
@@ -1060,7 +1060,7 @@ Solution
 <span id="cb266-7"><a href="gapminder.html#cb266-7" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
 <span id="cb266-8"><a href="gapminder.html#cb266-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
 <span id="cb266-9"><a href="gapminder.html#cb266-9" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-350-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-350-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>This graph helps us see the top 5, but since there are several regions concentrated in small values of GDP per capita we visually lose those regions. We need a scale transformation.</p>
 <p>If you are thinking of adding a logarithmic scale layer for the <em>y-axis</em> you are on the right track. Let’s try:</p>
 <div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="gapminder.html#cb267-1" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span> </span>
@@ -1073,7 +1073,7 @@ Solution
 <span id="cb267-8"><a href="gapminder.html#cb267-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
 <span id="cb267-9"><a href="gapminder.html#cb267-9" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
 <span id="cb267-10"><a href="gapminder.html#cb267-10" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log2&quot;</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-351-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-351-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Sometimes it is necessary not only to show the boxes, but also where each of the data points is located. For this we can add the <code>geom_point()</code> layer that we had previously used to show the points of each data.</p>
 <div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="gapminder.html#cb268-1" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span> </span>
 <span id="cb268-2"><a href="gapminder.html#cb268-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gdp_per_capita_per_day =</span> gdp<span class="sc">/</span>population<span class="sc">/</span><span class="dv">365</span>) <span class="sc">|&gt;</span> </span>
@@ -1086,7 +1086,7 @@ Solution
 <span id="cb268-9"><a href="gapminder.html#cb268-9" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
 <span id="cb268-10"><a href="gapminder.html#cb268-10" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log2&quot;</span>) <span class="sc">+</span></span>
 <span id="cb268-11"><a href="gapminder.html#cb268-11" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-352-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-352-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="comparison-of-distributions" class="section level2 hasAnchor" number="6.7">
 <h2><span class="header-section-number">6.7</span> Comparison of distributions<a href="gapminder.html#comparison-of-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -1137,7 +1137,7 @@ Solution
 <span id="cb271-9"><a href="gapminder.html#cb271-9" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb271-10"><a href="gapminder.html#cb271-10" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log2&quot;</span>) <span class="sc">+</span></span>
 <span id="cb271-11"><a href="gapminder.html#cb271-11" tabindex="-1"></a>  <span class="fu">facet_grid</span>(. <span class="sc">~</span> group)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-355-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-355-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>We see that the daily GDP per capita has a distribution with higher values compared to developing countries. However, the picture in one year is not everything. We are ready to see if the separation was the same 40 years back from the date in the example (2010). We are also going to add the <code>geom_histogram()</code> layer the color attribute to see the border of the bars which by default are grey.</p>
 <div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="gapminder.html#cb272-1" tabindex="-1"></a>western_countries <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Western Europe&quot;</span>, <span class="st">&quot;Northern Europe&quot;</span>, <span class="st">&quot;Southern Europe&quot;</span>, <span class="st">&quot;Northern America&quot;</span>, <span class="st">&quot;Australia and New Zealand&quot;</span>)</span>
 <span id="cb272-2"><a href="gapminder.html#cb272-2" tabindex="-1"></a></span>
@@ -1150,7 +1150,7 @@ Solution
 <span id="cb272-9"><a href="gapminder.html#cb272-9" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
 <span id="cb272-10"><a href="gapminder.html#cb272-10" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log2&quot;</span>) <span class="sc">+</span></span>
 <span id="cb272-11"><a href="gapminder.html#cb272-11" tabindex="-1"></a>  <span class="fu">facet_grid</span>(year <span class="sc">~</span> group)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-356-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-356-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Both groups, both “Western” and “Developing” have improved in that 40-year span, but developing countries have advanced more than Western countries.</p>
 <p>So far we have assumed something: that all countries that reported in 2010 also reported data in 1970. To make the comparison finer we have to look for the distribution of countries that have data reported both in 1970 and in 2010.</p>
 <p>To do this, we are going to create a vector that lists the countries with data in 1970 and another of those that have data in 2010 and then look for the intersection. Remember that to extract a column we use the <code>pull()</code> function.</p>
@@ -1178,7 +1178,7 @@ Solution
 <span id="cb275-8"><a href="gapminder.html#cb275-8" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
 <span id="cb275-9"><a href="gapminder.html#cb275-9" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log2&quot;</span>) <span class="sc">+</span></span>
 <span id="cb275-10"><a href="gapminder.html#cb275-10" tabindex="-1"></a>  <span class="fu">facet_grid</span>(year <span class="sc">~</span> group)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-359-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-359-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>We see now more clearly with comparable data how there are more countries within the developing region that increased per capita GDP, much more than developing countries. But this first inference is still visual, we need to compare how the median, range, etc. changed. For this we will use a box plot very similar to the previous one, but this time we will edit <code>geom_boxplot()</code> so that it shows us in a single graph how each region has changed from 1970 to 2010.</p>
 <div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="gapminder.html#cb276-1" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span> </span>
 <span id="cb276-2"><a href="gapminder.html#cb276-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gdp_per_capita_per_day =</span> gdp<span class="sc">/</span>population<span class="sc">/</span><span class="dv">365</span>) <span class="sc">|&gt;</span> </span>
@@ -1191,7 +1191,7 @@ Solution
 <span id="cb276-9"><a href="gapminder.html#cb276-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
 <span id="cb276-10"><a href="gapminder.html#cb276-10" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
 <span id="cb276-11"><a href="gapminder.html#cb276-11" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log2&quot;</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-360-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-360-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>We see how there are regions within Asia that have grown substantially. As we know from general culture, some countries in Asia are already powers, but today with these graphs we can understand well how much each region has changed until becoming a power.</p>
 <p>Therefore, we can now answer both questions of the case:</p>
 <ol style="list-style-type: decimal">

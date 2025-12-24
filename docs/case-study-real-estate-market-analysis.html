@@ -5,19 +5,19 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 14 Case Study: Real Estate Market Analysis | Data Science with R</title>
-  <meta name="description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  <meta name="description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 14 Case Study: Real Estate Market Analysis | Data Science with R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta property="og:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
+  <meta name="github-repo" content="dparedesi/Data-Science-with-R-book" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 14 Case Study: Real Estate Market Analysis | Data Science with R" />
   
-  <meta name="twitter:description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  <meta name="twitter:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
   
 
 <meta name="author" content="Author: Mg. Daniel Paredes Inilupu" />
@@ -699,7 +699,7 @@ div.csl-indent {
 <span id="cb649-18"><a href="case-study-real-estate-market-analysis.html#cb649-18" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
 <span id="cb649-19"><a href="case-study-real-estate-market-analysis.html#cb649-19" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Volume ($)&quot;</span></span>
 <span id="cb649-20"><a href="case-study-real-estate-market-analysis.html#cb649-20" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-834-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-834-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>We can clearly see the seasonality (peaks in summer) and the impact of the 2008 financial crisis (dip around 2008-2010), followed by a strong recovery.</p>
 </div>
 <div id="comparing-cities" class="section level3 hasAnchor" number="14.5.2">
@@ -721,7 +721,7 @@ div.csl-indent {
 <span id="cb650-14"><a href="case-study-real-estate-market-analysis.html#cb650-14" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Median Price&quot;</span>,</span>
 <span id="cb650-15"><a href="case-study-real-estate-market-analysis.html#cb650-15" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;City&quot;</span></span>
 <span id="cb650-16"><a href="case-study-real-estate-market-analysis.html#cb650-16" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-835-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-835-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Austin (green) clearly shows the steepest growth curve, especially post-2012.</p>
 </div>
 </div>
@@ -744,13 +744,11 @@ div.csl-indent {
 <span id="cb651-11"><a href="case-study-real-estate-market-analysis.html#cb651-11" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Lower means simpler to sell (Seller&#39;s Market)&quot;</span>,</span>
 <span id="cb651-12"><a href="case-study-real-estate-market-analysis.html#cb651-12" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;City&quot;</span></span>
 <span id="cb651-13"><a href="case-study-real-estate-market-analysis.html#cb651-13" tabindex="-1"></a>  )</span>
-<span id="cb651-14"><a href="case-study-real-estate-market-analysis.html#cb651-14" tabindex="-1"></a><span class="co">#&gt; Warning: Using `size` aesthetic for lines was deprecated in</span></span>
-<span id="cb651-15"><a href="case-study-real-estate-market-analysis.html#cb651-15" tabindex="-1"></a><span class="co">#&gt; ggplot2 3.4.0.</span></span>
-<span id="cb651-16"><a href="case-study-real-estate-market-analysis.html#cb651-16" tabindex="-1"></a><span class="co">#&gt; ℹ Please use `linewidth` instead.</span></span>
-<span id="cb651-17"><a href="case-study-real-estate-market-analysis.html#cb651-17" tabindex="-1"></a><span class="co">#&gt; This warning is displayed once every 8 hours.</span></span>
-<span id="cb651-18"><a href="case-study-real-estate-market-analysis.html#cb651-18" tabindex="-1"></a><span class="co">#&gt; Call `lifecycle::last_lifecycle_warnings()` to see</span></span>
-<span id="cb651-19"><a href="case-study-real-estate-market-analysis.html#cb651-19" tabindex="-1"></a><span class="co">#&gt; where this warning was generated.</span></span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-836-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<span id="cb651-14"><a href="case-study-real-estate-market-analysis.html#cb651-14" tabindex="-1"></a><span class="co">#&gt; Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span></span>
+<span id="cb651-15"><a href="case-study-real-estate-market-analysis.html#cb651-15" tabindex="-1"></a><span class="co">#&gt; ℹ Please use `linewidth` instead.</span></span>
+<span id="cb651-16"><a href="case-study-real-estate-market-analysis.html#cb651-16" tabindex="-1"></a><span class="co">#&gt; This warning is displayed once every 8 hours.</span></span>
+<span id="cb651-17"><a href="case-study-real-estate-market-analysis.html#cb651-17" tabindex="-1"></a><span class="co">#&gt; Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</span></span></code></pre></div>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-836-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>We see a convergence around 2014-2015 where inventory became very tight across all major cities.</p>
 </div>
 <div id="conclusions" class="section level2 hasAnchor" number="14.7">

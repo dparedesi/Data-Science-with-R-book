@@ -5,19 +5,19 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Statistical Inference | Data Science with R</title>
-  <meta name="description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  <meta name="description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Statistical Inference | Data Science with R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta property="og:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
+  <meta name="github-repo" content="dparedesi/Data-Science-with-R-book" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 9 Statistical Inference | Data Science with R" />
   
-  <meta name="twitter:description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  <meta name="twitter:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
   
 
 <meta name="author" content="Author: Mg. Daniel Paredes Inilupu" />
@@ -627,7 +627,7 @@ div.csl-indent {
 <p>We have been hired in a casino to analyze if it is reasonable to install a roulette with 37 values ranging from 0 to 36. The house wants to open the game with a special offer if the ball lands on 0 or 21 paying 10 to 1. This means that if a player plays and wins we pay him 10 soles and if he loses he would pay us 1 sol.</p>
 </blockquote>
 <div align="center">
-<p><img src="img/ruleta-casino.png" alt="" width="300pt" style="display: block; margin: auto;" /></p>
+<p><img src="_assets/images/04-statistics/ruleta-casino.png" alt="Casino roulette wheel with numbered red and black pockets" width="300pt" style="display: block; margin: auto;" /></p>
 </div>
 <p>With what we have learned so far we can simulate our game with the case data. We have 37 values, of which in 2 of them give a player a profit of +10 or a loss -1. Let’s also define <code>prob_win</code> as the probability that a player wins.</p>
 <div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="statistical-inference.html#cb363-1" tabindex="-1"></a><span class="co"># Total times played</span></span>
@@ -651,11 +651,11 @@ div.csl-indent {
 <span id="cb364-6"><a href="statistical-inference.html#cb364-6" tabindex="-1"></a>sample_vec <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="sc">-</span><span class="dv">1</span>), plays, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(prob_win, prob_lose))</span>
 <span id="cb364-7"><a href="statistical-inference.html#cb364-7" tabindex="-1"></a></span>
 <span id="cb364-8"><a href="statistical-inference.html#cb364-8" tabindex="-1"></a><span class="fu">hist</span>(sample_vec)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-473-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-473-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>We have been using Monte Carlo simulation to estimate what the <strong>mean</strong> of the game results would be in real life.</p>
 <div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="statistical-inference.html#cb365-1" tabindex="-1"></a><span class="co"># Estimation of the mean by Monte Carlo simulation</span></span>
 <span id="cb365-2"><a href="statistical-inference.html#cb365-2" tabindex="-1"></a><span class="fu">mean</span>(sample_vec)</span>
-<span id="cb365-3"><a href="statistical-inference.html#cb365-3" tabindex="-1"></a><span class="co">#&gt; [1] -0.40875</span></span></code></pre></div>
+<span id="cb365-3"><a href="statistical-inference.html#cb365-3" tabindex="-1"></a><span class="co">#&gt; [1] -0.41073</span></span></code></pre></div>
 <p>In addition, we have seen that, the more the sample grows, our <strong>mean</strong> in the Monte Carlo simulation converges to a value, in this case the probability of winning mainly in the roulette. That value to which it converges we will call <strong>expected value</strong>, which as its name indicates will be the value we expect to obtain in reality. The more the sample size grows the more our sample mean converges to this expected value. The notation we will use will be <span class="math inline">\(E[X]\)</span>.</p>
 <p>When there are only two possible results <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> with proportions <span class="math inline">\(p\)</span> and <span class="math inline">\(1-p\)</span> respectively, the expected value will be calculated using this formula:</p>
 <p><span class="math inline">\(E[X] = ap + b(1-p)\)</span></p>
@@ -685,7 +685,7 @@ abs(10 - -1)*sqrt(prob_win*prob_lose)
 <span id="cb367-6"><a href="statistical-inference.html#cb367-6" tabindex="-1"></a>sample_vec <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="sc">-</span><span class="dv">1</span>), plays, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(prob_win, prob_lose))</span>
 <span id="cb367-7"><a href="statistical-inference.html#cb367-7" tabindex="-1"></a></span>
 <span id="cb367-8"><a href="statistical-inference.html#cb367-8" tabindex="-1"></a><span class="fu">sum</span>(sample_vec)</span>
-<span id="cb367-9"><a href="statistical-inference.html#cb367-9" tabindex="-1"></a><span class="co">#&gt; [1] -7</span></span></code></pre></div>
+<span id="cb367-9"><a href="statistical-inference.html#cb367-9" tabindex="-1"></a><span class="co">#&gt; [1] -18</span></span></code></pre></div>
 <p>Finally, not only one person will play. Let’s replicate this sample about 100,000 times to simulate the number of players we would have in a quarter.</p>
 <div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="statistical-inference.html#cb368-1" tabindex="-1"></a></span>
 <span id="cb368-2"><a href="statistical-inference.html#cb368-2" tabindex="-1"></a>players <span class="ot">&lt;-</span> <span class="dv">100000</span></span>
@@ -703,7 +703,7 @@ abs(10 - -1)*sqrt(prob_win*prob_lose)
 <span id="cb368-14"><a href="statistical-inference.html#cb368-14" tabindex="-1"></a>})</span></code></pre></div>
 <p>So far we have done the same as we have learned in previous chapters. However, we could also see how the players’ winnings are distributed. And for that it is enough to create a histogram of the result.</p>
 <div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="statistical-inference.html#cb369-1" tabindex="-1"></a><span class="fu">hist</span>(winnings_simulation)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-479-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-479-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>It is not a coincidence that if we create a histogram with all the winnings of all the players the result looks like a normal distribution. In fact, that was the main approach that George Pólya made in 1920 when he presented his <strong>Central Limit Theorem</strong>.</p>
 </div>
 <div id="central-limit-theorem" class="section level2 hasAnchor" number="9.2">
@@ -734,10 +734,10 @@ abs(10 - -1)*sqrt(prob_win*prob_lose)
 <span id="cb371-8"><a href="statistical-inference.html#cb371-8" tabindex="-1"></a>SE_sum</span>
 <span id="cb371-9"><a href="statistical-inference.html#cb371-9" tabindex="-1"></a><span class="co">#&gt; [1] 15.73149</span></span></code></pre></div>
 <p>With these two theoretical data, the expected value and the standard error, we can graph the normal curve of the sum of winnings of our game.</p>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-482-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-482-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>What does this mean? That if theoretically we can already graph the normal curve then we can also calculate the probability that the sum is greater or less than some value. This is the main advantage of the Central Limit Theorem since we can calculate probabilities of the population using this approximation and the data of a single sample.</p>
 <p>For example, if we want to know what is the probability that a player wins money after playing 40 times in roulette we would have to calculate the probability that <span class="math inline">\(S\)</span> is greater than <strong>zero</strong>, represented by the blue shaded area:</p>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-483-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-483-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>To perform this calculation in R we would use the <code>pnorm</code> function:</p>
 <div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="statistical-inference.html#cb372-1" tabindex="-1"></a><span class="co"># Probability of getting more than 0 soles having played 40 games:</span></span>
 <span id="cb372-2"><a href="statistical-inference.html#cb372-2" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">0</span>, E_sum, SE_sum)</span>
@@ -745,7 +745,7 @@ abs(10 - -1)*sqrt(prob_win*prob_lose)
 <p>Let’s validate that the Monte Carlo simulation approximates this theoretical value we just calculated:</p>
 <div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="statistical-inference.html#cb373-1" tabindex="-1"></a><span class="co"># Probability of getting more than 0 soles having played 40 games:</span></span>
 <span id="cb373-2"><a href="statistical-inference.html#cb373-2" tabindex="-1"></a><span class="fu">mean</span>(winnings_simulation <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
-<span id="cb373-3"><a href="statistical-inference.html#cb373-3" tabindex="-1"></a><span class="co">#&gt; [1] 0.16833</span></span></code></pre></div>
+<span id="cb373-3"><a href="statistical-inference.html#cb373-3" tabindex="-1"></a><span class="co">#&gt; [1] 0.16856</span></span></code></pre></div>
 <p>We have used two ways to estimate the probability, the theoretical estimation using the central limit theorem and the Monte Carlo simulation. These two numbers are quite close to the real probability. In both cases, the larger the sample, the more reasonable our estimation will be.</p>
 <p>On the other hand, the same happens if we wanted to analyze the average and not the sum of the winnings. But for the average case we will use the following formulas:</p>
 <ol style="list-style-type: decimal">
@@ -853,7 +853,7 @@ Solution
 <p>We have two political parties: Blue and Red. We do not know how much the total population is, nor the proportion that will vote for one or the other party. The only thing we can do is conduct voting intention polls.</p>
 </blockquote>
 <p>For example, these would be the results of the poll of a random sample of 10 people:</p>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-496-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-496-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Intuitively we know that we cannot deduce which party will win given that the sample is very small. To know which party will win we need to estimate as precisely as possible the parameter <span class="math inline">\(p\)</span> that represents the proportion of voters of the Blue Party in the population and the parameter <span class="math inline">\(1-p\)</span> that represents the proportion of voters of the Red party.</p>
 <p>Making some mathematical transformations to our theoretical estimates seen previously and defining <span class="math inline">\(a=1\)</span> as value if they vote Blue and <span class="math inline">\(b=0\)</span> if they do not vote for Blue, we can obtain the following theoretical estimates for this case:</p>
 <ol style="list-style-type: decimal">
@@ -924,7 +924,7 @@ Solution
 <span id="cb380-24"><a href="statistical-inference.html#cb380-24" tabindex="-1"></a><span class="co">#&gt;  [97] 0.03833064 0.03145942 0.02235954 0.00000000</span></span></code></pre></div>
 <p>Now let’s generate a scatter plot of both the different values of <span class="math inline">\(p\)</span> and the standard errors for each <span class="math inline">\(p\)</span>.</p>
 <div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="statistical-inference.html#cb381-1" tabindex="-1"></a><span class="fu">plot</span>(p, SE_avg, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.12</span>))</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-499-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-499-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Thus, we see how we can obtain different standard errors of the average for different values of <span class="math inline">\(p\)</span>.</p>
 <p>Intuitively we had the notion of what would happen given a <span class="math inline">\(p=80\%\)</span>. Now in the graph we see it better. If the real intention of vote was 80% in that district then when taking several surveys and seeing the results of each survey we would obtain as expected value 80% and as standard error 8.8% or 0.088 as seen in the graph highlighted in blue:</p>
 <div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="statistical-inference.html#cb382-1" tabindex="-1"></a><span class="fu">plot</span>(p, SE_avg, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.12</span>))</span>
@@ -934,15 +934,15 @@ Solution
 <span id="cb382-5"><a href="statistical-inference.html#cb382-5" tabindex="-1"></a></span>
 <span id="cb382-6"><a href="statistical-inference.html#cb382-6" tabindex="-1"></a><span class="co"># Add vertical and horizontal reference line</span></span>
 <span id="cb382-7"><a href="statistical-inference.html#cb382-7" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> coord_y, <span class="at">v =</span> coord_x, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-500-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-500-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>With these values of <span class="math inline">\(E[\overline{X}]=p=80\%\)</span> and <span class="math inline">\(SE[\overline{X}]=8.8\%\)</span> of standard error we can calculate a range of one standard error around <span class="math inline">\(80\%\)</span>, which would go from <span class="math inline">\(71.2\%\)</span> to <span class="math inline">\(88.8\%\)</span> and then calculate what would be the probability that the mean <span class="math inline">\(\overline{X}\)</span> found in one of the surveys falls in this range. Visually it would be:</p>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-501-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-501-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>In R, calculating the probability that a data point falls in the range of 1 standard error would be:</p>
 <div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="statistical-inference.html#cb383-1" tabindex="-1"></a><span class="co"># Calculation of probability that dat is between -1 and 1 standard error:</span></span>
 <span id="cb383-2"><a href="statistical-inference.html#cb383-2" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">1</span>) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="dv">1</span>)</span>
 <span id="cb383-3"><a href="statistical-inference.html#cb383-3" tabindex="-1"></a><span class="co">#&gt; [1] 0.6826895</span></span></code></pre></div>
 <p>We can expand to have a greater range of <strong>2 standard errors</strong> around <span class="math inline">\(80\%\)</span> and increase our probability:</p>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-503-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-503-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>In R it would be:</p>
 <div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="statistical-inference.html#cb384-1" tabindex="-1"></a><span class="co"># Calculation of probability that dat is between -2 and 2 standard errors:</span></span>
 <span id="cb384-2"><a href="statistical-inference.html#cb384-2" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">2</span>) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="dv">2</span>)</span>
@@ -958,9 +958,9 @@ Solution
 <span id="cb385-5"><a href="statistical-inference.html#cb385-5" tabindex="-1"></a></span>
 <span id="cb385-6"><a href="statistical-inference.html#cb385-6" tabindex="-1"></a><span class="co"># Add vertical and horizontal reference line</span></span>
 <span id="cb385-7"><a href="statistical-inference.html#cb385-7" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> coord_y, <span class="at">v =</span> coord_x, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-505-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-505-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>If the real voting intention was <span class="math inline">\(55\%\)</span> we would have an expected value of the average <span class="math inline">\(E[\overline{X}]=p=55\%\)</span> and a corresponding standard error of the average <span class="math inline">\(SE[\overline{X}]=11\%\)</span>. Again, by Central Limit Theorem we can calculate a range of <strong>two standard errors</strong> around <span class="math inline">\(55\%\)</span>:</p>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-506-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-506-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>The calculation of the probability of being in that range in R would be the same because we continue in the range of 2 standard errors. Therefore the probability would be the same.</p>
 <div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="statistical-inference.html#cb386-1" tabindex="-1"></a><span class="co"># Calculation of probability that dat is between -2 and 2 standard errors:</span></span>
 <span id="cb386-2"><a href="statistical-inference.html#cb386-2" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">2</span>) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="dv">2</span>)</span>
@@ -975,7 +975,7 @@ Solution
 <span id="cb387-4"><a href="statistical-inference.html#cb387-4" tabindex="-1"></a>SE_avg <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(p<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p))<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
 <span id="cb387-5"><a href="statistical-inference.html#cb387-5" tabindex="-1"></a></span>
 <span id="cb387-6"><a href="statistical-inference.html#cb387-6" tabindex="-1"></a><span class="fu">plot</span>(p, SE_avg, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.12</span>))</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-508-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-508-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>This sample gives us smaller standard errors. For example, if the real proportion of voters of the Blue party was <span class="math inline">\(p=55\%\)</span> we would have <span class="math inline">\(E[\overline{X}]=p=55\%\)</span> and a <span class="math inline">\(SE[\overline{X}]=2.2\%\)</span>:</p>
 <div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="statistical-inference.html#cb388-1" tabindex="-1"></a><span class="fu">plot</span>(p, SE_avg, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.12</span>))</span>
 <span id="cb388-2"><a href="statistical-inference.html#cb388-2" tabindex="-1"></a></span>
@@ -984,7 +984,7 @@ Solution
 <span id="cb388-5"><a href="statistical-inference.html#cb388-5" tabindex="-1"></a></span>
 <span id="cb388-6"><a href="statistical-inference.html#cb388-6" tabindex="-1"></a><span class="co"># Add vertical and horizontal reference line</span></span>
 <span id="cb388-7"><a href="statistical-inference.html#cb388-7" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> coord_y, <span class="at">v =</span> coord_x, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-509-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-509-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>If we now calculate a range of two standard errors around <span class="math inline">\(55\%\)</span> we would have a range that goes from <span class="math inline">\(50.6\%\)</span> to <span class="math inline">\(59.4\%\)</span>. Again, interpretation is that the mean that we find in our random survey has a 95% probability of being in that range.</p>
 <p>We see then that this theoretical prediction, the standard error, becomes smaller as the sample size <span class="math inline">\(n\)</span> increases and in turn depends on the probability of the population <span class="math inline">\(p\)</span> that we do not know. Moreover, with a real value of <span class="math inline">\(p=0.5\)</span>, (50%), we have the maximum value of the standard error that we can obtain. Thus, if we correct <span class="math inline">\(p\)</span> at 50%, which would be the extreme of cases, a tie, we can calculate how the value of the standard error of the average changes according to the sample size:</p>
 <div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="statistical-inference.html#cb389-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
@@ -994,7 +994,7 @@ Solution
 <span id="cb389-5"><a href="statistical-inference.html#cb389-5" tabindex="-1"></a><span class="fu">plot</span>(n, SE_avg)</span>
 <span id="cb389-6"><a href="statistical-inference.html#cb389-6" tabindex="-1"></a></span>
 <span id="cb389-7"><a href="statistical-inference.html#cb389-7" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fl">0.015</span>, <span class="at">v =</span> <span class="dv">1000</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>) <span class="co"># Add vertical and horizontal reference line</span></span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-510-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-510-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>A sample of 1,000 people, for example, generates us a maximum standard error of 0.015 or 1.5%.</p>
 <div id="margin-of-error" class="section level3 hasAnchor" number="9.4.1">
 <h3><span class="header-section-number">9.4.1</span> Margin of Error<a href="statistical-inference.html#margin-of-error" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1023,7 +1023,7 @@ Solution
 <span id="cb390-15"><a href="statistical-inference.html#cb390-15" tabindex="-1"></a><span class="co">#&gt; [1] 0.02993326</span></span></code></pre></div>
 <p>With this we would have that from a sample of 1100 people, we have estimated 56% voting intention for the Blue party with a margin of error of <span class="math inline">\(+- 2.99\%\)</span>.</p>
 <p>Finally, let’s see examples of the different surveys conducted in April and early May 2020 to measure voting intentions in the US.</p>
-<p><img src="img/encuesta-EEUU.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="_assets/images/04-statistics/encuesta-EEUU.png" alt="Table of US election polls from April-May 2020 showing sample sizes, margins of error, and candidate percentages" width="80%" style="display: block; margin: auto;" /></p>
 <p>We see as columns:</p>
 <ul>
 <li><strong>Poll</strong>: Surveying company that conducted the study (Encuesta)</li>

@@ -12,8 +12,8 @@ link-citations: yes
 colorlinks: yes
 urlcolor: blue
 geometry: "left=1.5in, right=1.5in, top=1.25in, bottom=1.25in"
-github-repo: rstudio/bookdown-demo
-description: "Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes"
+github-repo: dparedesi/Data-Science-with-R-book
+description: "A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes."
 always_allow_html: yes
 graphics: yes
 output:
@@ -74,7 +74,7 @@ Finally, I want to acknowledge the valuable contribution of engineering students
 
 Data science requires a multidisciplinary approach that combines statistics, programming, data mining, and business understanding. This book is designed to help you develop those skills through practical examples in R.
 
-<img src="img/multidisciplinaria.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/01-introduction/multidisciplinaria.png" alt="Venn diagram showing data science as intersection of statistics, programming, domain knowledge, and data mining" width="80%" style="display: block; margin: auto;" />
 
 ## Why R? {-}
 R is a language created by statisticians for data analysis. Its versatility makes it a powerful tool for exploring, modeling, and visualizing data.
@@ -84,21 +84,21 @@ You can download R from the Comprehensive R Archive Network (**CRAN**).
 
 1. Search for CRAN on Google:
 
-<img src="img/CRAN-google.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/01-introduction/CRAN-google.png" alt="Google search results page showing CRAN R Project download link" width="80%" style="display: block; margin: auto;" />
 
 2. Once on the CRAN page, select the version for your operating system: Linux, Mac OS X, or Windows:
 
-<img src="img/CRAN-website.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/01-introduction/CRAN-website.png" alt="CRAN homepage with download links for Linux, macOS, and Windows" width="80%" style="display: block; margin: auto;" />
 
 Here the steps for Windows are shown, but the steps are similar for Linux or Mac OS X.
 
 3. On the CRAN website, we need to install `base` which includes all the basic packages you need to get started. Later, in the following chapters, we will see how to install other additional packages.
 
-<img src="img/CRAN-windows.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/01-introduction/CRAN-windows.png" alt="CRAN Windows download page with base R installation link" width="80%" style="display: block; margin: auto;" />
 
 4. Click on the first link to get the most recent version:
 
-<img src="img/CRAN-64-bits.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/01-introduction/CRAN-64-bits.png" alt="CRAN download link for latest R version installer" width="80%" style="display: block; margin: auto;" />
 
 Then, open the installer you just downloaded to install R and follow the on-screen instructions.
 
@@ -107,35 +107,35 @@ Although you could already start using R in console mode, we are going to instal
 
 1. Search for RStudio on Google:
 
-<img src="img/rstudio-google.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/01-introduction/rstudio-google.png" alt="Google search results for RStudio download" width="80%" style="display: block; margin: auto;" />
 
 2. You should see the website as it appears below. Once there, go to the upper right menu and click on **DOWNLOAD**
 
-<img src="img/rstudio-website-0.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/01-introduction/rstudio-website-0.png" alt="RStudio website homepage with Download button in navigation" width="80%" style="display: block; margin: auto;" />
 
 3. Then scroll down until you find the download options. Select the **Free** RStudio Desktop option.
 
-<img src="img/rstudio-website-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/01-introduction/rstudio-website-1.png" alt="RStudio Desktop download options showing Free and Pro versions" width="80%" style="display: block; margin: auto;" />
 
 4. It will show you the button to download according to your operating system. You can also download from the list below the **Download** button.
 
-<img src="img/rstudio-website-2.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/01-introduction/rstudio-website-2.png" alt="RStudio installer download button for current operating system" width="80%" style="display: block; margin: auto;" />
 
 Once the installer is downloaded, open it and follow the on-screen instructions.
 
 ## RStudio Sections {-}
 When you start RStudio for the first time, you will see 3 sections:
 
-<img src="img/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_16.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/01-introduction/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_16.png" alt="Initial RStudio window showing three panels: console, environment, and files" width="80%" style="display: block; margin: auto;" />
 
 One of the great advantages of R over point-and-click analysis software is that we can save our work as Scripts.
 
 To create a new Script, you can click on File, then New File, and then on **R Script**.
 
-<img src="img/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_42.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/01-introduction/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_42.png" alt="RStudio File menu expanded showing New File then R Script option" width="80%" style="display: block; margin: auto;" />
 
 This way we will have the 4 sections, or panels, of RStudio:
-<img src="img/rstudio.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/01-introduction/rstudio.png" alt="RStudio interface with four panels: source editor, console, environment, and plots" width="80%" style="display: block; margin: auto;" />
 
 * **Code editor**: The code editor for Scripts where we can save our Scripts.
 * **R console**: The R **console** where we will see the result of the execution of our Scripts.
@@ -172,7 +172,7 @@ Try selecting all the text, then selecting only the sum line and click on **Run*
 
 You are now ready to start learning R.
 
-<!--chapter:end:01.intro/introduction.Rmd-->
+<!--chapter:end:01-introduction/introduction.Rmd-->
 
 
 # (PART) Fundamentals and Key Tools {-}
@@ -768,32 +768,32 @@ climate
 #> , , Temperature
 #> 
 #>               January February March April May June July August September
-#> New York           35       32    11    27  22   26   10     30        10
-#> Los Angeles        33       21    25    19  16   14   23     33        15
-#> Chicago            24       35    28    16  34   29   32     12        25
-#> San Francisco      32       28    24    23  14   28   17     22        18
-#> Miami              26       18    22    30  22   34   29     15        15
+#> New York           34       35    24    33  25   30   22     23        10
+#> Los Angeles        27       33    27    26  32   32   18     35        22
+#> Chicago            10       35    25    33  29   13   26     10        17
+#> San Francisco      17       35    21    19  10   19   20     31        15
+#> Miami              12       23    32    26  10   20   21     10        11
 #>               October November December
-#> New York           33       34       28
-#> Los Angeles        26       10       29
-#> Chicago            35       15       19
-#> San Francisco      33       10       14
-#> Miami              19       17       23
+#> New York           34       11       32
+#> Los Angeles        32       11       11
+#> Chicago            28       22       22
+#> San Francisco      25       26       26
+#> Miami              13       33       35
 #> 
 #> , , Precipitation
 #> 
 #>               January February March April May June July August September
-#> New York           84       45    56    13  65   83   43     43        14
-#> Los Angeles        17       10    56    32  59   89   31     75         6
-#> Chicago            81      100    60    78  97   60   32     48        35
-#> San Francisco      83       58    71    37  22   17   98     62        49
-#> Miami              30        3    48    73  29   61   16     56        85
+#> New York            9        9    58    68  76   71   20     58        93
+#> Los Angeles        30       93    52    54  53   64   39     31        45
+#> Chicago            40       12     5    61  41   88   22      9         5
+#> San Francisco      63        0    63    10  41   68   68      2        37
+#> Miami              77       87     3    15  94   49   98     33        99
 #>               October November December
-#> New York           85       96        2
-#> Los Angeles         1       35       45
-#> Chicago            11       73        5
-#> San Francisco      18       22       37
-#> Miami              84       60       13
+#> New York           22       22        9
+#> Los Angeles         9       27       57
+#> Chicago            66       73       57
+#> San Francisco      89       63       52
+#> Miami              38       73       98
 ```
 </details>
 
@@ -836,9 +836,9 @@ for (i in 1:length(hot_days)) {
 
 # Show the longest streak and its position
 cat("The longest streak of hot days is:", longest_streak, "\n")
-#> The longest streak of hot days is: 8
+#> The longest streak of hot days is: 6
 cat("Starts on day:", start_longest_streak, "\n")
-#> Starts on day: 116
+#> Starts on day: 15
 ```
 This code uses a `for` loop to traverse the hot days vector and two variables (`current_streak` and `longest_streak`) to track the longest streak.
 
@@ -878,16 +878,16 @@ for (i in 1:(length(prices) - 1)) {
 cat("Maximum profit:", max_profit, "\n")
 #> Maximum profit: 100
 cat("Buy day:", buy_day, "\n")
-#> Buy day: 3
+#> Buy day: 6
 cat("Sell day:", sell_day, "\n")
-#> Sell day: 80
+#> Sell day: 354
 ```
 This code uses two nested `for` loops to compare all possible pairs of buy and sell days.
 </details>
 
 
 
-<!--chapter:end:02.fundamentals/01.objects.Rmd-->
+<!--chapter:end:02-fundamentals/01.objects.Rmd-->
 
 
 # Functions
@@ -2045,7 +2045,7 @@ The increment `i <- i + 6` is based on the observation that all prime numbers gr
 
 
 
-<!--chapter:end:02.fundamentals/02.functions.Rmd-->
+<!--chapter:end:02-fundamentals/02.functions.Rmd-->
 
 
 # Data Frames
@@ -2375,7 +2375,7 @@ We can also use the `hist()` function to create a histogram of a numeric column,
 hist(df_states$population)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-153-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-153-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 These are just some ideas of how we can explore our data frames. As you become familiar with R, you will discover new functions and techniques for analyzing and visualizing your data.
 
@@ -2904,7 +2904,7 @@ plot(x_axis, y_axis)
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-185-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-185-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can see a correlation between population and number of cases. Let's transform the `x_axis` dividing by one million (${10}^6$). Thus we will have the x axis expressed in millions.
 
@@ -2917,7 +2917,7 @@ plot(x_axis, y_axis)
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-186-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-186-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 ### Histograms
 We can also create histograms from a vector with the `hist` function.
@@ -2933,7 +2933,7 @@ hist(murders$ratio)
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-187-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-187-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 The ease R gives us to create graphs will save us time for analysis. From here we can quickly see that most states have a `ratio < 5`.
 
@@ -2947,7 +2947,7 @@ boxplot(murders$ratio)
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-188-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-188-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 ## Data interpretation
 We have seen graphs that can be generated with a line of code, but we need to interpret them. To do so, we need to learn or remember some statistics. Throughout this book we will learn statistical concepts not going deep into the math part, but from the practical part and leveraging that functions already exist in R.
@@ -3081,7 +3081,7 @@ We are now ready to create a box plot with total murders and interpret results.
 boxplot(murders$total)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-199-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-199-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 The box starts at value 24.5 (first quartile) and ends at value 268 (third quartile). The thick line represents the median (second quartile), 97 in our example.
 
@@ -3118,7 +3118,7 @@ tot_log10 <- log10(murders$total)
 plot(pop_log10, tot_log10)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-201-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-201-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 2. Create a histogram of population in millions (divided by ${10}^6$).
 
@@ -3127,7 +3127,7 @@ plot(pop_log10, tot_log10)
 hist(murders$population/10^6)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-202-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-202-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 3. Create a box plot of population.
 
@@ -3136,7 +3136,7 @@ hist(murders$population/10^6)
 boxplot(murders$population)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-203-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-203-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 
 
@@ -3316,7 +3316,7 @@ my_expenses |>
 
 
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-221-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-221-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 <details>
   <summary type="button">Solution</summary>
@@ -3446,7 +3446,7 @@ df_clean
 
 
 
-<!--chapter:end:02.fundamentals/03.data_frames.Rmd-->
+<!--chapter:end:02-fundamentals/03.data_frames.Rmd-->
 
 
 # Advanced Techniques
@@ -3584,7 +3584,7 @@ result
 #> [1] 3.32
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-236-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-236-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 **Example 3: Creating a function to generate plots with dynamic variable names and advanced options**
 
@@ -3640,7 +3640,7 @@ create_plot(df, "boxplot", "y",
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-237-1.png" alt="" width="80%" style="display: block; margin: auto;" /><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-237-2.png" alt="" width="80%" style="display: block; margin: auto;" /><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-237-3.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-237-1.png" alt="" width="80%" style="display: block; margin: auto;" /><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-237-2.png" alt="" width="80%" style="display: block; margin: auto;" /><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-237-3.png" alt="" width="80%" style="display: block; margin: auto;" />
 In this example, the `create_plot()` function can generate different types of plots with custom options. The function uses `substitute()` to construct the base plot expression, and then `eval()` to evaluate the expression and generate the plot. Additionally, the function can add a legend to the plot if the legend argument is specified.
 
 This example illustrates how metaprogramming can be useful for creating more flexible and complex functions that adapt to different needs.
@@ -4244,7 +4244,7 @@ options_boxplot <- list(var_x = "y",
 create_dynamic_plot(data, "boxplot", options_boxplot)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-269-1.png" alt="" width="80%" style="display: block; margin: auto;" /><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-269-2.png" alt="" width="80%" style="display: block; margin: auto;" /><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-269-3.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-269-1.png" alt="" width="80%" style="display: block; margin: auto;" /><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-269-2.png" alt="" width="80%" style="display: block; margin: auto;" /><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-269-3.png" alt="" width="80%" style="display: block; margin: auto;" />
 </details>
 
 52. Create a class called `Dog` inheriting from `Pet` class (from previous exercises). `Dog` class should have an additional attribute called `breed` and a method called `bark()`.
@@ -4277,7 +4277,7 @@ Dog <- R6Class("Dog",
 
 
 
-<!--chapter:end:02.fundamentals/04.advanced_techniques.Rmd-->
+<!--chapter:end:02-fundamentals/04.advanced_techniques.Rmd-->
 
 
 # (PART) Data Visualization and Summarization{-}
@@ -4307,7 +4307,7 @@ murders |>
   ggplot()
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-274-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-274-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 This code only shows us an empty box. This is because we haven't specified which variables to take from the data frame nor what type of plot we want.
 
@@ -4325,7 +4325,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-275-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-275-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Now we have a box with the axes marked, but still without any data inside the box.
 
@@ -4342,7 +4342,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-276-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-276-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 In the same way, we can show lines connecting the data instead of points with the `geom_line()` function.
 
@@ -4356,7 +4356,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-277-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-277-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Up to this point we have created the same scatter plot that we saw in the previous chapter. The power of ggplot lies in the ease of adding components. For example, if we want each point in the scatter plot to have the state name, or even better the abbreviation `abb`, we just have to add it as a `label` attribute inside `aes` and add the `geom_text()` layer.
 
@@ -4371,7 +4371,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-278-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-278-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 In this plot we can already see that the upper right point corresponds to **CA** which is the abbreviation for the state of **California**.
 
@@ -4391,7 +4391,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-279-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-279-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Then, we can also edit the attributes of the `geoms`. For example, let's make the size of the points larger. To do this we edit inside `geom_points()`:
 
@@ -4406,7 +4406,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-280-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-280-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Having increased the size of the points, we can no longer see the text of the state abbreviations well. We can nudge the text on the _x-axis_ or on the _y-axis_. Since we are talking about several million people, let's nudge the letters 1.5 million to the right.
 
@@ -4421,7 +4421,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-281-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-281-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 To avoid entering such large numbers we can transform the population on the x-axis in the `aes()` function. Thus, once we express the data without counting the millions we would have to nudge the text only 1.5 points to the right:
 
@@ -4436,7 +4436,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-282-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-282-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 This transformation gives us the same result as before and the _x-axis_ is now easier to understand now that we can see the numbers.
 
@@ -4456,7 +4456,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-283-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-283-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 In the same way, we could do the transformation to base 10 logarithm:
 
@@ -4473,7 +4473,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-284-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-284-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 The transformation of the scale to base 10 logarithm is widely used in statistics and R provides us with a faster function to proceed with this scale transformation, the function `scale_x_log10()`, which gives us the same result as the previous plot.
 
@@ -4490,7 +4490,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-285-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-285-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 ## Label, title and legend layer
 We can also [change the labels](https://www.datanovia.com/en/blog/ggplot-legend-title-position-and-labels/) (`label` in English) of the plot. So far on the _x-axis_ we see that **population/10^6** appears and we can change it with the function `xlab()`. In the same way we can change on the _y-axis_ using `ylab()`. To add a title to the plot we will use the function `ggtitle()`. To change the name of the legend we will use the function `scale_color_discrete()`.
@@ -4512,7 +4512,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-286-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-286-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 ## Reference lines
 We can add reference lines, whether vertical with `geom_vline(xintercept = )`, horizontal with `geom_hline(yintercept = ...)` or diagonal with `geom_abline(intercept = )`, the latter asks us at what point it cuts the _y-axis_ and draws a line with a default slope of 1.
@@ -4541,7 +4541,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-287-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-287-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Or we could calculate the murder rate per million inhabitants throughout the US and draw a reference diagonal. In the case of the diagonal we have to express it in the same scale of the axis, therefore we have to convert it to `log10`.
 
@@ -4570,7 +4570,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-288-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-288-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can improve this reference line by making it dashed and gray. To do this, simply edit the `geom_abline()` function as follows:
 
@@ -4592,7 +4592,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-289-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-289-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 ## Changing the plot style
 The plot style using `ggplot()` can be easily changed. There are multiple themes we can use by loading the **ggthemes** library. We can, for example, use a widely used theme: the economist theme by adding the `theme_economist()` layer.
@@ -4617,7 +4617,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-290-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-290-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We still see overlapping abbreviations. We can make the names repel each other using the `geom_text_repel()` function instead of `geom_text()` that we are currently using. To use this function we need to call the **ggrepel** library.
 
@@ -4643,7 +4643,7 @@ murders |>
 #> increasing max.overlaps
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-291-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-291-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 This plot is visually much easier to understand and aesthetically much better than the default plot we created in previous chapters. We can explore more examples at this [link](https://rstudio-pubs-static.s3.amazonaws.com/228019_f0c39e05758a4a51b435b19dbd321c23.html).
 
@@ -4796,7 +4796,7 @@ On average, the South region is more dangerous.
 ## Exercises
 This time we are going to perform exercises within the field of biology and for this we must remember the parts of a flower. This way we will give more sense to the problem:
 
-<img src="img/partes-de-flor.png" alt="" width="150pt" style="display: block; margin: auto;" />
+<img src="_assets/images/03-visualization/partes-de-flor.png" alt="Botanical diagram showing flower parts: sepal, petal, stamen, and pistil" width="150pt" style="display: block; margin: auto;" />
 
 53. Load the `iris` data frame to your variable environment (`data(iris)`). In this data frame we find a list of characteristics of 150 flowers of 3 different types of species. Report a scatter plot of the sepal and petal length of the `iris` data frame.
 
@@ -4883,7 +4883,7 @@ iris |>
 
 
 
-<!--chapter:end:03.visualization/ggplot.Rmd-->
+<!--chapter:end:03-visualization/ggplot.Rmd-->
 
 
 # Gapminder
@@ -5061,7 +5061,7 @@ gapminder |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-321-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-321-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 From this graph we can see that countries where families have 7.5 children have a lower life expectancy. On the other hand, in countries with high life expectancy the average number of children is less than 2 children per family.
 
@@ -5077,7 +5077,7 @@ gapminder |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-322-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-322-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 In this graph, groups begin to be seen. Several European countries are in the upper left quadrant, while several African countries are in the lower right quadrant.
 
@@ -5098,7 +5098,7 @@ gapminder |>
   facet_grid(year ~ .)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-323-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-323-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can make it even clearer which continent changed the most if we add the continent variable as a column.
 
@@ -5114,7 +5114,7 @@ gapminder |>
   facet_grid(year ~ continent)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-324-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-324-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Having several columns for each continent makes it harder to understand because the columns become smaller. It is recommended to have few columns. So we invert the order between year and continent.
 
@@ -5130,7 +5130,7 @@ gapminder |>
   facet_grid(continent ~ year)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-325-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-325-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Here the change by regions is much more evident and how the majority of countries have reduced fertility per family while increasing life expectancy. We are living longer than in the 60s and in turn having fewer children per family. These phenomena have occurred globally.
 
@@ -5149,7 +5149,7 @@ gapminder |>
   facet_grid(continent ~ year)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-326-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-326-1.png" alt="" width="80%" style="display: block; margin: auto;" />
     
 In this case it would be visually better if the continents were not in separate rows, but could still be appreciated in the graph. To do this, we will use the wrap facet (`facet_wrap(~ x)`), where `x` is the variable we want to wrap. In our case it would be the year, instead of appearing in separate rows we can join and transpose them.
     
@@ -5166,7 +5166,7 @@ gapminder |>
   facet_wrap( ~ year)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-327-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-327-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can add more data by adding more data to the vectors. For example, let's add a cut in the middle between 1960 and 2013.
 
@@ -5183,7 +5183,7 @@ gapminder |>
   facet_wrap( ~ year)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-328-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-328-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 ## Time series
 Time series are sequences of data measured at determined moments and ordered chronologically. R allows us to easily plot time series, we only need our data frames to include some time variable.
@@ -5200,11 +5200,11 @@ gapminder |>
   ggplot() +
   aes(x = year, y = fertility) +
   geom_point()
-#> Warning: Removed 1 row containing missing values or values
-#> outside the scale range (`geom_point()`).
+#> Warning: Removed 1 row containing missing values or values outside the scale
+#> range (`geom_point()`).
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-329-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-329-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We get a "warning" indicating that there are values that cannot be drawn because they are `NA` and are not available. This does not prevent showing the graph.
 
@@ -5217,11 +5217,11 @@ gapminder |>
   ggplot() +
   aes(x = year, y = fertility) +
   geom_line()
-#> Warning: Removed 1 row containing missing values or values
-#> outside the scale range (`geom_line()`).
+#> Warning: Removed 1 row containing missing values or values outside the scale
+#> range (`geom_line()`).
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-330-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-330-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 ### Multiple time series
 In multiple time series we seek comparison to analyze in a time series how the data evolved. For example, this would be the time series if we compare Peru, Bolivia and Chile:
@@ -5235,11 +5235,11 @@ gapminder |>
   ggplot() +
   aes(x = year, y = fertility, color = country) +
   geom_line()
-#> Warning: Removed 3 rows containing missing values or values
-#> outside the scale range (`geom_line()`).
+#> Warning: Removed 3 rows containing missing values or values outside the scale
+#> range (`geom_line()`).
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-331-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-331-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can also remove the legend and show the name of the countries as labels on the same graph. To do this we will first have to create a data frame using the function `data.frame()` that indicates the coordinates where we want each label to appear:
 
@@ -5272,11 +5272,11 @@ gapminder |> filter(country %in% countries) |>
   geom_line() +
   geom_text(data = labels, aes(x, y, label = country)) +
   theme(legend.position = "none")
-#> Warning: Removed 3 rows containing missing values or values
-#> outside the scale range (`geom_line()`).
+#> Warning: Removed 3 rows containing missing values or values outside the scale
+#> range (`geom_line()`).
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-333-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-333-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 
 ## Exercises
@@ -5361,11 +5361,11 @@ gapminder |>
   ggplot() +
   aes(gdp_per_capita_per_day) +
   geom_histogram(binwidth = 5)
-#> Warning: Removed 9 rows containing non-finite outside the
-#> scale range (`stat_bin()`).
+#> Warning: Removed 9 rows containing non-finite outside the scale range
+#> (`stat_bin()`).
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-341-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-341-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can filter out the **NA** so that we no longer get the low "warnings" with the function we saw previously `is.na()`. In this case since we don't want the **NA** we will negate the function by placing the symbol `!` at the beginning.
 
@@ -5380,7 +5380,7 @@ gapminder |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-342-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-342-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 At this point it should be quick to detect that there is a concentration of data from countries with low GDP per capita and we could be tempted to apply a scale transformation on the _x-axis_. Let's try with logarithm in base 2:
 
@@ -5396,7 +5396,7 @@ gapminder |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-343-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-343-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Let's be careful interpreting this data. We cannot say that it is a symmetric distribution, even when with this scale we are tempted to do so. Remember the scale and use it appropriately.
 
@@ -5415,7 +5415,7 @@ gapminder |>
   geom_boxplot()
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-344-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-344-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Now let's zoom in. Within each continent we have regions, for example in the Americas we have South America, Central America, North America, and so on with each continent. Let's change the `continent` variable to `region`.
 
@@ -5429,7 +5429,7 @@ gapminder |>
   geom_boxplot()
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-345-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-345-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 As we can verify: this visualization allows us to infer very little. Before discarding a graph let's think if we can change the configuration to improve the visualization.
 
@@ -5446,7 +5446,7 @@ gapminder |>
   theme(axis.text.x = element_text(angle = 45, hjust = 1) )
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-346-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-346-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 The names are understood, but if we want to find the top 3 (either by median or average) we would have to look for them one by one. Let's reorder it, but first let's be aware of some previous considerations:
 
@@ -5484,7 +5484,7 @@ gapminder |>
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-348-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-348-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Note that a `mutate` has been placed after filtering the data. This is to guarantee that we are removing the **NA**. Otherwise, we risk that all values are **NA** and the reordering is not performed and remains default.
 
@@ -5502,7 +5502,7 @@ gapminder |>
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-349-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-349-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Although we can already differentiate it, in a box plot it is usually the fill (`fill` in English) of the box that is painted. So, let's change the `color` attribute to the `fill` attribute. And let's remove the legend on the _x-axis_. It is not necessary in this case where the regions are self-explanatory.
 
@@ -5519,7 +5519,7 @@ gapminder |>
   xlab("")
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-350-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-350-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 This graph helps us see the top 5, but since there are several regions concentrated in small values of GDP per capita we visually lose those regions. We need a scale transformation.
 
@@ -5539,7 +5539,7 @@ gapminder |>
   scale_y_continuous(trans = "log2")
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-351-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-351-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Sometimes it is necessary not only to show the boxes, but also where each of the data points is located. For this we can add the `geom_point()` layer that we had previously used to show the points of each data.
 
@@ -5558,7 +5558,7 @@ gapminder |>
   geom_point(size = 0.5)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-352-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-352-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 ## Comparison of distributions
 To be able to solve the first question of the case we would have to compare the distributions of the "Western" countries versus the developing countries.
@@ -5623,7 +5623,7 @@ gapminder |>
   facet_grid(. ~ group)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-355-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-355-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We see that the daily GDP per capita has a distribution with higher values compared to developing countries. However, the picture in one year is not everything. We are ready to see if the separation was the same 40 years back from the date in the example (2010). We are also going to add the `geom_histogram()` layer the color attribute to see the border of the bars which by default are grey.
 
@@ -5642,7 +5642,7 @@ gapminder |>
   facet_grid(year ~ group)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-356-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-356-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Both groups, both "Western" and "Developing" have improved in that 40-year span, but developing countries have advanced more than Western countries.
 
@@ -5689,7 +5689,7 @@ gapminder |>
   facet_grid(year ~ group)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-359-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-359-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We see now more clearly with comparable data how there are more countries within the developing region that increased per capita GDP, much more than developing countries. But this first inference is still visual, we need to compare how the median, range, etc. changed. For this we will use a box plot very similar to the previous one, but this time we will edit `geom_boxplot()` so that it shows us in a single graph how each region has changed from 1970 to 2010.
 
@@ -5709,7 +5709,7 @@ gapminder |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-360-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-360-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We see how there are regions within Asia that have grown substantially. As we know from general culture, some countries in Asia are already powers, but today with these graphs we can understand well how much each region has changed until becoming a power.
 
@@ -5782,7 +5782,7 @@ stars |>
 
 
 
-<!--chapter:end:03.visualization/gapminder.Rmd-->
+<!--chapter:end:03-visualization/gapminder.Rmd-->
 
 
 # (PART) Statistics {-}
@@ -5847,17 +5847,17 @@ results <- replicate(n_times, {
   })
 
 results
-#>   [1] "man"   "man"   "man"   "man"   "woman" "woman" "man"   "woman" "woman"
-#>  [10] "man"   "woman" "man"   "man"   "man"   "man"   "man"   "man"   "man"  
-#>  [19] "woman" "man"   "woman" "woman" "man"   "woman" "man"   "man"   "man"  
-#>  [28] "man"   "woman" "woman" "woman" "man"   "man"   "man"   "man"   "man"  
-#>  [37] "man"   "man"   "man"   "man"   "man"   "woman" "man"   "man"   "man"  
-#>  [46] "woman" "man"   "man"   "man"   "man"   "woman" "woman" "woman" "man"  
-#>  [55] "man"   "man"   "man"   "man"   "woman" "man"   "woman" "man"   "man"  
-#>  [64] "man"   "woman" "man"   "man"   "man"   "woman" "woman" "man"   "man"  
-#>  [73] "man"   "man"   "man"   "man"   "woman" "man"   "woman" "man"   "man"  
-#>  [82] "woman" "woman" "woman" "man"   "woman" "man"   "woman" "woman" "man"  
-#>  [91] "woman" "man"   "woman" "man"   "man"   "man"   "man"   "man"   "woman"
+#>   [1] "woman" "man"   "man"   "woman" "man"   "woman" "man"   "woman" "man"  
+#>  [10] "man"   "man"   "woman" "man"   "woman" "woman" "man"   "woman" "woman"
+#>  [19] "man"   "woman" "man"   "man"   "woman" "woman" "man"   "man"   "man"  
+#>  [28] "woman" "man"   "man"   "man"   "man"   "woman" "woman" "man"   "man"  
+#>  [37] "woman" "woman" "woman" "man"   "man"   "woman" "man"   "woman" "man"  
+#>  [46] "man"   "man"   "man"   "man"   "woman" "woman" "man"   "man"   "woman"
+#>  [55] "man"   "woman" "woman" "man"   "woman" "man"   "man"   "woman" "man"  
+#>  [64] "man"   "woman" "woman" "woman" "man"   "man"   "man"   "man"   "man"  
+#>  [73] "man"   "man"   "man"   "man"   "woman" "woman" "man"   "man"   "man"  
+#>  [82] "man"   "man"   "man"   "man"   "woman" "woman" "man"   "woman" "man"  
+#>  [91] "woman" "woman" "woman" "man"   "woman" "man"   "man"   "man"   "man"  
 #> [100] "man"
 ```
 
@@ -5870,7 +5870,7 @@ Now we will use the `table()` function to transform our `results` vector into a 
 table(results)
 #> results
 #>   man woman 
-#>    67    33
+#>    61    39
 ```
 
 If we store this result in a vector `tabla_results`, we can then use the `prop.table()` function to know the proportion of each value:
@@ -5882,7 +5882,7 @@ tabla_results <- table(results)
 prop.table(tabla_results)
 #> results
 #>   man woman 
-#>  0.67  0.33
+#>  0.61  0.39
 ```
 
 We should not worry if the probability that it is a man has not come out exactly 60%. Recall that we are estimating the probability using a method that depends on the number of times we simulate the experiment. The more times we repeat the experiment the closer we will be to the value. For example, let's replicate this experiment now 10,000 times.
@@ -5904,7 +5904,7 @@ tabla_results <- table(results)
 prop.table(tabla_results)
 #> results
 #>    man  woman 
-#> 0.5954 0.4046
+#> 0.6057 0.3943
 ```
 
 We see how the value converges to 60%. We should not worry if the value varies by a few digits from the one presented in this book given that we are simulating a random event.
@@ -6038,7 +6038,7 @@ prob * prob * prob
 65. Given a container containing 5 blue marbles, 3 yellow, and 4 gray. What is the probability that if you choose a marble at random it is blue?
 
 <div align="center">
-<img src="img/probabilities-marbles.png" alt="" width="200pt" style="display: block; margin: auto;" />
+<img src="_assets/images/04-statistics/probabilities-marbles.png" alt="Container with colored marbles: 5 blue, 3 yellow, and 4 gray" width="200pt" style="display: block; margin: auto;" />
 </div>
 
 
@@ -6252,7 +6252,7 @@ resultado <- replicate(n, {
 })
 
 mean(resultado)
-#> [1] 0.0199
+#> [1] 0.021
 ```
 
 Note that, as we saw previously, the value converges as we increase the number of times we repeat the experiment `n`. We have simulated repeating the experiment 10 thousand times. However, how many times would it be necessary to replicate the experiment to trust the results of the simulation?
@@ -6292,7 +6292,7 @@ We already have a function that allows us to replicate the experiment as many ti
 ``` r
 # Probability using functions:
 probabilidad_por_muestra(10000)
-#> [1] 0.0215
+#> [1] 0.02
 ```
 
 Again, this is a simulation. So every time we execute that function the probability will vary as it is a random sample.
@@ -6304,9 +6304,9 @@ To apply a function on each of the values of a vector we use the function `sappl
 prob <- sapply(n_times, probabilidad_por_muestra)
 
 prob
-#>  [1] 0.00000000 0.02500000 0.01250000 0.01875000 0.03125000 0.01562500
-#>  [7] 0.02421875 0.01562500 0.02382812 0.02236328 0.02294922 0.02370605
-#> [13] 0.02252197 0.02181396 0.02189026 0.02223511 0.02223129
+#>  [1] 0.05000000 0.00000000 0.02500000 0.00000000 0.03125000 0.01875000
+#>  [7] 0.02109375 0.02578125 0.02343750 0.02275391 0.02221680 0.02197266
+#> [13] 0.02169189 0.02250366 0.02242432 0.02216034 0.02201538
 ```
 
 This gives us the probabilities depending on the number of times we repeat the experiment. Now let's place these results in a scatter plot to see how it converges
@@ -6326,7 +6326,7 @@ probabilities |>
   xlab("# of times of the experiment")
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-404-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-404-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can also change the scale to zoom in on the probabilities for smaller experiment number values and add a reference line with the theoretical probability value calculated previously:
 
@@ -6343,7 +6343,7 @@ probabilities |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-405-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-405-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We observe that, for this experiment, repeating the experiment 10 thousand times (x-axis = 3 because it is $10^3$) already gives us a good approximation to the real value.
 
@@ -6371,8 +6371,8 @@ To validate if any of the values are repeated we will use the `duplicated()` fun
 duplicated(colleagues)
 #>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 #> [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#> [25] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#> [37] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
+#> [25] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+#> [37] FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
 #> [49] FALSE FALSE
 ```
 
@@ -6400,7 +6400,7 @@ results <- replicate(n_times, {
 
 # Probability:
 mean(results) 
-#> [1] 0.9697
+#> [1] 0.9713
 ```
 
 We see that the estimated probability is very high, above 95%. What would happen if I have a room of 25 people?
@@ -6420,7 +6420,7 @@ results <- replicate(n_times, {    # Returns a logical vector
 
 # Probability:
 mean(results) 
-#> [1] 0.5649
+#> [1] 0.5724
 ```
 
 Let's now create the function `estima_probabilidad` and estimate using this function the probability of finding at least two people with the same birthday in a room of 25 people. This time we have to specify that the sampling is with "replacement" because by default the `sample()` function is "without replacement".
@@ -6439,7 +6439,7 @@ estima_probabilidad <- function(classroom, n_times = 10000){
 }
 
 estima_probabilidad(25)
-#> [1] 0.5687
+#> [1] 0.5661
 ```
 
 Finally, if we already have a function that calculates based on the number of people in a room we can create a numerical vector with the total number of people from different rooms and then apply the function we have created. The result can be stored in the variable `prob`.
@@ -6454,14 +6454,14 @@ classrooms <- 1:80
 prob <- sapply(classrooms, estima_probabilidad)
 
 prob
-#>  [1] 0.0000 0.0025 0.0083 0.0153 0.0279 0.0392 0.0588 0.0741 0.0988 0.1158
-#> [11] 0.1443 0.1653 0.1962 0.2230 0.2520 0.2801 0.3223 0.3488 0.3835 0.4014
-#> [21] 0.4438 0.4770 0.5116 0.5344 0.5714 0.5942 0.6318 0.6571 0.6848 0.7131
-#> [31] 0.7335 0.7501 0.7777 0.7957 0.8101 0.8255 0.8542 0.8572 0.8801 0.8962
-#> [41] 0.9055 0.9131 0.9231 0.9354 0.9427 0.9495 0.9556 0.9570 0.9661 0.9660
-#> [51] 0.9738 0.9747 0.9831 0.9843 0.9867 0.9892 0.9915 0.9909 0.9935 0.9945
-#> [61] 0.9948 0.9960 0.9961 0.9980 0.9973 0.9983 0.9979 0.9992 0.9989 0.9989
-#> [71] 0.9989 0.9998 0.9998 1.0000 0.9999 0.9998 0.9999 0.9995 1.0000 0.9998
+#>  [1] 0.0000 0.0023 0.0089 0.0174 0.0296 0.0408 0.0572 0.0760 0.0946 0.1153
+#> [11] 0.1376 0.1650 0.1898 0.2192 0.2524 0.2815 0.3183 0.3409 0.3837 0.4165
+#> [21] 0.4484 0.4760 0.5089 0.5328 0.5688 0.5977 0.6307 0.6552 0.6811 0.7090
+#> [31] 0.7247 0.7618 0.7734 0.7994 0.8182 0.8350 0.8480 0.8638 0.8865 0.8895
+#> [41] 0.9033 0.9140 0.9209 0.9313 0.9396 0.9479 0.9557 0.9600 0.9666 0.9725
+#> [51] 0.9714 0.9773 0.9811 0.9850 0.9862 0.9896 0.9895 0.9913 0.9941 0.9936
+#> [61] 0.9945 0.9959 0.9966 0.9976 0.9968 0.9977 0.9988 0.9981 0.9990 0.9990
+#> [71] 0.9994 0.9993 0.9995 0.9998 0.9997 0.9998 0.9997 0.9999 0.9999 0.9999
 ```
 
 Thus, if we place it in a scatter plot we can see how the probability increases as there are more students:
@@ -6480,7 +6480,7 @@ probabilities |>
   xlab("Number of students in each class")
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-414-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-414-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can now impress our friends from different groups by telling them that, if they are in a room of 60 people, "you can bet them" that there are two people in that room who have birthdays on the same day. It is not definitive, but the chances are very much in our favor.
 
@@ -6575,7 +6575,7 @@ Let's solve together this exercise that integrates everything we have learned in
 Monty Hall was a TV presenter who made famous a contest in his show which we are going to replicate below. We have three doors in front of us:
 
 <div align="center">
-<img src="img/monty-hall-cerradas.png" alt="" width="400pt" style="display: block; margin: auto;" />
+<img src="_assets/images/04-statistics/monty-hall-cerradas.png" alt="Three closed doors labeled 1, 2, and 3 in the Monty Hall problem" width="400pt" style="display: block; margin: auto;" />
 </div>
 
 Behind one of these doors is a zero-kilometer car, while in the other two there is a goat. We, as contest participants, have to choose together which door to open. Whatever is behind it will be ours.
@@ -6583,7 +6583,7 @@ Behind one of these doors is a zero-kilometer car, while in the other two there 
 Suppose we have chosen door number 2. Once you announce our choice, Monty Hall tells us that he is going to help us and opens a door for us right now. He opens one of the other doors and it turns out there is a goat in door 3 that he opened.
 
 <div align="center">
-<img src="img/monty-hall-abierta.png" alt="" width="400pt" style="display: block; margin: auto;" />
+<img src="_assets/images/04-statistics/monty-hall-abierta.png" alt="Monty Hall problem with door 3 open showing a goat, doors 1 and 2 remain closed" width="400pt" style="display: block; margin: auto;" />
 </div>
 
 Monty Hall asks us: 
@@ -6660,7 +6660,7 @@ results <- replicate(n_times, {
 })
 
 mean(results)
-#> [1] 0.326
+#> [1] 0.3298
 ```
 
 We see that the probability obtained by Monte Carlo simulation is an estimation very close to the probability that we had intuitively calculated. That is, if we keep our choice of the door we chose we have a 33.33% probability of winning.
@@ -6687,14 +6687,14 @@ results <- replicate(n_times, {
 })
 
 mean(results)
-#> [1] 0.6641
+#> [1] 0.6627
 ```
 
 As we see, changing the door in this show gave us a probability of 66.66% of winning, while keeping our choice only 33.33%.
 
 It may sound counterintuitive, but statistically speaking it is better to change doors instead of trusting our luck and keeping the initial choice.
 
-<!--chapter:end:04.statistics/discrete.Rmd-->
+<!--chapter:end:04-statistics/discrete.Rmd-->
 
 ---
 output: html_document
@@ -6717,7 +6717,7 @@ heights |>
   geom_point(position = position_jitterdodge())
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-433-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-433-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 When graphing the data distribution, we intuitively realize that it does not make sense to calculate the proportion of people who measure exactly 1.73m because it would also serve us if a person measures 1.731, 1.729, or any close value that is not exactly 1.73, whether due to how it was measured or any other type of error.
 
@@ -6733,7 +6733,7 @@ heights |>
   geom_histogram(binwidth = 0.05, color = "black")
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-434-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-434-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 It is much more practical to define a function that operates on intervals instead of unique values. For this we use the Cumulative Distribution Function (CDF).
 
@@ -6843,7 +6843,7 @@ heights |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-443-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-443-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We see that the distribution has an approximately symmetric, bell shape. This distribution could be modeled using a [normal distribution](https://support.minitab.com/en-us/minitab/18/help-and-how-to/statistics/basic-statistics/supporting-topics/normality/what-is-the-normal-distribution/) (also called Gaussian distribution, Gauss curve, or Gauss bell). To do this, in R we will use the function `pnorm(x, average, std_dev)` to estimate the probability but using a normal distribution function with an average `promedio` and a standard deviation `desv_est`. In this way, we can estimate what is the probability that if we choose a value at random it is less than or equal to `x`.
 
@@ -6886,7 +6886,7 @@ data.frame(value = normal) |>
   labs(subtitle = paste("P(x <= 1.9) =", probability))
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-445-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-445-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 In the same way, we could estimate the probability that a person chosen at random measures more than 1.8m.
 
@@ -6925,7 +6925,7 @@ data.frame(value = normal) |>
   labs(subtitle = paste("P(x > 1.8) =", probability))
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-447-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-447-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Finally, let's recalculate the probability that when choosing someone at random they measure more than 1.6m, but not more than 1.95m, we would have.
 
@@ -6966,7 +6966,7 @@ data.frame(value = normal) |>
   labs(subtitle = paste("P(1.6 < x <= 1.95) =", probability))
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-449-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-449-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can plot a Q-Q plot, which is a scatter plot created by plotting two sets of quantiles against each other. The function `stat_qq(x)` creates a normal Q-Q plot. This function plots the data in sorted order against the quantiles of a standard Normal distribution. The function `stat_qq_line()` adds a reference line. Although understanding this requires advanced statistics, we can interpret it that if when using this function the correlation is very close to the line then our data is very likely to follow a normal distribution.
 
@@ -6981,7 +6981,7 @@ heights |>
   stat_qq_line()
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-450-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-450-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 The points seem to fall on a straight line. This gives us a good indication that assuming our height data comes from a population that is normally distributed is reasonable. Observe that the _y-axis_ plots the empirical quantiles and _x-axis_ plots the theoretical quantiles. The latter are the quantiles of the standard Normal distribution with mean 0 and standard deviation 1.
 
@@ -7109,7 +7109,7 @@ result <- paste("Sample:", length_val, ". Average:",
 mtext(result,3)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-461-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-461-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can execute the code again to verify that it generates another distribution for us:
 
@@ -7127,7 +7127,7 @@ result <- paste("Sample:", length_val, ". Average:",
 mtext(result,3)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-462-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-462-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can repeat this experiment of obtaining `n` random data that have approximately the same `average` and the same `std_dev` about 10 thousand times to calculate the proportion of times that a man measures more than 1.8m.
 
@@ -7141,7 +7141,7 @@ simulation_results <- replicate(n_times, {
 })
 
 mean(simulation_results)
-#> [1] 0.3339383
+#> [1] 0.3336372
 ```
 
 Thus, we have obtained practically the same value that we achieved in the previous section, but this time estimating using the Monte Carlo simulation.
@@ -7220,7 +7220,7 @@ mean(max_grades > 18.5)
 
 
 
-<!--chapter:end:04.statistics/continuous.Rmd-->
+<!--chapter:end:04-statistics/continuous.Rmd-->
 
 
 # Statistical Inference
@@ -7236,7 +7236,7 @@ Let's use the following case to understand this concept intuitively.
 > We have been hired in a casino to analyze if it is reasonable to install a roulette with 37 values ranging from 0 to 36. The house wants to open the game with a special offer if the ball lands on 0 or 21 paying 10 to 1. This means that if a player plays and wins we pay him 10 soles and if he loses he would pay us 1 sol.
 
 <div align="center">
-<img src="img/ruleta-casino.png" alt="" width="300pt" style="display: block; margin: auto;" />
+<img src="_assets/images/04-statistics/ruleta-casino.png" alt="Casino roulette wheel with numbered red and black pockets" width="300pt" style="display: block; margin: auto;" />
 </div>
 
 With what we have learned so far we can simulate our game with the case data. We have 37 values, of which in 2 of them give a player a profit of +10 or a loss -1. Let's also define `prob_win` as the probability that a player wins.
@@ -7272,7 +7272,7 @@ hist(sample_vec)
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-473-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-473-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We have been using Monte Carlo simulation to estimate what the **mean** of the game results would be in real life.
 
@@ -7280,7 +7280,7 @@ We have been using Monte Carlo simulation to estimate what the **mean** of the g
 ``` r
 # Estimation of the mean by Monte Carlo simulation
 mean(sample_vec)
-#> [1] -0.40875
+#> [1] -0.41073
 ```
 
 In addition, we have seen that, the more the sample grows, our **mean** in the Monte Carlo simulation converges to a value, in this case the probability of winning mainly in the roulette. That value to which it converges we will call **expected value**, which as its name indicates will be the value we expect to obtain in reality. The more the sample size grows the more our sample mean converges to this expected value. The notation we will use will be $E[X]$.
@@ -7324,7 +7324,7 @@ prob_lose <- 1 - prob_win
 sample_vec <- sample(c(10, -1), plays, replace = TRUE, prob = c(prob_win, prob_lose))
 
 sum(sample_vec)
-#> [1] -7
+#> [1] -18
 ```
 
 Finally, not only one person will play. Let's replicate this sample about 100,000 times to simulate the number of players we would have in a quarter.
@@ -7355,7 +7355,7 @@ So far we have done the same as we have learned in previous chapters. However, w
 hist(winnings_simulation)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-479-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-479-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 It is not a coincidence that if we create a histogram with all the winnings of all the players the result looks like a normal distribution. In fact, that was the main approach that George Pólya made in 1920 when he presented his **Central Limit Theorem**.
 
@@ -7402,13 +7402,13 @@ SE_sum
 
 With these two theoretical data, the expected value and the standard error, we can graph the normal curve of the sum of winnings of our game.
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-482-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-482-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 What does this mean? That if theoretically we can already graph the normal curve then we can also calculate the probability that the sum is greater or less than some value. This is the main advantage of the Central Limit Theorem since we can calculate probabilities of the population using this approximation and the data of a single sample.
 
 For example, if we want to know what is the probability that a player wins money after playing 40 times in roulette we would have to calculate the probability that $S$ is greater than **zero**, represented by the blue shaded area:
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-483-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-483-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 To perform this calculation in R we would use the `pnorm` function:
 
@@ -7425,7 +7425,7 @@ Let's validate that the Monte Carlo simulation approximates this theoretical val
 ``` r
 # Probability of getting more than 0 soles having played 40 games:
 mean(winnings_simulation > 0)
-#> [1] 0.16833
+#> [1] 0.16856
 ```
 
 We have used two ways to estimate the probability, the theoretical estimation using the central limit theorem and the Monte Carlo simulation. These two numbers are quite close to the real probability. In both cases, the larger the sample, the more reasonable our estimation will be.
@@ -7562,7 +7562,7 @@ We will analyze this following case.
 
 For example, these would be the results of the poll of a random sample of 10 people:
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-496-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-496-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Intuitively we know that we cannot deduce which party will win given that the sample is very small. To know which party will win we need to estimate as precisely as possible the parameter $p$ that represents the proportion of voters of the Blue Party in the population and the parameter $1-p$ that represents the proportion of voters of the Red party.
 
@@ -7658,7 +7658,7 @@ Now let's generate a scatter plot of both the different values of $p$ and the st
 plot(p, SE_avg, ylim = c(0, 0.12))
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-499-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-499-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Thus, we see how we can obtain different standard errors of the average for different values of $p$.
 
@@ -7675,11 +7675,11 @@ coord_y <- max(SE_avg[p >= coord_x]) # Value on Y axis for value x
 abline(h = coord_y, v = coord_x, col = "blue", lty = 2)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-500-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-500-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 With these values of $E[\overline{X}]=p=80\%$ and $SE[\overline{X}]=8.8\%$ of standard error we can calculate a range of one standard error around $80\%$, which would go from $71.2\%$ to $88.8\%$ and then calculate what would be the probability that the mean $\overline{X}$ found in one of the surveys falls in this range. Visually it would be:
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-501-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-501-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 In R, calculating the probability that a data point falls in the range of 1 standard error would be:
 
@@ -7692,7 +7692,7 @@ pnorm(1) - pnorm(-1)
 
 We can expand to have a greater range of **2 standard errors** around $80\%$ and increase our probability:
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-503-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-503-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 In R it would be:
 
@@ -7722,11 +7722,11 @@ coord_y <- max(SE_avg[p >= coord_x]) # Value on Y axis for value x
 abline(h = coord_y, v = coord_x, col = "blue", lty = 2)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-505-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-505-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 If the real voting intention was $55\%$ we would have an expected value of the average $E[\overline{X}]=p=55\%$ and a corresponding standard error of the average $SE[\overline{X}]=11\%$. Again, by Central Limit Theorem we can calculate a range of **two standard errors** around $55\%$:
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-506-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-506-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 The calculation of the probability of being in that range in R would be the same because we continue in the range of 2 standard errors. Therefore the probability would be the same.
 
@@ -7756,7 +7756,7 @@ plot(p, SE_avg, ylim = c(0, 0.12))
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-508-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-508-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 This sample gives us smaller standard errors. For example, if the real proportion of voters of the Blue party was $p=55\%$ we would have $E[\overline{X}]=p=55\%$ and a $SE[\overline{X}]=2.2\%$:
 
@@ -7771,7 +7771,7 @@ coord_y <- max(SE_avg[p >= coord_x]) # Value on Y axis for value x
 abline(h = coord_y, v = coord_x, col = "blue", lty = 2)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-509-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-509-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 If we now calculate a range of two standard errors around $55\%$ we would have a range that goes from $50.6\%$ to $59.4\%$. Again, interpretation is that the mean that we find in our random survey has a 95% probability of being in that range.
 
@@ -7789,7 +7789,7 @@ abline(h = 0.015, v = 1000, col = "blue", lty = 2) # Add vertical and horizontal
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-510-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-510-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 A sample of 1,000 people, for example, generates us a maximum standard error of 0.015 or 1.5%.
 
@@ -7834,7 +7834,7 @@ With this we would have that from a sample of 1100 people, we have estimated 56%
 
 Finally, let's see examples of the different surveys conducted in April and early May 2020 to measure voting intentions in the US.
 
-<img src="img/encuesta-EEUU.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/04-statistics/encuesta-EEUU.png" alt="Table of US election polls from April-May 2020 showing sample sizes, margins of error, and candidate percentages" width="80%" style="display: block; margin: auto;" />
 
 We see as columns:
 
@@ -8088,7 +8088,7 @@ mean(simulacion)
 
 
 
-<!--chapter:end:04.statistics/inference.Rmd-->
+<!--chapter:end:04-statistics/inference.Rmd-->
 
 
 # (PART) Data Wrangling {-}
@@ -8207,7 +8207,7 @@ The functions we will use the most will be `read_csv()` and `read_excel()`. The 
 ``` r
 data_df <- read_csv("murders.csv")
 #> Rows: 51 Columns: 5
-#> ── Column specification ─────────────────────────────
+#> ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #> Delimiter: ","
 #> chr (3): state, abb, region
 #> dbl (2): population, total
@@ -8364,7 +8364,7 @@ fertility_path <- file.path(dslabs_path, "fertility-two-countries-example.csv")
 
 wide_data <- read_csv(fertility_path)
 #> Rows: 2 Columns: 57
-#> ── Column specification ─────────────────────────────
+#> ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #> Delimiter: ","
 #> chr  (1): country
 #> dbl (56): 1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, ...
@@ -8476,7 +8476,7 @@ tidy_data |>
   geom_point()
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-550-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-550-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 #### pivot_wider function
 Sometimes, as we will see in the following section, it will be useful to go back from rows to columns. For this we will use the `pivot_wider()` function, where we specify `names_from` (the column containing the new column names) and `values_from` (the column containing the values). Additionally, we can use the `:` operator to indicate from which column to which column we want to select.
@@ -8502,7 +8502,7 @@ ruta <- file.path(dslabs_path, "life-expectancy-and-fertility-two-countries-exam
 
 data <- read_csv(ruta)
 #> Rows: 2 Columns: 113
-#> ── Column specification ─────────────────────────────
+#> ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #> Delimiter: ","
 #> chr   (1): country
 #> dbl (112): 1960_fertility, 1960_life_expectancy, 1961_fertility, 1961_life_e...
@@ -9016,7 +9016,7 @@ library(rvest)
 
 The function we will use the most will be `read_html()` and as an argument we will place the url of the web from where we want to extract the data. We are not talking about a url that downloads a text file but a web page like this:
 
-<img src="img/paises-hispanos.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/05-wrangling/paises-hispanos.png" alt="Wikipedia table of Hispanic countries by population" width="80%" style="display: block; margin: auto;" />
 
 Thus, we will use `read_html()` to store all the web html and then little by little access the table data in R.
 
@@ -9206,7 +9206,7 @@ full_join(planilla_2018, planilla_2019, by = "equipo")
 
 
 
-<!--chapter:end:05.wrangling/importing-data.Rmd-->
+<!--chapter:end:05-wrangling/importing-data.Rmd-->
 
 
 # String processing and text mining
@@ -9371,26 +9371,21 @@ heights <- reported_heights$height
 
 # Validation option 1: Random sample
 sample(heights, 100)
-#>   [1] "72"         "69"         "69"         "68"         "70"        
-#>   [6] "71"         "69"         "69"         "5'6"        "72.83"     
-#>  [11] "74"         "183"        "70"         "5'10''"     "72.44"     
-#>  [16] "87"         "72"         "63"         "72.44"      "72"        
-#>  [21] "73"         "74"         "70"         "68"         "71"        
-#>  [26] "87"         "68.8976"    "64.2"       "73.22"      "70"        
-#>  [31] "183"        "60"         "63"         "65"         "63"        
-#>  [36] "5.5"        "5' 11\""    "66"         "72"         "66"        
-#>  [41] "70"         "71.5"       "71"         "67.7165"    "183"       
-#>  [46] "67"         "68"         "67"         "68"         "62"        
-#>  [51] "72"         "25"         "5'5"        "5.5"        "70"        
-#>  [56] "63"         "65"         "5'7\""      "63"         "73.2"      
-#>  [61] "70"         "68.8976378" "5'2\""      "68"         "68.89"     
-#>  [66] "5.9"        "70"         "67"         "68"         "63"        
-#>  [71] "170"        "73"         "72"         "67"         "72.5"      
-#>  [76] "63"         "70"         "74"         "74"         "5'6"       
-#>  [81] "71"         "70"         "62"         "67"         "64.5"      
-#>  [86] "5'7"        "65"         "66"         "68.5"       "64.961"    
-#>  [91] "180"        "5,3"        "63"         "172"        "77"        
-#>  [96] "6.1"        "5'7.5''"    "72"         "22"         "5'12"
+#>   [1] "5' 11\"" "170"     "72"      "72"      "71"      "70.8661" "5.57"   
+#>   [8] "61"      "66"      "5'10''"  "70"      "74"      "73"      "175"    
+#>  [15] "2"       "69"      "72"      "66"      "68"      "75"      "5.5"    
+#>  [22] "0"       "71"      "69"      "67"      "73.22"   "5'7.5''" "68"     
+#>  [29] "62"      "64"      "70"      "71"      "67"      "61"      "67"     
+#>  [36] "163"     "69"      "5.11"    "6"       "77"      "68"      "5.51"   
+#>  [43] "67"      "68"      "176"     "67"      "67"      "67"      "68"     
+#>  [50] "60"      "70"      "158"     "73.2"    "65"      "168"     "66"     
+#>  [57] "65"      "70"      "69"      "71"      "66"      "67.3"    "69"     
+#>  [64] "66"      "66"      "70"      "70.5"    "70"      "69"      "74"     
+#>  [71] "72"      "68"      "70"      "5,8"     "51"      "69"      "69"     
+#>  [78] "65"      "69"      "180"     "68"      "67"      "68"      "68.4"   
+#>  [85] "70.86"   "72.45"   "67"      "69"      "5.8"     "180"     "183"    
+#>  [92] "180"     "167"     "175"     "74"      "68"      "72"      "67"     
+#>  [99] "63"      "72.05"
 
 # Validation option 2: convert to numbers and count if there are NAs
 x <- as.numeric(heights)
@@ -9404,8 +9399,7 @@ reported_heights |>
   filter(is.na(estatuta_numero)) |> 
   head(10)
 #> Warning: There was 1 warning in `mutate()`.
-#> ℹ In argument: `estatuta_numero =
-#>   as.numeric(height)`.
+#> ℹ In argument: `estatuta_numero = as.numeric(height)`.
 #> Caused by warning:
 #> ! NAs introduced by coercion
 #>             time_stamp    sex                 height estatuta_numero
@@ -9777,22 +9771,22 @@ heights <- reported_heights |>
 random_indices <- sample(1:nrow(heights)) 
 heights[random_indices, ] |> 
   head(15)
-#>              time_stamp    sex  height
-#> 473 2015-02-05 14:49:08   Male      67
-#> 234 2014-09-03 23:47:35   Male      65
-#> 769 2016-01-14 14:33:13   Male      72
-#> 795 2016-01-25 08:15:50 Female 68.8976
-#> 92  2014-09-02 15:16:48 Female      63
-#> 951 2016-03-01 02:38:42   Male   5.7'0
-#> 329 2014-10-16 03:51:23   Male      71
-#> 175 2014-09-02 15:17:23   Male      72
-#> 987 2016-04-25 06:11:53   Male   70.86
-#> 789 2016-01-25 08:15:45 Female     5'5
-#> 6   2014-09-02 15:16:16 Female      65
-#> 398 2014-12-16 04:20:38 Female 66.1416
-#> 560 2015-05-09 12:58:19   Male      69
-#> 91  2014-09-02 15:16:48   Male      71
-#> 85  2014-09-02 15:16:47 Female      62
+#>               time_stamp    sex height
+#> 38   2014-09-02 15:16:31 Female  66.75
+#> 712  2015-10-05 16:26:29   Male     69
+#> 132  2014-09-02 15:16:59 Female     62
+#> 1079 2017-07-14 09:30:26   Male     65
+#> 917  2016-01-27 06:29:41 Female     64
+#> 929  2016-02-03 10:30:58   Male  68.89
+#> 163  2014-09-02 15:17:16 Female     64
+#> 397  2014-12-15 14:05:22 Female    5'3
+#> 634  2015-07-18 04:37:21   Male    175
+#> 921  2016-01-27 11:48:40   Male   73.2
+#> 494  2015-03-05 15:28:38   Male    168
+#> 107  2014-09-02 15:16:51 Female     61
+#> 728  2015-11-09 11:17:08   Male     72
+#> 370  2014-11-24 15:26:02   Male     67
+#> 805  2016-01-25 08:16:19   Male     67
 ```
 
 We still have to do some conversions. However, since they follow a determined pattern we can use the `extract(source_column, new_columns, pattern, remove_source)` function to confirm creating new columns for each value of our pattern.
@@ -9831,8 +9825,7 @@ heights |>
   mutate(across(c("height", "feet", "inches"), ~as.numeric(.))) |> 
   head(15)
 #> Warning: There was 1 warning in `mutate()`.
-#> ℹ In argument: `across(c("height", "feet",
-#>   "inches"), ~as.numeric(.))`.
+#> ℹ In argument: `across(c("height", "feet", "inches"), ~as.numeric(.))`.
 #> Caused by warning:
 #> ! NAs introduced by coercion
 #>             time_stamp    sex height feet inches
@@ -9863,8 +9856,7 @@ heights |>
   mutate(fixed_heights = feet*12 + inches) |> 
   head(15)
 #> Warning: There was 1 warning in `mutate()`.
-#> ℹ In argument: `across(c("height", "feet",
-#>   "inches"), ~as.numeric(.))`.
+#> ℹ In argument: `across(c("height", "feet", "inches"), ~as.numeric(.))`.
 #> Caused by warning:
 #> ! NAs introduced by coercion
 #>             time_stamp    sex height feet inches fixed_heights
@@ -9905,8 +9897,7 @@ heights <- heights |>
       between(fixed_heights, min, max) ~ fixed_heights, #feet'inches
     TRUE ~ as.numeric(NA)))
 #> Warning: There was 1 warning in `mutate()`.
-#> ℹ In argument: `across(c("height", "feet",
-#>   "inches"), ~as.numeric(.))`.
+#> ℹ In argument: `across(c("height", "feet", "inches"), ~as.numeric(.))`.
 #> Caused by warning:
 #> ! NAs introduced by coercion
 
@@ -9916,16 +9907,16 @@ heights[random_indices, ] |>
   select(-time_stamp) |> # Shows all columns except time_stamp
   head(10)
 #>         sex height feet inches fixed_heights final_height
-#> 118    Male   76.0   NA     NA            NA     76.00000
-#> 1038   Male   76.0   NA     NA            NA     76.00000
-#> 184  Female   70.0   NA     NA            NA     70.00000
-#> 775    Male   75.6   NA     NA            NA     75.60000
-#> 389    Male  178.0   NA     NA            NA     70.07874
-#> 1066   Male     NA    6      0            72     72.00000
-#> 745    Male  167.0   NA     NA            NA     65.74803
-#> 898    Male   66.0   NA     NA            NA     66.00000
-#> 1029   Male   67.0   NA     NA            NA     67.00000
-#> 902  Female   66.0   NA     NA            NA     66.00000
+#> 856  Female  63.00   NA     NA            NA     63.00000
+#> 1003   Male  68.00   NA     NA            NA     68.00000
+#> 1059   Male 210.00   NA     NA            NA     82.67717
+#> 405    Male  71.00   NA     NA            NA     71.00000
+#> 888  Female  62.00   NA     NA            NA     62.00000
+#> 300    Male  72.00   NA     NA            NA     72.00000
+#> 470    Male  71.00   NA     NA            NA     71.00000
+#> 274    Male  66.00   NA     NA            NA     66.00000
+#> 427    Male  53.77   NA     NA            NA     53.77000
+#> 1087 Female  34.00   NA     NA            NA           NA
 ```
 
 We already have our sample validated, we would only have to take the columns we need and start using the object for the analyses we need.
@@ -10018,7 +10009,7 @@ mdy_hms(date_val)
 
 # Additional data: Showing system date:
 now()
-#> [1] "2025-12-23 22:18:49 GMT"
+#> [1] "2025-12-23 23:46:14 GMT"
 ```
 
 
@@ -10331,7 +10322,7 @@ wordcloud(collection,
           )
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-667-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-667-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 ### 2nd Data Cleaning
 In text mining we will frequently obtain a result that still requires cleaning more data. For example, we still see words like pronouns of little interest for analysis. We will use the `removeWords()` function again, but this time with a custom vector of the words we wish to remove.
@@ -10355,7 +10346,7 @@ wordcloud(collection,
           )
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-668-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-668-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Augusto and Eugenia, as we can assume, are the protagonists of **Niebla** and much of the action in this book occurs in the "house" of one or another protagonist, discussing relationships between "man" and "woman".
 
@@ -10400,7 +10391,7 @@ frequencies[1:10,] |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-670-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-670-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 ## Text Mining: Sentiment Analysis
 When we analyze texts we are not only going to want to know which are the words that are most utilized in texts, whether these are comments left by our customers, complaint requests, etc. It is also very useful to know the tone of the messages. This technique is known as sentiment analysis, which can be done very easily with the library that we have already used `syuzhet`.
@@ -10410,7 +10401,7 @@ And what better place to analyze message tones than on Twitter. For this, we are
 https://www.vicinitas.io/free-tools/download-user-tweets.
 
 <div align="center">
-<img src="img/download-user-tweets.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/05-wrangling/download-user-tweets.png" alt="Vicinitas.io interface for downloading user tweets from Twitter" width="80%" style="display: block; margin: auto;" />
 </div>
 
 For our example, we will use tweets from the account of the lawyer [Rosa María Palacios](https://twitter.com/rmapalacios)^[https://twitter.com/rmapalacios]. For this example the excel has already been uploaded to Github. We will download that excel directly from there to our computer to a temporary file and then we will read it using `read_excel()`.
@@ -10468,7 +10459,7 @@ wordcloud(collection,
           )
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-674-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-674-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 She is a lawyer, which makes a lot of sense that she posts content of what can or cannot be done. We could be more rigorous and seek to achieve this combination by adding underscores if the pattern is detected, but for the moment we are going to focus on the tone.
 
@@ -10574,7 +10565,7 @@ sentiments[index,] |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-679-1.png" alt="" width="80%" style="display: block; margin: auto;" /><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-679-2.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-679-1.png" alt="" width="80%" style="display: block; margin: auto;" /><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-679-2.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 This technique is very useful to us as a starting point for future analyses on the tonality of some determined text.
 
@@ -10710,7 +10701,7 @@ sentimientos[index,] |>
 
 
 
-<!--chapter:end:05.wrangling/text-mining.Rmd-->
+<!--chapter:end:05-wrangling/text-mining.Rmd-->
 
 
 # (PART) Machine learning {-}
@@ -10724,11 +10715,11 @@ _Machine learning_ is the study of computer algorithms that improve automaticall
 
 A good _data scientist_ knows how to build prediction algorithms using _machine learning_. In the following chapters, we will see techniques both for discrete variables and for when we work with continuous variables from the two main machine learning approaches: supervised learning and unsupervised learning.
 
-<img src="img/ML.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/06-machine-learning/ML.png" alt="Machine learning diagram showing supervised vs unsupervised learning branches" width="80%" style="display: block; margin: auto;" />
 
 Keep in mind that there are also other approaches, such as semi-supervised learning or **reinforcement learning** where the algorithm learns from a real or synthetic environment. These approaches will not be covered in this book, which focuses on the most commonly used approaches for starting out as a _data scientist_.
 
-<!--chapter:end:06.machine-learning/intro.Rmd-->
+<!--chapter:end:06-machine-learning/intro.Rmd-->
 
 
 # Supervised Learning
@@ -10755,15 +10746,15 @@ Let's start with a simple but very useful **classification** algorithm, the k-Ne
 ### Two variables as input
 Let's start by understanding it visually. Imagine that we have two variables as _input_ and as _output_ it gives us whether it is Red Class or Blue Class. This data is our training data.
 
-<img src="img/kNN-train.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/06-machine-learning/kNN-train.png" alt="Training data points on a 2D plane with red and blue class labels" width="80%" style="display: block; margin: auto;" />
 
 Now that we have our training data, we will start using the test data. As we want to predict the class, the _output_, we will see how one of these data points would look visually and paint it yellow. Next, we calculate the distance between this point and the other data points.
 
-<img src="img/kNN-test.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/06-machine-learning/kNN-test.png" alt="Test point shown in yellow with distance lines to nearby training data points" width="80%" style="display: block; margin: auto;" />
 
 We have traced only some distances, but we could do it with all of them. For this example, we will take the k = 3 nearest neighbors.
 
-<img src="img/kNN-classify.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/06-machine-learning/kNN-classify.png" alt="k-NN classification showing 3 nearest neighbors (2 red, 1 blue), classifying test point as red" width="80%" style="display: block; margin: auto;" />
 
 We notice that if we focus only on the 3 nearest neighbors, there are more reds than blues, so our prediction will be that this point must be Class R (red).
 
@@ -10901,7 +10892,7 @@ result_df |>
   geom_line()
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-702-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-702-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 As we can see, for this case, starting from a certain number of nearest neighbors, the success rate of our algorithm begins to reduce. It will depend on each case to choose the best "k" for our model.
 
@@ -10925,33 +10916,27 @@ install.packages('tidymodels')
 
 ``` r
 library(tidymodels)
-#> ── Attaching packages ─────────── tidymodels 1.4.1 ──
+#> ── Attaching packages ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidymodels 1.4.1 ──
 #> ✔ broom        1.0.11     ✔ tailor       0.1.0 
 #> ✔ dials        1.4.2      ✔ tune         2.0.1 
 #> ✔ infer        1.1.0      ✔ workflows    1.3.0 
 #> ✔ parsnip      1.4.0      ✔ workflowsets 1.1.1 
 #> ✔ recipes      1.3.1      ✔ yardstick    1.3.2 
 #> ✔ rsample      1.3.1
-#> ── Conflicts ────────────── tidymodels_conflicts() ──
-#> ✖ NLP::annotate()          masks ggplot2::annotate()
-#> ✖ rsample::calibration()   masks caret::calibration()
-#> ✖ scales::discard()        masks purrr::discard()
-#> ✖ Matrix::expand()         masks tidyr::expand()
-#> ✖ dplyr::filter()          masks stats::filter()
-#> ✖ recipes::fixed()         masks stringr::fixed()
-#> ✖ dplyr::lag()             masks stats::lag()
-#> ✖ caret::lift()            masks purrr::lift()
-#> ✖ Matrix::pack()           masks tidyr::pack()
-#> ✖ rsample::permutations()  masks gtools::permutations()
-#> ✖ yardstick::precision()   masks caret::precision()
-#> ✖ dials::prune()           masks dendextend::prune()
-#> ✖ yardstick::recall()      masks caret::recall()
-#> ✖ yardstick::sensitivity() masks caret::sensitivity()
-#> ✖ yardstick::spec()        masks readr::spec()
-#> ✖ yardstick::specificity() masks caret::specificity()
-#> ✖ recipes::step()          masks stats::step()
-#> ✖ Matrix::unpack()         masks tidyr::unpack()
-#> ✖ recipes::update()        masks Matrix::update(), stats::update()
+#> ── Conflicts ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidymodels_conflicts() ──
+#> ✖ NLP::annotate()         masks ggplot2::annotate()
+#> ✖ scales::discard()       masks purrr::discard()
+#> ✖ Matrix::expand()        masks tidyr::expand()
+#> ✖ dplyr::filter()         masks stats::filter()
+#> ✖ recipes::fixed()        masks stringr::fixed()
+#> ✖ dplyr::lag()            masks stats::lag()
+#> ✖ Matrix::pack()          masks tidyr::pack()
+#> ✖ rsample::permutations() masks gtools::permutations()
+#> ✖ dials::prune()          masks dendextend::prune()
+#> ✖ yardstick::spec()       masks readr::spec()
+#> ✖ recipes::step()         masks stats::step()
+#> ✖ Matrix::unpack()        masks tidyr::unpack()
+#> ✖ recipes::update()       masks Matrix::update(), stats::update()
 ```
 
 We are going to do another example with k-nearest neighbors, but this time using the functions of the Caret library. The data for this example will be obtained from the `ISLR` library, which contains the daily percentage returns for the S&P 500 stock index between 2001 and 2005. This data frame has 8 columns that we will use as _input_ and the last column that has two classes (whether the index goes up or down) that we will use as _output_ (See `?Smarket`).
@@ -11042,7 +11027,7 @@ knn_recipe <- recipe(Direction ~ ., data = SP_train) |>
 
 knn_recipe
 #> 
-#> ── Recipe ───────────────────────────────────────────
+#> ── Recipe ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #> 
 #> ── Inputs
 #> Number of variables by role
@@ -11050,8 +11035,7 @@ knn_recipe
 #> predictor: 8
 #> 
 #> ── Operations
-#> • Centering and scaling for:
-#>   all_numeric_predictors()
+#> • Centering and scaling for: all_numeric_predictors()
 ```
 
 ### Creating a Workflow
@@ -11065,16 +11049,16 @@ knn_workflow <- workflow() |>
   add_model(knn_spec)
 
 knn_workflow
-#> ══ Workflow ═════════════════════════════════════════
+#> ══ Workflow ═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
 #> Preprocessor: Recipe
 #> Model: nearest_neighbor()
 #> 
-#> ── Preprocessor ─────────────────────────────────────
+#> ── Preprocessor ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #> 1 Recipe Step
 #> 
 #> • step_normalize()
 #> 
-#> ── Model ────────────────────────────────────────────
+#> ── Model ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #> K-Nearest Neighbor Model Specification (classification)
 #> 
 #> Main Arguments:
@@ -11102,11 +11086,6 @@ knn_tune_results <- tune_grid(
   resamples = folds,
   grid = k_grid
 )
-#> 
-#> Attaching package: 'kknn'
-#> The following object is masked from 'package:caret':
-#> 
-#>     contr.dummy
 
 knn_tune_results
 #> # Tuning results
@@ -11128,7 +11107,7 @@ We can visualize the tuning results using `autoplot()`:
 autoplot(knn_tune_results)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-712-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-712-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can see the accuracy for each value of "k". The `show_best()` function shows us the top performing values:
 
@@ -11165,16 +11144,16 @@ final_knn_workflow <- finalize_workflow(knn_workflow, best_k)
 SP_knn_trained <- fit(final_knn_workflow, data = SP_train)
 
 SP_knn_trained
-#> ══ Workflow [trained] ═══════════════════════════════
+#> ══ Workflow [trained] ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
 #> Preprocessor: Recipe
 #> Model: nearest_neighbor()
 #> 
-#> ── Preprocessor ─────────────────────────────────────
+#> ── Preprocessor ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #> 1 Recipe Step
 #> 
 #> • step_normalize()
 #> 
-#> ── Model ────────────────────────────────────────────
+#> ── Model ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #> 
 #> Call:
 #> kknn::train.kknn(formula = ..y ~ ., data = data, ks = min_rows(44L,     data, 5))
@@ -11258,7 +11237,7 @@ A confusion matrix, also known as an error matrix, allows us to visualize the pe
 
 Binary classifications, when the _outcome_ can take only two classes, yield this following confusion matrix.
 
-<img src="img/confusion-matrix.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/06-machine-learning/confusion-matrix.png" alt="2x2 confusion matrix with True Positive, False Positive, True Negative, False Negative cells" width="80%" style="display: block; margin: auto;" />
 
 ### Accuracy
 We have already been using this term in our examples. The accuracy of the model can be calculated from the confusion matrix:
@@ -11388,7 +11367,7 @@ heights_df |>
   geom_abline(lty = 2)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-726-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-726-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 As we can see, there is a positive correlation, such that the taller the father, the son grows to be taller as an adult. This line, however, is nothing more than a default line. The challenge lies in finding which line minimizes the distance of the points to this line, known as error minimization.
 
@@ -11488,7 +11467,7 @@ heights_df |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-730-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-730-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 ## Multiple Linear Regression
 Now that we know linear regression we can execute a multiple linear regression model, which involves more than 1 variable as _input_. To do this, we will use the `diamonds` dataset containing the prices and other attributes of almost 54,000 diamonds.
@@ -11612,16 +11591,16 @@ To do this let's recall the results of the model we created using the k-nearest 
 
 ``` r
 SP_knn_trained
-#> ══ Workflow [trained] ═══════════════════════════════
+#> ══ Workflow [trained] ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
 #> Preprocessor: Recipe
 #> Model: nearest_neighbor()
 #> 
-#> ── Preprocessor ─────────────────────────────────────
+#> ── Preprocessor ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #> 1 Recipe Step
 #> 
 #> • step_normalize()
 #> 
-#> ── Model ────────────────────────────────────────────
+#> ── Model ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #> 
 #> Call:
 #> kknn::train.kknn(formula = ..y ~ ., data = data, ks = min_rows(44L,     data, 5))
@@ -12047,7 +12026,7 @@ all_metrics |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-755-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-755-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 For this case the random forest model (_RF_) seems to be the best. This is not surprising given that this algorithm is related to its ability to cope with different input types and require little preprocessing. We can make our models better by pre-processing data and changing the ad-hoc parameters of each model.
 
@@ -12284,7 +12263,7 @@ As Data Scientists, our responsibility extends beyond the AUC score. We must ens
 
 
 
-<!--chapter:end:06.machine-learning/sml.Rmd-->
+<!--chapter:end:06-machine-learning/sml.Rmd-->
 
 ---
 output: html_document
@@ -12331,13 +12310,13 @@ players |>
 
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-768-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-768-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 This method allows us to group based on the definition of centroids. We will define as many centroids as groups we want to obtain. Since for this case we know that there must be two teams, we will use 2 centroids (k = 2).
 
 The k-means algorithm then places these 2 points (centroids) randomly on the plane in a first iteration. Then, it calculates the distance between each center and the other data points. If it is closer to a centroid then it assigns it to centroid 1, otherwise to centroid 2.
 
-<img src="img/kmeans-distance.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/06-machine-learning/kmeans-distance.png" alt="K-means iteration showing data points and distance calculations to two centroids" width="80%" style="display: block; margin: auto;" />
 
 A first grouping has already been performed. Now each centroid within each group is located at the mean of the other points in its group and another iteration occurs to reassign all points. This iteration is done over and over again until the centroids are fixed.
 
@@ -12356,7 +12335,7 @@ kmeans_model$centers
 
 This means that for these two centers the average distance to the other points is the minimum, therefore the algorithm assigns them to one group or another. Let's see approximately where these centers are located if we marked them with an **x**.
 
-<img src="img/kmeans-centers.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/06-machine-learning/kmeans-centers.png" alt="K-means result with two clusters and centroids marked with X" width="80%" style="display: block; margin: auto;" />
 
 Thus, once the model is created we can obtain the clustering results, team 1 or team 2.
 
@@ -12383,7 +12362,7 @@ players_agrupados |>
   
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-773-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-773-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We have found two centroids until minimizing the sum of the squared differences between each centroid and the other points in the cluster. We can access and see how much this value is, given that it is part of the model results.
 
@@ -12422,7 +12401,7 @@ kmeans_model$tot.withinss
 #> [1] 881.25
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-775-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-775-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 In this case we have found that the sum of squares within the clusters is smaller, so we could indicate that this grouping is more optimal than the grouping into two groups. However, the sum of squares is not necessarily the best indicator for choosing how many clusters to create.
 
@@ -12445,7 +12424,7 @@ To find the optimal "k" under this method, we will use the **elbow plot**, where
 fviz_nbclust(players, FUN = kmeans, method = "wss")
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-777-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-777-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 In this case the "elbow" is found at the value k = 2, from there the sum of squares reduces but at a slower rate.
 
@@ -12459,7 +12438,7 @@ To do this, we change the `method` parameter in the function and obtain the silh
 fviz_nbclust(players, FUN = kmeans, method = "silhouette")
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-778-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-778-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Here it is clearly seen that for a value of `k=2` we have the best average, making this our optimal number of groups.
 
@@ -12473,7 +12452,7 @@ To do this, we will use the following customer dataset, where we will find a dat
 url <- "http://archive.ics.uci.edu/ml/machine-learning-databases/00292/Wholesale%20customers%20data.csv"
 customers <- read_csv(url)
 #> Rows: 440 Columns: 8
-#> ── Column specification ─────────────────────────────
+#> ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #> Delimiter: ","
 #> dbl (8): Channel, Region, Fresh, Milk, Grocery, Frozen, Detergents_Paper, De...
 #> 
@@ -12496,7 +12475,7 @@ Once we have our data we would create a silhouette analysis to determine the bes
 fviz_nbclust(customers_filtrado, FUN = kmeans, method = "silhouette")
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-781-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-781-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Again, we get that the recommended number of clusters is 2. Let's create the model for k = 2 and store the resulting cluster.
 
@@ -12563,25 +12542,25 @@ players |>
   geom_text(nudge_x = 1.3, nudge_y = 1.3)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-784-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-784-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 This algorithm searches for the two points with the shortest distance, the closest ones, and groups them. Then it searches for another two points with the smallest distance and asks: is the distance between these two new points less than the distance of these points to the previously created group? If the answer is yes, it groups them, otherwise it groups the closest point to the first created group.
 
 Let's understand the algorithm graphically. Points 1 and 2 have the lowest hierarchy since they have the shortest distance. Then the algorithm searches for the next two closest points (point 9 and 12) and when comparing with the midpoint of 1 and 2 it opts to create a new group with a slightly higher hierarchy and so on.
 
-<img src="img/hclust-one.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/06-machine-learning/hclust-one.png" alt="Initial hierarchical clustering step linking two closest points" width="80%" style="display: block; margin: auto;" />
 
 However, now that we have point 7 and 11 and we calculate the distance, it turns out that that distance is not the smallest compared to the distances with the other existing groups. For example, 7 is closer to the midpoint of 1 and 2, and 11 is closer to the midpoint of 5 and 6.
 
-<img src="img/hclust-two.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/06-machine-learning/hclust-two.png" alt="Hierarchical clustering merging additional nearby points into groups" width="80%" style="display: block; margin: auto;" />
 
 Thus, the algorithm creates a higher hierarchy for this grouping.
 
-<img src="img/hclust-three.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/06-machine-learning/hclust-three.png" alt="Dendrogram showing hierarchical clustering tree structure with higher groupings" width="80%" style="display: block; margin: auto;" />
 
 The algorithm continues until it finally creates a group that includes everyone as the highest hierarchy. In the following graph we can not only appreciate this but also on the y-axis the distance between each point or group of points.
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-788-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-788-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Up to here we haven't done more than generate hierarchies from the distances which will serve us later to determine how many clusters to generate. Let's create in R what has been advanced so far. The first thing we will do is calculate the distances between all points. To do this we will use the `dist()` function.
 
@@ -12614,7 +12593,7 @@ dend_model <- as.dendrogram(hierarchical_model)
 plot(dend_model)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-792-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-792-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 So far we have only seen the hierarchy, but what interests us is the grouping. The grouping is done by the calculated distance (`h` parameter). Let's try with a distance of 60. We will use the `color_branches` and `color_labels` functions to make the changes visible.
 
@@ -12629,7 +12608,7 @@ dend_model |>
 #> Loading required namespace: colorspace
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-793-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-793-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Since the highest hierarchy distance is approximately 50, then in this case it groups everyone into one large cluster. Let's try with a lower number, for example 40.
 
@@ -12644,7 +12623,7 @@ dend_model |>
   abline(h = cut_height, lty = 2)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-794-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-794-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 By making a cut at 40 we now have two clusters, in this case the red color and the green color. Let's try with a lower number, 28.
 
@@ -12659,7 +12638,7 @@ dend_model |>
   abline(h = cut_height, lty = 2)
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-795-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-795-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Now we have three clusters and so we could continue until obtaining the clusters we need.
 
@@ -12675,7 +12654,7 @@ dend_model |>
   plot()
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-796-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-796-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We see that it gives us the same grouping whether we use distances or number of desired clusters.
 
@@ -12687,7 +12666,7 @@ To calculate how many clusters are optimal to create we will use the silhouette 
 fviz_nbclust(players, FUN = hcut, method = "silhouette")
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-797-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-797-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 It is not surprising that the value of `k` is also 2, which coincides with the number obtained in the k-means model.
 
@@ -12729,7 +12708,7 @@ players_agrupados |>
   theme(legend.position = "none")
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-799-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-799-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We see that the grouping is the same as with the previous method, basically because we are talking about two variables and two clusters.
 
@@ -13005,7 +12984,7 @@ data_posts_agrupados |>
 
 
 
-<!--chapter:end:06.machine-learning/uml.Rmd-->
+<!--chapter:end:06-machine-learning/uml.Rmd-->
 
 
 # (PART) Real Cases {-}
@@ -13013,7 +12992,7 @@ data_posts_agrupados |>
 # Introduction {-}
 Below are some real cases presented based on what has been learned in this book. For the following cases, not only the concepts learned so far will be applied, but some complementary libraries that speed up data processing are also included.
 
-<!--chapter:end:07.real-cases/introduction.Rmd-->
+<!--chapter:end:07-real-cases/introduction.Rmd-->
 
 
 # Case Study: Real Estate Market Analysis
@@ -13124,7 +13103,7 @@ total_market |>
   )
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-834-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-834-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can clearly see the seasonality (peaks in summer) and the impact of the 2008 financial crisis (dip around 2008-2010), followed by a strong recovery.
 
@@ -13152,7 +13131,7 @@ city_trends |>
   )
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-835-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-835-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Austin (green) clearly shows the steepest growth curve, especially post-2012.
 
@@ -13179,15 +13158,13 @@ city_inventory |>
     subtitle = "Lower means simpler to sell (Seller's Market)",
     color = "City"
   )
-#> Warning: Using `size` aesthetic for lines was deprecated in
-#> ggplot2 3.4.0.
+#> Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
 #> ℹ Please use `linewidth` instead.
 #> This warning is displayed once every 8 hours.
-#> Call `lifecycle::last_lifecycle_warnings()` to see
-#> where this warning was generated.
+#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 ```
 
-<img src="Data-Science-con-R_files/figure-html/unnamed-chunk-836-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-836-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We see a convergence around 2014-2015 where inventory became very tight across all major cities.
 
@@ -13200,7 +13177,7 @@ Through this case study, we accessed a standardized dataset (`txhousing`) and pe
 
 This workflow is identical to what is required for analyzing invoice portfolios, stock tickers, or customer churn cohorts, but uses a reliable data source that ensures our code is reproducible.
 
-<!--chapter:end:07.real-cases/real-estate-analysis.Rmd-->
+<!--chapter:end:07-real-cases/real-estate-analysis.Rmd-->
 
 
 # Google Analytics from R
@@ -13319,7 +13296,7 @@ Keep in mind that in this case there is an issue of recognition of IPs coming fr
 ## Conclusion
 We see that it is very easy to access Google Analytics data. We can create our own reports directly from R to analyze as many dimensions as we need without having to use the reporting provided by Google Analytics.
 
-<!--chapter:end:07.real-cases/google-analytics-case.Rmd-->
+<!--chapter:end:07-real-cases/google-analytics-case.Rmd-->
 
 
 # Data Science in the Age of AI {#genai-intro}
@@ -13400,7 +13377,7 @@ When using free external tools (like ChatGPT), remember: **If the service is fre
 
 In the next section, we will go a step further: interacting with LLMs programmatically using R.
 
-<!--chapter:end:08.genai/intro_llm.Rmd-->
+<!--chapter:end:08-genai/intro_llm.Rmd-->
 
 
 # LLMs as an Analysis Engine {#genai-api}
@@ -13495,7 +13472,7 @@ This approach turns unstructured text into structured data with minimal code.
 *   Always handle API keys securely.
 *   AI is not free—monitor your usage costs.
 
-<!--chapter:end:08.genai/llm_api.Rmd-->
+<!--chapter:end:08-genai/llm_api.Rmd-->
 
 
 # Appendix A: Responsible AI Checklist {#ethics-checklist}
@@ -13524,7 +13501,7 @@ As we conclude this book, use this checklist before deploying any model or analy
 
 > "With great power comes great responsibility." — *Stan Lee (and every Data Scientist)*
 
-<!--chapter:end:09.appendix/ethics_checklist.Rmd-->
+<!--chapter:end:09-appendix/ethics_checklist.Rmd-->
 
 ---
 output: html_document

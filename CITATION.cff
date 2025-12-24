@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+title: "Data Science with R: Data Analysis and Prediction Algorithms"
+message: "If you use this book, please cite it as below."
+type: book
+authors:
+  - family-names: "Paredes Inilupu"
+    given-names: "Daniel"
+    email: "dparedesi@uni.pe"
+keywords:
+  - R programming
+  - data science
+  - machine learning
+  - tidymodels
+  - statistics
+  - data visualization
+license: CC-BY-NC-SA-4.0
+version: "2.0.0"
+date-released: "2024-12-27"
+url: "https://bookdown.org/dparedesi/data-science-con-r/"
+repository-code: "https://github.com/dparedesi/Data-Science-with-R-book"

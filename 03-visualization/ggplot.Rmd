@@ -1,0 +1,514 @@
+# (PART) Data Visualization and Summarization{-}
+# Ggplot and dplyr
+
+We have learned so far how to perform simple and fast visualizations. Now that we have a notion of plots, we will use more complex and aesthetically better plots to present.
+
+To do this, we will use the `ggplot` object included in the `tidyverse` library (the `tidyverse` package includes a package called `ggplot2` which allows us to use the `ggplot` object). Previously we have already installed the `tidyverse` package, so now we only have to load the library:
+
+```{r eval=FALSE}
+library(tidyverse)
+```
+
+We are going to learn visualization techniques using our previous case/problem, so that we learn to use the `ggplot` object gradually with an already known case/problem.
+
+## Creating the ggplot object
+
+We will start by creating the `ggplot` object from the `murders` data using the pipeline operator `|>`. Let's also remember to have loaded the `murders` data from the `dslabs` library.
+
+```{r eval=TRUE}
+library(dslabs)
+data(murders)
+
+murders |>
+  ggplot()
+```
+
+This code only shows us an empty box. This is because we haven't specified which variables to take from the data frame nor what type of plot we want.
+
+To add each component of the plot we are creating we will use *layers*. The `ggplot` object allows us to add layer by layer which component of the plot we want to add. The symbol to add layers to the `ggplot` object is the `+` symbol.
+
+## Aesthetic mapping layer
+First we will focus on the basic aesthetics, that is: what goes on the _**x-axis**_ and what we put on the _**y-axis**_. To do this we will use the aesthetic function which in R is `aes()`. For example, let's add the `population` data on the _x-axis_ and the `total` data on the _y-axis_. We don't have to use the `$` accessor because the `aes` function takes the `murders` table before the pipeline as a reference.
+
+```{r eval=TRUE}
+
+murders |>
+  ggplot() +
+  aes(x = population, y = total)
+
+```
+
+Now we have a box with the axes marked, but still without any data inside the box.
+
+## Geoms layer
+Let's add one more layer that indicates what type of plot we want. To do this we will use the so-called **geoms**. There are different types of geoms. For example, a scatter plot is shown with points, therefore we will use the `geom_point()` function. For more detail we can see the documentation of `geom_point()` [here](https://ggplot2.tidyverse.org/reference/geom_point.html).
+
+```{r eval=TRUE}
+
+murders |>
+  ggplot() +
+  aes(x = population, y = total) +
+  geom_point()
+
+```
+
+In the same way, we can show lines connecting the data instead of points with the `geom_line()` function.
+
+```{r eval=TRUE}
+
+murders |>
+  ggplot() +
+  aes(x = population, y = total) +
+  geom_line()
+
+```
+
+Up to this point we have created the same scatter plot that we saw in the previous chapter. The power of ggplot lies in the ease of adding components. For example, if we want each point in the scatter plot to have the state name, or even better the abbreviation `abb`, we just have to add it as a `label` attribute inside `aes` and add the `geom_text()` layer.
+
+```{r eval=TRUE}
+
+murders |>
+  ggplot() +
+  aes(x = population, y = total, label=abb) +
+  geom_point() +
+  geom_text()
+
+```
+
+In this plot we can already see that the upper right point corresponds to **CA** which is the abbreviation for the state of **California**.
+
+### Tweaking aes and geoms
+We can tweak our plots in multiple ways by adding attributes to our functions.
+
+For example, if we want to identify which region each point belongs to (if it is from the US North, South, etc.) we would have to edit `aes()` and make `color` take into account the `region` variable as follows:
+
+```{r eval=TRUE}
+
+murders |>
+  ggplot() +
+  aes(x = population, y = total, label=abb, color=region) +
+  geom_point() +
+  geom_text()
+
+```
+
+Then, we can also edit the attributes of the `geoms`. For example, let's make the size of the points larger. To do this we edit inside `geom_points()`:
+
+```{r eval=TRUE}
+
+murders |>
+  ggplot() +
+  aes(x = population, y = total, label=abb, color=region) +
+  geom_point(size=3) +
+  geom_text()
+
+```
+
+Having increased the size of the points, we can no longer see the text of the state abbreviations well. We can nudge the text on the _x-axis_ or on the _y-axis_. Since we are talking about several million people, let's nudge the letters 1.5 million to the right.
+
+```{r eval=TRUE}
+
+murders |>
+  ggplot() +
+  aes(x = population, y = total, label=abb, color=region) +
+  geom_point(size=3) +
+  geom_text(nudge_x = 1500000)
+
+```
+
+To avoid entering such large numbers we can transform the population on the x-axis in the `aes()` function. Thus, once we express the data without counting the millions we would have to nudge the text only 1.5 points to the right:
+
+```{r eval=TRUE}
+
+murders |>
+  ggplot() +
+  aes(x = population/10^6, y = total, label=abb, color=region) +
+  geom_point(size=3) + 
+  geom_text(nudge_x = 1.5)
+
+```
+
+This transformation gives us the same result as before and the _x-axis_ is now easier to understand now that we can see the numbers.
+
+## Scale layer
+Visually we can still improve our plot further. We see several data points concentrated in lower values and only a few extremes. In those cases it is better to have a view scaling the axes using logarithms. To do this, we will use the layers `scale_x_continuous()` and `scale_y_continuous()`. For example, if we want to transform the scale to base 2 logarithm we would have to add layers, but also change the value of `nudge_x`, due to the scale change:
+
+```{r eval=TRUE}
+
+murders |>
+  ggplot() +
+  aes(x = population/10^6, y = total, label=abb, color=region) +
+  geom_point(size=3) +
+  geom_text(nudge_x = 0.23) +
+  scale_x_continuous(trans = "log2") +
+  scale_y_continuous(trans = "log2")
+
+```
+
+In the same way, we could do the transformation to base 10 logarithm:
+
+```{r eval=TRUE}
+
+murders |>
+  ggplot() +
+  aes(x = population/10^6, y = total, label=abb, color=region) +
+  geom_point(size=3) +
+  geom_text(nudge_x = 0.075) +
+  scale_x_continuous(trans = "log10") +
+  scale_y_continuous(trans = "log10")
+
+```
+
+The transformation of the scale to base 10 logarithm is widely used in statistics and R provides us with a faster function to proceed with this scale transformation, the function `scale_x_log10()`, which gives us the same result as the previous plot.
+
+```{r eval=TRUE}
+
+murders |>
+  ggplot() +
+  aes(x = population/10^6, y = total, label=abb, color=region) +
+  geom_point(size=3) +
+  geom_text(nudge_x = 0.075) +
+  scale_x_log10() +
+  scale_y_log10()
+
+```
+
+## Label, title and legend layer
+We can also [change the labels](https://www.datanovia.com/en/blog/ggplot-legend-title-position-and-labels/) (`label` in English) of the plot. So far on the _x-axis_ we see that **population/10^6** appears and we can change it with the function `xlab()`. In the same way we can change on the _y-axis_ using `ylab()`. To add a title to the plot we will use the function `ggtitle()`. To change the name of the legend we will use the function `scale_color_discrete()`.
+
+```{r eval=TRUE}
+
+murders |>
+  ggplot() +
+  aes(x = population/10^6, y = total, label=abb, color=region) +
+  geom_point(size=3) +
+  geom_text(nudge_x = 0.075) +
+  scale_x_log10() +
+  scale_y_log10() +
+  xlab("Population expressed in millions (logarithmic scale)") +
+  ylab("Total number of murders (logarithmic scale)") +
+  ggtitle("Gun murders in the US in 2010") +
+  scale_color_discrete(name = "Regions")
+
+```
+
+## Reference lines
+We can add reference lines, whether vertical with `geom_vline(xintercept = )`, horizontal with `geom_hline(yintercept = ...)` or diagonal with `geom_abline(intercept = )`, the latter asks us at what point it cuts the _y-axis_ and draws a line with a default slope of 1.
+
+For example, we could calculate the average of total murders and draw a horizontal reference line.
+
+```{r eval=TRUE}
+
+#Calculate the average of the total
+avg_total <- mean(murders$total)
+
+#And add the horizontal reference line
+murders |>
+  ggplot() +
+  aes(x = population/10^6, y = total, label=abb, color=region) +
+  geom_point(size=3) +
+  geom_text(nudge_x = 0.075) +
+  scale_x_log10() +
+  scale_y_log10() +
+  xlab("Population expressed in millions (logarithmic scale)") +
+  ylab("Total number of murders (logarithmic scale)") +
+  ggtitle("Gun murders in the US in 2010") +
+  scale_color_discrete(name = "Regions") +
+  geom_hline(yintercept = avg_total)
+
+```
+
+Or we could calculate the murder rate per million inhabitants throughout the US and draw a reference diagonal. In the case of the diagonal we have to express it in the same scale of the axis, therefore we have to convert it to `log10`.
+
+```{r eval=TRUE}
+
+# Calculate the average rate
+ratio <- sum(murders$total)/sum(murders$population) * 10^6
+
+# Calculate base 10 logarithm to obtain the intercept on the "y-axis"
+ratio_log10 <- log10(ratio)
+
+#And add the diagonal reference line
+murders |>
+  ggplot() +
+  aes(x = population/10^6, y = total, label=abb, color=region) +
+  geom_point(size=3) +
+  geom_text(nudge_x = 0.075) +
+  scale_x_log10() +
+  scale_y_log10() +
+  xlab("Population expressed in millions (logarithmic scale)") +
+  ylab("Total number of murders (logarithmic scale)") +
+  ggtitle("Gun murders in the US in 2010") +
+  scale_color_discrete(name = "Regions") +
+  geom_abline(intercept = ratio_log10)
+
+```
+
+We can improve this reference line by making it dashed and gray. To do this, simply edit the `geom_abline()` function as follows:
+
+```{r eval=TRUE}
+
+murders |>
+  ggplot() +
+  aes(x = population/10^6, y = total, label=abb, color=region) +
+  geom_point(size=3) +
+  geom_text(nudge_x = 0.075) +
+  scale_x_log10() +
+  scale_y_log10() +
+  xlab("Population expressed in millions (logarithmic scale)") +
+  ylab("Total number of murders (logarithmic scale)") +
+  ggtitle("Gun murders in the US in 2010") +
+  scale_color_discrete(name = "Regions") +
+  geom_abline(intercept = ratio_log10, lty = 2, color = "darkgrey")
+
+```
+
+## Changing the plot style
+The plot style using `ggplot()` can be easily changed. There are multiple themes we can use by loading the **ggthemes** library. We can, for example, use a widely used theme: the economist theme by adding the `theme_economist()` layer.
+
+```{r eval=TRUE}
+library(ggthemes)
+
+murders |>
+  ggplot() +
+  aes(x = population/10^6, y = total, label=abb, color=region) +
+  geom_point(size=3) +
+  geom_text(nudge_x = 0.075) +
+  scale_x_log10() +
+  scale_y_log10() +
+  xlab("Population expressed in millions (logarithmic scale)") +
+  ylab("Total number of murders (logarithmic scale)") +
+  ggtitle("Gun murders in the US in 2010") +
+  scale_color_discrete(name = "Regions") +
+  geom_abline(intercept = ratio_log10, lty = 2, color = "darkgrey") +
+  theme_economist()
+
+```
+
+We still see overlapping abbreviations. We can make the names repel each other using the `geom_text_repel()` function instead of `geom_text()` that we are currently using. To use this function we need to call the **ggrepel** library.
+
+```{r eval=TRUE}
+library(ggthemes)
+library(ggrepel)
+
+murders |>
+  ggplot() +
+  aes(x = population/10^6, y = total, label=abb, color=region) +
+  geom_point(size=3) +
+  geom_text_repel() +
+  scale_x_log10() +
+  scale_y_log10() +
+  xlab("Population expressed in millions (logarithmic scale)") +
+  ylab("Total number of murders (logarithmic scale)") +
+  ggtitle("Gun murders in the US in 2010") +
+  scale_color_discrete(name = "Regions") +
+  geom_abline(intercept = ratio_log10, lty = 2, color = "darkgrey") +
+  theme_economist()
+
+```
+
+This plot is visually much easier to understand and aesthetically much better than the default plot we created in previous chapters. We can explore more examples at this [link](https://rstudio-pubs-static.s3.amazonaws.com/228019_f0c39e05758a4a51b435b19dbd321c23.html).
+
+## Summarizing data with dplyr
+An important part of exploratory analysis is knowing how to summarize a variable into data that is easy to understand.
+
+The `tidyverse` package includes several packages, among them `dplyr` which makes it easier for us to summarize data from a variable. When we call the `tidyvere` library we are also calling all the functions of `dplyr`. To start using the functions of `dplyr` we are going to load the `heights` data frame which is in the `dslabs` library.
+
+```{r eval=FALSE}
+library(tidyverse)
+library(dslabs)
+```
+
+```{r eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE }
+library(tidyverse)
+library(dslabs)
+```
+
+First let's understand the `heights` data frame, we can apply pipeline and then use the `head()` function:
+
+```{r eval=TRUE}
+heights |> 
+  head()
+```
+
+This data frame corresponds to the list of attributes of students in a university, where the `height` column indicates the height of each one in inches.
+
+Finally, let's add the column `height_m` where we will transform the height to meters. Remember that a meter has 39.37 inches. Let's store the result in the variable `heights_m`.
+
+```{r eval=TRUE}
+heights_m <- heights |> 
+  mutate(height_m = height/39.37)
+
+heights_m |> 
+  head()
+```
+
+The fastest way to summarize a list of data is indicating what the average is and how much its [standard deviation](https://support.minitab.com/en-us/minitab/18/help-and-how-to/statistics/basic-statistics/supporting-topics/data-concepts/what-is-the-standard-deviation/)^[What is the standard deviation?] is. If we wanted to obtain the average we would use the `mean()` function and `sd()` to obtain the standard deviation. For example:
+
+```{r eval=TRUE}
+avg <- mean(heights_m$height_m)
+std_dev <- sd(heights_m$height_m)
+```
+
+However, this summarizes all students for us without considering whether men could be on average taller than women. If we wanted to calculate the average and std. dev. we would have to filter first, then store in a variable and finally calculate the average and standard deviation. This is impractical and for that `dplyr` grants us the `summarize()` function.
+
+### Summarize function
+We can use the `summarize` function using the pipeline operator. Thus, we could calculate the average and std. dev. in this way:
+
+```{r eval=TRUE}
+heights_m |>
+    filter(sex == "Male") |>
+    summarize(avg = mean(height_m), std_dev = sd(height_m))
+
+```
+
+This function also generates a data frame for us. We can validate it if we store the result in the variable `heights_m_male` and then report the _class_ of the variable:
+
+```{r eval=TRUE}
+heights_m_male <- heights_m |>
+    filter(sex == "Male") |>
+    summarize(avg = mean(height_m), std_dev = sd(height_m))
+
+class(heights_m_male)
+```
+
+We can report the data frame `heights_m_male` and use it for future analyzes accessing with the accessor `$`.
+
+```{r eval=TRUE}
+heights_m_male
+```
+
+We see that the average height of men is 1.76 meters with a standard deviation of 0.09 meters.
+
+In the same way, we can use `summarize` to calculate other functions such as:
+
+```{r eval=TRUE}
+heights_m |>
+    filter(sex == "Male") |>
+    summarize(min_val = min(height_m), max_val = max(height_m), median_val = median(height_m))
+```
+
+The tallest student measures more than 2.1 meters. Half of the male students measure more than 1.75 meters.
+
+However, we would now have to change to "Female" to calculate the data for women. We need to group and then summarize the data taking into account the grouping. For this there is the function `group_by()`
+
+### Group By Function
+This function allows us to create grouped data frames which makes it easier for us to summarize the data. We would only have to select based on what we want to group and no longer filter by sex. In this case the grouping would be based on the `sex` column:
+
+```{r eval=TRUE}
+heights_m |>
+    group_by(sex) |> 
+    summarize(avg = mean(height_m), std_dev = sd(height_m))
+```
+
+On average, women are shorter than men.
+
+If we now remember our danger case in the US. We can calculate the ratio of total crimes regarding the population and then compare it by region in this way:
+
+```{r eval=TRUE}
+murders |> 
+  mutate(ratio = total / population * 100000) |> 
+  group_by(region) |> 
+  summarize(avg_ratio = mean(ratio))
+```
+
+On average, the South region is more dangerous.
+
+`r if(params$hidden){"<!--"}`
+
+## Exercises
+This time we are going to perform exercises within the field of biology and for this we must remember the parts of a flower. This way we will give more sense to the problem:
+
+```{r, echo=FALSE, out.width = "150pt", fig.alt="Botanical diagram showing flower parts: sepal, petal, stamen, and pistil"}
+knitr::include_graphics(file.path(img_path, "03-visualization", "partes-de-flor.png"))
+```
+
+`r ne`. Load the `iris` data frame to your variable environment (`data(iris)`). In this data frame we find a list of characteristics of 150 flowers of 3 different types of species. Report a scatter plot of the sepal and petal length of the `iris` data frame.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+iris |> 
+  ggplot() +
+  aes(x = Sepal.Length, y = Petal.Length) +
+  geom_point()
+```
+</details>
+
+`r ne`. From the visualization created in the previous question, color the points according to the species to which it belongs.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+iris |> 
+  ggplot() +
+  aes(x = Sepal.Length, y = Petal.Length, color = Species) +
+  geom_point() 
+```
+</details>
+
+`r ne`. Modify your previous plot so that the following elements appear:
+
+* Chart title: Relationship between sepal and petal size of different flowers
+* X-axis label: Sepal length (in cm)
+* Y-axis label: Petal length (in cm)
+* Legend title: Species
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+iris |> 
+  ggplot() +
+  aes(x = Sepal.Length, y = Petal.Length, color = Species) +
+  geom_point() +
+  xlab("Sepal length (in cm)") +
+  ylab("Petal length (in cm)") +
+  ggtitle("Relationship between sepal and petal size of different flowers") +
+  scale_color_discrete(name = "Species")
+```
+</details>
+
+`r ne`. Calculate a summary of the ratio between sepal length and petal length. This summary should show a data frame with the average, standard deviation and median of the ratio of these two dimensions mentioned.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+iris |>
+  mutate(ratio = Sepal.Length / Petal.Length) |> 
+  summarize(promedio = mean(ratio), std_dev = sd(ratio), median_val = median(ratio))
+```
+</details>
+
+`r ne`. Make a summary of the ratio between sepal and petal length showing one row per species.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+iris |>
+  mutate(ratio = Sepal.Length / Petal.Length) |> 
+  group_by(Species) |> 
+  summarize(promedio = mean(ratio), std_dev = sd(ratio), median_val = median(ratio))
+```
+</details>
+
+`r if(params$hidden){"-->"}`

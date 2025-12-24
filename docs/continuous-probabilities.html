@@ -5,19 +5,19 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Continuous Probabilities | Data Science with R</title>
-  <meta name="description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  <meta name="description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Continuous Probabilities | Data Science with R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta property="og:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
+  <meta name="github-repo" content="dparedesi/Data-Science-with-R-book" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 8 Continuous Probabilities | Data Science with R" />
   
-  <meta name="twitter:description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  <meta name="twitter:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
   
 
 <meta name="author" content="Author: Mg. Daniel Paredes Inilupu" />
@@ -625,7 +625,7 @@ div.csl-indent {
 <span id="cb333-4"><a href="continuous-probabilities.html#cb333-4" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb333-5"><a href="continuous-probabilities.html#cb333-5" tabindex="-1"></a>  <span class="fu">aes</span>(sex, height_m, <span class="at">color =</span> height_m) <span class="sc">+</span></span>
 <span id="cb333-6"><a href="continuous-probabilities.html#cb333-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="fu">position_jitterdodge</span>())</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-433-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-433-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>When graphing the data distribution, we intuitively realize that it does not make sense to calculate the proportion of people who measure exactly 1.73m because it would also serve us if a person measures 1.731, 1.729, or any close value that is not exactly 1.73, whether due to how it was measured or any other type of error.</p>
 <p>It makes more sense to analyze the data by intervals, as can be seen in this histogram that groups by intervals of 0.05 meters = 5 cm.</p>
 <div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="continuous-probabilities.html#cb334-1" tabindex="-1"></a>heights <span class="sc">|&gt;</span> </span>
@@ -634,7 +634,7 @@ div.csl-indent {
 <span id="cb334-4"><a href="continuous-probabilities.html#cb334-4" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb334-5"><a href="continuous-probabilities.html#cb334-5" tabindex="-1"></a>  <span class="fu">aes</span>(height_m) <span class="sc">+</span></span>
 <span id="cb334-6"><a href="continuous-probabilities.html#cb334-6" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.05</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-434-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-434-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>It is much more practical to define a function that operates on intervals instead of unique values. For this we use the Cumulative Distribution Function (CDF).</p>
 <div id="empirical-distribution" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> Empirical Distribution<a href="continuous-probabilities.html#empirical-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -692,7 +692,7 @@ div.csl-indent {
 <span id="cb343-5"><a href="continuous-probabilities.html#cb343-5" tabindex="-1"></a>  <span class="fu">aes</span>(height_m) <span class="sc">+</span></span>
 <span id="cb343-6"><a href="continuous-probabilities.html#cb343-6" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.05</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
 <span id="cb343-7"><a href="continuous-probabilities.html#cb343-7" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..count..<span class="sc">*</span><span class="fl">0.05</span>), <span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lty =</span> <span class="dv">5</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-443-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-443-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>We see that the distribution has an approximately symmetric, bell shape. This distribution could be modeled using a <a href="https://support.minitab.com/en-us/minitab/18/help-and-how-to/statistics/basic-statistics/supporting-topics/normality/what-is-the-normal-distribution/">normal distribution</a> (also called Gaussian distribution, Gauss curve, or Gauss bell). To do this, in R we will use the function <code>pnorm(x, average, std_dev)</code> to estimate the probability but using a normal distribution function with an average <code>promedio</code> and a standard deviation <code>desv_est</code>. In this way, we can estimate what is the probability that if we choose a value at random it is less than or equal to <code>x</code>.</p>
 <p>For example, let’s calculate again the probability that when choosing a man at random he measures 1.65m or less, we could use the same FDA and now the <code>pnorm()</code> function.</p>
 <div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="continuous-probabilities.html#cb344-1" tabindex="-1"></a><span class="co"># Using the empirical distribution (real data):</span></span>
@@ -722,7 +722,7 @@ div.csl-indent {
 <span id="cb345-12"><a href="continuous-probabilities.html#cb345-12" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">ifelse</span>(sec <span class="sc">&lt;</span> <span class="fl">1.9</span>, sec, <span class="dv">0</span>)), <span class="at">fill =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
 <span id="cb345-13"><a href="continuous-probabilities.html#cb345-13" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">min</span>(sec), <span class="fu">max</span>(sec)) <span class="sc">+</span></span>
 <span id="cb345-14"><a href="continuous-probabilities.html#cb345-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">&quot;P(x &lt;= 1.9) =&quot;</span>, probability))</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-445-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-445-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>In the same way, we could estimate the probability that a person chosen at random measures more than 1.8m.</p>
 <div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="continuous-probabilities.html#cb346-1" tabindex="-1"></a><span class="co"># Using the empirical distribution (real data):</span></span>
 <span id="cb346-2"><a href="continuous-probabilities.html#cb346-2" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span> <span class="fu">FDA</span>(<span class="fl">1.8</span>)</span>
@@ -750,7 +750,7 @@ div.csl-indent {
 <span id="cb347-12"><a href="continuous-probabilities.html#cb347-12" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">ifelse</span>(sec <span class="sc">&gt;</span> <span class="fl">1.8</span>, sec, <span class="dv">0</span>)), <span class="at">fill =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
 <span id="cb347-13"><a href="continuous-probabilities.html#cb347-13" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">min</span>(sec), <span class="fu">max</span>(sec)) <span class="sc">+</span></span>
 <span id="cb347-14"><a href="continuous-probabilities.html#cb347-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">&quot;P(x &gt; 1.8) =&quot;</span>, probability))</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-447-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-447-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Finally, let’s recalculate the probability that when choosing someone at random they measure more than 1.6m, but not more than 1.95m, we would have.</p>
 <div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="continuous-probabilities.html#cb348-1" tabindex="-1"></a><span class="co"># Using the empirical distribution (real data):</span></span>
 <span id="cb348-2"><a href="continuous-probabilities.html#cb348-2" tabindex="-1"></a>prob_1 <span class="ot">&lt;-</span> <span class="fu">FDA</span>(<span class="fl">1.95</span>)</span>
@@ -780,7 +780,7 @@ div.csl-indent {
 <span id="cb349-12"><a href="continuous-probabilities.html#cb349-12" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">ifelse</span>(sec <span class="sc">&gt;</span> <span class="fl">1.6</span> <span class="sc">&amp;</span> sec <span class="sc">&lt;=</span> <span class="fl">1.95</span>, sec, <span class="dv">0</span>)), <span class="at">fill =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
 <span id="cb349-13"><a href="continuous-probabilities.html#cb349-13" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">min</span>(sec), <span class="fu">max</span>(sec)) <span class="sc">+</span></span>
 <span id="cb349-14"><a href="continuous-probabilities.html#cb349-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">&quot;P(1.6 &lt; x &lt;= 1.95) =&quot;</span>, probability))</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-449-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-449-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>We can plot a Q-Q plot, which is a scatter plot created by plotting two sets of quantiles against each other. The function <code>stat_qq(x)</code> creates a normal Q-Q plot. This function plots the data in sorted order against the quantiles of a standard Normal distribution. The function <code>stat_qq_line()</code> adds a reference line. Although understanding this requires advanced statistics, we can interpret it that if when using this function the correlation is very close to the line then our data is very likely to follow a normal distribution.</p>
 <div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="continuous-probabilities.html#cb350-1" tabindex="-1"></a>heights <span class="sc">|&gt;</span> </span>
 <span id="cb350-2"><a href="continuous-probabilities.html#cb350-2" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">&quot;Male&quot;</span>) <span class="sc">|&gt;</span></span>
@@ -789,7 +789,7 @@ div.csl-indent {
 <span id="cb350-5"><a href="continuous-probabilities.html#cb350-5" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">sample =</span> height_m) <span class="sc">+</span> </span>
 <span id="cb350-6"><a href="continuous-probabilities.html#cb350-6" tabindex="-1"></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
 <span id="cb350-7"><a href="continuous-probabilities.html#cb350-7" tabindex="-1"></a>  <span class="fu">stat_qq_line</span>()</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-450-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-450-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>The points seem to fall on a straight line. This gives us a good indication that assuming our height data comes from a population that is normally distributed is reasonable. Observe that the <em>y-axis</em> plots the empirical quantiles and <em>x-axis</em> plots the theoretical quantiles. The latter are the quantiles of the standard Normal distribution with mean 0 and standard deviation 1.</p>
 <p>Visual inspection is not always reliable. It is possible to use a significance test that compares the sample distribution with a normal one to determine whether or not the data shows a serious deviation from normality. The most used test for these tests is the Shapiro-Wilk normality test.</p>
 <p>For this we will use the function <code>shapiro.test()</code>, which performs a normality test and gives us a <a href="https://www.investopedia.com/terms/p/p-value.asp">p-value</a>^(<a href="https://www.investopedia.com/terms/p/p-value.asp" class="uri">https://www.investopedia.com/terms/p/p-value.asp</a>). It is based on the correlation between the data and the corresponding normal scores. If the <code>p-value &gt; 0.05</code> then the data distribution is not significantly different from the normal distribution. In other words, we can assume normality.</p>
@@ -882,7 +882,7 @@ Solution
 <span id="cb357-8"><a href="continuous-probabilities.html#cb357-8" tabindex="-1"></a>                <span class="fu">round</span>(<span class="fu">sd</span>(random_normal), <span class="dv">3</span>)</span>
 <span id="cb357-9"><a href="continuous-probabilities.html#cb357-9" tabindex="-1"></a>                )</span>
 <span id="cb357-10"><a href="continuous-probabilities.html#cb357-10" tabindex="-1"></a><span class="fu">mtext</span>(result,<span class="dv">3</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-461-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-461-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>We can execute the code again to verify that it generates another distribution for us:</p>
 <div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="continuous-probabilities.html#cb358-1" tabindex="-1"></a><span class="co"># Creation of the normally distributed random vector:</span></span>
 <span id="cb358-2"><a href="continuous-probabilities.html#cb358-2" tabindex="-1"></a>random_normal <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(length_val, avg, std_dev)</span>
@@ -894,7 +894,7 @@ Solution
 <span id="cb358-8"><a href="continuous-probabilities.html#cb358-8" tabindex="-1"></a>                <span class="fu">round</span>(<span class="fu">sd</span>(random_normal), <span class="dv">3</span>)</span>
 <span id="cb358-9"><a href="continuous-probabilities.html#cb358-9" tabindex="-1"></a>                )</span>
 <span id="cb358-10"><a href="continuous-probabilities.html#cb358-10" tabindex="-1"></a><span class="fu">mtext</span>(result,<span class="dv">3</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-462-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-462-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>We can repeat this experiment of obtaining <code>n</code> random data that have approximately the same <code>average</code> and the same <code>std_dev</code> about 10 thousand times to calculate the proportion of times that a man measures more than 1.8m.</p>
 <div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="continuous-probabilities.html#cb359-1" tabindex="-1"></a>n_times <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
 <span id="cb359-2"><a href="continuous-probabilities.html#cb359-2" tabindex="-1"></a></span>
@@ -904,7 +904,7 @@ Solution
 <span id="cb359-6"><a href="continuous-probabilities.html#cb359-6" tabindex="-1"></a>})</span>
 <span id="cb359-7"><a href="continuous-probabilities.html#cb359-7" tabindex="-1"></a></span>
 <span id="cb359-8"><a href="continuous-probabilities.html#cb359-8" tabindex="-1"></a><span class="fu">mean</span>(simulation_results)</span>
-<span id="cb359-9"><a href="continuous-probabilities.html#cb359-9" tabindex="-1"></a><span class="co">#&gt; [1] 0.3339383</span></span></code></pre></div>
+<span id="cb359-9"><a href="continuous-probabilities.html#cb359-9" tabindex="-1"></a><span class="co">#&gt; [1] 0.3336372</span></span></code></pre></div>
 <p>Thus, we have obtained practically the same value that we achieved in the previous section, but this time estimating using the Monte Carlo simulation.</p>
 </div>
 <div id="exercises-11" class="section level2 hasAnchor" number="8.5">

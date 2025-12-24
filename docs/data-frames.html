@@ -5,19 +5,19 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Data Frames | Data Science with R</title>
-  <meta name="description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  <meta name="description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Data Frames | Data Science with R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta property="og:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
+  <meta name="github-repo" content="dparedesi/Data-Science-with-R-book" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 3 Data Frames | Data Science with R" />
   
-  <meta name="twitter:description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  <meta name="twitter:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
   
 
 <meta name="author" content="Author: Mg. Daniel Paredes Inilupu" />
@@ -855,7 +855,7 @@ div.csl-indent {
 <span id="cb110-4"><a href="data-frames.html#cb110-4" tabindex="-1"></a><span class="co">#&gt;             1             1             1             1</span></span></code></pre></div>
 <p>We can also use the <code>hist()</code> function to create a histogram of a numeric column, such as the population column in the <code>df_states</code> data frame.</p>
 <div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="data-frames.html#cb111-1" tabindex="-1"></a><span class="fu">hist</span>(df_states<span class="sc">$</span>population)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-153-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-153-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>These are just some ideas of how we can explore our data frames. As you become familiar with R, you will discover new functions and techniques for analyzing and visualizing your data.</p>
 </div>
 </div>
@@ -1247,13 +1247,13 @@ So, finally we can know what state options we have to be able to move and solve 
 <span id="cb138-6"><a href="data-frames.html#cb138-6" tabindex="-1"></a></span>
 <span id="cb138-7"><a href="data-frames.html#cb138-7" tabindex="-1"></a><span class="co"># With this code we create the scatter plot</span></span>
 <span id="cb138-8"><a href="data-frames.html#cb138-8" tabindex="-1"></a><span class="fu">plot</span>(x_axis, y_axis)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-185-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-185-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>We can see a correlation between population and number of cases. Let’s transform the <code>x_axis</code> dividing by one million (<span class="math inline">\({10}^6\)</span>). Thus we will have the x axis expressed in millions.</p>
 <div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="data-frames.html#cb139-1" tabindex="-1"></a>x_axis <span class="ot">&lt;-</span> murders<span class="sc">$</span>population<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span></span>
 <span id="cb139-2"><a href="data-frames.html#cb139-2" tabindex="-1"></a>y_axis <span class="ot">&lt;-</span> murders<span class="sc">$</span>total</span>
 <span id="cb139-3"><a href="data-frames.html#cb139-3" tabindex="-1"></a></span>
 <span id="cb139-4"><a href="data-frames.html#cb139-4" tabindex="-1"></a><span class="fu">plot</span>(x_axis, y_axis)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-186-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-186-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="histograms" class="section level3 hasAnchor" number="3.6.2">
 <h3><span class="header-section-number">3.6.2</span> Histograms<a href="data-frames.html#histograms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1264,14 +1264,14 @@ So, finally we can know what state options we have to be able to move and solve 
 <span id="cb140-4"><a href="data-frames.html#cb140-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ratio =</span> total<span class="sc">/</span>population<span class="sc">*</span><span class="dv">100000</span>)</span>
 <span id="cb140-5"><a href="data-frames.html#cb140-5" tabindex="-1"></a></span>
 <span id="cb140-6"><a href="data-frames.html#cb140-6" tabindex="-1"></a><span class="fu">hist</span>(murders<span class="sc">$</span>ratio)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-187-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-187-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>The ease R gives us to create graphs will save us time for analysis. From here we can quickly see that most states have a <code>ratio &lt; 5</code>.</p>
 </div>
 <div id="box-plot" class="section level3 hasAnchor" number="3.6.3">
 <h3><span class="header-section-number">3.6.3</span> Box plot<a href="data-frames.html#box-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Finally, R allows us to create box plots easily with the <code>boxplot</code> function. So, if we wanted to analyze the distribution of <code>ratio</code> we would use the following code:</p>
 <div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="data-frames.html#cb141-1" tabindex="-1"></a><span class="fu">boxplot</span>(murders<span class="sc">$</span>ratio)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-188-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-188-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="data-interpretation" class="section level2 hasAnchor" number="3.7">
@@ -1358,7 +1358,7 @@ So, finally we can know what state options we have to be able to move and solve 
 <h3><span class="header-section-number">3.7.2</span> Interpretation of box plot<a href="data-frames.html#interpretation-of-box-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We are now ready to create a box plot with total murders and interpret results.</p>
 <div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="data-frames.html#cb152-1" tabindex="-1"></a><span class="fu">boxplot</span>(murders<span class="sc">$</span>total)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-199-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-199-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>The box starts at value 24.5 (first quartile) and ends at value 268 (third quartile). The thick line represents the median (second quartile), 97 in our example.</p>
 <p>Between the first quartile and third quartile (between 24.5 and 97 for our example) we will find 50% of the data, also called interquartile range or <code>IQR</code>.</p>
 <p>Outside the box we see a vertical line upwards and another downwards, showing the range of our data. Outside those lines we see dots which are atypical data very far from the mean, known as <strong>outliers</strong>.</p>
@@ -1384,17 +1384,17 @@ So, finally we can know what state options we have to be able to move and solve 
 <span id="cb154-2"><a href="data-frames.html#cb154-2" tabindex="-1"></a>tot_log10 <span class="ot">&lt;-</span> <span class="fu">log10</span>(murders<span class="sc">$</span>total)</span>
 <span id="cb154-3"><a href="data-frames.html#cb154-3" tabindex="-1"></a></span>
 <span id="cb154-4"><a href="data-frames.html#cb154-4" tabindex="-1"></a><span class="fu">plot</span>(pop_log10, tot_log10)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-201-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-201-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Create a histogram of population in millions (divided by <span class="math inline">\({10}^6\)</span>).</li>
 </ol>
 <div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="data-frames.html#cb155-1" tabindex="-1"></a><span class="fu">hist</span>(murders<span class="sc">$</span>population<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-202-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-202-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Create a box plot of population.</li>
 </ol>
 <div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="data-frames.html#cb156-1" tabindex="-1"></a><span class="fu">boxplot</span>(murders<span class="sc">$</span>population)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-203-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-203-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="exercises-3" class="section level2 hasAnchor" number="3.8">
@@ -1548,7 +1548,7 @@ Solution
 <ol start="38" style="list-style-type: decimal">
 <li>Visually analyze the following chart describing total murder distribution by regions. Just by visualizing it, could you point out which region has the smallest data range, ignoring outliers? Which region has the highest median?</li>
 </ol>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-221-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-221-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <details>
 <summary type="button">
 Solution

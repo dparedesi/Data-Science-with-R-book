@@ -5,19 +5,19 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 12 Supervised Learning | Data Science with R</title>
-  <meta name="description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  <meta name="description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 12 Supervised Learning | Data Science with R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta property="og:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
+  <meta name="github-repo" content="dparedesi/Data-Science-with-R-book" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 12 Supervised Learning | Data Science with R" />
   
-  <meta name="twitter:description" content="Theory and practice to enter the world of data analysis and predictions with R, by Daniel Paredes" />
+  <meta name="twitter:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
   
 
 <meta name="author" content="Author: Mg. Daniel Paredes Inilupu" />
@@ -634,11 +634,11 @@ div.csl-indent {
 <div id="two-variables-as-input" class="section level3 hasAnchor" number="12.2.1">
 <h3><span class="header-section-number">12.2.1</span> Two variables as input<a href="supervised-learning.html#two-variables-as-input" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s start by understanding it visually. Imagine that we have two variables as <em>input</em> and as <em>output</em> it gives us whether it is Red Class or Blue Class. This data is our training data.</p>
-<p><img src="img/kNN-train.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="_assets/images/06-machine-learning/kNN-train.png" alt="Training data points on a 2D plane with red and blue class labels" width="80%" style="display: block; margin: auto;" /></p>
 <p>Now that we have our training data, we will start using the test data. As we want to predict the class, the <em>output</em>, we will see how one of these data points would look visually and paint it yellow. Next, we calculate the distance between this point and the other data points.</p>
-<p><img src="img/kNN-test.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="_assets/images/06-machine-learning/kNN-test.png" alt="Test point shown in yellow with distance lines to nearby training data points" width="80%" style="display: block; margin: auto;" /></p>
 <p>We have traced only some distances, but we could do it with all of them. For this example, we will take the k = 3 nearest neighbors.</p>
-<p><img src="img/kNN-classify.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="_assets/images/06-machine-learning/kNN-classify.png" alt="k-NN classification showing 3 nearest neighbors (2 red, 1 blue), classifying test point as red" width="80%" style="display: block; margin: auto;" /></p>
 <p>We notice that if we focus only on the 3 nearest neighbors, there are more reds than blues, so our prediction will be that this point must be Class R (red).</p>
 <p>Calculating the distance on a Cartesian plane is relatively simple, we only have variables as input: on the x-axis and y-axis. However, the same logic can be taken to more variables.</p>
 </div>
@@ -736,7 +736,7 @@ div.csl-indent {
 <span id="cb543-14"><a href="supervised-learning.html#cb543-14" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb543-15"><a href="supervised-learning.html#cb543-15" tabindex="-1"></a>  <span class="fu">aes</span>(k, precision) <span class="sc">+</span></span>
 <span id="cb543-16"><a href="supervised-learning.html#cb543-16" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-702-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-702-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>As we can see, for this case, starting from a certain number of nearest neighbors, the success rate of our algorithm begins to reduce. It will depend on each case to choose the best “k” for our model.</p>
 <p>We have thus built our first machine learning model.</p>
 </div>
@@ -755,33 +755,27 @@ div.csl-indent {
 </ul>
 <div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="supervised-learning.html#cb544-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tidymodels&#39;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="supervised-learning.html#cb545-1" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb545-2"><a href="supervised-learning.html#cb545-2" tabindex="-1"></a><span class="co">#&gt; ── Attaching packages ─────────── tidymodels 1.4.1 ──</span></span>
+<span id="cb545-2"><a href="supervised-learning.html#cb545-2" tabindex="-1"></a><span class="co">#&gt; ── Attaching packages ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidymodels 1.4.1 ──</span></span>
 <span id="cb545-3"><a href="supervised-learning.html#cb545-3" tabindex="-1"></a><span class="co">#&gt; ✔ broom        1.0.11     ✔ tailor       0.1.0 </span></span>
 <span id="cb545-4"><a href="supervised-learning.html#cb545-4" tabindex="-1"></a><span class="co">#&gt; ✔ dials        1.4.2      ✔ tune         2.0.1 </span></span>
 <span id="cb545-5"><a href="supervised-learning.html#cb545-5" tabindex="-1"></a><span class="co">#&gt; ✔ infer        1.1.0      ✔ workflows    1.3.0 </span></span>
 <span id="cb545-6"><a href="supervised-learning.html#cb545-6" tabindex="-1"></a><span class="co">#&gt; ✔ parsnip      1.4.0      ✔ workflowsets 1.1.1 </span></span>
 <span id="cb545-7"><a href="supervised-learning.html#cb545-7" tabindex="-1"></a><span class="co">#&gt; ✔ recipes      1.3.1      ✔ yardstick    1.3.2 </span></span>
 <span id="cb545-8"><a href="supervised-learning.html#cb545-8" tabindex="-1"></a><span class="co">#&gt; ✔ rsample      1.3.1</span></span>
-<span id="cb545-9"><a href="supervised-learning.html#cb545-9" tabindex="-1"></a><span class="co">#&gt; ── Conflicts ────────────── tidymodels_conflicts() ──</span></span>
-<span id="cb545-10"><a href="supervised-learning.html#cb545-10" tabindex="-1"></a><span class="co">#&gt; ✖ NLP::annotate()          masks ggplot2::annotate()</span></span>
-<span id="cb545-11"><a href="supervised-learning.html#cb545-11" tabindex="-1"></a><span class="co">#&gt; ✖ rsample::calibration()   masks caret::calibration()</span></span>
-<span id="cb545-12"><a href="supervised-learning.html#cb545-12" tabindex="-1"></a><span class="co">#&gt; ✖ scales::discard()        masks purrr::discard()</span></span>
-<span id="cb545-13"><a href="supervised-learning.html#cb545-13" tabindex="-1"></a><span class="co">#&gt; ✖ Matrix::expand()         masks tidyr::expand()</span></span>
-<span id="cb545-14"><a href="supervised-learning.html#cb545-14" tabindex="-1"></a><span class="co">#&gt; ✖ dplyr::filter()          masks stats::filter()</span></span>
-<span id="cb545-15"><a href="supervised-learning.html#cb545-15" tabindex="-1"></a><span class="co">#&gt; ✖ recipes::fixed()         masks stringr::fixed()</span></span>
-<span id="cb545-16"><a href="supervised-learning.html#cb545-16" tabindex="-1"></a><span class="co">#&gt; ✖ dplyr::lag()             masks stats::lag()</span></span>
-<span id="cb545-17"><a href="supervised-learning.html#cb545-17" tabindex="-1"></a><span class="co">#&gt; ✖ caret::lift()            masks purrr::lift()</span></span>
-<span id="cb545-18"><a href="supervised-learning.html#cb545-18" tabindex="-1"></a><span class="co">#&gt; ✖ Matrix::pack()           masks tidyr::pack()</span></span>
-<span id="cb545-19"><a href="supervised-learning.html#cb545-19" tabindex="-1"></a><span class="co">#&gt; ✖ rsample::permutations()  masks gtools::permutations()</span></span>
-<span id="cb545-20"><a href="supervised-learning.html#cb545-20" tabindex="-1"></a><span class="co">#&gt; ✖ yardstick::precision()   masks caret::precision()</span></span>
-<span id="cb545-21"><a href="supervised-learning.html#cb545-21" tabindex="-1"></a><span class="co">#&gt; ✖ dials::prune()           masks dendextend::prune()</span></span>
-<span id="cb545-22"><a href="supervised-learning.html#cb545-22" tabindex="-1"></a><span class="co">#&gt; ✖ yardstick::recall()      masks caret::recall()</span></span>
-<span id="cb545-23"><a href="supervised-learning.html#cb545-23" tabindex="-1"></a><span class="co">#&gt; ✖ yardstick::sensitivity() masks caret::sensitivity()</span></span>
-<span id="cb545-24"><a href="supervised-learning.html#cb545-24" tabindex="-1"></a><span class="co">#&gt; ✖ yardstick::spec()        masks readr::spec()</span></span>
-<span id="cb545-25"><a href="supervised-learning.html#cb545-25" tabindex="-1"></a><span class="co">#&gt; ✖ yardstick::specificity() masks caret::specificity()</span></span>
-<span id="cb545-26"><a href="supervised-learning.html#cb545-26" tabindex="-1"></a><span class="co">#&gt; ✖ recipes::step()          masks stats::step()</span></span>
-<span id="cb545-27"><a href="supervised-learning.html#cb545-27" tabindex="-1"></a><span class="co">#&gt; ✖ Matrix::unpack()         masks tidyr::unpack()</span></span>
-<span id="cb545-28"><a href="supervised-learning.html#cb545-28" tabindex="-1"></a><span class="co">#&gt; ✖ recipes::update()        masks Matrix::update(), stats::update()</span></span></code></pre></div>
+<span id="cb545-9"><a href="supervised-learning.html#cb545-9" tabindex="-1"></a><span class="co">#&gt; ── Conflicts ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidymodels_conflicts() ──</span></span>
+<span id="cb545-10"><a href="supervised-learning.html#cb545-10" tabindex="-1"></a><span class="co">#&gt; ✖ NLP::annotate()         masks ggplot2::annotate()</span></span>
+<span id="cb545-11"><a href="supervised-learning.html#cb545-11" tabindex="-1"></a><span class="co">#&gt; ✖ scales::discard()       masks purrr::discard()</span></span>
+<span id="cb545-12"><a href="supervised-learning.html#cb545-12" tabindex="-1"></a><span class="co">#&gt; ✖ Matrix::expand()        masks tidyr::expand()</span></span>
+<span id="cb545-13"><a href="supervised-learning.html#cb545-13" tabindex="-1"></a><span class="co">#&gt; ✖ dplyr::filter()         masks stats::filter()</span></span>
+<span id="cb545-14"><a href="supervised-learning.html#cb545-14" tabindex="-1"></a><span class="co">#&gt; ✖ recipes::fixed()        masks stringr::fixed()</span></span>
+<span id="cb545-15"><a href="supervised-learning.html#cb545-15" tabindex="-1"></a><span class="co">#&gt; ✖ dplyr::lag()            masks stats::lag()</span></span>
+<span id="cb545-16"><a href="supervised-learning.html#cb545-16" tabindex="-1"></a><span class="co">#&gt; ✖ Matrix::pack()          masks tidyr::pack()</span></span>
+<span id="cb545-17"><a href="supervised-learning.html#cb545-17" tabindex="-1"></a><span class="co">#&gt; ✖ rsample::permutations() masks gtools::permutations()</span></span>
+<span id="cb545-18"><a href="supervised-learning.html#cb545-18" tabindex="-1"></a><span class="co">#&gt; ✖ dials::prune()          masks dendextend::prune()</span></span>
+<span id="cb545-19"><a href="supervised-learning.html#cb545-19" tabindex="-1"></a><span class="co">#&gt; ✖ yardstick::spec()       masks readr::spec()</span></span>
+<span id="cb545-20"><a href="supervised-learning.html#cb545-20" tabindex="-1"></a><span class="co">#&gt; ✖ recipes::step()         masks stats::step()</span></span>
+<span id="cb545-21"><a href="supervised-learning.html#cb545-21" tabindex="-1"></a><span class="co">#&gt; ✖ Matrix::unpack()        masks tidyr::unpack()</span></span>
+<span id="cb545-22"><a href="supervised-learning.html#cb545-22" tabindex="-1"></a><span class="co">#&gt; ✖ recipes::update()       masks Matrix::update(), stats::update()</span></span></code></pre></div>
 <p>We are going to do another example with k-nearest neighbors, but this time using the functions of the Caret library. The data for this example will be obtained from the <code>ISLR</code> library, which contains the daily percentage returns for the S&amp;P 500 stock index between 2001 and 2005. This data frame has 8 columns that we will use as <em>input</em> and the last column that has two classes (whether the index goes up or down) that we will use as <em>output</em> (See <code>?Smarket</code>).</p>
 <div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="supervised-learning.html#cb546-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ISLR&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="supervised-learning.html#cb547-1" tabindex="-1"></a><span class="fu">library</span>(ISLR)</span>
@@ -851,7 +845,7 @@ div.csl-indent {
 <span id="cb550-4"><a href="supervised-learning.html#cb550-4" tabindex="-1"></a></span>
 <span id="cb550-5"><a href="supervised-learning.html#cb550-5" tabindex="-1"></a>knn_recipe</span>
 <span id="cb550-6"><a href="supervised-learning.html#cb550-6" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb550-7"><a href="supervised-learning.html#cb550-7" tabindex="-1"></a><span class="co">#&gt; ── Recipe ───────────────────────────────────────────</span></span>
+<span id="cb550-7"><a href="supervised-learning.html#cb550-7" tabindex="-1"></a><span class="co">#&gt; ── Recipe ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
 <span id="cb550-8"><a href="supervised-learning.html#cb550-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb550-9"><a href="supervised-learning.html#cb550-9" tabindex="-1"></a><span class="co">#&gt; ── Inputs</span></span>
 <span id="cb550-10"><a href="supervised-learning.html#cb550-10" tabindex="-1"></a><span class="co">#&gt; Number of variables by role</span></span>
@@ -859,8 +853,7 @@ div.csl-indent {
 <span id="cb550-12"><a href="supervised-learning.html#cb550-12" tabindex="-1"></a><span class="co">#&gt; predictor: 8</span></span>
 <span id="cb550-13"><a href="supervised-learning.html#cb550-13" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb550-14"><a href="supervised-learning.html#cb550-14" tabindex="-1"></a><span class="co">#&gt; ── Operations</span></span>
-<span id="cb550-15"><a href="supervised-learning.html#cb550-15" tabindex="-1"></a><span class="co">#&gt; • Centering and scaling for:</span></span>
-<span id="cb550-16"><a href="supervised-learning.html#cb550-16" tabindex="-1"></a><span class="co">#&gt;   all_numeric_predictors()</span></span></code></pre></div>
+<span id="cb550-15"><a href="supervised-learning.html#cb550-15" tabindex="-1"></a><span class="co">#&gt; • Centering and scaling for: all_numeric_predictors()</span></span></code></pre></div>
 </div>
 <div id="creating-a-workflow" class="section level3 hasAnchor" number="12.3.4">
 <h3><span class="header-section-number">12.3.4</span> Creating a Workflow<a href="supervised-learning.html#creating-a-workflow" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -871,16 +864,16 @@ div.csl-indent {
 <span id="cb551-4"><a href="supervised-learning.html#cb551-4" tabindex="-1"></a>  <span class="fu">add_model</span>(knn_spec)</span>
 <span id="cb551-5"><a href="supervised-learning.html#cb551-5" tabindex="-1"></a></span>
 <span id="cb551-6"><a href="supervised-learning.html#cb551-6" tabindex="-1"></a>knn_workflow</span>
-<span id="cb551-7"><a href="supervised-learning.html#cb551-7" tabindex="-1"></a><span class="co">#&gt; ══ Workflow ═════════════════════════════════════════</span></span>
+<span id="cb551-7"><a href="supervised-learning.html#cb551-7" tabindex="-1"></a><span class="co">#&gt; ══ Workflow ═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════</span></span>
 <span id="cb551-8"><a href="supervised-learning.html#cb551-8" tabindex="-1"></a><span class="co">#&gt; Preprocessor: Recipe</span></span>
 <span id="cb551-9"><a href="supervised-learning.html#cb551-9" tabindex="-1"></a><span class="co">#&gt; Model: nearest_neighbor()</span></span>
 <span id="cb551-10"><a href="supervised-learning.html#cb551-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb551-11"><a href="supervised-learning.html#cb551-11" tabindex="-1"></a><span class="co">#&gt; ── Preprocessor ─────────────────────────────────────</span></span>
+<span id="cb551-11"><a href="supervised-learning.html#cb551-11" tabindex="-1"></a><span class="co">#&gt; ── Preprocessor ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
 <span id="cb551-12"><a href="supervised-learning.html#cb551-12" tabindex="-1"></a><span class="co">#&gt; 1 Recipe Step</span></span>
 <span id="cb551-13"><a href="supervised-learning.html#cb551-13" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb551-14"><a href="supervised-learning.html#cb551-14" tabindex="-1"></a><span class="co">#&gt; • step_normalize()</span></span>
 <span id="cb551-15"><a href="supervised-learning.html#cb551-15" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb551-16"><a href="supervised-learning.html#cb551-16" tabindex="-1"></a><span class="co">#&gt; ── Model ────────────────────────────────────────────</span></span>
+<span id="cb551-16"><a href="supervised-learning.html#cb551-16" tabindex="-1"></a><span class="co">#&gt; ── Model ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
 <span id="cb551-17"><a href="supervised-learning.html#cb551-17" tabindex="-1"></a><span class="co">#&gt; K-Nearest Neighbor Model Specification (classification)</span></span>
 <span id="cb551-18"><a href="supervised-learning.html#cb551-18" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb551-19"><a href="supervised-learning.html#cb551-19" tabindex="-1"></a><span class="co">#&gt; Main Arguments:</span></span>
@@ -905,26 +898,21 @@ div.csl-indent {
 <span id="cb552-12"><a href="supervised-learning.html#cb552-12" tabindex="-1"></a>  <span class="at">resamples =</span> folds,</span>
 <span id="cb552-13"><a href="supervised-learning.html#cb552-13" tabindex="-1"></a>  <span class="at">grid =</span> k_grid</span>
 <span id="cb552-14"><a href="supervised-learning.html#cb552-14" tabindex="-1"></a>)</span>
-<span id="cb552-15"><a href="supervised-learning.html#cb552-15" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb552-16"><a href="supervised-learning.html#cb552-16" tabindex="-1"></a><span class="co">#&gt; Attaching package: &#39;kknn&#39;</span></span>
-<span id="cb552-17"><a href="supervised-learning.html#cb552-17" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:caret&#39;:</span></span>
-<span id="cb552-18"><a href="supervised-learning.html#cb552-18" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb552-19"><a href="supervised-learning.html#cb552-19" tabindex="-1"></a><span class="co">#&gt;     contr.dummy</span></span>
-<span id="cb552-20"><a href="supervised-learning.html#cb552-20" tabindex="-1"></a></span>
-<span id="cb552-21"><a href="supervised-learning.html#cb552-21" tabindex="-1"></a>knn_tune_results</span>
-<span id="cb552-22"><a href="supervised-learning.html#cb552-22" tabindex="-1"></a><span class="co">#&gt; # Tuning results</span></span>
-<span id="cb552-23"><a href="supervised-learning.html#cb552-23" tabindex="-1"></a><span class="co">#&gt; # 5-fold cross-validation using stratification </span></span>
-<span id="cb552-24"><a href="supervised-learning.html#cb552-24" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 4</span></span>
-<span id="cb552-25"><a href="supervised-learning.html#cb552-25" tabindex="-1"></a><span class="co">#&gt;   splits            id    .metrics          .notes          </span></span>
-<span id="cb552-26"><a href="supervised-learning.html#cb552-26" tabindex="-1"></a><span class="co">#&gt;   &lt;list&gt;            &lt;chr&gt; &lt;list&gt;            &lt;list&gt;          </span></span>
-<span id="cb552-27"><a href="supervised-learning.html#cb552-27" tabindex="-1"></a><span class="co">#&gt; 1 &lt;split [748/189]&gt; Fold1 &lt;tibble [60 × 5]&gt; &lt;tibble [0 × 4]&gt;</span></span>
-<span id="cb552-28"><a href="supervised-learning.html#cb552-28" tabindex="-1"></a><span class="co">#&gt; 2 &lt;split [750/187]&gt; Fold2 &lt;tibble [60 × 5]&gt; &lt;tibble [0 × 4]&gt;</span></span>
-<span id="cb552-29"><a href="supervised-learning.html#cb552-29" tabindex="-1"></a><span class="co">#&gt; 3 &lt;split [750/187]&gt; Fold3 &lt;tibble [60 × 5]&gt; &lt;tibble [0 × 4]&gt;</span></span>
-<span id="cb552-30"><a href="supervised-learning.html#cb552-30" tabindex="-1"></a><span class="co">#&gt; 4 &lt;split [750/187]&gt; Fold4 &lt;tibble [60 × 5]&gt; &lt;tibble [0 × 4]&gt;</span></span>
-<span id="cb552-31"><a href="supervised-learning.html#cb552-31" tabindex="-1"></a><span class="co">#&gt; 5 &lt;split [750/187]&gt; Fold5 &lt;tibble [60 × 5]&gt; &lt;tibble [0 × 4]&gt;</span></span></code></pre></div>
+<span id="cb552-15"><a href="supervised-learning.html#cb552-15" tabindex="-1"></a></span>
+<span id="cb552-16"><a href="supervised-learning.html#cb552-16" tabindex="-1"></a>knn_tune_results</span>
+<span id="cb552-17"><a href="supervised-learning.html#cb552-17" tabindex="-1"></a><span class="co">#&gt; # Tuning results</span></span>
+<span id="cb552-18"><a href="supervised-learning.html#cb552-18" tabindex="-1"></a><span class="co">#&gt; # 5-fold cross-validation using stratification </span></span>
+<span id="cb552-19"><a href="supervised-learning.html#cb552-19" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 4</span></span>
+<span id="cb552-20"><a href="supervised-learning.html#cb552-20" tabindex="-1"></a><span class="co">#&gt;   splits            id    .metrics          .notes          </span></span>
+<span id="cb552-21"><a href="supervised-learning.html#cb552-21" tabindex="-1"></a><span class="co">#&gt;   &lt;list&gt;            &lt;chr&gt; &lt;list&gt;            &lt;list&gt;          </span></span>
+<span id="cb552-22"><a href="supervised-learning.html#cb552-22" tabindex="-1"></a><span class="co">#&gt; 1 &lt;split [748/189]&gt; Fold1 &lt;tibble [60 × 5]&gt; &lt;tibble [0 × 4]&gt;</span></span>
+<span id="cb552-23"><a href="supervised-learning.html#cb552-23" tabindex="-1"></a><span class="co">#&gt; 2 &lt;split [750/187]&gt; Fold2 &lt;tibble [60 × 5]&gt; &lt;tibble [0 × 4]&gt;</span></span>
+<span id="cb552-24"><a href="supervised-learning.html#cb552-24" tabindex="-1"></a><span class="co">#&gt; 3 &lt;split [750/187]&gt; Fold3 &lt;tibble [60 × 5]&gt; &lt;tibble [0 × 4]&gt;</span></span>
+<span id="cb552-25"><a href="supervised-learning.html#cb552-25" tabindex="-1"></a><span class="co">#&gt; 4 &lt;split [750/187]&gt; Fold4 &lt;tibble [60 × 5]&gt; &lt;tibble [0 × 4]&gt;</span></span>
+<span id="cb552-26"><a href="supervised-learning.html#cb552-26" tabindex="-1"></a><span class="co">#&gt; 5 &lt;split [750/187]&gt; Fold5 &lt;tibble [60 × 5]&gt; &lt;tibble [0 × 4]&gt;</span></span></code></pre></div>
 <p>We can visualize the tuning results using <code>autoplot()</code>:</p>
 <div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="supervised-learning.html#cb553-1" tabindex="-1"></a><span class="fu">autoplot</span>(knn_tune_results)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-712-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-712-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>We can see the accuracy for each value of “k”. The <code>show_best()</code> function shows us the top performing values:</p>
 <div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb554-1"><a href="supervised-learning.html#cb554-1" tabindex="-1"></a><span class="fu">show_best</span>(knn_tune_results, <span class="at">metric =</span> <span class="st">&quot;accuracy&quot;</span>)</span>
 <span id="cb554-2"><a href="supervised-learning.html#cb554-2" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 7</span></span>
@@ -954,16 +942,16 @@ div.csl-indent {
 <span id="cb555-13"><a href="supervised-learning.html#cb555-13" tabindex="-1"></a>SP_knn_trained <span class="ot">&lt;-</span> <span class="fu">fit</span>(final_knn_workflow, <span class="at">data =</span> SP_train)</span>
 <span id="cb555-14"><a href="supervised-learning.html#cb555-14" tabindex="-1"></a></span>
 <span id="cb555-15"><a href="supervised-learning.html#cb555-15" tabindex="-1"></a>SP_knn_trained</span>
-<span id="cb555-16"><a href="supervised-learning.html#cb555-16" tabindex="-1"></a><span class="co">#&gt; ══ Workflow [trained] ═══════════════════════════════</span></span>
+<span id="cb555-16"><a href="supervised-learning.html#cb555-16" tabindex="-1"></a><span class="co">#&gt; ══ Workflow [trained] ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════</span></span>
 <span id="cb555-17"><a href="supervised-learning.html#cb555-17" tabindex="-1"></a><span class="co">#&gt; Preprocessor: Recipe</span></span>
 <span id="cb555-18"><a href="supervised-learning.html#cb555-18" tabindex="-1"></a><span class="co">#&gt; Model: nearest_neighbor()</span></span>
 <span id="cb555-19"><a href="supervised-learning.html#cb555-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb555-20"><a href="supervised-learning.html#cb555-20" tabindex="-1"></a><span class="co">#&gt; ── Preprocessor ─────────────────────────────────────</span></span>
+<span id="cb555-20"><a href="supervised-learning.html#cb555-20" tabindex="-1"></a><span class="co">#&gt; ── Preprocessor ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
 <span id="cb555-21"><a href="supervised-learning.html#cb555-21" tabindex="-1"></a><span class="co">#&gt; 1 Recipe Step</span></span>
 <span id="cb555-22"><a href="supervised-learning.html#cb555-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb555-23"><a href="supervised-learning.html#cb555-23" tabindex="-1"></a><span class="co">#&gt; • step_normalize()</span></span>
 <span id="cb555-24"><a href="supervised-learning.html#cb555-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb555-25"><a href="supervised-learning.html#cb555-25" tabindex="-1"></a><span class="co">#&gt; ── Model ────────────────────────────────────────────</span></span>
+<span id="cb555-25"><a href="supervised-learning.html#cb555-25" tabindex="-1"></a><span class="co">#&gt; ── Model ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
 <span id="cb555-26"><a href="supervised-learning.html#cb555-26" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb555-27"><a href="supervised-learning.html#cb555-27" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
 <span id="cb555-28"><a href="supervised-learning.html#cb555-28" tabindex="-1"></a><span class="co">#&gt; kknn::train.kknn(formula = ..y ~ ., data = data, ks = min_rows(44L,     data, 5))</span></span>
@@ -1035,7 +1023,7 @@ div.csl-indent {
 <p>We have already used confusion matrices in our two previous examples. Now it is our turn to properly understand its definition as well as some of the evaluation metrics of this matrix.</p>
 <p>A confusion matrix, also known as an error matrix, allows us to visualize the performance of an algorithm, generally a supervised learning one (in unsupervised learning it is generally called a matching matrix). Each row of the matrix represents the instances in a predicted class, while each column represents the instances in a real class (or vice versa). The name derives from the fact that it makes it easy to see if the system confuses two classes (i.e., commonly mislabeling one as another).</p>
 <p>Binary classifications, when the <em>outcome</em> can take only two classes, yield this following confusion matrix.</p>
-<p><img src="img/confusion-matrix.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="_assets/images/06-machine-learning/confusion-matrix.png" alt="2x2 confusion matrix with True Positive, False Positive, True Negative, False Negative cells" width="80%" style="display: block; margin: auto;" /></p>
 <div id="accuracy" class="section level3 hasAnchor" number="12.4.1">
 <h3><span class="header-section-number">12.4.1</span> Accuracy<a href="supervised-learning.html#accuracy" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We have already been using this term in our examples. The accuracy of the model can be calculated from the confusion matrix:</p>
@@ -1135,7 +1123,7 @@ Solution
 <span id="cb563-3"><a href="supervised-learning.html#cb563-3" tabindex="-1"></a>  <span class="fu">aes</span>(father, son) <span class="sc">+</span></span>
 <span id="cb563-4"><a href="supervised-learning.html#cb563-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb563-5"><a href="supervised-learning.html#cb563-5" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-726-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-726-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>As we can see, there is a positive correlation, such that the taller the father, the son grows to be taller as an adult. This line, however, is nothing more than a default line. The challenge lies in finding which line minimizes the distance of the points to this line, known as error minimization.</p>
 <p>We could try to predict the height the son will have from the father’s height using the equation of this line:</p>
 <p><span class="math inline">\(Y = \beta_0+\beta_1X\)</span></p>
@@ -1206,7 +1194,7 @@ Solution
 <span id="cb567-16"><a href="supervised-learning.html#cb567-16" tabindex="-1"></a>  <span class="fu">aes</span>(father, son) <span class="sc">+</span></span>
 <span id="cb567-17"><a href="supervised-learning.html#cb567-17" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb567-18"><a href="supervised-learning.html#cb567-18" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">lty =</span> <span class="dv">2</span>, <span class="at">intercept =</span> intercept_val, <span class="at">slope =</span> slope_val, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-730-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-730-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="multiple-linear-regression" class="section level2 hasAnchor" number="12.7">
 <h2><span class="header-section-number">12.7</span> Multiple Linear Regression<a href="supervised-learning.html#multiple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -1307,16 +1295,16 @@ Solution
 <p>Now that we know how to build models we will apply metrics that allow us better accuracy in classification models for <strong>two classes</strong>.</p>
 <p>To do this let’s recall the results of the model we created using the k-nearest neighbors algorithm to predict if the S&amp;P index goes up or down.</p>
 <div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="supervised-learning.html#cb572-1" tabindex="-1"></a>SP_knn_trained</span>
-<span id="cb572-2"><a href="supervised-learning.html#cb572-2" tabindex="-1"></a><span class="co">#&gt; ══ Workflow [trained] ═══════════════════════════════</span></span>
+<span id="cb572-2"><a href="supervised-learning.html#cb572-2" tabindex="-1"></a><span class="co">#&gt; ══ Workflow [trained] ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════</span></span>
 <span id="cb572-3"><a href="supervised-learning.html#cb572-3" tabindex="-1"></a><span class="co">#&gt; Preprocessor: Recipe</span></span>
 <span id="cb572-4"><a href="supervised-learning.html#cb572-4" tabindex="-1"></a><span class="co">#&gt; Model: nearest_neighbor()</span></span>
 <span id="cb572-5"><a href="supervised-learning.html#cb572-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb572-6"><a href="supervised-learning.html#cb572-6" tabindex="-1"></a><span class="co">#&gt; ── Preprocessor ─────────────────────────────────────</span></span>
+<span id="cb572-6"><a href="supervised-learning.html#cb572-6" tabindex="-1"></a><span class="co">#&gt; ── Preprocessor ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
 <span id="cb572-7"><a href="supervised-learning.html#cb572-7" tabindex="-1"></a><span class="co">#&gt; 1 Recipe Step</span></span>
 <span id="cb572-8"><a href="supervised-learning.html#cb572-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb572-9"><a href="supervised-learning.html#cb572-9" tabindex="-1"></a><span class="co">#&gt; • step_normalize()</span></span>
 <span id="cb572-10"><a href="supervised-learning.html#cb572-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb572-11"><a href="supervised-learning.html#cb572-11" tabindex="-1"></a><span class="co">#&gt; ── Model ────────────────────────────────────────────</span></span>
+<span id="cb572-11"><a href="supervised-learning.html#cb572-11" tabindex="-1"></a><span class="co">#&gt; ── Model ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
 <span id="cb572-12"><a href="supervised-learning.html#cb572-12" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb572-13"><a href="supervised-learning.html#cb572-13" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
 <span id="cb572-14"><a href="supervised-learning.html#cb572-14" tabindex="-1"></a><span class="co">#&gt; kknn::train.kknn(formula = ..y ~ ., data = data, ks = min_rows(44L,     data, 5))</span></span>
@@ -1646,7 +1634,7 @@ SP2_predictions |&gt;
 <span id="cb592-15"><a href="supervised-learning.html#cb592-15" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
 <span id="cb592-16"><a href="supervised-learning.html#cb592-16" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;ROC AUC&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Model Comparison&quot;</span>) <span class="sc">+</span></span>
 <span id="cb592-17"><a href="supervised-learning.html#cb592-17" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<p><img src="Data-Science-con-R_files/figure-html/unnamed-chunk-755-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-755-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>For this case the random forest model (<em>RF</em>) seems to be the best. This is not surprising given that this algorithm is related to its ability to cope with different input types and require little preprocessing. We can make our models better by pre-processing data and changing the ad-hoc parameters of each model.</p>
 </div>
 <div id="predicting-using-the-best-model" class="section level3 hasAnchor" number="12.9.7">
