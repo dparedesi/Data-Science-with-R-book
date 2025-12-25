@@ -799,7 +799,7 @@ Interpreting these scores is straightforward: a score close to <strong>1</strong
 <div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="unsupervised-learning.html#cb502-1" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;http://archive.ics.uci.edu/ml/machine-learning-databases/00292/Wholesale%20customers%20data.csv&quot;</span></span>
 <span id="cb502-2"><a href="unsupervised-learning.html#cb502-2" tabindex="-1"></a>customers <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url)</span>
 <span id="cb502-3"><a href="unsupervised-learning.html#cb502-3" tabindex="-1"></a><span class="co">#&gt; Rows: 440 Columns: 8</span></span>
-<span id="cb502-4"><a href="unsupervised-learning.html#cb502-4" tabindex="-1"></a><span class="co">#&gt; ── Column specification ─────────────────────────────</span></span>
+<span id="cb502-4"><a href="unsupervised-learning.html#cb502-4" tabindex="-1"></a><span class="co">#&gt; ── Column specification ────────────────────────────────</span></span>
 <span id="cb502-5"><a href="unsupervised-learning.html#cb502-5" tabindex="-1"></a><span class="co">#&gt; Delimiter: &quot;,&quot;</span></span>
 <span id="cb502-6"><a href="unsupervised-learning.html#cb502-6" tabindex="-1"></a><span class="co">#&gt; dbl (8): Channel, Region, Fresh, Milk, Grocery, Frozen, Detergents_Paper, De...</span></span>
 <span id="cb502-7"><a href="unsupervised-learning.html#cb502-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
@@ -976,7 +976,14 @@ Interpreting these scores is straightforward: a score close to <strong>1</strong
 <p>For this case we are going to take as an example a credit card customer dataset, adaptation of the <a href="https://www.kaggle.com/arjunbhasin2013/ccdata">public dataset in Kaggle</a>, from the following route.</p>
 <div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="unsupervised-learning.html#cb519-1" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/Data-Science-with-R-book/data/credit-cards.csv&quot;</span></span>
 <span id="cb519-2"><a href="unsupervised-learning.html#cb519-2" tabindex="-1"></a></span>
-<span id="cb519-3"><a href="unsupervised-learning.html#cb519-3" tabindex="-1"></a>cards_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url)</span></code></pre></div>
+<span id="cb519-3"><a href="unsupervised-learning.html#cb519-3" tabindex="-1"></a>cards_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url)</span>
+<span id="cb519-4"><a href="unsupervised-learning.html#cb519-4" tabindex="-1"></a><span class="co">#&gt; Rows: 8636 Columns: 13</span></span>
+<span id="cb519-5"><a href="unsupervised-learning.html#cb519-5" tabindex="-1"></a><span class="co">#&gt; ── Column specification ────────────────────────────────</span></span>
+<span id="cb519-6"><a href="unsupervised-learning.html#cb519-6" tabindex="-1"></a><span class="co">#&gt; Delimiter: &quot;,&quot;</span></span>
+<span id="cb519-7"><a href="unsupervised-learning.html#cb519-7" tabindex="-1"></a><span class="co">#&gt; dbl (13): balance, balance_frequency, purchases, purchases_first_3_months, f...</span></span>
+<span id="cb519-8"><a href="unsupervised-learning.html#cb519-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb519-9"><a href="unsupervised-learning.html#cb519-9" tabindex="-1"></a><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
+<span id="cb519-10"><a href="unsupervised-learning.html#cb519-10" tabindex="-1"></a><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span></code></pre></div>
 <p>We have more than 8 thousand customers with 13 attributes. We will analyze if there are strongly correlated variables. To do this we will use the <code>corrplot</code> library.</p>
 <div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="unsupervised-learning.html#cb520-1" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span></code></pre></div>
 <p>Next, we will enter the dataset to visualize correlations between the variables,</p>

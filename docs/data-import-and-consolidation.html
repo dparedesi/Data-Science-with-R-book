@@ -771,9 +771,24 @@ div.csl-indent {
 <span id="cb385-3"><a href="data-import-and-consolidation.html#cb385-3" tabindex="-1"></a></span>
 <span id="cb385-4"><a href="data-import-and-consolidation.html#cb385-4" tabindex="-1"></a>grades <span class="sc">|&gt;</span> </span>
 <span id="cb385-5"><a href="data-import-and-consolidation.html#cb385-5" tabindex="-1"></a>  <span class="fu">select</span>(P1, P2, P3, P4, P5, total) <span class="sc">|&gt;</span> </span>
-<span id="cb385-6"><a href="data-import-and-consolidation.html#cb385-6" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
+<span id="cb385-6"><a href="data-import-and-consolidation.html#cb385-6" tabindex="-1"></a>  <span class="fu">summary</span>()</span>
+<span id="cb385-7"><a href="data-import-and-consolidation.html#cb385-7" tabindex="-1"></a><span class="co">#&gt;        P1              P2             P3              P4              P5       </span></span>
+<span id="cb385-8"><a href="data-import-and-consolidation.html#cb385-8" tabindex="-1"></a><span class="co">#&gt;  Min.   :1.000   Min.   :1.00   Min.   :4.000   Min.   :1.000   Min.   :1.000  </span></span>
+<span id="cb385-9"><a href="data-import-and-consolidation.html#cb385-9" tabindex="-1"></a><span class="co">#&gt;  1st Qu.:3.000   1st Qu.:4.00   1st Qu.:5.000   1st Qu.:5.000   1st Qu.:5.000  </span></span>
+<span id="cb385-10"><a href="data-import-and-consolidation.html#cb385-10" tabindex="-1"></a><span class="co">#&gt;  Median :4.000   Median :5.00   Median :5.000   Median :5.000   Median :5.000  </span></span>
+<span id="cb385-11"><a href="data-import-and-consolidation.html#cb385-11" tabindex="-1"></a><span class="co">#&gt;  Mean   :3.762   Mean   :4.19   Mean   :4.905   Mean   :4.571   Mean   :4.429  </span></span>
+<span id="cb385-12"><a href="data-import-and-consolidation.html#cb385-12" tabindex="-1"></a><span class="co">#&gt;  3rd Qu.:5.000   3rd Qu.:5.00   3rd Qu.:5.000   3rd Qu.:5.000   3rd Qu.:5.000  </span></span>
+<span id="cb385-13"><a href="data-import-and-consolidation.html#cb385-13" tabindex="-1"></a><span class="co">#&gt;  Max.   :5.000   Max.   :5.00   Max.   :5.000   Max.   :5.000   Max.   :5.000  </span></span>
+<span id="cb385-14"><a href="data-import-and-consolidation.html#cb385-14" tabindex="-1"></a><span class="co">#&gt;      total      </span></span>
+<span id="cb385-15"><a href="data-import-and-consolidation.html#cb385-15" tabindex="-1"></a><span class="co">#&gt;  Min.   :10.67  </span></span>
+<span id="cb385-16"><a href="data-import-and-consolidation.html#cb385-16" tabindex="-1"></a><span class="co">#&gt;  1st Qu.:16.67  </span></span>
+<span id="cb385-17"><a href="data-import-and-consolidation.html#cb385-17" tabindex="-1"></a><span class="co">#&gt;  Median :18.67  </span></span>
+<span id="cb385-18"><a href="data-import-and-consolidation.html#cb385-18" tabindex="-1"></a><span class="co">#&gt;  Mean   :17.43  </span></span>
+<span id="cb385-19"><a href="data-import-and-consolidation.html#cb385-19" tabindex="-1"></a><span class="co">#&gt;  3rd Qu.:19.33  </span></span>
+<span id="cb385-20"><a href="data-import-and-consolidation.html#cb385-20" tabindex="-1"></a><span class="co">#&gt;  Max.   :20.00</span></span></code></pre></div>
 <p>From this we could visualize a histogram:</p>
 <div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="data-import-and-consolidation.html#cb386-1" tabindex="-1"></a><span class="fu">hist</span>(grades<span class="sc">$</span>total)</span></code></pre></div>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-510-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Or we could compare between genders which one has the highest median:</p>
 <div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="data-import-and-consolidation.html#cb387-1" tabindex="-1"></a>grades <span class="sc">|&gt;</span></span>
 <span id="cb387-2"><a href="data-import-and-consolidation.html#cb387-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>

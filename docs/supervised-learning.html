@@ -819,14 +819,14 @@ kNN is excellent for small datasets with few dimensions (variables) because it i
 <p>It provides a unified, modern interface via a suite of specialized packages: <strong>rsample</strong> for data splitting and resampling, <strong>recipes</strong> for feature engineering and preprocessing, <strong>parsnip</strong> for specifying models, <strong>tune</strong> for hyperparameter optimization, <strong>yardstick</strong> for metrics and model evaluation, and <strong>workflows</strong> to bundle everything together.</p>
 <div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="supervised-learning.html#cb438-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tidymodels&#39;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="supervised-learning.html#cb439-1" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb439-2"><a href="supervised-learning.html#cb439-2" tabindex="-1"></a><span class="co">#&gt; ── Attaching packages ─────────── tidymodels 1.4.1 ──</span></span>
+<span id="cb439-2"><a href="supervised-learning.html#cb439-2" tabindex="-1"></a><span class="co">#&gt; ── Attaching packages ────────────── tidymodels 1.4.1 ──</span></span>
 <span id="cb439-3"><a href="supervised-learning.html#cb439-3" tabindex="-1"></a><span class="co">#&gt; ✔ broom        1.0.11     ✔ tailor       0.1.0 </span></span>
 <span id="cb439-4"><a href="supervised-learning.html#cb439-4" tabindex="-1"></a><span class="co">#&gt; ✔ dials        1.4.2      ✔ tune         2.0.1 </span></span>
 <span id="cb439-5"><a href="supervised-learning.html#cb439-5" tabindex="-1"></a><span class="co">#&gt; ✔ infer        1.1.0      ✔ workflows    1.3.0 </span></span>
 <span id="cb439-6"><a href="supervised-learning.html#cb439-6" tabindex="-1"></a><span class="co">#&gt; ✔ parsnip      1.4.0      ✔ workflowsets 1.1.1 </span></span>
 <span id="cb439-7"><a href="supervised-learning.html#cb439-7" tabindex="-1"></a><span class="co">#&gt; ✔ recipes      1.3.1      ✔ yardstick    1.3.2 </span></span>
 <span id="cb439-8"><a href="supervised-learning.html#cb439-8" tabindex="-1"></a><span class="co">#&gt; ✔ rsample      1.3.1</span></span>
-<span id="cb439-9"><a href="supervised-learning.html#cb439-9" tabindex="-1"></a><span class="co">#&gt; ── Conflicts ────────────── tidymodels_conflicts() ──</span></span>
+<span id="cb439-9"><a href="supervised-learning.html#cb439-9" tabindex="-1"></a><span class="co">#&gt; ── Conflicts ───────────────── tidymodels_conflicts() ──</span></span>
 <span id="cb439-10"><a href="supervised-learning.html#cb439-10" tabindex="-1"></a><span class="co">#&gt; ✖ NLP::annotate()         masks ggplot2::annotate()</span></span>
 <span id="cb439-11"><a href="supervised-learning.html#cb439-11" tabindex="-1"></a><span class="co">#&gt; ✖ scales::discard()       masks purrr::discard()</span></span>
 <span id="cb439-12"><a href="supervised-learning.html#cb439-12" tabindex="-1"></a><span class="co">#&gt; ✖ Matrix::expand()        masks tidyr::expand()</span></span>
@@ -909,7 +909,7 @@ In <code>tidymodels</code>, we build models in a structured way using three key 
 <span id="cb444-4"><a href="supervised-learning.html#cb444-4" tabindex="-1"></a></span>
 <span id="cb444-5"><a href="supervised-learning.html#cb444-5" tabindex="-1"></a>knn_recipe</span>
 <span id="cb444-6"><a href="supervised-learning.html#cb444-6" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb444-7"><a href="supervised-learning.html#cb444-7" tabindex="-1"></a><span class="co">#&gt; ── Recipe ───────────────────────────────────────────</span></span>
+<span id="cb444-7"><a href="supervised-learning.html#cb444-7" tabindex="-1"></a><span class="co">#&gt; ── Recipe ──────────────────────────────────────────────</span></span>
 <span id="cb444-8"><a href="supervised-learning.html#cb444-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb444-9"><a href="supervised-learning.html#cb444-9" tabindex="-1"></a><span class="co">#&gt; ── Inputs</span></span>
 <span id="cb444-10"><a href="supervised-learning.html#cb444-10" tabindex="-1"></a><span class="co">#&gt; Number of variables by role</span></span>
@@ -917,8 +917,7 @@ In <code>tidymodels</code>, we build models in a structured way using three key 
 <span id="cb444-12"><a href="supervised-learning.html#cb444-12" tabindex="-1"></a><span class="co">#&gt; predictor: 8</span></span>
 <span id="cb444-13"><a href="supervised-learning.html#cb444-13" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb444-14"><a href="supervised-learning.html#cb444-14" tabindex="-1"></a><span class="co">#&gt; ── Operations</span></span>
-<span id="cb444-15"><a href="supervised-learning.html#cb444-15" tabindex="-1"></a><span class="co">#&gt; • Centering and scaling for:</span></span>
-<span id="cb444-16"><a href="supervised-learning.html#cb444-16" tabindex="-1"></a><span class="co">#&gt;   all_numeric_predictors()</span></span></code></pre></div>
+<span id="cb444-15"><a href="supervised-learning.html#cb444-15" tabindex="-1"></a><span class="co">#&gt; • Centering and scaling for: all_numeric_predictors()</span></span></code></pre></div>
 </div>
 <div id="creating-a-workflow" class="section level3 hasAnchor" number="11.3.4">
 <h3><span class="header-section-number">11.3.4</span> Creating a Workflow<a href="supervised-learning.html#creating-a-workflow" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -929,16 +928,16 @@ In <code>tidymodels</code>, we build models in a structured way using three key 
 <span id="cb445-4"><a href="supervised-learning.html#cb445-4" tabindex="-1"></a>  <span class="fu">add_model</span>(knn_spec)</span>
 <span id="cb445-5"><a href="supervised-learning.html#cb445-5" tabindex="-1"></a></span>
 <span id="cb445-6"><a href="supervised-learning.html#cb445-6" tabindex="-1"></a>knn_workflow</span>
-<span id="cb445-7"><a href="supervised-learning.html#cb445-7" tabindex="-1"></a><span class="co">#&gt; ══ Workflow ═════════════════════════════════════════</span></span>
+<span id="cb445-7"><a href="supervised-learning.html#cb445-7" tabindex="-1"></a><span class="co">#&gt; ══ Workflow ════════════════════════════════════════════</span></span>
 <span id="cb445-8"><a href="supervised-learning.html#cb445-8" tabindex="-1"></a><span class="co">#&gt; Preprocessor: Recipe</span></span>
 <span id="cb445-9"><a href="supervised-learning.html#cb445-9" tabindex="-1"></a><span class="co">#&gt; Model: nearest_neighbor()</span></span>
 <span id="cb445-10"><a href="supervised-learning.html#cb445-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb445-11"><a href="supervised-learning.html#cb445-11" tabindex="-1"></a><span class="co">#&gt; ── Preprocessor ─────────────────────────────────────</span></span>
+<span id="cb445-11"><a href="supervised-learning.html#cb445-11" tabindex="-1"></a><span class="co">#&gt; ── Preprocessor ────────────────────────────────────────</span></span>
 <span id="cb445-12"><a href="supervised-learning.html#cb445-12" tabindex="-1"></a><span class="co">#&gt; 1 Recipe Step</span></span>
 <span id="cb445-13"><a href="supervised-learning.html#cb445-13" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb445-14"><a href="supervised-learning.html#cb445-14" tabindex="-1"></a><span class="co">#&gt; • step_normalize()</span></span>
 <span id="cb445-15"><a href="supervised-learning.html#cb445-15" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb445-16"><a href="supervised-learning.html#cb445-16" tabindex="-1"></a><span class="co">#&gt; ── Model ────────────────────────────────────────────</span></span>
+<span id="cb445-16"><a href="supervised-learning.html#cb445-16" tabindex="-1"></a><span class="co">#&gt; ── Model ───────────────────────────────────────────────</span></span>
 <span id="cb445-17"><a href="supervised-learning.html#cb445-17" tabindex="-1"></a><span class="co">#&gt; K-Nearest Neighbor Model Specification (classification)</span></span>
 <span id="cb445-18"><a href="supervised-learning.html#cb445-18" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb445-19"><a href="supervised-learning.html#cb445-19" tabindex="-1"></a><span class="co">#&gt; Main Arguments:</span></span>
@@ -1007,16 +1006,16 @@ In <code>tidymodels</code>, we build models in a structured way using three key 
 <span id="cb449-13"><a href="supervised-learning.html#cb449-13" tabindex="-1"></a>SP_knn_trained <span class="ot">&lt;-</span> <span class="fu">fit</span>(final_knn_workflow, <span class="at">data =</span> SP_train)</span>
 <span id="cb449-14"><a href="supervised-learning.html#cb449-14" tabindex="-1"></a></span>
 <span id="cb449-15"><a href="supervised-learning.html#cb449-15" tabindex="-1"></a>SP_knn_trained</span>
-<span id="cb449-16"><a href="supervised-learning.html#cb449-16" tabindex="-1"></a><span class="co">#&gt; ══ Workflow [trained] ═══════════════════════════════</span></span>
+<span id="cb449-16"><a href="supervised-learning.html#cb449-16" tabindex="-1"></a><span class="co">#&gt; ══ Workflow [trained] ══════════════════════════════════</span></span>
 <span id="cb449-17"><a href="supervised-learning.html#cb449-17" tabindex="-1"></a><span class="co">#&gt; Preprocessor: Recipe</span></span>
 <span id="cb449-18"><a href="supervised-learning.html#cb449-18" tabindex="-1"></a><span class="co">#&gt; Model: nearest_neighbor()</span></span>
 <span id="cb449-19"><a href="supervised-learning.html#cb449-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb449-20"><a href="supervised-learning.html#cb449-20" tabindex="-1"></a><span class="co">#&gt; ── Preprocessor ─────────────────────────────────────</span></span>
+<span id="cb449-20"><a href="supervised-learning.html#cb449-20" tabindex="-1"></a><span class="co">#&gt; ── Preprocessor ────────────────────────────────────────</span></span>
 <span id="cb449-21"><a href="supervised-learning.html#cb449-21" tabindex="-1"></a><span class="co">#&gt; 1 Recipe Step</span></span>
 <span id="cb449-22"><a href="supervised-learning.html#cb449-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb449-23"><a href="supervised-learning.html#cb449-23" tabindex="-1"></a><span class="co">#&gt; • step_normalize()</span></span>
 <span id="cb449-24"><a href="supervised-learning.html#cb449-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb449-25"><a href="supervised-learning.html#cb449-25" tabindex="-1"></a><span class="co">#&gt; ── Model ────────────────────────────────────────────</span></span>
+<span id="cb449-25"><a href="supervised-learning.html#cb449-25" tabindex="-1"></a><span class="co">#&gt; ── Model ───────────────────────────────────────────────</span></span>
 <span id="cb449-26"><a href="supervised-learning.html#cb449-26" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb449-27"><a href="supervised-learning.html#cb449-27" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
 <span id="cb449-28"><a href="supervised-learning.html#cb449-28" tabindex="-1"></a><span class="co">#&gt; kknn::train.kknn(formula = ..y ~ ., data = data, ks = min_rows(44L,     data, 5))</span></span>
@@ -1362,16 +1361,16 @@ Solution
 <p>Now that we know how to build models we will apply metrics that allow us better accuracy in classification models for <strong>two classes</strong>.</p>
 <p>To do this let’s recall the results of the model we created using the k-nearest neighbors algorithm to predict if the S&amp;P index goes up or down.</p>
 <div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="supervised-learning.html#cb466-1" tabindex="-1"></a>SP_knn_trained</span>
-<span id="cb466-2"><a href="supervised-learning.html#cb466-2" tabindex="-1"></a><span class="co">#&gt; ══ Workflow [trained] ═══════════════════════════════</span></span>
+<span id="cb466-2"><a href="supervised-learning.html#cb466-2" tabindex="-1"></a><span class="co">#&gt; ══ Workflow [trained] ══════════════════════════════════</span></span>
 <span id="cb466-3"><a href="supervised-learning.html#cb466-3" tabindex="-1"></a><span class="co">#&gt; Preprocessor: Recipe</span></span>
 <span id="cb466-4"><a href="supervised-learning.html#cb466-4" tabindex="-1"></a><span class="co">#&gt; Model: nearest_neighbor()</span></span>
 <span id="cb466-5"><a href="supervised-learning.html#cb466-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb466-6"><a href="supervised-learning.html#cb466-6" tabindex="-1"></a><span class="co">#&gt; ── Preprocessor ─────────────────────────────────────</span></span>
+<span id="cb466-6"><a href="supervised-learning.html#cb466-6" tabindex="-1"></a><span class="co">#&gt; ── Preprocessor ────────────────────────────────────────</span></span>
 <span id="cb466-7"><a href="supervised-learning.html#cb466-7" tabindex="-1"></a><span class="co">#&gt; 1 Recipe Step</span></span>
 <span id="cb466-8"><a href="supervised-learning.html#cb466-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb466-9"><a href="supervised-learning.html#cb466-9" tabindex="-1"></a><span class="co">#&gt; • step_normalize()</span></span>
 <span id="cb466-10"><a href="supervised-learning.html#cb466-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb466-11"><a href="supervised-learning.html#cb466-11" tabindex="-1"></a><span class="co">#&gt; ── Model ────────────────────────────────────────────</span></span>
+<span id="cb466-11"><a href="supervised-learning.html#cb466-11" tabindex="-1"></a><span class="co">#&gt; ── Model ───────────────────────────────────────────────</span></span>
 <span id="cb466-12"><a href="supervised-learning.html#cb466-12" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb466-13"><a href="supervised-learning.html#cb466-13" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
 <span id="cb466-14"><a href="supervised-learning.html#cb466-14" tabindex="-1"></a><span class="co">#&gt; kknn::train.kknn(formula = ..y ~ ., data = data, ks = min_rows(44L,     data, 5))</span></span>

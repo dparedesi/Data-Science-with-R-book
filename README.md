@@ -15,7 +15,7 @@ output: github_document
 
 ## 📖 Read Online
 
-**[https://bookdown.org/dparedesi/data-science-con-r/](https://bookdown.org/dparedesi/data-science-con-r/)**
+**[https://dparedesi.github.io/Data-Science-with-R-book/](https://dparedesi.github.io/Data-Science-with-R-book/)**
 
 ## 📚 What You'll Learn
 
@@ -57,6 +57,20 @@ bookdown::render_book("index.Rmd")
 
 The output will be generated in the `docs/` folder.
 
+## 📂 Datasets
+
+All datasets used in this book are hosted directly in this repository and served via GitHub Pages. you can browse them in the [`docs/data/`](docs/data/) directory.
+
+To access them in R, you can use the URL pattern:
+`https://dparedesi.github.io/Data-Science-with-R-book/data/[filename]`
+
+Example:
+```r
+library(readr)
+url <- "https://dparedesi.github.io/Data-Science-with-R-book/data/student-grades.csv"
+grades <- read_csv(url)
+```
+
 ## 📁 Structure
 
 ```
@@ -82,13 +96,13 @@ If you use this book in your work, please cite:
   year = {2025},
   edition = {3rd},
   publisher = {Leanpub},
-  url = {https://leanpub.com/dataScienceConR/}
+  url = {https://leanpub.com/data-science-with-r}
 }
 ```
 
 ## 💰 Support This Work
 
-You can support this effort by purchasing the PDF version on [Leanpub](https://leanpub.com/dataScienceConR/). The purchase includes access to future updates.
+You can support this effort by purchasing the PDF version on [Leanpub](https://leanpub.com/data-science-with-r). The purchase includes access to future updates.
 
 ## 🤝 Contributing
 

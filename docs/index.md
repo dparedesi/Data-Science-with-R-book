@@ -46,14 +46,14 @@ Just like previous editions, many exercises are inspired by practical classroom 
 
 ## Support This Work {-}
 
-Over 700 hours went into creating this resource. If you find it valuable, consider purchasing the PDF on [Leanpub](https://leanpub.com/dataScienceConR/). Your purchase includes:
+Over 700 hours went into creating this resource. If you find it valuable, consider purchasing the PDF on [Leanpub](https://leanpub.com/data-science-with-r). Your purchase includes:
 
 - Future updates at no extra cost
 - Three months of direct Q&A access with the author
 - Support for keeping the web version free for everyone
 
 
-The web version available at [bookdown](https://bookdown.org/dparedesi/data-science-con-r/)^[https://bookdown.org/dparedesi/data-science-con-r/] seeks to democratize data science knowledge. Share it and let's contribute together to freeing knowledge.
+The web version available at [GitHub Pages](https://dparedesi.github.io/Data-Science-with-R-book/)^[https://dparedesi.github.io/Data-Science-with-R-book/] seeks to democratize data science knowledge. Share it and let's contribute together to freeing knowledge.
 
 
 ## Stay Connected {-}
@@ -820,32 +820,32 @@ climate
 #> , , Temperature
 #> 
 #>               January February March April May June July August September
-#> New York           25       29    10    22  19   23   30     24        23
-#> Los Angeles        23       30    16    14  31   27   13     29        17
-#> Chicago            17       19    11    35  18   22   18     29        26
-#> San Francisco      32       24    32    13  10   24   10     13        28
-#> Miami              17       18    23    26  33   17   22     19        24
+#> New York           31       19    10    14  12   35   19     16        13
+#> Los Angeles        18       27    21    31  33   17   30     17        15
+#> Chicago            30       19    31    15  24   15   23     20        11
+#> San Francisco      18       23    32    19  26   19   19     17        19
+#> Miami              20       32    11    16  19   11   25     26        18
 #>               October November December
-#> New York           16       24       23
-#> Los Angeles        30       18       35
-#> Chicago            23       21       25
-#> San Francisco      35       12       32
-#> Miami              14       16       30
+#> New York           26       15       32
+#> Los Angeles        25       29       22
+#> Chicago            16       34       12
+#> San Francisco      25       19       19
+#> Miami              29       26       33
 #> 
 #> , , Precipitation
 #> 
 #>               January February March April May June July August September
-#> New York           95       27    38    52  19   48   82     78        23
-#> Los Angeles        44       42    23    24  65   31   19      8        16
-#> Chicago            87       26    14    35  26   54   76     46         5
-#> San Francisco      83       74    89    72  20   50   32     34         9
-#> Miami              95       80    64    71  75   84   43     53         4
+#> New York           68       39    11    71   0   81   92     36        64
+#> Los Angeles        15       73    42    90  74   92   90     77         1
+#> Chicago            42       68    20     1  31   56   35      4        76
+#> San Francisco      56       30    31   100  10   48   22     98        11
+#> Miami              87      100    55    97  73   12   42      7        69
 #>               October November December
-#> New York            2       43       68
-#> Los Angeles        91       37       27
-#> Chicago            50        7       37
-#> San Francisco      75        2       36
-#> Miami               9       71       68
+#> New York           89       33       58
+#> Los Angeles        27       56       44
+#> Chicago            68       61       77
+#> San Francisco      69       81       19
+#> Miami              36       86        3
 ```
 </details>
 
@@ -890,7 +890,7 @@ for (i in 1:length(hot_days)) {
 cat("The longest streak of hot days is:", longest_streak, "\n")
 #> The longest streak of hot days is: 4
 cat("Starts on day:", start_longest_streak, "\n")
-#> Starts on day: 3
+#> Starts on day: 48
 ```
 This code uses a `for` loop to traverse the hot days vector and two variables (`current_streak` and `longest_streak`) to track the longest streak.
 
@@ -930,9 +930,9 @@ for (i in 1:(length(prices) - 1)) {
 cat("Maximum profit:", max_profit, "\n")
 #> Maximum profit: 100
 cat("Buy day:", buy_day, "\n")
-#> Buy day: 195
+#> Buy day: 280
 cat("Sell day:", sell_day, "\n")
-#> Sell day: 235
+#> Sell day: 290
 ```
 This code uses two nested `for` loops to compare all possible pairs of buy and sell days.
 </details>
@@ -5338,17 +5338,17 @@ results <- replicate(n_times, {
   })
 
 results
-#>   [1] "woman" "man"   "woman" "woman" "man"   "man"   "man"   "woman" "man"  
-#>  [10] "woman" "man"   "woman" "woman" "man"   "man"   "man"   "woman" "woman"
-#>  [19] "man"   "man"   "man"   "man"   "man"   "man"   "man"   "woman" "man"  
-#>  [28] "woman" "man"   "man"   "man"   "woman" "man"   "man"   "man"   "woman"
-#>  [37] "man"   "man"   "man"   "woman" "man"   "woman" "man"   "man"   "man"  
-#>  [46] "man"   "man"   "woman" "woman" "man"   "woman" "woman" "woman" "man"  
-#>  [55] "man"   "man"   "woman" "woman" "woman" "man"   "man"   "man"   "man"  
-#>  [64] "woman" "man"   "man"   "woman" "man"   "woman" "woman" "man"   "woman"
-#>  [73] "man"   "man"   "woman" "man"   "man"   "man"   "man"   "woman" "man"  
-#>  [82] "man"   "woman" "woman" "woman" "woman" "woman" "man"   "woman" "man"  
-#>  [91] "woman" "man"   "man"   "woman" "woman" "woman" "man"   "man"   "man"  
+#>   [1] "man"   "man"   "woman" "man"   "man"   "woman" "man"   "woman" "man"  
+#>  [10] "woman" "man"   "man"   "woman" "man"   "man"   "man"   "woman" "woman"
+#>  [19] "woman" "man"   "man"   "man"   "man"   "man"   "man"   "woman" "man"  
+#>  [28] "woman" "man"   "man"   "man"   "man"   "man"   "woman" "man"   "man"  
+#>  [37] "man"   "man"   "woman" "man"   "man"   "man"   "man"   "woman" "man"  
+#>  [46] "woman" "man"   "man"   "woman" "man"   "man"   "woman" "woman" "woman"
+#>  [55] "man"   "woman" "man"   "woman" "man"   "man"   "woman" "woman" "woman"
+#>  [64] "man"   "man"   "man"   "man"   "man"   "man"   "man"   "man"   "man"  
+#>  [73] "man"   "woman" "man"   "man"   "man"   "woman" "man"   "man"   "woman"
+#>  [82] "woman" "woman" "man"   "woman" "man"   "man"   "man"   "woman" "woman"
+#>  [91] "man"   "man"   "man"   "woman" "man"   "woman" "woman" "man"   "man"  
 #> [100] "man"
 ```
 
@@ -5361,7 +5361,7 @@ Now we will use the `table()` function to transform our `results` vector into a 
 table(results)
 #> results
 #>   man woman 
-#>    60    40
+#>    66    34
 ```
 
 If we store this result in a vector `results_table`, we can then use the `prop.table()` function to know the proportion of each value:
@@ -5373,7 +5373,7 @@ results_table <- table(results)
 prop.table(results_table)
 #> results
 #>   man woman 
-#>   0.6   0.4
+#>  0.66  0.34
 ```
 
 We should not worry if the probability that it is a man has not come out exactly 60%. Recall that we are estimating the probability using a method that depends on the number of times we simulate the experiment. The more times we repeat the experiment the closer we will be to the value. For example, let's replicate this experiment now 10,000 times.
@@ -5395,7 +5395,7 @@ results_table <- table(results)
 prop.table(results_table)
 #> results
 #>    man  woman 
-#> 0.5992 0.4008
+#> 0.5932 0.4068
 ```
 
 We see how the value converges to 60%. We should not worry if the value varies by a few digits from the one presented in this book given that we are simulating a random event.
@@ -5745,7 +5745,7 @@ result <- replicate(n, {
 })
 
 mean(result)
-#> [1] 0.023
+#> [1] 0.0216
 ```
 
 Note that, as we saw previously, the value converges as we increase the number of times we repeat the experiment `n`. We have simulated repeating the experiment 10 thousand times. However, how many times would it be necessary to replicate the experiment to trust the results of the simulation?
@@ -5785,7 +5785,7 @@ We already have a function that allows us to replicate the experiment as many ti
 ``` r
 # Probability using functions:
 probability_by_sample(10000)
-#> [1] 0.0199
+#> [1] 0.0215
 ```
 
 Again, this is a simulation. So every time we execute that function the probability will vary as it is a random sample.
@@ -5797,9 +5797,9 @@ To apply a function on each of the values of a vector we use the function `sappl
 prob <- sapply(n_times, probability_by_sample)
 
 prob
-#>  [1] 0.00000000 0.00000000 0.05000000 0.00625000 0.02812500 0.02656250
-#>  [7] 0.02812500 0.02968750 0.02207031 0.02285156 0.01889648 0.02119141
-#> [13] 0.02255859 0.02178345 0.02210693 0.02232208 0.02215042
+#>  [1] 0.00000000 0.00000000 0.00000000 0.02500000 0.02187500 0.01406250
+#>  [7] 0.02031250 0.02226563 0.02167969 0.02353516 0.02358398 0.02136230
+#> [13] 0.02254639 0.02181396 0.02215576 0.02211456 0.02224197
 ```
 
 This gives us the probabilities depending on the number of times we repeat the experiment. Now let's place these results in a scatter plot to see how it converges
@@ -5864,8 +5864,8 @@ To validate if any of the values are repeated we will use the `duplicated()` fun
 duplicated(colleagues)
 #>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 #> [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#> [25] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
-#> [37] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+#> [25] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+#> [37] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
 #> [49] FALSE FALSE
 ```
 
@@ -5893,7 +5893,7 @@ results <- replicate(n_times, {
 
 # Probability:
 mean(results) 
-#> [1] 0.9692
+#> [1] 0.9708
 ```
 
 We see that the estimated probability is very high, above 95%. What would happen if I have a room of 25 people?
@@ -5913,7 +5913,7 @@ results <- replicate(n_times, {    # Returns a logical vector
 
 # Probability:
 mean(results) 
-#> [1] 0.5739
+#> [1] 0.5668
 ```
 
 Let's now create the function `estimate_probability` and estimate using this function the probability of finding at least two people with the same birthday in a room of 25 people. This time we have to specify that the sampling is with "replacement" because by default the `sample()` function is "without replacement".
@@ -5932,7 +5932,7 @@ estimate_probability <- function(classroom, n_times = 10000){
 }
 
 estimate_probability(25)
-#> [1] 0.5713
+#> [1] 0.5787
 ```
 
 Finally, if we already have a function that calculates based on the number of people in a room we can create a numerical vector with the total number of people from different rooms and then apply the function we have created. The result can be stored in the variable `prob`.
@@ -5947,14 +5947,14 @@ classrooms <- 1:80
 prob <- sapply(classrooms, estimate_probability)
 
 prob
-#>  [1] 0.0000 0.0025 0.0084 0.0168 0.0268 0.0415 0.0573 0.0721 0.0975 0.1149
-#> [11] 0.1401 0.1679 0.1872 0.2258 0.2540 0.2807 0.3185 0.3532 0.3782 0.4071
-#> [21] 0.4506 0.4742 0.5105 0.5454 0.5686 0.5981 0.6238 0.6622 0.6773 0.7019
-#> [31] 0.7284 0.7528 0.7724 0.7959 0.8079 0.8261 0.8463 0.8640 0.8741 0.8913
-#> [41] 0.9038 0.9114 0.9228 0.9356 0.9417 0.9451 0.9485 0.9603 0.9652 0.9688
-#> [51] 0.9738 0.9792 0.9809 0.9837 0.9846 0.9882 0.9911 0.9916 0.9930 0.9943
-#> [61] 0.9949 0.9963 0.9968 0.9974 0.9982 0.9978 0.9988 0.9979 0.9993 0.9991
-#> [71] 0.9993 0.9994 0.9996 0.9995 0.9994 0.9998 1.0000 0.9998 1.0000 1.0000
+#>  [1] 0.0000 0.0020 0.0066 0.0185 0.0251 0.0432 0.0577 0.0747 0.0984 0.1161
+#> [11] 0.1384 0.1772 0.1950 0.2217 0.2562 0.2871 0.3164 0.3433 0.3835 0.4133
+#> [21] 0.4371 0.4761 0.4993 0.5415 0.5738 0.5962 0.6262 0.6519 0.6784 0.7067
+#> [31] 0.7279 0.7451 0.7805 0.7913 0.8211 0.8382 0.8458 0.8642 0.8801 0.8971
+#> [41] 0.9017 0.9143 0.9257 0.9347 0.9420 0.9490 0.9536 0.9617 0.9679 0.9703
+#> [51] 0.9773 0.9788 0.9819 0.9827 0.9874 0.9884 0.9886 0.9914 0.9938 0.9948
+#> [61] 0.9948 0.9961 0.9958 0.9964 0.9974 0.9979 0.9989 0.9990 0.9987 0.9991
+#> [71] 0.9993 0.9992 0.9995 0.9996 0.9997 1.0000 0.9997 0.9998 1.0000 0.9999
 ```
 
 Thus, if we place it in a scatter plot we can see how the probability increases as there are more students:
@@ -6153,7 +6153,7 @@ results <- replicate(n_times, {
 })
 
 mean(results)
-#> [1] 0.3302
+#> [1] 0.3352
 ```
 
 We see that the probability obtained by Monte Carlo simulation is an estimation very close to the probability that we had intuitively calculated. That is, if we keep our choice of the door we chose we have a 33.33% probability of winning.
@@ -6180,7 +6180,7 @@ results <- replicate(n_times, {
 })
 
 mean(results)
-#> [1] 0.6692
+#> [1] 0.6686
 ```
 
 As we see, changing the door in this show gave us a probability of 66.66% of winning, while keeping our choice only 33.33%.
@@ -6648,7 +6648,7 @@ simulation_results <- replicate(n_times, {
 })
 
 mean(simulation_results)
-#> [1] 0.333693
+#> [1] 0.3335644
 ```
 
 Thus, we have obtained practically the same value that we achieved in the previous section, but this time estimating using the Monte Carlo simulation.
@@ -6840,7 +6840,7 @@ prob_lose <- 1 - prob_win
 sample_vec <- sample(c(10, -1), plays, replace = TRUE, prob = c(prob_win, prob_lose))
 
 sum(sample_vec)
-#> [1] -18
+#> [1] -29
 ```
 
 Finally, not only one person will play. Let's replicate this sample about 100,000 times to simulate the number of players we would have in a quarter.
@@ -7895,6 +7895,20 @@ grades <- grades |>
 grades |> 
   select(P1, P2, P3, P4, P5, total) |> 
   summary()
+#>        P1              P2             P3              P4              P5       
+#>  Min.   :1.000   Min.   :1.00   Min.   :4.000   Min.   :1.000   Min.   :1.000  
+#>  1st Qu.:3.000   1st Qu.:4.00   1st Qu.:5.000   1st Qu.:5.000   1st Qu.:5.000  
+#>  Median :4.000   Median :5.00   Median :5.000   Median :5.000   Median :5.000  
+#>  Mean   :3.762   Mean   :4.19   Mean   :4.905   Mean   :4.571   Mean   :4.429  
+#>  3rd Qu.:5.000   3rd Qu.:5.00   3rd Qu.:5.000   3rd Qu.:5.000   3rd Qu.:5.000  
+#>  Max.   :5.000   Max.   :5.00   Max.   :5.000   Max.   :5.000   Max.   :5.000  
+#>      total      
+#>  Min.   :10.67  
+#>  1st Qu.:16.67  
+#>  Median :18.67  
+#>  Mean   :17.43  
+#>  3rd Qu.:19.33  
+#>  Max.   :20.00
 ```
 
 From this we could visualize a histogram:
@@ -7903,6 +7917,8 @@ From this we could visualize a histogram:
 ``` r
 hist(grades$total)
 ```
+
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-510-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Or we could compare between genders which one has the highest median:
 
@@ -9042,14 +9058,14 @@ install.packages('tidymodels')
 
 ``` r
 library(tidymodels)
-#> ── Attaching packages ─────────── tidymodels 1.4.1 ──
+#> ── Attaching packages ────────────── tidymodels 1.4.1 ──
 #> ✔ broom        1.0.11     ✔ tailor       0.1.0 
 #> ✔ dials        1.4.2      ✔ tune         2.0.1 
 #> ✔ infer        1.1.0      ✔ workflows    1.3.0 
 #> ✔ parsnip      1.4.0      ✔ workflowsets 1.1.1 
 #> ✔ recipes      1.3.1      ✔ yardstick    1.3.2 
 #> ✔ rsample      1.3.1
-#> ── Conflicts ────────────── tidymodels_conflicts() ──
+#> ── Conflicts ───────────────── tidymodels_conflicts() ──
 #> ✖ NLP::annotate()         masks ggplot2::annotate()
 #> ✖ scales::discard()       masks purrr::discard()
 #> ✖ Matrix::expand()        masks tidyr::expand()
@@ -9155,7 +9171,7 @@ knn_recipe <- recipe(Direction ~ ., data = SP_train) |>
 
 knn_recipe
 #> 
-#> ── Recipe ───────────────────────────────────────────
+#> ── Recipe ──────────────────────────────────────────────
 #> 
 #> ── Inputs
 #> Number of variables by role
@@ -9163,8 +9179,7 @@ knn_recipe
 #> predictor: 8
 #> 
 #> ── Operations
-#> • Centering and scaling for:
-#>   all_numeric_predictors()
+#> • Centering and scaling for: all_numeric_predictors()
 ```
 
 ### Creating a Workflow
@@ -9178,16 +9193,16 @@ knn_workflow <- workflow() |>
   add_model(knn_spec)
 
 knn_workflow
-#> ══ Workflow ═════════════════════════════════════════
+#> ══ Workflow ════════════════════════════════════════════
 #> Preprocessor: Recipe
 #> Model: nearest_neighbor()
 #> 
-#> ── Preprocessor ─────────────────────────────────────
+#> ── Preprocessor ────────────────────────────────────────
 #> 1 Recipe Step
 #> 
 #> • step_normalize()
 #> 
-#> ── Model ────────────────────────────────────────────
+#> ── Model ───────────────────────────────────────────────
 #> K-Nearest Neighbor Model Specification (classification)
 #> 
 #> Main Arguments:
@@ -9273,16 +9288,16 @@ final_knn_workflow <- finalize_workflow(knn_workflow, best_k)
 SP_knn_trained <- fit(final_knn_workflow, data = SP_train)
 
 SP_knn_trained
-#> ══ Workflow [trained] ═══════════════════════════════
+#> ══ Workflow [trained] ══════════════════════════════════
 #> Preprocessor: Recipe
 #> Model: nearest_neighbor()
 #> 
-#> ── Preprocessor ─────────────────────────────────────
+#> ── Preprocessor ────────────────────────────────────────
 #> 1 Recipe Step
 #> 
 #> • step_normalize()
 #> 
-#> ── Model ────────────────────────────────────────────
+#> ── Model ───────────────────────────────────────────────
 #> 
 #> Call:
 #> kknn::train.kknn(formula = ..y ~ ., data = data, ks = min_rows(44L,     data, 5))
@@ -9720,16 +9735,16 @@ To do this let's recall the results of the model we created using the k-nearest 
 
 ``` r
 SP_knn_trained
-#> ══ Workflow [trained] ═══════════════════════════════
+#> ══ Workflow [trained] ══════════════════════════════════
 #> Preprocessor: Recipe
 #> Model: nearest_neighbor()
 #> 
-#> ── Preprocessor ─────────────────────────────────────
+#> ── Preprocessor ────────────────────────────────────────
 #> 1 Recipe Step
 #> 
 #> • step_normalize()
 #> 
-#> ── Model ────────────────────────────────────────────
+#> ── Model ───────────────────────────────────────────────
 #> 
 #> Call:
 #> kknn::train.kknn(formula = ..y ~ ., data = data, ks = min_rows(44L,     data, 5))
@@ -10622,7 +10637,7 @@ To do this, we will use the following customer dataset, where we will find a dat
 url <- "http://archive.ics.uci.edu/ml/machine-learning-databases/00292/Wholesale%20customers%20data.csv"
 customers <- read_csv(url)
 #> Rows: 440 Columns: 8
-#> ── Column specification ─────────────────────────────
+#> ── Column specification ────────────────────────────────
 #> Delimiter: ","
 #> dbl (8): Channel, Region, Fresh, Milk, Grocery, Frozen, Detergents_Paper, De...
 #> 
@@ -10901,6 +10916,13 @@ For this case we are going to take as an example a credit card customer dataset,
 url <- "https://dparedesi.github.io/Data-Science-with-R-book/data/credit-cards.csv"
 
 cards_df <- read_csv(url)
+#> Rows: 8636 Columns: 13
+#> ── Column specification ────────────────────────────────
+#> Delimiter: ","
+#> dbl (13): balance, balance_frequency, purchases, purchases_first_3_months, f...
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 We have more than 8 thousand customers with 13 attributes. We will analyze if there are strongly correlated variables. To do this we will use the `corrplot` library.
@@ -11357,8 +11379,7 @@ reported_heights |>
   filter(is.na(numeric_height)) |> 
   head(10)
 #> Warning: There was 1 warning in `mutate()`.
-#> ℹ In argument: `numeric_height =
-#>   as.numeric(height)`.
+#> ℹ In argument: `numeric_height = as.numeric(height)`.
 #> Caused by warning:
 #> ! NAs introduced by coercion
 #>             time_stamp    sex                 height numeric_height
@@ -11807,8 +11828,8 @@ heights |>
   mutate(across(c("height", "feet", "inches"), ~as.numeric(.))) |> 
   head(15)
 #> Warning: There was 1 warning in `mutate()`.
-#> ℹ In argument: `across(c("height", "feet",
-#>   "inches"), ~as.numeric(.))`.
+#> ℹ In argument: `across(c("height", "feet", "inches"),
+#>   ~as.numeric(.))`.
 #> Caused by warning:
 #> ! NAs introduced by coercion
 #>             time_stamp    sex height feet inches
@@ -11839,8 +11860,8 @@ heights |>
   mutate(fixed_heights = feet*12 + inches) |> 
   head(15)
 #> Warning: There was 1 warning in `mutate()`.
-#> ℹ In argument: `across(c("height", "feet",
-#>   "inches"), ~as.numeric(.))`.
+#> ℹ In argument: `across(c("height", "feet", "inches"),
+#>   ~as.numeric(.))`.
 #> Caused by warning:
 #> ! NAs introduced by coercion
 #>             time_stamp    sex height feet inches fixed_heights
@@ -11881,8 +11902,8 @@ heights <- heights |>
       between(fixed_heights, min, max) ~ fixed_heights, #feet'inches
     TRUE ~ as.numeric(NA)))
 #> Warning: There was 1 warning in `mutate()`.
-#> ℹ In argument: `across(c("height", "feet",
-#>   "inches"), ~as.numeric(.))`.
+#> ℹ In argument: `across(c("height", "feet", "inches"),
+#>   ~as.numeric(.))`.
 #> Caused by warning:
 #> ! NAs introduced by coercion
 
@@ -11994,7 +12015,7 @@ mdy_hms(date_val)
 
 # Additional data: Showing system date:
 now()
-#> [1] "2025-12-25 15:23:18 GMT"
+#> [1] "2025-12-25 16:09:37 GMT"
 ```
 
 

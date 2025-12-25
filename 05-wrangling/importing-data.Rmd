@@ -126,7 +126,7 @@ We have seen how we can enter the full path to load a file directly from another
 
 Here we see the import of grades from students of the Data Science with R course.
 
-```{r eval=FALSE, message=FALSE, warning=FALSE}
+```{r eval=TRUE, message=FALSE, warning=FALSE}
 ##### Example 1:
 # Historical grades data
 url <- "https://dparedesi.github.io/Data-Science-with-R-book/data/student-grades.csv"
@@ -134,7 +134,7 @@ grades <- read_csv(url, show_col_types = FALSE)
 
 ```
 
-```{r eval=FALSE}
+```{r eval=TRUE}
 grades <- grades |>
   mutate(total = (P1 + P2 + P3 + P4 + P5 + P6)/30*20)
 
@@ -145,7 +145,7 @@ grades |>
 
 From this we could visualize a histogram:
 
-```{r eval=FALSE}
+```{r eval=TRUE}
 hist(grades$total)
 ```
 

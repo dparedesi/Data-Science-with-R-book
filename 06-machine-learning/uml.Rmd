@@ -387,7 +387,7 @@ We have created clusters with a controlled number of variables. However, we are 
 
 For this case we are going to take as an example a credit card customer dataset, adaptation of the [public dataset in Kaggle](https://www.kaggle.com/arjunbhasin2013/ccdata), from the following route.
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 url <- "https://dparedesi.github.io/Data-Science-with-R-book/data/credit-cards.csv"
 
 cards_df <- read_csv(url)

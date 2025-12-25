@@ -56,14 +56,14 @@ Just like previous editions, many exercises are inspired by practical classroom 
 
 ## Support This Work {-}
 
-Over 700 hours went into creating this resource. If you find it valuable, consider purchasing the PDF on [Leanpub](https://leanpub.com/dataScienceConR/). Your purchase includes:
+Over 700 hours went into creating this resource. If you find it valuable, consider purchasing the PDF on [Leanpub](https://leanpub.com/data-science-with-r). Your purchase includes:
 
 - Future updates at no extra cost
 - Three months of direct Q&A access with the author
 - Support for keeping the web version free for everyone
 
 `r if(params$hidden){"<!--"}`
-The web version available at [bookdown](https://bookdown.org/dparedesi/data-science-con-r/)^[https://bookdown.org/dparedesi/data-science-con-r/] seeks to democratize data science knowledge. Share it and let's contribute together to freeing knowledge.
+The web version available at [GitHub Pages](https://dparedesi.github.io/Data-Science-with-R-book/)^[https://dparedesi.github.io/Data-Science-with-R-book/] seeks to democratize data science knowledge. Share it and let's contribute together to freeing knowledge.
 `r if(params$hidden){"-->"}`
 
 ## Stay Connected {-}
