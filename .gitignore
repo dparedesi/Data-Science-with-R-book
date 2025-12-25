@@ -11,7 +11,7 @@
 
 # Example code in package build process
 *-Ex.R
-
+*.DS_Store
 # Output files from R CMD build
 /*.tar.gz
 
