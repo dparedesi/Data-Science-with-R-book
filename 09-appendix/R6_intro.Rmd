@@ -1,0 +1,229 @@
+# Appendix B: Object Oriented Programming with R6 {#r6-intro}
+
+In R, Object-Oriented Programming (OOP) can be implemented in several ways. Traditionally, R has used systems called S3 and S4 for OOP.
+
+**S3** is an informal and flexible system. It is based on the idea of generic functions, which can have different methods depending on the class of the object they apply to. For example, the `print()` function is a generic function having different methods for printing different types of objects, such as vectors, lists, or data frames.
+
+```{r}
+# Example of generic function in S3
+print(c(1, 2, 3))  # Prints a numeric vector
+print(list(a = 1, b = 2))  # Prints a list
+```
+
+**S4** is a more formal and structured system than S3. It defines classes and methods more explicitly, using special syntax. S4 is often used in packages requiring a more rigorous object structure, like Bioconductor.
+
+```{r}
+# Example of class definition in S4
+setClass("Person", slots = c(name = "character", age = "numeric"))
+
+# Example of object creation in S4
+my_person <- new("Person", name = "John", age = 30)
+
+my_person
+```
+
+However, both S3 and S4 can be somewhat confusing and limited, especially for more complex projects. Luckily, there is a more modern and robust alternative: the R6 package. This package offers a more intuitive and efficient way to implement OOP in R, with features facilitating code organization, reuse, and maintenance. If you are new to OOP, don't worry about S3 and S4 details for now. With R6, you can learn basic OOP concepts more easily and apply them to your data analysis projects.
+
+## The R6 package: Classes, methods, encapsulation, and inheritance
+
+The R6 package implements a class and object system similar to other object-oriented programming languages like Python or Java. It provides a robust and efficient way to create objects with attributes and methods, allowing encapsulation and inheritance.
+
+```{r eval=FALSE}
+install.packages("R6")
+```
+
+```{r eval=TRUE}
+library(R6)
+```
+
+**Classes:**
+
+A class is like a blueprint or template for creating objects. It defines the attributes (data) and methods (functions) that objects of that class will have. In R6, classes are created with the `R6Class()` function.
+
+```{r}
+
+# Define a "Person" class
+Person <- R6Class("Person",
+  public = list(
+    name = NULL,
+    age = NULL,
+    
+    # Constructor
+    initialize = function(name, age) {
+      self$name <- name
+      self$age <- age
+    },
+    
+    # Method to greet
+    greet = function() {
+      cat("Hello, my name is", self$name, "and I am", self$age, "years old.\n")
+    }
+  )
+)
+
+```
+
+In this example, a `Person` class is defined with `name` and `age` attributes, and `greet()` method. The `public` list defines public members of the class, i.e., attributes and methods accessible from outside the object.
+
+**Objects:**
+
+An object is an instance of a class. It is a concrete entity having attributes and methods defined by the class. In R6, objects are created with the `$new()` method.
+
+```{r}
+# Create an object of class "Person"
+juan <- Person$new(name = "Juan", age = 30)
+
+juan
+```
+
+**Methods:**
+
+Methods are functions operating on an object's attributes. They allow accessing and modifying object data, as well as performing other actions. In R6, methods are defined within the `public` list of the class.
+
+```{r}
+# Call greet() method of object "juan"
+juan$greet()
+```
+
+**Encapsulation:**
+
+Encapsulation is a mechanism allowing hiding internal details of an object and controlling access to its attributes. This protects object data and facilitates usage. In R6, encapsulation is achieved by distinguishing between public and private members.
+
+Public members are defined in `public` list and can be accessed from outside the object. Private members are defined in `private` list and can only be accessed from within the object, through methods.
+
+```{r eval=FALSE}
+# Define a "BankAccount" class with encapsulation
+BankAccount <- R6Class("BankAccount",
+  public = list(
+    holder = NULL,
+    
+    # Constructor
+    initialize = function(holder) {
+      self$holder <- holder
+      private$balance <- 0
+    },
+    
+    # Method to deposit money
+    deposit = function(amount) {
+      private$balance <- private$balance + amount
+    },
+    
+    # Method to withdraw money
+    withdraw = function(amount) {
+      if (amount <= private$balance) {
+        private$balance <- private$balance - amount
+      } else {
+        stop("Insufficient funds.")
+      }
+    },
+    
+    # Method to check balance
+    check_balance = function() {
+      return(private$balance)
+    }
+  ),
+  private = list(
+    balance = NULL
+  )
+)
+```
+
+**Inheritance:**
+
+Inheritance is a mechanism allowing creating new classes from existing classes, inheriting their attributes and methods. This facilitates code reuse and creation of class hierarchies. In R6, inheritance is specified with `inherit` argument of `R6Class()` function.
+
+```{r}
+# Define a "Student" class inheriting from "Person"
+Student <- R6Class("Student",
+  inherit = Person,
+  public = list(
+    major = NULL,
+    
+    # Constructor
+    initialize = function(name, age, major) {
+      super$initialize(name, age)
+      self$major <- major
+    },
+    
+    # Method to show student info
+    show_info = function() {
+      super$greet()
+      cat("Major:", self$major, "\n")
+    }
+  )
+)
+
+# Create an object of class "Student"
+maria <- Student$new(name = "Maria", age = 20, major = "Engineering")
+
+# Call method show_info()
+maria$show_info()
+```
+
+In this example, `Student` class inherits from `Person` class. `Student` constructor calls parent class constructor (`super$initialize()`) to initialize inherited attributes. `show_info()` method calls parent class `greet()` method (`super$greet()`) and then shows student-specific information.
+
+With R6, you can create classes and objects with a high degree of flexibility and control, allowing you to apply OOP effectively in your data analysis projects.
+
+## Exercises
+
+`r ne`. Create a class called `Pet` with attributes `name`, `species` and `age`, and methods `introduce()` (showing name, species and age of pet) and `have_birthday()` (incrementing pet age by 1).
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r}
+library(R6)
+
+Pet <- R6Class("Pet",
+  public = list(
+    name = NULL,
+    species = NULL,
+    age = NULL,
+    
+    initialize = function(name, species, age) {
+      self$name <- name
+      self$species <- species
+      self$age <- age
+    },
+    
+    introduce = function() {
+      cat("Hello, I am", self$name, ", a", self$species, "of", self$age, "years old.\n")
+    },
+    
+    have_birthday = function() {
+      self$age <- self$age + 1
+    }
+  )
+)
+```
+</details>
+
+`r ne`. Create a class called `Dog` inheriting from `Pet` class (from previous exercises). `Dog` class should have an additional attribute called `breed` and a method called `bark()`.
+
+```{r echo=FALSE}
+inc(params$hidden, ne)
+```
+
+<details>
+  <summary type="button">Solution</summary>
+```{r eval=FALSE}
+Dog <- R6Class("Dog",
+  inherit = Pet,
+  public = list(
+    breed = NULL,
+    
+    initialize = function(name, age, breed) {
+      super$initialize(name, "dog", age)
+      self$breed <- breed
+    },
+    
+    bark = function() {
+      cat("Woof! Woof!\n")
+    }
+  )
+)
+```
+</details>

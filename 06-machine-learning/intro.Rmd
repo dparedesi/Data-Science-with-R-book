@@ -1,13 +1,34 @@
 # (PART) Machine learning {-}
 
 # Introduction {-}
-We have seen so far how to work with data. Performing analysis of what has happened allows us to take a determined action to change the course of a business. However, we can also use this data to predict.
 
-Predictive analysis is a technique that every Data Scientist must master, and _Machine learning_ provides us with robust algorithms to be able to make predictions.
+We have seen so far how to work with data: importing, cleaning, and visualizing it. Performing analysis of what has happened allows us to take a determined action to change the course of a business. However, the true power of data science lies in using this data to **predict** the future.
 
-_Machine learning_ is the study of computer algorithms that improve automatically through experience. Applications range from data mining programs that discover general rules in large datasets, to information filtering systems that automatically learn user interests [@mitchell1997]. It is seen as a subset of artificial intelligence. _Machine learning_ algorithms create a mathematical model based on sample data, known as "training data", to make predictions or decisions without being explicitly programmed to do so.
+Predictive analysis is a technique that every Data Scientist must master, and _Machine learning_ provides us with robust algorithms to make these predictions.
 
-A good _data scientist_ knows how to build prediction algorithms using _machine learning_. In the following chapters, we will see techniques both for discrete variables and for when we work with continuous variables from the two main machine learning approaches: supervised learning and unsupervised learning.
+_Machine learning_ is the study of computer algorithms that improve automatically through experience. It is a subset of artificial intelligence where algorithms create mathematical models based on sample data, known as "training data", to make predictions or decisions without being explicitly programmed to do so. Applications range from recommendation engines (like Netflix or Spotify) to fraud detection and self-driving cars [@mitchell1997].
+
+A good _data scientist_ knows how to build prediction algorithms using _machine learning_. In this book, we will focus on the two main approaches:
+
+We will explore two primary approaches to machine learning. **Supervised Learning** involves training models on labeled data where we know the correct answer, allowing us to predict outcomes for new, unseen data—either as numbers (regression) or categories (classification). In contrast, **Unsupervised Learning** deals with unlabeled data, where the goal is to discover hidden patterns, structures, or groupings (clustering) without a pre-defined answer key.
+
+```{r, echo=FALSE, fig.alt="Machine learning diagram showing supervised vs unsupervised learning branches"}
+knitr::include_graphics(file.path(img_path, "06-machine-learning", "ML.png"))
+```
+
+Keep in mind that there are also other approaches, such as semi-supervised learning or **reinforcement learning** where the algorithm learns from a real or synthetic environment. These approaches will not be covered in this book, which focuses on the foundational techniques for starting out as a _data scientist_.
+
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+In this chapter, we will learn to distinguish between **supervised** and **unsupervised** learning approaches. We will implement core algorithms such as **k-Nearest Neighbors (kNN)**, **Logistic Regression**, and **Random Forest** for classification tasks, and build **regression models** to predict continuous variables. Additionally, we will evaluate model performance using essential metrics like **confusion matrices** and **ROC curves**, apply **clustering techniques** to segment data, and select the optimal model using the modern `tidymodels` framework.
+
+## Chapter Structure
+
+We will cover the two main approaches to machine learning:
+
+Our journey covers these two fundamental pillars. We begin with **Supervised Learning**, focusing on models that learn from historical data to predict future outcomes, covering both classification and regression problems. We then move to **Unsupervised Learning**, techniques designed to find structure in unlabeled data, such as grouping similar customers or reducing complex datasets to their essential features.
 
 ```{r, echo=FALSE, fig.alt="Machine learning diagram showing supervised vs unsupervised learning branches"}
 knitr::include_graphics(file.path(img_path, "06-machine-learning", "ML.png"))

@@ -14,6 +14,7 @@ library(rvest)        # Web scraping
 library(syuzhet)      # Sentiment analysis
 library(tm)           # Text mining
 library(wordcloud)    # Word cloud visualization
+library(tidytext)     # Tidy text mining
 library(gutenbergr)   # Public domain texts
 
 # --- Utilities ---

@@ -2,7 +2,7 @@
 
 In this case study, we will apply our data transformation and visualization skills to analyzing the real estate market. We will use the `txhousing` dataset provided by the `ggplot2` package, which contains information about housing sales in Texas.
 
-This dataset allows us to explore similar concepts to financial invoice factoring (tracking value over time, comparing categories, and analyzing volume) but with a much more stable and standardized data source.
+This dataset allows us to explore concepts like tracking value over time, comparing categories, and analyzing transaction volume—skills that transfer directly to financial analysis, sales reporting, and business intelligence.
 
 ## Objectives
 
@@ -131,22 +131,33 @@ city_inventory <- city_trends |>
 
 city_inventory |> 
   ggplot(aes(x = year, y = avg_inventory, color = city)) +
-  geom_line(size = 1) +
+  geom_line(linewidth = 1) +
   theme_fivethirtyeight() +
   labs(
     title = "Market Health: Months of Inventory",
-    subtitle = "Lower means simpler to sell (Seller's Market)",
+    subtitle = "Lower means easier to sell (Seller's Market)",
     color = "City"
   )
 ```
 
 We see a convergence around 2014-2015 where inventory became very tight across all major cities.
 
+## Try It Yourself
+
+1.  **Expand the Analysis**: Add "Fort Worth" to `major_cities` and re-run the median price comparison. How does it compare to the Big 4?
+
+2.  **Calculate Growth**: Compute the year-over-year percentage change in median price for Austin. Which year had the highest growth?
+
+3.  **Seasonality Deep Dive**: Which month typically has the highest sales volume? Create a boxplot of sales by month to visualize seasonal patterns.
+
 ## Conclusions
 
-Through this case study, we accessed a standardized dataset (`txhousing`) and performed key Data Science tasks:
-1.  **Cleaning**: Handling `NA`s and formatting dates.
-2.  **Aggregation**: Summarizing millions of dollars of volume into a clear trend line.
-3.  **Comparison**: Benchmarking different categories (Cities) against each other.
+Through this case study, we performed essential Data Science tasks on a real dataset:
 
-This workflow is identical to what is required for analyzing invoice portfolios, stock tickers, or customer churn cohorts, but uses a reliable data source that ensures our code is reproducible.
+1.  **Cleaning**: Handling `NA` values and formatting dates with `lubridate`.
+2.  **Aggregation**: Summarizing billions of dollars of volume into clear trend lines.
+3.  **Comparison**: Benchmarking cities against each other to identify leaders.
+4.  **Indicators**: Creating business-relevant metrics like months of inventory.
+
+> [!TIP]
+> This exact workflow applies to countless domains: stock prices, customer churn, inventory management, or any time-series business data. Master the pattern here, and you can adapt it anywhere.

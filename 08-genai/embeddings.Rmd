@@ -1,0 +1,118 @@
+# Text Analysis with Embeddings {#genai-embeddings}
+
+In the previous chapters, we learned how to generate text and how to extract data from it. But what if we want to *understand* the relationship between thousands of documents without reading them?
+
+This is where **Embeddings** come in. They are arguably the most powerful yet underutilized tool in the AI toolkit for Data Scientists.
+
+## Beyond Bag-of-Words
+
+Traditional text mining techniques, such as word clouds or TF-IDF, treat text as a simple "bag of words," ignoring context. For example, the sentence "I sat on the **bank** of the river" and "I went to the **bank** to deposit money" are treated as identical because they both contain the word "bank," even though the meaning offers a completely different context. To a human—and to an Embedding model—these distinctions are clear.
+
+## What is an Embedding?
+
+An embedding is a translation of text into a **vector of numbers**.
+
+Imagine plotting words on a hypothetical 2D graph based on their meaning. In this space, **King** might sit at coordinates `(5, 5)`, with **Queen** located nearby at `(5, 7)` due to their semantic similarity. **Apple**, unrelated to royalty, would be positioned far away at `(10, 2)`. Modern embedding models like OpenAI's `text-embedding-3-small` scale this concept up massively, placing words not in two dimensions, but in **1,536 dimensions**. This high-dimensional space allows them to capture subtle nuances of meaning, tone, and context that simple coordinates cannot.
+
+## Getting Embeddings in R
+
+We can request embeddings using the same `httr2` workflow we built in the previous chapter, but hitting the `/embeddings` endpoint.
+
+```{r eval=FALSE}
+get_embedding <- function(text_input) {
+  
+  api_key <- Sys.getenv("OPENAI_API_KEY")
+  
+  req <- request("https://api.openai.com/v1/embeddings") |> 
+    req_headers(Authorization = paste("Bearer", api_key)) |> 
+    req_body_json(list(
+      model = "text-embedding-3-small",
+      input = text_input
+    ))
+  
+  resp <- req_perform(req)
+  result <- resp |> resp_body_json()
+  
+  # The embedding is a list of numbers
+  return(unlist(result$data[[1]]$embedding))
+}
+
+# Example
+vector_dog <- get_embedding("The dog barked")
+length(vector_dog) 
+# [1] 1536
+```
+
+## Visualizing Meaning (Dimensionality Reduction)
+
+We cannot visualize 1,536 dimensions. But we can use mathematical techniques like **PCA** (Principal Component Analysis) or **UMAP** to squash those dimensions down to 2, preserving relative distances.
+
+Let's assume we have a dataframe `news_df` with headlines and their calculated embeddings.
+
+```{r eval=FALSE}
+library(tidymodels)
+
+# Assume 'embeddings_mat' is a matrix where each row is an embedding vector
+pca_rec <- recipe(~., data = as.data.frame(embeddings_mat)) |> 
+  step_pca(all_predictors(), num_comp = 2)
+
+pca_prep <- prep(pca_rec)
+pca_data <- bake(pca_prep, new_data = NULL)
+
+# Add back the text labels
+plot_data <- pca_data |> 
+  bind_cols(news_df |> select(headline, category))
+
+# Plot
+plot_data |> 
+  ggplot(aes(x = PC1, y = PC2, color = category)) +
+  geom_point(alpha = 0.8) +
+  theme_minimal() +
+  labs(title = "Map of News Headlines")
+```
+
+If we did this correctly, we would see distinct "clusters". Sports news would cluster in one corner, politics in another, and technology in a third—even if they never share the exact same keywords!
+
+## Building a Semantic Search Engine
+
+The "Hello World" of Embeddings is **Semantic Search**, which fundamentally differs from traditional approaches. While a **Keyword Search** for "cheap phone" rigidly looks for the exact words "cheap" AND "phone," a **Semantic Search** for "budget friendly mobile" understands the underlying intent—that "budget" relates to "cheap" and "mobile" to "phone."
+
+Mathematically, this is calculated using **Cosine Similarity**. The closer the angle between two vectors, the more similar their meaning.
+
+```{r eval=FALSE}
+# Function to calculate Cosine Similarity
+cosine_sim <- function(a, b) {
+  sum(a * b) / (sqrt(sum(a^2)) * sqrt(sum(b^2)))
+}
+
+search_news <- function(query, data_vectors, data_text) {
+  
+  # 1. Embed the query
+  query_vec <- get_embedding(query)
+  
+  # 2. Compare against all document vectors
+  similarities <- apply(data_vectors, 1, function(doc_vec) {
+    cosine_sim(query_vec, doc_vec)
+  })
+  
+  # 3. Return top 3 matches
+  results <- tibble(
+    text = data_text,
+    score = similarities
+  ) |> 
+    arrange(desc(score)) |> 
+    head(3)
+  
+  return(results)
+}
+```
+
+Now you can search for concepts, not just keywords!
+
+## Summary: The AI Workflow
+
+We have completed our journey through Generative AI in R.
+
+We have completed our journey through Generative AI in R, covering three foundational pillars. We started by understanding that **Foundations** of models are probabilistic engines predicting tokens, not reasoning beings. Then, we moved to **APIs**, building robust pipelines to extract structured JSON data from unstructured text. Finally, we explored **Embeddings**, learning to represent text as numerical vectors to enable powerful search and clustering by meaning.
+
+The future of Data Science is hybrid. It combines the statistical rigor of tools like `tidymodels` with the semantic understanding of Large Language Models. You are now equipped to build that future.

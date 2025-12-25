@@ -6,12 +6,20 @@ editor_options:
 # Continuous Probabilities
 Recall that a continuous variable is a variable that takes values along a continuum, that is, over an entire interval of values. An essential attribute of a continuous variable is that, unlike a discrete variable, it can never be measured exactly; the observed value depends largely on the precision of the measuring instruments. With a continuous variable, there is inevitably a measurement error. As an example, the height of a person (1.72m, 1.719m, 1.7186m....). Another example could be the time it takes an athlete to run 100 meters flat, since this time can take values such as 9.623 seconds; 10.456485 seconds; 12.456412 seconds; that is, an interval of values.
 
+::: {.callout-note}
+## Learning Objectives
+
+After completing this chapter, you will be able to:
+
+In this chapter, we will learn how to handle data that can take any value within a range. We will distinguish between empirical distributions, based on real data, and theoretical distributions, which model ideal behavior. We will use the Cumulative Distribution Function (CDF) to calculate probabilities for intervals and apply the normal distribution to model real-world continuous data. Additionally, we will learn to assess whether data fits a normal distribution using Q-Q plots and the Shapiro-Wilk test, and perform Monte Carlo simulations for continuous variables using `rnorm()`.
+:::
+
 For example, recall that in the `heights` data frame we have the heights of a group of university students.
 
 ```{r eval=TRUE}
 heights |> 
   filter(sex == "Male") |> # Filter only males
-  mutate(height_m = height/39.37) |> # Convert to centimeters
+  mutate(height_m = height/39.37) |> # Convert to meters
   ggplot() +
   aes(sex, height_m, color = height_m) +
   geom_point(position = position_jitterdodge())
@@ -24,7 +32,7 @@ It makes more sense to analyze the data by intervals, as can be seen in this his
 ```{r eval=TRUE}
 heights |> 
   filter(sex == "Male") |> # Filter only males
-  mutate(height_m = height/39.37) |> # Convert to centimeters
+  mutate(height_m = height/39.37) |> # Convert to meters
   ggplot() +
   aes(height_m) +
   geom_histogram(binwidth = 0.05, color = "black")
@@ -44,10 +52,10 @@ men <- heights |>
   pull(height_m)
 ```
 
-Then, we can create the function `FDA` (CDF) that takes `x` as a variable and calculates the proportion of men who measure less than or equal to `x` within the data found in the `men` vector.
+Then, we can create the function `empirical_cdf` (CDF) that takes `x` as a variable and calculates the proportion of men who measure less than or equal to `x` within the data found in the `men` vector.
 
 ```{r eval=TRUE}
-FDA <- function(x){
+empirical_cdf <- function(x){
   mean(men <= x)
 }
 ```
@@ -55,7 +63,7 @@ FDA <- function(x){
 Thus, if we want to calculate what the proportion of students who measure 1.73m or less would be.
 
 ```{r eval=TRUE}
-FDA(1.73)
+empirical_cdf(1.73)
 ```
 
 On the other hand, recall that the median is the value that divides our data into two equal parts. So, if we calculate the median:
@@ -68,26 +76,26 @@ And then we enter the value `r median(men)` into our function to ask what is the
 
 ```{r eval=TRUE}
 median_val <- median(men)
-FDA(median_val)
+empirical_cdf(median_val)
 ```
 
-So far we have calculated proportions with the cumulative distribution function FDA. However, if we want to know what is the **probability** that when choosing a man at random he measures 1.9m or less, we could use the same FDA. Since each student has the same chance of being chosen, the answer to the question would be the proportion of students who measure 1.9 or less.
+So far we have calculated proportions with the cumulative distribution function. However, if we want to know what is the **probability** that when choosing a man at random they measure 1.9m or less, we could use the same `empirical_cdf`. Since each student has the same chance of being chosen, the answer to the question would be the proportion of students who measure 1.9 or less.
 
 $F(1.9) = P(x \le 1.9)$
 
 ```{r eval=TRUE}
-FDA(1.9)
+empirical_cdf(1.9)
 ```
 
 We observe that the probability is approximately 93.97%.
 
-If we now want to calculate the probability that someone chosen at random is taller than 1.80m, we first calculate the FDA for 1.8 and then obtain the complement.
+If we now want to calculate the probability that someone chosen at random is taller than 1.80m, we first calculate the CDF for 1.8 and then obtain the complement.
 
 $P(x > 1.8) = 1 - P(x \le 1.8)$
 
 ```{r eval=TRUE}
 # Probability of measuring 1.80m or less
-prob <- FDA(1.8)
+prob <- empirical_cdf(1.8)
 
 # Probability of measuring more than 1.80m
 1 - prob
@@ -100,9 +108,9 @@ If we now wanted to know the probability that when choosing someone at random th
 $P(x > 1.6\ \cap\ x \le 1.95) = P(x \le 1.95) - P(x \le 1.6)$
 
 ```{r evaluate=TRUE}
-prob_1 <- FDA(1.95)
+prob_1 <- empirical_cdf(1.95)
 
-prob_2 <- FDA(1.6)
+prob_2 <- empirical_cdf(1.6)
 
 prob_1 - prob_2
 ```
@@ -119,17 +127,17 @@ heights |>
   ggplot() +
   aes(height_m) +
   geom_histogram(binwidth = 0.05, color = "black") +
-  geom_density(aes(y = ..count..*0.05), colour = "blue", lty = 5)
+  geom_density(aes(y = after_stat(count)*0.05), colour = "blue", lty = 5)
 
 ```
 
-We see that the distribution has an approximately symmetric, bell shape. This distribution could be modeled using a [normal distribution](https://support.minitab.com/en-us/minitab/18/help-and-how-to/statistics/basic-statistics/supporting-topics/normality/what-is-the-normal-distribution/) (also called Gaussian distribution, Gauss curve, or Gauss bell). To do this, in R we will use the function `pnorm(x, average, std_dev)` to estimate the probability but using a normal distribution function with an average `promedio` and a standard deviation `desv_est`. In this way, we can estimate what is the probability that if we choose a value at random it is less than or equal to `x`.
+We see that the distribution has an approximately symmetric, bell shape. This distribution could be modeled using a [normal distribution](https://support.minitab.com/en-us/minitab/18/help-and-how-to/statistics/basic-statistics/supporting-topics/normality/what-is-the-normal-distribution/) (also called Gaussian distribution, Gauss curve, or Gauss bell). To do this, in R we will use the function `pnorm(x, average, std_dev)` to estimate the probability but using a normal distribution function with an average `average` and a standard deviation `std_dev`. In this way, we can estimate what is the probability that if we choose a value at random it is less than or equal to `x`.
 
 For example, let's calculate again the probability that when choosing a man at random he measures 1.65m or less, we could use the same FDA and now the `pnorm()` function.
 
 ```{r eval=TRUE}
 # Using the empirical distribution (real data):
-FDA(1.9)
+empirical_cdf(1.9)
 
 # Using the theoretical normal distribution (approx. data):
 avg <- mean(men)
@@ -152,7 +160,7 @@ data.frame(value = normal) |>
   aes(sec, value) +
   geom_line() +
   theme(axis.text.y = element_blank()) +
-  xlab("Height (Estatura)") +
+  xlab("Height (meters)") +
   ylab("") +
   ggtitle("Normal Distribution") +
   geom_area(aes(x = ifelse(sec < 1.9, sec, 0)), fill = "blue") +
@@ -164,7 +172,7 @@ In the same way, we could estimate the probability that a person chosen at rando
 
 ```{r eval=TRUE}
 # Using the empirical distribution (real data):
-1- FDA(1.8)
+1 - empirical_cdf(1.8)
 
 # Using the theoretical normal distribution (approx. data):
 avg <- mean(men)
@@ -186,7 +194,7 @@ data.frame(value = normal) |>
   aes(sec, value) +
   geom_line() +
   theme(axis.text.y = element_blank()) +
-  xlab("Height (Estatura)") +
+  xlab("Height (meters)") +
   ylab("") +
   ggtitle("Normal Distribution") +
   geom_area(aes(x = ifelse(sec > 1.8, sec, 0)), fill = "blue") +
@@ -198,8 +206,8 @@ Finally, let's recalculate the probability that when choosing someone at random 
 
 ```{r evaluate=TRUE}
 # Using the empirical distribution (real data):
-prob_1 <- FDA(1.95)
-prob_2 <- FDA(1.6)
+prob_1 <- empirical_cdf(1.95)
+prob_2 <- empirical_cdf(1.6)
 prob_1 - prob_2
 
 # Using the theoretical normal distribution (approx. data):
@@ -221,7 +229,7 @@ data.frame(value = normal) |>
   aes(sec, value) +
   geom_line() +
   theme(axis.text.y = element_blank()) +
-  xlab("Height (Estatura)") +
+  xlab("Height (meters)") +
   ylab("") +
   ggtitle("Normal Distribution") +
   geom_area(aes(x = ifelse(sec > 1.6 & sec <= 1.95, sec, 0)), fill = "blue") +
@@ -253,13 +261,19 @@ shapiro.test(men)
 
 The p-value is less than 0.05 so, although our distribution resembles a normal one, it does not pass the significance test.
 
+::: {.callout-tip}
+## Key Takeaways
+
+We have explored the differences between **empirical distributions**, derived directly from observed data using functions like `empirical_cdf()`, and **theoretical distributions**, which rely on mathematical models such as the normal distribution. We learned to use `pnorm(x, mean, sd)` to calculate cumulative probabilities, providing a powerful tool for analyzing continuous variables. Finally, we introduced **Q-Q plots** and the **Shapiro-Wilk test** as method to verify if our data follows a normal distribution, with a p-value greater than 0.05 indicating that the assumption of normality is reasonable.
+:::
+
 `r if(params$hidden){"<!--"}`
 
 ## Exercises
 
 For the following exercises assume that the distribution of ages of students in the _Data Science with R_ course approximates a normal distribution with an average of 24 years and a standard deviation of 3. If we select a student at random:
 
-`r ne`. What is the probability that they are at most 23 years old?
+`r ne`. Given the parameters of our student age distribution, calculate the probability that a randomly chosen student is **at most** 23 years old.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -275,7 +289,7 @@ pnorm(23, avg_e, std_dev_e)
 ```
 </details>
 
-`r ne`. What is the probability that they are older than 28 years?
+`r ne`. Determine the probability that a selected student is **older than** 28 years.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -291,7 +305,7 @@ std_dev_e <- 3
 ```
 </details>
 
-`r ne`. What is the probability that they are older than 22, but at most 27 years old?
+`r ne`. Calculate the probability that a student is between 22 and 27 years old (older than 22 but at most 27).
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -307,7 +321,7 @@ pnorm(27, avg_e, std_dev_e ) - pnorm(22, avg_e, std_dev_e )
 ```
 </details>
 
-`r ne`. What is the probability that they are at most one standard deviation away from the average?
+`r ne`. Find the probability that a student's age falls within one standard deviation of the average (i.e., between `average - sd` and `average + sd`).
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -420,7 +434,7 @@ shapiro.test(max_grades)
 ```
 </details>
 
-`r ne`. Modify the previous simulation to analyze the distribution of the average grades of each year.
+`r ne`. Now, modify your simulation to analyze the **distribution of the yearly averages**. Generate the sample average for each of the 1,000 simulations and plot the histogram.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -443,7 +457,7 @@ shapiro.test(notas_avg)
 ```
 </details>
 
-`r ne`. Using the first Monte Carlo simulation created, calculate the probability that the first place in grades is greater than 18.5.
+`r ne`. Using the results from your first simulation (distribution of maximum grades), estimate the probability that the highest grade in a given year exceeds 18.5.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)

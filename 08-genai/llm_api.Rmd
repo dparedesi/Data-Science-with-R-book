@@ -1,90 +1,189 @@
+```
 # LLMs as an Analysis Engine {#genai-api}
 
-In the previous section, we used AI as a coding assistant. Now, we will use it as a data processing engine.
+In the previous chapter, we treated AI as a chatbot that helps us write code. Now, we are going to flip the script. We will treat the Large Language Model as a **function** within our R code—a function that accepts unstructured text as input and returns structured data as output. This approach turns unstructured text into structured data with minimal code.
 
-## The Evolution of NLP
+This is the transition from "Chatting with AI" to "Building with AI".
 
-We saw in Chapter 5 (@ref(text-mining)) how to perform **Sentiment Analysis** using the `syuzhet` package and the NRC Lexicon. This approach is "Bag of Words"—it looks up each word in a dictionary.
+## The API Economy
 
-*   **Lexicon Approach:** "This movie was not bad." -> "Bad" is negative -> **Negative Sentiment** (fails to catch negation).
-*   **LLM Approach:** "This movie was not bad." -> Understands nuance -> **Positive/Neutral Sentiment**.
+To interact with models programmatically, we use **APIs** (Application Programming Interfaces). Instead of a web interface, we send HTTP requests.
 
-## Interacting with APIs from R
+While there are R packages like `openai`, `ellmer` or `chattr` that wrap these APIs, as a Data Scientist it is critical to understand how to build the connection yourself using `httr2`. This gives you full control over error handling, retries, and costs.
 
-To use an LLM (like GPT-4o or Claude 3.5 Sonnet) from R, we typically use an API (Application Programming Interface). While there are packages like `elmer` or `openai` being developed, knowing how to do it with `httr2` is a fundamental skill.
+### Prerequisite: The Setup
 
-### Prerequisite: API Keys
-You need an API key from a provider (OpenAI, Anthropic, etc.). 
-**Never hardcode your key in a script.** Store it in your `.Renviron` file:
-
-```r
-# In your .Renviron file
-OPENAI_API_KEY="sk-..."
-```
-
-### Making a Request
-Here is a function to analyze sentiment using an LLM.
+Ensure you have your API key stored in the `.Renviron` file as discussed in the previous chapter.
 
 ```{r eval=FALSE}
+library(tidyverse)
 library(httr2)
 library(jsonlite)
 
-analyze_sentiment_llm <- function(text_input) {
+# Reload environment if needed
+readRenviron(".Renviron")
+```
+
+## Building a Robust Request
+
+A production-quality API request needs more than just a URL. It needs **Authentication**, **Retry Logic**, and **Error Handling**.
+
+Let's build a wrapper function to query OpenAI's GPT-4o-mini (a cost-effective model).
+
+```{r eval=FALSE}
+query_openai <- function(prompt, system_prompt = "You are a helpful assistant.") {
   
   api_key <- Sys.getenv("OPENAI_API_KEY")
   
-  # 1. Create the request
+  if (api_key == "") stop("Error: OPENAI_API_KEY not found in environment.")
+  
+  # 1. Construct the Request
   req <- request("https://api.openai.com/v1/chat/completions") |> 
     req_headers(Authorization = paste("Bearer", api_key)) |> 
     req_body_json(list(
       model = "gpt-4o-mini",
       messages = list(
-        list(role = "system", content = "You are a sentiment analysis bot. Respond ONLY with one word: 'Positive', 'Negative', or 'Neutral'."),
-        list(role = "user", content = text_input)
+        list(role = "system", content = system_prompt),
+        list(role = "user", content = prompt)
       ),
-      temperature = 0
-    ))
+      temperature = 0 # Deterministic for data tasks
+    )) |> 
+    # 2. Add Robustness: Retry 3 times if server fails (500) or rate limited (429)
+    req_retry(max_tries = 3, backoff = ~ 2) |> # Exponential backoff
+    req_throttle(rate = 100/60) # 100 requests per minute
   
-  # 2. Perform the request
+  # 3. Perform Request & Handle Errors
   response <- req_perform(req)
   
-  # 3. Parse the result
+  # 4. Parse the content
   result <- response |> resp_body_json()
   return(result$choices[[1]]$message$content)
 }
-
-# Testing it
-analyze_sentiment_llm("I absolutely hated the popcorn, but the movie was a masterpiece.")
-# LLM Result: "Positive" (likely, as it understands the core subject is the movie)
 ```
 
-## Zero-Shot Classification
+Now we have a function `query_openai()` that we can use like any other R function.
 
-One of the most powerful abilities of LLMs is **Zero-Shot Classification**. You don't need to train a model; you just describe the categories.
+```{r eval=FALSE}
+query_openai("What is the capital of Peru?")
+# [1] "The capital of Peru is Lima."
+```
 
-Imagine you have customer feedback and want to categorize it into: "Pricing", "Usability", or "Feature Request".
+## The Holy Grail: Structured Data extraction
 
-**Prompt:**
-> "Classify the following text into one of these categories: [Pricing, Usability, Feature Request]. Text: 'I can't find the export button.'"
+The biggest problem with LLMs is that they love to talk. If you ask for a sentiment score, they might say: *"Here is the sentiment score you requested based on my analysis: Positive."*
 
-**R Implementation:**
-You would wrap the above prompt in a function similar to `analyze_sentiment_llm`. This replaces complex supervised learning pipelines for many simple tasks.
+We don't want that. We want `"Positive"`. Or even better, we want a JSON object.
 
-## Text Cleaning with LLMs
+### Forcing JSON Output
 
-Another major use case is data cleaning. 
+Most modern models support "JSON Mode". This guarantees the output is machine-readable valid JSON.
 
-**Scenario:** You have a column `Job_Title` with values like "Sr. Data Scientist", "Senior Data Scientist", "Data Scientist II", "Data Science Lead". You want to standardize them.
+Let's say we have a dataset of raw customer reviews and want to extract specific insights. We need to capture the **Sentiment** (Positive or Negative), a list of mentioned **Topics**, and the **Urgency** level—flagging it as 'High' if the user is angry or at risk of churning, and 'Low' otherwise.
 
-Instead of writing 50 regex rules, you can send the unique values to an LLM:
+```{r eval=FALSE}
+extract_review_data <- function(review_text) {
+  
+  system_instructions <- "
+  You are a data extraction engine. 
+  Extract the following fields from the user review and return ONLY a JSON object:
+  - sentiment: 'Positive', 'Neutral', or 'Negative'
+  - topics: a list of strings (e.g., ['Price', 'UX'])
+  - urgency: 'High' if the user is angry/churning, else 'Low'
+  "
+  
+  # Note: To enforce strict JSON, we often need to tell the model in the prompt
+  # AND set response_format = { type: 'json_object' } if supported.
+  
+  response_json <- query_openai(review_text, system_label = system_instructions)
+  
+  # Parse JSON string to R list
+  return(fromJSON(response_json))
+}
+```
 
-> "Map the following list of job titles to a standard taxonomy: [Data Scientist, Data Analyst, Data Engineer]. Return a CSV format."
+## Batch Processing: The `purrr` Workflow
 
-This approach turns unstructured text into structured data with minimal code.
+Now, let's apply this to a Data Frame. When processing hundreds of rows, we **must** be careful.
+
+Now, let's apply this to a Data Frame. When processing hundreds of rows, we must be careful. First, we need to respect **Rate Limits**, as APIs will block you if you send too many requests too quickly (e.g., 1000 in a second). Second, consider **Cost** by always testing on a small sample like `head(df, 5)` before running the full job. Finally, ensure **Error Safety**: if row 99 fails, we want to capture that error gracefully so the entire loop doesn't crash.
+
+We use `purrr::map` with `possibly()` (or `safely()`) generally, but for API calls, adding a small `Sys.sleep()` is wise.
+
+```{r eval=FALSE}
+# Sample Data
+reviews_df <- tibble(
+  id = 1:3,
+  text = c(
+    "I love this product! Best purchase ever.",
+    "The delivery was late and the item is broken. I want a refund.",
+    "It's okay, but a bit expensive for what it is."
+  )
+)
+
+# 1. Create a Safe Function (returns NULL instead of crashing)
+safe_extract <- possibly(extract_review_data, otherwise = NULL)
+
+# 2. Iterate
+results_df <- reviews_df |> 
+  mutate(ai_data = map(text, function(t) {
+    Sys.sleep(0.5) # Be polite to the API
+    safe_extract(t)
+  })) |> 
+  # 3. Unnest the JSON structure
+  unnest_wider(ai_data)
+
+print(results_df)
+```
+
+**Resulting Data Frame:**
+
+| id | text | sentiment | topics | urgency |
+|:---|:-----|:----------|:-------|:--------|
+| 1 | I love... | Positive | ["Product"] | Low |
+| 2 | The delivery... | Negative | ["Shipping", "Product"] | High |
+| 3 | It's okay... | Neutral | ["Price"] | Low |
 
 ## Summary
 
-*   LLMs capture context that lexicons miss.
-*   `httr2` is your friend for connecting R to the AI ecosystem.
-*   Always handle API keys securely.
-*   AI is not free—monitor your usage costs.
+We have turned an unstructured text column into usable columns for filtering and plotting. This is the true power of "LLMs as Data Engines".
+
+*   We use `httr2` for robust connections.
+*   We use System Prompts to force JSON structure.
+*   We use `purrr` and `unnest_wider` to flatten that AI insight back into our Tidyverse workflow.
+
+In the next chapter, we will discuss Ethics. But before that, there is one more superpower we need to unlock: **Embeddings**.
+
+## Beyond Generation: Embeddings
+
+So far, we have used LLMs to *generate* text. But they can also *understand* text by converting it into numbers. This is called an **Embedding**.
+
+An embedding is a list of numbers (a vector, e.g., 1536 numbers long) that represents the semantic meaning of a text.
+
+Consider the difference between a "Dog" and a "Puppy"; their corresponding vectors will be mathematically very close because they share similar semantic meanings. In contrast, "Dog" and "Sandwich" will be far apart. This capability powers **Semantic Search**. Unlike a standard keyword search that looks for exact matches like "Climate" or "Change"—and potentially misses relevant documents—a semantic search converts your query into a vector. It then finds documents with the closest vectors, allowing you to retrieve a report on "Global warming effect on maize" even if it doesn't contain the exact words from your query "Climate change impact on corn."
+
+### R Implementation
+
+Getting an embedding is just another API call:
+
+```r
+get_embedding <- function(text) {
+  req <- request("https://api.openai.com/v1/embeddings") |> 
+    req_headers(Authorization = paste("Bearer", Sys.getenv("OPENAI_API_KEY"))) |> 
+    req_body_json(list(
+      model = "text-embedding-3-small",
+      input = text
+    ))
+  
+  resp <- req_perform(req)
+  # Extract the vector
+  resp |> resp_body_json() |> pluck("data", 1, "embedding") |> unlist()
+}
+
+v1 <- get_embedding("The dog barked")
+v2 <- get_embedding("The canine made noise")
+# cosine_sim <- sum(v1 * v2) / (sqrt(sum(v1^2)) * sqrt(sum(v2^2)))
+# The result will be very high (close to 1).
+```
+
+This vectorization is the foundation of **RAG (Retrieval Augmented Generation)**, which allows you to chat with your own PDFs.
+

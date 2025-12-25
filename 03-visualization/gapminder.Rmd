@@ -7,12 +7,7 @@
 
 (*): Samuel Huntington in 1993 published an article called [Clash of Civilizations](https://web.archive.org/web/20100821191056/http://history.club.fatih.edu.tr/103%20Huntington%20Clash%20of%20Civilizations%20full%20text.htm)^[Full text of Huntington's article (in English)] where he defined Western countries as those located in the regions of North America, Northern/Southern/Western Europe and Australia and New Zealand.
 
-The process we are going to follow to solve the mentioned questions will be:
-
-1. Data Exploration
-2. Data Understanding
-3. Data analysis until finding the relevant ones to solve questions
-4. Visualization and summary
+To address these questions, we will follow a structured data science workflow. We'll start by **exploring the data** to understand its structure and content, then move to **in-depth analysis** to identify relevant variables. Finally, we will use **visualization and summarization** techniques to synthesize our findings and provide clear answers.
 
 First let's explore the structure of the data frame with `str()`:
 
@@ -66,7 +61,7 @@ gapminder |>
 Infant mortality is measured in number of children who die per 1,000 infants. This means that it already takes into account the population. In 2015 Peru had a higher infant mortality rate than Chile.
 
 ## Initial gapminder plots
-However, if we want to analyze global data, comparing country by country would take us much more time. Let's use `ggplot` to see if there is a relationship in our data.
+However, if we want to analyze global data, comparing countries one by one would be impractical. Let's use `ggplot` to see if there is a relationship in our data.
 
 Let's create a scatter plot with data from the **year 1990** of the fertility variable (`fertility`), which is the average number of children per woman, and the life expectancy variable (`life_expectancy`).
 
@@ -136,7 +131,7 @@ gapminder |>
   facet_grid(continent ~ year)
 ```
 
-Here the change by regions is much more evident and how the majority of countries have reduced fertility per family while increasing life expectancy. We are living longer than in the 60s and in turn having fewer children per family. These phenomena have occurred globally.
+Here the change by regions is much more evident: the majority of countries have reduced fertility per family while increasing life expectancy. We are living longer than in the 1960s and having fewer children per family. These trends have occurred across all continents.
 
 We don't always have to show all variables, in this case continents. We can continue applying filters so that it shows us a subset of continents that we want to compare. For example:
 
@@ -155,7 +150,7 @@ gapminder |>
 In this case it would be visually better if the continents were not in separate rows, but could still be appreciated in the graph. To do this, we will use the wrap facet (`facet_wrap(~ x)`), where `x` is the variable we want to wrap. In our case it would be the year, instead of appearing in separate rows we can join and transpose them.
     
 ```{r eval=TRUE}
-vector_años <- c(1960, 2013)
+vector_years <- c(1960, 2013)
 vector_continents <- c("Europe", "Asia")
 
 gapminder |> 
@@ -253,7 +248,7 @@ gapminder |> filter(country %in% countries) |>
 ## Exercises
 For these exercises we will continue using the `gapminder` data frame.
 
-`r ne`. Create a scatter plot of fertility versus life expectancy for the American continent in 2000. Color the points according to the region they belong to.
+`r ne`. Generate a scatter plot comparing fertility rates and life expectancy for the Americas in the year 2000. Use color to differentiate between the regions within the continent.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -272,7 +267,7 @@ gapminder |>
 
 > To create a vector of sequences we can use `X:Y`. This creates a vector that goes from number X to number Y
 
-`r ne`. The Vietnam War caused deaths in both the US (United States) and Vietnam. Create a chart that allows visualizing how life expectancy changed in each country. Hint: Filter these two countries, as well as the population from year 1955 to 1990 and this time series in a line chart.
+`r ne`. During the Vietnam War, both the US and Vietnam suffered significant losses. Create a line chart visualizing how life expectancy changed in both countries from 1955 to 1990 to observe the war's impact.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -292,7 +287,7 @@ gapminder |>
 ```
 </details>
 
-`r ne`. After the Vietnam War, Pol Pot and Khmer Rouge took control of Cambodia from 1975 to 1979 in one of the bloodiest dictatorships in history. Add Cambodia to the previous chart to visualize the impact of this government on life expectancy in that country.
+`r ne`. Expand the previous chart to include Cambodia, allowing us to visualize the devastating impact of the Khmer Rouge regime (1975-1979) on life expectancy alongside the Vietnam War data.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -321,7 +316,7 @@ We are going to use a transformation that allows us to obtain how much is the GD
 
 ```{r eval=FALSE}
 gapminder <- gapminder |> 
-  mutate(gdp_per_capita_per_day <- gdp/population/365)
+  mutate(gdp_per_capita_per_day = gdp/population/365)
 ```
 
 We could visualize this variable first by creating a histogram of it. A histogram in ggplot is nothing more than one of the `geoms` we have available, in this case it would be `geom_histogram(binwidth = x)`, where **x** is the width of the bar. For example, let's calculate the distribution of our created variable in the year 2010:
@@ -362,6 +357,8 @@ gapminder |>
 ```
 
 Let's be careful interpreting this data. We cannot say that it is a symmetric distribution, even when with this scale we are tempted to do so. Remember the scale and use it appropriately.
+
+> **Tip:** For smooth distribution curves, you can also use `geom_density()` instead of `geom_histogram()`. Density plots are particularly useful when comparing multiple groups on the same plot.
 
 ## Box plots with ggplot
 In the same way, box plots are one more `geom` within the available ones, for this we will use the `geom_boxplot()` layer.
@@ -585,7 +582,7 @@ gapminder |>
   facet_grid(year ~ group)
 ```
 
-We see now more clearly with comparable data how there are more countries within the developing region that increased per capita GDP, much more than developing countries. But this first inference is still visual, we need to compare how the median, range, etc. changed. For this we will use a box plot very similar to the previous one, but this time we will edit `geom_boxplot()` so that it shows us in a single graph how each region has changed from 1970 to 2010.
+We see now more clearly with comparable data how there are more countries within the developing region that increased per capita GDP, and by a larger margin than Western countries. But this first inference is still visual, we need to compare how the median, range, etc. changed. For this we will use a box plot very similar to the previous one, but this time we will edit `geom_boxplot()` so that it shows us in a single graph how each region has changed from 1970 to 2010.
 
 ```{r eval=TRUE}
 gapminder |> 
@@ -611,15 +608,17 @@ Therefore, we can now answer both questions of the case:
 
 `r if(params$hidden){"<!--"}`
 
-`r if(params$hidden){"<!--"}`
 ## Exercises
 
-For this series of exercises we will use the `stars` data frame which tells us attributes of a series of stars such as their temperature, type and magnitude.
-The `magnitude` column is the absolute magnitude, where a more negative value of a star compared to another means it is more luminous.
+For this series of exercises we will use the `stars` data frame from the `dslabs` library. This dataset contains attributes of stars including their temperature, spectral type, and magnitude. The `magnitude` column represents absolute magnitude—a measure of intrinsic brightness where more negative values indicate greater luminosity.
 
-Make sure to load the data frame with `data(stars)` before starting.
+```{r eval=FALSE}
+library(dslabs)
+data(stars)
+head(stars)
+```
 
-`r ne`. The temperature is in degrees Kelvin. Add the temp_celsius column using the following formula: C = K - 273.15. Report a scatter plot of temperature versus magnitude coloring according to star type. Also, change the scale of the _x-axis_ to logarithmic base 10.
+`r ne`. The temperature data is currently in Kelvin. Create a new column `temp_celsius` using the formula $C = K - 273.15$, then visualize the relationship between temperature and magnitude. Color the points by star type and use a base-10 logarithmic scale for the x-axis to better display the wide range of temperatures.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -637,7 +636,7 @@ stars |>
 ```
 </details>
 
-`r ne`. Since positive values indicate less brightness, invert the values of the previous graph using the `scale_y_reverse()` layer.
+`r ne`. Since lower magnitude values correspond to higher brightness, reverse the y-axis scale using `scale_y_reverse()` to make the plot more intuitive (brighter stars at the top).
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -655,7 +654,7 @@ stars |>
   scale_y_reverse()
 ```
 </details>
-`r ne`. The Sun is classified as a G-type star. Are G-type stars the most luminous? Create a box plot to compare medians of magnitude and determine which type of stars are the most luminous.
+`r ne`. The Sun is a G-type star. To determine if these are the most luminous, create a box plot comparing the magnitude distributions across different star types.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -675,3 +674,10 @@ stars |>
 </details>
 
 `r if(params$hidden){"-->"}`
+
+---
+
+## Key Takeaways
+
+In this chapter, we followed a complete **data exploration process**, starting with understanding the data structure before diving into visualization. We utilized **faceting** to reveal trends across categories and time, and used **time series** plots to track specific country trajectories. We also explored distributions using **histograms** and **box plots**, applying **scale transformations** to handle skewed economic data. Finally, we practiced **iterative refinement**, adjusting our plots step-by-step to tell a clearer story.
+

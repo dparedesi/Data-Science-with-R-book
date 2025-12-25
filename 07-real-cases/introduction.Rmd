@@ -1,4 +1,13 @@
 # (PART) Real Cases {-}
 
 # Introduction {-}
-Below are some real cases presented based on what has been learned in this book. For the following cases, not only the concepts learned so far will be applied, but some complementary libraries that speed up data processing are also included.
+
+Having mastered the fundamentals of R programming, data transformation, and visualization, it's time to put these skills into practice with real-world scenarios. The following case studies demonstrate end-to-end data science workflows that you might encounter in professional settings.
+
+**In this chapter, you will:**
+
+-   Connect R to external APIs (Google Analytics) for automated data retrieval.
+-   Apply cleaning, transformation, and visualization to real estate market data.
+-   Practice the full workflow: problem definition → data access → analysis → insights.
+
+Each case introduces complementary libraries such as `googleAnalyticsR` for API access and `lubridate` for date manipulation, reinforcing patterns from earlier chapters while adding new practical tools.

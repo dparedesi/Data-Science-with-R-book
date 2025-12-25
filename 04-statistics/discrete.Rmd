@@ -10,6 +10,8 @@ For example, we are not going to explain formulas for calculating probabilities 
 # Discrete Probabilities
 We will start with some basic principles of categorical data. Probabilities of this type are called discrete probabilities. Understanding the basic principles of discrete probabilities will help us understand continuous probabilities which are the most common in data science applications.
 
+In this chapter, we will master the foundations of discrete probability. We will start by calculating probabilities using mathematical definitions and then learn to estimate them using Monte Carlo simulations. We will leverage R functions like `sample()`, `replicate()`, and `mean()` to model random events, and use the `gtools` package to solve problems involving permutations and combinations. Finally, we will determine how to choose an adequate sample size to ensure our simulations yield reliable results.
+
 Recall that a discrete variable is a variable that cannot take some values within a minimum countable set, that is, it does not accept any value, only those that belong to the set.
 
 For example, if we have 4 women and 6 men seated in a room and we were to raffle 1 prize, intuitively we would know that the probability that the winner is a man is 60%.
@@ -66,12 +68,12 @@ Now we will use the `table()` function to transform our `results` vector into a 
 table(results)
 ```
 
-If we store this result in a vector `tabla_results`, we can then use the `prop.table()` function to know the proportion of each value:
+If we store this result in a vector `results_table`, we can then use the `prop.table()` function to know the proportion of each value:
 
 ```{r eval=TRUE}
-tabla_results <- table(results)
+results_table <- table(results)
 
-prop.table(tabla_results)
+prop.table(results_table)
 ```
 
 We should not worry if the probability that it is a man has not come out exactly 60%. Recall that we are estimating the probability using a method that depends on the number of times we simulate the experiment. The more times we repeat the experiment the closer we will be to the value. For example, let's replicate this experiment now 10,000 times.
@@ -87,9 +89,9 @@ results <- replicate(n_times, {
 
   })
 
-tabla_results <- table(results)
+results_table <- table(results)
 
-prop.table(tabla_results)
+prop.table(results_table)
 
 ```
 
@@ -113,16 +115,16 @@ mean(students == "man")
 We have already learned the `rep()` function to create vectors faster. Another function we find in R is the `expand.grid(x, y)` function which creates a data frame of all combinations between vectors `x` and `y`.
 
 ```{r eval=TRUE}
-greetings <- c("Hola", "Chau")
-names_list <- c("Andrés", "Josep", "Alonso", "Andrés", "Cesar", "Jeremy")
+greetings <- c("Hello", "Goodbye")
+names_list <- c("Andrew", "Joseph", "John", "Emily", "Cesar", "Jeremy")
 
-result <- expand.grid(saludo = greetings, nombre = names_list)
+result <- expand.grid(greeting = greetings, name = names_list)
 result
 ```
 
 Finally, we have the `paste(x,y)` function, which concatenates two strings or vectors of strings adding a space in the middle.
 ```{r eval=TRUE}
-paste(result$saludo, result$nombre)
+paste(result$greeting, result$name)
 ```
 
 Thus, we can easily generate, for example, a deck of cards distributed in 4 suits: hearts, diamonds, spades, and clubs. The cards of each suit are numbered from 1 to 10, where 1 is the Ace, and followed by Jack, Queen, and King.
@@ -135,10 +137,10 @@ numbers <- c("Ace", "Two", "Three", "Four", "Five", "Six", "Seven",
 suits <- c("of Hearts", "of Diamonds", "of Spades", "of Clubs")
 
 # Create card combinations
-combination <- expand.grid(numero = numbers, palo = suits)
+combination <- expand.grid(number = numbers, suit = suits)
 
 # Concatenate vectors to have our final combination
-paste(combination$numero, combination$palo)
+paste(combination$number, combination$suit)
 ```
 
 Once our deck is created we can inquire some probabilities easily with the created vector.
@@ -146,7 +148,7 @@ Once our deck is created we can inquire some probabilities easily with the creat
 Let's calculate the probability that when choosing a card it is "King of Diamonds":
 ```{r eval=TRUE}
 # Store the combinationl in the variable deck
-deck <- paste(combination$numero, combination$palo)
+deck <- paste(combination$number, combination$suit)
 
 mean(deck == "King of Diamonds")
 
@@ -161,9 +163,11 @@ queens <- paste("Queen", suits)
 mean(deck %in% queens)
 ```
 
+This chapter highlighted two complementary approaches to probability. The **mathematical definition** ($P(A) = \frac{\text{favorable outcomes}}{\text{total outcomes}}$) gives us exact answers for simple problems. However, for more complex scenarios, **Monte Carlo simulation** allows us to estimate probabilities by replicating experiments thousands of times using `sample()` and `replicate()`. We learned that `mean(condition)` is an efficient way to calculate proportions in R, and that increasing the number of repetitions brings our simulation estimates closer to the true theoretical probability.
+
 `r if(params$hidden){"<!--"}`
 ## Exercises
-`r ne`. Store in the variable `prob` the probability that when rolling a die you do **not** get the number 1. Using the variable `prob`, now calculate the probability that when rolling 3 times in a row, one after another, in none of those times the number 1 comes out.
+`r ne`. Calculate the probability of **not** rolling a 1 on a single die roll and store it in a variable named `prob`. Then, use this variable to determine the probability that the number 1 does not appear in three consecutive rolls.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -178,7 +182,7 @@ prob * prob * prob
 ```
 </details>
 
-`r ne`. Given a container containing 5 blue marbles, 3 yellow, and 4 gray. What is the probability that if you choose a marble at random it is blue?
+`r ne`. Imagine a container holding 5 blue, 3 yellow, and 4 gray marbles. Determine the probability that a marble chosen at random is blue.
 
 <div align="center">
 ```{r, echo=FALSE, out.width = "200pt", fig.alt="Container with colored marbles: 5 blue, 3 yellow, and 4 gray"}
@@ -218,7 +222,7 @@ The probability that the marble is blue is 41.67%.
 
 </details>
 
-`r ne`. What is the probability that when choosing a marble at random from the previous container it is **not** blue?
+`r ne`. Using the same container of marbles, calculate the probability that a randomly chosen marble is **not** blue.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -242,7 +246,7 @@ $P(\sim~X)=1-P(X)=1-\frac{5}{12}=1-41.67\%=58.33\%$
 
 </details>
 
-`r ne`. Now we are going to take out a marble first, place it outside the box and take out another additional marble from the box. What is the probability that the first one is blue and the second is **not** blue? This time, instead of creating the marble vector, create the numerical variables: blue, yellow and gray assigning as value the number of marbles. Then calculate mathematics probabilities.
+`r ne`. Consider drawing two marbles from the container in sequence without replacing the first one. Calculate the probability that the first marble is blue and the second is **not** blue. Create numeric variables for each color count to perform this calculation.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -273,7 +277,7 @@ This is called **sampling without replacement**. We have two events, we are taki
 
 </details>
 
-`r ne`. Now we will repeat the previous experiment, but after taking out the first marble we put it back in the box and take out one more marble at random. What is the probability that the first marble is blue and the second is **not** blue? Modify the R code you created previously to calculate this probability.
+`r ne`. Repeat the previous experiment, but this time **replace** the first marble before drawing the second one. Update your R code to calculate the probability that the first marble is blue and the second is **not** blue under these conditions.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -380,16 +384,16 @@ Then, we would have to replicate this experiment over and over again, store the 
 ```{r eval=TRUE}
 n <- 10000
 
-resultado <- replicate(n, {
-      equipo <- sample(data_scientists, 2)
+result <- replicate(n, {
+      team <- sample(data_scientists, 2)
       
-      cumple_condicion <- (equipo[1] == "Pamela" & equipo[2] == "Enrique") | 
-                          (equipo[2] == "Pamela" & equipo[1] == "Enrique")
+      meets_condition <- (team[1] == "Pamela" & team[2] == "Enrique") | 
+                          (team[2] == "Pamela" & team[1] == "Enrique")
       
-      cumple_condicion
+      meets_condition
 })
 
-mean(resultado)
+mean(result)
 ```
 
 Note that, as we saw previously, the value converges as we increase the number of times we repeat the experiment `n`. We have simulated repeating the experiment 10 thousand times. However, how many times would it be necessary to replicate the experiment to trust the results of the simulation?
@@ -402,20 +406,20 @@ n_times <- 10*2^(1:17)
 n_times
 ```
 
-Then, we use the code we created to replicate the experiment to create a function called `probabilidad_por_muestra`:
+Then, we use the code we created to replicate the experiment to create a function called `probability_by_sample`:
 
 ```{r eval=TRUE}
-probabilidad_por_muestra <- function(n) {
-  resultado <- replicate(n, {
-    equipo <- sample(data_scientists, 2)
+probability_by_sample <- function(n) {
+  result <- replicate(n, {
+    team <- sample(data_scientists, 2)
     
-    cumple_condicion <- (equipo[1] == "Pamela" & equipo[2] == "Enrique") | 
-                        (equipo[2] == "Pamela" & equipo[1] == "Enrique")
+    meets_condition <- (team[1] == "Pamela" & team[2] == "Enrique") | 
+                        (team[2] == "Pamela" & team[1] == "Enrique")
     
-    cumple_condicion
+    meets_condition
   })
   
-  mean(resultado)
+  mean(result)
 }
 ```
 
@@ -423,7 +427,7 @@ We already have a function that allows us to replicate the experiment as many ti
 
 ```{r eval=TRUE}
 # Probability using functions:
-probabilidad_por_muestra(10000)
+probability_by_sample(10000)
 ```
 
 Again, this is a simulation. So every time we execute that function the probability will vary as it is a random sample.
@@ -431,7 +435,7 @@ Again, this is a simulation. So every time we execute that function the probabil
 To apply a function on each of the values of a vector we use the function `sapply(vector, function)` where `vector` is the vector where the data on which I want to apply the function is and `function` is the function I want to apply.
 
 ```{r eval=TRUE}
-prob <- sapply(n_times, probabilidad_por_muestra)
+prob <- sapply(n_times, probability_by_sample)
 
 prob
 ```
@@ -441,12 +445,12 @@ This gives us the probabilities depending on the number of times we repeat the e
 ```{r eval=TRUE}
 probabilities <- data.frame(
   n = n_times,
-  probabilidad = prob
+  probability = prob
 )
 
 probabilities |> 
   ggplot() +
-  aes(n, probabilidad) +
+  aes(n, probability) +
   geom_line() +
   geom_point() +
   xlab("# of times of the experiment")
@@ -457,7 +461,7 @@ We can also change the scale to zoom in on the probabilities for smaller experim
 ```{r eval=TRUE}
 probabilities |> 
   ggplot() +
-  aes(n, probabilidad) +
+  aes(n, probability) +
   geom_line() +
   geom_point() +
   xlab("# of times of the experiment") +
@@ -530,11 +534,11 @@ results <- replicate(n_times, {    # Returns a logical vector
 mean(results) 
 ```
 
-Let's now create the function `estima_probabilidad` and estimate using this function the probability of finding at least two people with the same birthday in a room of 25 people. This time we have to specify that the sampling is with "replacement" because by default the `sample()` function is "without replacement".
+Let's now create the function `estimate_probability` and estimate using this function the probability of finding at least two people with the same birthday in a room of 25 people. This time we have to specify that the sampling is with "replacement" because by default the `sample()` function is "without replacement".
 
 ```{r eval=TRUE}
 # Create the function
-estima_probabilidad <- function(classroom, n_times = 10000){
+estimate_probability <- function(classroom, n_times = 10000){
     results <- replicate(n_times, {    # Returns a logical vector
         colleagues <- sample(days, classroom, replace = TRUE)
         any(duplicated(colleagues))
@@ -544,7 +548,7 @@ estima_probabilidad <- function(classroom, n_times = 10000){
     mean(results) 
 }
 
-estima_probabilidad(25)
+estimate_probability(25)
 ```
 
 Finally, if we already have a function that calculates based on the number of people in a room we can create a numerical vector with the total number of people from different rooms and then apply the function we have created. The result can be stored in the variable `prob`.
@@ -555,7 +559,7 @@ Finally, if we already have a function that calculates based on the number of pe
 classrooms <- 1:80
 
 # Estimate probability depending on the number of students per room
-prob <- sapply(classrooms, estima_probabilidad)
+prob <- sapply(classrooms, estimate_probability)
 
 prob
 ```
@@ -565,12 +569,12 @@ Thus, if we place it in a scatter plot we can see how the probability increases 
 ```{r eval=TRUE}
 probabilities <- data.frame(
   n = classrooms,
-  probabilidad = prob
+  probability = prob
 )
 
 probabilities |> 
   ggplot() +
-  aes(n, probabilidad) +
+  aes(n, probability) +
   geom_point() +
   xlab("Number of students in each class")
 ```
@@ -580,7 +584,7 @@ We can now impress our friends from different groups by telling them that, if th
 `r if(params$hidden){"<!--"}`
 ## Exercises
 
-`r ne`. Two students of the _Data Science with R_ course, Alonso and Georgina, usually play chess in their free time. Given Georgina's experience, she has a 60% chance of winning every time she plays with Alonso. **Without using Monte Carlo simulation** What is the probability that when playing 4 times in a row, Alonso has won at least once.
+`r ne`. Alonso and Georgina play chess, and Georgina has a 60% chance of winning any given game. **Without using a simulation**, calculate the probability that Alonso wins at least one game out of four played.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -601,10 +605,10 @@ prob <- 0.6^4
 ```
 </details>
 
-`r ne`. Estimate the previous probability using Monte Carlo simulation. Use the following code to generate a sample of 4 games, where Alonso has a 60% probability of losing to Georgina.
+`r ne`. Now, estimate the probability of Alonso winning at least one of four games using a Monte Carlo simulation. Assume Alonso has a 40% chance of winning each individual match.
 
 ```{r eval=FALSE}
-resultado_juegos <- sample(c("loses","wins"), 4, replace = TRUE, prob = c(0.6, 0.4))
+game_results <- sample(c("loses","wins"), 4, replace = TRUE, prob = c(0.6, 0.4))
 ```
 
 ```{r echo=FALSE}
@@ -618,18 +622,18 @@ inc(params$hidden, ne)
 n_times <- 10000
 
 # Generate result of experiments that Alonso wins
-alonso_gana <- replicate(n_times, {
-    resultado_juegos <- sample(c("loses","wins"), 4, replace = TRUE, prob = c(0.6, 0.4))
-    any(resultado_juegos == "wins")
+alonso_wins <- replicate(n_times, {
+    game_results <- sample(c("loses","wins"), 4, replace = TRUE, prob = c(0.6, 0.4))
+    any(game_results == "wins")
 })
 
 # Estimate probability
-mean(alonso_gana)
+mean(alonso_wins)
 
 ```
 </details>
 
-`r ne`. In the previous exercise we used the probability that Alonso wins as 40%. Now, create the function `probabilidad_de_ganar` that takes as input the probability `p` that Alonso wins. Then, assign this sequence `seq(0.4, 0.95, 0.025)` in a vector `p` to, finally, apply the created function to each value of vector `p` and store the result in the variable `prob`. Report a scatter plot of vector `p` on the _x-axis_ and vector `prob` on the _y-axis_
+`r ne`. Generalize the previous simulation by creating a function `probability_of_winning` that accepts Alonso's win probability `p` as an argument. Use this function to simulate outcomes for a sequence of win probabilities from 0.4 to 0.95 (steps of 0.025) and visualize the results in a scatter plot.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -639,22 +643,22 @@ inc(params$hidden, ne)
   <summary type="button">Solution</summary>
 ```{r eval=FALSE}
 # Create function
-probabilidad_de_ganar <- function(p){
+probability_of_winning <- function(p){
   n_times <- 10000
   
-  alonso_gana <- replicate(n_times, {
-      resultado_juegos <- sample(c("loses","wins"), 4, replace = TRUE, prob = c(1-p, p))
-      any(resultado_juegos == "wins")
+  alonso_wins <- replicate(n_times, {
+      game_results <- sample(c("loses","wins"), 4, replace = TRUE, prob = c(1-p, p))
+      any(game_results == "wins")
   })
   
-  mean(alonso_gana)
+  mean(alonso_wins)
 
 }
 
 # Create vector with different probabilities
 p <- seq(0.4, 0.95, 0.025)
 
-prob <- sapply(p, probabilidad_de_ganar)
+prob <- sapply(p, probability_of_winning)
 
 plot(p, prob, xlab="p: probability that Alonso wins in each game", 
      ylab="prob: prob. that Alonso wins at least one game")
@@ -671,7 +675,7 @@ Monty Hall was a TV presenter who made famous a contest in his show which we are
 
 <div align="center">
 ```{r, echo=FALSE, out.width = "400pt", fig.alt="Three closed doors labeled 1, 2, and 3 in the Monty Hall problem"}
-knitr::include_graphics(file.path(img_path, "04-statistics", "monty-hall-cerradas.png"))
+knitr::include_graphics(file.path(img_path, "04-statistics", "monty-hall-closed.png"))
 ```
 </div>
 
@@ -681,7 +685,7 @@ Suppose we have chosen door number 2. Once you announce our choice, Monty Hall t
 
 <div align="center">
 ```{r, echo=FALSE, out.width = "400pt", fig.alt="Monty Hall problem with door 3 open showing a goat, doors 1 and 2 remain closed"}
-knitr::include_graphics(file.path(img_path, "04-statistics", "monty-hall-abierta.png"))
+knitr::include_graphics(file.path(img_path, "04-statistics", "monty-hall-open.png"))
 ```
 </div>
 

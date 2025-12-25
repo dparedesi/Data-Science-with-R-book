@@ -13,10 +13,10 @@ install_if_missing <- function(packages) {
 }
 
 # 1. Core Build Tools
-core_pkgs <- c("bookdown", "knitr", "rmarkdown", "devtools")
+core_pkgs <- c("bookdown", "knitr", "rmarkdown", "devtools", "pdftools", "magick")
 
 # 2. Main Data Science Stack (Tidyverse)
-tidyverse_pkgs <- c("tidyverse", "dslabs", "gtools", "syuzhet", "tm", "wordcloud", "gutenbergr", "lubridate", "zoo", "directlabels")
+tidyverse_pkgs <- c("tidyverse", "dslabs", "gtools", "syuzhet", "tm", "wordcloud", "gutenbergr", "lubridate", "zoo", "directlabels", "tidytext")
 
 # 3. Modeling & Machine Learning (Modern + Legacy)
 # Note: 'caret' functionality has been migrated, but we keep the package if legacy code needs it for now.

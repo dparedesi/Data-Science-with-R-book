@@ -1,6 +1,7 @@
 book_filename: "Data-Science-with-R"
 output_dir: "docs"
 delete_merged_file: true
+clean: ["Data-Science-with-R_files"]
 language:
   label:
     fig: "FIGURE "
@@ -21,16 +22,18 @@ rmd_files: [
   "04-statistics/continuous.Rmd",
   "04-statistics/inference.Rmd",
   "05-wrangling/importing-data.Rmd",
-  "05-wrangling/text-mining.Rmd",
   "06-machine-learning/intro.Rmd",
   "06-machine-learning/sml.Rmd",
   "06-machine-learning/uml.Rmd",
-  "07-real-cases/introduction.Rmd",
-  "07-real-cases/real-estate-analysis.Rmd",
-  "07-real-cases/google-analytics-case.Rmd", 
+  "05-wrangling/text-mining.Rmd",
   "08-genai/intro_llm.Rmd",
   "08-genai/llm_api.Rmd",
+  "08-genai/embeddings.Rmd",
+  "07-real-cases/introduction.Rmd",
+  "07-real-cases/real-estate-analysis.Rmd",
+  "07-real-cases/google-analytics-case.Rmd",
   "09-appendix/ethics_checklist.Rmd",
+  "09-appendix/R6_intro.Rmd",
   "references.Rmd"
 ]
 

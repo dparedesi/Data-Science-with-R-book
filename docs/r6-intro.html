@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 19 Appendix B: Object Oriented Programming with R6 | Data Science with R</title>
+  <meta name="description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Third Edition by Daniel Paredes." />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 19 Appendix B: Object Oriented Programming with R6 | Data Science with R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Third Edition by Daniel Paredes." />
+  <meta name="github-repo" content="dparedesi/Data-Science-with-R-book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 19 Appendix B: Object Oriented Programming with R6 | Data Science with R" />
+  
+  <meta name="twitter:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Third Edition by Daniel Paredes." />
+  
+
+<meta name="author" content="Author: Mg. Daniel Paredes Inilupu" />
+
+
+<meta name="date" content="2025-12-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ethics-checklist.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics: Sin Vista -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VJJ963010J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VJJ963010J');
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics: Vista -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165839710-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-165839710-1');
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics: Agentedec4mbio -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-17876479-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-17876479-1');
+</script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Science with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#support-this-work"><i class="fa fa-check"></i>Support This Work</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#stay-connected"><i class="fa fa-check"></i>Stay Connected</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a>
+<ul>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#family"><i class="fa fa-check"></i>Family</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#mentors-and-inspirations"><i class="fa fa-check"></i>Mentors and Inspirations</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#contributors"><i class="fa fa-check"></i>Contributors</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#why-r"><i class="fa fa-check"></i>Why R?</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#installing-r"><i class="fa fa-check"></i>Installing R</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#installing-rstudio"><i class="fa fa-check"></i>Installing RStudio</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#rstudio-sections"><i class="fa fa-check"></i>RStudio Sections</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#essential-keyboard-shortcuts"><i class="fa fa-check"></i>Essential Keyboard Shortcuts</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#testing-your-installation"><i class="fa fa-check"></i>Testing Your Installation</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#writing-scripts"><i class="fa fa-check"></i>Writing Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#whats-next"><i class="fa fa-check"></i>What’s Next?</a></li>
+</ul></li>
+<li class="part"><span><b>I Fundamentals and Key Tools</b></span></li>
+<li class="chapter" data-level="1" data-path="objects.html"><a href="objects.html"><i class="fa fa-check"></i><b>1</b> Objects</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="objects.html"><a href="objects.html#what-are-objects-in-r"><i class="fa fa-check"></i><b>1.1</b> What are objects in R?</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="objects.html"><a href="objects.html#r-as-an-object-oriented-language"><i class="fa fa-check"></i><b>1.1.1</b> R as an object-oriented language</a></li>
+<li class="chapter" data-level="1.1.2" data-path="objects.html"><a href="objects.html#the-power-of-abstraction"><i class="fa fa-check"></i><b>1.1.2</b> The power of abstraction</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="objects.html"><a href="objects.html#variables-the-first-objects-on-your-journey"><i class="fa fa-check"></i><b>1.2</b> Variables: The first objects on your journey</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="objects.html"><a href="objects.html#creating-variables-in-r"><i class="fa fa-check"></i><b>1.2.1</b> Creating variables in R</a></li>
+<li class="chapter" data-level="1.2.2" data-path="objects.html"><a href="objects.html#operations-with-variables"><i class="fa fa-check"></i><b>1.2.2</b> Operations with variables</a></li>
+<li class="chapter" data-level="1.2.3" data-path="objects.html"><a href="objects.html#best-practices-for-naming-variables"><i class="fa fa-check"></i><b>1.2.3</b> Best practices for naming variables</a></li>
+<li class="chapter" data-level="1.2.4" data-path="objects.html"><a href="objects.html#data-types"><i class="fa fa-check"></i><b>1.2.4</b> Data types</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="objects.html"><a href="objects.html#object-types-for-complex-data"><i class="fa fa-check"></i><b>1.3</b> Object types for complex data</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="objects.html"><a href="objects.html#vectors-organizing-information-of-the-same-type"><i class="fa fa-check"></i><b>1.3.1</b> Vectors: organizing information of the same type</a></li>
+<li class="chapter" data-level="1.3.2" data-path="objects.html"><a href="objects.html#lists-grouping-objects-of-different-types"><i class="fa fa-check"></i><b>1.3.2</b> Lists: grouping objects of different types</a></li>
+<li class="chapter" data-level="1.3.3" data-path="objects.html"><a href="objects.html#matrices-organizing-data-in-rows-and-columns"><i class="fa fa-check"></i><b>1.3.3</b> Matrices: organizing data in rows and columns</a></li>
+<li class="chapter" data-level="1.3.4" data-path="objects.html"><a href="objects.html#arrays-multidimensional-matrices"><i class="fa fa-check"></i><b>1.3.4</b> Arrays: multidimensional matrices</a></li>
+<li class="chapter" data-level="1.3.5" data-path="objects.html"><a href="objects.html#factors-representing-categorical-data"><i class="fa fa-check"></i><b>1.3.5</b> Factors: representing categorical data</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="objects.html"><a href="objects.html#the-universe-of-objects-in-r"><i class="fa fa-check"></i><b>1.4</b> The Universe of Objects in R</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="objects.html"><a href="objects.html#philosophy-of-objects-in-r"><i class="fa fa-check"></i><b>1.4.1</b> Philosophy of objects in R</a></li>
+<li class="chapter" data-level="1.4.2" data-path="objects.html"><a href="objects.html#comparison-with-other-languages"><i class="fa fa-check"></i><b>1.4.2</b> Comparison with other languages</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="objects.html"><a href="objects.html#exercises"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>2</b> Functions</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="functions.html"><a href="functions.html#introduction-to-the-world-of-functions"><i class="fa fa-check"></i><b>2.1</b> Introduction to the world of functions</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="functions.html"><a href="functions.html#what-are-functions"><i class="fa fa-check"></i><b>2.1.1</b> What are functions?</a></li>
+<li class="chapter" data-level="2.1.2" data-path="functions.html"><a href="functions.html#why-use-functions"><i class="fa fa-check"></i><b>2.1.2</b> Why use functions?</a></li>
+<li class="chapter" data-level="2.1.3" data-path="functions.html"><a href="functions.html#first-functions-exploring-basic-r-functions"><i class="fa fa-check"></i><b>2.1.3</b> First functions: exploring basic R functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="functions.html"><a href="functions.html#anatomy-of-a-function"><i class="fa fa-check"></i><b>2.2</b> Anatomy of a function</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="functions.html"><a href="functions.html#arguments-the-ingredients-of-the-function"><i class="fa fa-check"></i><b>2.2.1</b> Arguments: the ingredients of the function</a></li>
+<li class="chapter" data-level="2.2.2" data-path="functions.html"><a href="functions.html#body-the-instructions-of-the-function"><i class="fa fa-check"></i><b>2.2.2</b> Body: the instructions of the function</a></li>
+<li class="chapter" data-level="2.2.3" data-path="functions.html"><a href="functions.html#return-value-the-result-of-the-function"><i class="fa fa-check"></i><b>2.2.3</b> Return value: the result of the function</a></li>
+<li class="chapter" data-level="2.2.4" data-path="functions.html"><a href="functions.html#examples-creating-simple-functions-step-by-step"><i class="fa fa-check"></i><b>2.2.4</b> Examples: creating simple functions step by step</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="functions.html"><a href="functions.html#mastering-the-use-of-functions"><i class="fa fa-check"></i><b>2.3</b> Mastering the use of functions</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="functions.html"><a href="functions.html#functions-with-a-variable-number-of-arguments-...-adapting-to-different-situations"><i class="fa fa-check"></i><b>2.3.1</b> Functions with a variable number of arguments (<code>...</code>): Adapting to different situations</a></li>
+<li class="chapter" data-level="2.3.2" data-path="functions.html"><a href="functions.html#variable-scope-local-and-global-variables"><i class="fa fa-check"></i><b>2.3.2</b> Variable scope: local and global variables</a></li>
+<li class="chapter" data-level="2.3.3" data-path="functions.html"><a href="functions.html#examples-functions-to-calculate-taxes-discounts-etc."><i class="fa fa-check"></i><b>2.3.3</b> Examples: functions to calculate taxes, discounts, etc.</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="functions.html"><a href="functions.html#higher-order-functions"><i class="fa fa-check"></i><b>2.4</b> Higher-order functions</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="functions.html"><a href="functions.html#lapply-and-sapply-applying-a-function-to-each-element"><i class="fa fa-check"></i><b>2.4.1</b> <code>lapply()</code> and <code>sapply()</code>: applying a function to each element</a></li>
+<li class="chapter" data-level="2.4.2" data-path="functions.html"><a href="functions.html#apply-applying-a-function-to-rows-or-columns"><i class="fa fa-check"></i><b>2.4.2</b> <code>apply()</code>: applying a function to rows or columns</a></li>
+<li class="chapter" data-level="2.4.3" data-path="functions.html"><a href="functions.html#mapply-applying-a-function-to-multiple-arguments"><i class="fa fa-check"></i><b>2.4.3</b> <code>mapply()</code>: applying a function to multiple arguments</a></li>
+<li class="chapter" data-level="2.4.4" data-path="functions.html"><a href="functions.html#examples-data-analysis-with-higher-order-functions"><i class="fa fa-check"></i><b>2.4.4</b> Examples: data analysis with higher-order functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="functions.html"><a href="functions.html#closures-functions-with-memory"><i class="fa fa-check"></i><b>2.5</b> Closures: functions with memory</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="functions.html"><a href="functions.html#concept-functions-that-remember"><i class="fa fa-check"></i><b>2.5.1</b> Concept: functions that “remember”</a></li>
+<li class="chapter" data-level="2.5.2" data-path="functions.html"><a href="functions.html#applications-creating-counters-functions-with-internal-state"><i class="fa fa-check"></i><b>2.5.2</b> Applications: creating counters, functions with internal state</a></li>
+<li class="chapter" data-level="2.5.3" data-path="functions.html"><a href="functions.html#examples-simulating-a-game-creating-an-operation-history"><i class="fa fa-check"></i><b>2.5.3</b> Examples: simulating a game, creating an operation history</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="functions.html"><a href="functions.html#debugging-and-error-handling-solving-the-mysteries-of-your-code"><i class="fa fa-check"></i><b>2.6</b> Debugging and error handling: solving the mysteries of your code</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="functions.html"><a href="functions.html#identifying-errors-common-error-messages-in-r"><i class="fa fa-check"></i><b>2.6.1</b> Identifying errors: common error messages in R</a></li>
+<li class="chapter" data-level="2.6.2" data-path="functions.html"><a href="functions.html#debugging-tools-debug-traceback"><i class="fa fa-check"></i><b>2.6.2</b> Debugging tools: <code>debug()</code>, <code>traceback()</code></a></li>
+<li class="chapter" data-level="2.6.3" data-path="functions.html"><a href="functions.html#error-handling-trycatch"><i class="fa fa-check"></i><b>2.6.3</b> Error handling: <code>tryCatch()</code></a></li>
+<li class="chapter" data-level="2.6.4" data-path="functions.html"><a href="functions.html#examples-debugging-functions-with-errors-handling-exceptions"><i class="fa fa-check"></i><b>2.6.4</b> Examples: debugging functions with errors, handling exceptions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="functions.html"><a href="functions.html#exercises-1"><i class="fa fa-check"></i><b>2.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>3</b> Data Frames</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-frames.html"><a href="data-frames.html#introduction-to-data-frames"><i class="fa fa-check"></i><b>3.1</b> Introduction to Data Frames</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="data-frames.html"><a href="data-frames.html#what-are-data-frames"><i class="fa fa-check"></i><b>3.1.1</b> What are data frames?</a></li>
+<li class="chapter" data-level="3.1.2" data-path="data-frames.html"><a href="data-frames.html#why-data-frames"><i class="fa fa-check"></i><b>3.1.2</b> Why data frames?</a></li>
+<li class="chapter" data-level="3.1.3" data-path="data-frames.html"><a href="data-frames.html#data-frames-in-action-exploring-information-about-the-united-states"><i class="fa fa-check"></i><b>3.1.3</b> Data Frames in action: exploring information about the United States</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="data-frames.html"><a href="data-frames.html#creating-data-frames-building-your-database-for-the-move"><i class="fa fa-check"></i><b>3.2</b> Creating Data Frames: Building your database for the move</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="data-frames.html"><a href="data-frames.html#importing-data-from-files-csv-excel"><i class="fa fa-check"></i><b>3.2.1</b> Importing data from files: CSV, Excel</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-frames.html"><a href="data-frames.html#creating-data-frames-manually"><i class="fa fa-check"></i><b>3.2.2</b> Creating data frames manually</a></li>
+<li class="chapter" data-level="3.2.3" data-path="data-frames.html"><a href="data-frames.html#examples"><i class="fa fa-check"></i><b>3.2.3</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="data-frames.html"><a href="data-frames.html#exploring-data-frames-discovering-the-secrets-of-your-data"><i class="fa fa-check"></i><b>3.3</b> Exploring Data Frames: Discovering the secrets of your data</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data-frames.html"><a href="data-frames.html#accessing-rows-columns-and-cells"><i class="fa fa-check"></i><b>3.3.1</b> Accessing rows, columns, and cells</a></li>
+<li class="chapter" data-level="3.3.2" data-path="data-frames.html"><a href="data-frames.html#functions-for-exploring-data-frames"><i class="fa fa-check"></i><b>3.3.2</b> Functions for exploring data frames</a></li>
+<li class="chapter" data-level="3.3.3" data-path="data-frames.html"><a href="data-frames.html#examples-exploring-data-frames-with-move-information"><i class="fa fa-check"></i><b>3.3.3</b> Examples: exploring data frames with move information</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="data-frames.html"><a href="data-frames.html#manipulating-data-frames-transforming-your-data"><i class="fa fa-check"></i><b>3.4</b> Manipulating Data Frames: Transforming your data</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="data-frames.html"><a href="data-frames.html#introduction-to-the-pipeline-operator"><i class="fa fa-check"></i><b>3.4.1</b> Introduction to the pipeline operator (<code>|&gt;</code>)</a></li>
+<li class="chapter" data-level="3.4.2" data-path="data-frames.html"><a href="data-frames.html#transforming-a-table-with-mutate"><i class="fa fa-check"></i><b>3.4.2</b> Transforming a table with <code>mutate()</code></a></li>
+<li class="chapter" data-level="3.4.3" data-path="data-frames.html"><a href="data-frames.html#filtering-data-selecting-cities-that-interest-you"><i class="fa fa-check"></i><b>3.4.3</b> Filtering data: selecting cities that interest you</a></li>
+<li class="chapter" data-level="3.4.4" data-path="data-frames.html"><a href="data-frames.html#sorting-data-finding-the-safest-cities"><i class="fa fa-check"></i><b>3.4.4</b> Sorting data: finding the safest cities</a></li>
+<li class="chapter" data-level="3.4.5" data-path="data-frames.html"><a href="data-frames.html#aggregating-and-summarizing-data-obtaining-general-overview"><i class="fa fa-check"></i><b>3.4.5</b> Aggregating and summarizing data: obtaining general overview</a></li>
+<li class="chapter" data-level="3.4.6" data-path="data-frames.html"><a href="data-frames.html#joining-data-frames-combining-information"><i class="fa fa-check"></i><b>3.4.6</b> Joining data frames: combining information</a></li>
+<li class="chapter" data-level="3.4.7" data-path="data-frames.html"><a href="data-frames.html#examples-1"><i class="fa fa-check"></i><b>3.4.7</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="data-frames.html"><a href="data-frames.html#exercises-2"><i class="fa fa-check"></i><b>3.5</b> Exercises</a></li>
+<li class="chapter" data-level="3.6" data-path="data-frames.html"><a href="data-frames.html#data-frames-in-plots"><i class="fa fa-check"></i><b>3.6</b> Data frames in plots</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="data-frames.html"><a href="data-frames.html#scatter-plots"><i class="fa fa-check"></i><b>3.6.1</b> Scatter plots</a></li>
+<li class="chapter" data-level="3.6.2" data-path="data-frames.html"><a href="data-frames.html#histograms"><i class="fa fa-check"></i><b>3.6.2</b> Histograms</a></li>
+<li class="chapter" data-level="3.6.3" data-path="data-frames.html"><a href="data-frames.html#box-plot"><i class="fa fa-check"></i><b>3.6.3</b> Box plot</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="data-frames.html"><a href="data-frames.html#data-interpretation"><i class="fa fa-check"></i><b>3.7</b> Data interpretation</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="data-frames.html"><a href="data-frames.html#quartiles"><i class="fa fa-check"></i><b>3.7.1</b> Quartiles</a></li>
+<li class="chapter" data-level="3.7.2" data-path="data-frames.html"><a href="data-frames.html#interpretation-of-box-plot"><i class="fa fa-check"></i><b>3.7.2</b> Interpretation of box plot</a></li>
+<li class="chapter" data-level="3.7.3" data-path="data-frames.html"><a href="data-frames.html#examples-2"><i class="fa fa-check"></i><b>3.7.3</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="data-frames.html"><a href="data-frames.html#exercises-3"><i class="fa fa-check"></i><b>3.8</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="advanced-techniques.html"><a href="advanced-techniques.html"><i class="fa fa-check"></i><b>4</b> Advanced Techniques</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="advanced-techniques.html"><a href="advanced-techniques.html#metaprogramming-writing-code-that-writes-code"><i class="fa fa-check"></i><b>4.1</b> Metaprogramming: writing code that writes code</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="advanced-techniques.html"><a href="advanced-techniques.html#manipulating-expressions-the-art-of-sculpting-code"><i class="fa fa-check"></i><b>4.1.1</b> Manipulating expressions: The art of sculpting code</a></li>
+<li class="chapter" data-level="4.1.2" data-path="advanced-techniques.html"><a href="advanced-techniques.html#examples-3"><i class="fa fa-check"></i><b>4.1.2</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="advanced-techniques.html"><a href="advanced-techniques.html#functional-programming-a-new-paradigm"><i class="fa fa-check"></i><b>4.2</b> Functional programming: a new paradigm</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="advanced-techniques.html"><a href="advanced-techniques.html#basic-principles-of-functional-programming"><i class="fa fa-check"></i><b>4.2.1</b> Basic principles of functional programming</a></li>
+<li class="chapter" data-level="4.2.2" data-path="advanced-techniques.html"><a href="advanced-techniques.html#higher-order-functions-in-r"><i class="fa fa-check"></i><b>4.2.2</b> Higher-order functions in R</a></li>
+<li class="chapter" data-level="4.2.3" data-path="advanced-techniques.html"><a href="advanced-techniques.html#examples-4"><i class="fa fa-check"></i><b>4.2.3</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="advanced-techniques.html"><a href="advanced-techniques.html#r6-the-future-of-oop-in-r"><i class="fa fa-check"></i><b>4.3</b> R6: The future of OOP in R</a></li>
+<li class="chapter" data-level="4.4" data-path="advanced-techniques.html"><a href="advanced-techniques.html#exercises-4"><i class="fa fa-check"></i><b>4.4</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>II Data Visualization and Summarization</b></span></li>
+<li class="chapter" data-level="5" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html"><i class="fa fa-check"></i><b>5</b> Ggplot and dplyr</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#creating-the-ggplot-object"><i class="fa fa-check"></i><b>5.1</b> Creating the ggplot object</a></li>
+<li class="chapter" data-level="5.2" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#aesthetic-mapping-layer"><i class="fa fa-check"></i><b>5.2</b> Aesthetic mapping layer</a></li>
+<li class="chapter" data-level="5.3" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#geoms-layer"><i class="fa fa-check"></i><b>5.3</b> Geoms layer</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#tweaking-aes-and-geoms"><i class="fa fa-check"></i><b>5.3.1</b> Tweaking aes and geoms</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#scale-layer"><i class="fa fa-check"></i><b>5.4</b> Scale layer</a></li>
+<li class="chapter" data-level="5.5" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#label-title-and-legend-layer"><i class="fa fa-check"></i><b>5.5</b> Label, title and legend layer</a></li>
+<li class="chapter" data-level="5.6" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#reference-lines"><i class="fa fa-check"></i><b>5.6</b> Reference lines</a></li>
+<li class="chapter" data-level="5.7" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#changing-the-plot-style"><i class="fa fa-check"></i><b>5.7</b> Changing the plot style</a></li>
+<li class="chapter" data-level="5.8" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#saving-plots"><i class="fa fa-check"></i><b>5.8</b> Saving plots</a></li>
+<li class="chapter" data-level="5.9" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#summarizing-data-with-dplyr"><i class="fa fa-check"></i><b>5.9</b> Summarizing data with dplyr</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#summarize-function"><i class="fa fa-check"></i><b>5.9.1</b> Summarize function</a></li>
+<li class="chapter" data-level="5.9.2" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#group-by-function"><i class="fa fa-check"></i><b>5.9.2</b> Group By Function</a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#exercises-5"><i class="fa fa-check"></i><b>5.10</b> Exercises</a></li>
+<li class="chapter" data-level="5.11" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#key-takeaways"><i class="fa fa-check"></i><b>5.11</b> Key Takeaways</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="gapminder.html"><a href="gapminder.html"><i class="fa fa-check"></i><b>6</b> Gapminder</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="gapminder.html"><a href="gapminder.html#initial-gapminder-plots"><i class="fa fa-check"></i><b>6.1</b> Initial gapminder plots</a></li>
+<li class="chapter" data-level="6.2" data-path="gapminder.html"><a href="gapminder.html#facets"><i class="fa fa-check"></i><b>6.2</b> Facets</a></li>
+<li class="chapter" data-level="6.3" data-path="gapminder.html"><a href="gapminder.html#time-series"><i class="fa fa-check"></i><b>6.3</b> Time series</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="gapminder.html"><a href="gapminder.html#individual-time-series"><i class="fa fa-check"></i><b>6.3.1</b> Individual time series</a></li>
+<li class="chapter" data-level="6.3.2" data-path="gapminder.html"><a href="gapminder.html#multiple-time-series"><i class="fa fa-check"></i><b>6.3.2</b> Multiple time series</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="gapminder.html"><a href="gapminder.html#exercises-6"><i class="fa fa-check"></i><b>6.4</b> Exercises</a></li>
+<li class="chapter" data-level="6.5" data-path="gapminder.html"><a href="gapminder.html#histograms-with-ggplot"><i class="fa fa-check"></i><b>6.5</b> Histograms with ggplot</a></li>
+<li class="chapter" data-level="6.6" data-path="gapminder.html"><a href="gapminder.html#box-plots-with-ggplot"><i class="fa fa-check"></i><b>6.6</b> Box plots with ggplot</a></li>
+<li class="chapter" data-level="6.7" data-path="gapminder.html"><a href="gapminder.html#comparison-of-distributions"><i class="fa fa-check"></i><b>6.7</b> Comparison of distributions</a></li>
+<li class="chapter" data-level="6.8" data-path="gapminder.html"><a href="gapminder.html#exercises-7"><i class="fa fa-check"></i><b>6.8</b> Exercises</a></li>
+<li class="chapter" data-level="6.9" data-path="gapminder.html"><a href="gapminder.html#key-takeaways-1"><i class="fa fa-check"></i><b>6.9</b> Key Takeaways</a></li>
+</ul></li>
+<li class="part"><span><b>III Statistics</b></span></li>
+<li class="chapter" data-level="" data-path="introduction-to-probabilities.html"><a href="introduction-to-probabilities.html"><i class="fa fa-check"></i>Introduction to Probabilities</a></li>
+<li class="chapter" data-level="7" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html"><i class="fa fa-check"></i><b>7</b> Discrete Probabilities</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#calculation-using-the-mathematical-definition"><i class="fa fa-check"></i><b>7.1</b> Calculation using the mathematical definition</a></li>
+<li class="chapter" data-level="7.2" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#monte-carlo-simulation-for-discrete-variables"><i class="fa fa-check"></i><b>7.2</b> Monte Carlo Simulation for Discrete Variables</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#other-functions-to-create-vectors"><i class="fa fa-check"></i><b>7.2.1</b> Other functions to create vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#exercises-8"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
+<li class="chapter" data-level="7.4" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#combinations-and-permutations"><i class="fa fa-check"></i><b>7.4</b> Combinations and Permutations</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#permutations"><i class="fa fa-check"></i><b>7.4.1</b> Permutations</a></li>
+<li class="chapter" data-level="7.4.2" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#combinations"><i class="fa fa-check"></i><b>7.4.2</b> Combinations</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#sufficient-experiments-with-monte-carlo-simulation"><i class="fa fa-check"></i><b>7.5</b> Sufficient Experiments with Monte Carlo Simulation</a></li>
+<li class="chapter" data-level="7.6" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#case-birthdays-in-classrooms"><i class="fa fa-check"></i><b>7.6</b> Case: Birthdays in Classrooms</a></li>
+<li class="chapter" data-level="7.7" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#exercises-9"><i class="fa fa-check"></i><b>7.7</b> Exercises</a></li>
+<li class="chapter" data-level="7.8" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#integrative-exercise"><i class="fa fa-check"></i><b>7.8</b> Integrative Exercise</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="discrete-probabilities.html"><a href="discrete-probabilities.html#monty-hall-problem"><i class="fa fa-check"></i><b>7.8.1</b> Monty Hall Problem</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html"><i class="fa fa-check"></i><b>8</b> Continuous Probabilities</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#learning-objectives"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="8.2" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#empirical-distribution"><i class="fa fa-check"></i><b>8.2</b> Empirical Distribution</a></li>
+<li class="chapter" data-level="8.3" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#theoretical-distribution"><i class="fa fa-check"></i><b>8.3</b> Theoretical Distribution</a></li>
+<li class="chapter" data-level="8.4" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#key-takeaways-2"><i class="fa fa-check"></i><b>8.4</b> Key Takeaways</a></li>
+<li class="chapter" data-level="8.5" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#exercises-10"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
+<li class="chapter" data-level="8.6" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#monte-carlo-simulation-for-continuous-variables"><i class="fa fa-check"></i><b>8.6</b> Monte Carlo Simulation for Continuous Variables</a></li>
+<li class="chapter" data-level="8.7" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#exercises-11"><i class="fa fa-check"></i><b>8.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>9</b> Statistical Inference</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="statistical-inference.html"><a href="statistical-inference.html#learning-objectives-1"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="9.2" data-path="statistical-inference.html"><a href="statistical-inference.html#expected-value"><i class="fa fa-check"></i><b>9.2</b> Expected Value</a></li>
+<li class="chapter" data-level="9.3" data-path="statistical-inference.html"><a href="statistical-inference.html#central-limit-theorem"><i class="fa fa-check"></i><b>9.3</b> Central Limit Theorem</a></li>
+<li class="chapter" data-level="9.4" data-path="statistical-inference.html"><a href="statistical-inference.html#key-takeaways-3"><i class="fa fa-check"></i><b>9.4</b> Key Takeaways</a></li>
+<li class="chapter" data-level="9.5" data-path="statistical-inference.html"><a href="statistical-inference.html#exercises-12"><i class="fa fa-check"></i><b>9.5</b> Exercises</a></li>
+<li class="chapter" data-level="9.6" data-path="statistical-inference.html"><a href="statistical-inference.html#parameter-estimation-method"><i class="fa fa-check"></i><b>9.6</b> Parameter Estimation Method</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="statistical-inference.html"><a href="statistical-inference.html#margin-of-error"><i class="fa fa-check"></i><b>9.6.1</b> Margin of Error</a></li>
+<li class="chapter" data-level="9.6.2" data-path="statistical-inference.html"><a href="statistical-inference.html#confidence-intervals"><i class="fa fa-check"></i><b>9.6.2</b> Confidence Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="statistical-inference.html"><a href="statistical-inference.html#spread-estimation"><i class="fa fa-check"></i><b>9.7</b> Spread Estimation</a></li>
+<li class="chapter" data-level="9.8" data-path="statistical-inference.html"><a href="statistical-inference.html#estimates-outside-election-polls"><i class="fa fa-check"></i><b>9.8</b> Estimates Outside Election Polls</a>
+<ul>
+<li class="chapter" data-level="9.8.1" data-path="statistical-inference.html"><a href="statistical-inference.html#example-estimating-average-height"><i class="fa fa-check"></i><b>9.8.1</b> Example: Estimating Average Height</a></li>
+</ul></li>
+<li class="chapter" data-level="9.9" data-path="statistical-inference.html"><a href="statistical-inference.html#exercises-13"><i class="fa fa-check"></i><b>9.9</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>IV Data Wrangling</b></span></li>
+<li class="chapter" data-level="" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="10" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html"><i class="fa fa-check"></i><b>10</b> Data import and consolidation</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#importing-from-files"><i class="fa fa-check"></i><b>10.1</b> Importing from files</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#working-directory"><i class="fa fa-check"></i><b>10.1.1</b> Working Directory</a></li>
+<li class="chapter" data-level="10.1.2" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#readr-and-readxl-packages"><i class="fa fa-check"></i><b>10.1.2</b> readr and readxl packages</a></li>
+<li class="chapter" data-level="10.1.3" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#importing-files-from-the-internet"><i class="fa fa-check"></i><b>10.1.3</b> Importing files from the internet</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#tidy-data"><i class="fa fa-check"></i><b>10.2</b> Tidy data</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#transforming-to-tidy-data"><i class="fa fa-check"></i><b>10.2.1</b> Transforming to tidy data</a></li>
+<li class="chapter" data-level="10.2.2" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#separate-function"><i class="fa fa-check"></i><b>10.2.2</b> separate function</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#exercises-14"><i class="fa fa-check"></i><b>10.3</b> Exercises</a></li>
+<li class="chapter" data-level="10.4" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#joining-tables"><i class="fa fa-check"></i><b>10.4</b> Joining tables</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#join-functions"><i class="fa fa-check"></i><b>10.4.1</b> Join functions</a></li>
+<li class="chapter" data-level="10.4.2" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#joining-without-a-common-identifier"><i class="fa fa-check"></i><b>10.4.2</b> Joining without a common identifier</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#web-scraping"><i class="fa fa-check"></i><b>10.5</b> Web Scraping</a></li>
+<li class="chapter" data-level="10.6" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#exercises-15"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>V Machine learning</b></span></li>
+<li class="chapter" data-level="" data-path="introduction-2.html"><a href="introduction-2.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li class="chapter" data-level="10.7" data-path="introduction-2.html"><a href="introduction-2.html#learning-objectives-2"><i class="fa fa-check"></i><b>10.7</b> Learning Objectives</a></li>
+<li class="chapter" data-level="10.8" data-path="introduction-2.html"><a href="introduction-2.html#chapter-structure"><i class="fa fa-check"></i><b>10.8</b> Chapter Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="supervised-learning.html"><a href="supervised-learning.html"><i class="fa fa-check"></i><b>11</b> Supervised Learning</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="supervised-learning.html"><a href="supervised-learning.html#classification-and-regression"><i class="fa fa-check"></i><b>11.1</b> Classification and Regression</a></li>
+<li class="chapter" data-level="11.2" data-path="supervised-learning.html"><a href="supervised-learning.html#knn-k-nearest-neighbors"><i class="fa fa-check"></i><b>11.2</b> kNN: k-Nearest Neighbors</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="supervised-learning.html"><a href="supervised-learning.html#two-variables-as-input"><i class="fa fa-check"></i><b>11.2.1</b> Two variables as input</a></li>
+<li class="chapter" data-level="11.2.2" data-path="supervised-learning.html"><a href="supervised-learning.html#multiple-variables-as-input"><i class="fa fa-check"></i><b>11.2.2</b> Multiple variables as input</a></li>
+<li class="chapter" data-level="11.2.3" data-path="supervised-learning.html"><a href="supervised-learning.html#diverse-values-of-k"><i class="fa fa-check"></i><b>11.2.3</b> Diverse values of k</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="supervised-learning.html"><a href="supervised-learning.html#tidymodels-framework"><i class="fa fa-check"></i><b>11.3</b> tidymodels Framework</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="supervised-learning.html"><a href="supervised-learning.html#creation-of-training-and-test-data"><i class="fa fa-check"></i><b>11.3.1</b> Creation of training and test data</a></li>
+<li class="chapter" data-level="11.3.2" data-path="supervised-learning.html"><a href="supervised-learning.html#training-our-prediction-algorithm"><i class="fa fa-check"></i><b>11.3.2</b> Training our prediction algorithm</a></li>
+<li class="chapter" data-level="11.3.3" data-path="supervised-learning.html"><a href="supervised-learning.html#data-pre-processing-with-recipes"><i class="fa fa-check"></i><b>11.3.3</b> Data Pre-processing with Recipes</a></li>
+<li class="chapter" data-level="11.3.4" data-path="supervised-learning.html"><a href="supervised-learning.html#creating-a-workflow"><i class="fa fa-check"></i><b>11.3.4</b> Creating a Workflow</a></li>
+<li class="chapter" data-level="11.3.5" data-path="supervised-learning.html"><a href="supervised-learning.html#parameter-tuning-with-cross-validation"><i class="fa fa-check"></i><b>11.3.5</b> Parameter Tuning with Cross-Validation</a></li>
+<li class="chapter" data-level="11.3.6" data-path="supervised-learning.html"><a href="supervised-learning.html#finalizing-the-model"><i class="fa fa-check"></i><b>11.3.6</b> Finalizing the Model</a></li>
+<li class="chapter" data-level="11.3.7" data-path="supervised-learning.html"><a href="supervised-learning.html#testing-the-prediction-model"><i class="fa fa-check"></i><b>11.3.7</b> Testing the prediction model</a></li>
+<li class="chapter" data-level="11.3.8" data-path="supervised-learning.html"><a href="supervised-learning.html#model-evaluation-with-yardstick"><i class="fa fa-check"></i><b>11.3.8</b> Model Evaluation with yardstick</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="supervised-learning.html"><a href="supervised-learning.html#confusion-matrix"><i class="fa fa-check"></i><b>11.4</b> Confusion Matrix</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="supervised-learning.html"><a href="supervised-learning.html#accuracy"><i class="fa fa-check"></i><b>11.4.1</b> Accuracy</a></li>
+<li class="chapter" data-level="11.4.2" data-path="supervised-learning.html"><a href="supervised-learning.html#sensitivity"><i class="fa fa-check"></i><b>11.4.2</b> Sensitivity</a></li>
+<li class="chapter" data-level="11.4.3" data-path="supervised-learning.html"><a href="supervised-learning.html#specificity"><i class="fa fa-check"></i><b>11.4.3</b> Specificity</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="supervised-learning.html"><a href="supervised-learning.html#exercises-16"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
+<li class="chapter" data-level="11.6" data-path="supervised-learning.html"><a href="supervised-learning.html#simple-linear-regression"><i class="fa fa-check"></i><b>11.6</b> Simple Linear Regression</a></li>
+<li class="chapter" data-level="11.7" data-path="supervised-learning.html"><a href="supervised-learning.html#multiple-linear-regression"><i class="fa fa-check"></i><b>11.7</b> Multiple Linear Regression</a></li>
+<li class="chapter" data-level="11.8" data-path="supervised-learning.html"><a href="supervised-learning.html#standard-method-for-evaluating-accuracy"><i class="fa fa-check"></i><b>11.8</b> Standard Method for Evaluating Accuracy</a></li>
+<li class="chapter" data-level="11.9" data-path="supervised-learning.html"><a href="supervised-learning.html#selection-of-the-most-optimal-model"><i class="fa fa-check"></i><b>11.9</b> Selection of the Most Optimal Model</a>
+<ul>
+<li class="chapter" data-level="11.9.1" data-path="supervised-learning.html"><a href="supervised-learning.html#k-nearest-neighbors-model"><i class="fa fa-check"></i><b>11.9.1</b> k-Nearest Neighbors Model</a></li>
+<li class="chapter" data-level="11.9.2" data-path="supervised-learning.html"><a href="supervised-learning.html#generalized-linear-model---glm"><i class="fa fa-check"></i><b>11.9.2</b> Generalized Linear Model - GLM</a></li>
+<li class="chapter" data-level="11.9.3" data-path="supervised-learning.html"><a href="supervised-learning.html#random-forest-model"><i class="fa fa-check"></i><b>11.9.3</b> Random Forest Model</a></li>
+<li class="chapter" data-level="11.9.4" data-path="supervised-learning.html"><a href="supervised-learning.html#support-vector-machine-model---svm"><i class="fa fa-check"></i><b>11.9.4</b> Support Vector Machine Model - SVM</a></li>
+<li class="chapter" data-level="11.9.5" data-path="supervised-learning.html"><a href="supervised-learning.html#naive-bayes-model"><i class="fa fa-check"></i><b>11.9.5</b> Naive Bayes Model</a></li>
+<li class="chapter" data-level="11.9.6" data-path="supervised-learning.html"><a href="supervised-learning.html#model-comparison"><i class="fa fa-check"></i><b>11.9.6</b> Model Comparison</a></li>
+<li class="chapter" data-level="11.9.7" data-path="supervised-learning.html"><a href="supervised-learning.html#predicting-using-the-best-model"><i class="fa fa-check"></i><b>11.9.7</b> Predicting using the best model</a></li>
+</ul></li>
+<li class="chapter" data-level="11.10" data-path="supervised-learning.html"><a href="supervised-learning.html#exercises-17"><i class="fa fa-check"></i><b>11.10</b> Exercises</a></li>
+<li class="chapter" data-level="11.11" data-path="supervised-learning.html"><a href="supervised-learning.html#ethics-bias-in-algorithmic-decision-making"><i class="fa fa-check"></i><b>11.11</b> Ethics: Bias in Algorithmic Decision Making</a>
+<ul>
+<li class="chapter" data-level="11.11.1" data-path="supervised-learning.html"><a href="supervised-learning.html#the-risk-of-proxy-variables"><i class="fa fa-check"></i><b>11.11.1</b> The Risk of Proxy Variables</a></li>
+<li class="chapter" data-level="11.11.2" data-path="supervised-learning.html"><a href="supervised-learning.html#feedback-loops"><i class="fa fa-check"></i><b>11.11.2</b> Feedback Loops</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>12</b> Unsupervised Learning</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#learning-objectives-3"><i class="fa fa-check"></i><b>12.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="12.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#applications-of-unsupervised-learning"><i class="fa fa-check"></i><b>12.2</b> Applications of Unsupervised Learning</a></li>
+<li class="chapter" data-level="12.3" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#k-means-clustering"><i class="fa fa-check"></i><b>12.3</b> K-Means Clustering</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#clustering-with-k-2"><i class="fa fa-check"></i><b>12.3.1</b> Clustering with k = 2</a></li>
+<li class="chapter" data-level="12.3.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#clustering-with-k-3"><i class="fa fa-check"></i><b>12.3.2</b> Clustering with k &gt;= 3</a></li>
+<li class="chapter" data-level="12.3.3" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#determination-of-optimal-clusters"><i class="fa fa-check"></i><b>12.3.3</b> Determination of Optimal Clusters</a></li>
+<li class="chapter" data-level="12.3.4" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#k-means-for-more-than-2-variables"><i class="fa fa-check"></i><b>12.3.4</b> k-means for more than 2 variables</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#hierarchical-clustering"><i class="fa fa-check"></i><b>12.4</b> Hierarchical Clustering</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#clustering-with-two-variables"><i class="fa fa-check"></i><b>12.4.1</b> Clustering with two variables</a></li>
+<li class="chapter" data-level="12.4.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#determination-of-optimal-clusters-1"><i class="fa fa-check"></i><b>12.4.2</b> Determination of Optimal Clusters</a></li>
+<li class="chapter" data-level="12.4.3" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#obtain-the-grouping"><i class="fa fa-check"></i><b>12.4.3</b> Obtain the grouping</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#dimensionality-reduction"><i class="fa fa-check"></i><b>12.5</b> Dimensionality Reduction</a></li>
+<li class="chapter" data-level="12.6" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#exercises-18"><i class="fa fa-check"></i><b>12.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html"><i class="fa fa-check"></i><b>13</b> String processing and text mining</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#basic-functions"><i class="fa fa-check"></i><b>13.1</b> Basic functions</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#replacing-characters"><i class="fa fa-check"></i><b>13.1.1</b> Replacing characters</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#regular-expressions"><i class="fa fa-check"></i><b>13.2</b> Regular expressions</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#alternation"><i class="fa fa-check"></i><b>13.2.1</b> Alternation</a></li>
+<li class="chapter" data-level="13.2.2" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#anchoring"><i class="fa fa-check"></i><b>13.2.2</b> Anchoring</a></li>
+<li class="chapter" data-level="13.2.3" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#repetitions"><i class="fa fa-check"></i><b>13.2.3</b> Repetitions</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#from-strings-to-dates"><i class="fa fa-check"></i><b>13.3</b> From strings to dates</a></li>
+<li class="chapter" data-level="13.4" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#exercises-19"><i class="fa fa-check"></i><b>13.4</b> Exercises</a></li>
+<li class="chapter" data-level="13.5" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#text-mining-using-tidy-data"><i class="fa fa-check"></i><b>13.5</b> Text Mining using Tidy Data</a>
+<ul>
+<li class="chapter" data-level="13.5.1" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#importing-data-and-tokenization"><i class="fa fa-check"></i><b>13.5.1</b> Importing data and Tokenization</a></li>
+<li class="chapter" data-level="13.5.2" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#text-cleaning-and-tokenization"><i class="fa fa-check"></i><b>13.5.2</b> Text cleaning and Tokenization</a></li>
+<li class="chapter" data-level="13.5.3" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#word-cloud"><i class="fa fa-check"></i><b>13.5.3</b> Word Cloud</a></li>
+<li class="chapter" data-level="13.5.4" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#word-frequency-plot"><i class="fa fa-check"></i><b>13.5.4</b> Word Frequency Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="13.6" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#sentiment-analysis"><i class="fa fa-check"></i><b>13.6</b> Sentiment Analysis</a></li>
+<li class="chapter" data-level="13.7" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#exercises-20"><i class="fa fa-check"></i><b>13.7</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>VI Generative AI</b></span></li>
+<li class="chapter" data-level="14" data-path="genai-intro.html"><a href="genai-intro.html"><i class="fa fa-check"></i><b>14</b> Data Science in the Age of AI</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="genai-intro.html"><a href="genai-intro.html#what-is-a-large-language-model"><i class="fa fa-check"></i><b>14.1</b> What is a Large Language Model?</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="genai-intro.html"><a href="genai-intro.html#its-all-about-probability"><i class="fa fa-check"></i><b>14.1.1</b> It’s all about Probability</a></li>
+<li class="chapter" data-level="14.1.2" data-path="genai-intro.html"><a href="genai-intro.html#tokens-vs.-words"><i class="fa fa-check"></i><b>14.1.2</b> Tokens vs. Words</a></li>
+<li class="chapter" data-level="14.1.3" data-path="genai-intro.html"><a href="genai-intro.html#temperature-controlling-creativity"><i class="fa fa-check"></i><b>14.1.3</b> Temperature: Controlling Creativity</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="genai-intro.html"><a href="genai-intro.html#setting-up-your-ai-environment"><i class="fa fa-check"></i><b>14.2</b> Setting Up Your AI Environment</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="genai-intro.html"><a href="genai-intro.html#the-solution-local-llms"><i class="fa fa-check"></i><b>14.2.1</b> The Solution: Local LLMs</a></li>
+<li class="chapter" data-level="14.2.2" data-path="genai-intro.html"><a href="genai-intro.html#the-.renviron-file"><i class="fa fa-check"></i><b>14.2.2</b> The <code>.Renviron</code> File</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="genai-intro.html"><a href="genai-intro.html#ai-as-the-pair-programmer"><i class="fa fa-check"></i><b>14.3</b> AI as the “Pair Programmer”</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="genai-intro.html"><a href="genai-intro.html#the-great-refactorer"><i class="fa fa-check"></i><b>14.3.1</b> The Great Refactorer</a></li>
+<li class="chapter" data-level="14.3.2" data-path="genai-intro.html"><a href="genai-intro.html#the-translator"><i class="fa fa-check"></i><b>14.3.2</b> The Translator</a></li>
+<li class="chapter" data-level="14.3.3" data-path="genai-intro.html"><a href="genai-intro.html#pro-tip-prompt-engineering-101"><i class="fa fa-check"></i><b>14.3.3</b> Pro Tip: Prompt Engineering 101</a></li>
+<li class="chapter" data-level="14.3.4" data-path="genai-intro.html"><a href="genai-intro.html#the-regex-master"><i class="fa fa-check"></i><b>14.3.4</b> The Regex Master</a></li>
+<li class="chapter" data-level="14.3.5" data-path="genai-intro.html"><a href="genai-intro.html#the-error-decoder"><i class="fa fa-check"></i><b>14.3.5</b> The Error Decoder</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="genai-intro.html"><a href="genai-intro.html#the-risks-hallucinations"><i class="fa fa-check"></i><b>14.4</b> The Risks: Hallucinations</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="genai-intro.html"><a href="genai-intro.html#the-package-hallucination"><i class="fa fa-check"></i><b>14.4.1</b> The “Package” Hallucination</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="genai-intro.html"><a href="genai-intro.html#building-a-robust-request"><i class="fa fa-check"></i><b>14.5</b> Building a Robust Request</a></li>
+<li class="chapter" data-level="14.6" data-path="genai-intro.html"><a href="genai-intro.html#the-holy-grail-structured-data-extraction"><i class="fa fa-check"></i><b>14.6</b> The Holy Grail: Structured Data extraction</a>
+<ul>
+<li class="chapter" data-level="14.6.1" data-path="genai-intro.html"><a href="genai-intro.html#forcing-json-output"><i class="fa fa-check"></i><b>14.6.1</b> Forcing JSON Output</a></li>
+</ul></li>
+<li class="chapter" data-level="14.7" data-path="genai-intro.html"><a href="genai-intro.html#batch-processing-the-purrr-workflow"><i class="fa fa-check"></i><b>14.7</b> Batch Processing: The <code>purrr</code> Workflow</a></li>
+<li class="chapter" data-level="14.8" data-path="genai-intro.html"><a href="genai-intro.html#summary"><i class="fa fa-check"></i><b>14.8</b> Summary</a></li>
+<li class="chapter" data-level="14.9" data-path="genai-intro.html"><a href="genai-intro.html#beyond-generation-embeddings"><i class="fa fa-check"></i><b>14.9</b> Beyond Generation: Embeddings</a>
+<ul>
+<li class="chapter" data-level="14.9.1" data-path="genai-intro.html"><a href="genai-intro.html#r-implementation"><i class="fa fa-check"></i><b>14.9.1</b> R Implementation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="genai-embeddings.html"><a href="genai-embeddings.html"><i class="fa fa-check"></i><b>15</b> Text Analysis with Embeddings</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="genai-embeddings.html"><a href="genai-embeddings.html#beyond-bag-of-words"><i class="fa fa-check"></i><b>15.1</b> Beyond Bag-of-Words</a></li>
+<li class="chapter" data-level="15.2" data-path="genai-embeddings.html"><a href="genai-embeddings.html#what-is-an-embedding"><i class="fa fa-check"></i><b>15.2</b> What is an Embedding?</a></li>
+<li class="chapter" data-level="15.3" data-path="genai-embeddings.html"><a href="genai-embeddings.html#getting-embeddings-in-r"><i class="fa fa-check"></i><b>15.3</b> Getting Embeddings in R</a></li>
+<li class="chapter" data-level="15.4" data-path="genai-embeddings.html"><a href="genai-embeddings.html#visualizing-meaning-dimensionality-reduction"><i class="fa fa-check"></i><b>15.4</b> Visualizing Meaning (Dimensionality Reduction)</a></li>
+<li class="chapter" data-level="15.5" data-path="genai-embeddings.html"><a href="genai-embeddings.html#building-a-semantic-search-engine"><i class="fa fa-check"></i><b>15.5</b> Building a Semantic Search Engine</a></li>
+<li class="chapter" data-level="15.6" data-path="genai-embeddings.html"><a href="genai-embeddings.html#summary-the-ai-workflow"><i class="fa fa-check"></i><b>15.6</b> Summary: The AI Workflow</a></li>
+</ul></li>
+<li class="part"><span><b>VII Real Cases</b></span></li>
+<li class="chapter" data-level="" data-path="introduction-3.html"><a href="introduction-3.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="16" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html"><i class="fa fa-check"></i><b>16</b> Case Study: Real Estate Market Analysis</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#objectives"><i class="fa fa-check"></i><b>16.1</b> Objectives</a></li>
+<li class="chapter" data-level="16.2" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#loading-libraries"><i class="fa fa-check"></i><b>16.2</b> Loading Libraries</a></li>
+<li class="chapter" data-level="16.3" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#exploring-the-data"><i class="fa fa-check"></i><b>16.3</b> Exploring the Data</a></li>
+<li class="chapter" data-level="16.4" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#data-cleaning"><i class="fa fa-check"></i><b>16.4</b> Data Cleaning</a></li>
+<li class="chapter" data-level="16.5" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#exploratory-analysis"><i class="fa fa-check"></i><b>16.5</b> Exploratory Analysis</a>
+<ul>
+<li class="chapter" data-level="16.5.1" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#market-volume-over-time"><i class="fa fa-check"></i><b>16.5.1</b> Market Volume Over Time</a></li>
+<li class="chapter" data-level="16.5.2" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#comparing-cities"><i class="fa fa-check"></i><b>16.5.2</b> Comparing Cities</a></li>
+</ul></li>
+<li class="chapter" data-level="16.6" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#creating-indicators"><i class="fa fa-check"></i><b>16.6</b> Creating Indicators</a></li>
+<li class="chapter" data-level="16.7" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#try-it-yourself"><i class="fa fa-check"></i><b>16.7</b> Try It Yourself</a></li>
+<li class="chapter" data-level="16.8" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#conclusions"><i class="fa fa-check"></i><b>16.8</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="google-analytics-from-r.html"><a href="google-analytics-from-r.html"><i class="fa fa-check"></i><b>17</b> Google Analytics from R</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="google-analytics-from-r.html"><a href="google-analytics-from-r.html#problem"><i class="fa fa-check"></i><b>17.1</b> Problem</a></li>
+<li class="chapter" data-level="17.2" data-path="google-analytics-from-r.html"><a href="google-analytics-from-r.html#access-to-data"><i class="fa fa-check"></i><b>17.2</b> Access to data</a></li>
+<li class="chapter" data-level="17.3" data-path="google-analytics-from-r.html"><a href="google-analytics-from-r.html#visualization"><i class="fa fa-check"></i><b>17.3</b> Visualization</a></li>
+<li class="chapter" data-level="17.4" data-path="google-analytics-from-r.html"><a href="google-analytics-from-r.html#conclusion"><i class="fa fa-check"></i><b>17.4</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="ethics-checklist.html"><a href="ethics-checklist.html"><i class="fa fa-check"></i><b>18</b> Appendix A: Responsible AI Checklist</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="ethics-checklist.html"><a href="ethics-checklist.html#data-quality-lineage"><i class="fa fa-check"></i><b>18.1</b> Data Quality &amp; Lineage</a></li>
+<li class="chapter" data-level="18.2" data-path="ethics-checklist.html"><a href="ethics-checklist.html#fairness-bias"><i class="fa fa-check"></i><b>18.2</b> Fairness &amp; Bias</a></li>
+<li class="chapter" data-level="18.3" data-path="ethics-checklist.html"><a href="ethics-checklist.html#transparency-explainability"><i class="fa fa-check"></i><b>18.3</b> Transparency &amp; Explainability</a></li>
+<li class="chapter" data-level="18.4" data-path="ethics-checklist.html"><a href="ethics-checklist.html#reproducibility-integrity"><i class="fa fa-check"></i><b>18.4</b> Reproducibility &amp; Integrity</a></li>
+<li class="chapter" data-level="18.5" data-path="ethics-checklist.html"><a href="ethics-checklist.html#genai-specifics"><i class="fa fa-check"></i><b>18.5</b> GenAI Specifics</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="r6-intro.html"><a href="r6-intro.html"><i class="fa fa-check"></i><b>19</b> Appendix B: Object Oriented Programming with R6</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="r6-intro.html"><a href="r6-intro.html#the-r6-package-classes-methods-encapsulation-and-inheritance"><i class="fa fa-check"></i><b>19.1</b> The R6 package: Classes, methods, encapsulation, and inheritance</a></li>
+<li class="chapter" data-level="19.2" data-path="r6-intro.html"><a href="r6-intro.html#exercises-21"><i class="fa fa-check"></i><b>19.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Science with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="r6-intro" class="section level1 hasAnchor" number="19">
+<h1><span class="header-section-number">Chapter 19</span> Appendix B: Object Oriented Programming with R6<a href="r6-intro.html#r6-intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In R, Object-Oriented Programming (OOP) can be implemented in several ways. Traditionally, R has used systems called S3 and S4 for OOP.</p>
+<p><strong>S3</strong> is an informal and flexible system. It is based on the idea of generic functions, which can have different methods depending on the class of the object they apply to. For example, the <code>print()</code> function is a generic function having different methods for printing different types of objects, such as vectors, lists, or data frames.</p>
+<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="r6-intro.html#cb639-1" tabindex="-1"></a><span class="co"># Example of generic function in S3</span></span>
+<span id="cb639-2"><a href="r6-intro.html#cb639-2" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))  <span class="co"># Prints a numeric vector</span></span>
+<span id="cb639-3"><a href="r6-intro.html#cb639-3" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3</span></span>
+<span id="cb639-4"><a href="r6-intro.html#cb639-4" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">list</span>(<span class="at">a =</span> <span class="dv">1</span>, <span class="at">b =</span> <span class="dv">2</span>))  <span class="co"># Prints a list</span></span>
+<span id="cb639-5"><a href="r6-intro.html#cb639-5" tabindex="-1"></a><span class="co">#&gt; $a</span></span>
+<span id="cb639-6"><a href="r6-intro.html#cb639-6" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb639-7"><a href="r6-intro.html#cb639-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb639-8"><a href="r6-intro.html#cb639-8" tabindex="-1"></a><span class="co">#&gt; $b</span></span>
+<span id="cb639-9"><a href="r6-intro.html#cb639-9" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span></code></pre></div>
+<p><strong>S4</strong> is a more formal and structured system than S3. It defines classes and methods more explicitly, using special syntax. S4 is often used in packages requiring a more rigorous object structure, like Bioconductor.</p>
+<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="r6-intro.html#cb640-1" tabindex="-1"></a><span class="co"># Example of class definition in S4</span></span>
+<span id="cb640-2"><a href="r6-intro.html#cb640-2" tabindex="-1"></a><span class="fu">setClass</span>(<span class="st">&quot;Person&quot;</span>, <span class="at">slots =</span> <span class="fu">c</span>(<span class="at">name =</span> <span class="st">&quot;character&quot;</span>, <span class="at">age =</span> <span class="st">&quot;numeric&quot;</span>))</span>
+<span id="cb640-3"><a href="r6-intro.html#cb640-3" tabindex="-1"></a></span>
+<span id="cb640-4"><a href="r6-intro.html#cb640-4" tabindex="-1"></a><span class="co"># Example of object creation in S4</span></span>
+<span id="cb640-5"><a href="r6-intro.html#cb640-5" tabindex="-1"></a>my_person <span class="ot">&lt;-</span> <span class="fu">new</span>(<span class="st">&quot;Person&quot;</span>, <span class="at">name =</span> <span class="st">&quot;John&quot;</span>, <span class="at">age =</span> <span class="dv">30</span>)</span>
+<span id="cb640-6"><a href="r6-intro.html#cb640-6" tabindex="-1"></a></span>
+<span id="cb640-7"><a href="r6-intro.html#cb640-7" tabindex="-1"></a>my_person</span>
+<span id="cb640-8"><a href="r6-intro.html#cb640-8" tabindex="-1"></a><span class="co">#&gt; An object of class &quot;Person&quot;</span></span>
+<span id="cb640-9"><a href="r6-intro.html#cb640-9" tabindex="-1"></a><span class="co">#&gt; Slot &quot;name&quot;:</span></span>
+<span id="cb640-10"><a href="r6-intro.html#cb640-10" tabindex="-1"></a><span class="co">#&gt; [1] &quot;John&quot;</span></span>
+<span id="cb640-11"><a href="r6-intro.html#cb640-11" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb640-12"><a href="r6-intro.html#cb640-12" tabindex="-1"></a><span class="co">#&gt; Slot &quot;age&quot;:</span></span>
+<span id="cb640-13"><a href="r6-intro.html#cb640-13" tabindex="-1"></a><span class="co">#&gt; [1] 30</span></span></code></pre></div>
+<p>However, both S3 and S4 can be somewhat confusing and limited, especially for more complex projects. Luckily, there is a more modern and robust alternative: the R6 package. This package offers a more intuitive and efficient way to implement OOP in R, with features facilitating code organization, reuse, and maintenance. If you are new to OOP, don’t worry about S3 and S4 details for now. With R6, you can learn basic OOP concepts more easily and apply them to your data analysis projects.</p>
+<div id="the-r6-package-classes-methods-encapsulation-and-inheritance" class="section level2 hasAnchor" number="19.1">
+<h2><span class="header-section-number">19.1</span> The R6 package: Classes, methods, encapsulation, and inheritance<a href="r6-intro.html#the-r6-package-classes-methods-encapsulation-and-inheritance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The R6 package implements a class and object system similar to other object-oriented programming languages like Python or Java. It provides a robust and efficient way to create objects with attributes and methods, allowing encapsulation and inheritance.</p>
+<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb641-1"><a href="r6-intro.html#cb641-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;R6&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="r6-intro.html#cb642-1" tabindex="-1"></a><span class="fu">library</span>(R6)</span></code></pre></div>
+<p><strong>Classes:</strong></p>
+<p>A class is like a blueprint or template for creating objects. It defines the attributes (data) and methods (functions) that objects of that class will have. In R6, classes are created with the <code>R6Class()</code> function.</p>
+<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="r6-intro.html#cb643-1" tabindex="-1"></a></span>
+<span id="cb643-2"><a href="r6-intro.html#cb643-2" tabindex="-1"></a><span class="co"># Define a &quot;Person&quot; class</span></span>
+<span id="cb643-3"><a href="r6-intro.html#cb643-3" tabindex="-1"></a>Person <span class="ot">&lt;-</span> <span class="fu">R6Class</span>(<span class="st">&quot;Person&quot;</span>,</span>
+<span id="cb643-4"><a href="r6-intro.html#cb643-4" tabindex="-1"></a>  <span class="at">public =</span> <span class="fu">list</span>(</span>
+<span id="cb643-5"><a href="r6-intro.html#cb643-5" tabindex="-1"></a>    <span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb643-6"><a href="r6-intro.html#cb643-6" tabindex="-1"></a>    <span class="at">age =</span> <span class="cn">NULL</span>,</span>
+<span id="cb643-7"><a href="r6-intro.html#cb643-7" tabindex="-1"></a>    </span>
+<span id="cb643-8"><a href="r6-intro.html#cb643-8" tabindex="-1"></a>    <span class="co"># Constructor</span></span>
+<span id="cb643-9"><a href="r6-intro.html#cb643-9" tabindex="-1"></a>    <span class="at">initialize =</span> <span class="cf">function</span>(name, age) {</span>
+<span id="cb643-10"><a href="r6-intro.html#cb643-10" tabindex="-1"></a>      self<span class="sc">$</span>name <span class="ot">&lt;-</span> name</span>
+<span id="cb643-11"><a href="r6-intro.html#cb643-11" tabindex="-1"></a>      self<span class="sc">$</span>age <span class="ot">&lt;-</span> age</span>
+<span id="cb643-12"><a href="r6-intro.html#cb643-12" tabindex="-1"></a>    },</span>
+<span id="cb643-13"><a href="r6-intro.html#cb643-13" tabindex="-1"></a>    </span>
+<span id="cb643-14"><a href="r6-intro.html#cb643-14" tabindex="-1"></a>    <span class="co"># Method to greet</span></span>
+<span id="cb643-15"><a href="r6-intro.html#cb643-15" tabindex="-1"></a>    <span class="at">greet =</span> <span class="cf">function</span>() {</span>
+<span id="cb643-16"><a href="r6-intro.html#cb643-16" tabindex="-1"></a>      <span class="fu">cat</span>(<span class="st">&quot;Hello, my name is&quot;</span>, self<span class="sc">$</span>name, <span class="st">&quot;and I am&quot;</span>, self<span class="sc">$</span>age, <span class="st">&quot;years old.</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb643-17"><a href="r6-intro.html#cb643-17" tabindex="-1"></a>    }</span>
+<span id="cb643-18"><a href="r6-intro.html#cb643-18" tabindex="-1"></a>  )</span>
+<span id="cb643-19"><a href="r6-intro.html#cb643-19" tabindex="-1"></a>)</span></code></pre></div>
+<p>In this example, a <code>Person</code> class is defined with <code>name</code> and <code>age</code> attributes, and <code>greet()</code> method. The <code>public</code> list defines public members of the class, i.e., attributes and methods accessible from outside the object.</p>
+<p><strong>Objects:</strong></p>
+<p>An object is an instance of a class. It is a concrete entity having attributes and methods defined by the class. In R6, objects are created with the <code>$new()</code> method.</p>
+<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="r6-intro.html#cb644-1" tabindex="-1"></a><span class="co"># Create an object of class &quot;Person&quot;</span></span>
+<span id="cb644-2"><a href="r6-intro.html#cb644-2" tabindex="-1"></a>juan <span class="ot">&lt;-</span> Person<span class="sc">$</span><span class="fu">new</span>(<span class="at">name =</span> <span class="st">&quot;Juan&quot;</span>, <span class="at">age =</span> <span class="dv">30</span>)</span>
+<span id="cb644-3"><a href="r6-intro.html#cb644-3" tabindex="-1"></a></span>
+<span id="cb644-4"><a href="r6-intro.html#cb644-4" tabindex="-1"></a>juan</span>
+<span id="cb644-5"><a href="r6-intro.html#cb644-5" tabindex="-1"></a><span class="co">#&gt; &lt;Person&gt;</span></span>
+<span id="cb644-6"><a href="r6-intro.html#cb644-6" tabindex="-1"></a><span class="co">#&gt;   Public:</span></span>
+<span id="cb644-7"><a href="r6-intro.html#cb644-7" tabindex="-1"></a><span class="co">#&gt;     age: 30</span></span>
+<span id="cb644-8"><a href="r6-intro.html#cb644-8" tabindex="-1"></a><span class="co">#&gt;     clone: function (deep = FALSE) </span></span>
+<span id="cb644-9"><a href="r6-intro.html#cb644-9" tabindex="-1"></a><span class="co">#&gt;     greet: function () </span></span>
+<span id="cb644-10"><a href="r6-intro.html#cb644-10" tabindex="-1"></a><span class="co">#&gt;     initialize: function (name, age) </span></span>
+<span id="cb644-11"><a href="r6-intro.html#cb644-11" tabindex="-1"></a><span class="co">#&gt;     name: Juan</span></span></code></pre></div>
+<p><strong>Methods:</strong></p>
+<p>Methods are functions operating on an object’s attributes. They allow accessing and modifying object data, as well as performing other actions. In R6, methods are defined within the <code>public</code> list of the class.</p>
+<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="r6-intro.html#cb645-1" tabindex="-1"></a><span class="co"># Call greet() method of object &quot;juan&quot;</span></span>
+<span id="cb645-2"><a href="r6-intro.html#cb645-2" tabindex="-1"></a>juan<span class="sc">$</span><span class="fu">greet</span>()</span>
+<span id="cb645-3"><a href="r6-intro.html#cb645-3" tabindex="-1"></a><span class="co">#&gt; Hello, my name is Juan and I am 30 years old.</span></span></code></pre></div>
+<p><strong>Encapsulation:</strong></p>
+<p>Encapsulation is a mechanism allowing hiding internal details of an object and controlling access to its attributes. This protects object data and facilitates usage. In R6, encapsulation is achieved by distinguishing between public and private members.</p>
+<p>Public members are defined in <code>public</code> list and can be accessed from outside the object. Private members are defined in <code>private</code> list and can only be accessed from within the object, through methods.</p>
+<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="r6-intro.html#cb646-1" tabindex="-1"></a><span class="co"># Define a &quot;BankAccount&quot; class with encapsulation</span></span>
+<span id="cb646-2"><a href="r6-intro.html#cb646-2" tabindex="-1"></a>BankAccount <span class="ot">&lt;-</span> <span class="fu">R6Class</span>(<span class="st">&quot;BankAccount&quot;</span>,</span>
+<span id="cb646-3"><a href="r6-intro.html#cb646-3" tabindex="-1"></a>  <span class="at">public =</span> <span class="fu">list</span>(</span>
+<span id="cb646-4"><a href="r6-intro.html#cb646-4" tabindex="-1"></a>    <span class="at">holder =</span> <span class="cn">NULL</span>,</span>
+<span id="cb646-5"><a href="r6-intro.html#cb646-5" tabindex="-1"></a>    </span>
+<span id="cb646-6"><a href="r6-intro.html#cb646-6" tabindex="-1"></a>    <span class="co"># Constructor</span></span>
+<span id="cb646-7"><a href="r6-intro.html#cb646-7" tabindex="-1"></a>    <span class="at">initialize =</span> <span class="cf">function</span>(holder) {</span>
+<span id="cb646-8"><a href="r6-intro.html#cb646-8" tabindex="-1"></a>      self<span class="sc">$</span>holder <span class="ot">&lt;-</span> holder</span>
+<span id="cb646-9"><a href="r6-intro.html#cb646-9" tabindex="-1"></a>      private<span class="sc">$</span>balance <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb646-10"><a href="r6-intro.html#cb646-10" tabindex="-1"></a>    },</span>
+<span id="cb646-11"><a href="r6-intro.html#cb646-11" tabindex="-1"></a>    </span>
+<span id="cb646-12"><a href="r6-intro.html#cb646-12" tabindex="-1"></a>    <span class="co"># Method to deposit money</span></span>
+<span id="cb646-13"><a href="r6-intro.html#cb646-13" tabindex="-1"></a>    <span class="at">deposit =</span> <span class="cf">function</span>(amount) {</span>
+<span id="cb646-14"><a href="r6-intro.html#cb646-14" tabindex="-1"></a>      private<span class="sc">$</span>balance <span class="ot">&lt;-</span> private<span class="sc">$</span>balance <span class="sc">+</span> amount</span>
+<span id="cb646-15"><a href="r6-intro.html#cb646-15" tabindex="-1"></a>    },</span>
+<span id="cb646-16"><a href="r6-intro.html#cb646-16" tabindex="-1"></a>    </span>
+<span id="cb646-17"><a href="r6-intro.html#cb646-17" tabindex="-1"></a>    <span class="co"># Method to withdraw money</span></span>
+<span id="cb646-18"><a href="r6-intro.html#cb646-18" tabindex="-1"></a>    <span class="at">withdraw =</span> <span class="cf">function</span>(amount) {</span>
+<span id="cb646-19"><a href="r6-intro.html#cb646-19" tabindex="-1"></a>      <span class="cf">if</span> (amount <span class="sc">&lt;=</span> private<span class="sc">$</span>balance) {</span>
+<span id="cb646-20"><a href="r6-intro.html#cb646-20" tabindex="-1"></a>        private<span class="sc">$</span>balance <span class="ot">&lt;-</span> private<span class="sc">$</span>balance <span class="sc">-</span> amount</span>
+<span id="cb646-21"><a href="r6-intro.html#cb646-21" tabindex="-1"></a>      } <span class="cf">else</span> {</span>
+<span id="cb646-22"><a href="r6-intro.html#cb646-22" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">&quot;Insufficient funds.&quot;</span>)</span>
+<span id="cb646-23"><a href="r6-intro.html#cb646-23" tabindex="-1"></a>      }</span>
+<span id="cb646-24"><a href="r6-intro.html#cb646-24" tabindex="-1"></a>    },</span>
+<span id="cb646-25"><a href="r6-intro.html#cb646-25" tabindex="-1"></a>    </span>
+<span id="cb646-26"><a href="r6-intro.html#cb646-26" tabindex="-1"></a>    <span class="co"># Method to check balance</span></span>
+<span id="cb646-27"><a href="r6-intro.html#cb646-27" tabindex="-1"></a>    <span class="at">check_balance =</span> <span class="cf">function</span>() {</span>
+<span id="cb646-28"><a href="r6-intro.html#cb646-28" tabindex="-1"></a>      <span class="fu">return</span>(private<span class="sc">$</span>balance)</span>
+<span id="cb646-29"><a href="r6-intro.html#cb646-29" tabindex="-1"></a>    }</span>
+<span id="cb646-30"><a href="r6-intro.html#cb646-30" tabindex="-1"></a>  ),</span>
+<span id="cb646-31"><a href="r6-intro.html#cb646-31" tabindex="-1"></a>  <span class="at">private =</span> <span class="fu">list</span>(</span>
+<span id="cb646-32"><a href="r6-intro.html#cb646-32" tabindex="-1"></a>    <span class="at">balance =</span> <span class="cn">NULL</span></span>
+<span id="cb646-33"><a href="r6-intro.html#cb646-33" tabindex="-1"></a>  )</span>
+<span id="cb646-34"><a href="r6-intro.html#cb646-34" tabindex="-1"></a>)</span></code></pre></div>
+<p><strong>Inheritance:</strong></p>
+<p>Inheritance is a mechanism allowing creating new classes from existing classes, inheriting their attributes and methods. This facilitates code reuse and creation of class hierarchies. In R6, inheritance is specified with <code>inherit</code> argument of <code>R6Class()</code> function.</p>
+<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="r6-intro.html#cb647-1" tabindex="-1"></a><span class="co"># Define a &quot;Student&quot; class inheriting from &quot;Person&quot;</span></span>
+<span id="cb647-2"><a href="r6-intro.html#cb647-2" tabindex="-1"></a>Student <span class="ot">&lt;-</span> <span class="fu">R6Class</span>(<span class="st">&quot;Student&quot;</span>,</span>
+<span id="cb647-3"><a href="r6-intro.html#cb647-3" tabindex="-1"></a>  <span class="at">inherit =</span> Person,</span>
+<span id="cb647-4"><a href="r6-intro.html#cb647-4" tabindex="-1"></a>  <span class="at">public =</span> <span class="fu">list</span>(</span>
+<span id="cb647-5"><a href="r6-intro.html#cb647-5" tabindex="-1"></a>    <span class="at">major =</span> <span class="cn">NULL</span>,</span>
+<span id="cb647-6"><a href="r6-intro.html#cb647-6" tabindex="-1"></a>    </span>
+<span id="cb647-7"><a href="r6-intro.html#cb647-7" tabindex="-1"></a>    <span class="co"># Constructor</span></span>
+<span id="cb647-8"><a href="r6-intro.html#cb647-8" tabindex="-1"></a>    <span class="at">initialize =</span> <span class="cf">function</span>(name, age, major) {</span>
+<span id="cb647-9"><a href="r6-intro.html#cb647-9" tabindex="-1"></a>      super<span class="sc">$</span><span class="fu">initialize</span>(name, age)</span>
+<span id="cb647-10"><a href="r6-intro.html#cb647-10" tabindex="-1"></a>      self<span class="sc">$</span>major <span class="ot">&lt;-</span> major</span>
+<span id="cb647-11"><a href="r6-intro.html#cb647-11" tabindex="-1"></a>    },</span>
+<span id="cb647-12"><a href="r6-intro.html#cb647-12" tabindex="-1"></a>    </span>
+<span id="cb647-13"><a href="r6-intro.html#cb647-13" tabindex="-1"></a>    <span class="co"># Method to show student info</span></span>
+<span id="cb647-14"><a href="r6-intro.html#cb647-14" tabindex="-1"></a>    <span class="at">show_info =</span> <span class="cf">function</span>() {</span>
+<span id="cb647-15"><a href="r6-intro.html#cb647-15" tabindex="-1"></a>      super<span class="sc">$</span><span class="fu">greet</span>()</span>
+<span id="cb647-16"><a href="r6-intro.html#cb647-16" tabindex="-1"></a>      <span class="fu">cat</span>(<span class="st">&quot;Major:&quot;</span>, self<span class="sc">$</span>major, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb647-17"><a href="r6-intro.html#cb647-17" tabindex="-1"></a>    }</span>
+<span id="cb647-18"><a href="r6-intro.html#cb647-18" tabindex="-1"></a>  )</span>
+<span id="cb647-19"><a href="r6-intro.html#cb647-19" tabindex="-1"></a>)</span>
+<span id="cb647-20"><a href="r6-intro.html#cb647-20" tabindex="-1"></a></span>
+<span id="cb647-21"><a href="r6-intro.html#cb647-21" tabindex="-1"></a><span class="co"># Create an object of class &quot;Student&quot;</span></span>
+<span id="cb647-22"><a href="r6-intro.html#cb647-22" tabindex="-1"></a>maria <span class="ot">&lt;-</span> Student<span class="sc">$</span><span class="fu">new</span>(<span class="at">name =</span> <span class="st">&quot;Maria&quot;</span>, <span class="at">age =</span> <span class="dv">20</span>, <span class="at">major =</span> <span class="st">&quot;Engineering&quot;</span>)</span>
+<span id="cb647-23"><a href="r6-intro.html#cb647-23" tabindex="-1"></a></span>
+<span id="cb647-24"><a href="r6-intro.html#cb647-24" tabindex="-1"></a><span class="co"># Call method show_info()</span></span>
+<span id="cb647-25"><a href="r6-intro.html#cb647-25" tabindex="-1"></a>maria<span class="sc">$</span><span class="fu">show_info</span>()</span>
+<span id="cb647-26"><a href="r6-intro.html#cb647-26" tabindex="-1"></a><span class="co">#&gt; Hello, my name is Maria and I am 20 years old.</span></span>
+<span id="cb647-27"><a href="r6-intro.html#cb647-27" tabindex="-1"></a><span class="co">#&gt; Major: Engineering</span></span></code></pre></div>
+<p>In this example, <code>Student</code> class inherits from <code>Person</code> class. <code>Student</code> constructor calls parent class constructor (<code>super$initialize()</code>) to initialize inherited attributes. <code>show_info()</code> method calls parent class <code>greet()</code> method (<code>super$greet()</code>) and then shows student-specific information.</p>
+<p>With R6, you can create classes and objects with a high degree of flexibility and control, allowing you to apply OOP effectively in your data analysis projects.</p>
+</div>
+<div id="exercises-21" class="section level2 hasAnchor" number="19.2">
+<h2><span class="header-section-number">19.2</span> Exercises<a href="r6-intro.html#exercises-21" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol start="125" style="list-style-type: decimal">
+<li>Create a class called <code>Pet</code> with attributes <code>name</code>, <code>species</code> and <code>age</code>, and methods <code>introduce()</code> (showing name, species and age of pet) and <code>have_birthday()</code> (incrementing pet age by 1).</li>
+</ol>
+<details>
+<summary type="button">
+Solution
+</summary>
+<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="r6-intro.html#cb648-1" tabindex="-1"></a><span class="fu">library</span>(R6)</span>
+<span id="cb648-2"><a href="r6-intro.html#cb648-2" tabindex="-1"></a></span>
+<span id="cb648-3"><a href="r6-intro.html#cb648-3" tabindex="-1"></a>Pet <span class="ot">&lt;-</span> <span class="fu">R6Class</span>(<span class="st">&quot;Pet&quot;</span>,</span>
+<span id="cb648-4"><a href="r6-intro.html#cb648-4" tabindex="-1"></a>  <span class="at">public =</span> <span class="fu">list</span>(</span>
+<span id="cb648-5"><a href="r6-intro.html#cb648-5" tabindex="-1"></a>    <span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb648-6"><a href="r6-intro.html#cb648-6" tabindex="-1"></a>    <span class="at">species =</span> <span class="cn">NULL</span>,</span>
+<span id="cb648-7"><a href="r6-intro.html#cb648-7" tabindex="-1"></a>    <span class="at">age =</span> <span class="cn">NULL</span>,</span>
+<span id="cb648-8"><a href="r6-intro.html#cb648-8" tabindex="-1"></a>    </span>
+<span id="cb648-9"><a href="r6-intro.html#cb648-9" tabindex="-1"></a>    <span class="at">initialize =</span> <span class="cf">function</span>(name, species, age) {</span>
+<span id="cb648-10"><a href="r6-intro.html#cb648-10" tabindex="-1"></a>      self<span class="sc">$</span>name <span class="ot">&lt;-</span> name</span>
+<span id="cb648-11"><a href="r6-intro.html#cb648-11" tabindex="-1"></a>      self<span class="sc">$</span>species <span class="ot">&lt;-</span> species</span>
+<span id="cb648-12"><a href="r6-intro.html#cb648-12" tabindex="-1"></a>      self<span class="sc">$</span>age <span class="ot">&lt;-</span> age</span>
+<span id="cb648-13"><a href="r6-intro.html#cb648-13" tabindex="-1"></a>    },</span>
+<span id="cb648-14"><a href="r6-intro.html#cb648-14" tabindex="-1"></a>    </span>
+<span id="cb648-15"><a href="r6-intro.html#cb648-15" tabindex="-1"></a>    <span class="at">introduce =</span> <span class="cf">function</span>() {</span>
+<span id="cb648-16"><a href="r6-intro.html#cb648-16" tabindex="-1"></a>      <span class="fu">cat</span>(<span class="st">&quot;Hello, I am&quot;</span>, self<span class="sc">$</span>name, <span class="st">&quot;, a&quot;</span>, self<span class="sc">$</span>species, <span class="st">&quot;of&quot;</span>, self<span class="sc">$</span>age, <span class="st">&quot;years old.</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb648-17"><a href="r6-intro.html#cb648-17" tabindex="-1"></a>    },</span>
+<span id="cb648-18"><a href="r6-intro.html#cb648-18" tabindex="-1"></a>    </span>
+<span id="cb648-19"><a href="r6-intro.html#cb648-19" tabindex="-1"></a>    <span class="at">have_birthday =</span> <span class="cf">function</span>() {</span>
+<span id="cb648-20"><a href="r6-intro.html#cb648-20" tabindex="-1"></a>      self<span class="sc">$</span>age <span class="ot">&lt;-</span> self<span class="sc">$</span>age <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb648-21"><a href="r6-intro.html#cb648-21" tabindex="-1"></a>    }</span>
+<span id="cb648-22"><a href="r6-intro.html#cb648-22" tabindex="-1"></a>  )</span>
+<span id="cb648-23"><a href="r6-intro.html#cb648-23" tabindex="-1"></a>)</span></code></pre></div>
+</details>
+<ol start="126" style="list-style-type: decimal">
+<li>Create a class called <code>Dog</code> inheriting from <code>Pet</code> class (from previous exercises). <code>Dog</code> class should have an additional attribute called <code>breed</code> and a method called <code>bark()</code>.</li>
+</ol>
+<details>
+<summary type="button">
+Solution
+</summary>
+<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="r6-intro.html#cb649-1" tabindex="-1"></a>Dog <span class="ot">&lt;-</span> <span class="fu">R6Class</span>(<span class="st">&quot;Dog&quot;</span>,</span>
+<span id="cb649-2"><a href="r6-intro.html#cb649-2" tabindex="-1"></a>  <span class="at">inherit =</span> Pet,</span>
+<span id="cb649-3"><a href="r6-intro.html#cb649-3" tabindex="-1"></a>  <span class="at">public =</span> <span class="fu">list</span>(</span>
+<span id="cb649-4"><a href="r6-intro.html#cb649-4" tabindex="-1"></a>    <span class="at">breed =</span> <span class="cn">NULL</span>,</span>
+<span id="cb649-5"><a href="r6-intro.html#cb649-5" tabindex="-1"></a>    </span>
+<span id="cb649-6"><a href="r6-intro.html#cb649-6" tabindex="-1"></a>    <span class="at">initialize =</span> <span class="cf">function</span>(name, age, breed) {</span>
+<span id="cb649-7"><a href="r6-intro.html#cb649-7" tabindex="-1"></a>      super<span class="sc">$</span><span class="fu">initialize</span>(name, <span class="st">&quot;dog&quot;</span>, age)</span>
+<span id="cb649-8"><a href="r6-intro.html#cb649-8" tabindex="-1"></a>      self<span class="sc">$</span>breed <span class="ot">&lt;-</span> breed</span>
+<span id="cb649-9"><a href="r6-intro.html#cb649-9" tabindex="-1"></a>    },</span>
+<span id="cb649-10"><a href="r6-intro.html#cb649-10" tabindex="-1"></a>    </span>
+<span id="cb649-11"><a href="r6-intro.html#cb649-11" tabindex="-1"></a>    <span class="at">bark =</span> <span class="cf">function</span>() {</span>
+<span id="cb649-12"><a href="r6-intro.html#cb649-12" tabindex="-1"></a>      <span class="fu">cat</span>(<span class="st">&quot;Woof! Woof!</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb649-13"><a href="r6-intro.html#cb649-13" tabindex="-1"></a>    }</span>
+<span id="cb649-14"><a href="r6-intro.html#cb649-14" tabindex="-1"></a>  )</span>
+<span id="cb649-15"><a href="r6-intro.html#cb649-15" tabindex="-1"></a>)</span></code></pre></div>
+</details>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ethics-checklist.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": true,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": null
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": null,
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

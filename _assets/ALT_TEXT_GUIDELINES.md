@@ -82,21 +82,21 @@ knitr::include_graphics(
 ### Chapter 3: Visualization
 | Image | Recommended Alt-Text |
 |-------|---------------------|
-| partes-de-flor.png | "Botanical diagram showing flower parts: sepal, petal, stamen, and pistil" |
+| flower-parts.png | "Botanical diagram showing flower parts: sepal, petal, stamen, and pistil" |
 
 ### Chapter 4: Statistics
 | Image | Recommended Alt-Text |
 |-------|---------------------|
 | probabilities-marbles.png | "Container with colored marbles: 5 blue, 3 yellow, and 4 gray" |
-| monty-hall-cerradas.png | "Three closed doors labeled 1, 2, and 3 in the Monty Hall problem" |
-| monty-hall-abierta.png | "Monty Hall problem with door 3 open showing a goat, doors 1 and 2 remain closed" |
-| ruleta-casino.png | "Casino roulette wheel with numbered red and black pockets" |
-| encuesta-EEUU.png | "Table of US election polls from April-May 2020 showing sample sizes and margins of error" |
+| monty-hall-closed.png | "Three closed doors labeled 1, 2, and 3 in the Monty Hall problem" |
+| monty-hall-open.png | "Monty Hall problem with door 3 open showing a goat, doors 1 and 2 remain closed" |
+| roulette-casino.png | "Casino roulette wheel with numbered red and black pockets" |
+| polls-us.png | "Table of US election polls from April-May 2020 showing sample sizes and margins of error" |
 
 ### Chapter 5: Data Wrangling
 | Image | Recommended Alt-Text |
 |-------|---------------------|
-| paises-hispanos.png | "Wikipedia table of Hispanic countries by population" |
+| hispanic-countries.png | "Wikipedia table of Hispanic countries by population" |
 | download-user-tweets.png | "Twitter data download interface for user tweet archives" |
 
 ### Chapter 6: Machine Learning

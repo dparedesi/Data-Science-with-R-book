@@ -4,11 +4,20 @@ editor_options:
   chunk_output_type: console
 ---
 # Unsupervised Learning
+
 Now that we know how to create supervised learning algorithms, understanding unsupervised learning becomes an intuitive exercise.
 
 While in **supervised** learning we have a set of variables that we use to predict a certain output class (up/down, resign/not resign), in **unsupervised** learning we do not have expected output classes. In supervised learning we had training data and testing data that allowed us to validate the effectiveness of the model by its closeness to the known class. In unsupervised learning we do not have a default _output_. This in turn generates a great challenge because it is very difficult to know if we have already finished the work or if we can still generate another model with which we feel more satisfied.
 
 The simplest example to understand this type of learning is when we have our customer base and we want to segment them for the first time. In that case, we look for customers who behave in the same way, but being the first time, we don't know how many segments we can have. The challenge lies in determining the cut-off: how many segments do we seek to create?
+
+## Learning Objectives
+
+By the end of this section, you will be able to:
+
+By the end of this section, you will be able to clearly differentiate between supervised and unsupervised learning, understanding the distinct challenges of working with unlabeled data. We will apply the **k-means** clustering algorithm to segment data into optimal groups and use **hierarchical clustering** to visualize relationships through dendrograms. Furthermore, you will learn to evaluate the quality of these clusters using the **elbow** and **silhouette** methods, and perform basic **dimensionality reduction** to simplify complex datasets.
+
+## Applications of Unsupervised Learning
 
 The main applications of unsupervised learning are related to data **_clustering_**. Here, the goal is to find homogeneous subgroups within the data. These algorithms are based on the distance between observations. The customer segmentation example would be an example of _clustering_.
 
@@ -77,11 +86,11 @@ We can add this team assignment as one more column of our `players` data set to 
 
 ```{r, eval=TRUE}
 # We add the cluster column
-players_agrupados <- players |> 
+players_grouped <- players |> 
                          mutate(cluster = team)
 
 # We visualize the players according to the grouping
-players_agrupados |> 
+players_grouped |> 
   ggplot() +
   aes(x, y, fill = factor(cluster)) +
   geom_point(size = 5, pch = 21) +
@@ -110,10 +119,10 @@ kmeans_model <- kmeans(players, centers = 3)
 
 team <- kmeans_model$cluster
 
-players_agrupados <- players |> 
+players_grouped <- players |> 
                          mutate(cluster = team)
 
-players_agrupados |> 
+players_grouped |> 
   ggplot() +
   aes(x, y, color = factor(cluster)) +
   geom_point(size = 5) +
@@ -155,6 +164,10 @@ fviz_nbclust(players, FUN = kmeans, method = "silhouette")
 
 Here it is clearly seen that for a value of `k=2` we have the best average, making this our optimal number of groups.
 
+> [!TIP]
+> **Interpreting Silhouette Scores**
+Interpreting these scores is straightforward: a score close to **1** indicates that the data point is well-matched to its own cluster and distinct from neighbors, representing a strong grouping. A score near **0** suggests the point lies on the boundary between clusters, while a **negative** score implies the point may have been assigned to the wrong group. Generally, an average silhouette width above **0.5** signals a solid clustering structure.
+
 ### k-means for more than 2 variables
 The method we have learned can be easily extended to more variables. Only in this case it would no longer be possible to visualize it like the soccer team and we would only visualize the results of the grouping and the learned metrics.
 
@@ -168,36 +181,39 @@ customers <- read_csv(url)
 We are going to perform a grouping only considering the spending made on frozen foods, groceries and dairy products.
 
 ```{r, eval=TRUE}
-customers_filtrado <- customers |> 
+customers_filtered <- customers |> 
   select(Milk, Grocery, Frozen)
+
+# We scale the data to ensure equal weight for all variables
+customers_scaled <- as.data.frame(scale(customers_filtered))
 ```
 
 Once we have our data we would create a silhouette analysis to determine the best value of "k".
 
 ```{r, eval=TRUE}
-fviz_nbclust(customers_filtrado, FUN = kmeans, method = "silhouette")
+fviz_nbclust(customers_scaled, FUN = kmeans, method = "silhouette")
 ```
 
 Again, we get that the recommended number of clusters is 2. Let's create the model for k = 2 and store the resulting cluster.
 
 ```{r, eval=TRUE}
-modelo <- kmeans(customers_filtrado, centers = 2)
+model <- kmeans(customers_scaled, centers = 2)
 
-customers_agrupados <- customers_filtrado |> 
-                        mutate(cluster = modelo$cluster)
+customers_grouped <- customers_filtered |> 
+                        mutate(cluster = model$cluster)
 
-customers_agrupados
+customers_grouped
 ```
 
 Once we have grouped our data we can calculate the amount of data in each cluster and the mean of the values for each group and thus identify differences between these two potential customer segments.
 
 ```{r, eval=TRUE}
-customers_agrupados |> 
+customers_grouped |> 
   group_by(cluster) |> 
   summarise(total = n(), 
-            media_Milk = mean(Milk), 
-            media_Grocery = mean(Grocery),
-            media_Frozen = mean(Frozen))
+            mean_Milk = mean(Milk), 
+            mean_Grocery = mean(Grocery),
+            mean_Frozen = mean(Frozen))
 ```
 
 Thus, we have learned to segment customers using machine learning.
@@ -248,9 +264,9 @@ player_distances <- dist(players)
 
 hierarchical_model <- hclust(player_distances)
 
-dend_modelo <- as.dendrogram(hierarchical_model)
+dend_model <- as.dendrogram(hierarchical_model)
 
-plot(dend_modelo)
+plot(dend_model)
 
 ```
 
@@ -287,8 +303,8 @@ So far we have only seen the hierarchy, but what interests us is the grouping. T
 cut_height <- 60
 
 dend_model |> 
-  color_branches(h = cut_height) |> 
-  color_labels(h = cut_height) |> 
+  color_branches(h = cut_height, col = c("red", "green", "blue", "orange")) |> 
+  color_labels(h = cut_height, col = c("red", "green", "blue", "orange")) |> 
   plot()
 ```
 
@@ -298,8 +314,8 @@ Since the highest hierarchy distance is approximately 50, then in this case it g
 cut_height <- 40
 
 dend_model |> 
-  color_branches(h = cut_height) |> 
-  color_labels(h = cut_height) |> 
+  color_branches(h = cut_height, col = c("red", "green", "blue")) |> 
+  color_labels(h = cut_height, col = c("red", "green", "blue")) |> 
   plot() |> 
   abline(h = cut_height, lty = 2)
 ```
@@ -344,18 +360,18 @@ It is not surprising that the value of `k` is also 2, which coincides with the n
 Now that we have validated that the recommended number of clusters is 2, we calculate the grouping from the previously created model.
 
 ```{r, eval=TRUE}
-players_agrupados <- players |> 
+players_grouped <- players |> 
                         mutate(cluster = cutree(hierarchical_model, k = 2)
                                )
 
-players_agrupados
+players_grouped
 
 ```
 
 Finally, let's visualize the grouping performed with this method.
 
 ```{r, eval=TRUE}
-players_agrupados |> 
+players_grouped |> 
   ggplot() +
   aes(x, y, color = factor(cluster)) +
   geom_point(size = 5) +
@@ -372,7 +388,7 @@ We have created clusters with a controlled number of variables. However, we are 
 For this case we are going to take as an example a credit card customer dataset, adaptation of the [public dataset in Kaggle](https://www.kaggle.com/arjunbhasin2013/ccdata), from the following route.
 
 ```{r, eval=FALSE}
-url <- "https://dparedesi.github.io/DS-con-R/cards_df_de_credito.csv"
+url <- "https://dparedesi.github.io/DS-with-R-datasets/credit-cards.csv"
 
 cards_df <- read_csv(url)
 ```
@@ -394,7 +410,7 @@ There is a strong correlation between the total purchases variable and the purch
 ```{r, eval=FALSE}
 cards_df |> 
   ggplot() +
-  aes(x=purchases, y=purchases_primeros_tres_meses) +
+  aes(x=purchases, y=purchases_first_3_months) +
   geom_point() +
   labs(title="Customer Attributes",
        subtitle="Relationship between total purchases and first 3 months")
@@ -406,14 +422,14 @@ We could also validate the distribution of these variables.
 
 ```{r, eval=FALSE, warning=FALSE}
 # We remove the purchases first 3 months variable
-cards_df <- cards_df[, !names(cards_df) == "purchases_primeros_tres_meses"]
+cards_df <- cards_df[, !names(cards_df) == "purchases_first_3_months"]
 
 cards_df |>
-  pivot_longer(cols = everything(), names_to = "atributos", values_to = "valores") |>
+  pivot_longer(cols = everything(), names_to = "attributes", values_to = "values") |>
   ggplot() +
-  aes(x=valores, fill=atributos) +
+  aes(x=values, fill=attributes) +
   geom_histogram(colour="black", show.legend=FALSE) +
-  facet_wrap(~atributos, scales="free_x") +
+  facet_wrap(~attributes, scales="free_x") +
   labs(x="Values", y="Frequency",
        title="Customer Attributes - Histogram")
 ```
@@ -461,11 +477,11 @@ We can verify that the distribution does not change, only the scale.
 
 ```{r, eval=FALSE}
 cards_df_norm |>
-  pivot_longer(cols = everything(), names_to = "atributos", values_to = "valores") |>
+  pivot_longer(cols = everything(), names_to = "attributes", values_to = "values") |>
   ggplot() +
-  aes(x=valores, fill=atributos) +
+  aes(x=values, fill=attributes) +
   geom_histogram(colour="black", show.legend=FALSE) +
-  facet_wrap(~atributos, scales="free_x") +
+  facet_wrap(~attributes, scales="free_x") +
   labs(x="Values", y="Frequency",
        title="Customer Attributes - Histogram")
 
@@ -477,7 +493,7 @@ Data preparation and variable reduction is a necessary step when we create machi
 str(cards_df_norm)
 ```
 
-More advanced techniques such as [Principal Component Analysis](https://www.stat.cmu.edu/~cshalizi/uADA/12/lectures/ch18.pdf) (PCA) and [Singular Value Decomposition](https://math.mit.edu/classes/18.095/2016IAP/lec2/SVD_Notes.pdf) (SVD) are used to perform dimensionality reduction more rigorously so as not to lose so much data in our analysis. However, their interpretation is still under development due to the high mathematical complexity required for their understanding.
+More advanced techniques such as [Principal Component Analysis](https://www.stat.cmu.edu/~cshalizi/uADA/12/lectures/ch18.pdf) (PCA) and [Singular Value Decomposition](https://math.mit.edu/classes/18.095/2016IAP/lec2/SVD_Notes.pdf) (SVD) are used to perform dimensionality reduction more rigorously so as not to lose so much data in our analysis. These techniques are widely used in practice and well-documented, though they require a solid understanding of linear algebra for proper interpretation.
 
 `r if(params$hidden){"<!--"}`
 
@@ -490,10 +506,10 @@ url <- "http://archive.ics.uci.edu/ml/machine-learning-databases/00488/Live.csv"
 posts <- read_csv(url)
 
 # We remove columns not relevant to the analysis
-columnas_no_relevantes <- c("status_type","status_id", "status_published", "Column1",
+irrelevant_columns <- c("status_type","status_id", "status_published", "Column1",
                             "Column2", "Column3", "Column4")
 
-data_posts <- posts[, !names(posts) %in% columnas_no_relevantes]
+data_posts <- posts[, !names(posts) %in% irrelevant_columns]
 
 ```
 
@@ -563,7 +579,7 @@ fviz_nbclust(data_posts_norm, FUN = kmeans, method = "silhouette")
 The number of clusters does not change because there exists another variable with the same behavior as this one.
 </details>
 
-`r ne`. Create the k-means model to group using the recommended number of clusters found. Use the `data_posts_norm` object for the creation of the model. Create the `data_posts_agrupados` object where the original data of `data_posts` is with the additional column `cluster_medias` indicating the cluster result of this model.
+`r ne`. Create the k-means model to group using the recommended number of clusters found. Use the `data_posts_norm` object for the creation of the model. Create the `data_posts_grouped` object where the original data of `data_posts` is with the additional column `cluster_kmeans` indicating the cluster result of this model.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -572,14 +588,14 @@ inc(params$hidden, ne)
 <details>
   <summary type="button">Solution</summary>
 ```{r eval=FALSE}
-modelo_kmedias <- kmeans(data_posts_norm, centers = 2)
+kmeans_model <- kmeans(data_posts_norm, centers = 2)
 
-data_posts_agrupados <- data_posts |> 
-                        mutate(cluster_kmedias = modelo_kmedias$cluster)
+data_posts_grouped <- data_posts |> 
+                        mutate(cluster_kmeans = kmeans_model$cluster)
 ```
 </details>
 
-`r ne`. Create the hierarchical model to group using the recommended number of clusters found. Use the `data_posts_norm` object for the creation of the model. Add to the `data_posts_agrupados` object the column `cluster_jer` to store the result of the grouping.
+`r ne`. Create the hierarchical model to group using the recommended number of clusters found. Use the `data_posts_norm` object for the creation of the model. Add to the `data_posts_grouped` object the column `cluster_hier` to store the result of the grouping.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -588,11 +604,11 @@ inc(params$hidden, ne)
 <details>
   <summary type="button">Solution</summary>
 ```{r eval=FALSE}
-distancias <- dist(data_posts_norm)
-modelo_jerarquico <- hclust(distancias)
+distances <- dist(data_posts_norm)
+hier_model <- hclust(distances)
 
-data_posts_agrupados <- data_posts_agrupados |> 
-                        mutate(cluster_jer = cutree(modelo_jerarquico, k = 2)
+data_posts_grouped <- data_posts_grouped |> 
+                        mutate(cluster_hier = cutree(hier_model, k = 2)
                                )
 ```
 </details>
@@ -606,9 +622,9 @@ inc(params$hidden, ne)
 <details>
   <summary type="button">Solution</summary>
 ```{r eval=FALSE}
-data_posts_agrupados |> 
-  select(-cluster_jer) |> 
-  group_by(cluster_kmedias) |> 
+data_posts_grouped |> 
+  select(-cluster_hier) |> 
+  group_by(cluster_kmeans) |> 
   summarise_all(list(mean))
 ```
 </details>
@@ -622,9 +638,9 @@ inc(params$hidden, ne)
 <details>
   <summary type="button">Solution</summary>
 ```{r eval=FALSE}
-data_posts_agrupados |> 
-  select(-cluster_kmedias) |> 
-  group_by(cluster_jer) |> 
+data_posts_grouped |> 
+  select(-cluster_kmeans) |> 
+  group_by(cluster_hier) |> 
   summarise_all(list(mean))
 ```
 </details>

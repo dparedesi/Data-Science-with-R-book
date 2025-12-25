@@ -10,22 +10,11 @@ In R, practically everything is an object. The variables we will use to store da
 
 Imagine you are organizing your move to the United States. Each item you pack in a box (clothes, books, appliances) can be considered an object. Each object has characteristics that define it: a name, a type, a size, a weight, etc.
 
-In R, objects also have characteristics that define them. These characteristics are called **attributes**. Some common attributes are:
-
-*   **Name:** The name we give to the object to be able to refer to it.
-*   **Type:** The type of data the object contains (numeric, character, logical, etc.).
-*   **Class:** The class of the object, which defines its structure and behavior (vector, list, data frame, function, etc.).
-*   **Length:** The amount of elements the object contains (if it is a vector, a list, etc.).
+In R, objects also have characteristics that define them. These characteristics are called **attributes**. For instance, every object has a **Name** so we can refer to it, and a **Type** that indicates what kind of data it contains (numeric, character, logical, etc.). Objects also have a **Class** defining their structure and behavior (such as vector, list, or data frame) and a **Length** indicating the number of elements they contain.
 
 ### R as an object-oriented language
 
-R is an **object-oriented** programming language. This means it relies on the concept of objects to organize and process information.
-
-Object-oriented programming has several advantages:
-
-*   **Modularity:** Objects allow dividing a program into smaller, manageable parts.
-*   **Reusability:** Objects can be reused in different parts of the program or in other programs.
-*   **Encapsulation:** Objects hide implementation details, facilitating their use and maintenance.
+R is an **object-oriented** programming language, meaning it relies on the concept of objects to organize and process information. This approach offers several advantages, such as **Modularity**, allowing us to divide a program into smaller, manageable parts. It also promotes **Reusability**, as objects can be used in different parts of the program or even in other projects. Furthermore, objects provide **Encapsulation**, hiding implementation details to facilitate their use and maintenance.
 
 ### The power of abstraction
 
@@ -44,6 +33,8 @@ Think of variables as labels we put on each object. For example, we could use th
 ### Creating variables in R
 
 In R, we don't need to declare a variable before using it. We simply assign it a value using the `<-` symbol.
+
+> **Note:** You might see the `=` symbol used for assignment in other programming languages or even in some R code. While `=` works in R, the `<-` operator is the standard and idiomatic way to assign values to variables. It helps distinguish between assigning a value to a variable and passing arguments to a function (where `=` is always used).
 
 **Example:**
 
@@ -96,35 +87,11 @@ It is important to use descriptive names for variables, clearly indicating what 
 
 **Rules for naming variables**
 
-*   Variable names can contain letters, numbers, and underscores (`_`).
-*   They cannot start with a number.
-*   They cannot contain spaces.
-*   R is case-sensitive.
+When naming your variables, remember that they can contain letters, numbers, and underscores (`_`), but they cannot start with a number or contain spaces. Also, keep in mind that R is case-sensitive, so capitalization matters.
 
 ### Data types
 
-Variables in R can contain different types of data:
-
-*   **Numeric:** Represent numbers, such as the population of a city or the cost of a plane ticket.
-
-    ```{r eval=FALSE}
-    chicago_population <- 2700000
-    ticket_price <- 300
-    ```
-
-*   **Character:** Represent text, such as the name of a state or a city.
-
-    ```{r eval=FALSE}
-    state <- "California"
-    city <- "Los Angeles"
-    ```
-
-*   **Logical:** Represent truth values: `TRUE` or `FALSE`. We could use a logical variable to indicate if we want to visit a city or not.
-
-    ```{r eval=FALSE}
-    visit_chicago <- TRUE
-    visit_miami <- FALSE
-    ```
+Variables in R can contain different types of data. **Numeric** variables are used for numbers, such as the population of a city or the cost of a plane ticket. **Character** variables store text, like the name of a state ("California") or a city ("Los Angeles"). **Logical** variables represent binary truth values, `TRUE` or `FALSE`, which are useful for conditions, such as indicating whether we want to visit a specific city.
 
 ## Object types for complex data
 
@@ -163,27 +130,25 @@ names(population) <- states
 population
 ```
 
-In addition to `c()`, there are other useful functions for creating vectors:
+In addition to `c()`, there are other useful functions for creating vectors. The `seq()` function creates a sequence of numbers, allowing us to specify the start value, the end value, and the increment.
 
-*   `seq()`: Creates a sequence of numbers. We can specify the start value, the end value, and the increment.
+```{r eval=FALSE}
+# Create a vector with numbers from 1 to 10
+numbers <- seq(1, 10)
 
-    ```{r eval=FALSE}
-    # Create a vector with numbers from 1 to 10
-    numbers <- seq(1, 10)
-    
-    # Create a vector with numbers from 2 to 20, by 2
-    even_numbers <- seq(2, 20, by = 2)
-    ```
+# Create a vector with numbers from 2 to 20, by 2
+even_numbers <- seq(2, 20, by = 2)
+```
 
-*   `rep()`: Repeats a value or a vector a specified number of times.
+Another useful function is `rep()`, which repeats a value or a vector a specified number of times.
 
-    ```{r eval=FALSE}
-    # Create a vector with the value 1 repeated 5 times
-    ones <- rep(1, 5)
-    
-    # Create a vector with the sequence "A", "B" repeated 3 times
-    letters <- rep(c("A", "B"), 3)  # Output: "A" "B" "A" "B" "A" "B"
-    ```
+```{r eval=FALSE}
+# Create a vector with the value 1 repeated 5 times
+ones <- rep(1, 5)
+
+# Create a vector with the sequence "A", "B" repeated 3 times
+letters <- rep(c("A", "B"), 3)  # Output: "A" "B" "A" "B" "A" "B"
+```
 
 **Accessing vector elements:** Each element of a vector has a position, indicated by a number in brackets. The first element is at position 1, the second at position 2, and so on.
 
@@ -365,12 +330,7 @@ This difference is due in part to R's history as a language for statistical anal
 
 Now that you know the different types of objects in R, it's time to put your knowledge to the test.
 
-`r ne`. Create the following variables:
-
-*   `city_name`: Store the name of the US city you would like to move to.
-*   `population`: Store the population of that city (you can search for it online).
-*   `distance`: Store the distance in kilometers from your current city to the US city.
-*   `want_to_live_there`: Store a logical value (`TRUE` or `FALSE`) indicating if you really would like to live in that city.
+`r ne`. Create four variables to plan your move. Define `city_name` with the city you would like to move to, `population` with its number of inhabitants, and `distance` with the kilometers from your current location. Also, create a logical variable `want_to_live_there` indicating if you truly want to live there.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -399,12 +359,7 @@ nearby_cities <- c("Tacoma", "Bellevue", "Everett")
 ```
 </details>
 
-`r ne`. Create a list called `my_list` containing the following elements:
-
-*   Your name.
-*   Your age.
-*   A vector with the names of your three favorite colors.
-*   A logical value indicating if you like chocolate.
+`r ne`. Construct a list called `my_list` that groups different types of information about yourself. It should include your name, your age, a vector with your three favorite colors, and a logical value indicating if you simplify like chocolate.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -577,7 +532,7 @@ inc(params$hidden, ne)
 
 <details>
   <summary type="button">Solution</summary>
-  This exercise is a variant of the classic "maximize stock profit" problem. Solving it optimally can be complex, but with the concepts from chapter 1, we can create an algorithm that finds a solution (though not necessarily the optimal one).
+  This exercise is a variant of the classic "maximize stock profit" problem. Solving it optimally can be complex, but with the concepts from this chapter, we can create an algorithm that finds a solution (though not necessarily the optimal one).
 
 ```{r eval=TRUE}
 # Create a vector with dummy stock prices for a year

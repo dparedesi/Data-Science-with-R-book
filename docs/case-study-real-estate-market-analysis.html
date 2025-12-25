@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 14 Case Study: Real Estate Market Analysis | Data Science with R</title>
-  <meta name="description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
+  <title>Chapter 16 Case Study: Real Estate Market Analysis | Data Science with R</title>
+  <meta name="description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Third Edition by Daniel Paredes." />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 14 Case Study: Real Estate Market Analysis | Data Science with R" />
+  <meta property="og:title" content="Chapter 16 Case Study: Real Estate Market Analysis | Data Science with R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
+  <meta property="og:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Third Edition by Daniel Paredes." />
   <meta name="github-repo" content="dparedesi/Data-Science-with-R-book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 14 Case Study: Real Estate Market Analysis | Data Science with R" />
+  <meta name="twitter:title" content="Chapter 16 Case Study: Real Estate Market Analysis | Data Science with R" />
   
-  <meta name="twitter:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes." />
+  <meta name="twitter:description" content="A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Third Edition by Daniel Paredes." />
   
 
 <meta name="author" content="Author: Mg. Daniel Paredes Inilupu" />
 
 
-<meta name="date" content="2025-12-23" />
+<meta name="date" content="2025-12-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -192,15 +192,31 @@ div.csl-indent {
 <li><a href="./">Data Science with R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#support-this-work"><i class="fa fa-check"></i>Support This Work</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#stay-connected"><i class="fa fa-check"></i>Stay Connected</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a>
+<ul>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#family"><i class="fa fa-check"></i>Family</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#mentors-and-inspirations"><i class="fa fa-check"></i>Mentors and Inspirations</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#contributors"><i class="fa fa-check"></i>Contributors</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a>
 <ul>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#why-r"><i class="fa fa-check"></i>Why R?</a></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#installing-r"><i class="fa fa-check"></i>Installing R</a></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#installing-rstudio"><i class="fa fa-check"></i>Installing RStudio</a></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#rstudio-sections"><i class="fa fa-check"></i>RStudio Sections</a></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#testing-rstudio"><i class="fa fa-check"></i>Testing RStudio</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#rstudio-sections"><i class="fa fa-check"></i>RStudio Sections</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#essential-keyboard-shortcuts"><i class="fa fa-check"></i>Essential Keyboard Shortcuts</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#testing-your-installation"><i class="fa fa-check"></i>Testing Your Installation</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#writing-scripts"><i class="fa fa-check"></i>Writing Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#whats-next"><i class="fa fa-check"></i>What’s Next?</a></li>
 </ul></li>
 <li class="part"><span><b>I Fundamentals and Key Tools</b></span></li>
 <li class="chapter" data-level="1" data-path="objects.html"><a href="objects.html"><i class="fa fa-check"></i><b>1</b> Objects</a>
@@ -333,10 +349,7 @@ div.csl-indent {
 <li class="chapter" data-level="4.2.2" data-path="advanced-techniques.html"><a href="advanced-techniques.html#higher-order-functions-in-r"><i class="fa fa-check"></i><b>4.2.2</b> Higher-order functions in R</a></li>
 <li class="chapter" data-level="4.2.3" data-path="advanced-techniques.html"><a href="advanced-techniques.html#examples-4"><i class="fa fa-check"></i><b>4.2.3</b> Examples</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="advanced-techniques.html"><a href="advanced-techniques.html#r6-the-future-of-oop-in-r"><i class="fa fa-check"></i><b>4.3</b> R6: The future of OOP in R</a>
-<ul>
-<li class="chapter" data-level="4.3.1" data-path="advanced-techniques.html"><a href="advanced-techniques.html#the-r6-package-classes-methods-encapsulation-and-inheritance"><i class="fa fa-check"></i><b>4.3.1</b> The R6 package: Classes, methods, encapsulation, and inheritance</a></li>
-</ul></li>
+<li class="chapter" data-level="4.3" data-path="advanced-techniques.html"><a href="advanced-techniques.html#r6-the-future-of-oop-in-r"><i class="fa fa-check"></i><b>4.3</b> R6: The future of OOP in R</a></li>
 <li class="chapter" data-level="4.4" data-path="advanced-techniques.html"><a href="advanced-techniques.html#exercises-4"><i class="fa fa-check"></i><b>4.4</b> Exercises</a></li>
 </ul></li>
 <li class="part"><span><b>II Data Visualization and Summarization</b></span></li>
@@ -352,12 +365,14 @@ div.csl-indent {
 <li class="chapter" data-level="5.5" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#label-title-and-legend-layer"><i class="fa fa-check"></i><b>5.5</b> Label, title and legend layer</a></li>
 <li class="chapter" data-level="5.6" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#reference-lines"><i class="fa fa-check"></i><b>5.6</b> Reference lines</a></li>
 <li class="chapter" data-level="5.7" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#changing-the-plot-style"><i class="fa fa-check"></i><b>5.7</b> Changing the plot style</a></li>
-<li class="chapter" data-level="5.8" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#summarizing-data-with-dplyr"><i class="fa fa-check"></i><b>5.8</b> Summarizing data with dplyr</a>
+<li class="chapter" data-level="5.8" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#saving-plots"><i class="fa fa-check"></i><b>5.8</b> Saving plots</a></li>
+<li class="chapter" data-level="5.9" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#summarizing-data-with-dplyr"><i class="fa fa-check"></i><b>5.9</b> Summarizing data with dplyr</a>
 <ul>
-<li class="chapter" data-level="5.8.1" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#summarize-function"><i class="fa fa-check"></i><b>5.8.1</b> Summarize function</a></li>
-<li class="chapter" data-level="5.8.2" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#group-by-function"><i class="fa fa-check"></i><b>5.8.2</b> Group By Function</a></li>
+<li class="chapter" data-level="5.9.1" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#summarize-function"><i class="fa fa-check"></i><b>5.9.1</b> Summarize function</a></li>
+<li class="chapter" data-level="5.9.2" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#group-by-function"><i class="fa fa-check"></i><b>5.9.2</b> Group By Function</a></li>
 </ul></li>
-<li class="chapter" data-level="5.9" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#exercises-5"><i class="fa fa-check"></i><b>5.9</b> Exercises</a></li>
+<li class="chapter" data-level="5.10" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#exercises-5"><i class="fa fa-check"></i><b>5.10</b> Exercises</a></li>
+<li class="chapter" data-level="5.11" data-path="ggplot-and-dplyr.html"><a href="ggplot-and-dplyr.html#key-takeaways"><i class="fa fa-check"></i><b>5.11</b> Key Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="gapminder.html"><a href="gapminder.html"><i class="fa fa-check"></i><b>6</b> Gapminder</a>
 <ul>
@@ -373,6 +388,7 @@ div.csl-indent {
 <li class="chapter" data-level="6.6" data-path="gapminder.html"><a href="gapminder.html#box-plots-with-ggplot"><i class="fa fa-check"></i><b>6.6</b> Box plots with ggplot</a></li>
 <li class="chapter" data-level="6.7" data-path="gapminder.html"><a href="gapminder.html#comparison-of-distributions"><i class="fa fa-check"></i><b>6.7</b> Comparison of distributions</a></li>
 <li class="chapter" data-level="6.8" data-path="gapminder.html"><a href="gapminder.html#exercises-7"><i class="fa fa-check"></i><b>6.8</b> Exercises</a></li>
+<li class="chapter" data-level="6.9" data-path="gapminder.html"><a href="gapminder.html#key-takeaways-1"><i class="fa fa-check"></i><b>6.9</b> Key Takeaways</a></li>
 </ul></li>
 <li class="part"><span><b>III Statistics</b></span></li>
 <li class="chapter" data-level="" data-path="introduction-to-probabilities.html"><a href="introduction-to-probabilities.html"><i class="fa fa-check"></i>Introduction to Probabilities</a></li>
@@ -399,25 +415,32 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html"><i class="fa fa-check"></i><b>8</b> Continuous Probabilities</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#empirical-distribution"><i class="fa fa-check"></i><b>8.1</b> Empirical Distribution</a></li>
-<li class="chapter" data-level="8.2" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#theoretical-distribution"><i class="fa fa-check"></i><b>8.2</b> Theoretical Distribution</a></li>
-<li class="chapter" data-level="8.3" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#exercises-10"><i class="fa fa-check"></i><b>8.3</b> Exercises</a></li>
-<li class="chapter" data-level="8.4" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#monte-carlo-simulation-for-continuous-variables"><i class="fa fa-check"></i><b>8.4</b> Monte Carlo Simulation for Continuous Variables</a></li>
-<li class="chapter" data-level="8.5" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#exercises-11"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
+<li class="chapter" data-level="8.1" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#learning-objectives"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="8.2" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#empirical-distribution"><i class="fa fa-check"></i><b>8.2</b> Empirical Distribution</a></li>
+<li class="chapter" data-level="8.3" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#theoretical-distribution"><i class="fa fa-check"></i><b>8.3</b> Theoretical Distribution</a></li>
+<li class="chapter" data-level="8.4" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#key-takeaways-2"><i class="fa fa-check"></i><b>8.4</b> Key Takeaways</a></li>
+<li class="chapter" data-level="8.5" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#exercises-10"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
+<li class="chapter" data-level="8.6" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#monte-carlo-simulation-for-continuous-variables"><i class="fa fa-check"></i><b>8.6</b> Monte Carlo Simulation for Continuous Variables</a></li>
+<li class="chapter" data-level="8.7" data-path="continuous-probabilities.html"><a href="continuous-probabilities.html#exercises-11"><i class="fa fa-check"></i><b>8.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>9</b> Statistical Inference</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="statistical-inference.html"><a href="statistical-inference.html#expected-value"><i class="fa fa-check"></i><b>9.1</b> Expected Value</a></li>
-<li class="chapter" data-level="9.2" data-path="statistical-inference.html"><a href="statistical-inference.html#central-limit-theorem"><i class="fa fa-check"></i><b>9.2</b> Central Limit Theorem</a></li>
-<li class="chapter" data-level="9.3" data-path="statistical-inference.html"><a href="statistical-inference.html#exercises-12"><i class="fa fa-check"></i><b>9.3</b> Exercises</a></li>
-<li class="chapter" data-level="9.4" data-path="statistical-inference.html"><a href="statistical-inference.html#parameter-estimation-method"><i class="fa fa-check"></i><b>9.4</b> Parameter Estimation Method</a>
+<li class="chapter" data-level="9.1" data-path="statistical-inference.html"><a href="statistical-inference.html#learning-objectives-1"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="9.2" data-path="statistical-inference.html"><a href="statistical-inference.html#expected-value"><i class="fa fa-check"></i><b>9.2</b> Expected Value</a></li>
+<li class="chapter" data-level="9.3" data-path="statistical-inference.html"><a href="statistical-inference.html#central-limit-theorem"><i class="fa fa-check"></i><b>9.3</b> Central Limit Theorem</a></li>
+<li class="chapter" data-level="9.4" data-path="statistical-inference.html"><a href="statistical-inference.html#key-takeaways-3"><i class="fa fa-check"></i><b>9.4</b> Key Takeaways</a></li>
+<li class="chapter" data-level="9.5" data-path="statistical-inference.html"><a href="statistical-inference.html#exercises-12"><i class="fa fa-check"></i><b>9.5</b> Exercises</a></li>
+<li class="chapter" data-level="9.6" data-path="statistical-inference.html"><a href="statistical-inference.html#parameter-estimation-method"><i class="fa fa-check"></i><b>9.6</b> Parameter Estimation Method</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="statistical-inference.html"><a href="statistical-inference.html#margin-of-error"><i class="fa fa-check"></i><b>9.4.1</b> Margin of Error</a></li>
-<li class="chapter" data-level="9.4.2" data-path="statistical-inference.html"><a href="statistical-inference.html#confidence-intervals"><i class="fa fa-check"></i><b>9.4.2</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="9.6.1" data-path="statistical-inference.html"><a href="statistical-inference.html#margin-of-error"><i class="fa fa-check"></i><b>9.6.1</b> Margin of Error</a></li>
+<li class="chapter" data-level="9.6.2" data-path="statistical-inference.html"><a href="statistical-inference.html#confidence-intervals"><i class="fa fa-check"></i><b>9.6.2</b> Confidence Intervals</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="statistical-inference.html"><a href="statistical-inference.html#spread-estimation"><i class="fa fa-check"></i><b>9.5</b> Spread Estimation</a></li>
-<li class="chapter" data-level="9.6" data-path="statistical-inference.html"><a href="statistical-inference.html#estimates-outside-election-polls"><i class="fa fa-check"></i><b>9.6</b> Estimates Outside Election Polls</a></li>
-<li class="chapter" data-level="9.7" data-path="statistical-inference.html"><a href="statistical-inference.html#exercises-13"><i class="fa fa-check"></i><b>9.7</b> Exercises</a></li>
+<li class="chapter" data-level="9.7" data-path="statistical-inference.html"><a href="statistical-inference.html#spread-estimation"><i class="fa fa-check"></i><b>9.7</b> Spread Estimation</a></li>
+<li class="chapter" data-level="9.8" data-path="statistical-inference.html"><a href="statistical-inference.html#estimates-outside-election-polls"><i class="fa fa-check"></i><b>9.8</b> Estimates Outside Election Polls</a>
+<ul>
+<li class="chapter" data-level="9.8.1" data-path="statistical-inference.html"><a href="statistical-inference.html#example-estimating-average-height"><i class="fa fa-check"></i><b>9.8.1</b> Example: Estimating Average Height</a></li>
+</ul></li>
+<li class="chapter" data-level="9.9" data-path="statistical-inference.html"><a href="statistical-inference.html#exercises-13"><i class="fa fa-check"></i><b>9.9</b> Exercises</a></li>
 </ul></li>
 <li class="part"><span><b>IV Data Wrangling</b></span></li>
 <li class="chapter" data-level="" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i>Introduction</a></li>
@@ -443,156 +466,186 @@ div.csl-indent {
 <li class="chapter" data-level="10.5" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#web-scraping"><i class="fa fa-check"></i><b>10.5</b> Web Scraping</a></li>
 <li class="chapter" data-level="10.6" data-path="data-import-and-consolidation.html"><a href="data-import-and-consolidation.html#exercises-15"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html"><i class="fa fa-check"></i><b>11</b> String processing and text mining</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#basic-functions"><i class="fa fa-check"></i><b>11.1</b> Basic functions</a>
-<ul>
-<li class="chapter" data-level="11.1.1" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#replacing-characters"><i class="fa fa-check"></i><b>11.1.1</b> Replacing characters</a></li>
-</ul></li>
-<li class="chapter" data-level="11.2" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#regular-expressions"><i class="fa fa-check"></i><b>11.2</b> Regular expressions</a>
-<ul>
-<li class="chapter" data-level="11.2.1" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#alternation"><i class="fa fa-check"></i><b>11.2.1</b> Alternation</a></li>
-<li class="chapter" data-level="11.2.2" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#anchoring"><i class="fa fa-check"></i><b>11.2.2</b> Anchoring</a></li>
-<li class="chapter" data-level="11.2.3" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#repetitions"><i class="fa fa-check"></i><b>11.2.3</b> Repetitions</a></li>
-</ul></li>
-<li class="chapter" data-level="11.3" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#from-strings-to-dates"><i class="fa fa-check"></i><b>11.3</b> From strings to dates</a></li>
-<li class="chapter" data-level="11.4" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#exercises-16"><i class="fa fa-check"></i><b>11.4</b> Exercises</a></li>
-<li class="chapter" data-level="11.5" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#text-mining-word-cloud"><i class="fa fa-check"></i><b>11.5</b> Text Mining: Word Cloud</a>
-<ul>
-<li class="chapter" data-level="11.5.1" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#importing-data"><i class="fa fa-check"></i><b>11.5.1</b> Importing data</a></li>
-<li class="chapter" data-level="11.5.2" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#text-cleaning"><i class="fa fa-check"></i><b>11.5.2</b> Text cleaning</a></li>
-<li class="chapter" data-level="11.5.3" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#creating-the-corpus"><i class="fa fa-check"></i><b>11.5.3</b> Creating the Corpus</a></li>
-<li class="chapter" data-level="11.5.4" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#nd-data-cleaning"><i class="fa fa-check"></i><b>11.5.4</b> 2nd Data Cleaning</a></li>
-<li class="chapter" data-level="11.5.5" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#word-frequency"><i class="fa fa-check"></i><b>11.5.5</b> Word frequency</a></li>
-</ul></li>
-<li class="chapter" data-level="11.6" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#text-mining-sentiment-analysis"><i class="fa fa-check"></i><b>11.6</b> Text Mining: Sentiment Analysis</a></li>
-<li class="chapter" data-level="11.7" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#exercises-17"><i class="fa fa-check"></i><b>11.7</b> Exercises</a></li>
-</ul></li>
 <li class="part"><span><b>V Machine learning</b></span></li>
-<li class="chapter" data-level="" data-path="introduction-2.html"><a href="introduction-2.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="12" data-path="supervised-learning.html"><a href="supervised-learning.html"><i class="fa fa-check"></i><b>12</b> Supervised Learning</a>
+<li class="chapter" data-level="" data-path="introduction-2.html"><a href="introduction-2.html"><i class="fa fa-check"></i>Introduction</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="supervised-learning.html"><a href="supervised-learning.html#classification-and-regression"><i class="fa fa-check"></i><b>12.1</b> Classification and Regression</a></li>
-<li class="chapter" data-level="12.2" data-path="supervised-learning.html"><a href="supervised-learning.html#knn-k-nearest-neighbors"><i class="fa fa-check"></i><b>12.2</b> kNN: k-Nearest Neighbors</a>
+<li class="chapter" data-level="10.7" data-path="introduction-2.html"><a href="introduction-2.html#learning-objectives-2"><i class="fa fa-check"></i><b>10.7</b> Learning Objectives</a></li>
+<li class="chapter" data-level="10.8" data-path="introduction-2.html"><a href="introduction-2.html#chapter-structure"><i class="fa fa-check"></i><b>10.8</b> Chapter Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="supervised-learning.html"><a href="supervised-learning.html"><i class="fa fa-check"></i><b>11</b> Supervised Learning</a>
 <ul>
-<li class="chapter" data-level="12.2.1" data-path="supervised-learning.html"><a href="supervised-learning.html#two-variables-as-input"><i class="fa fa-check"></i><b>12.2.1</b> Two variables as input</a></li>
-<li class="chapter" data-level="12.2.2" data-path="supervised-learning.html"><a href="supervised-learning.html#multiple-variables-as-input"><i class="fa fa-check"></i><b>12.2.2</b> Multiple variables as input</a></li>
-<li class="chapter" data-level="12.2.3" data-path="supervised-learning.html"><a href="supervised-learning.html#diverse-values-of-k"><i class="fa fa-check"></i><b>12.2.3</b> Diverse values of k</a></li>
-</ul></li>
-<li class="chapter" data-level="12.3" data-path="supervised-learning.html"><a href="supervised-learning.html#tidymodels-framework"><i class="fa fa-check"></i><b>12.3</b> tidymodels Framework</a>
+<li class="chapter" data-level="11.1" data-path="supervised-learning.html"><a href="supervised-learning.html#classification-and-regression"><i class="fa fa-check"></i><b>11.1</b> Classification and Regression</a></li>
+<li class="chapter" data-level="11.2" data-path="supervised-learning.html"><a href="supervised-learning.html#knn-k-nearest-neighbors"><i class="fa fa-check"></i><b>11.2</b> kNN: k-Nearest Neighbors</a>
 <ul>
-<li class="chapter" data-level="12.3.1" data-path="supervised-learning.html"><a href="supervised-learning.html#creation-of-training-and-test-data"><i class="fa fa-check"></i><b>12.3.1</b> Creation of training and test data</a></li>
-<li class="chapter" data-level="12.3.2" data-path="supervised-learning.html"><a href="supervised-learning.html#training-our-prediction-algorithm"><i class="fa fa-check"></i><b>12.3.2</b> Training our prediction algorithm</a></li>
-<li class="chapter" data-level="12.3.3" data-path="supervised-learning.html"><a href="supervised-learning.html#data-pre-processing-with-recipes"><i class="fa fa-check"></i><b>12.3.3</b> Data Pre-processing with Recipes</a></li>
-<li class="chapter" data-level="12.3.4" data-path="supervised-learning.html"><a href="supervised-learning.html#creating-a-workflow"><i class="fa fa-check"></i><b>12.3.4</b> Creating a Workflow</a></li>
-<li class="chapter" data-level="12.3.5" data-path="supervised-learning.html"><a href="supervised-learning.html#parameter-tuning-with-cross-validation"><i class="fa fa-check"></i><b>12.3.5</b> Parameter Tuning with Cross-Validation</a></li>
-<li class="chapter" data-level="12.3.6" data-path="supervised-learning.html"><a href="supervised-learning.html#finalizing-the-model"><i class="fa fa-check"></i><b>12.3.6</b> Finalizing the Model</a></li>
-<li class="chapter" data-level="12.3.7" data-path="supervised-learning.html"><a href="supervised-learning.html#testing-the-prediction-model"><i class="fa fa-check"></i><b>12.3.7</b> Testing the prediction model</a></li>
-<li class="chapter" data-level="12.3.8" data-path="supervised-learning.html"><a href="supervised-learning.html#model-evaluation-with-yardstick"><i class="fa fa-check"></i><b>12.3.8</b> Model Evaluation with yardstick</a></li>
+<li class="chapter" data-level="11.2.1" data-path="supervised-learning.html"><a href="supervised-learning.html#two-variables-as-input"><i class="fa fa-check"></i><b>11.2.1</b> Two variables as input</a></li>
+<li class="chapter" data-level="11.2.2" data-path="supervised-learning.html"><a href="supervised-learning.html#multiple-variables-as-input"><i class="fa fa-check"></i><b>11.2.2</b> Multiple variables as input</a></li>
+<li class="chapter" data-level="11.2.3" data-path="supervised-learning.html"><a href="supervised-learning.html#diverse-values-of-k"><i class="fa fa-check"></i><b>11.2.3</b> Diverse values of k</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="supervised-learning.html"><a href="supervised-learning.html#confusion-matrix"><i class="fa fa-check"></i><b>12.4</b> Confusion Matrix</a>
+<li class="chapter" data-level="11.3" data-path="supervised-learning.html"><a href="supervised-learning.html#tidymodels-framework"><i class="fa fa-check"></i><b>11.3</b> tidymodels Framework</a>
 <ul>
-<li class="chapter" data-level="12.4.1" data-path="supervised-learning.html"><a href="supervised-learning.html#accuracy"><i class="fa fa-check"></i><b>12.4.1</b> Accuracy</a></li>
-<li class="chapter" data-level="12.4.2" data-path="supervised-learning.html"><a href="supervised-learning.html#sensitivity"><i class="fa fa-check"></i><b>12.4.2</b> Sensitivity</a></li>
-<li class="chapter" data-level="12.4.3" data-path="supervised-learning.html"><a href="supervised-learning.html#specificity"><i class="fa fa-check"></i><b>12.4.3</b> Specificity</a></li>
+<li class="chapter" data-level="11.3.1" data-path="supervised-learning.html"><a href="supervised-learning.html#creation-of-training-and-test-data"><i class="fa fa-check"></i><b>11.3.1</b> Creation of training and test data</a></li>
+<li class="chapter" data-level="11.3.2" data-path="supervised-learning.html"><a href="supervised-learning.html#training-our-prediction-algorithm"><i class="fa fa-check"></i><b>11.3.2</b> Training our prediction algorithm</a></li>
+<li class="chapter" data-level="11.3.3" data-path="supervised-learning.html"><a href="supervised-learning.html#data-pre-processing-with-recipes"><i class="fa fa-check"></i><b>11.3.3</b> Data Pre-processing with Recipes</a></li>
+<li class="chapter" data-level="11.3.4" data-path="supervised-learning.html"><a href="supervised-learning.html#creating-a-workflow"><i class="fa fa-check"></i><b>11.3.4</b> Creating a Workflow</a></li>
+<li class="chapter" data-level="11.3.5" data-path="supervised-learning.html"><a href="supervised-learning.html#parameter-tuning-with-cross-validation"><i class="fa fa-check"></i><b>11.3.5</b> Parameter Tuning with Cross-Validation</a></li>
+<li class="chapter" data-level="11.3.6" data-path="supervised-learning.html"><a href="supervised-learning.html#finalizing-the-model"><i class="fa fa-check"></i><b>11.3.6</b> Finalizing the Model</a></li>
+<li class="chapter" data-level="11.3.7" data-path="supervised-learning.html"><a href="supervised-learning.html#testing-the-prediction-model"><i class="fa fa-check"></i><b>11.3.7</b> Testing the prediction model</a></li>
+<li class="chapter" data-level="11.3.8" data-path="supervised-learning.html"><a href="supervised-learning.html#model-evaluation-with-yardstick"><i class="fa fa-check"></i><b>11.3.8</b> Model Evaluation with yardstick</a></li>
 </ul></li>
-<li class="chapter" data-level="12.5" data-path="supervised-learning.html"><a href="supervised-learning.html#exercises-18"><i class="fa fa-check"></i><b>12.5</b> Exercises</a></li>
-<li class="chapter" data-level="12.6" data-path="supervised-learning.html"><a href="supervised-learning.html#simple-linear-regression"><i class="fa fa-check"></i><b>12.6</b> Simple Linear Regression</a></li>
-<li class="chapter" data-level="12.7" data-path="supervised-learning.html"><a href="supervised-learning.html#multiple-linear-regression"><i class="fa fa-check"></i><b>12.7</b> Multiple Linear Regression</a></li>
-<li class="chapter" data-level="12.8" data-path="supervised-learning.html"><a href="supervised-learning.html#standard-method-for-evaluating-accuracy"><i class="fa fa-check"></i><b>12.8</b> Standard Method for Evaluating Accuracy</a></li>
-<li class="chapter" data-level="12.9" data-path="supervised-learning.html"><a href="supervised-learning.html#selection-of-the-most-optimal-model"><i class="fa fa-check"></i><b>12.9</b> Selection of the Most Optimal Model</a>
+<li class="chapter" data-level="11.4" data-path="supervised-learning.html"><a href="supervised-learning.html#confusion-matrix"><i class="fa fa-check"></i><b>11.4</b> Confusion Matrix</a>
 <ul>
-<li class="chapter" data-level="12.9.1" data-path="supervised-learning.html"><a href="supervised-learning.html#k-nearest-neighbors-model"><i class="fa fa-check"></i><b>12.9.1</b> k-Nearest Neighbors Model</a></li>
-<li class="chapter" data-level="12.9.2" data-path="supervised-learning.html"><a href="supervised-learning.html#generalized-linear-model---glm"><i class="fa fa-check"></i><b>12.9.2</b> Generalized Linear Model - GLM</a></li>
-<li class="chapter" data-level="12.9.3" data-path="supervised-learning.html"><a href="supervised-learning.html#random-forest-model"><i class="fa fa-check"></i><b>12.9.3</b> Random Forest Model</a></li>
-<li class="chapter" data-level="12.9.4" data-path="supervised-learning.html"><a href="supervised-learning.html#support-vector-machine-model---svm"><i class="fa fa-check"></i><b>12.9.4</b> Support Vector Machine Model - SVM</a></li>
-<li class="chapter" data-level="12.9.5" data-path="supervised-learning.html"><a href="supervised-learning.html#naive-bayes-model"><i class="fa fa-check"></i><b>12.9.5</b> Naive Bayes Model</a></li>
-<li class="chapter" data-level="12.9.6" data-path="supervised-learning.html"><a href="supervised-learning.html#model-comparison"><i class="fa fa-check"></i><b>12.9.6</b> Model Comparison</a></li>
-<li class="chapter" data-level="12.9.7" data-path="supervised-learning.html"><a href="supervised-learning.html#predicting-using-the-best-model"><i class="fa fa-check"></i><b>12.9.7</b> Predicting using the best model</a></li>
+<li class="chapter" data-level="11.4.1" data-path="supervised-learning.html"><a href="supervised-learning.html#accuracy"><i class="fa fa-check"></i><b>11.4.1</b> Accuracy</a></li>
+<li class="chapter" data-level="11.4.2" data-path="supervised-learning.html"><a href="supervised-learning.html#sensitivity"><i class="fa fa-check"></i><b>11.4.2</b> Sensitivity</a></li>
+<li class="chapter" data-level="11.4.3" data-path="supervised-learning.html"><a href="supervised-learning.html#specificity"><i class="fa fa-check"></i><b>11.4.3</b> Specificity</a></li>
 </ul></li>
-<li class="chapter" data-level="12.10" data-path="supervised-learning.html"><a href="supervised-learning.html#exercises-19"><i class="fa fa-check"></i><b>12.10</b> Exercises</a></li>
-<li class="chapter" data-level="12.11" data-path="supervised-learning.html"><a href="supervised-learning.html#ethics-bias-in-algorithmic-decision-making"><i class="fa fa-check"></i><b>12.11</b> Ethics: Bias in Algorithmic Decision Making</a>
+<li class="chapter" data-level="11.5" data-path="supervised-learning.html"><a href="supervised-learning.html#exercises-16"><i class="fa fa-check"></i><b>11.5</b> Exercises</a></li>
+<li class="chapter" data-level="11.6" data-path="supervised-learning.html"><a href="supervised-learning.html#simple-linear-regression"><i class="fa fa-check"></i><b>11.6</b> Simple Linear Regression</a></li>
+<li class="chapter" data-level="11.7" data-path="supervised-learning.html"><a href="supervised-learning.html#multiple-linear-regression"><i class="fa fa-check"></i><b>11.7</b> Multiple Linear Regression</a></li>
+<li class="chapter" data-level="11.8" data-path="supervised-learning.html"><a href="supervised-learning.html#standard-method-for-evaluating-accuracy"><i class="fa fa-check"></i><b>11.8</b> Standard Method for Evaluating Accuracy</a></li>
+<li class="chapter" data-level="11.9" data-path="supervised-learning.html"><a href="supervised-learning.html#selection-of-the-most-optimal-model"><i class="fa fa-check"></i><b>11.9</b> Selection of the Most Optimal Model</a>
 <ul>
-<li class="chapter" data-level="12.11.1" data-path="supervised-learning.html"><a href="supervised-learning.html#the-risk-of-proxy-variables"><i class="fa fa-check"></i><b>12.11.1</b> The Risk of Proxy Variables</a></li>
-<li class="chapter" data-level="12.11.2" data-path="supervised-learning.html"><a href="supervised-learning.html#feedback-loops"><i class="fa fa-check"></i><b>12.11.2</b> Feedback Loops</a></li>
-<li class="chapter" data-level="12.11.3" data-path="supervised-learning.html"><a href="supervised-learning.html#what-can-we-do"><i class="fa fa-check"></i><b>12.11.3</b> What can we do?</a></li>
+<li class="chapter" data-level="11.9.1" data-path="supervised-learning.html"><a href="supervised-learning.html#k-nearest-neighbors-model"><i class="fa fa-check"></i><b>11.9.1</b> k-Nearest Neighbors Model</a></li>
+<li class="chapter" data-level="11.9.2" data-path="supervised-learning.html"><a href="supervised-learning.html#generalized-linear-model---glm"><i class="fa fa-check"></i><b>11.9.2</b> Generalized Linear Model - GLM</a></li>
+<li class="chapter" data-level="11.9.3" data-path="supervised-learning.html"><a href="supervised-learning.html#random-forest-model"><i class="fa fa-check"></i><b>11.9.3</b> Random Forest Model</a></li>
+<li class="chapter" data-level="11.9.4" data-path="supervised-learning.html"><a href="supervised-learning.html#support-vector-machine-model---svm"><i class="fa fa-check"></i><b>11.9.4</b> Support Vector Machine Model - SVM</a></li>
+<li class="chapter" data-level="11.9.5" data-path="supervised-learning.html"><a href="supervised-learning.html#naive-bayes-model"><i class="fa fa-check"></i><b>11.9.5</b> Naive Bayes Model</a></li>
+<li class="chapter" data-level="11.9.6" data-path="supervised-learning.html"><a href="supervised-learning.html#model-comparison"><i class="fa fa-check"></i><b>11.9.6</b> Model Comparison</a></li>
+<li class="chapter" data-level="11.9.7" data-path="supervised-learning.html"><a href="supervised-learning.html#predicting-using-the-best-model"><i class="fa fa-check"></i><b>11.9.7</b> Predicting using the best model</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>13</b> Unsupervised Learning</a>
+<li class="chapter" data-level="11.10" data-path="supervised-learning.html"><a href="supervised-learning.html#exercises-17"><i class="fa fa-check"></i><b>11.10</b> Exercises</a></li>
+<li class="chapter" data-level="11.11" data-path="supervised-learning.html"><a href="supervised-learning.html#ethics-bias-in-algorithmic-decision-making"><i class="fa fa-check"></i><b>11.11</b> Ethics: Bias in Algorithmic Decision Making</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#k-means-clustering"><i class="fa fa-check"></i><b>13.1</b> K-Means Clustering</a>
+<li class="chapter" data-level="11.11.1" data-path="supervised-learning.html"><a href="supervised-learning.html#the-risk-of-proxy-variables"><i class="fa fa-check"></i><b>11.11.1</b> The Risk of Proxy Variables</a></li>
+<li class="chapter" data-level="11.11.2" data-path="supervised-learning.html"><a href="supervised-learning.html#feedback-loops"><i class="fa fa-check"></i><b>11.11.2</b> Feedback Loops</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>12</b> Unsupervised Learning</a>
 <ul>
-<li class="chapter" data-level="13.1.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#clustering-with-k-2"><i class="fa fa-check"></i><b>13.1.1</b> Clustering with k = 2</a></li>
-<li class="chapter" data-level="13.1.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#clustering-with-k-3"><i class="fa fa-check"></i><b>13.1.2</b> Clustering with k &gt;= 3</a></li>
-<li class="chapter" data-level="13.1.3" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#determination-of-optimal-clusters"><i class="fa fa-check"></i><b>13.1.3</b> Determination of Optimal Clusters</a></li>
-<li class="chapter" data-level="13.1.4" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#k-means-for-more-than-2-variables"><i class="fa fa-check"></i><b>13.1.4</b> k-means for more than 2 variables</a></li>
-</ul></li>
-<li class="chapter" data-level="13.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#hierarchical-clustering"><i class="fa fa-check"></i><b>13.2</b> Hierarchical Clustering</a>
+<li class="chapter" data-level="12.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#learning-objectives-3"><i class="fa fa-check"></i><b>12.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="12.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#applications-of-unsupervised-learning"><i class="fa fa-check"></i><b>12.2</b> Applications of Unsupervised Learning</a></li>
+<li class="chapter" data-level="12.3" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#k-means-clustering"><i class="fa fa-check"></i><b>12.3</b> K-Means Clustering</a>
 <ul>
-<li class="chapter" data-level="13.2.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#clustering-with-two-variables"><i class="fa fa-check"></i><b>13.2.1</b> Clustering with two variables</a></li>
-<li class="chapter" data-level="13.2.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#determination-of-optimal-clusters-1"><i class="fa fa-check"></i><b>13.2.2</b> Determination of Optimal Clusters</a></li>
-<li class="chapter" data-level="13.2.3" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#obtain-the-grouping"><i class="fa fa-check"></i><b>13.2.3</b> Obtain the grouping</a></li>
+<li class="chapter" data-level="12.3.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#clustering-with-k-2"><i class="fa fa-check"></i><b>12.3.1</b> Clustering with k = 2</a></li>
+<li class="chapter" data-level="12.3.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#clustering-with-k-3"><i class="fa fa-check"></i><b>12.3.2</b> Clustering with k &gt;= 3</a></li>
+<li class="chapter" data-level="12.3.3" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#determination-of-optimal-clusters"><i class="fa fa-check"></i><b>12.3.3</b> Determination of Optimal Clusters</a></li>
+<li class="chapter" data-level="12.3.4" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#k-means-for-more-than-2-variables"><i class="fa fa-check"></i><b>12.3.4</b> k-means for more than 2 variables</a></li>
 </ul></li>
-<li class="chapter" data-level="13.3" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#dimensionality-reduction"><i class="fa fa-check"></i><b>13.3</b> Dimensionality Reduction</a></li>
-<li class="chapter" data-level="13.4" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#exercises-20"><i class="fa fa-check"></i><b>13.4</b> Exercises</a></li>
+<li class="chapter" data-level="12.4" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#hierarchical-clustering"><i class="fa fa-check"></i><b>12.4</b> Hierarchical Clustering</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#clustering-with-two-variables"><i class="fa fa-check"></i><b>12.4.1</b> Clustering with two variables</a></li>
+<li class="chapter" data-level="12.4.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#determination-of-optimal-clusters-1"><i class="fa fa-check"></i><b>12.4.2</b> Determination of Optimal Clusters</a></li>
+<li class="chapter" data-level="12.4.3" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#obtain-the-grouping"><i class="fa fa-check"></i><b>12.4.3</b> Obtain the grouping</a></li>
 </ul></li>
-<li class="part"><span><b>VI Real Cases</b></span></li>
+<li class="chapter" data-level="12.5" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#dimensionality-reduction"><i class="fa fa-check"></i><b>12.5</b> Dimensionality Reduction</a></li>
+<li class="chapter" data-level="12.6" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#exercises-18"><i class="fa fa-check"></i><b>12.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html"><i class="fa fa-check"></i><b>13</b> String processing and text mining</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#basic-functions"><i class="fa fa-check"></i><b>13.1</b> Basic functions</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#replacing-characters"><i class="fa fa-check"></i><b>13.1.1</b> Replacing characters</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#regular-expressions"><i class="fa fa-check"></i><b>13.2</b> Regular expressions</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#alternation"><i class="fa fa-check"></i><b>13.2.1</b> Alternation</a></li>
+<li class="chapter" data-level="13.2.2" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#anchoring"><i class="fa fa-check"></i><b>13.2.2</b> Anchoring</a></li>
+<li class="chapter" data-level="13.2.3" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#repetitions"><i class="fa fa-check"></i><b>13.2.3</b> Repetitions</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#from-strings-to-dates"><i class="fa fa-check"></i><b>13.3</b> From strings to dates</a></li>
+<li class="chapter" data-level="13.4" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#exercises-19"><i class="fa fa-check"></i><b>13.4</b> Exercises</a></li>
+<li class="chapter" data-level="13.5" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#text-mining-using-tidy-data"><i class="fa fa-check"></i><b>13.5</b> Text Mining using Tidy Data</a>
+<ul>
+<li class="chapter" data-level="13.5.1" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#importing-data-and-tokenization"><i class="fa fa-check"></i><b>13.5.1</b> Importing data and Tokenization</a></li>
+<li class="chapter" data-level="13.5.2" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#text-cleaning-and-tokenization"><i class="fa fa-check"></i><b>13.5.2</b> Text cleaning and Tokenization</a></li>
+<li class="chapter" data-level="13.5.3" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#word-cloud"><i class="fa fa-check"></i><b>13.5.3</b> Word Cloud</a></li>
+<li class="chapter" data-level="13.5.4" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#word-frequency-plot"><i class="fa fa-check"></i><b>13.5.4</b> Word Frequency Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="13.6" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#sentiment-analysis"><i class="fa fa-check"></i><b>13.6</b> Sentiment Analysis</a></li>
+<li class="chapter" data-level="13.7" data-path="string-processing-and-text-mining.html"><a href="string-processing-and-text-mining.html#exercises-20"><i class="fa fa-check"></i><b>13.7</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>VI Generative AI</b></span></li>
+<li class="chapter" data-level="14" data-path="genai-intro.html"><a href="genai-intro.html"><i class="fa fa-check"></i><b>14</b> Data Science in the Age of AI</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="genai-intro.html"><a href="genai-intro.html#what-is-a-large-language-model"><i class="fa fa-check"></i><b>14.1</b> What is a Large Language Model?</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="genai-intro.html"><a href="genai-intro.html#its-all-about-probability"><i class="fa fa-check"></i><b>14.1.1</b> It’s all about Probability</a></li>
+<li class="chapter" data-level="14.1.2" data-path="genai-intro.html"><a href="genai-intro.html#tokens-vs.-words"><i class="fa fa-check"></i><b>14.1.2</b> Tokens vs. Words</a></li>
+<li class="chapter" data-level="14.1.3" data-path="genai-intro.html"><a href="genai-intro.html#temperature-controlling-creativity"><i class="fa fa-check"></i><b>14.1.3</b> Temperature: Controlling Creativity</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="genai-intro.html"><a href="genai-intro.html#setting-up-your-ai-environment"><i class="fa fa-check"></i><b>14.2</b> Setting Up Your AI Environment</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="genai-intro.html"><a href="genai-intro.html#the-solution-local-llms"><i class="fa fa-check"></i><b>14.2.1</b> The Solution: Local LLMs</a></li>
+<li class="chapter" data-level="14.2.2" data-path="genai-intro.html"><a href="genai-intro.html#the-.renviron-file"><i class="fa fa-check"></i><b>14.2.2</b> The <code>.Renviron</code> File</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="genai-intro.html"><a href="genai-intro.html#ai-as-the-pair-programmer"><i class="fa fa-check"></i><b>14.3</b> AI as the “Pair Programmer”</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="genai-intro.html"><a href="genai-intro.html#the-great-refactorer"><i class="fa fa-check"></i><b>14.3.1</b> The Great Refactorer</a></li>
+<li class="chapter" data-level="14.3.2" data-path="genai-intro.html"><a href="genai-intro.html#the-translator"><i class="fa fa-check"></i><b>14.3.2</b> The Translator</a></li>
+<li class="chapter" data-level="14.3.3" data-path="genai-intro.html"><a href="genai-intro.html#pro-tip-prompt-engineering-101"><i class="fa fa-check"></i><b>14.3.3</b> Pro Tip: Prompt Engineering 101</a></li>
+<li class="chapter" data-level="14.3.4" data-path="genai-intro.html"><a href="genai-intro.html#the-regex-master"><i class="fa fa-check"></i><b>14.3.4</b> The Regex Master</a></li>
+<li class="chapter" data-level="14.3.5" data-path="genai-intro.html"><a href="genai-intro.html#the-error-decoder"><i class="fa fa-check"></i><b>14.3.5</b> The Error Decoder</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="genai-intro.html"><a href="genai-intro.html#the-risks-hallucinations"><i class="fa fa-check"></i><b>14.4</b> The Risks: Hallucinations</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="genai-intro.html"><a href="genai-intro.html#the-package-hallucination"><i class="fa fa-check"></i><b>14.4.1</b> The “Package” Hallucination</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="genai-intro.html"><a href="genai-intro.html#building-a-robust-request"><i class="fa fa-check"></i><b>14.5</b> Building a Robust Request</a></li>
+<li class="chapter" data-level="14.6" data-path="genai-intro.html"><a href="genai-intro.html#the-holy-grail-structured-data-extraction"><i class="fa fa-check"></i><b>14.6</b> The Holy Grail: Structured Data extraction</a>
+<ul>
+<li class="chapter" data-level="14.6.1" data-path="genai-intro.html"><a href="genai-intro.html#forcing-json-output"><i class="fa fa-check"></i><b>14.6.1</b> Forcing JSON Output</a></li>
+</ul></li>
+<li class="chapter" data-level="14.7" data-path="genai-intro.html"><a href="genai-intro.html#batch-processing-the-purrr-workflow"><i class="fa fa-check"></i><b>14.7</b> Batch Processing: The <code>purrr</code> Workflow</a></li>
+<li class="chapter" data-level="14.8" data-path="genai-intro.html"><a href="genai-intro.html#summary"><i class="fa fa-check"></i><b>14.8</b> Summary</a></li>
+<li class="chapter" data-level="14.9" data-path="genai-intro.html"><a href="genai-intro.html#beyond-generation-embeddings"><i class="fa fa-check"></i><b>14.9</b> Beyond Generation: Embeddings</a>
+<ul>
+<li class="chapter" data-level="14.9.1" data-path="genai-intro.html"><a href="genai-intro.html#r-implementation"><i class="fa fa-check"></i><b>14.9.1</b> R Implementation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="genai-embeddings.html"><a href="genai-embeddings.html"><i class="fa fa-check"></i><b>15</b> Text Analysis with Embeddings</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="genai-embeddings.html"><a href="genai-embeddings.html#beyond-bag-of-words"><i class="fa fa-check"></i><b>15.1</b> Beyond Bag-of-Words</a></li>
+<li class="chapter" data-level="15.2" data-path="genai-embeddings.html"><a href="genai-embeddings.html#what-is-an-embedding"><i class="fa fa-check"></i><b>15.2</b> What is an Embedding?</a></li>
+<li class="chapter" data-level="15.3" data-path="genai-embeddings.html"><a href="genai-embeddings.html#getting-embeddings-in-r"><i class="fa fa-check"></i><b>15.3</b> Getting Embeddings in R</a></li>
+<li class="chapter" data-level="15.4" data-path="genai-embeddings.html"><a href="genai-embeddings.html#visualizing-meaning-dimensionality-reduction"><i class="fa fa-check"></i><b>15.4</b> Visualizing Meaning (Dimensionality Reduction)</a></li>
+<li class="chapter" data-level="15.5" data-path="genai-embeddings.html"><a href="genai-embeddings.html#building-a-semantic-search-engine"><i class="fa fa-check"></i><b>15.5</b> Building a Semantic Search Engine</a></li>
+<li class="chapter" data-level="15.6" data-path="genai-embeddings.html"><a href="genai-embeddings.html#summary-the-ai-workflow"><i class="fa fa-check"></i><b>15.6</b> Summary: The AI Workflow</a></li>
+</ul></li>
+<li class="part"><span><b>VII Real Cases</b></span></li>
 <li class="chapter" data-level="" data-path="introduction-3.html"><a href="introduction-3.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="14" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html"><i class="fa fa-check"></i><b>14</b> Case Study: Real Estate Market Analysis</a>
+<li class="chapter" data-level="16" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html"><i class="fa fa-check"></i><b>16</b> Case Study: Real Estate Market Analysis</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#objectives"><i class="fa fa-check"></i><b>14.1</b> Objectives</a></li>
-<li class="chapter" data-level="14.2" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#loading-libraries"><i class="fa fa-check"></i><b>14.2</b> Loading Libraries</a></li>
-<li class="chapter" data-level="14.3" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#exploring-the-data"><i class="fa fa-check"></i><b>14.3</b> Exploring the Data</a></li>
-<li class="chapter" data-level="14.4" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#data-cleaning"><i class="fa fa-check"></i><b>14.4</b> Data Cleaning</a></li>
-<li class="chapter" data-level="14.5" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#exploratory-analysis"><i class="fa fa-check"></i><b>14.5</b> Exploratory Analysis</a>
+<li class="chapter" data-level="16.1" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#objectives"><i class="fa fa-check"></i><b>16.1</b> Objectives</a></li>
+<li class="chapter" data-level="16.2" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#loading-libraries"><i class="fa fa-check"></i><b>16.2</b> Loading Libraries</a></li>
+<li class="chapter" data-level="16.3" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#exploring-the-data"><i class="fa fa-check"></i><b>16.3</b> Exploring the Data</a></li>
+<li class="chapter" data-level="16.4" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#data-cleaning"><i class="fa fa-check"></i><b>16.4</b> Data Cleaning</a></li>
+<li class="chapter" data-level="16.5" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#exploratory-analysis"><i class="fa fa-check"></i><b>16.5</b> Exploratory Analysis</a>
 <ul>
-<li class="chapter" data-level="14.5.1" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#market-volume-over-time"><i class="fa fa-check"></i><b>14.5.1</b> Market Volume Over Time</a></li>
-<li class="chapter" data-level="14.5.2" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#comparing-cities"><i class="fa fa-check"></i><b>14.5.2</b> Comparing Cities</a></li>
+<li class="chapter" data-level="16.5.1" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#market-volume-over-time"><i class="fa fa-check"></i><b>16.5.1</b> Market Volume Over Time</a></li>
+<li class="chapter" data-level="16.5.2" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#comparing-cities"><i class="fa fa-check"></i><b>16.5.2</b> Comparing Cities</a></li>
 </ul></li>
-<li class="chapter" data-level="14.6" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#creating-indicators"><i class="fa fa-check"></i><b>14.6</b> Creating Indicators</a></li>
-<li class="chapter" data-level="14.7" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#conclusions"><i class="fa fa-check"></i><b>14.7</b> Conclusions</a></li>
+<li class="chapter" data-level="16.6" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#creating-indicators"><i class="fa fa-check"></i><b>16.6</b> Creating Indicators</a></li>
+<li class="chapter" data-level="16.7" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#try-it-yourself"><i class="fa fa-check"></i><b>16.7</b> Try It Yourself</a></li>
+<li class="chapter" data-level="16.8" data-path="case-study-real-estate-market-analysis.html"><a href="case-study-real-estate-market-analysis.html#conclusions"><i class="fa fa-check"></i><b>16.8</b> Conclusions</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="google-analytics-from-r.html"><a href="google-analytics-from-r.html"><i class="fa fa-check"></i><b>15</b> Google Analytics from R</a>
+<li class="chapter" data-level="17" data-path="google-analytics-from-r.html"><a href="google-analytics-from-r.html"><i class="fa fa-check"></i><b>17</b> Google Analytics from R</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="google-analytics-from-r.html"><a href="google-analytics-from-r.html#problem"><i class="fa fa-check"></i><b>15.1</b> Problem</a></li>
-<li class="chapter" data-level="15.2" data-path="google-analytics-from-r.html"><a href="google-analytics-from-r.html#access-to-data"><i class="fa fa-check"></i><b>15.2</b> Access to data</a></li>
-<li class="chapter" data-level="15.3" data-path="google-analytics-from-r.html"><a href="google-analytics-from-r.html#visualization"><i class="fa fa-check"></i><b>15.3</b> Visualization</a></li>
-<li class="chapter" data-level="15.4" data-path="google-analytics-from-r.html"><a href="google-analytics-from-r.html#conclusion"><i class="fa fa-check"></i><b>15.4</b> Conclusion</a></li>
-</ul></li>
-<li class="chapter" data-level="16" data-path="genai-intro.html"><a href="genai-intro.html"><i class="fa fa-check"></i><b>16</b> Data Science in the Age of AI</a>
-<ul>
-<li class="chapter" data-level="16.1" data-path="genai-intro.html"><a href="genai-intro.html#what-is-a-large-language-model"><i class="fa fa-check"></i><b>16.1</b> What is a Large Language Model?</a></li>
-<li class="chapter" data-level="16.2" data-path="genai-intro.html"><a href="genai-intro.html#coding-with-ai-the-pair-programmer"><i class="fa fa-check"></i><b>16.2</b> Coding with AI: The “Pair Programmer”</a>
-<ul>
-<li class="chapter" data-level="16.2.1" data-path="genai-intro.html"><a href="genai-intro.html#explaining-complex-code"><i class="fa fa-check"></i><b>16.2.1</b> 1. Explaining Complex Code</a></li>
-<li class="chapter" data-level="16.2.2" data-path="genai-intro.html"><a href="genai-intro.html#generating-boilerplate"><i class="fa fa-check"></i><b>16.2.2</b> 2. Generating Boilerplate</a></li>
-<li class="chapter" data-level="16.2.3" data-path="genai-intro.html"><a href="genai-intro.html#regex-the-ultimate-use-case"><i class="fa fa-check"></i><b>16.2.3</b> 3. Regex: The Ultimate Use Case</a></li>
-</ul></li>
-<li class="chapter" data-level="16.3" data-path="genai-intro.html"><a href="genai-intro.html#ethics-risks-in-the-ai-era"><i class="fa fa-check"></i><b>16.3</b> Ethics &amp; Risks in the AI Era</a>
-<ul>
-<li class="chapter" data-level="16.3.1" data-path="genai-intro.html"><a href="genai-intro.html#hallucinations-fabrication"><i class="fa fa-check"></i><b>16.3.1</b> 1. Hallucinations &amp; Fabrication</a></li>
-<li class="chapter" data-level="16.3.2" data-path="genai-intro.html"><a href="genai-intro.html#the-reproducibility-crisis"><i class="fa fa-check"></i><b>16.3.2</b> 2. The Reproducibility Crisis</a></li>
-<li class="chapter" data-level="16.3.3" data-path="genai-intro.html"><a href="genai-intro.html#data-privacy-ip"><i class="fa fa-check"></i><b>16.3.3</b> 3. Data Privacy &amp; IP</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="17" data-path="genai-api.html"><a href="genai-api.html"><i class="fa fa-check"></i><b>17</b> LLMs as an Analysis Engine</a>
-<ul>
-<li class="chapter" data-level="17.1" data-path="genai-api.html"><a href="genai-api.html#the-evolution-of-nlp"><i class="fa fa-check"></i><b>17.1</b> The Evolution of NLP</a></li>
-<li class="chapter" data-level="17.2" data-path="genai-api.html"><a href="genai-api.html#interacting-with-apis-from-r"><i class="fa fa-check"></i><b>17.2</b> Interacting with APIs from R</a>
-<ul>
-<li class="chapter" data-level="17.2.1" data-path="genai-api.html"><a href="genai-api.html#prerequisite-api-keys"><i class="fa fa-check"></i><b>17.2.1</b> Prerequisite: API Keys</a></li>
-<li class="chapter" data-level="17.2.2" data-path="genai-api.html"><a href="genai-api.html#making-a-request"><i class="fa fa-check"></i><b>17.2.2</b> Making a Request</a></li>
-</ul></li>
-<li class="chapter" data-level="17.3" data-path="genai-api.html"><a href="genai-api.html#zero-shot-classification"><i class="fa fa-check"></i><b>17.3</b> Zero-Shot Classification</a></li>
-<li class="chapter" data-level="17.4" data-path="genai-api.html"><a href="genai-api.html#text-cleaning-with-llms"><i class="fa fa-check"></i><b>17.4</b> Text Cleaning with LLMs</a></li>
-<li class="chapter" data-level="17.5" data-path="genai-api.html"><a href="genai-api.html#summary"><i class="fa fa-check"></i><b>17.5</b> Summary</a></li>
+<li class="chapter" data-level="17.1" data-path="google-analytics-from-r.html"><a href="google-analytics-from-r.html#problem"><i class="fa fa-check"></i><b>17.1</b> Problem</a></li>
+<li class="chapter" data-level="17.2" data-path="google-analytics-from-r.html"><a href="google-analytics-from-r.html#access-to-data"><i class="fa fa-check"></i><b>17.2</b> Access to data</a></li>
+<li class="chapter" data-level="17.3" data-path="google-analytics-from-r.html"><a href="google-analytics-from-r.html#visualization"><i class="fa fa-check"></i><b>17.3</b> Visualization</a></li>
+<li class="chapter" data-level="17.4" data-path="google-analytics-from-r.html"><a href="google-analytics-from-r.html#conclusion"><i class="fa fa-check"></i><b>17.4</b> Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="18" data-path="ethics-checklist.html"><a href="ethics-checklist.html"><i class="fa fa-check"></i><b>18</b> Appendix A: Responsible AI Checklist</a>
 <ul>
-<li class="chapter" data-level="18.1" data-path="ethics-checklist.html"><a href="ethics-checklist.html#data-quality-lineage"><i class="fa fa-check"></i><b>18.1</b> 1. Data Quality &amp; lineage</a></li>
-<li class="chapter" data-level="18.2" data-path="ethics-checklist.html"><a href="ethics-checklist.html#fairness-bias"><i class="fa fa-check"></i><b>18.2</b> 2. Fairness &amp; Bias</a></li>
-<li class="chapter" data-level="18.3" data-path="ethics-checklist.html"><a href="ethics-checklist.html#transparency-explainability"><i class="fa fa-check"></i><b>18.3</b> 3. Transparency &amp; Explainability</a></li>
-<li class="chapter" data-level="18.4" data-path="ethics-checklist.html"><a href="ethics-checklist.html#genai-specifics"><i class="fa fa-check"></i><b>18.4</b> 4. GenAI Specifics</a></li>
+<li class="chapter" data-level="18.1" data-path="ethics-checklist.html"><a href="ethics-checklist.html#data-quality-lineage"><i class="fa fa-check"></i><b>18.1</b> Data Quality &amp; Lineage</a></li>
+<li class="chapter" data-level="18.2" data-path="ethics-checklist.html"><a href="ethics-checklist.html#fairness-bias"><i class="fa fa-check"></i><b>18.2</b> Fairness &amp; Bias</a></li>
+<li class="chapter" data-level="18.3" data-path="ethics-checklist.html"><a href="ethics-checklist.html#transparency-explainability"><i class="fa fa-check"></i><b>18.3</b> Transparency &amp; Explainability</a></li>
+<li class="chapter" data-level="18.4" data-path="ethics-checklist.html"><a href="ethics-checklist.html#reproducibility-integrity"><i class="fa fa-check"></i><b>18.4</b> Reproducibility &amp; Integrity</a></li>
+<li class="chapter" data-level="18.5" data-path="ethics-checklist.html"><a href="ethics-checklist.html#genai-specifics"><i class="fa fa-check"></i><b>18.5</b> GenAI Specifics</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="r6-intro.html"><a href="r6-intro.html"><i class="fa fa-check"></i><b>19</b> Appendix B: Object Oriented Programming with R6</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="r6-intro.html"><a href="r6-intro.html#the-r6-package-classes-methods-encapsulation-and-inheritance"><i class="fa fa-check"></i><b>19.1</b> The R6 package: Classes, methods, encapsulation, and inheritance</a></li>
+<li class="chapter" data-level="19.2" data-path="r6-intro.html"><a href="r6-intro.html#exercises-21"><i class="fa fa-check"></i><b>19.2</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -615,12 +668,12 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="case-study-real-estate-market-analysis" class="section level1 hasAnchor" number="14">
-<h1><span class="header-section-number">Chapter 14</span> Case Study: Real Estate Market Analysis<a href="case-study-real-estate-market-analysis.html#case-study-real-estate-market-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="case-study-real-estate-market-analysis" class="section level1 hasAnchor" number="16">
+<h1><span class="header-section-number">Chapter 16</span> Case Study: Real Estate Market Analysis<a href="case-study-real-estate-market-analysis.html#case-study-real-estate-market-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>In this case study, we will apply our data transformation and visualization skills to analyzing the real estate market. We will use the <code>txhousing</code> dataset provided by the <code>ggplot2</code> package, which contains information about housing sales in Texas.</p>
-<p>This dataset allows us to explore similar concepts to financial invoice factoring (tracking value over time, comparing categories, and analyzing volume) but with a much more stable and standardized data source.</p>
-<div id="objectives" class="section level2 hasAnchor" number="14.1">
-<h2><span class="header-section-number">14.1</span> Objectives<a href="case-study-real-estate-market-analysis.html#objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This dataset allows us to explore concepts like tracking value over time, comparing categories, and analyzing transaction volume—skills that transfer directly to financial analysis, sales reporting, and business intelligence.</p>
+<div id="objectives" class="section level2 hasAnchor" number="16.1">
+<h2><span class="header-section-number">16.1</span> Objectives<a href="case-study-real-estate-market-analysis.html#objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
 <li><strong>Data Cleaning</strong>: Handle missing values and format dates.</li>
 <li><strong>Transformation</strong>: Aggregate data by city and year to find trends.</li>
@@ -628,30 +681,30 @@ div.csl-indent {
 <li><strong>Analysis</strong>: Identify cities with the highest growth and stability.</li>
 </ol>
 </div>
-<div id="loading-libraries" class="section level2 hasAnchor" number="14.2">
-<h2><span class="header-section-number">14.2</span> Loading Libraries<a href="case-study-real-estate-market-analysis.html#loading-libraries" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="loading-libraries" class="section level2 hasAnchor" number="16.2">
+<h2><span class="header-section-number">16.2</span> Loading Libraries<a href="case-study-real-estate-market-analysis.html#loading-libraries" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We will use the core <code>tidyverse</code> libraries.</p>
-<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="case-study-real-estate-market-analysis.html#cb645-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb645-2"><a href="case-study-real-estate-market-analysis.html#cb645-2" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb645-3"><a href="case-study-real-estate-market-analysis.html#cb645-3" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
-<span id="cb645-4"><a href="case-study-real-estate-market-analysis.html#cb645-4" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span></code></pre></div>
+<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="case-study-real-estate-market-analysis.html#cb623-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb623-2"><a href="case-study-real-estate-market-analysis.html#cb623-2" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb623-3"><a href="case-study-real-estate-market-analysis.html#cb623-3" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb623-4"><a href="case-study-real-estate-market-analysis.html#cb623-4" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span></code></pre></div>
 </div>
-<div id="exploring-the-data" class="section level2 hasAnchor" number="14.3">
-<h2><span class="header-section-number">14.3</span> Exploring the Data<a href="case-study-real-estate-market-analysis.html#exploring-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exploring-the-data" class="section level2 hasAnchor" number="16.3">
+<h2><span class="header-section-number">16.3</span> Exploring the Data<a href="case-study-real-estate-market-analysis.html#exploring-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>First, let’s load and inspect the data.</p>
-<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="case-study-real-estate-market-analysis.html#cb646-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;txhousing&quot;</span>)</span>
-<span id="cb646-2"><a href="case-study-real-estate-market-analysis.html#cb646-2" tabindex="-1"></a><span class="fu">glimpse</span>(txhousing)</span>
-<span id="cb646-3"><a href="case-study-real-estate-market-analysis.html#cb646-3" tabindex="-1"></a><span class="co">#&gt; Rows: 8,602</span></span>
-<span id="cb646-4"><a href="case-study-real-estate-market-analysis.html#cb646-4" tabindex="-1"></a><span class="co">#&gt; Columns: 9</span></span>
-<span id="cb646-5"><a href="case-study-real-estate-market-analysis.html#cb646-5" tabindex="-1"></a><span class="co">#&gt; $ city      &lt;chr&gt; &quot;Abilene&quot;, &quot;Abilene&quot;, &quot;Abilene&quot;, &quot;Abilene&quot;, &quot;Abilene&quot;, &quot;Abil…</span></span>
-<span id="cb646-6"><a href="case-study-real-estate-market-analysis.html#cb646-6" tabindex="-1"></a><span class="co">#&gt; $ year      &lt;int&gt; 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, …</span></span>
-<span id="cb646-7"><a href="case-study-real-estate-market-analysis.html#cb646-7" tabindex="-1"></a><span class="co">#&gt; $ month     &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7, …</span></span>
-<span id="cb646-8"><a href="case-study-real-estate-market-analysis.html#cb646-8" tabindex="-1"></a><span class="co">#&gt; $ sales     &lt;dbl&gt; 72, 98, 130, 98, 141, 156, 152, 131, 104, 101, 100, 92, 75, …</span></span>
-<span id="cb646-9"><a href="case-study-real-estate-market-analysis.html#cb646-9" tabindex="-1"></a><span class="co">#&gt; $ volume    &lt;dbl&gt; 5380000, 6505000, 9285000, 9730000, 10590000, 13910000, 1263…</span></span>
-<span id="cb646-10"><a href="case-study-real-estate-market-analysis.html#cb646-10" tabindex="-1"></a><span class="co">#&gt; $ median    &lt;dbl&gt; 71400, 58700, 58100, 68600, 67300, 66900, 73500, 75000, 6450…</span></span>
-<span id="cb646-11"><a href="case-study-real-estate-market-analysis.html#cb646-11" tabindex="-1"></a><span class="co">#&gt; $ listings  &lt;dbl&gt; 701, 746, 784, 785, 794, 780, 742, 765, 771, 764, 721, 658, …</span></span>
-<span id="cb646-12"><a href="case-study-real-estate-market-analysis.html#cb646-12" tabindex="-1"></a><span class="co">#&gt; $ inventory &lt;dbl&gt; 6.3, 6.6, 6.8, 6.9, 6.8, 6.6, 6.2, 6.4, 6.5, 6.6, 6.2, 5.7, …</span></span>
-<span id="cb646-13"><a href="case-study-real-estate-market-analysis.html#cb646-13" tabindex="-1"></a><span class="co">#&gt; $ date      &lt;dbl&gt; 2000.000, 2000.083, 2000.167, 2000.250, 2000.333, 2000.417, …</span></span></code></pre></div>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="case-study-real-estate-market-analysis.html#cb624-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;txhousing&quot;</span>)</span>
+<span id="cb624-2"><a href="case-study-real-estate-market-analysis.html#cb624-2" tabindex="-1"></a><span class="fu">glimpse</span>(txhousing)</span>
+<span id="cb624-3"><a href="case-study-real-estate-market-analysis.html#cb624-3" tabindex="-1"></a><span class="co">#&gt; Rows: 8,602</span></span>
+<span id="cb624-4"><a href="case-study-real-estate-market-analysis.html#cb624-4" tabindex="-1"></a><span class="co">#&gt; Columns: 9</span></span>
+<span id="cb624-5"><a href="case-study-real-estate-market-analysis.html#cb624-5" tabindex="-1"></a><span class="co">#&gt; $ city      &lt;chr&gt; &quot;Abilene&quot;, &quot;Abilene&quot;, &quot;Abilene&quot;, &quot;Abilene&quot;, &quot;Abilene&quot;, &quot;Abil…</span></span>
+<span id="cb624-6"><a href="case-study-real-estate-market-analysis.html#cb624-6" tabindex="-1"></a><span class="co">#&gt; $ year      &lt;int&gt; 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, …</span></span>
+<span id="cb624-7"><a href="case-study-real-estate-market-analysis.html#cb624-7" tabindex="-1"></a><span class="co">#&gt; $ month     &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7, …</span></span>
+<span id="cb624-8"><a href="case-study-real-estate-market-analysis.html#cb624-8" tabindex="-1"></a><span class="co">#&gt; $ sales     &lt;dbl&gt; 72, 98, 130, 98, 141, 156, 152, 131, 104, 101, 100, 92, 75, …</span></span>
+<span id="cb624-9"><a href="case-study-real-estate-market-analysis.html#cb624-9" tabindex="-1"></a><span class="co">#&gt; $ volume    &lt;dbl&gt; 5380000, 6505000, 9285000, 9730000, 10590000, 13910000, 1263…</span></span>
+<span id="cb624-10"><a href="case-study-real-estate-market-analysis.html#cb624-10" tabindex="-1"></a><span class="co">#&gt; $ median    &lt;dbl&gt; 71400, 58700, 58100, 68600, 67300, 66900, 73500, 75000, 6450…</span></span>
+<span id="cb624-11"><a href="case-study-real-estate-market-analysis.html#cb624-11" tabindex="-1"></a><span class="co">#&gt; $ listings  &lt;dbl&gt; 701, 746, 784, 785, 794, 780, 742, 765, 771, 764, 721, 658, …</span></span>
+<span id="cb624-12"><a href="case-study-real-estate-market-analysis.html#cb624-12" tabindex="-1"></a><span class="co">#&gt; $ inventory &lt;dbl&gt; 6.3, 6.6, 6.8, 6.9, 6.8, 6.6, 6.2, 6.4, 6.5, 6.6, 6.2, 5.7, …</span></span>
+<span id="cb624-13"><a href="case-study-real-estate-market-analysis.html#cb624-13" tabindex="-1"></a><span class="co">#&gt; $ date      &lt;dbl&gt; 2000.000, 2000.083, 2000.167, 2000.250, 2000.333, 2000.417, …</span></span></code></pre></div>
 <p>The dataset contains:
 - <code>city</code>: Name of the city.
 - <code>year</code>, <code>month</code>: Date components.
@@ -662,102 +715,112 @@ div.csl-indent {
 - <code>inventory</code>: “Months inventory”: amount of time it would take to sell all current listings at current sales pace.
 - <code>date</code>: Date in decimal format (e.g., 2000.08).</p>
 </div>
-<div id="data-cleaning" class="section level2 hasAnchor" number="14.4">
-<h2><span class="header-section-number">14.4</span> Data Cleaning<a href="case-study-real-estate-market-analysis.html#data-cleaning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="data-cleaning" class="section level2 hasAnchor" number="16.4">
+<h2><span class="header-section-number">16.4</span> Data Cleaning<a href="case-study-real-estate-market-analysis.html#data-cleaning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Real-world data often has missing values (<code>NA</code>). Let’s check how many missing values we have in the <code>sales</code> column.</p>
-<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="case-study-real-estate-market-analysis.html#cb647-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(txhousing<span class="sc">$</span>sales))</span>
-<span id="cb647-2"><a href="case-study-real-estate-market-analysis.html#cb647-2" tabindex="-1"></a><span class="co">#&gt; [1] 568</span></span></code></pre></div>
+<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="case-study-real-estate-market-analysis.html#cb625-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(txhousing<span class="sc">$</span>sales))</span>
+<span id="cb625-2"><a href="case-study-real-estate-market-analysis.html#cb625-2" tabindex="-1"></a><span class="co">#&gt; [1] 568</span></span></code></pre></div>
 <p>We see there are records with no sales data. For our analysis of market volume, we should remove these incomplete records. We will creating a clean dataset <code>housing_clean</code>.</p>
 <p>We will also create a proper <code>date</code> column using <code>lubridate::make_date()</code>, which is easier to work with than the decimal date.</p>
-<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="case-study-real-estate-market-analysis.html#cb648-1" tabindex="-1"></a>housing_clean <span class="ot">&lt;-</span> txhousing <span class="sc">|&gt;</span> </span>
-<span id="cb648-2"><a href="case-study-real-estate-market-analysis.html#cb648-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sales)) <span class="sc">|&gt;</span> </span>
-<span id="cb648-3"><a href="case-study-real-estate-market-analysis.html#cb648-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date_proper =</span> <span class="fu">make_date</span>(year, month, <span class="dv">1</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb648-4"><a href="case-study-real-estate-market-analysis.html#cb648-4" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>date) <span class="co"># Remove the decimal date</span></span></code></pre></div>
+<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="case-study-real-estate-market-analysis.html#cb626-1" tabindex="-1"></a>housing_clean <span class="ot">&lt;-</span> txhousing <span class="sc">|&gt;</span> </span>
+<span id="cb626-2"><a href="case-study-real-estate-market-analysis.html#cb626-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sales)) <span class="sc">|&gt;</span> </span>
+<span id="cb626-3"><a href="case-study-real-estate-market-analysis.html#cb626-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date_proper =</span> <span class="fu">make_date</span>(year, month, <span class="dv">1</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb626-4"><a href="case-study-real-estate-market-analysis.html#cb626-4" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>date) <span class="co"># Remove the decimal date</span></span></code></pre></div>
 </div>
-<div id="exploratory-analysis" class="section level2 hasAnchor" number="14.5">
-<h2><span class="header-section-number">14.5</span> Exploratory Analysis<a href="case-study-real-estate-market-analysis.html#exploratory-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="market-volume-over-time" class="section level3 hasAnchor" number="14.5.1">
-<h3><span class="header-section-number">14.5.1</span> Market Volume Over Time<a href="case-study-real-estate-market-analysis.html#market-volume-over-time" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exploratory-analysis" class="section level2 hasAnchor" number="16.5">
+<h2><span class="header-section-number">16.5</span> Exploratory Analysis<a href="case-study-real-estate-market-analysis.html#exploratory-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="market-volume-over-time" class="section level3 hasAnchor" number="16.5.1">
+<h3><span class="header-section-number">16.5.1</span> Market Volume Over Time<a href="case-study-real-estate-market-analysis.html#market-volume-over-time" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s look at the total sales volume across all of Texas over time. This gives us a “macro” view of the market, similar to how we might look at total portfolio value in a financial context.</p>
-<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="case-study-real-estate-market-analysis.html#cb649-1" tabindex="-1"></a><span class="co"># Aggregate by date</span></span>
-<span id="cb649-2"><a href="case-study-real-estate-market-analysis.html#cb649-2" tabindex="-1"></a>total_market <span class="ot">&lt;-</span> housing_clean <span class="sc">|&gt;</span> </span>
-<span id="cb649-3"><a href="case-study-real-estate-market-analysis.html#cb649-3" tabindex="-1"></a>  <span class="fu">group_by</span>(date_proper) <span class="sc">|&gt;</span> </span>
-<span id="cb649-4"><a href="case-study-real-estate-market-analysis.html#cb649-4" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb649-5"><a href="case-study-real-estate-market-analysis.html#cb649-5" tabindex="-1"></a>    <span class="at">total_sales =</span> <span class="fu">sum</span>(sales),</span>
-<span id="cb649-6"><a href="case-study-real-estate-market-analysis.html#cb649-6" tabindex="-1"></a>    <span class="at">total_volume =</span> <span class="fu">sum</span>(volume, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb649-7"><a href="case-study-real-estate-market-analysis.html#cb649-7" tabindex="-1"></a>  )</span>
-<span id="cb649-8"><a href="case-study-real-estate-market-analysis.html#cb649-8" tabindex="-1"></a></span>
-<span id="cb649-9"><a href="case-study-real-estate-market-analysis.html#cb649-9" tabindex="-1"></a><span class="co"># Plot Volume</span></span>
-<span id="cb649-10"><a href="case-study-real-estate-market-analysis.html#cb649-10" tabindex="-1"></a>total_market <span class="sc">|&gt;</span> </span>
-<span id="cb649-11"><a href="case-study-real-estate-market-analysis.html#cb649-11" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date_proper, <span class="at">y =</span> total_volume)) <span class="sc">+</span></span>
-<span id="cb649-12"><a href="case-study-real-estate-market-analysis.html#cb649-12" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb649-13"><a href="case-study-real-estate-market-analysis.html#cb649-13" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_dollar</span>(<span class="at">scale =</span> <span class="fl">1e-9</span>, <span class="at">suffix =</span> <span class="st">&quot;B&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb649-14"><a href="case-study-real-estate-market-analysis.html#cb649-14" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb649-15"><a href="case-study-real-estate-market-analysis.html#cb649-15" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb649-16"><a href="case-study-real-estate-market-analysis.html#cb649-16" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Total Texas Housing Market Volume&quot;</span>,</span>
-<span id="cb649-17"><a href="case-study-real-estate-market-analysis.html#cb649-17" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Monthly Total Sales Volume (Billions)&quot;</span>,</span>
-<span id="cb649-18"><a href="case-study-real-estate-market-analysis.html#cb649-18" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
-<span id="cb649-19"><a href="case-study-real-estate-market-analysis.html#cb649-19" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Volume ($)&quot;</span></span>
-<span id="cb649-20"><a href="case-study-real-estate-market-analysis.html#cb649-20" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-834-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="case-study-real-estate-market-analysis.html#cb627-1" tabindex="-1"></a><span class="co"># Aggregate by date</span></span>
+<span id="cb627-2"><a href="case-study-real-estate-market-analysis.html#cb627-2" tabindex="-1"></a>total_market <span class="ot">&lt;-</span> housing_clean <span class="sc">|&gt;</span> </span>
+<span id="cb627-3"><a href="case-study-real-estate-market-analysis.html#cb627-3" tabindex="-1"></a>  <span class="fu">group_by</span>(date_proper) <span class="sc">|&gt;</span> </span>
+<span id="cb627-4"><a href="case-study-real-estate-market-analysis.html#cb627-4" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb627-5"><a href="case-study-real-estate-market-analysis.html#cb627-5" tabindex="-1"></a>    <span class="at">total_sales =</span> <span class="fu">sum</span>(sales),</span>
+<span id="cb627-6"><a href="case-study-real-estate-market-analysis.html#cb627-6" tabindex="-1"></a>    <span class="at">total_volume =</span> <span class="fu">sum</span>(volume, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb627-7"><a href="case-study-real-estate-market-analysis.html#cb627-7" tabindex="-1"></a>  )</span>
+<span id="cb627-8"><a href="case-study-real-estate-market-analysis.html#cb627-8" tabindex="-1"></a></span>
+<span id="cb627-9"><a href="case-study-real-estate-market-analysis.html#cb627-9" tabindex="-1"></a><span class="co"># Plot Volume</span></span>
+<span id="cb627-10"><a href="case-study-real-estate-market-analysis.html#cb627-10" tabindex="-1"></a>total_market <span class="sc">|&gt;</span> </span>
+<span id="cb627-11"><a href="case-study-real-estate-market-analysis.html#cb627-11" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date_proper, <span class="at">y =</span> total_volume)) <span class="sc">+</span></span>
+<span id="cb627-12"><a href="case-study-real-estate-market-analysis.html#cb627-12" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb627-13"><a href="case-study-real-estate-market-analysis.html#cb627-13" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_dollar</span>(<span class="at">scale =</span> <span class="fl">1e-9</span>, <span class="at">suffix =</span> <span class="st">&quot;B&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb627-14"><a href="case-study-real-estate-market-analysis.html#cb627-14" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb627-15"><a href="case-study-real-estate-market-analysis.html#cb627-15" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb627-16"><a href="case-study-real-estate-market-analysis.html#cb627-16" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Total Texas Housing Market Volume&quot;</span>,</span>
+<span id="cb627-17"><a href="case-study-real-estate-market-analysis.html#cb627-17" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Monthly Total Sales Volume (Billions)&quot;</span>,</span>
+<span id="cb627-18"><a href="case-study-real-estate-market-analysis.html#cb627-18" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb627-19"><a href="case-study-real-estate-market-analysis.html#cb627-19" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Volume ($)&quot;</span></span>
+<span id="cb627-20"><a href="case-study-real-estate-market-analysis.html#cb627-20" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-806-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>We can clearly see the seasonality (peaks in summer) and the impact of the 2008 financial crisis (dip around 2008-2010), followed by a strong recovery.</p>
 </div>
-<div id="comparing-cities" class="section level3 hasAnchor" number="14.5.2">
-<h3><span class="header-section-number">14.5.2</span> Comparing Cities<a href="case-study-real-estate-market-analysis.html#comparing-cities" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="comparing-cities" class="section level3 hasAnchor" number="16.5.2">
+<h3><span class="header-section-number">16.5.2</span> Comparing Cities<a href="case-study-real-estate-market-analysis.html#comparing-cities" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Just as we might compare different companies or portfolios, let’s compare the median housing prices in the major cities. We’ll focus on the “Big 4” Texas cities: Austin, Dallas, Houston, and San Antonio.</p>
-<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="case-study-real-estate-market-analysis.html#cb650-1" tabindex="-1"></a>major_cities <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Austin&quot;</span>, <span class="st">&quot;Dallas&quot;</span>, <span class="st">&quot;Houston&quot;</span>, <span class="st">&quot;San Antonio&quot;</span>)</span>
-<span id="cb650-2"><a href="case-study-real-estate-market-analysis.html#cb650-2" tabindex="-1"></a></span>
-<span id="cb650-3"><a href="case-study-real-estate-market-analysis.html#cb650-3" tabindex="-1"></a>city_trends <span class="ot">&lt;-</span> housing_clean <span class="sc">|&gt;</span> </span>
-<span id="cb650-4"><a href="case-study-real-estate-market-analysis.html#cb650-4" tabindex="-1"></a>  <span class="fu">filter</span>(city <span class="sc">%in%</span> major_cities)</span>
-<span id="cb650-5"><a href="case-study-real-estate-market-analysis.html#cb650-5" tabindex="-1"></a></span>
-<span id="cb650-6"><a href="case-study-real-estate-market-analysis.html#cb650-6" tabindex="-1"></a>city_trends <span class="sc">|&gt;</span> </span>
-<span id="cb650-7"><a href="case-study-real-estate-market-analysis.html#cb650-7" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date_proper, <span class="at">y =</span> median, <span class="at">color =</span> city)) <span class="sc">+</span></span>
-<span id="cb650-8"><a href="case-study-real-estate-market-analysis.html#cb650-8" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb650-9"><a href="case-study-real-estate-market-analysis.html#cb650-9" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb650-10"><a href="case-study-real-estate-market-analysis.html#cb650-10" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_dollar</span>()) <span class="sc">+</span></span>
-<span id="cb650-11"><a href="case-study-real-estate-market-analysis.html#cb650-11" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb650-12"><a href="case-study-real-estate-market-analysis.html#cb650-12" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Median Housing Prices in Major Cities&quot;</span>,</span>
-<span id="cb650-13"><a href="case-study-real-estate-market-analysis.html#cb650-13" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
-<span id="cb650-14"><a href="case-study-real-estate-market-analysis.html#cb650-14" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Median Price&quot;</span>,</span>
-<span id="cb650-15"><a href="case-study-real-estate-market-analysis.html#cb650-15" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;City&quot;</span></span>
-<span id="cb650-16"><a href="case-study-real-estate-market-analysis.html#cb650-16" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-835-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="case-study-real-estate-market-analysis.html#cb628-1" tabindex="-1"></a>major_cities <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Austin&quot;</span>, <span class="st">&quot;Dallas&quot;</span>, <span class="st">&quot;Houston&quot;</span>, <span class="st">&quot;San Antonio&quot;</span>)</span>
+<span id="cb628-2"><a href="case-study-real-estate-market-analysis.html#cb628-2" tabindex="-1"></a></span>
+<span id="cb628-3"><a href="case-study-real-estate-market-analysis.html#cb628-3" tabindex="-1"></a>city_trends <span class="ot">&lt;-</span> housing_clean <span class="sc">|&gt;</span> </span>
+<span id="cb628-4"><a href="case-study-real-estate-market-analysis.html#cb628-4" tabindex="-1"></a>  <span class="fu">filter</span>(city <span class="sc">%in%</span> major_cities)</span>
+<span id="cb628-5"><a href="case-study-real-estate-market-analysis.html#cb628-5" tabindex="-1"></a></span>
+<span id="cb628-6"><a href="case-study-real-estate-market-analysis.html#cb628-6" tabindex="-1"></a>city_trends <span class="sc">|&gt;</span> </span>
+<span id="cb628-7"><a href="case-study-real-estate-market-analysis.html#cb628-7" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date_proper, <span class="at">y =</span> median, <span class="at">color =</span> city)) <span class="sc">+</span></span>
+<span id="cb628-8"><a href="case-study-real-estate-market-analysis.html#cb628-8" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb628-9"><a href="case-study-real-estate-market-analysis.html#cb628-9" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb628-10"><a href="case-study-real-estate-market-analysis.html#cb628-10" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_dollar</span>()) <span class="sc">+</span></span>
+<span id="cb628-11"><a href="case-study-real-estate-market-analysis.html#cb628-11" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb628-12"><a href="case-study-real-estate-market-analysis.html#cb628-12" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Median Housing Prices in Major Cities&quot;</span>,</span>
+<span id="cb628-13"><a href="case-study-real-estate-market-analysis.html#cb628-13" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb628-14"><a href="case-study-real-estate-market-analysis.html#cb628-14" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Median Price&quot;</span>,</span>
+<span id="cb628-15"><a href="case-study-real-estate-market-analysis.html#cb628-15" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;City&quot;</span></span>
+<span id="cb628-16"><a href="case-study-real-estate-market-analysis.html#cb628-16" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-807-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Austin (green) clearly shows the steepest growth curve, especially post-2012.</p>
 </div>
 </div>
-<div id="creating-indicators" class="section level2 hasAnchor" number="14.6">
-<h2><span class="header-section-number">14.6</span> Creating Indicators<a href="case-study-real-estate-market-analysis.html#creating-indicators" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="creating-indicators" class="section level2 hasAnchor" number="16.6">
+<h2><span class="header-section-number">16.6</span> Creating Indicators<a href="case-study-real-estate-market-analysis.html#creating-indicators" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In financial analysis, we often create ratios. Here, let’s look at <strong>Inventory</strong>, which is a measure of supply vs. demand.
 - <strong>High Inventory</strong>: Buyer’s market (prices might drop).
 - <strong>Low Inventory</strong>: Seller’s market (prices might rise).</p>
 <p>Let’s look at the average inventory per year for these cities.</p>
-<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="case-study-real-estate-market-analysis.html#cb651-1" tabindex="-1"></a>city_inventory <span class="ot">&lt;-</span> city_trends <span class="sc">|&gt;</span> </span>
-<span id="cb651-2"><a href="case-study-real-estate-market-analysis.html#cb651-2" tabindex="-1"></a>  <span class="fu">group_by</span>(city, year) <span class="sc">|&gt;</span> </span>
-<span id="cb651-3"><a href="case-study-real-estate-market-analysis.html#cb651-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_inventory =</span> <span class="fu">mean</span>(inventory, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>)</span>
-<span id="cb651-4"><a href="case-study-real-estate-market-analysis.html#cb651-4" tabindex="-1"></a></span>
-<span id="cb651-5"><a href="case-study-real-estate-market-analysis.html#cb651-5" tabindex="-1"></a>city_inventory <span class="sc">|&gt;</span> </span>
-<span id="cb651-6"><a href="case-study-real-estate-market-analysis.html#cb651-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> avg_inventory, <span class="at">color =</span> city)) <span class="sc">+</span></span>
-<span id="cb651-7"><a href="case-study-real-estate-market-analysis.html#cb651-7" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb651-8"><a href="case-study-real-estate-market-analysis.html#cb651-8" tabindex="-1"></a>  <span class="fu">theme_fivethirtyeight</span>() <span class="sc">+</span></span>
-<span id="cb651-9"><a href="case-study-real-estate-market-analysis.html#cb651-9" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb651-10"><a href="case-study-real-estate-market-analysis.html#cb651-10" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Market Health: Months of Inventory&quot;</span>,</span>
-<span id="cb651-11"><a href="case-study-real-estate-market-analysis.html#cb651-11" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Lower means simpler to sell (Seller&#39;s Market)&quot;</span>,</span>
-<span id="cb651-12"><a href="case-study-real-estate-market-analysis.html#cb651-12" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;City&quot;</span></span>
-<span id="cb651-13"><a href="case-study-real-estate-market-analysis.html#cb651-13" tabindex="-1"></a>  )</span>
-<span id="cb651-14"><a href="case-study-real-estate-market-analysis.html#cb651-14" tabindex="-1"></a><span class="co">#&gt; Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span></span>
-<span id="cb651-15"><a href="case-study-real-estate-market-analysis.html#cb651-15" tabindex="-1"></a><span class="co">#&gt; ℹ Please use `linewidth` instead.</span></span>
-<span id="cb651-16"><a href="case-study-real-estate-market-analysis.html#cb651-16" tabindex="-1"></a><span class="co">#&gt; This warning is displayed once every 8 hours.</span></span>
-<span id="cb651-17"><a href="case-study-real-estate-market-analysis.html#cb651-17" tabindex="-1"></a><span class="co">#&gt; Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</span></span></code></pre></div>
-<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-836-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="case-study-real-estate-market-analysis.html#cb629-1" tabindex="-1"></a>city_inventory <span class="ot">&lt;-</span> city_trends <span class="sc">|&gt;</span> </span>
+<span id="cb629-2"><a href="case-study-real-estate-market-analysis.html#cb629-2" tabindex="-1"></a>  <span class="fu">group_by</span>(city, year) <span class="sc">|&gt;</span> </span>
+<span id="cb629-3"><a href="case-study-real-estate-market-analysis.html#cb629-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_inventory =</span> <span class="fu">mean</span>(inventory, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>)</span>
+<span id="cb629-4"><a href="case-study-real-estate-market-analysis.html#cb629-4" tabindex="-1"></a></span>
+<span id="cb629-5"><a href="case-study-real-estate-market-analysis.html#cb629-5" tabindex="-1"></a>city_inventory <span class="sc">|&gt;</span> </span>
+<span id="cb629-6"><a href="case-study-real-estate-market-analysis.html#cb629-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> avg_inventory, <span class="at">color =</span> city)) <span class="sc">+</span></span>
+<span id="cb629-7"><a href="case-study-real-estate-market-analysis.html#cb629-7" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb629-8"><a href="case-study-real-estate-market-analysis.html#cb629-8" tabindex="-1"></a>  <span class="fu">theme_fivethirtyeight</span>() <span class="sc">+</span></span>
+<span id="cb629-9"><a href="case-study-real-estate-market-analysis.html#cb629-9" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb629-10"><a href="case-study-real-estate-market-analysis.html#cb629-10" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Market Health: Months of Inventory&quot;</span>,</span>
+<span id="cb629-11"><a href="case-study-real-estate-market-analysis.html#cb629-11" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Lower means easier to sell (Seller&#39;s Market)&quot;</span>,</span>
+<span id="cb629-12"><a href="case-study-real-estate-market-analysis.html#cb629-12" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;City&quot;</span></span>
+<span id="cb629-13"><a href="case-study-real-estate-market-analysis.html#cb629-13" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-808-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>We see a convergence around 2014-2015 where inventory became very tight across all major cities.</p>
 </div>
-<div id="conclusions" class="section level2 hasAnchor" number="14.7">
-<h2><span class="header-section-number">14.7</span> Conclusions<a href="case-study-real-estate-market-analysis.html#conclusions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Through this case study, we accessed a standardized dataset (<code>txhousing</code>) and performed key Data Science tasks:
-1. <strong>Cleaning</strong>: Handling <code>NA</code>s and formatting dates.
-2. <strong>Aggregation</strong>: Summarizing millions of dollars of volume into a clear trend line.
-3. <strong>Comparison</strong>: Benchmarking different categories (Cities) against each other.</p>
-<p>This workflow is identical to what is required for analyzing invoice portfolios, stock tickers, or customer churn cohorts, but uses a reliable data source that ensures our code is reproducible.</p>
+<div id="try-it-yourself" class="section level2 hasAnchor" number="16.7">
+<h2><span class="header-section-number">16.7</span> Try It Yourself<a href="case-study-real-estate-market-analysis.html#try-it-yourself" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><p><strong>Expand the Analysis</strong>: Add “Fort Worth” to <code>major_cities</code> and re-run the median price comparison. How does it compare to the Big 4?</p></li>
+<li><p><strong>Calculate Growth</strong>: Compute the year-over-year percentage change in median price for Austin. Which year had the highest growth?</p></li>
+<li><p><strong>Seasonality Deep Dive</strong>: Which month typically has the highest sales volume? Create a boxplot of sales by month to visualize seasonal patterns.</p></li>
+</ol>
+</div>
+<div id="conclusions" class="section level2 hasAnchor" number="16.8">
+<h2><span class="header-section-number">16.8</span> Conclusions<a href="case-study-real-estate-market-analysis.html#conclusions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Through this case study, we performed essential Data Science tasks on a real dataset:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Cleaning</strong>: Handling <code>NA</code> values and formatting dates with <code>lubridate</code>.</li>
+<li><strong>Aggregation</strong>: Summarizing billions of dollars of volume into clear trend lines.</li>
+<li><strong>Comparison</strong>: Benchmarking cities against each other to identify leaders.</li>
+<li><strong>Indicators</strong>: Creating business-relevant metrics like months of inventory.</li>
+</ol>
+<blockquote>
+<p>[!TIP]
+This exact workflow applies to countless domains: stock prices, customer churn, inventory management, or any time-series business data. Master the pattern here, and you can adapt it anywhere.</p>
+</blockquote>
 
 </div>
 </div>

@@ -3,16 +3,24 @@ To infer means to draw a conclusion from general or particular facts. Statistica
 
 We estimate parameters of a population from a sample because very rarely we will be able to have access to all the data of the population. Such is the case of election polls, disease studies, etc.
 
-Recall previously some concepts such as expected value, standard error, among others, that will be useful to us to make inferences.
+::: {.callout-note}
+## Learning Objectives
+
+After completing this chapter, you will be able to:
+
+In this chapter, we will build the foundation for making valid conclusions from data. We will start by mastering the calculation of expected values and standard errors, which are critical for characterizing random variables. Then, we will explore the Central Limit Theorem to understand how sampling distributions behave. Finally, we will apply these concepts to estimate population parameters from sample data, calculating confidence intervals and margins of error to analyze real-world scenarios like election polling.
+:::
+
+We will introduce fundamental concepts such as **expected value** and **standard error**, which will be useful to us to make inferences.
 
 ## Expected Value
 Let's use the following case to understand this concept intuitively.
 
-> We have been hired in a casino to analyze if it is reasonable to install a roulette with 37 values ranging from 0 to 36. The house wants to open the game with a special offer if the ball lands on 0 or 21 paying 10 to 1. This means that if a player plays and wins we pay him 10 soles and if he loses he would pay us 1 sol.
+> We have been hired in a casino to analyze if it is reasonable to install a roulette with 37 values ranging from 0 to 36. The house wants to open the game with a special offer if the ball lands on 0 or 21 paying 10 to 1. This means that if a player plays and wins we pay them 10 dollars and if they lose they would pay us 1 dollar.
 
 <div align="center">
 ```{r, echo=FALSE, out.width = "300pt", fig.alt="Casino roulette wheel with numbered red and black pockets"}
-knitr::include_graphics(file.path(img_path, "04-statistics", "ruleta-casino.png"))
+knitr::include_graphics(file.path(img_path, "04-statistics", "roulette-casino.png"))
 ```
 </div>
 
@@ -41,9 +49,10 @@ plays <- 100000
 prob_win <- 2/37
 prob_lose <- 1 - prob_win
 
-sample_vec <- sample(c(10, -1), plays, replace = TRUE, prob = c(prob_win, prob_lose))
-
-hist(sample_vec)
+tibble(outcome = sample_vec) |>
+  ggplot(aes(x = factor(outcome))) +
+  geom_bar(fill = "steelblue") +
+  labs(x = "Outcome ($)", y = "Count", title = "Distribution of Roulette Outcomes")
 
 ```
 
@@ -98,14 +107,15 @@ Finally, not only one person will play. Let's replicate this sample about 100,00
 ```{r eval=TRUE}
 
 players <- 100000
-jugadas <- 40
+plays <- 40
 
 prob_win <- 2/37
 prob_lose <- 1 - prob_win
 
+set.seed(2025)
 winnings_simulation <- replicate(players, {
   
-  sample_vec <- sample(c(10, -1), jugadas, replace = TRUE, prob = c(prob_win, prob_lose))
+  sample_vec <- sample(c(10, -1), plays, replace = TRUE, prob = c(prob_win, prob_lose))
 
   sum(sample_vec)  
   
@@ -116,7 +126,10 @@ winnings_simulation <- replicate(players, {
 So far we have done the same as we have learned in previous chapters. However, we could also see how the players' winnings are distributed. And for that it is enough to create a histogram of the result.
 
 ```{r eval=TRUE}
-hist(winnings_simulation)
+tibble(winnings = winnings_simulation) |>
+  ggplot(aes(x = winnings)) +
+  geom_histogram(bins = 30, fill = "steelblue", color = "white") +
+  labs(x = "Total Winnings ($)", y = "Count", title = "Distribution of Player Winnings")
 ```
 
 It is not a coincidence that if we create a histogram with all the winnings of all the players the result looks like a normal distribution. In fact, that was the main approach that George Pólya made in 1920 when he presented his **Central Limit Theorem**.
@@ -161,29 +174,16 @@ SE_sum
 With these two theoretical data, the expected value and the standard error, we can graph the normal curve of the sum of winnings of our game.
 
 ```{r eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE}
-mean <- E_sum
-sd <- SE_sum
-min <- -75
-max <- +45
-lb <- max
-ub <- max
+mu <- E_sum
+sigma <- SE_sum
 
-x <- seq(-4,4, length = 100) * sd + mean
-hx <- dnorm(x, mean, sd)
-
-plot(x, hx, type="n", xlab="Total winnings per player", ylab="",
-     main="Normal distribution of the Sum of Winnings with n=40", axes = FALSE)
-
-i <- x >= lb & x <= ub
-
-lines(x, hx)
-
-polygon(c(lb,x[i],ub), c(0,hx[i],0), col="blue")
-
-area <- pnorm(ub, mean, sd) - pnorm(lb, mean, sd)
-#result <- paste("P( x >", lb, " ) =", round(area, 2))
-#mtext(result,3)
-axis(1, at = round(seq(min, max, 15), 0), pos = 0)
+ggplot(data = tibble(x = c(mu - 4*sigma, mu + 4*sigma)), aes(x = x)) +
+  stat_function(fun = dnorm, args = list(mean = mu, sd = sigma)) +
+  labs(
+    x = "Total winnings per player",
+    y = "Density",
+    title = "Normal Distribution of the Sum of Winnings (n = 40)"
+  )
 ```
 
 What does this mean? That if theoretically we can already graph the normal curve then we can also calculate the probability that the sum is greater or less than some value. This is the main advantage of the Central Limit Theorem since we can calculate probabilities of the population using this approximation and the data of a single sample.
@@ -191,42 +191,38 @@ What does this mean? That if theoretically we can already graph the normal curve
 For example, if we want to know what is the probability that a player wins money after playing 40 times in roulette we would have to calculate the probability that $S$ is greater than **zero**, represented by the blue shaded area:
 
 ```{r eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE}
-mean <- E_sum
-sd <- SE_sum
-min <- -75
-max <- +45
-lb <- 0
-ub <- max
+mu <- E_sum
+sigma <- SE_sum
+prob <- 1 - pnorm(0, mu, sigma)
 
-x <- seq(-4,4, length = 100) * sd + mean
-hx <- dnorm(x, mean, sd)
+# Data for shading
+shade_data <- tibble(x = seq(0, mu + 4*sigma, length.out = 100)) |>
+  mutate(y = dnorm(x, mu, sigma))
 
-plot(x, hx, type="n", xlab="Total winnings per player", ylab="",
-     main="Normal distribution of the Sum of Winnings with n=40", axes = FALSE)
-
-i <- x >= lb & x <= ub
-
-lines(x, hx)
-
-polygon(c(lb,x[i],ub), c(0,hx[i],0), col="blue")
-
-area <- pnorm(ub, mean, sd) - pnorm(lb, mean, sd)
-result <- paste("P( x >", lb, " ) =", round(area, 2))
-mtext(result,3)
-axis(1, at = round(seq(min, max, 15), 0), pos = 0)
+ggplot(data = tibble(x = c(mu - 4*sigma, mu + 4*sigma)), aes(x = x)) +
+  stat_function(fun = dnorm, args = list(mean = mu, sd = sigma)) +
+  geom_area(data = shade_data, aes(x = x, y = y), fill = "steelblue", alpha = 0.6) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "gray40") +
+  ggplot2::annotate("text", x = mu + 2*sigma, y = dnorm(mu, mu, sigma) * 0.8,
+           label = paste0("P(S > 0) = ", round(prob, 2)), size = 4) +
+  labs(
+    x = "Total winnings per player",
+    y = "Density",
+    title = "Normal Distribution of the Sum of Winnings (n = 40)"
+  )
 ```
 
 To perform this calculation in R we would use the `pnorm` function:
 
 ```{r eval=TRUE}
-# Probability of getting more than 0 soles having played 40 games:
+# Probability of getting more than 0 dollars having played 40 games:
 1- pnorm(0, E_sum, SE_sum)
 ```
 
 Let's validate that the Monte Carlo simulation approximates this theoretical value we just calculated:
 
 ```{r eval=TRUE}
-# Probability of getting more than 0 soles having played 40 games:
+# Probability of getting more than 0 dollars having played 40 games:
 mean(winnings_simulation > 0)
 
 ```
@@ -238,13 +234,19 @@ On the other hand, the same happens if we wanted to analyze the average and not 
 1. Expected value of the average: $E[\overline{X}]=ap+b(1-p)$.
 2. Standard error of the average: $SE[\overline{X}]=|a-b|\sqrt{\frac{p(1-p) }{n}}$.
 
+::: {.callout-tip}
+## Key Takeaways
+
+This chapter provided the tools to quantify uncertainty. We learned that the **Expected Value**, $E[X]$, represents the long-term average outcome of a random variable. The **Central Limit Theorem** is the bridge that allows us to approximate the sum of independent samples using a normal distribution, regardless of the original population's shape. This theorem enables us to calculate the **Expected Value of the Sum** ($E[S_n] = n \cdot E[X]$) and the **Standard Error of the Sum** ($SE[S_n] = \sqrt{n} \cdot SE[X]$), empowering us to estimate probabilities and make inferences about a population without needing to measure every single individual.
+:::
+
 `r if(params$hidden){"<!--"}`
 
 ## Exercises
 
 The admission exam of the National Univ. of San Marcos consists of 100 multiple choice questions (A, B, C, D, E) with a value of 20 points for each correct question and 1.125 for each wrong answer. We want to analyze what would happen if a student answers all 100 questions randomly and if there are chances of getting a vacancy knowing that minimum 900 points are needed to enter some career.
 
-`r ne`. What is the expected value of the points received by guessing a question?
+`r ne`. Consider a multiple-choice exam with 100 questions, where each correct answer awards 20 points and each wrong answer deducts 1.125 points. Determine the expected value of points a student would receive for a single question if they guessed randomly among the 5 options.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -253,21 +255,21 @@ inc(params$hidden, ne)
 <details>
   <summary type="button">Solution</summary>
 ```{r eval=FALSE}
-puntaje_a_favor <- 20
-puntaje_en_contra <- -1.125
+points_correct <- 20
+points_wrong <- -1.125
   
-prob_correcta <- 1/5
-prob_incorrecta <- 1 - prob_correcta
+prob_correct <- 1/5
+prob_wrong <- 1 - prob_correct
 
 # Expected value of guessing a question:
-E <- puntaje_a_favor * prob_correcta + puntaje_en_contra * prob_incorrecta
+E <- points_correct * prob_correct + points_wrong * prob_wrong
 
 E
 
 ```
 </details>
 
-`r ne`. What is the expected value of guessing the 100 questions?
+`r ne`. Based on the expected value for a single question, calculate the total expected value if a student guesses on all 100 questions of the exam.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -280,13 +282,13 @@ inc(params$hidden, ne)
 n <- 100
 
 # Expected value of the sum
-E_suma <- n * E
+E_sum <- n * E
 
-E_suma
+E_sum
 ```
 </details>
 
-`r ne`. What is the standard error of guessing the 100 questions?
+`r ne`. Calculate the standard error associated with the total score if a student guesses on all 100 questions.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -296,13 +298,13 @@ inc(params$hidden, ne)
   <summary type="button">Solution</summary>
 ```{r eval=FALSE}
 # Standard error of the sum
-SE_suma <- sqrt(n)*abs(puntaje_a_favor - puntaje_en_contra) * sqrt(prob_correcta*prob_incorrecta)
+SE_sum <- sqrt(n)*abs(points_correct - points_wrong) * sqrt(prob_correct*prob_wrong)
 
-SE_suma
+SE_sum
 ```
 </details>
 
-`r ne`. Using the central limit theorem, What is the probability that a student obtains more than 900 points by marking all answers randomly?
+`r ne`. Using the Central Limit Theorem and the values calculated previously, determine the probability that a student guessing on all questions would achieve a score higher than 900 points.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -311,10 +313,10 @@ inc(params$hidden, ne)
 <details>
   <summary type="button">Solution</summary>
 ```{r eval=FALSE}
-puntaje_minimo <- 900
+min_score <- 900
 
 # Probability of obtaining less than the minimum:
-prob <- pnorm(puntaje_minimo, E_suma, SE_suma)
+prob <- pnorm(min_score, E_sum, SE_sum)
 
 # Probability of obtaining more than the minimum:
 1 - prob
@@ -328,7 +330,7 @@ Conclusion: let's study before taking the exam. It is not reasonable to take the
 
 > Recall that `e-n` is the representation of $10^{-n}$.
 
-`r ne`. Using Monte Carlo simulation for the 22,000 applicants who apply each time, calculate the probability that a student obtains more than 900 points by marking all answers randomly.
+`r ne`. Validate your theoretical calculation by running a Monte Carlo simulation. Simulate the exam scores for 22,000 applicants guessing randomly and calculate the proportion who score above 900 points.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -339,17 +341,18 @@ inc(params$hidden, ne)
 ```{r eval=FALSE}
 total <- 22000
 
-simulacion_admision <- replicate(total, {
-  puntaje_del_examen <- sample(c(puntaje_a_favor, puntaje_en_contra), n, replace = TRUE, prob = c(prob_correcta, prob_incorrecta) )
+set.seed(2025)
+admission_simulation <- replicate(total, {
+  exam_score <- sample(c(points_correct, points_wrong), n, replace = TRUE, prob = c(prob_correct, prob_wrong) )
 
-  sum(puntaje_del_examen)  
+  sum(exam_score)  
 })
 
 # Probability of obtaining more than 900 points:
-mean(simulacion_admision > 900)
+mean(admission_simulation > 900)
 
 # Histogram if we want to see the distribution of points obtained:
-hist(simulacion_admision)
+hist(admission_simulation)
 
 ```
 
@@ -379,23 +382,13 @@ Intuitively we know that we cannot deduce which party will win given that the sa
 
 Making some mathematical transformations to our theoretical estimates seen previously and defining $a=1$ as value if they vote Blue and $b=0$ if they do not vote for Blue, we can obtain the following theoretical estimates for this case:
 
-1. Expected value of each vote:
+By defining a vote for Blue as $a=1$ and a vote for others as $b=0$, we can derive theoretical estimates that link our sample data to the unknown population parameter $p$.
 
-$E[X]=p$
+First, consider the **expected value of a single vote**. Mathematically, $E[X]=p$. This confirms that the value we expect to obtain from a single random voter matches the proportion $p$ we are trying to find.
 
-We see that the value we expect to obtain per vote $E[X]$ matches the parameter $p$ that we are looking for.
+Next, we look at the **expected value of the average** across multiple surveys. If we were to conduct many surveys of $n$ respondents each, the average of these sample means, denoted as $E[\overline{X}]$, would also equal $p$. This reinforces that our sample mean is an unbiased estimator of the population proportion.
 
-2. Expected value of the average of votes:
-
-$E[\overline{X}]=p$
-
-If we do multiple surveys, all of $n$ respondents and calculate the mean $\overline{X}$ of each sample, these samples will follow a normal distribution with an expected value $E[\overline{X}]$ which, as we see, matches the parameter $p$ that we are estimating.
-
-3. Standard error of the average of votes:
-
-$SE[\overline{X}]=\sqrt{\frac{p(1-p) }{n}}$
-
-In the same way as in the previous point, the multiple surveys generate multiple means on which the standard error $SE[\overline{X}]$ can be calculated which will depend on the size $n$ of respondents.
+Finally, we must account for variability using the **standard error of the average**, defined as $SE[\overline{X}]=\sqrt{\frac{p(1-p) }{n}}$. This metric tells us how much the results of our multiple surveys would fluctuate around the true parameter $p$, taking into account the sample size $n$.
 
 The expected value of the average $E[\overline{X}]$, formula 2, is theoretically equal to the parameter $p$ that we are looking to estimate. However, without knowing how much $p$ is we would have to have multiple samples of $n$ respondents, then calculate the mean for each case $\overline{X}$ and finally calculate the average of these values. This is very expensive, so we will look for another way to estimate $E[\overline{X}]$.
 
@@ -430,7 +423,11 @@ SE_avg
 
 Now let's generate a scatter plot of both the different values of $p$ and the standard errors for each $p$.
 ```{r eval=TRUE}
-plot(p, SE_avg, ylim = c(0, 0.12))
+tibble(p = p, SE_avg = SE_avg) |>
+  ggplot(aes(x = p, y = SE_avg)) +
+  geom_point(color = "steelblue") +
+  coord_cartesian(ylim = c(0, 0.12)) +
+  labs(x = "Proportion (p)", y = "Standard Error", title = "Standard Error vs. Proportion")
 ```
 
 Thus, we see how we can obtain different standard errors of the average for different values of $p$.
@@ -438,41 +435,36 @@ Thus, we see how we can obtain different standard errors of the average for diff
 Intuitively we had the notion of what would happen given a $p=80\%$. Now in the graph we see it better. If the real intention of vote was 80% in that district then when taking several surveys and seeing the results of each survey we would obtain as expected value 80% and as standard error 8.8% or 0.088 as seen in the graph highlighted in blue:
 
 ```{r eval=TRUE}
-plot(p, SE_avg, ylim = c(0, 0.12))
+coord_x <- 0.8
+coord_y <- sqrt(coord_x * (1 - coord_x)) / sqrt(n)
 
-coord_x <- 0.8 # Value on X axis
-coord_y <- max(SE_avg[p >= coord_x]) # Value on Y axis for value x
-
-# Add vertical and horizontal reference line
-abline(h = coord_y, v = coord_x, col = "blue", lty = 2)
+tibble(p = p, SE_avg = SE_avg) |>
+  ggplot(aes(x = p, y = SE_avg)) +
+  geom_point(color = "steelblue") +
+  geom_hline(yintercept = coord_y, linetype = "dashed", color = "blue") +
+  geom_vline(xintercept = coord_x, linetype = "dashed", color = "blue") +
+  coord_cartesian(ylim = c(0, 0.12)) +
+  labs(x = "Proportion (p)", y = "Standard Error", title = "SE at p = 80%")
 ```
 
 With these values of $E[\overline{X}]=p=80\%$ and $SE[\overline{X}]=8.8\%$ of standard error we can calculate a range of one standard error around $80\%$, which would go from $71.2\%$ to $88.8\%$ and then calculate what would be the probability that the mean $\overline{X}$ found in one of the surveys falls in this range. Visually it would be:
 
 ```{r eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE}
-mean <- 0.8
-sd <- 0.088
-min <- mean - 4*sd
-max <- mean + 4*sd
-lb <- mean - 1*sd
-ub <- mean + 1*sd
+mu <- 0.8
+sigma <- 0.088
+lb <- mu - 1 * sigma
+ub <- mu + 1 * sigma
+prob <- pnorm(1) - pnorm(-1)
 
-x <- seq(-4,4, length = 100) * sd + mean
-hx <- dnorm(x, mean, sd)
+shade_data <- tibble(x = seq(lb, ub, length.out = 100)) |>
+  mutate(y = dnorm(x, mu, sigma))
 
-plot(x, hx, type="n", xlab="", ylab="",
-     main="Range of 1 standard error of the mean", axes = FALSE)
-
-i <- x >= lb & x <= ub
-
-lines(x, hx)
-
-polygon(c(lb,x[i],ub), c(0,hx[i],0), col="blue")
-
-area <- pnorm(ub, mean, sd) - pnorm(lb, mean, sd)
-result <- paste("P( -1 SE < x > 1 SE ) =", round(area, 2))
-mtext(result,3)
-axis(1, at = round(seq(min, max, sd), 2), pos = 0)
+ggplot(data = tibble(x = c(mu - 4*sigma, mu + 4*sigma)), aes(x = x)) +
+  stat_function(fun = dnorm, args = list(mean = mu, sd = sigma)) +
+  geom_area(data = shade_data, aes(x = x, y = y), fill = "steelblue", alpha = 0.6) +
+  ggplot2::annotate("text", x = mu, y = dnorm(mu, mu, sigma) * 0.5,
+           label = paste0("P(-1 SE < X < 1 SE) = ", round(prob, 2)), size = 4) +
+  labs(x = "Proportion", y = "Density", title = "Range of 1 Standard Error")
 ```
 
 In R, calculating the probability that a data point falls in the range of 1 standard error would be:
@@ -485,29 +477,21 @@ pnorm(1) - pnorm(-1)
 We can expand to have a greater range of **2 standard errors** around $80\%$ and increase our probability:
 
 ```{r eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE}
-mean <- 0.8
-sd <- 0.088
-min <- mean - 4*sd
-max <- mean + 4*sd
-lb <- mean - 2*sd
-ub <- mean + 2*sd
+mu <- 0.8
+sigma <- 0.088
+lb <- mu - 2 * sigma
+ub <- mu + 2 * sigma
+prob <- pnorm(2) - pnorm(-2)
 
-x <- seq(-4,4, length = 100) * sd + mean
-hx <- dnorm(x, mean, sd)
+shade_data <- tibble(x = seq(lb, ub, length.out = 100)) |>
+  mutate(y = dnorm(x, mu, sigma))
 
-plot(x, hx, type="n", xlab="", ylab="",
-     main="Range of 2 standard errors of the mean", axes = FALSE)
-
-i <- x >= lb & x <= ub
-
-lines(x, hx)
-
-polygon(c(lb,x[i],ub), c(0,hx[i],0), col="blue")
-
-area <- pnorm(ub, mean, sd) - pnorm(lb, mean, sd)
-result <- paste("P( -2 SE < x > 1 SE ) =", round(area, 2))
-mtext(result,3)
-axis(1, at = round(seq(min, max, sd), 2), pos = 0)
+ggplot(data = tibble(x = c(mu - 4*sigma, mu + 4*sigma)), aes(x = x)) +
+  stat_function(fun = dnorm, args = list(mean = mu, sd = sigma)) +
+  geom_area(data = shade_data, aes(x = x, y = y), fill = "steelblue", alpha = 0.6) +
+  ggplot2::annotate("text", x = mu, y = dnorm(mu, mu, sigma) * 0.5,
+           label = paste0("P(-2 SE < X < 2 SE) = ", round(prob, 2)), size = 4) +
+  labs(x = "Proportion", y = "Density", title = "Range of 2 Standard Errors (95% CI)")
 ```
 
 In R it would be:
@@ -526,41 +510,36 @@ Several things should make noise to us so far. First, the range so large, from 6
 If, on the contrary, the result was tighter, for example $p=55\%$, such a wide range would not serve us. Let's see how it would be:
 
 ```{r eval=TRUE}
-plot(p, SE_avg, ylim = c(0, 0.12))
+coord_x <- 0.55
+coord_y <- sqrt(coord_x * (1 - coord_x)) / sqrt(n)
 
-coord_x <- 0.55 # Value on X axis
-coord_y <- max(SE_avg[p >= coord_x]) # Value on Y axis for value x
-
-# Add vertical and horizontal reference line
-abline(h = coord_y, v = coord_x, col = "blue", lty = 2)
+tibble(p = p, SE_avg = SE_avg) |>
+  ggplot(aes(x = p, y = SE_avg)) +
+  geom_point(color = "steelblue") +
+  geom_hline(yintercept = coord_y, linetype = "dashed", color = "blue") +
+  geom_vline(xintercept = coord_x, linetype = "dashed", color = "blue") +
+  coord_cartesian(ylim = c(0, 0.12)) +
+  labs(x = "Proportion (p)", y = "Standard Error", title = "SE at p = 55%")
 ```
 
 If the real voting intention was $55\%$ we would have an expected value of the average $E[\overline{X}]=p=55\%$ and a corresponding standard error of the average $SE[\overline{X}]=11\%$. Again, by Central Limit Theorem we can calculate a range of **two standard errors** around $55\%$:
 
 ```{r eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE}
-mean <- 0.55
-sd <- 0.111
-min <- mean - 4*sd
-max <- mean + 4*sd
-lb <- mean - 2*sd
-ub <- mean + 2*sd
+mu <- 0.55
+sigma <- 0.111
+lb <- mu - 2 * sigma
+ub <- mu + 2 * sigma
+prob <- pnorm(2) - pnorm(-2)
 
-x <- seq(-4,4, length = 100) * sd + mean
-hx <- dnorm(x, mean, sd)
+shade_data <- tibble(x = seq(lb, ub, length.out = 100)) |>
+  mutate(y = dnorm(x, mu, sigma))
 
-plot(x, hx, type="n", xlab="", ylab="",
-     main="Range of 2 standard errors of the mean", axes = FALSE)
-
-i <- x >= lb & x <= ub
-
-lines(x, hx)
-
-polygon(c(lb,x[i],ub), c(0,hx[i],0), col="blue")
-
-area <- pnorm(ub, mean, sd) - pnorm(lb, mean, sd)
-result <- paste("P( -2 SE < x > 1 SE ) =", round(area, 2))
-mtext(result,3)
-axis(1, at = round(seq(min, max, sd), 2), pos = 0)
+ggplot(data = tibble(x = c(mu - 4*sigma, mu + 4*sigma)), aes(x = x)) +
+  stat_function(fun = dnorm, args = list(mean = mu, sd = sigma)) +
+  geom_area(data = shade_data, aes(x = x, y = y), fill = "steelblue", alpha = 0.6) +
+  ggplot2::annotate("text", x = mu, y = dnorm(mu, mu, sigma) * 0.5,
+           label = paste0("P(-2 SE < X < 2 SE) = ", round(prob, 2)), size = 4) +
+  labs(x = "Proportion", y = "Density", title = "Range of 2 SE at p = 55% (n = 20)")
 ```
 
 The calculation of the probability of being in that range in R would be the same because we continue in the range of 2 standard errors. Therefore the probability would be the same.
@@ -584,20 +563,27 @@ n <- 500
 p <- seq(0, 1, length = 100)
 SE_avg <- sqrt(p*(1-p))/sqrt(n)
 
-plot(p, SE_avg, ylim = c(0, 0.12))
+tibble(p = p, SE_avg = SE_avg) |>
+  ggplot(aes(x = p, y = SE_avg)) +
+  geom_point(color = "steelblue") +
+  coord_cartesian(ylim = c(0, 0.12)) +
+  labs(x = "Proportion (p)", y = "Standard Error", title = "SE vs Proportion (n = 500)")
 
 ```
 
 This sample gives us smaller standard errors. For example, if the real proportion of voters of the Blue party was $p=55\%$ we would have $E[\overline{X}]=p=55\%$ and a $SE[\overline{X}]=2.2\%$:
 
 ```{r eval=TRUE}
-plot(p, SE_avg, ylim = c(0, 0.12))
+coord_x <- 0.55
+coord_y <- sqrt(coord_x * (1 - coord_x)) / sqrt(n)
 
-coord_x <- 0.55 # Value on X axis
-coord_y <- max(SE_avg[p >= coord_x]) # Value on Y axis for value x
-
-# Add vertical and horizontal reference line
-abline(h = coord_y, v = coord_x, col = "blue", lty = 2)
+tibble(p = p, SE_avg = SE_avg) |>
+  ggplot(aes(x = p, y = SE_avg)) +
+  geom_point(color = "steelblue") +
+  geom_hline(yintercept = coord_y, linetype = "dashed", color = "blue") +
+  geom_vline(xintercept = coord_x, linetype = "dashed", color = "blue") +
+  coord_cartesian(ylim = c(0, 0.12)) +
+  labs(x = "Proportion (p)", y = "Standard Error", title = "SE at p = 55% (n = 500)")
 ```
 
 If we now calculate a range of two standard errors around $55\%$ we would have a range that goes from $50.6\%$ to $59.4\%$. Again, interpretation is that the mean that we find in our random survey has a 95% probability of being in that range.
@@ -606,12 +592,15 @@ We see then that this theoretical prediction, the standard error, becomes smalle
 
 ```{r eval=TRUE}
 p <- 0.5
-n <- seq(20, 5000, 20) # number of surveys increases by 20.
+n <- seq(20, 5000, 20)
 SE_avg <- sqrt(p*(1-p)/n)
 
-plot(n, SE_avg)
-
-abline(h = 0.015, v = 1000, col = "blue", lty = 2) # Add vertical and horizontal reference line
+tibble(n = n, SE_avg = SE_avg) |>
+  ggplot(aes(x = n, y = SE_avg)) +
+  geom_line(color = "steelblue") +
+  geom_hline(yintercept = 0.015, linetype = "dashed", color = "blue") +
+  geom_vline(xintercept = 1000, linetype = "dashed", color = "blue") +
+  labs(x = "Sample Size (n)", y = "Standard Error", title = "SE vs Sample Size (p = 50%)")
 
 ```
 
@@ -656,25 +645,16 @@ With this we would have that from a sample of 1100 people, we have estimated 56%
 Finally, let's see examples of the different surveys conducted in April and early May 2020 to measure voting intentions in the US.
 
 ```{r, echo=FALSE, fig.alt="Table of US election polls from April-May 2020 showing sample sizes, margins of error, and candidate percentages"}
-knitr::include_graphics(file.path(img_path, "04-statistics", "encuesta-EEUU.png"))
+knitr::include_graphics(file.path(img_path, "04-statistics", "polls-us.png"))
 ```
 
 We see as columns:
 
-* **Poll**: Surveying company that conducted the study (Encuesta)
-* **Date**: Date of the survey (Fecha)
-* **Sample**: Number of respondents varying by pollster (Muestra)
-* **MoE**: Margin of error
-* **Candidates**: Candidates for the presidency. Their percentages do not sum 100% because blanks and nulls are omitted.
-* **Spread**: This is the estimation of by how much one candidate beats the other (Propagación).
+The table columns provide key details about each survey. The **Poll** column identifies the surveying company, while **Date** indicates when the survey was conducted. **Sample** shows the number of respondents, which varies by pollster, and **MoE** represents the margin of error. The **Candidates** columns display the backing for each presidential contender (note that percentages may not sum to 100% due to checking for blank or null votes). Finally, **Spread** estimates the lead one candidate holds over the other.
 
 If, on the other hand, we ask ourselves why larger surveys are not done, for example 50,000 people, the reason is that:
 
-1. The cost of surveying 50 thousand people is very expensive.
-2. Parameter estimation is a theoretical prediction, if we give a very small margin of error our results could be misinterpreted as absolute truths when we know that:
-2.1 Every person can change their opinion and we are only taking a snapshot of the moment.
-2.2 No matter how much effort is put in, no survey is totally random or they are not done in rural areas.
-2.3 We could survey people who say they will go to vote, but finally they will not do so, etc.
+You might wonder why we rely on smaller samples instead of surveying, say, 50,000 people. The primary constraint is cost; reaching such a large audience is prohibitively expensive. Furthermore, parameter estimation is inherently theoretical—providing a razor-thin margin of error implies a false sense of absolute certainty. In reality, voter opinions are fluid, no survey is perfectly random (often missing rural populations), and respondents who claim they will vote might ultimately stay home.
 
 ### Confidence Intervals
 Confidence intervals are a very useful concept widely used by Data Scientists. However, it is nothing more than another way of expressing what we have already learned so far.
@@ -796,6 +776,84 @@ $SE[\overline{X}]=\frac{\sigma}{\sqrt{n}}$
 
 Where $\overline{X}$ is the average of our random sample and $n$ is the sample size.
 
+### Example: Estimating Average Height
+
+Let's apply this to a real-world scenario. Suppose we want to estimate the average height of adult males in a population, but we can only measure a sample of 50 people.
+
+Using the `heights` dataset from `dslabs`, let's simulate this process:
+
+```{r eval=TRUE}
+# Load the heights data
+data(heights)
+
+# Our "population" (in reality, we wouldn't have access to this)
+population <- heights |>
+  filter(sex == "Male") |>
+  mutate(height_cm = height * 2.54) |>  # Convert to cm
+  pull(height_cm)
+
+# True population parameters (unknown in real life)
+true_mean <- mean(population)
+true_sd <- sd(population)
+
+cat("True population mean:", round(true_mean, 2), "cm\n")
+cat("True population SD:", round(true_sd, 2), "cm\n")
+```
+
+Now let's take a random sample and build a 95% confidence interval:
+
+```{r eval=TRUE}
+set.seed(42)  # For reproducibility
+n <- 50  # Sample size
+
+# Take a random sample
+sample_heights <- sample(population, n, replace = FALSE)
+
+# Sample statistics
+sample_mean <- mean(sample_heights)
+sample_sd <- sd(sample_heights)
+
+# Standard error of the mean
+SE <- sample_sd / sqrt(n)
+
+# 95% Confidence interval (2 standard errors)
+ci_lower <- sample_mean - 2 * SE
+ci_upper <- sample_mean + 2 * SE
+
+cat("Sample mean:", round(sample_mean, 2), "cm\n")
+cat("Standard error:", round(SE, 2), "cm\n")
+cat("95% CI: [", round(ci_lower, 2), ",", round(ci_upper, 2), "] cm\n")
+cat("Does CI contain true mean?", ci_lower <= true_mean & true_mean <= ci_upper, "\n")
+```
+
+Let's visualize this with a Monte Carlo simulation to verify that our confidence intervals work as expected:
+
+```{r eval=TRUE}
+set.seed(123)
+n_simulations <- 1000
+n <- 50
+
+results <- tibble(
+  sim_id = 1:n_simulations
+) |>
+  mutate(
+    sample_data = map(sim_id, ~ sample(population, n, replace = FALSE)),
+    sample_mean = map_dbl(sample_data, mean),
+    sample_sd = map_dbl(sample_data, sd),
+    SE = sample_sd / sqrt(n),
+    ci_lower = sample_mean - 2 * SE,
+    ci_upper = sample_mean + 2 * SE,
+    contains_true = ci_lower <= true_mean & true_mean <= ci_upper
+  )
+
+# Proportion of CIs that contain the true mean
+cat("Proportion of 95% CIs containing true mean:", 
+    round(mean(results$contains_true), 3), "\n")
+```
+
+This confirms that approximately 95% of our confidence intervals capture the true population mean—exactly as the theory predicts!
+
+
 `r if(params$hidden){"<!--"}`
 
 ## Exercises
@@ -807,7 +865,7 @@ library(dslabs)
 data(heights)
 ```
 
-`r ne`. Create the vector `x` to extract the heights data of each person. Then report the average and standard deviation of our population. Remember to convert height to meters
+`r ne`. Create a vector named `x` to extract the height data for all individuals in the dataset. Then, report the population's average and standard deviation, ensuring you convert the heights to meters first.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -833,7 +891,7 @@ sd(x)
 
 > Most of the time we will not have access to the mean and standard deviation of the population because it is very large and highly expensive.
 
-`r ne`. Let's assume we do not have access to the population. We can only obtain a random sample of 100 people. Create a random sample with replacement and store these values in the vector called `X`. With the data from your sample, build a 95% confidence interval to estimate the average of the population.
+`r ne`. Assume we cannot access the entire population and can only obtain a random sample of 100 people. Simulate this by creating a random sample with replacement from `x`, storing the values in a vector called `X`. Using this sample data, construct a 95% confidence interval to estimate the population average.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -857,7 +915,7 @@ ic <- c(mean(X) - 2*se, mean(X) + 2*se)
 ```
 </details>
 
-`r ne`. Using Monte Carlo simulation, repeat this sampling about 10 thousand times and validate the percentage of times that the confidence interval you generate from your sample includes the true population value.
+`r ne`. Validate your estimation method using a Monte Carlo simulation. Repeat the sampling process 10,000 times and calculate the percentage of expected confidence intervals that successfully capture the true population mean.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -866,20 +924,21 @@ inc(params$hidden, ne)
 <details>
   <summary type="button">Solution</summary>
 ```{r eval=FALSE}
-promedio_real <- mean(x)
+true_mean <- mean(x)
 
 N <- 100
-num_veces <- 10000
+n_times <- 10000
 
-simulacion <- replicate(num_veces, {
+set.seed(2025)
+simulation <- replicate(n_times, {
   X <- sample(x, N, replace = TRUE)
   se <- sd(X)/sqrt(N)
-  inferior <- mean(X) - 2*se
-  superior <- mean(X) + 2*se
-  between(promedio_real, inferior, superior)
+  lower <- mean(X) - 2*se
+  upper <- mean(X) + 2*se
+  between(true_mean, lower, upper)
 })
 
-mean(simulacion)
+mean(simulation)
 
 ``` 
 </details>

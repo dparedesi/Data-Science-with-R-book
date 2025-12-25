@@ -10,6 +10,8 @@ When analyzing this data, all these records have to be pre-processed. That is, t
 
 In the following chapters, we will see several common steps of the Data Wrangling process such as Importing data into R from files, converting data to tidy type, string processing, html processing, date and time formatting, and text mining.
 
+In this section, we will master the essential skills for getting data into R and reshaping it for analysis. We will start by learning how to **import data** from diverse sources, including CSV files, Excel spreadsheets, and web pages. Once loaded, we will explore how to **transform** data between "wide" and "tidy" (long) formats using `pivot_longer()` and `pivot_wider()`, ensuring our data is structured correctly for visualization and modeling. We will also cover how to **combine multiple datasets** using the powerful family of join functions (`left_join()`, `inner_join()`, etc.). Finally, we will delve into specialized processing techniques, including **web scraping**, **string manipulation** with regular expressions, **date conversion** with `lubridate`, and the fundamentals of **text mining** to extract insights from unstructured text.
+
 # Data import and consolidation
 
 ## Importing from files
@@ -26,11 +28,13 @@ getwd()
 This is the path where we can place our files to load them. If we want to load data from another folder we can change the working directory using `setwd()`.
 
 ```{r eval=FALSE}
-setwd("c:/Documents/Proyectos/Archivos para R")
+setwd("c:/Documents/Projects/R Files")
 
 getwd()
-#> [1] "c:/Documents/Proyectos/Archivos para R"
+#> [1] "c:/Documents/Projects/R Files"
 ```
+
+> **Note**: While `setwd()` works, it is generally discouraged in reproducible workflows because it creates absolute paths that break when code is shared or moved. Consider using **RStudio Projects** combined with the `here` package, which provides `here::here()` to construct relative paths that work across different systems.
 
 For practical purposes, we are going to use a file already available in one of the previously installed packages, `dslabs`, when we analyzed the danger level to decide which US state to travel to. To do this, we can use the `system.file()` function and determine the path where the `dslabs` package was installed.
 
@@ -87,7 +91,7 @@ library(readxl)
 The functions we will use the most will be `read_csv()` and `read_excel()`. The latter supports .xls and .xlsx extensions.
 
 ```{r eval=TRUE}
-data_df <- read_csv("murders.csv")
+data_df <- read_csv("murders.csv", show_col_types = FALSE)
 
 # Once imported we can remove the file if we wish
 file.remove("murders.csv")
@@ -105,21 +109,17 @@ The same syntax and logic would apply for importing an excel file. In this case 
 
 ```{r eval=FALSE}
 excel_example_path <- file.path(dslabs_path, "2010_bigfive_regents.xls")
-data_df_de_excel <- read_excel(excel_example_path)
+data_df_from_excel <- read_excel(excel_example_path)
 ```
 
 **readr** gives us 7 different types of functions for importing flat files:
 
-Table: (\#tab:date-format) readr functions for importing files
+The `readr` package provides a versatile suite of functions for importing flat files, each tailored to a specific delimiter or format. The most common is **`read_csv()`**, designed for comma-separated values. For tab-separated files, we use **`read_tsv()`**, while **`read_delim()`** offers a general-purpose solution for files with custom delimiters (like semicolons or pipes). Other specialized functions include **`read_fwf()`** for fixed-width files, **`read_table()`** for whitespace-separated columns, and **`read_log()`** for parsing standard web server logs.
 
-|Function     |Usage                                                           |
-|:------------|:---------------------------------------------------------------|
-|`read_csv()`   |Comma separated files|
-|`read_tsv()`  |Tab separated files|
-|`read_delim()`  |General delimited files|
-|`read_fwf()`  |Fixed width files|
-|`read_table()`  |Tabular files where columns are separated by white space|
-|`read_log()`  |Web log files|
+> **Tip**: For files that use semicolons as delimiters (common in European locales), use `read_csv2()` or `read_delim()` with `delim = ";"`. Also, if you encounter import issues, use `problems(data_df)` after importing to diagnose parsing errors.
+
+> [!TIP]
+> **Clean Column Names**: Interpreted data often has column names with spaces or capital letters (e.g., "Customer ID"). We highly recommend piping your data into `janitor::clean_names()` immediately after reading it to standardize everything to `snake_case` (e.g., "customer_id").
 
 ### Importing files from the internet
 We have seen how we can enter the full path to load a file directly from another source different from our working directory. In the same way, if we have a file in an internet path we can pass it directly to R since `read_csv()` and the other **readr** import functions support URL input as a parameter.
@@ -129,8 +129,8 @@ Here we see the import of grades from students of the Data Science with R course
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
 ##### Example 1:
 # Historical grades data
-url <- "https://dparedesi.github.io/DS-con-R/grades-estudiantes.csv"
-grades <- read_csv(url)
+url <- "https://dparedesi.github.io/DS-with-R-datasets/student-grades.csv"
+grades <- read_csv(url, show_col_types = FALSE)
 
 ```
 
@@ -165,7 +165,7 @@ We could also extract updated Covid-19 information.
 ##### Example 2:
 # Covid-19 Data
 url <- "https://covid.ourworldindata.org/data/owid-covid-data.csv"
-internet_data <- read_csv(url)
+internet_data <- read_csv(url, show_col_types = FALSE)
 
 internet_data |> 
   arrange(desc(date)) |> 
@@ -190,7 +190,7 @@ We notice that each row is an observation and each column represents a variable.
 ```{r eval=TRUE}
 fertility_path <- file.path(dslabs_path, "fertility-two-countries-example.csv")
 
-wide_data <- read_csv(fertility_path)
+wide_data <- read_csv(fertility_path, show_col_types = FALSE)
 
 wide_data
 ```
@@ -251,9 +251,9 @@ tidy_data |>
 In the cases described above we had a situation with relatively ordered data. We only had to do a collection transformation and converted to _tidy data_. However, the data is not always stored in such an easily interpretable way. Sometimes we have data like this:
 
 ```{r eval=TRUE}
-ruta <- file.path(dslabs_path, "life-expectancy-and-fertility-two-countries-example.csv")
+path <- file.path(dslabs_path, "life-expectancy-and-fertility-two-countries-example.csv")
 
-data <- read_csv(ruta)
+data <- read_csv(path, show_col_types = FALSE)
 
 data |> 
   select(1:5) #Report first 5 columns
@@ -271,7 +271,7 @@ We will use the `separate()` function to separate a column into multiple columns
 ```{r eval=TRUE}
 data |> 
   pivot_longer(cols = -country, names_to = "key_col", values_to = "value_col") |> 
-  separate(key_col, c("año", "other_var"), sep="_", extra = "merge")
+  separate(key_col, c("year", "other_var"), sep="_", extra = "merge")
 ```
 
 We already have the year separated, but this data is still not _tidy data_ since there is a row for fertility and a row for life expectancy for each country. We have to pass these values from row to columns. And for that we already learned that we can use the `pivot_wider()` function
@@ -279,7 +279,7 @@ We already have the year separated, but this data is still not _tidy data_ since
 ```{r eval=TRUE}
 data |> 
   pivot_longer(cols = -country, names_to = "key_col", values_to = "value_col") |> 
-  separate(key_col, c("año", "other_var"), sep="_", extra = "merge") |> 
+  separate(key_col, c("year", "other_var"), sep="_", extra = "merge") |> 
   pivot_wider(names_from = other_var, values_from = value_col)
 ```
 
@@ -289,7 +289,7 @@ In other cases, instead of separating a column we will want to join them. In fut
 
 ## Exercises
 
-`r ne`. Explore the following file: https://dparedesi.github.io/DS-con-R/uber_peru_2010.csv and import it into the `uber_peru_2010` object.
+`r ne`. Access the **Uber Peru 2010** dataset from [this link](https://dparedesi.github.io/DS-with-R-datasets/uber-peru-2010.csv) and attempt to import it into an object named `uber_peru_2010`. Pay attention to the delimiters used in the file.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -298,17 +298,17 @@ inc(params$hidden, ne)
 <details>
   <summary type="button">Solution</summary>
 ```{r eval=FALSE}
-url <- "https://dparedesi.github.io/DS-con-R/uber_peru_2010.csv"
+url <- "https://dparedesi.github.io/DS-with-R-datasets/uber-peru-2010.csv"
 
 # We will use read_csv since it is separated by commas
-uber_peru_2010 <- read_csv(url)
+uber_peru_2010 <- read_csv(url, show_col_types = FALSE)
 
 # Upon importing it we realize it is separated by ";"
 uber_peru_2010 |> 
   head()
 
 # Therefore we import again using read_delim
-uber_peru_2010 <- read_delim("external/uber_peru_2010.csv", 
+uber_peru_2010 <- read_delim("external/uber-peru-2010.csv", 
                              delim = ";", 
                              col_types = cols(.default = "c")
                              )
@@ -320,7 +320,7 @@ uber_peru_2010 |>
 </details>
 
 
-`r ne`. Explore the following file: https://www.datosabiertos.gob.pe/sites/default/files/DATASET_SINADEF.csv and import it into the `deaths` object.
+`r ne`. Import the **SINADEF** deaths registry from [this source](https://www.datosabiertos.gob.pe/sites/default/files/sinadef-deaths.csv) into an object called `deaths`. Ensure you handle the file encoding correctly to avoid character issues.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -329,8 +329,8 @@ inc(params$hidden, ne)
 <details>
   <summary type="button">Solution</summary>
 ```{r eval=FALSE}
-url <- "https://www.datosabiertos.gob.pe/sites/default/files/DATASET_SINADEF.csv"
-url <- "https://dparedesi.github.io/DS-con-R/DATASET_SINADEF.csv"
+url <- "https://www.datosabiertos.gob.pe/sites/default/files/sinadef-deaths.csv"
+url <- "https://dparedesi.github.io/DS-with-R-datasets/sinadef-deaths.csv"
 
 # We will use read_delim because it is delimited by ";" and not by ","
 # Also we change the encoding to avoid error in loading
@@ -340,7 +340,7 @@ deaths <- read_delim(url, ";",
 </details>
 
 
-`r ne`. Download the file "https://dparedesi.github.io/DS-con-R/resources-other-idd.xlsx" and load the "Deflators" tab to the `data` object.
+`r ne`. Download the resource file from [this link](https://dparedesi.github.io/DS-with-R-datasets/resources-other-idd.xlsx) to a temporary location. Validating that the file exists, load the specific sheet named "Deflators" into an object named `data`.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -350,7 +350,7 @@ inc(params$hidden, ne)
   <summary type="button">Solution</summary>
 ```{r eval=FALSE}
 # Store the url
-url <- "https://dparedesi.github.io/DS-con-R/resources-other-idd.xlsx"
+url <- "https://dparedesi.github.io/DS-with-R-datasets/resources-other-idd.xlsx"
 
 # Create a temporary name & path for our file. See: ?tempfile
 temp_file <- tempfile()
@@ -370,24 +370,24 @@ For the following files run the following code so that you have access to the ob
 
 ```{r eval=FALSE}
 # GDP by countries
-url <- "https://dparedesi.github.io/DS-con-R/pbi.csv"
-pbi <- read_csv(url)
+url <- "https://dparedesi.github.io/DS-with-R-datasets/gdp.csv"
+gdp <- read_csv(url, show_col_types = FALSE)
 
 # Diseases by years by countries
-url <- "https://dparedesi.github.io/DS-con-R/enfermedades-evolutivo.csv"
-enfermedades_wide <- read_csv(url)
+url <- "https://dparedesi.github.io/DS-with-R-datasets/diseases-evolution.csv"
+diseases_wide <- read_csv(url, show_col_types = FALSE)
 
 # Number of female mayors
-url <- "https://dparedesi.github.io/DS-con-R/alcaldes-mujeres.csv"
-alcaldes_mujeres <- read_csv(url)
+url <- "https://dparedesi.github.io/DS-with-R-datasets/female-mayors.csv"
+female_mayors <- read_csv(url, show_col_types = FALSE)
 
 # Evolution of a university
-url <- "https://dparedesi.github.io/DS-con-R/universidad.csv"
-universidad <- read_csv(url)
+url <- "https://dparedesi.github.io/DS-with-R-datasets/university.csv"
+university <- read_csv(url, show_col_types = FALSE)
 
 ```
 
-`r ne`. Explore the `pbi` (GDP) object and convert it to _tidy data_. Then show a line graph differentiating the evolution of each country's GDP.
+`r ne`. Examine the structure of the `gdp` dataset. Transform it into a *tidy* format suitable for analysis, and then create a line plot visualizing the evolution of GDP over time for each country.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -397,22 +397,22 @@ inc(params$hidden, ne)
   <summary type="button">Solution</summary>
 ```{r eval=FALSE}
 # To tidy data
-pbi <- pbi |> 
-  pivot_longer(cols = -pais, names_to = "año", values_to = "pbi",
-               names_transform = list(año = as.integer))
+gdp <- gdp |> 
+  pivot_longer(cols = -country, names_to = "year", values_to = "gdp",
+               names_transform = list(year = as.integer))
 
-pbi
+gdp
 
 # Visualization
-pbi |> 
+gdp |> 
   ggplot() +
-  aes(año, pbi, color=pais) +
+  aes(year, gdp, color=country) +
   geom_line()
 
 ```
 </details>
 
-`r ne`. Explore the `enfermedades_wide` object and convert it to _tidy data_.
+`r ne`. The `diseases_wide` object contains disease counts in a wide format. Reshape this dataframe into a *tidy* structure where the specific diseases are consolidated into a single column.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -422,21 +422,21 @@ inc(params$hidden, ne)
   <summary type="button">Solution</summary>
 ```{r eval=FALSE}
 # Solution
-enfermedades_1 <- enfermedades_wide |> 
-  pivot_longer(cols = c(-pais, -año, -poblacion), names_to = "enfermedad", values_to = "cantidad")
+diseases_1 <- diseases_wide |> 
+  pivot_longer(cols = c(-country, -year, -population), names_to = "disease", values_to = "count")
 
-enfermedades_1
+diseases_1
 
 # Alternative solution. Instead of indicating what to omit, we indicate what to take into account
-enfermedades_2 <- enfermedades_wide |> 
-  pivot_longer(cols = HepatitisA:Rubeola, names_to = "enfermedad", values_to = "cantidad")
+diseases_2 <- diseases_wide |> 
+  pivot_longer(cols = HepatitisA:Rubella, names_to = "disease", values_to = "count")
 
-enfermedades_2
+diseases_2
 
 ```
 </details>
 
-`r ne`. Explore the `alcaldes_mujeres` object and then convert it to _tidy data_
+`r ne`. Convert the `female_mayors` dataset, which is currently in a long format, into a *wide* format where the variables are spread across columns.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -445,13 +445,13 @@ inc(params$hidden, ne)
 <details>
   <summary type="button">Solution</summary>
 ```{r eval=FALSE}
-alcaldes_mujeres <- alcaldes_mujeres |> 
+female_mayors <- female_mayors |> 
   pivot_wider(names_from = variable, values_from = total)
 
 ```
 </details>
 
-`r ne`. Explore the `universidad` object and then convert it to _tidy data_
+`r ne`. The `university` dataset is untidy. Reshape it by first pivoting longer to gather variables, separating the combined variable names, and then pivoting wider to achieve a final tidy structure.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -460,12 +460,12 @@ inc(params$hidden, ne)
 <details>
   <summary type="button">Solution</summary>
 ```{r eval=FALSE}
-universidad <- universidad |> 
-  pivot_longer(cols = -semestre, names_to = "variable", values_to = "valor") |> 
-  separate(variable, c("nombre", "variable2"), sep="_") |> 
-  pivot_wider(names_from = variable2, values_from = valor)
+university <- university |> 
+  pivot_longer(cols = -semester, names_to = "variable", values_to = "value") |> 
+  separate(variable, c("name", "variable2"), sep="_") |> 
+  pivot_wider(names_from = variable2, values_from = value)
 
-universidad
+university
 ```
 </details>
 
@@ -483,46 +483,37 @@ library(dplyr)
 
 This library includes a variety of functions to combine tables.
 
-Table: (\#tab:date-format) List of join functions
-
-|Function     |Usage                                                           |
-|:------------|:---------------------------------------------------------------|
-|`left_join()`   |Only keeps rows that have information in the first table.|
-|`right_join()`  |Only keeps rows that have information in the second table.|
-|`inner_join()`  |Only keeps rows that have information in both tables.    |
-|`full_join()`   |Keeps all rows from both tables.                      |
-|`semi_join()`   |Keeps the part of the first table for which we have information in the second.|
-|`anti_join()`   |Keeps the elements of the first table for which there is no information in the second.|
+The `dplyr` package offers a family of join functions to combine tables based on common keys. The most frequently used is **`left_join()`**, which preserves all rows from the first (left) table and appends matching data from the second. Conversely, **`right_join()`** keeps all rows from the second table. **`inner_join()`** is more restrictive, retaining only the rows that have matching keys in *both* tables, effectively filtering for the intersection. **`full_join()`** does the opposite, keeping *all* rows from both tables and filling missing values with `NA`. Finally, filtering joins like **`semi_join()`** (keeps rows in the first table that match the second) and **`anti_join()`** (keeps rows in the first table that do *not* match the second) are excellent for data validation and filtering without adding new columns.
 
 To see the join functions with examples we will use the following files:
 
 ```{r eval=TRUE, message=FALSE}
-url_1 <- "https://dparedesi.github.io/DS-con-R/j_tarjeta.csv"
-url_2 <- "https://dparedesi.github.io/DS-con-R/j_cliente.csv"
+url_1 <- "https://dparedesi.github.io/DS-with-R-datasets/join-card.csv"
+url_2 <- "https://dparedesi.github.io/DS-with-R-datasets/join-customer.csv"
 
-data_1_tarjetas <- read_csv(url_1, col_types = cols(dni = col_character()))
-data_2_clientes <- read_csv(url_2, col_types = cols(dni = col_character()))
+card_data_1 <- read_csv(url_1, col_types = cols(id = col_character()))
+customer_data_2 <- read_csv(url_2, col_types = cols(id = col_character()))
 
-data_1_tarjetas
+card_data_1
 
-data_2_clientes
+customer_data_2
 
 ```
 
 #### Left join
-Given two tables with the same identifier (in our case our identifier consists only of a single column: DNI), the left join function maintains the information of the first table and completes it with the data that crosses in the second table
+Given two tables with the same identifier (in our case our identifier consists only of a single column: ID), the left join function maintains the information of the first table and completes it with the data that crosses in the second table
 
 ```{r eval=TRUE}
-left_join(data_1_tarjetas, data_2_clientes, by = c("dni"))
+left_join(card_data_1, customer_data_2, by = c("id"))
 ```
 
-As we can see, the first three columns are exactly the same as we initially had and to the right of those columns we see the columns of the other table for the values ​​that did cross the data. In this case we are facing a data inconsistency since all customers of `data_1_tarjetas` should be in `data_2_clientes`. This inconsistency could lead us to have to map the data loss process, etc.
+As we can see, the first three columns are exactly the same as we initially had and to the right of those columns we see the columns of the other table for the values ​​that did cross the data. In this case we are facing a data inconsistency since all customers of `card_data_1` should be in `customer_data_2`. This inconsistency could lead us to have to map the data loss process, etc.
 
 #### Right join
 Given two tables with the same identifier, the right join function maintains the information of the second table and completes it with the data that crosses in the first table
 
 ```{r eval=TRUE}
-right_join(data_1_tarjetas, data_2_clientes, by = "dni")
+right_join(card_data_1, customer_data_2, by = "id")
 ```
 
 The idea is the same as in `left_join`, only this time the `NA` are in the first two columns.
@@ -531,28 +522,30 @@ The idea is the same as in `left_join`, only this time the `NA` are in the first
 In this case we will only have the intersection of the tables. Only the result of the data that are in both tables will be shown.
 
 ```{r eval=TRUE}
-inner_join(data_1_tarjetas, data_2_clientes, by = "dni")
+inner_join(card_data_1, customer_data_2, by = "id")
 ```
 
 #### Full join
 Full join is a total crossing of both. It shows us all the data that are in both the first and the second table.
 
 ```{r eval=TRUE}
-full_join(data_1_tarjetas, data_2_clientes, by = "dni")
+full_join(card_data_1, customer_data_2, by = "id")
 ```
+
+> **Tip**: To join on multiple columns, use a vector: `by = c("col1", "col2")`. To join on columns with different names, use named vectors: `by = c("left_col" = "right_col")`.
 
 #### Semi join
 The case of the semi join is very similar to `left_join` with the difference that it only shows us the columns of the first table and eliminates the data that did not manage to cross (what in `left_join` comes out as NA). Also, none of the columns of table 2 appear. This is like doing a filter requesting the following: show me only the data from table 1 that is also in table 2.
 
 ```{r eval=TRUE}
-semi_join(data_1_tarjetas, data_2_clientes, by = "dni")
+semi_join(card_data_1, customer_data_2, by = "id")
 ```
 
 #### Anti join
 In the case of `anti_join` we have the opposite of `semi_join` since it shows the data from table 1 that are **not** in table 2.
 
 ```{r eval=TRUE}
-anti_join(data_1_tarjetas, data_2_clientes, by = "dni")
+anti_join(card_data_1, customer_data_2, by = "id")
 ```
 
 ### Joining without a common identifier
@@ -562,46 +555,46 @@ Likewise, we will have some moments when we need to combine only two objects, wi
 If we have two or more vectors of the same size we can create the union of the columns to create a table using the `bind_cols()` function. Let's see with an example:
 
 ```{r eval=TRUE}
-vector_1 <- c("hola", "Has visto a", "el")
-vector_2 <- c("Julian", "Carla", "Miércoles")
+vector_1 <- c("hello", "Have you seen", "the")
+vector_2 <- c("Julian", "Carla", "Wednesday")
 
-resultado <- bind_cols(saludo = vector_1, sustantivos = vector_2)
+result <- bind_cols(greeting = vector_1, nouns = vector_2)
 
-resultado
+result
 ```
 
 #### Union of tables
 In the case of tables the use is the same. Likewise, we can also join the rows of two or more tables. To see its application let's first create some example tables:
 
 ```{r eval=TRUE}
-tabla_1 <- data.frame(
-  nombre = c("Jhasury", "Thomas", "Andres", "Josep"),
-  apellido = c("Campos", "Gonzales", "Santiago", "Villaverde"),
-  direccion = c("Jr. los campos 471", "Av. Casuarinas 142", NA, "Av. Tupac Amaru 164"),
-  telefono = c("976567325", "956732587", "961445664", "987786453")
+table_1 <- data.frame(
+  name = c("Jhasury", "Thomas", "Andres", "Josep"),
+  surname = c("Campos", "Gonzales", "Santiago", "Villaverde"),
+  address = c("Jr. los campos 471", "Av. Casuarinas 142", NA, "Av. Tupac Amaru 164"),
+  phone = c("976567325", "956732587", "961445664", "987786453")
 )
 
-tabla_2 <- data.frame(
-  edad = c(21, 24, 19, 12),
-  signo = c("Aries", "Capricornio", "Sagitario", "Libra")
+table_2 <- data.frame(
+  age = c(21, 24, 19, 12),
+  sign = c("Aries", "Capricorn", "Sagittarius", "Libra")
 )
 
-# Create a table from row 2 to 3 of table 1
-tabla_3 <- tabla_1[2:3, ]
+# Create a table from row 2 to 3 of table_1
+table_3 <- table_1[2:3, ]
 ```
 
 Once we have our tables let's proceed to join them. We see that they do not have a common identifier.
 
 ```{r eval=TRUE}
-resultado <- bind_cols(tabla_1, tabla_2)
-resultado
+result <- bind_cols(table_1, table_2)
+result
 ```
 
-Likewise, we can join by rows like this:
+or joining by rows like this:
 
 ```{r eval=TRUE}
-resultado <- bind_rows(tabla_1, tabla_3)
-resultado
+result <- bind_rows(table_1, table_3)
+result
 ```
 
 ## Web Scraping
@@ -612,47 +605,49 @@ library(tidyverse)
 library(rvest)
 ```
 
+> **Important**: When scraping websites, always respect the site's `robots.txt` file and terms of service. Avoid making excessive requests that could overload servers. For commercial use, consider whether the data is licensed or requires permission.
+
 The function we will use the most will be `read_html()` and as an argument we will place the url of the web from where we want to extract the data. We are not talking about a url that downloads a text file but a web page like this:
 
 ```{r, echo=FALSE, fig.alt="Wikipedia table of Hispanic countries by population"}
-knitr::include_graphics(file.path(img_path, "05-wrangling", "paises-hispanos.png"))
+knitr::include_graphics(file.path(img_path, "05-wrangling", "hispanic-countries.png"))
 ```
 
 Thus, we will use `read_html()` to store all the web html and then little by little access the table data in R.
 
 ```{r eval=TRUE}
-data_en_html <- read_html("https://es.wikipedia.org/wiki/Anexo:Pa%C3%ADses_hispanos_por_poblaci%C3%B3n")
+html_data <- read_html("https://es.wikipedia.org/wiki/Anexo:Pa%C3%ADses_hispanos_por_poblaci%C3%B3n")
 
-data_en_html
+html_data
 ```
 
 Now that we have the data stored in the object we have to go looking for the data, doing scraping. For this we will use the `html_nodes("table")` function to access the "table" node.
 
 ```{r eval=TRUE}
-tablas_web <- data_en_html |> 
-  html_nodes("table")
+web_tables <- html_data |> 
+  html_elements("table")
 
 ```
 
 Finally, we have to go index by index looking for the table that interests us. To give it table format we will use `html_table`. In this case we will use double brackets because it is a list of lists and the `setNames()` function to change the name of the columns.
 
 ```{r eval=TRUE}
-# We format as table and store in wide_tabla
-tabla_en_bruto <- tablas_web[[1]] |> 
+# We format as table and store in raw_table
+raw_table <- web_tables[[1]] |> 
   html_table()
 
 # Change header names
-tabla_en_bruto <- tabla_en_bruto |> 
+raw_table <- raw_table |> 
   setNames(
-  c("N", "pais", "poblacion", "prop_poblacion", "cambio_medio", "link")
+  c("N", "country", "population", "pop_prop", "avg_change", "link")
   )
 
 # Convert to tibble
-tabla_en_bruto <- tabla_en_bruto |> 
+raw_table <- raw_table |> 
   as_tibble()
 
 # Report first rows
-tabla_en_bruto |> 
+raw_table |> 
   head(5)
 ```
 
@@ -668,23 +663,23 @@ install.packages("Lahman")
 library(Lahman)
 
 # Top 10 players of the year 2016
-top_jugadores <- Batting |> 
+top_players <- Batting |> 
   filter(yearID == 2016) |>
   arrange(desc(HR)) |>    # sorted by number of "Home run"
   slice(1:10)    # Take from row 1 to 10
 
-top_jugadores <- top_jugadores |> as_tibble()
+top_players <- top_players |> as_tibble()
 
 # List of all baseball players from recent years
-maestra <- Master |> as_tibble()
+master <- Master |> as_tibble()
 
 # Awards won by players
-premios <- AwardsPlayers |>
+awards <- AwardsPlayers |>
   filter(yearID == 2016) |> 
   as_tibble()
 ```
 
-`r ne`. Using the `top_jugadores` object and the `Maestra` object, report the following fields `playerID`, `nameFirst`, `nameLast`, `HR` of the top 10 players of 2016.
+`r ne`. Using the `top_players` and `Master` datasets, join them to retrieve the `playerID`, first name, last name, and home runs (`HR`) for the top 10 players of 2016.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -693,14 +688,14 @@ inc(params$hidden, ne)
 <details>
   <summary type="button">Solution</summary>
 ```{r eval=FALSE}
-top_10 <- left_join(top_jugadores, maestra, by = "playerID") |> 
+top_10 <- left_join(top_players, master, by = "playerID") |> 
   select(playerID, nameFirst, nameLast, HR)
 
 top_10
 ```
 </details>
 
-`r ne`. Report the ID and names of the top 10 players who have won at least one prize, `premios` object, in 2016.
+`r ne`. Identify the **intersection** of top players and award winners. List the ID and names of the top 10 players from 2016 who also won at least one award that year.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -709,11 +704,11 @@ inc(params$hidden, ne)
 <details>
   <summary type="button">Solution</summary>
 ```{r eval=FALSE}
-semi_join(top_10, premios, by = "playerID")
+semi_join(top_10, awards, by = "playerID")
 ```
 </details>
 
-`r ne`. Report the ID and names of the players who won at least one prize in 2016, but are not part of the top 10.
+`r ne`. Find the players who won awards in 2016 but did **not** make it into the top 10 list. Report their IDs and names.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -723,22 +718,22 @@ inc(params$hidden, ne)
   <summary type="button">Solution</summary>
 ```{r eval=FALSE}
 # First we calculate all prizes of those who are not top 10:
-ID_de_premiados_no_top <- anti_join(premios, top_10, by = "playerID") |> 
+non_top_award_ids <- anti_join(awards, top_10, by = "playerID") |> 
   select(playerID)
 
 # As a player could have obtained several prizes we obtain unique values
-ID_de_premiados_no_top <- unique(ID_de_premiados_no_top)
+non_top_award_ids <- unique(non_top_award_ids)
 
 # Then we cross with the master to obtain the names
-nombres_de_otros <- left_join(ID_de_premiados_no_top, maestra, by = "playerID") |> 
+other_names <- left_join(non_top_award_ids, master, by = "playerID") |> 
   select(playerID, nameFirst, nameLast)
 
-nombres_de_otros
+other_names
 
 ```
 </details>
 
-`r ne`. Store the tables from the following web page: http://www.stevetheump.com/Payrolls.htm which contains the payroll that each US baseball team pays as of February 2020 in the `html` object. Then, access the nodes using `html_nodes("table")` and store it in the `nodos` object. Finally, report node 4 in `html_table` format.
+`r ne`. Scrape the MLB payroll data from `http://www.stevetheump.com/Payrolls.htm`. Store the entire page html, extract the tables, and specifically isolate the fourth table (`node 4`), formatting it as a data frame.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -750,15 +745,15 @@ inc(params$hidden, ne)
 url <- "http://www.stevetheump.com/Payrolls.htm"
 html <- read_html(url)
 
-nodos <- html |> 
-  html_nodes("table")
+nodes <- html |> 
+  html_elements("table")
 
-nodos[[4]] |> 
+nodes[[4]] |> 
   html_table()
 ```
 </details>
 
-`r ne`. From the `nodos` object created in the previous exercise, store node 4 in the `planilla_2019` object and node 5 in the `planilla_2018` object. Now format both tables so that the headers are: equipo (team), planilla_2019 or planilla_2018 according to the table. Finally, do a crossing of both tables by team name using `full_join()`.
+`r ne`. Using the scraped tables, prepare the 2019 payroll (node 4) and 2018 payroll (node 5) data. Standardize the column names to `team`, `payroll_2019`, and `payroll_2018` respectively. Finally, perform a **full join** to combine these datasets by team name.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -767,33 +762,33 @@ inc(params$hidden, ne)
 <details>
   <summary type="button">Solution</summary>
 ```{r eval=FALSE}
-planilla_2019 <- nodos[[4]] |> 
+payroll_2019 <- nodes[[4]] |> 
   html_table()
 
-planilla_2018 <- nodos[[5]] |> 
+payroll_2018 <- nodes[[5]] |> 
   html_table()
 
 ####### Payroll 2019: ################
 #We eliminate row 15 which is the league average:
-planilla_2019 <- planilla_2019[-15, ]
+payroll_2019 <- payroll_2019[-15, ]
 
 #We filter the requested columns:
-planilla_2019 <- planilla_2019 |> 
+payroll_2019 <- payroll_2019 |> 
   select(X2, X4) |> 
-  rename(equipo = X2, planilla_2019 = X4)
+  rename(team = X2, payroll_2019 = X4)
 
 # We eliminate row 1 since it is the source header
-planilla_2019 <- planilla_2019[-1,]
+payroll_2019 <- payroll_2019[-1,]
 
 ####### Payroll 2018: ################
 # We select the two columns that interest us and 
 #change name to headers
-planilla_2018 <- planilla_2018 |> 
+payroll_2018 <- payroll_2018 |> 
   select(Team, Payroll) |> 
-  rename(equipo = Team, planilla_2018 = Payroll)
+  rename(team = Team, payroll_2018 = Payroll)
 
 ####### Full join: ################
-full_join(planilla_2018, planilla_2019, by = "equipo")
+full_join(payroll_2018, payroll_2019, by = "team")
 ```
 </details>
 

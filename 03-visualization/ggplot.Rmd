@@ -1,15 +1,21 @@
 # (PART) Data Visualization and Summarization{-}
 # Ggplot and dplyr
 
-We have learned so far how to perform simple and fast visualizations. Now that we have a notion of plots, we will use more complex and aesthetically better plots to present.
+**Learning Objectives:**
 
-To do this, we will use the `ggplot` object included in the `tidyverse` library (the `tidyverse` package includes a package called `ggplot2` which allows us to use the `ggplot` object). Previously we have already installed the `tidyverse` package, so now we only have to load the library:
+In this chapter, we will master the art of data storytelling. We will learn to create layered visualizations using `ggplot2`, customizing every aspect from aesthetics and scales to themes and labels. Additionally, we will gain proficiency in summarizing data with `dplyr` functions like `summarize()` and `group_by()`, all while deepening our understanding of the grammar of graphics approach.
+
+---
+
+Building on the basic plotting skills from previous chapters, we'll now create more sophisticated and visually polished visualizations. The `ggplot2` package provides a powerful and consistent framework for building graphics layer by layer.
+
+To get started, we'll use the `ggplot` object included in the `tidyverse` library (the `tidyverse` package includes `ggplot2` among its core packages). Since we've already installed `tidyverse` previously, we only need to load it:
 
 ```{r eval=FALSE}
 library(tidyverse)
 ```
 
-We are going to learn visualization techniques using our previous case/problem, so that we learn to use the `ggplot` object gradually with an already known case/problem.
+We'll learn these visualization techniques using our previous case/problem, allowing us to build up our `ggplot` skills gradually with familiar data.
 
 ## Creating the ggplot object
 
@@ -25,7 +31,7 @@ murders |>
 
 This code only shows us an empty box. This is because we haven't specified which variables to take from the data frame nor what type of plot we want.
 
-To add each component of the plot we are creating we will use *layers*. The `ggplot` object allows us to add layer by layer which component of the plot we want to add. The symbol to add layers to the `ggplot` object is the `+` symbol.
+To build our plot, we'll add components using *layers*. The `ggplot` system allows us to add one layer at a time, each specifying a different aspect of the visualization. We connect layers using the `+` operator.
 
 ## Aesthetic mapping layer
 First we will focus on the basic aesthetics, that is: what goes on the _**x-axis**_ and what we put on the _**y-axis**_. To do this we will use the aesthetic function which in R is `aes()`. For example, let's add the `population` data on the _x-axis_ and the `total` data on the _y-axis_. We don't have to use the `$` accessor because the `aes` function takes the `murders` table before the pipeline as a reference.
@@ -63,7 +69,7 @@ murders |>
 
 ```
 
-Up to this point we have created the same scatter plot that we saw in the previous chapter. The power of ggplot lies in the ease of adding components. For example, if we want each point in the scatter plot to have the state name, or even better the abbreviation `abb`, we just have to add it as a `label` attribute inside `aes` and add the `geom_text()` layer.
+Up to this point we have created the same scatter plot that we saw in the previous chapter. The power of ggplot lies in the ease of adding components. For example, to label each point with the state abbreviation (`abb`), we simply add it as a `label` attribute inside `aes` and include the `geom_text()` layer.
 
 ```{r eval=TRUE}
 
@@ -192,6 +198,8 @@ murders |>
 
 ```
 
+> **Modern Alternative:** You can also use the `labs()` function to set multiple labels in a single layer: `labs(x = "...", y = "...", title = "...", color = "...")`. This is often cleaner for plots with many labels.
+
 ## Reference lines
 We can add reference lines, whether vertical with `geom_vline(xintercept = )`, horizontal with `geom_hline(yintercept = ...)` or diagonal with `geom_abline(intercept = )`, the latter asks us at what point it cuts the _y-axis_ and draws a line with a default slope of 1.
 
@@ -309,8 +317,26 @@ murders |>
 
 This plot is visually much easier to understand and aesthetically much better than the default plot we created in previous chapters. We can explore more examples at this [link](https://rstudio-pubs-static.s3.amazonaws.com/228019_f0c39e05758a4a51b435b19dbd321c23.html).
 
+## Saving plots
+
+Once you've created a plot, you'll often want to save it to a file. The `ggsave()` function makes this easy:
+
+```{r eval=FALSE}
+# Save the last plot created
+ggsave("my_plot.png", width = 8, height = 6)
+
+# Or save a specific plot object
+p <- murders |> ggplot() + aes(x = population, y = total) + geom_point()
+ggsave("murders_plot.pdf", plot = p)
+```
+
+The function automatically detects the file type from the extension (`.png`, `.pdf`, `.svg`, etc.).
+
+---
+
 ## Summarizing data with dplyr
-An important part of exploratory analysis is knowing how to summarize a variable into data that is easy to understand.
+
+Visualization and data summarization go hand in hand. While plots help us *see* patterns in our data, summary statistics help us *quantify* those patterns. The `dplyr` package provides powerful functions for calculating summaries.
 
 The `tidyverse` package includes several packages, among them `dplyr` which makes it easier for us to summarize data from a variable. When we call the `tidyvere` library we are also calling all the functions of `dplyr`. To start using the functions of `dplyr` we are going to load the `heights` data frame which is in the `dslabs` library.
 
@@ -420,10 +446,10 @@ On average, the South region is more dangerous.
 This time we are going to perform exercises within the field of biology and for this we must remember the parts of a flower. This way we will give more sense to the problem:
 
 ```{r, echo=FALSE, out.width = "150pt", fig.alt="Botanical diagram showing flower parts: sepal, petal, stamen, and pistil"}
-knitr::include_graphics(file.path(img_path, "03-visualization", "partes-de-flor.png"))
+knitr::include_graphics(file.path(img_path, "03-visualization", "flower-parts.png"))
 ```
 
-`r ne`. Load the `iris` data frame to your variable environment (`data(iris)`). In this data frame we find a list of characteristics of 150 flowers of 3 different types of species. Report a scatter plot of the sepal and petal length of the `iris` data frame.
+`r ne`. Load the `iris` data frame (`data(iris)`), which details the characteristics of 150 flowers across 3 species. Create a scatter plot visualizing the relationship between sepal length and petal length.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -439,7 +465,7 @@ iris |>
 ```
 </details>
 
-`r ne`. From the visualization created in the previous question, color the points according to the species to which it belongs.
+`r ne`. Enhance the previous visualization by coloring the points to represent the species of each flower.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -455,12 +481,7 @@ iris |>
 ```
 </details>
 
-`r ne`. Modify your previous plot so that the following elements appear:
-
-* Chart title: Relationship between sepal and petal size of different flowers
-* X-axis label: Sepal length (in cm)
-* Y-axis label: Petal length (in cm)
-* Legend title: Species
+`r ne`. Polish your plot by setting the title to "Relationship between sepal and petal size of different flowers", naming the x-axis "Sepal length (in cm)", the y-axis "Petal length (in cm)", and labeling the legend simply as "Species".
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -480,7 +501,7 @@ iris |>
 ```
 </details>
 
-`r ne`. Calculate a summary of the ratio between sepal length and petal length. This summary should show a data frame with the average, standard deviation and median of the ratio of these two dimensions mentioned.
+`r ne`. Generate a statistical summary of the ratio between sepal length and petal length, reporting a data frame that includes the average, standard deviation, and median of this ratio.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -491,11 +512,11 @@ inc(params$hidden, ne)
 ```{r eval=FALSE}
 iris |>
   mutate(ratio = Sepal.Length / Petal.Length) |> 
-  summarize(promedio = mean(ratio), std_dev = sd(ratio), median_val = median(ratio))
+  summarize(avg = mean(ratio), std_dev = sd(ratio), median_val = median(ratio))
 ```
 </details>
 
-`r ne`. Make a summary of the ratio between sepal and petal length showing one row per species.
+`r ne`. Refine your previous ratio summary to show these statistics (average, standard deviation, and median) calculated separately for each species.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -507,8 +528,15 @@ inc(params$hidden, ne)
 iris |>
   mutate(ratio = Sepal.Length / Petal.Length) |> 
   group_by(Species) |> 
-  summarize(promedio = mean(ratio), std_dev = sd(ratio), median_val = median(ratio))
+  summarize(avg = mean(ratio), std_dev = sd(ratio), median_val = median(ratio))
 ```
 </details>
 
 `r if(params$hidden){"-->"}`
+
+---
+
+## Key Takeaways
+
+This chapter emphasized a **layered approach** to visualization, building plots incrementally with aesthetics, geoms, and scales. We learned to map data to visual properties using `aes`, select the appropriate geometry (like `geom_point` or `geom_line`), and transform axes to reveal patterns in skewed data. Beyond the visuals, we explored how to customize themes and labels for clarity, and how to quantify insights using `dplyr` summarization tools before saving our work with `ggsave()`.
+

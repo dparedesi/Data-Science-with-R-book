@@ -1,15 +1,30 @@
 # Introduction {-}
 
-Data science requires a multidisciplinary approach that combines statistics, programming, data mining, and business understanding. This book is designed to help you develop those skills through practical examples in R.
+::: {.rmdnote}
+**What You'll Learn in This Chapter:**
+
+- Understand why R is an excellent choice for data science
+- Install R and RStudio on your computer
+- Navigate the RStudio interface confidently
+- Write and execute your first R code
+:::
+
+Data science requires a multidisciplinary approach that combines statistics, programming, data mining, and domain expertise. This book is designed to help you develop those skills through practical, hands-on examples in R.
 
 ```{r, echo=FALSE, fig.alt="Venn diagram showing data science as intersection of statistics, programming, domain knowledge, and data mining"}
 knitr::include_graphics(file.path(img_path, "01-introduction", "multidisciplinaria.png"))
 ```
 
 ## Why R? {-}
-R is a language created by statisticians for data analysis. Its versatility makes it a powerful tool for exploring, modeling, and visualizing data.
+
+R is a language created by statisticians for data analysis, making it an excellent choice for your data science journey. It is free and open-source, meaning there are no licensing costs and you can inspect how any function works under the hood. Its rich ecosystem includes over 19,000 packages on CRAN covering virtually any analytical task, from machine learning to bioinformatics. 
+
+One of R's strongest features is reproducibility, allowing you to write scripts once and share them with colleagues to obtain consistent results anywhere. It also offers best-in-class visualization through ggplot2 for publication-quality graphics and Shiny for interactive dashboards. Furthermore, you will find an active community with extensive documentation, tutorials, and a welcoming presence on social media.
+
+While Python is also popular in data science, R excels particularly in statistical analysis and data visualization. These are the core skills we will develop throughout this book, leveraging the tidyverse ecosystem to make data manipulation intuitive and readable.
 
 ## Installing R {-}
+
 You can download R from the Comprehensive R Archive Network (**CRAN**).
 
 1. Search for CRAN on Google:
@@ -18,30 +33,35 @@ You can download R from the Comprehensive R Archive Network (**CRAN**).
 knitr::include_graphics(file.path(img_path, "01-introduction", "CRAN-google.png"))
 ```
 
-2. Once on the CRAN page, select the version for your operating system: Linux, Mac OS X, or Windows:
+2. On the CRAN page, select the version for your operating system—Linux, Mac OS X, or Windows:
 
 ```{r, echo=FALSE, fig.alt="CRAN homepage with download links for Linux, macOS, and Windows"}
 knitr::include_graphics(file.path(img_path, "01-introduction", "CRAN-website.png"))
 ```
 
-Here the steps for Windows are shown, but the steps are similar for Linux or Mac OS X.
+The following steps show the Windows installation process. The steps for Mac and Linux are similar—simply select your operating system and follow the corresponding download link.
 
-3. On the CRAN website, we need to install `base` which includes all the basic packages you need to get started. Later, in the following chapters, we will see how to install other additional packages.
+3. On the CRAN website, click on `base` to download the core R installation. This includes all the basic packages you need to get started. Later chapters will show you how to install additional packages.
 
 ```{r, echo=FALSE, fig.alt="CRAN Windows download page with base R installation link"}
 knitr::include_graphics(file.path(img_path, "01-introduction", "CRAN-windows.png"))
 ```
 
-4. Click on the first link to get the most recent version:
+4. Click on the download link to get the latest stable version:
 
 ```{r, echo=FALSE, fig.alt="CRAN download link for latest R version installer"}
 knitr::include_graphics(file.path(img_path, "01-introduction", "CRAN-64-bits.png"))
 ```
 
-Then, open the installer you just downloaded to install R and follow the on-screen instructions.
+Once downloaded, run the installer and follow the on-screen instructions.
+
+::: {.rmdtip}
+**Installation Tip:** When the installer asks about options, the default settings work perfectly for beginners. You can always customize your installation later.
+:::
 
 ## Installing RStudio {-}
-Although you could already start using R in console mode, we are going to install RStudio, an integrated development environment (IDE), which will facilitate our work with R.
+
+Although you could start using R directly in the console, we recommend installing RStudio—an integrated development environment (IDE) that makes working with R significantly more productive and enjoyable.
 
 1. Search for RStudio on Google:
 
@@ -49,74 +69,138 @@ Although you could already start using R in console mode, we are going to instal
 knitr::include_graphics(file.path(img_path, "01-introduction", "rstudio-google.png"))
 ```
 
-2. You should see the website as it appears below. Once there, go to the upper right menu and click on **DOWNLOAD**
+2. You'll see the Posit website (RStudio's parent company). Click on **DOWNLOAD** in the upper right menu:
 
 ```{r, echo=FALSE, fig.alt="RStudio website homepage with Download button in navigation"}
 knitr::include_graphics(file.path(img_path, "01-introduction", "rstudio-website-0.png"))
 ```
 
-3. Then scroll down until you find the download options. Select the **Free** RStudio Desktop option.
+3. Scroll down until you find the download options. Select the **Free** RStudio Desktop option:
 
 ```{r, echo=FALSE, fig.alt="RStudio Desktop download options showing Free and Pro versions"}
 knitr::include_graphics(file.path(img_path, "01-introduction", "rstudio-website-1.png"))
 ```
 
-4. It will show you the button to download according to your operating system. You can also download from the list below the **Download** button.
+4. The page will display a download button optimized for your operating system. You can also choose from the list of all available installers below:
 
 ```{r, echo=FALSE, fig.alt="RStudio installer download button for current operating system"}
 knitr::include_graphics(file.path(img_path, "01-introduction", "rstudio-website-2.png"))
 ```
 
-Once the installer is downloaded, open it and follow the on-screen instructions.
+Once the installer is downloaded, run it and follow the on-screen instructions.
+
+::: {.rmdnote}
+**Having trouble?** Installation issues are usually straightforward to resolve. Check the [CRAN FAQ](https://cran.r-project.org/faqs.html) or search "R installation [your OS]" for community solutions. The [RStudio Community](https://community.rstudio.com/) is also an excellent resource.
+:::
 
 ## RStudio Sections {-}
-When you start RStudio for the first time, you will see 3 sections:
+
+When you start RStudio for the first time, you'll see three main sections:
 
 ```{r, echo=FALSE, fig.alt="Initial RStudio window showing three panels: console, environment, and files"}
 knitr::include_graphics(file.path(img_path, "01-introduction", "VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_16.png"))
 ```
 
-One of the great advantages of R over point-and-click analysis software is that we can save our work as Scripts.
+One of the great advantages of R over point-and-click analysis software is that we can save our work as **Scripts**—text files containing R code that can be shared, version-controlled, and re-run at any time.
 
-To create a new Script, you can click on File, then New File, and then on **R Script**.
+To create a new Script, click on **File → New File → R Script**:
 
 ```{r, echo=FALSE, fig.alt="RStudio File menu expanded showing New File then R Script option"}
 knitr::include_graphics(file.path(img_path, "01-introduction", "VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_42.png"))
 ```
 
-This way we will have the 4 sections, or panels, of RStudio:
+This opens the fourth panel, giving you the complete RStudio layout:
+
 ```{r, echo=FALSE, fig.alt="RStudio interface with four panels: source editor, console, environment, and plots"}
 knitr::include_graphics(file.path(img_path, "01-introduction", "rstudio.png"))
 ```
 
-* **Code editor**: The code editor for Scripts where we can save our Scripts.
-* **R console**: The R **console** where we will see the result of the execution of our Scripts.
-* **Environment/History**: Here we will mainly see the variables/functions as we create them.
-* **Other panes**: Finally a section with additional tabs. Here we will see our created plots, for example.
+Let's understand the layout. The **Source Editor** in the top-left is where you write and edit your R scripts. Think of it as your code notebook where you can save, organize, and run code. Below it is the **Console** (bottom-left), where code executes and results appear. You can type commands directly here for quick experiments.
 
-## Testing RStudio {-}
-To test that we have installed it correctly, go to the console section and calculate how much 13 multiplied by 265 is. Click on the **console section**, type in the console and then press **Enter**
+On the right side, the **Environment/History** panel (top-right) shows all variables and functions you have created in your current session, while the history tab tracks your commands. Finally, the **Files/Plots/Help** panel (bottom-right) serves multiple purposes, allowing you to browse files, view generated plots, and access package documentation.
+
+### Essential Keyboard Shortcuts {-}
+
+Mastering keyboard shortcuts will significantly speed up your workflow. The most commonly used command is running the current line or selection, which you can do by pressing `Ctrl + Enter` (or `Cmd + Enter` on Mac). To run the entire script, use `Ctrl + Shift + S` (`Cmd + Shift + S`).
+
+Creating a new script is as easy as pressing `Ctrl + Shift + N` (`Cmd + Shift + N`), and you should save your work frequently with `Ctrl + S` (`Cmd + S`). A shortcut specific to R is inserting the assignment operator (`<-`), which is done with `Alt + -` (`Option + -`). Finally, you can quickly comment or uncomment lines using `Ctrl + Shift + C` (`Cmd + Shift + C`).
+
+::: {.rmdtip}
+**Pro Tip:** Press `Alt + Shift + K` (Windows/Linux) or `Option + Shift + K` (Mac) in RStudio to see the complete list of keyboard shortcuts.
+:::
+
+## Testing Your Installation {-}
+
+Let's verify everything is working correctly. Go to the Console panel and calculate how much 13 multiplied by 265 is. Click on the console, type the following, and press **Enter**:
 
 ```{r eval=TRUE}
 13 * 265
 ```
 
-You should have gotten `3445` as a result in the same way you observe lines above. With the difference of the symbol `##`. This symbol in this book will serve to differentiate the result that our R Scripts yield. Thus, if you do not see the symbol `##` it is R code, and what is with `##` simulates the result seen in the console.
+You should see `3445` as the result. Let's understand the output format:
 
-You will also see before the number `3445` the number 1 in brackets: `[1]`. This is because each Script can yield a set of solutions/results. In brackets it tells you which solution number it shows you. In this case the solution is unique, but later we will see when there are more results from your Script.
+::: {.rmdnote}
+**Understanding R Output:**
 
-You can get the same result if you write in the **Scripts section**, and not in the console, that will allow you to make several calculations. For example, on one hand I can do 28 * 27 and then I can calculate a sum 65 + 35
+- The `[1]` before the result indicates this is the first element of the output. R can return multiple values, and the bracketed number helps you track which element you're looking at.
+- In this book, we use `##` to distinguish R output from R code. Lines starting with `##` show what you'll see in your console after running the code.
+:::
 
-```{r eval=FALSE}
-#Calculating 28 multiplied by 27:
-28 * 27
+Now let's try something more interesting. R isn't just a calculator—it's a powerful tool for working with data. Try this in your console:
 
-#Adding 65 + 35:
-65 + 35
+```{r eval=TRUE}
+# Create a vector of values
+values <- c(10, 20, 30, 40, 50)
+
+# Calculate the mean
+mean(values)
+
+# How many elements are there?
+length(values)
 ```
 
-To execute from the scripts section we can select all the lines and then click on **Run** in the upper right part or press **Ctrl** + **Enter**. Keep in mind that the `#` sign makes that line a comment.
+You've just created your first data structure (a vector) and applied functions to it—fundamental concepts we'll explore in depth in the next chapter.
 
-Try selecting all the text, then selecting only the sum line and click on **Run**. You will see that it only executes what you select.
+### Writing Scripts {-}
 
-You are now ready to start learning R.
+While the console is great for quick experiments, scripts are essential for reproducible work. Try this in the **Source Editor** (not the console):
+
+```{r eval=FALSE}
+# My First R Script
+# Calculating basic statistics
+
+# Create some data
+temperatures <- c(22, 25, 23, 28, 30, 27, 24)
+
+# Calculate statistics
+mean(temperatures)    # Average temperature
+max(temperatures)     # Highest temperature
+min(temperatures)     # Lowest temperature
+```
+
+To execute code from the script:
+
+1. **Run a single line**: Place your cursor on the line and press `Ctrl + Enter` (or `Cmd + Enter` on Mac)
+2. **Run selected lines**: Highlight the lines you want to run and press `Ctrl + Enter`
+3. **Run the entire script**: Press `Ctrl + Shift + S` (or `Cmd + Shift + S` on Mac)
+
+Notice that lines starting with `#` are **comments**—R ignores them, but they're invaluable for explaining your code to others (and to your future self!).
+
+::: {.rmdcaution}
+**Challenge: Test Your Setup**
+
+Try these exercises to confirm everything works:
+
+1. Calculate `sqrt(144)` in the console (the square root of 144)
+2. Create a new script with three different calculations and save it as `my_first_script.R`
+3. Use the assignment operator (`<-`) to store a value: `my_number <- 42`
+4. Print your stored value by typing `my_number` and pressing Enter
+:::
+
+## What's Next? {-}
+
+Congratulations! You have successfully set up your R environment and written your first R code. You now understand why R is a powerful choice for data science and how to navigate the four panels of the RStudio interface. You have also learned to use the console, write scripts, and apply essential keyboard shortcuts.
+
+In the next chapter, we will dive into **R Fundamentals**, learning about objects, data types, vectors, and functions that form the foundation of all R programming. You will discover how R stores and manipulates data, setting the stage for the data analysis and visualization techniques to come.
+
+Let's continue the journey!

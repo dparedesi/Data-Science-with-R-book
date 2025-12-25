@@ -51,3 +51,5 @@ Data-Science-with-R_files/
 # OS files
 .DS_Store
 Thumbs.db
+GEMINI.md
+.claude/

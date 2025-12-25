@@ -13,44 +13,29 @@ Functions allow us to encapsulate a set of instructions into a single block of c
 
 ### Why use functions?
 
-Functions offer several advantages:
-
-*   **Reusability:** We can use the same function in different parts of our code or in different projects.
-*   **Organization:** Functions help us organize our code into logical blocks, making it easier to read and understand.
-*   **Readability:** By using functions, our code becomes more concise and easier to understand.
-*   **Abstraction:** Functions allow us to abstract the complexity of a task, allowing us to focus on the logic of the problem we want to solve.
+Functions offer several advantages, starting with **Reusability**, which allows us to use the same logic in different parts of our code or across projects. They also improve **Organization** by breaking code into logical blocks, and enhance **Readability** by keeping scripts concise. Finally, functions provide **Abstraction**, hiding complex implementation details so we can focus on the problem logic.
 
 ### First functions: exploring basic R functions
 
-R already includes a large number of predefined functions that we can use to perform different tasks. Let's look at some examples:
+R includes a large number of predefined functions. For instance, `sum()` calculates the total of a vector's elements, while `mean()` computes their arithmetic average.
 
-*   `sum()`: Calculates the sum of the elements of a vector.
+```{r}
+numbers <- c(1, 2, 3, 4, 5)
+sum(numbers)  # Output: 15
 
-    ```{r}
-    numbers <- c(1, 2, 3, 4, 5)
-    sum(numbers)  # Output: 15
-    ```
+temperatures <- c(25, 28, 26, 29, 27)
+mean(temperatures)  # Output: 27
+```
 
-*   `mean()`: Calculates the arithmetic mean of the elements of a vector.
+Other common functions include `round()`, which limits the number of decimal places, and `length()`, which tells us how many elements a vector contains.
 
-    ```{r}
-    temperatures <- c(25, 28, 26, 29, 27)
-    mean(temperatures)  # Output: 27
-    ```
+```{r}
+pi  # Output: 3.141593
+round(pi, 2)  # Output: 3.14
 
-*   `round()`: Rounds a number to a specific number of decimal places.
-
-    ```{r}
-    pi  # Output: 3.141593
-    round(pi, 2)  # Output: 3.14
-    ```
-
-*   `length()`: Returns the length of a vector (the number of elements it contains).
-
-    ```{r}
-    cities <- c("New York", "Los Angeles", "Chicago")
-    length(cities)  # Output: 3
-    ```
+cities <- c("New York", "Los Angeles", "Chicago")
+length(cities)  # Output: 3
+```
 
 These are just a few of the many predefined functions that R offers. As we progress through the book, we will explore more functions and learn how to use them to perform more complex data analysis.
 
@@ -72,16 +57,12 @@ sum(numbers)  # Output: 15
 
 A function's arguments are specified in parentheses after the function name. If a function requires multiple arguments, they are separated by commas.
 
-For example, imagine we want to create a function to calculate the total cost of a plane trip. This function might need the following arguments:
+For example, imagine we want to create a function to calculate the total cost of a plane trip. This function might need the `ticket_price`, the `num_people` traveling, and an optional `discount` (such as a reduction for students or senior citizens).
 
-*  `ticket_price`: The price of a plane ticket.
-*  `num_people`: The number of people traveling.
-*  `discount`: An optional discount on the ticket price (for example, for being a student or senior citizen).
-
-The function could be called `calculate_trip_cost` and would be used as follows:
+The function could be called `calculate_vacation_cost` and would be used as follows:
 
 ```{r eval = FALSE}
-calculate_trip_cost(ticket_price = 300, num_people = 2, discount = 0.1)
+calculate_vacation_cost(ticket_price = 300, num_people = 2, discount = 0.1)
 ```
 
 In this case, we are passing three arguments to the function: `ticket_price` with value 300, `num_people` with value 2, and `discount` with value 0.1 (representing a 10% discount).
@@ -95,7 +76,7 @@ The body of a function is defined within curly braces `{}`.
 For example, the body of the function `calculate_trip_cost` could be:
 
 ```{r eval = TRUE}
-calculate_trip_cost <- function(ticket_price, num_people, discount = 0) {
+calculate_vacation_cost <- function(ticket_price, num_people, discount = 0) {
   total_cost <- ticket_price * num_people * (1 - discount)
   return(total_cost)
 }
@@ -108,13 +89,13 @@ Note that in the function definition, the argument `discount` has a default valu
 For example, if we do not specify a value for `discount`, the function uses the default value 0, and the total cost is 600:
 ```{r eval = TRUE}
 # Call the function without specifying the discount
-calculate_trip_cost(ticket_price = 300, num_people = 2)
+calculate_vacation_cost(ticket_price = 300, num_people = 2)
 ```
 
 If we want to apply a discount, we can specify it when calling the function:
 
 ```{r eval = TRUE}
-calculate_trip_cost(ticket_price = 300, num_people = 2, discount = 0.1)
+calculate_vacation_cost(ticket_price = 300, num_people = 2, discount = 0.1)
 ```
 
 In this case, the total cost is 540, since a 10% discount is applied.
@@ -122,11 +103,11 @@ In this case, the total cost is 540, since a 10% discount is applied.
 
 ### Return value: the result of the function
 
-The **return value** is the result the function produces after executing its instructions. It can be a simple value (a number, text, a logical value) or a more complex object (a vector, a list, a dataframe).
+The **return value** is the result the function produces after executing its instructions. It can be a simple value (a number, text, a logical value) or a more complex object (a vector, a list, a data frame).
 
 In R, the return value is specified with the `return()` function. If `return()` is not used, the function will return the result of the last expression evaluated in the body.
 
-In the `calculate_trip_cost` example, the return value is the `total_cost` of the trip, which is a number.
+In the `calculate_vacation_cost` example, the return value is the `total_cost` of the trip, which is a number.
 
 ### Examples: creating simple functions step by step
 
@@ -139,12 +120,7 @@ celsius_to_fahrenheit <- function(celsius) {
 }
 ```
 
-In this example:
-
-*   `celsius_to_fahrenheit` is the name of the function.
-*   `celsius` is the argument of the function (the temperature in degrees Celsius).
-*   The body of the function calculates the temperature in Fahrenheit using the formula `(celsius * 9 / 5) + 32` and stores it in the variable `fahrenheit`.
-*   The `return()` function returns the value of the variable `fahrenheit`.
+In this example, `celsius_to_fahrenheit` is the name of the function, and `celsius` is its argument representing the input temperature. Inside the body, the function calculates the equivalent Fahrenheit value using the formula `(celsius * 9 / 5) + 32` and stores it in the variable `fahrenheit`, which is then sent back as the result using `return()`.
 
 Now we can use our function to convert temperatures:
 
@@ -247,6 +223,8 @@ Now, imagine we want to apply a tax to the total cost. We could define a global 
 ```{r}
 tax_rate <- 0.16
 ```
+
+> **Warning:** Relying on global variables inside a function (like `tax_rate` in the example below) is generally considered bad practice. It makes the function dependent on the external environment, which can lead to unexpected errors if the global variable changes or doesn't exist. It is better to pass all necessary values as arguments to the function.
 
 And then modify the function to include the tax:
 
@@ -390,12 +368,7 @@ trip_cost_2
 
 In previous sections, we explored how to create and use functions in R. Now, let's delve into a more advanced concept: **higher-order functions**.
 
-**What are higher-order functions?**
-
-Higher-order functions are functions that can:
-
-*   Receive other functions as arguments.
-*   Return a function as a result.
+Higher-order functions are those that can receive other functions as arguments or return a function as a result.
 
 This type of function allows us to write more flexible and expressive code, and they are a powerful tool for data analysis.
 
@@ -582,11 +555,7 @@ However, the `increment_counter()` function "captures" the `counter` variable in
 
 ### Applications: creating counters, functions with internal state
 
-Closures have many applications in programming. Some of the most common are:
-
-*   **Creating counters:** As we saw in the previous example, closures allow us to create functions that maintain an internal state between calls.
-*   **Creating functions with configurable parameters:** We can use closures to create functions that "remember" specific parameters. For example, we could create a function generating functions to convert temperatures from Celsius to Fahrenheit, where the generated function "remembers" the temperature scale it needs to convert.
-*   **Encapsulating data:** Closures allow us to hide data within a function, which can be useful for protecting sensitive information or avoiding naming conflicts. For example, we could create a function generating unique identifiers, where the generated function "remembers" the last generated identifier.
+Closures have many applications in programming. They are commonly used for **creating counters** that maintain an internal state between calls, **configuring parameters** where a generated function remembers specific settings (like a temperature scale), and **encapsulating data** to hide sensitive information or internal logic within the function scope.
 
 ### Examples: simulating a game, creating an operation history
 
@@ -609,12 +578,7 @@ In this section, we will learn to identify, understand, and fix errors in our R 
 
 When our code contains an error, R will show us an error message in the console. These messages can seem intimidating at first, but with a little practice, we will learn to interpret them and use them to find the cause of the error.
 
-Some common error messages in R are:
-
-*   `Error: object 'object_name' not found`: This error occurs when we try to use a variable or function that does not exist. It may be that we misspelled the name, or that the variable or function is not defined in the current scope.
-*   `Error in function_name(arguments): invalid argument`: This error occurs when we pass an invalid argument to a function. For example, if we pass a text vector to a function expecting a numeric vector.
-*   `Error in if (condition) { ... }: argument is of length zero`: This error occurs when the condition in an `if` structure has length zero. This can happen if the condition evaluates to `NULL` or an empty vector.
-*   `Error in for (variable in sequence) { ... }: invalid 'for' loop sequence`: This error occurs when the sequence in a `for` loop is invalid. For example, if the sequence is `NULL` or a vector of length zero.
+Some common error messages in R include `Error: object 'object_name' not found`, which happens when you interpret a non-existent variable or function. Another is `invalid argument` when function inputs don't match the expected type, such as passing text to a numeric function. You might also encounter `argument is of length zero` in `if` conditions, often due to `NULL` or empty vectors, or `invalid 'for' loop sequence` when the loop iterator definition is flawed.
 
 It is important to read error messages carefully and try to understand what they are telling us. Often, the error message will give us a clue about the cause of the problem.
 
@@ -788,7 +752,7 @@ inc(params$hidden, ne)
 ```
 </details>
 
-`r ne`. Create a function called `factorial()` calculating the factorial of a number. The factorial of a positive integer *n*, denoted by *n!*, is the product of all positive integers less than or equal to *n*. For example, 5! = 5 * 4 * 3 * 2 * 1 = 120. (Hint: use a recursive function).
+`r ne`. Create a function called `my_factorial()` calculating the factorial of a number. The factorial of a positive integer *n*, denoted by *n!*, is the product of all positive integers less than or equal to *n*. For example, 5! = 5 * 4 * 3 * 2 * 1 = 120. (Hint: use a recursive function). Note: We name it `my_factorial()` to avoid shadowing R's built-in `factorial()` function.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -797,11 +761,16 @@ inc(params$hidden, ne)
 <details>
   <summary type="button">Solution</summary>
 ```{r}
-factorial <- function(n) {
+my_factorial <- function(n) {
+  if (n < 0) {
+      # We use message() and return(NA) because we haven't covered stop() yet
+      message("Factorial is not defined for negative numbers")
+      return(NA)
+    }
   if (n == 0) {
     return(1)
   } else {
-    return(n * factorial(n - 1))
+    return(n * my_factorial(n - 1))
   }
 }
 ```
@@ -930,7 +899,9 @@ create_temperature_converter <- function(scale) {
   } else if (scale == "Kelvin") {
     return(function(temp) temp + 273.15)  # Celsius to Kelvin
   } else {
-    stop("Invalid temperature scale.")
+      # We use message() and return(NA) because we haven't covered stop() yet
+      message("Invalid temperature scale.")
+      return(NA)
   }
 }
 ```

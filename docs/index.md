@@ -1,8 +1,8 @@
 --- 
 title: "Data Science with R"
-subtitle: "Data Analysis and prediction algorithms with R. Second Edition"
+subtitle: "Data Analysis and prediction algorithms with R. Third Edition"
 author: "Author: Mg. Daniel Paredes Inilupu"
-date: "2025-12-23"
+date: "2025-12-25"
 #date: "2024-12-27"
 site: bookdown::bookdown_site
 documentclass: krantz
@@ -13,7 +13,7 @@ colorlinks: yes
 urlcolor: blue
 geometry: "left=1.5in, right=1.5in, top=1.25in, bottom=1.25in"
 github-repo: dparedesi/Data-Science-with-R-book
-description: "A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Second Edition by Daniel Paredes."
+description: "A comprehensive guide to data science using R, covering fundamentals, visualization, statistics, machine learning with tidymodels, and generative AI integration. Third Edition by Daniel Paredes."
 always_allow_html: yes
 graphics: yes
 output:
@@ -31,119 +31,168 @@ params:
 
 
 # Preface {-}
-Welcome to the second edition of Data Science with R!
 
-This book, initially conceived as a compilation of personal notes to facilitate my learning, has evolved to become a comprehensive resource covering everything from fundamentals to advanced data science techniques.
+Welcome to the third edition of *Data Science with R*!
 
-I have invested over 700 hours in the creation of this book. You can support this effort by purchasing the PDF version on [leanpub](https://leanpub.com/dataScienceConR/). Furthermore, the purchase includes access to future updates and the possibility of making direct inquiries with me for three months regarding the covered topics or their practical application.
+In an era where data-driven decisions shape industries from healthcare to finance, mastering R gives you the power to extract insights, build predictive models, and communicate findings effectively. This book has evolved from personal learning notes into a comprehensive resource that takes you from fundamentals to advanced data science techniques using practical, hands-on exercises.
 
-In this edition, the latest trends and technologies in data science have been incorporated. This includes updates to the most recent versions of R (4.4.2) and RStudio (2024.12.0), as well as the integration of modern libraries such as keras, tensorflow, xgboost, quanteda, and sparklyr. Interactive visualization tools like plotly and leaflet have also been added.
+This book is designed for beginners with no prior R experience who want a structured path into data science, as well as analysts looking to upgrade from spreadsheets to reproducible R workflows. It also serves students, professionals, and practitioners seeking to modernize their machine learning skills with tidymodels. Basic familiarity with statistics concepts is helpful but not required, as all code examples are self-contained and explained step-by-step.
 
-New sections address crucial topics such as ethics in data science, reproducibility through R Markdown, and version control with Git and GitHub. Additionally, we have strengthened the content on deep learning, time series analysis, text mining, and sentiment analysis.
+The third edition reflects the latest developments in the R ecosystem. We have updated everything to run on R 4.5.2 and RStudio 2025.09.2. A major shift in this edition is the full migration to tidymodels for machine learning and the adoption of modern tidyverse patterns, including the native pipe operator. We have also introduced entirely new topics such as Generative AI and LLM integration with R, AI-assisted coding workflows, ethics in data science, and enhanced text mining. You will also find expanded content on interactive visualization, deep learning with Keras and TensorFlow, big data processing with Sparklyr, and reproducible workflows using Git and GitHub.
+
+Each chapter builds on previous concepts, but you can also jump to topics of interest. If you are learning R from scratch, start with the Fundamentals in the first two chapters. Chapter 3 covers visualization with ggplot2, while Chapter 12 dives into building machine learning models. For those interested in working with Large Language Models, Chapter 14 covers Generative AI. Throughout the book, you will find hands-on exercises to test your understanding. Solutions are provided, but we encourage you to try them yourself first.
+
+Just like previous editions, many exercises are inspired by practical classroom experiences and activities from the [Professional Certificate in Data Science](https://online-learning.harvard.edu/series/professional-certificate-data-science)^[https://online-learning.harvard.edu/series/professional-certificate-data-science] by **HarvardX**. The code used to generate this book is available on GitHub, encouraging transparency and reproducibility.
+
+## Support This Work {-}
+
+Over 700 hours went into creating this resource. If you find it valuable, consider purchasing the PDF on [Leanpub](https://leanpub.com/dataScienceConR/). Your purchase includes:
+
+- Future updates at no extra cost
+- Three months of direct Q&A access with the author
+- Support for keeping the web version free for everyone
 
 
 The web version available at [bookdown](https://bookdown.org/dparedesi/data-science-con-r/)^[https://bookdown.org/dparedesi/data-science-con-r/] seeks to democratize data science knowledge. Share it and let's contribute together to freeing knowledge.
 
 
-Just like the first edition, this version is based on exercises designed from practical classroom experiences and activities from the [Professional Certificate in Data Science](https://online-learning.harvard.edu/series/professional-certificate-data-science)^[https://online-learning.harvard.edu/series/professional-certificate-data-science] by **HarvardX**. The code used to generate this book is available on GitHub, encouraging transparency and reproducibility.
+## Stay Connected {-}
 
-We have improved and updated the exercises, incorporating recent practical cases on social network analysis, climate change, and text mining. This allows for the immediate application of what has been learned to real-world problems.
+This book has reached readers in Mexico, Colombia, Spain, Peru, Chile, and many other countries. I deeply thank readers of previous editions for their comments and suggestions, which have been fundamental to improving each version.
 
-I deeply thank the readers of the first edition for their comments and suggestions, which have been fundamental to improving this version.
-
-This book has reached readers in Mexico, Colombia, Spain, Peru, and Chile, among other countries. I hope this second edition serves as a valuable tool to advance your learning and practice of data science.
-
-If you have questions or suggestions, you can write to me at dparedesi@uni.pe. I usually respond within a maximum of 48 hours.
+If you have questions or suggestions, write to me at dparedesi@uni.pe. I usually respond within 48 hours.
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
 
 # Acknowledgments {-}
 
-First and foremost, I want to express my profound gratitude to my wife, Desislava, for her invaluable emotional support during the countless hours I dedicated to organizing ideas and writing code. Her knowledge in R was also key, contributing solutions and perspectives that enriched this work.
+## Family {-}
 
-A special thanks to [Rafael Irizarry](https://hsph.harvard.edu/profile/rafael-a-irizarry/)^[https://hsph.harvard.edu/profile/rafael-a-irizarry/], a true benchmark in the R world, whose didactic way of teaching advanced techniques allowed me to advance significantly in my learning. I also extend my gratitude to the developers who, with their dedication, continue to create and maintain this wonderful language. This book is nothing more than a compendium and a guide, made possible thanks to the constant effort of those who expand R's libraries and packages.
+First and foremost, I want to express my profound gratitude to my wife, Desislava, for her invaluable emotional support during the countless hours I dedicated to this project. Her knowledge in R was also key—contributing solutions and perspectives that enriched this work.
+
+## Mentors and Inspirations {-}
+
+A special thanks to [Rafael Irizarry](https://hsph.harvard.edu/profile/rafael-a-irizarry/)^[https://hsph.harvard.edu/profile/rafael-a-irizarry/], a true benchmark in the R world, whose didactic approach to teaching advanced techniques significantly advanced my learning. I also extend my gratitude to the developers who, with their dedication, continue to create and maintain this wonderful language.
 
 My gratitude also goes to Briguit Reinaldo, CEO of Cedhinfo, whose tireless work brings the teaching of computer technologies to more people in Peru, inspiring many to explore new opportunities.
 
-Finally, I want to acknowledge the valuable contribution of engineering students from UNI, who participated in grammatical review, paraphrasing, creation of additional exercises, and proposal of new topics to include. Special thanks to [Josep Agama](https://www.linkedin.com/in/josep-agama-749a61190/)^[https://www.linkedin.com/in/josep-agama-749a61190/] and [Andrés Espinoza](https://www.linkedin.com/in/aespinozacontreras/)^[https://www.linkedin.com/in/aespinozacontreras/] for their fundamental contributions in the first three chapters.
+## Contributors {-}
+
+Finally, I want to acknowledge the valuable contribution of engineering students from UNI who participated in grammatical review, paraphrasing, exercise creation, and topic proposals. Special thanks to [Josep Agama](https://www.linkedin.com/in/josep-agama-749a61190/)^[https://www.linkedin.com/in/josep-agama-749a61190/] and [Andrés Espinoza](https://www.linkedin.com/in/aespinozacontreras/)^[https://www.linkedin.com/in/aespinozacontreras/] for their fundamental contributions to the first three chapters.
 
 <!--chapter:end:index.Rmd-->
 
 
 # Introduction {-}
 
-Data science requires a multidisciplinary approach that combines statistics, programming, data mining, and business understanding. This book is designed to help you develop those skills through practical examples in R.
+::: {.rmdnote}
+**What You'll Learn in This Chapter:**
+
+- Understand why R is an excellent choice for data science
+- Install R and RStudio on your computer
+- Navigate the RStudio interface confidently
+- Write and execute your first R code
+:::
+
+Data science requires a multidisciplinary approach that combines statistics, programming, data mining, and domain expertise. This book is designed to help you develop those skills through practical, hands-on examples in R.
 
 <img src="_assets/images/01-introduction/multidisciplinaria.png" alt="Venn diagram showing data science as intersection of statistics, programming, domain knowledge, and data mining" width="80%" style="display: block; margin: auto;" />
 
 ## Why R? {-}
-R is a language created by statisticians for data analysis. Its versatility makes it a powerful tool for exploring, modeling, and visualizing data.
+
+R is a language created by statisticians for data analysis, making it an excellent choice for your data science journey. It is free and open-source, meaning there are no licensing costs and you can inspect how any function works under the hood. Its rich ecosystem includes over 19,000 packages on CRAN covering virtually any analytical task, from machine learning to bioinformatics. 
+
+One of R's strongest features is reproducibility, allowing you to write scripts once and share them with colleagues to obtain consistent results anywhere. It also offers best-in-class visualization through ggplot2 for publication-quality graphics and Shiny for interactive dashboards. Furthermore, you will find an active community with extensive documentation, tutorials, and a welcoming presence on social media.
+
+While Python is also popular in data science, R excels particularly in statistical analysis and data visualization. These are the core skills we will develop throughout this book, leveraging the tidyverse ecosystem to make data manipulation intuitive and readable.
 
 ## Installing R {-}
+
 You can download R from the Comprehensive R Archive Network (**CRAN**).
 
 1. Search for CRAN on Google:
 
 <img src="_assets/images/01-introduction/CRAN-google.png" alt="Google search results page showing CRAN R Project download link" width="80%" style="display: block; margin: auto;" />
 
-2. Once on the CRAN page, select the version for your operating system: Linux, Mac OS X, or Windows:
+2. On the CRAN page, select the version for your operating system—Linux, Mac OS X, or Windows:
 
 <img src="_assets/images/01-introduction/CRAN-website.png" alt="CRAN homepage with download links for Linux, macOS, and Windows" width="80%" style="display: block; margin: auto;" />
 
-Here the steps for Windows are shown, but the steps are similar for Linux or Mac OS X.
+The following steps show the Windows installation process. The steps for Mac and Linux are similar—simply select your operating system and follow the corresponding download link.
 
-3. On the CRAN website, we need to install `base` which includes all the basic packages you need to get started. Later, in the following chapters, we will see how to install other additional packages.
+3. On the CRAN website, click on `base` to download the core R installation. This includes all the basic packages you need to get started. Later chapters will show you how to install additional packages.
 
 <img src="_assets/images/01-introduction/CRAN-windows.png" alt="CRAN Windows download page with base R installation link" width="80%" style="display: block; margin: auto;" />
 
-4. Click on the first link to get the most recent version:
+4. Click on the download link to get the latest stable version:
 
 <img src="_assets/images/01-introduction/CRAN-64-bits.png" alt="CRAN download link for latest R version installer" width="80%" style="display: block; margin: auto;" />
 
-Then, open the installer you just downloaded to install R and follow the on-screen instructions.
+Once downloaded, run the installer and follow the on-screen instructions.
+
+::: {.rmdtip}
+**Installation Tip:** When the installer asks about options, the default settings work perfectly for beginners. You can always customize your installation later.
+:::
 
 ## Installing RStudio {-}
-Although you could already start using R in console mode, we are going to install RStudio, an integrated development environment (IDE), which will facilitate our work with R.
+
+Although you could start using R directly in the console, we recommend installing RStudio—an integrated development environment (IDE) that makes working with R significantly more productive and enjoyable.
 
 1. Search for RStudio on Google:
 
 <img src="_assets/images/01-introduction/rstudio-google.png" alt="Google search results for RStudio download" width="80%" style="display: block; margin: auto;" />
 
-2. You should see the website as it appears below. Once there, go to the upper right menu and click on **DOWNLOAD**
+2. You'll see the Posit website (RStudio's parent company). Click on **DOWNLOAD** in the upper right menu:
 
 <img src="_assets/images/01-introduction/rstudio-website-0.png" alt="RStudio website homepage with Download button in navigation" width="80%" style="display: block; margin: auto;" />
 
-3. Then scroll down until you find the download options. Select the **Free** RStudio Desktop option.
+3. Scroll down until you find the download options. Select the **Free** RStudio Desktop option:
 
 <img src="_assets/images/01-introduction/rstudio-website-1.png" alt="RStudio Desktop download options showing Free and Pro versions" width="80%" style="display: block; margin: auto;" />
 
-4. It will show you the button to download according to your operating system. You can also download from the list below the **Download** button.
+4. The page will display a download button optimized for your operating system. You can also choose from the list of all available installers below:
 
 <img src="_assets/images/01-introduction/rstudio-website-2.png" alt="RStudio installer download button for current operating system" width="80%" style="display: block; margin: auto;" />
 
-Once the installer is downloaded, open it and follow the on-screen instructions.
+Once the installer is downloaded, run it and follow the on-screen instructions.
+
+::: {.rmdnote}
+**Having trouble?** Installation issues are usually straightforward to resolve. Check the [CRAN FAQ](https://cran.r-project.org/faqs.html) or search "R installation [your OS]" for community solutions. The [RStudio Community](https://community.rstudio.com/) is also an excellent resource.
+:::
 
 ## RStudio Sections {-}
-When you start RStudio for the first time, you will see 3 sections:
+
+When you start RStudio for the first time, you'll see three main sections:
 
 <img src="_assets/images/01-introduction/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_16.png" alt="Initial RStudio window showing three panels: console, environment, and files" width="80%" style="display: block; margin: auto;" />
 
-One of the great advantages of R over point-and-click analysis software is that we can save our work as Scripts.
+One of the great advantages of R over point-and-click analysis software is that we can save our work as **Scripts**—text files containing R code that can be shared, version-controlled, and re-run at any time.
 
-To create a new Script, you can click on File, then New File, and then on **R Script**.
+To create a new Script, click on **File → New File → R Script**:
 
 <img src="_assets/images/01-introduction/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_42.png" alt="RStudio File menu expanded showing New File then R Script option" width="80%" style="display: block; margin: auto;" />
 
-This way we will have the 4 sections, or panels, of RStudio:
+This opens the fourth panel, giving you the complete RStudio layout:
+
 <img src="_assets/images/01-introduction/rstudio.png" alt="RStudio interface with four panels: source editor, console, environment, and plots" width="80%" style="display: block; margin: auto;" />
 
-* **Code editor**: The code editor for Scripts where we can save our Scripts.
-* **R console**: The R **console** where we will see the result of the execution of our Scripts.
-* **Environment/History**: Here we will mainly see the variables/functions as we create them.
-* **Other panes**: Finally a section with additional tabs. Here we will see our created plots, for example.
+Let's understand the layout. The **Source Editor** in the top-left is where you write and edit your R scripts. Think of it as your code notebook where you can save, organize, and run code. Below it is the **Console** (bottom-left), where code executes and results appear. You can type commands directly here for quick experiments.
 
-## Testing RStudio {-}
-To test that we have installed it correctly, go to the console section and calculate how much 13 multiplied by 265 is. Click on the **console section**, type in the console and then press **Enter**
+On the right side, the **Environment/History** panel (top-right) shows all variables and functions you have created in your current session, while the history tab tracks your commands. Finally, the **Files/Plots/Help** panel (bottom-right) serves multiple purposes, allowing you to browse files, view generated plots, and access package documentation.
+
+### Essential Keyboard Shortcuts {-}
+
+Mastering keyboard shortcuts will significantly speed up your workflow. The most commonly used command is running the current line or selection, which you can do by pressing `Ctrl + Enter` (or `Cmd + Enter` on Mac). To run the entire script, use `Ctrl + Shift + S` (`Cmd + Shift + S`).
+
+Creating a new script is as easy as pressing `Ctrl + Shift + N` (`Cmd + Shift + N`), and you should save your work frequently with `Ctrl + S` (`Cmd + S`). A shortcut specific to R is inserting the assignment operator (`<-`), which is done with `Alt + -` (`Option + -`). Finally, you can quickly comment or uncomment lines using `Ctrl + Shift + C` (`Cmd + Shift + C`).
+
+::: {.rmdtip}
+**Pro Tip:** Press `Alt + Shift + K` (Windows/Linux) or `Option + Shift + K` (Mac) in RStudio to see the complete list of keyboard shortcuts.
+:::
+
+## Testing Your Installation {-}
+
+Let's verify everything is working correctly. Go to the Console panel and calculate how much 13 multiplied by 265 is. Click on the console, type the following, and press **Enter**:
 
 
 ``` r
@@ -151,26 +200,77 @@ To test that we have installed it correctly, go to the console section and calcu
 #> [1] 3445
 ```
 
-You should have gotten `3445` as a result in the same way you observe lines above. With the difference of the symbol `##`. This symbol in this book will serve to differentiate the result that our R Scripts yield. Thus, if you do not see the symbol `##` it is R code, and what is with `##` simulates the result seen in the console.
+You should see `3445` as the result. Let's understand the output format:
 
-You will also see before the number `3445` the number 1 in brackets: `[1]`. This is because each Script can yield a set of solutions/results. In brackets it tells you which solution number it shows you. In this case the solution is unique, but later we will see when there are more results from your Script.
+::: {.rmdnote}
+**Understanding R Output:**
 
-You can get the same result if you write in the **Scripts section**, and not in the console, that will allow you to make several calculations. For example, on one hand I can do 28 * 27 and then I can calculate a sum 65 + 35
+- The `[1]` before the result indicates this is the first element of the output. R can return multiple values, and the bracketed number helps you track which element you're looking at.
+- In this book, we use `##` to distinguish R output from R code. Lines starting with `##` show what you'll see in your console after running the code.
+:::
+
+Now let's try something more interesting. R isn't just a calculator—it's a powerful tool for working with data. Try this in your console:
 
 
 ``` r
-#Calculating 28 multiplied by 27:
-28 * 27
+# Create a vector of values
+values <- c(10, 20, 30, 40, 50)
 
-#Adding 65 + 35:
-65 + 35
+# Calculate the mean
+mean(values)
+#> [1] 30
+
+# How many elements are there?
+length(values)
+#> [1] 5
 ```
 
-To execute from the scripts section we can select all the lines and then click on **Run** in the upper right part or press **Ctrl** + **Enter**. Keep in mind that the `#` sign makes that line a comment.
+You've just created your first data structure (a vector) and applied functions to it—fundamental concepts we'll explore in depth in the next chapter.
 
-Try selecting all the text, then selecting only the sum line and click on **Run**. You will see that it only executes what you select.
+### Writing Scripts {-}
 
-You are now ready to start learning R.
+While the console is great for quick experiments, scripts are essential for reproducible work. Try this in the **Source Editor** (not the console):
+
+
+``` r
+# My First R Script
+# Calculating basic statistics
+
+# Create some data
+temperatures <- c(22, 25, 23, 28, 30, 27, 24)
+
+# Calculate statistics
+mean(temperatures)    # Average temperature
+max(temperatures)     # Highest temperature
+min(temperatures)     # Lowest temperature
+```
+
+To execute code from the script:
+
+1. **Run a single line**: Place your cursor on the line and press `Ctrl + Enter` (or `Cmd + Enter` on Mac)
+2. **Run selected lines**: Highlight the lines you want to run and press `Ctrl + Enter`
+3. **Run the entire script**: Press `Ctrl + Shift + S` (or `Cmd + Shift + S` on Mac)
+
+Notice that lines starting with `#` are **comments**—R ignores them, but they're invaluable for explaining your code to others (and to your future self!).
+
+::: {.rmdcaution}
+**Challenge: Test Your Setup**
+
+Try these exercises to confirm everything works:
+
+1. Calculate `sqrt(144)` in the console (the square root of 144)
+2. Create a new script with three different calculations and save it as `my_first_script.R`
+3. Use the assignment operator (`<-`) to store a value: `my_number <- 42`
+4. Print your stored value by typing `my_number` and pressing Enter
+:::
+
+## What's Next? {-}
+
+Congratulations! You have successfully set up your R environment and written your first R code. You now understand why R is a powerful choice for data science and how to navigate the four panels of the RStudio interface. You have also learned to use the console, write scripts, and apply essential keyboard shortcuts.
+
+In the next chapter, we will dive into **R Fundamentals**, learning about objects, data types, vectors, and functions that form the foundation of all R programming. You will discover how R stores and manipulates data, setting the stage for the data analysis and visualization techniques to come.
+
+Let's continue the journey!
 
 <!--chapter:end:01-introduction/introduction.Rmd-->
 
@@ -187,22 +287,11 @@ In R, practically everything is an object. The variables we will use to store da
 
 Imagine you are organizing your move to the United States. Each item you pack in a box (clothes, books, appliances) can be considered an object. Each object has characteristics that define it: a name, a type, a size, a weight, etc.
 
-In R, objects also have characteristics that define them. These characteristics are called **attributes**. Some common attributes are:
-
-*   **Name:** The name we give to the object to be able to refer to it.
-*   **Type:** The type of data the object contains (numeric, character, logical, etc.).
-*   **Class:** The class of the object, which defines its structure and behavior (vector, list, data frame, function, etc.).
-*   **Length:** The amount of elements the object contains (if it is a vector, a list, etc.).
+In R, objects also have characteristics that define them. These characteristics are called **attributes**. For instance, every object has a **Name** so we can refer to it, and a **Type** that indicates what kind of data it contains (numeric, character, logical, etc.). Objects also have a **Class** defining their structure and behavior (such as vector, list, or data frame) and a **Length** indicating the number of elements they contain.
 
 ### R as an object-oriented language
 
-R is an **object-oriented** programming language. This means it relies on the concept of objects to organize and process information.
-
-Object-oriented programming has several advantages:
-
-*   **Modularity:** Objects allow dividing a program into smaller, manageable parts.
-*   **Reusability:** Objects can be reused in different parts of the program or in other programs.
-*   **Encapsulation:** Objects hide implementation details, facilitating their use and maintenance.
+R is an **object-oriented** programming language, meaning it relies on the concept of objects to organize and process information. This approach offers several advantages, such as **Modularity**, allowing us to divide a program into smaller, manageable parts. It also promotes **Reusability**, as objects can be used in different parts of the program or even in other projects. Furthermore, objects provide **Encapsulation**, hiding implementation details to facilitate their use and maintenance.
 
 ### The power of abstraction
 
@@ -221,6 +310,8 @@ Think of variables as labels we put on each object. For example, we could use th
 ### Creating variables in R
 
 In R, we don't need to declare a variable before using it. We simply assign it a value using the `<-` symbol.
+
+> **Note:** You might see the `=` symbol used for assignment in other programming languages or even in some R code. While `=` works in R, the `<-` operator is the standard and idiomatic way to assign values to variables. It helps distinguish between assigning a value to a variable and passing arguments to a function (where `=` is always used).
 
 **Example:**
 
@@ -278,38 +369,11 @@ It is important to use descriptive names for variables, clearly indicating what 
 
 **Rules for naming variables**
 
-*   Variable names can contain letters, numbers, and underscores (`_`).
-*   They cannot start with a number.
-*   They cannot contain spaces.
-*   R is case-sensitive.
+When naming your variables, remember that they can contain letters, numbers, and underscores (`_`), but they cannot start with a number or contain spaces. Also, keep in mind that R is case-sensitive, so capitalization matters.
 
 ### Data types
 
-Variables in R can contain different types of data:
-
-*   **Numeric:** Represent numbers, such as the population of a city or the cost of a plane ticket.
-
-    
-    ``` r
-    chicago_population <- 2700000
-    ticket_price <- 300
-    ```
-
-*   **Character:** Represent text, such as the name of a state or a city.
-
-    
-    ``` r
-    state <- "California"
-    city <- "Los Angeles"
-    ```
-
-*   **Logical:** Represent truth values: `TRUE` or `FALSE`. We could use a logical variable to indicate if we want to visit a city or not.
-
-    
-    ``` r
-    visit_chicago <- TRUE
-    visit_miami <- FALSE
-    ```
+Variables in R can contain different types of data. **Numeric** variables are used for numbers, such as the population of a city or the cost of a plane ticket. **Character** variables store text, like the name of a state ("California") or a city ("Los Angeles"). **Logical** variables represent binary truth values, `TRUE` or `FALSE`, which are useful for conditions, such as indicating whether we want to visit a specific city.
 
 ## Object types for complex data
 
@@ -356,29 +420,27 @@ population
 #>       39.2       29.0       21.4       19.4
 ```
 
-In addition to `c()`, there are other useful functions for creating vectors:
+In addition to `c()`, there are other useful functions for creating vectors. The `seq()` function creates a sequence of numbers, allowing us to specify the start value, the end value, and the increment.
 
-*   `seq()`: Creates a sequence of numbers. We can specify the start value, the end value, and the increment.
 
-    
-    ``` r
-    # Create a vector with numbers from 1 to 10
-    numbers <- seq(1, 10)
-    
-    # Create a vector with numbers from 2 to 20, by 2
-    even_numbers <- seq(2, 20, by = 2)
-    ```
+``` r
+# Create a vector with numbers from 1 to 10
+numbers <- seq(1, 10)
 
-*   `rep()`: Repeats a value or a vector a specified number of times.
+# Create a vector with numbers from 2 to 20, by 2
+even_numbers <- seq(2, 20, by = 2)
+```
 
-    
-    ``` r
-    # Create a vector with the value 1 repeated 5 times
-    ones <- rep(1, 5)
-    
-    # Create a vector with the sequence "A", "B" repeated 3 times
-    letters <- rep(c("A", "B"), 3)  # Output: "A" "B" "A" "B" "A" "B"
-    ```
+Another useful function is `rep()`, which repeats a value or a vector a specified number of times.
+
+
+``` r
+# Create a vector with the value 1 repeated 5 times
+ones <- rep(1, 5)
+
+# Create a vector with the sequence "A", "B" repeated 3 times
+letters <- rep(c("A", "B"), 3)  # Output: "A" "B" "A" "B" "A" "B"
+```
 
 **Accessing vector elements:** Each element of a vector has a position, indicated by a number in brackets. The first element is at position 1, the second at position 2, and so on.
 
@@ -612,12 +674,7 @@ This difference is due in part to R's history as a language for statistical anal
 
 Now that you know the different types of objects in R, it's time to put your knowledge to the test.
 
-1. Create the following variables:
-
-*   `city_name`: Store the name of the US city you would like to move to.
-*   `population`: Store the population of that city (you can search for it online).
-*   `distance`: Store the distance in kilometers from your current city to the US city.
-*   `want_to_live_there`: Store a logical value (`TRUE` or `FALSE`) indicating if you really would like to live in that city.
+1. Create four variables to plan your move. Define `city_name` with the city you would like to move to, `population` with its number of inhabitants, and `distance` with the kilometers from your current location. Also, create a logical variable `want_to_live_there` indicating if you truly want to live there.
 
 
 
@@ -644,12 +701,7 @@ nearby_cities <- c("Tacoma", "Bellevue", "Everett")
 ```
 </details>
 
-3. Create a list called `my_list` containing the following elements:
-
-*   Your name.
-*   Your age.
-*   A vector with the names of your three favorite colors.
-*   A logical value indicating if you like chocolate.
+3. Construct a list called `my_list` that groups different types of information about yourself. It should include your name, your age, a vector with your three favorite colors, and a logical value indicating if you simplify like chocolate.
 
 
 
@@ -768,32 +820,32 @@ climate
 #> , , Temperature
 #> 
 #>               January February March April May June July August September
-#> New York           34       35    24    33  25   30   22     23        10
-#> Los Angeles        27       33    27    26  32   32   18     35        22
-#> Chicago            10       35    25    33  29   13   26     10        17
-#> San Francisco      17       35    21    19  10   19   20     31        15
-#> Miami              12       23    32    26  10   20   21     10        11
+#> New York           11       35    13    25  28   14   13     26        23
+#> Los Angeles        29       24    16    18  26   23   23     13        29
+#> Chicago            35       33    19    29  14   13   12     32        35
+#> San Francisco      23       29    25    16  19   16   33     20        29
+#> Miami              18       34    22    12  14   29   30     25        34
 #>               October November December
-#> New York           34       11       32
-#> Los Angeles        32       11       11
-#> Chicago            28       22       22
-#> San Francisco      25       26       26
-#> Miami              13       33       35
+#> New York           19       26       28
+#> Los Angeles        31       13       19
+#> Chicago            32       28       29
+#> San Francisco      31       35       14
+#> Miami              18       26       21
 #> 
 #> , , Precipitation
 #> 
 #>               January February March April May June July August September
-#> New York            9        9    58    68  76   71   20     58        93
-#> Los Angeles        30       93    52    54  53   64   39     31        45
-#> Chicago            40       12     5    61  41   88   22      9         5
-#> San Francisco      63        0    63    10  41   68   68      2        37
-#> Miami              77       87     3    15  94   49   98     33        99
+#> New York           43        8    70    44  55  100   29     95        89
+#> Los Angeles        40       26    30    55  10   82   92     46        40
+#> Chicago            33       85    51    69  38   15    4     84        91
+#> San Francisco      74       30    62     1  20   76   90     20        29
+#> Miami              42       29     5    87  14   25   37     12        58
 #>               October November December
-#> New York           22       22        9
-#> Los Angeles         9       27       57
-#> Chicago            66       73       57
-#> San Francisco      89       63       52
-#> Miami              38       73       98
+#> New York           38      100       11
+#> Los Angeles        71       60       85
+#> Chicago            37       42       73
+#> San Francisco      54       95       86
+#> Miami              62       15       27
 ```
 </details>
 
@@ -836,9 +888,9 @@ for (i in 1:length(hot_days)) {
 
 # Show the longest streak and its position
 cat("The longest streak of hot days is:", longest_streak, "\n")
-#> The longest streak of hot days is: 6
+#> The longest streak of hot days is: 5
 cat("Starts on day:", start_longest_streak, "\n")
-#> Starts on day: 15
+#> Starts on day: 41
 ```
 This code uses a `for` loop to traverse the hot days vector and two variables (`current_streak` and `longest_streak`) to track the longest streak.
 
@@ -850,7 +902,7 @@ This code uses a `for` loop to traverse the hot days vector and two variables (`
 
 <details>
   <summary type="button">Solution</summary>
-  This exercise is a variant of the classic "maximize stock profit" problem. Solving it optimally can be complex, but with the concepts from chapter 1, we can create an algorithm that finds a solution (though not necessarily the optimal one).
+  This exercise is a variant of the classic "maximize stock profit" problem. Solving it optimally can be complex, but with the concepts from this chapter, we can create an algorithm that finds a solution (though not necessarily the optimal one).
 
 
 ``` r
@@ -878,9 +930,9 @@ for (i in 1:(length(prices) - 1)) {
 cat("Maximum profit:", max_profit, "\n")
 #> Maximum profit: 100
 cat("Buy day:", buy_day, "\n")
-#> Buy day: 6
+#> Buy day: 193
 cat("Sell day:", sell_day, "\n")
-#> Sell day: 354
+#> Sell day: 309
 ```
 This code uses two nested `for` loops to compare all possible pairs of buy and sell days.
 </details>
@@ -905,53 +957,36 @@ Functions allow us to encapsulate a set of instructions into a single block of c
 
 ### Why use functions?
 
-Functions offer several advantages:
-
-*   **Reusability:** We can use the same function in different parts of our code or in different projects.
-*   **Organization:** Functions help us organize our code into logical blocks, making it easier to read and understand.
-*   **Readability:** By using functions, our code becomes more concise and easier to understand.
-*   **Abstraction:** Functions allow us to abstract the complexity of a task, allowing us to focus on the logic of the problem we want to solve.
+Functions offer several advantages, starting with **Reusability**, which allows us to use the same logic in different parts of our code or across projects. They also improve **Organization** by breaking code into logical blocks, and enhance **Readability** by keeping scripts concise. Finally, functions provide **Abstraction**, hiding complex implementation details so we can focus on the problem logic.
 
 ### First functions: exploring basic R functions
 
-R already includes a large number of predefined functions that we can use to perform different tasks. Let's look at some examples:
+R includes a large number of predefined functions. For instance, `sum()` calculates the total of a vector's elements, while `mean()` computes their arithmetic average.
 
-*   `sum()`: Calculates the sum of the elements of a vector.
 
-    
-    ``` r
-    numbers <- c(1, 2, 3, 4, 5)
-    sum(numbers)  # Output: 15
-    #> [1] 15
-    ```
+``` r
+numbers <- c(1, 2, 3, 4, 5)
+sum(numbers)  # Output: 15
+#> [1] 15
 
-*   `mean()`: Calculates the arithmetic mean of the elements of a vector.
+temperatures <- c(25, 28, 26, 29, 27)
+mean(temperatures)  # Output: 27
+#> [1] 27
+```
 
-    
-    ``` r
-    temperatures <- c(25, 28, 26, 29, 27)
-    mean(temperatures)  # Output: 27
-    #> [1] 27
-    ```
+Other common functions include `round()`, which limits the number of decimal places, and `length()`, which tells us how many elements a vector contains.
 
-*   `round()`: Rounds a number to a specific number of decimal places.
 
-    
-    ``` r
-    pi  # Output: 3.141593
-    #> [1] 3.141593
-    round(pi, 2)  # Output: 3.14
-    #> [1] 3.14
-    ```
+``` r
+pi  # Output: 3.141593
+#> [1] 3.141593
+round(pi, 2)  # Output: 3.14
+#> [1] 3.14
 
-*   `length()`: Returns the length of a vector (the number of elements it contains).
-
-    
-    ``` r
-    cities <- c("New York", "Los Angeles", "Chicago")
-    length(cities)  # Output: 3
-    #> [1] 3
-    ```
+cities <- c("New York", "Los Angeles", "Chicago")
+length(cities)  # Output: 3
+#> [1] 3
+```
 
 These are just a few of the many predefined functions that R offers. As we progress through the book, we will explore more functions and learn how to use them to perform more complex data analysis.
 
@@ -975,17 +1010,13 @@ sum(numbers)  # Output: 15
 
 A function's arguments are specified in parentheses after the function name. If a function requires multiple arguments, they are separated by commas.
 
-For example, imagine we want to create a function to calculate the total cost of a plane trip. This function might need the following arguments:
+For example, imagine we want to create a function to calculate the total cost of a plane trip. This function might need the `ticket_price`, the `num_people` traveling, and an optional `discount` (such as a reduction for students or senior citizens).
 
-*  `ticket_price`: The price of a plane ticket.
-*  `num_people`: The number of people traveling.
-*  `discount`: An optional discount on the ticket price (for example, for being a student or senior citizen).
-
-The function could be called `calculate_trip_cost` and would be used as follows:
+The function could be called `calculate_vacation_cost` and would be used as follows:
 
 
 ``` r
-calculate_trip_cost(ticket_price = 300, num_people = 2, discount = 0.1)
+calculate_vacation_cost(ticket_price = 300, num_people = 2, discount = 0.1)
 ```
 
 In this case, we are passing three arguments to the function: `ticket_price` with value 300, `num_people` with value 2, and `discount` with value 0.1 (representing a 10% discount).
@@ -1000,7 +1031,7 @@ For example, the body of the function `calculate_trip_cost` could be:
 
 
 ``` r
-calculate_trip_cost <- function(ticket_price, num_people, discount = 0) {
+calculate_vacation_cost <- function(ticket_price, num_people, discount = 0) {
   total_cost <- ticket_price * num_people * (1 - discount)
   return(total_cost)
 }
@@ -1014,7 +1045,7 @@ For example, if we do not specify a value for `discount`, the function uses the 
 
 ``` r
 # Call the function without specifying the discount
-calculate_trip_cost(ticket_price = 300, num_people = 2)
+calculate_vacation_cost(ticket_price = 300, num_people = 2)
 #> [1] 600
 ```
 
@@ -1022,7 +1053,7 @@ If we want to apply a discount, we can specify it when calling the function:
 
 
 ``` r
-calculate_trip_cost(ticket_price = 300, num_people = 2, discount = 0.1)
+calculate_vacation_cost(ticket_price = 300, num_people = 2, discount = 0.1)
 #> [1] 540
 ```
 
@@ -1031,11 +1062,11 @@ In this case, the total cost is 540, since a 10% discount is applied.
 
 ### Return value: the result of the function
 
-The **return value** is the result the function produces after executing its instructions. It can be a simple value (a number, text, a logical value) or a more complex object (a vector, a list, a dataframe).
+The **return value** is the result the function produces after executing its instructions. It can be a simple value (a number, text, a logical value) or a more complex object (a vector, a list, a data frame).
 
 In R, the return value is specified with the `return()` function. If `return()` is not used, the function will return the result of the last expression evaluated in the body.
 
-In the `calculate_trip_cost` example, the return value is the `total_cost` of the trip, which is a number.
+In the `calculate_vacation_cost` example, the return value is the `total_cost` of the trip, which is a number.
 
 ### Examples: creating simple functions step by step
 
@@ -1049,12 +1080,7 @@ celsius_to_fahrenheit <- function(celsius) {
 }
 ```
 
-In this example:
-
-*   `celsius_to_fahrenheit` is the name of the function.
-*   `celsius` is the argument of the function (the temperature in degrees Celsius).
-*   The body of the function calculates the temperature in Fahrenheit using the formula `(celsius * 9 / 5) + 32` and stores it in the variable `fahrenheit`.
-*   The `return()` function returns the value of the variable `fahrenheit`.
+In this example, `celsius_to_fahrenheit` is the name of the function, and `celsius` is its argument representing the input temperature. Inside the body, the function calculates the equivalent Fahrenheit value using the formula `(celsius * 9 / 5) + 32` and stores it in the variable `fahrenheit`, which is then sent back as the result using `return()`.
 
 Now we can use our function to convert temperatures:
 
@@ -1175,6 +1201,8 @@ Now, imagine we want to apply a tax to the total cost. We could define a global 
 ``` r
 tax_rate <- 0.16
 ```
+
+> **Warning:** Relying on global variables inside a function (like `tax_rate` in the example below) is generally considered bad practice. It makes the function dependent on the external environment, which can lead to unexpected errors if the global variable changes or doesn't exist. It is better to pass all necessary values as arguments to the function.
 
 And then modify the function to include the tax:
 
@@ -1329,12 +1357,7 @@ trip_cost_2
 
 In previous sections, we explored how to create and use functions in R. Now, let's delve into a more advanced concept: **higher-order functions**.
 
-**What are higher-order functions?**
-
-Higher-order functions are functions that can:
-
-*   Receive other functions as arguments.
-*   Return a function as a result.
+Higher-order functions are those that can receive other functions as arguments or return a function as a result.
 
 This type of function allows us to write more flexible and expressive code, and they are a powerful tool for data analysis.
 
@@ -1555,11 +1578,7 @@ However, the `increment_counter()` function "captures" the `counter` variable in
 
 ### Applications: creating counters, functions with internal state
 
-Closures have many applications in programming. Some of the most common are:
-
-*   **Creating counters:** As we saw in the previous example, closures allow us to create functions that maintain an internal state between calls.
-*   **Creating functions with configurable parameters:** We can use closures to create functions that "remember" specific parameters. For example, we could create a function generating functions to convert temperatures from Celsius to Fahrenheit, where the generated function "remembers" the temperature scale it needs to convert.
-*   **Encapsulating data:** Closures allow us to hide data within a function, which can be useful for protecting sensitive information or avoiding naming conflicts. For example, we could create a function generating unique identifiers, where the generated function "remembers" the last generated identifier.
+Closures have many applications in programming. They are commonly used for **creating counters** that maintain an internal state between calls, **configuring parameters** where a generated function remembers specific settings (like a temperature scale), and **encapsulating data** to hide sensitive information or internal logic within the function scope.
 
 ### Examples: simulating a game, creating an operation history
 
@@ -1582,12 +1601,7 @@ In this section, we will learn to identify, understand, and fix errors in our R 
 
 When our code contains an error, R will show us an error message in the console. These messages can seem intimidating at first, but with a little practice, we will learn to interpret them and use them to find the cause of the error.
 
-Some common error messages in R are:
-
-*   `Error: object 'object_name' not found`: This error occurs when we try to use a variable or function that does not exist. It may be that we misspelled the name, or that the variable or function is not defined in the current scope.
-*   `Error in function_name(arguments): invalid argument`: This error occurs when we pass an invalid argument to a function. For example, if we pass a text vector to a function expecting a numeric vector.
-*   `Error in if (condition) { ... }: argument is of length zero`: This error occurs when the condition in an `if` structure has length zero. This can happen if the condition evaluates to `NULL` or an empty vector.
-*   `Error in for (variable in sequence) { ... }: invalid 'for' loop sequence`: This error occurs when the sequence in a `for` loop is invalid. For example, if the sequence is `NULL` or a vector of length zero.
+Some common error messages in R include `Error: object 'object_name' not found`, which happens when you interpret a non-existent variable or function. Another is `invalid argument` when function inputs don't match the expected type, such as passing text to a numeric function. You might also encounter `argument is of length zero` in `if` conditions, often due to `NULL` or empty vectors, or `invalid 'for' loop sequence` when the loop iterator definition is flawed.
 
 It is important to read error messages carefully and try to understand what they are telling us. Often, the error message will give us a clue about the cause of the problem.
 
@@ -1765,7 +1779,7 @@ price_with_vat <- function(price_without_vat, vat_rate = 0.16) {
 ```
 </details>
 
-15. Create a function called `factorial()` calculating the factorial of a number. The factorial of a positive integer *n*, denoted by *n!*, is the product of all positive integers less than or equal to *n*. For example, 5! = 5 * 4 * 3 * 2 * 1 = 120. (Hint: use a recursive function).
+15. Create a function called `my_factorial()` calculating the factorial of a number. The factorial of a positive integer *n*, denoted by *n!*, is the product of all positive integers less than or equal to *n*. For example, 5! = 5 * 4 * 3 * 2 * 1 = 120. (Hint: use a recursive function). Note: We name it `my_factorial()` to avoid shadowing R's built-in `factorial()` function.
 
 
 
@@ -1773,11 +1787,16 @@ price_with_vat <- function(price_without_vat, vat_rate = 0.16) {
   <summary type="button">Solution</summary>
 
 ``` r
-factorial <- function(n) {
+my_factorial <- function(n) {
+  if (n < 0) {
+      # We use message() and return(NA) because we haven't covered stop() yet
+      message("Factorial is not defined for negative numbers")
+      return(NA)
+    }
   if (n == 0) {
     return(1)
   } else {
-    return(n * factorial(n - 1))
+    return(n * my_factorial(n - 1))
   }
 }
 ```
@@ -1901,7 +1920,9 @@ create_temperature_converter <- function(scale) {
   } else if (scale == "Kelvin") {
     return(function(temp) temp + 273.15)  # Celsius to Kelvin
   } else {
-    stop("Invalid temperature scale.")
+      # We use message() and return(NA) because we haven't covered stop() yet
+      message("Invalid temperature scale.")
+      return(NA)
   }
 }
 ```
@@ -2060,13 +2081,7 @@ Imagine a spreadsheet, with rows and columns organizing information in a tabular
 
 Each column of a data frame can contain a different data type: numeric, character, logical, factor, etc. This makes data frames very versatile for storing diverse information.
 
-For example, a data frame about US cities could contain the following columns:
-
-*   `city`: Name of the city (character).
-*   `state`: State the city belongs to (character).
-*   `population`: Population of the city (numeric).
-*   `area`: Area of the city in square kilometers (numeric).
-*   `has_beach`: Logical value indicating if the city has a beach (`TRUE` or `FALSE`).
+For example, a data frame about US cities could serve as a comprehensive record. It might contain a character column for the `city` name and another for the `state` it belongs to. Numeric columns could store the `population` and the `area` in square kilometers, while a logical column like `has_beach` could indicate whether the city is coastal.
 
 ### Why data frames?
 
@@ -2074,9 +2089,7 @@ In R, there are various structures for organizing data, such as vectors, lists, 
 
 Data frames offer a unique combination of features that make them ideal for representing and manipulating complex information:
 
-*   **Tabular structure:** They organize data in rows and columns, like a spreadsheet, which facilitates visualization and understanding.
-*   **Flexibility in data types:** Each column can contain a different data type (numbers, text, dates, etc.), which allows representing the diversity of real-world information.
-*   **Efficiency in analysis:** Most data analysis functions and packages in R are designed to work with data frames.
+Data frames are uniquely suited for data analysis because of their specific features. Their **tabular structure** organizes data into rows and columns, similar to a spreadsheet, making it intuitive to visualize. They offer **flexibility** by allowing each column to hold a different data type, such as numbers, text, or dates. this structure also ensures **efficiency**, as most R analysis packages are optimized to work directly with data frames.
 
 In summary, data frames are a versatile and powerful data structure that adapts to the needs of modern data analysis.
 
@@ -2084,10 +2097,7 @@ In summary, data frames are a versatile and powerful data structure that adapts 
 
 In the context of your move to the United States, data frames will be essential for organizing and analyzing the information you need to make the best decision. We can use data frames to store information about:
 
-*   **Crime:** Crime rates in different states.
-*   **Cost of living:** Cost of housing, food, transportation in different cities.
-*   **Climate:** Average temperatures, precipitation, days of sunshine in different regions.
-*   **Demographics:** Population, average age, education level in different states.
+We can use data frames to store and correlate various aspects of your potential new home. You might track **crime rates** across different states, compare the **cost of living** (housing, food, transportation) in target cities, analyze **climate data** like temperature and precipitation, or study **demographics** such as population age and education levels.
 
 With this information organized in data frames, you will be able to perform deeper analyses and make more informed decisions about your move.
 
@@ -2099,47 +2109,44 @@ Now that you know what data frames are and why they are so important in data ana
 
 A common way to create data frames is by importing data from external files, such as CSV (Comma Separated Values) files or Excel files. R offers us functions to read data from different formats.
 
-*   **Importing data from CSV files:** To import data from a CSV file, we use the `read.csv()` function.
+One of the most common ways to create data frames is by importing data from external files. For **CSV (Comma Separated Values)** files, we rely on the `read_csv()` function from the `readr` package (part of the tidyverse), which is faster and more robust than the base R equivalent. To import a file, you simply provide its URL or file path:
 
     
     ``` r
-    url <- "https://dparedesi.github.io/DS-con-R/notas-estudiantes.csv"
+    library(readr)
+    url <- "https://dparedesi.github.io/DS-with-R-datasets/student-grades.csv"
     
-    # Import data from a CSV file called "notas-estudiantes.csv"
-    cities <- read.csv(url)
+    # Import data from a CSV file called "student-grades.csv"
+    grades <- read_csv(url)
+    #> Rows: 21 Columns: 9
+    #> ── Column specification ─────────────────────────────
+    #> Delimiter: ","
+    #> chr (3): start_date, gender, type
+    #> dbl (6): P1, P2, P3, P4, P5, P6
+    #> 
+    #> ℹ Use `spec()` to retrieve the full column specification for this data.
+    #> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
     
-    cities
-    #>        inicio genero                 tipo P1 P2 P3 P4 P5 P6
-    #> 1  03/05/2020  mujer Trabajo individual 1  5  5  5  5  5  5
-    #> 2  03/05/2020 hombre Trabajo individual 1  5  5  5  5  4  5
-    #> 3  03/05/2020  mujer Trabajo individual 1  5  5  4  5  5  5
-    #> 4  03/05/2020 hombre Trabajo individual 1  5  5  5  5  5  5
-    #> 5  03/05/2020 hombre Trabajo individual 1  2  5  5  5  5  5
-    #> 6  03/05/2020 hombre Trabajo individual 1  5  4  5  1  5  5
-    #> 7  03/05/2020 hombre Trabajo individual 1  2  1  5  5  2  5
-    #> 8  03/05/2020 hombre Trabajo individual 1  5  5  5  5  5  5
-    #> 9  03/05/2020 hombre Trabajo individual 1  4  5  5  5  5  5
-    #> 10 03/05/2020 hombre Trabajo individual 1  3  4  5  5  5  5
-    #> 11 03/05/2020 hombre Trabajo individual 1  2  5  5  5  5  5
-    #> 12 03/05/2020  mujer Trabajo individual 1  1  1  5  5  5  1
-    #> 13 03/05/2020 hombre Trabajo individual 1  5  5  5  5  5  5
-    #> 14 03/05/2020  mujer Trabajo individual 1  3  5  5  1  1  1
-    #> 15 03/05/2020 hombre Trabajo individual 1  4  5  5  5  5  5
-    #> 16 03/05/2020  mujer Trabajo individual 1  5  5  5  5  5  5
-    #> 17 03/05/2020 hombre Trabajo individual 1  5  1  5  5  1  1
-    #> 18 03/05/2020  mujer Trabajo individual 1  4  5  5  5  5  5
-    #> 19 03/05/2020 hombre Trabajo individual 1  5  3  5  5  5  2
-    #> 20 03/05/2020 hombre Trabajo individual 1  3  5  5  5  5  5
-    #> 21 03/05/2020 hombre Trabajo individual 1  1  4  4  4  5  5
+    grades
+    #> # A tibble: 21 × 9
+    #>    start_date gender type                 P1    P2    P3    P4    P5    P6
+    #>    <chr>      <chr>  <chr>             <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+    #>  1 03/05/2020 female Individual Work 1     5     5     5     5     5     5
+    #>  2 03/05/2020 male   Individual Work 1     5     5     5     5     4     5
+    #>  3 03/05/2020 female Individual Work 1     5     5     4     5     5     5
+    #>  4 03/05/2020 male   Individual Work 1     5     5     5     5     5     5
+    #>  5 03/05/2020 male   Individual Work 1     2     5     5     5     5     5
+    #>  6 03/05/2020 male   Individual Work 1     5     4     5     1     5     5
+    #>  7 03/05/2020 male   Individual Work 1     2     1     5     5     2     5
+    #>  8 03/05/2020 male   Individual Work 1     5     5     5     5     5     5
+    #>  9 03/05/2020 male   Individual Work 1     4     5     5     5     5     5
+    #> 10 03/05/2020 male   Individual Work 1     3     4     5     5     5     5
+    #> # ℹ 11 more rows
     ```
 
-    The `read.csv()` function has several optional arguments that allow us to customize data import. Some of the most common arguments are:
+The `read_csv()` function offers several arguments to customize how files are read. The `header` argument allows you to specify if the first row contains column names, while `sep` defines the column separator (defaulting to a comma). You can also use `dec` to set the character used for decimal points.
 
-    *   `header`: Indicates if the file has a header row (`TRUE` or `FALSE`).
-    *   `sep`: Specifies the character used to separate columns (by default, the comma ",").
-    *   `dec`: Specifies the character used to separate decimals (by default, the dot ".").
-
-*   **Importing data from Excel files:** To import data from an Excel file, we can use the `read_excel()` function from the `readxl` package.
+For **Excel files**, we use the `read_excel()` function from the `readxl` package. This function works similarly but includes specific arguments like `sheet` to specify which spreadsheet tab to import.
 
     
     ``` r
@@ -2153,8 +2160,6 @@ A common way to create data frames is by importing data from external files, suc
     states <- read_excel("states.xlsx")
     ```
 
-    The `read_excel()` function has several optional arguments, such as `sheet` to specify the spreadsheet to import.
-
 ### Creating data frames manually
 
 We can also create data frames manually, combining vectors with the `data.frame()` function.
@@ -2167,16 +2172,16 @@ states <- c("New York", "California", "Illinois")
 population <- c(8.4e6, 3.9e6, 2.7e6)
 
 # Create a data frame with city information
-df_cities <- data.frame(city = cities, state = states, population = population)
+df_cities_simple <- data.frame(city = cities, state = states, population = population)
 
-df_cities
+df_cities_simple
 #>          city      state population
 #> 1    New York   New York    8400000
 #> 2 Los Angeles California    3900000
 #> 3     Chicago   Illinois    2700000
 ```
 
-In this example, we create a data frame called `df_cities` with three columns: `city`, `state`, and `population`. Each column is created from a vector. Note that the vectors must have the same length to be combined into a data frame.
+In this example, we create a data frame called `df_cities_simple` with three columns: `city`, `state`, and `population`. Each column is created from a vector. Note that the vectors must have the same length to be combined into a data frame.
 
 ### Examples
 
@@ -2226,119 +2231,13 @@ We have already learned to create data frames, now it is time to explore their c
 
 A data frame is like a map organized in rows and columns. To access the information we need, we must know how to navigate this map. R provides us with different ways to access rows, columns, and cells of a data frame.
 
-*   **Accessing columns:** We can access a column of a data frame using the `$` operator followed by the column name.
-
-    
-    ``` r
-    # Access the "state" column of the "df_cities" data frame
-    df_cities$state
-    #> [1] "New York"   "California" "Illinois"   "Texas"
-    ```
-
-    We can also access a column using the data frame name followed by brackets and the column name in quotes.
-
-    
-    ``` r
-    # Access the "population" column of the "df_states" data frame
-    df_states["population"]
-    #>   population
-    #> 1   39200000
-    #> 2   29000000
-    #> 3   21400000
-    #> 4   19400000
-    ```
-
-*   **Accessing rows:** We can access a row of a data frame using brackets and the row number.
-
-    
-    ``` r
-    # Access the third row of the "df_cities" data frame
-    df_cities[3, ]
-    #>      city    state cost_of_living crime_rate     climate
-    #> 3 Chicago Illinois            2.5        500 Continental
-    ```
-
-*   **Accessing cells:** We can access a specific cell of a data frame using brackets and specifying the row and column.
-
-    
-    ``` r
-    # Access the cell in row 2, column 3 of the "df_states" data frame
-    df_states[2, 3]
-    #> [1] 1.8e+12
-    ```
-
-*   **Filtering rows with conditions:** We can use logical conditions to filter the rows of a data frame. For example, if we want to get cities with a cost of living less than 3:
-
-    
-    ``` r
-    df_cities[df_cities$cost_of_living < 3, ]
-    #>          city      state cost_of_living crime_rate       climate
-    #> 2 Los Angeles California            2.8        350 Mediterranean
-    #> 3     Chicago   Illinois            2.5        500   Continental
-    #> 4     Houston      Texas            2.0        450   Subtropical
-    ```
+There are several ways to access specific data within a dataframe. To retrieve a **column**, you can use the `$` operator (e.g., `df_cities$state`) or bracket notation with the column name in quotes (e.g., `df_states["population"]`). To access a specific **row**, use brackets with the row number (e.g., `df_cities[3, ]`). For a precise **cell** at the intersection of a row and column, specify both indices (e.g., `df_states[2, 3]`). You can also **filter rows** based on conditions, such as extracting all cities where the cost of living is less than 3 using a logical expression inside the brackets.
 
 ### Functions for exploring data frames
 
 R offers several useful functions for exploring data frames:
 
-*   `head()`: Shows the first 6 rows of the data frame.
-
-    
-    ``` r
-    head(df_cities)
-    #>          city      state cost_of_living crime_rate       climate
-    #> 1    New York   New York            3.5        400     Temperate
-    #> 2 Los Angeles California            2.8        350 Mediterranean
-    #> 3     Chicago   Illinois            2.5        500   Continental
-    #> 4     Houston      Texas            2.0        450   Subtropical
-    ```
-
-*   `tail()`: Shows the last 6 rows of the data frame.
-
-    
-    ``` r
-    tail(df_states)
-    #>        state population     gdp education_system
-    #> 1 California   39200000 3.2e+12             Good
-    #> 2      Texas   29000000 1.8e+12          Regular
-    #> 3    Florida   21400000 1.1e+12             Good
-    #> 4   New York   19400000 1.7e+12        Excellent
-    ```
-
-*   `str()`: Shows the structure of the data frame, including column names, data type of each column, and the first values of each column.
-
-    
-    ``` r
-    str(df_cities)
-    #> 'data.frame':	4 obs. of  5 variables:
-    #>  $ city          : chr  "New York" "Los Angeles" "Chicago" "Houston"
-    #>  $ state         : chr  "New York" "California" "Illinois" "Texas"
-    #>  $ cost_of_living: num  3.5 2.8 2.5 2
-    #>  $ crime_rate    : num  400 350 500 450
-    #>  $ climate       : chr  "Temperate" "Mediterranean" "Continental" "Subtropical"
-    ```
-
-*   `summary()`: Provides descriptive statistics for each column of the data frame, such as mean, median, minimum and maximum values, etc.
-
-    
-    ``` r
-    summary(df_states)
-    #>     state             population            gdp           education_system  
-    #>  Length:4           Min.   :19400000   Min.   :1.10e+12   Length:4          
-    #>  Class :character   1st Qu.:20900000   1st Qu.:1.55e+12   Class :character  
-    #>  Mode  :character   Median :25200000   Median :1.75e+12   Mode  :character  
-    #>                     Mean   :27250000   Mean   :1.95e+12                     
-    #>                     3rd Qu.:31550000   3rd Qu.:2.15e+12                     
-    #>                     Max.   :39200000   Max.   :3.20e+12
-    ```
-
-*   `View()`: Opens a window with an interactive view of the data frame, similar to a spreadsheet.
-
-    
-    ``` r
-    View(df_cities)
-    ```
+R provides useful functions for a quick overview of your data. `head()` displays the first six rows, while `tail()` shows the last six. To understand the structure—such as column names and data types—you can use `str()`. For a statistical overview including mean, median, and quartiles, `summary()` is the go-to function. Additionally, `View()` opens an interactive spreadsheet-style window to browse the data.
 
 ### Examples: exploring data frames with move information
 
@@ -2375,7 +2274,7 @@ We can also use the `hist()` function to create a histogram of a numeric column,
 hist(df_states$population)
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-153-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-139-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 These are just some ideas of how we can explore our data frames. As you become familiar with R, you will discover new functions and techniques for analyzing and visualizing your data.
 
@@ -2385,7 +2284,9 @@ In the previous section, we learned to explore data frames and access the inform
 
 ### Introduction to the pipeline operator (`|>`)
 
-Before manipulating data frames, we will introduce a tool to write more readable and efficient code: the **native pipeline operator** (`|>`). This operator was introduced in R 4.1 (2021) as a built-in language feature, meaning it works without any additional packages.
+Before modifying data frames, we will introduce a tool to write more readable and efficient code: the **native pipeline operator** (`|>`). This operator was introduced in R 4.1 (2021) as a built-in language feature, meaning it works without any additional packages.
+
+> **Note:** You may also encounter the `%>%` pipe operator from the `magrittr` package (part of the tidyverse). Both `|>` and `%>%` work similarly for most data analysis tasks. We use the native `|>` operator throughout this book as it is built into R, but `%>%` is still widely used in older codebases.
 
 The pipeline operator allows us to chain several operations sequentially. Instead of writing nested code, we can use the pipeline operator to "pass" the result of one operation to the next.
 
@@ -2409,7 +2310,7 @@ library(tidyverse)
 
 Now we can use the pipeline operator `(|>)` and functions from `dplyr.`
 
-For example, if we want to view only the state, population, and total data from the `murders` data frame (from the `dslabs` package), we can use a pipeline:
+For example, we'll use the `murders` dataset from the `dslabs` package. This dataset contains gun murder data by US state in 2010, including variables like state name, abbreviation, region, population, and total murders. Let's use a pipeline to view selected columns:
 
 
 ``` r
@@ -2578,18 +2479,7 @@ murders |>
 
 We can use different operators to create our conditions:
 
-*   `>`: greater than
-*   `<`: less than
-*   `>=`: greater than or equal to
-*   `<=`: less than or equal to
-*   `==`: equal to
-*   `!=`: different from
-
-We can also combine conditions using logical operators:
-
-*   `&`:  AND
-*   `|`:  OR
-*   `!`:  NOT
+R supports standard comparison operators to create conditions: greater than (`>`), less than (`<`), greater than or equal to (`>=`), less than or equal to (`<=`), equal to (`==`), and different from (`!=`). You can combine multiple conditions using logical operators: `&` for AND, `|` for OR, and `!` for NOT.
 
 For example, to filter by ratio less than 1 and West region:
 
@@ -2736,9 +2626,7 @@ In this example, `left_join()` combines `df_cities` and `df_states` data frames 
 
 The other join functions (`right_join()`, `inner_join()`, and `full_join()`) work similarly, but with different criteria for combining data frame rows.
 
-*   `right_join()` does the opposite of `left_join()`: keeps all rows from the right data frame and only rows from the left data frame that match.
-*   `inner_join()` only keeps rows that have matches in both data frames.
-*   `full_join()` keeps all rows from both data frames, adding `NA` where there are no matches.
+The other join functions work similarly but with different inclusion criteria. `right_join()` does the opposite of `left_join()`, keeping all rows from the right data frame and only matching rows from the left. `inner_join()` is more restrictive, keeping only rows that have matches in both tables, while `full_join()` is the most inclusive, retaining all rows from both data frames and filling in `NA` where no match exists.
 
 You can consult `dplyr` documentation for more information about these functions.
 
@@ -2746,39 +2634,9 @@ You can consult `dplyr` documentation for more information about these functions
 
 The `dplyr` functions we have seen allow us to perform complex data transformations to answer specific questions about our move to the United States. Let's see some examples with R code:
 
-*   **Filter cities with a good education system and low cost of living:**
+**Examples of analysis questions**
 
-    
-    ``` r
-    # Assume we have a "df_cities" data frame with information 
-    # about cities, including "education_system" and "cost_of_living" columns
-    
-    df_cities |> 
-      filter(education_system == "Good" & cost_of_living < 2.5)
-    ```
-
-*   **Sort states by their GDP per capita:**
-
-    
-    ``` r
-    # Assume we have a "df_states" data frame with information 
-    # about states, including "gdp" and "population" columns
-    
-    df_states |> 
-      mutate(gdp_per_capita = gdp / population) |> 
-      arrange(desc(gdp_per_capita))
-    ```
-
-*   **Join a city data frame with a climate information data frame:**
-
-    
-    ``` r
-    # Assume we have a "df_cities" data frame with information 
-    # about cities, including "city" column, and a "df_climate" 
-    # data frame with climate information, including "city" column
-    
-    df_cities_climate <- left_join(df_cities, df_climate, by = "city")
-    ```
+We can combine these tools to answer specific questions. To find suitable locations, we might filtered for cities with a "Good" education system and a cost of living index below 2.5. Alternatively, to study economic prosperity, we could sort states by their GDP per capita (calculated as GDP divided by population) in descending order. For a more comprehensive climate analysis, we could join our city data with a separate climate table.
 
 With these tools, you will be able to explore and analyze information about the United States to make the best decision about your move.
 
@@ -2846,7 +2704,7 @@ south_and_west <- c("South", "West")
   
 murders <- murders |>
   mutate(ratio = total/population*100000) |>
-  filter(ratio < 0.9 & region %in% south_and_west) |>
+  filter(ratio < 0.5 & region %in% south_and_west) |>
   select(state, abb, ratio)
 
 murders
@@ -2870,7 +2728,7 @@ south_and_west <- c("South", "West")
   
 murders <- murders |>
   mutate(ratio = total/population*100000) |>
-  filter(ratio < 0.9 & region %in% south_and_west) |>
+  filter(ratio < 0.5 & region %in% south_and_west) |>
   select(state, abb, ratio) |>
   arrange(ratio)
 
@@ -2904,7 +2762,7 @@ plot(x_axis, y_axis)
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-185-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-168-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can see a correlation between population and number of cases. Let's transform the `x_axis` dividing by one million (${10}^6$). Thus we will have the x axis expressed in millions.
 
@@ -2917,7 +2775,7 @@ plot(x_axis, y_axis)
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-186-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-169-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 ### Histograms
 We can also create histograms from a vector with the `hist` function.
@@ -2933,7 +2791,7 @@ hist(murders$ratio)
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-187-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-170-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 The ease R gives us to create graphs will save us time for analysis. From here we can quickly see that most states have a `ratio < 5`.
 
@@ -2947,7 +2805,7 @@ boxplot(murders$ratio)
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-188-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-171-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 ## Data interpretation
 We have seen graphs that can be generated with a line of code, but we need to interpret them. To do so, we need to learn or remember some statistics. Throughout this book we will learn statistical concepts not going deep into the math part, but from the practical part and leveraging that functions already exist in R.
@@ -2977,12 +2835,7 @@ summary(murders$total)
 #>     2.0    24.5    97.0   184.4   268.0  1257.0
 ```
 
-1. `Min.`: Minimum value of vector
-2. `1st Qu.`: First quartile
-3. `Median`: Median or second quartile
-4. `Mean`: Average
-5. `3rd Qu.`: Third quartile
-6. `Max.`: Maximum value of vector
+The summary provides key insights: the **Min** and **Max** show the range of the data; the **1st Qu** (first quartile) and **3rd Qu** (third quartile) indicate the 25th and 75th percentiles; the **Median** marks the exact middle of the distribution; and the **Mean** gives the arithmetic average.
 
 ### Quartiles
 To understand quartiles let's visualize total data in an ordered way. To only obtain a single column in pipeline we will use `.$` before the variable name:
@@ -3071,7 +2924,7 @@ summary(murders$total)
 #>     2.0    24.5    97.0   184.4   268.0  1257.0
 ```
 
-In our example `268` indicates that below that number we will find 75% of total data (75% of 51 data points = 26.01, rounded to 26 data points).
+In our example `268` indicates that below that number we will find 75% of total data (75% of 51 data points = 38.25, rounded to 38 data points).
 
 ### Interpretation of box plot
 We are now ready to create a box plot with total murders and interpret results.
@@ -3081,7 +2934,7 @@ We are now ready to create a box plot with total murders and interpret results.
 boxplot(murders$total)
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-199-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-182-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 The box starts at value 24.5 (first quartile) and ends at value 268 (third quartile). The thick line represents the median (second quartile), 97 in our example.
 
@@ -3118,7 +2971,7 @@ tot_log10 <- log10(murders$total)
 plot(pop_log10, tot_log10)
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-201-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-184-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 2. Create a histogram of population in millions (divided by ${10}^6$).
 
@@ -3127,7 +2980,7 @@ plot(pop_log10, tot_log10)
 hist(murders$population/10^6)
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-202-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-185-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 3. Create a box plot of population.
 
@@ -3136,7 +2989,7 @@ hist(murders$population/10^6)
 boxplot(murders$population)
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-203-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-186-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 
 
@@ -3144,12 +2997,7 @@ boxplot(murders$population)
 
 Below, you will find a series of exercises with different levels of difficulty. It is time to put into practice what you have learned in this chapter. Remember you can use `dplyr` functions like `filter()`, `arrange()`, `mutate()`, `summarize()`, `group_by()` and `left_join()` to manipulate data frames.
 
-30. Create a data frame called `my_expenses` with the following columns:
-
-    *   `category`: A factor with categories "Housing", "Transport", "Food", and "Entertainment".
-    *   `january`: Expenses in January for each category.
-    *   `february`: Expenses in February for each category.
-    *   `march`: Expenses in March for each category.
+30. Create a data frame called `my_expenses`. It should contain a `category` factor with levels "Housing", "Transport", "Food", and "Entertainment", along with three numeric columns (`january`, `february`, `march`) recording expenses for each category.
 
 
 
@@ -3316,7 +3164,7 @@ my_expenses |>
 
 
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-221-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-204-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 <details>
   <summary type="button">Solution</summary>
@@ -3459,9 +3307,7 @@ Metaprogramming is a technique that allows us to write code that generates other
 
 Why is this useful? Metaprogramming can be very useful for:
 
-*   **Automating repetitive tasks:** If we have to write similar code many times, we can use metaprogramming to generate that code automatically.
-*   **Creating more flexible functions:** We can use metaprogramming to create functions that adapt to different situations and data types.
-*   **Writing more concise and expressive code:** Metaprogramming allows us to express complex ideas more concisely.
+Metaprogramming is incredibly useful for **automating repetitive tasks**, allowing us to generate boilerplate code dynamically. It also enables us to create **more flexible functions** that adapt to different data structures, and facilitates **writing concise, expressive code** that captures complex logic simply.
 
 In R, metaprogramming is based on the manipulation of **expressions**. An expression is a representation of R code as an object. We can create expressions, modify them, and evaluate them to generate new code.
 
@@ -3473,50 +3319,7 @@ Think of an expression like a cooking recipe. The recipe contains a set of instr
 
 R offers us several tools to manipulate expressions, as if they were the hands of a sculptor shaping clay:
 
-*   **`quote()`**: This function takes R code and "freezes" it into an expression, without evaluating it. It's like taking the cooking recipe and saving it in a book, without preparing it yet.
-
-    
-    ``` r
-    my_expression <- quote(x + y)
-    my_expression
-    #> x + y
-    ```
-
-    In this example, `quote(x + y)` creates an expression representing the sum of `x` and `y`. The expression is stored in the variable `my_expression`, but the sum is not performed yet.
-
-*   **`substitute()`**: This function allows us to substitute variables in an expression with their values. It's like in the cooking recipe, replacing the word "sugar" with the amount of sugar we want to use.
-
-    
-    ``` r
-    x <- 10
-    y <- 5
-    substitute(x + y)
-    #> x + y
-    ```
-
-    In this example, `substitute(x + y)` replaces variables `x` and `y` with their values (10 and 5, respectively), resulting in the expression `10 + 5`.
-
-*   **`eval()`**: This function "unfreezes" an expression and evaluates it, executing the code it contains. It's like taking the cooking recipe from the book and using it to prepare the dish.
-
-    
-    ``` r
-    eval(quote(x + y))
-    #> [1] 15
-    ```
-
-    In this example, `eval(quote(x + y))` evaluates the expression `x + y`, performing the sum and returning the result 15.
-
-*   **`parse()`**: This function converts text into an expression. It's like someone dictating the cooking recipe to us, and we write it down on paper to use later.
-
-    
-    ``` r
-    text <- "x * y"
-    expression <- parse(text = text)
-    eval(expression)
-    #> [1] 50
-    ```
-
-    In this example, `parse(text = text)` converts the text `"x * y"` into an expression representing the multiplication of `x` and `y`.
+R provides a toolkit for sculpting expressions. The `quote()` function captures code as an expression without running it, like saving a recipe for later. `substitute()` allows you to inject values into an expression, replacing placeholders with actual variables. To execute these stored expressions, we use `eval()`, which runs the code and returns the result. Finally, `parse()` can turn text strings directly into executable expressions.
 
 With these tools, we can manipulate expressions to create new functions, modify the behavior of existing functions, and generate code dynamically.
 
@@ -3584,7 +3387,7 @@ result
 #> [1] 3.32
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-236-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-215-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 **Example 3: Creating a function to generate plots with dynamic variable names and advanced options**
 
@@ -3640,7 +3443,7 @@ create_plot(df, "boxplot", "y",
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-237-1.png" alt="" width="80%" style="display: block; margin: auto;" /><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-237-2.png" alt="" width="80%" style="display: block; margin: auto;" /><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-237-3.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-216-1.png" alt="" width="80%" style="display: block; margin: auto;" /><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-216-2.png" alt="" width="80%" style="display: block; margin: auto;" /><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-216-3.png" alt="" width="80%" style="display: block; margin: auto;" />
 In this example, the `create_plot()` function can generate different types of plots with custom options. The function uses `substitute()` to construct the base plot expression, and then `eval()` to evaluate the expression and generate the plot. Additionally, the function can add a legend to the plot if the legend argument is specified.
 
 This example illustrates how metaprogramming can be useful for creating more flexible and complex functions that adapt to different needs.
@@ -3651,116 +3454,20 @@ In previous chapters, we explored different object types in R and how to use fun
 
 Functional programming is a programming style based on the use of **pure functions** and data **immutability**.
 
-*   A pure function is a function that always produces the same result for the same arguments, and has no side effects (i.e., it does not modify any data outside the function).
-*   Data immutability means data is not modified after being created. Instead of modifying existing data, new data is created with modifications.
+Functional programming relies on two core concepts: **pure functions** and **immutability**. A pure function is consistent and side-effect-free, meaning it always produces the same output for the same input and does not modify any external state. **Immutability** ensures that data is not changed after creation; instead of modifying an existing object, we create a new one with the desired changes.
 
 These principles make functional programming easier to reason about, debug, and maintain. It also facilitates writing concurrent and parallel code, as pure functions have no side effects that can interfere with other processes.
 
 ### Basic principles of functional programming
 
-*   **Functions as first-class citizens:** In functional programming, functions are treated like any other data type. They can be passed as arguments to other functions, returned as results from functions, and stored in variables.
-*   **Pure functions:** Pure functions always produce the same result for the same arguments, and have no side effects. This makes code more predictable and easier to debug.
-*   **Immutability:** Data is not modified after being created. Instead of modifying existing data, new data is created with modifications. This avoids errors caused by accidental data modification.
-*   **Rejection of loops:** Functional programming avoids using `for` and `while` loops. Instead, higher-order functions like `map`, `reduce`, and `keep` are used to process data collections.
+Functional programming rests on several pillars. First, **functions are first-class citizens**, meaning they can be assigned to variables and passed as arguments just like data. Second, it relies on **pure functions** that produce consistent outputs without side effects. Third, it emphasizes **immutability**, creating new data rather than modifying existing objects. Finally, it typically **rejects loops**, facilitating data processing through higher-order functions instead.
 
 ### Higher-order functions in R
 
 R offers several higher-order functions that are especially useful for functional programming. These functions allow us to manipulate vectors, lists, and other objects concisely and efficiently, avoiding the use of `for` and `while` loops. The `purrr` package offers variants of `map()` for different types of results: `map_dbl()` to get a numeric vector, `map_chr()` to get a character vector, `map_lgl()` to get a logical vector, etc.
 
 
-*   **`map()`**: Applies a function to each element of a vector or list, and returns a new vector or list with the results. It's like having a machine taking each element of our data collection, processing it with the function we indicate, and placing the result in a new collection.
-
-    
-    ``` r
-    library(purrr)
-    # Create a vector of numbers
-    numbers <- c(1, 2, 3, 4, 5)
-    
-    # Calculate square of each number using an anonymous function
-    squares <- map(numbers, function(x) x^2)
-    
-    # Show result
-    squares
-    #> [[1]]
-    #> [1] 1
-    #> 
-    #> [[2]]
-    #> [1] 4
-    #> 
-    #> [[3]]
-    #> [1] 9
-    #> 
-    #> [[4]]
-    #> [1] 16
-    #> 
-    #> [[5]]
-    #> [1] 25
-    
-    # We can also use a predefined function
-    square_roots <- map(numbers, sqrt)
-    
-    # Show result
-    square_roots
-    #> [[1]]
-    #> [1] 1
-    #> 
-    #> [[2]]
-    #> [1] 1.414214
-    #> 
-    #> [[3]]
-    #> [1] 1.732051
-    #> 
-    #> [[4]]
-    #> [1] 2
-    #> 
-    #> [[5]]
-    #> [1] 2.236068
-    ```
-    
-    
-*   **`reduce()`**: Combines elements of a vector or list applying a function cumulatively. It's like having a machine taking two elements of our collection, combining them using the function we indicate, and then combining the result with the next element, and so on until all elements are combined.
-
-    
-    ``` r
-    # Create a vector of numbers
-    numbers <- c(1, 2, 3, 4, 5)
-    
-    # Calculate sum of numbers using reduce()
-    sum_result <- reduce(numbers, `+`)
-    
-    # Show result
-    sum_result
-    #> [1] 15
-    
-    # Calculate product of numbers
-    product_result <- reduce(numbers, `*`)
-    
-    # Show result
-    product_result
-    #> [1] 120
-    ```
-    
-*   **`keep()`**: Filters elements of a vector or list meeting a condition. It's like having a sieve letting pass only elements meeting the condition we indicate.
-
-    
-    ``` r
-    # Create a vector of numbers
-    numbers <- c(1, 2, 3, 4, 5)
-    
-    # Filter even numbers
-    evens <- keep(numbers, ~ . %% 2 == 0)
-    
-    # Show result
-    evens
-    #> [1] 2 4
-    
-    # Filter numbers greater than 3
-    greater_than_3 <- keep(numbers, ~ . > 3)
-    
-    # Show result
-    greater_than_3  # Output: 4 5
-    #> [1] 4 5
-    ```
+The `purrr` package provides a robust suite of tools. `map()` applies a function to each element of a list or vector, returning a new list (or vector with variants like `map_dbl`). `reduce()` performs a cumulative operation, combining elements one by one until a single result remains. `keep()` acts as a filter, retaining only those elements that satisfy a given condition.
 
 The `~` symbol in higher-order functions is used to define an anonymous function. This means you are creating a function "on the fly", without needing to give it an explicit name. The part following `~` is the body of this function, specifying operations to be performed on each element of the vector or list to which the function is applied. The dot `.` is used as a placeholder to refer to the current element.
 
@@ -3770,7 +3477,7 @@ These functions, along with other higher-order functions like `map2()`, `pmap()`
 
 Let's see some examples of how to apply functional programming in R:
 
-*   **Calculate the sum of squares of even numbers in a vector:**
+Let's put these concepts into practice with some concrete examples. First, consider a scenario where we want to **calculate the sum of squares of even numbers** in a vector.
 
     
     ``` r
@@ -3784,7 +3491,7 @@ Let's see some examples of how to apply functional programming in R:
     #> [1] 20
     ```
 
-*   **Filter cities with a population greater than 5 million:**
+For a second example, let's filter a list of cities to find those with a **population greater than 5 million**.
 
     
     ``` r
@@ -3808,212 +3515,14 @@ Let's see some examples of how to apply functional programming in R:
 
     In this example, "x" acts as a placeholder to represent each element of the `cities` list as it iterates over it. That is, in each iteration, "x" will take the value of one of the cities in the list.
     
-    **Why is "x" used?**
-    
-    * **Anonymous function:** The expression `~ .x$population > 5e6` defines an anonymous function. This function takes an element of the list as input and returns a logical value (TRUE or FALSE) depending on whether that city's population is greater than 5 million.
-    * **Access to elements:** The `$` symbol is used to access elements of a list. In this case, `.x$population` accesses the "population" element of the current list element (represented by "x").
-    * **Conciseness:** Using "x" makes the code more concise and readable, avoiding the need to define a named function explicitly for this operation.
-    
-    You can use any name you want instead of "x", as long as it is consistent within the anonymous function.
+You might wonder why we use `.x` in these expressions. This placeholder serves three main purposes. First, it allows us to define an **anonymous function**—a quick, unnamed function (`~ .x$population > 5e6`) that evaluates whether a city meets our criteria. Second, it provides a way to **access elements**; the `.x` represents the current list item, allowing us to grab properties like `.x$population`. Finally, it promotes **conciseness**, enabling us to write compact, readable code without formally defining a separate function for a simple operation. You can technically use other variable names, but `.x` is the standard convention in `purrr`.
 
 Functional programming is a powerful paradigm that can help you write cleaner, more efficient, and maintainable code. As you become familiar with its principles and tools, you will be able to apply them to a wide variety of data analysis problems.
 
 ## R6: The future of OOP in R
 
-In R, Object-Oriented Programming (OOP) can be implemented in several ways. Traditionally, R has used systems called S3 and S4 for OOP.
+For advanced Object-Oriented Programming (OOP) using the R6 package, please refer to [Appendix B](#r6-intro).
 
-**S3** is an informal and flexible system. It is based on the idea of generic functions, which can have different methods depending on the class of the object they apply to. For example, the `print()` function is a generic function having different methods for printing different types of objects, such as vectors, lists, or data frames.
-
-
-``` r
-# Example of generic function in S3
-print(c(1, 2, 3))  # Prints a numeric vector
-#> [1] 1 2 3
-print(list(a = 1, b = 2))  # Prints a list
-#> $a
-#> [1] 1
-#> 
-#> $b
-#> [1] 2
-```
-
-**S4** is a more formal and structured system than S3. It defines classes and methods more explicitly, using special syntax. S4 is often used in packages requiring a more rigorous object structure, like Bioconductor.
-
-
-``` r
-# Example of class definition in S4
-setClass("Person", slots = c(name = "character", age = "numeric"))
-
-# Example of object creation in S4
-my_person <- new("Person", name = "John", age = 30)
-
-my_person
-#> An object of class "Person"
-#> Slot "name":
-#> [1] "John"
-#> 
-#> Slot "age":
-#> [1] 30
-```
-
-However, both S3 and S4 can be somewhat confusing and limited, especially for more complex projects. Luckily, there is a more modern and robust alternative: the R6 package. This package offers a more intuitive and efficient way to implement OOP in R, with features facilitating code organization, reuse, and maintenance. If you are new to OOP, don't worry about S3 and S4 details for now. With R6, you can learn basic OOP concepts more easily and apply them to your data analysis projects.
-
-### The R6 package: Classes, methods, encapsulation, and inheritance
-
-The R6 package implements a class and object system similar to other object-oriented programming languages like Python or Java. It provides a robust and efficient way to create objects with attributes and methods, allowing encapsulation and inheritance.
-
-
-``` r
-install.packages("R6")
-```
-
-
-``` r
-library(R6)
-```
-
-**Classes:**
-
-A class is like a blueprint or template for creating objects. It defines the attributes (data) and methods (functions) that objects of that class will have. In R6, classes are created with the `R6Class()` function.
-
-
-``` r
-
-# Define a "Person" class
-Person <- R6Class("Person",
-  public = list(
-    name = NULL,
-    age = NULL,
-    
-    # Constructor
-    initialize = function(name, age) {
-      self$name <- name
-      self$age <- age
-    },
-    
-    # Method to greet
-    greet = function() {
-      cat("Hello, my name is", self$name, "and I am", self$age, "years old.\n")
-    }
-  )
-)
-
-```
-
-In this example, a `Person` class is defined with `name` and `age` attributes, and `greet()` method. The `public` list defines public members of the class, i.e., attributes and methods accessible from outside the object.
-
-**Objects:**
-
-An object is an instance of a class. It is a concrete entity having attributes and methods defined by the class. In R6, objects are created with the `$new()` method.
-
-
-``` r
-# Create an object of class "Person"
-juan <- Person$new(name = "Juan", age = 30)
-
-juan
-#> <Person>
-#>   Public:
-#>     age: 30
-#>     clone: function (deep = FALSE) 
-#>     greet: function () 
-#>     initialize: function (name, age) 
-#>     name: Juan
-```
-
-**Methods:**
-
-Methods are functions operating on an object's attributes. They allow accessing and modifying object data, as well as performing other actions. In R6, methods are defined within the `public` list of the class.
-
-
-``` r
-# Call greet() method of object "juan"
-juan$greet()
-#> Hello, my name is Juan and I am 30 years old.
-```
-
-**Encapsulation:**
-
-Encapsulation is a mechanism allowing hiding internal details of an object and controlling access to its attributes. This protects object data and facilitates usage. In R6, encapsulation is achieved by distinguishing between public and private members.
-
-Public members are defined in `public` list and can be accessed from outside the object. Private members are defined in `private` list and can only be accessed from within the object, through methods.
-
-
-``` r
-# Define a "BankAccount" class with encapsulation
-BankAccount <- R6Class("BankAccount",
-  public = list(
-    holder = NULL,
-    
-    # Constructor
-    initialize = function(holder) {
-      self$holder <- holder
-      private$balance <- 0
-    },
-    
-    # Method to deposit money
-    deposit = function(amount) {
-      private$balance <- private$balance + amount
-    },
-    
-    # Method to withdraw money
-    withdraw = function(amount) {
-      if (amount <= private$balance) {
-        private$balance <- private$balance - amount
-      } else {
-        stop("Insufficient funds.")
-      }
-    },
-    
-    # Method to check balance
-    check_balance = function() {
-      return(private$balance)
-    }
-  ),
-  private = list(
-    balance = NULL
-  )
-)
-```
-
-**Inheritance:**
-
-Inheritance is a mechanism allowing creating new classes from existing classes, inheriting their attributes and methods. This facilitates code reuse and creation of class hierarchies. In R6, inheritance is specified with `inherit` argument of `R6Class()` function.
-
-
-``` r
-# Define a "Student" class inheriting from "Person"
-Student <- R6Class("Student",
-  inherit = Person,
-  public = list(
-    major = NULL,
-    
-    # Constructor
-    initialize = function(name, age, major) {
-      super$initialize(name, age)
-      self$major <- major
-    },
-    
-    # Method to show student info
-    show_info = function() {
-      super$greet()
-      cat("Major:", self$major, "\n")
-    }
-  )
-)
-
-# Create an object of class "Student"
-maria <- Student$new(name = "Maria", age = 20, major = "Engineering")
-
-# Call method show_info()
-maria$show_info()
-#> Hello, my name is Maria and I am 20 years old.
-#> Major: Engineering
-```
-
-In this example, `Student` class inherits from `Person` class. `Student` constructor calls parent class constructor (`super$initialize()`) to initialize inherited attributes. `show_info()` method calls parent class `greet()` method (`super$greet()`) and then shows student-specific information.
-
-With R6, you can create classes and objects with a high degree of flexibility and control, allowing you to apply OOP effectively in your data analysis projects.
 
 
 
@@ -4022,7 +3531,7 @@ With R6, you can create classes and objects with a high degree of flexibility an
 Below, you will find a series of exercises with different levels of difficulty. It is time to put into practice what you have learned in this chapter.
 
 
-43. Create an expression representing the sum of two variables `a` and `b`.
+43. Formulate an expression that represents the sum of two variables, `a` and `b`.
 
 
 
@@ -4034,7 +3543,7 @@ expression <- quote(a + b)
 ```
 </details>
 
-44. Create an expression representing the multiplication of two variables `x` and `y`, and then evaluate it.
+44. Compose an expression for the multiplication of `x` and `y`, then execute it to find the result.
 
 
 
@@ -4050,7 +3559,7 @@ eval(expression)
 ```
 </details>
 
-45. Create a vector of numbers and use `map()` function to calculate the square of each number.
+45. Generate a numeric vector and apply the `map()` function to compute the square of each element.
 
 
 
@@ -4078,7 +3587,7 @@ squares
 ```
 </details>
 
-46. Create a vector of numbers and use `filter()` function to get only even numbers.
+46. Define a vector of numbers and utilize `keep()` from the `purrr` package to retain only the even values.
 
 
 
@@ -4093,7 +3602,7 @@ evens
 ```
 </details>
 
-47. Create a function called `create_power_function()` receiving a number `n` as argument and returning a function raising its argument to power `n`.
+47. Build a function named `create_power_function()` that takes a number `n` and returns a new function capable of raising its input to the power of `n`.
 
 
 
@@ -4107,7 +3616,7 @@ create_power_function <- function(n) {
 ```
 </details>
 
-48. Create a vector of numbers and use `reduce()` function to calculate the product of all numbers.
+48. Construct a numeric vector and apply `reduce()` to calculate the product of all its elements.
 
 
 
@@ -4122,42 +3631,10 @@ product
 ```
 </details>
 
-49. Create a class called `Pet` with attributes `name`, `species` and `age`, and methods `introduce()` (showing name, species and age of pet) and `have_birthday()` (incrementing pet age by 1).
 
 
 
-<details>
-  <summary type="button">Solution</summary>
-
-``` r
-library(R6)
-
-Pet <- R6Class("Pet",
-  public = list(
-    name = NULL,
-    species = NULL,
-    age = NULL,
-    
-    initialize = function(name, species, age) {
-      self$name <- name
-      self$species <- species
-      self$age <- age
-    },
-    
-    introduce = function() {
-      cat("Hello, I am", self$name, ", a", self$species, "of", self$age, "years old.\n")
-    },
-    
-    have_birthday = function() {
-      self$age <- self$age + 1
-    }
-  )
-)
-```
-</details>
-
-
-50. Create a function called `create_flexible_sum_function()` receiving a number `n` as argument and returning a function adding `n` to the sum of all arguments passed to it.
+49. Design a function `create_flexible_sum_function()` that accepts a number `n` and yields a function that adds `n` to the sum of any arguments passed to it.
 
 
 
@@ -4187,7 +3664,7 @@ sum_5()
 ```
 </details>
 
-51. Create a function called `create_dynamic_plot()` receiving a data frame, a plot type ("scatter", "histogram" or "boxplot"), and a list of options for the plot (like title, color, labels, etc.). The function should generate the specified plot with given options.
+50. Develop a `create_dynamic_plot()` function that takes a data frame, a plot type ("scatter", "histogram", or "boxplot"), and a list of options (like title and color), generating the requested plot dynamically.
 
 
 
@@ -4244,34 +3721,10 @@ options_boxplot <- list(var_x = "y",
 create_dynamic_plot(data, "boxplot", options_boxplot)
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-269-1.png" alt="" width="80%" style="display: block; margin: auto;" /><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-269-2.png" alt="" width="80%" style="display: block; margin: auto;" /><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-269-3.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-234-1.png" alt="" width="80%" style="display: block; margin: auto;" /><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-234-2.png" alt="" width="80%" style="display: block; margin: auto;" /><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-234-3.png" alt="" width="80%" style="display: block; margin: auto;" />
 </details>
 
-52. Create a class called `Dog` inheriting from `Pet` class (from previous exercises). `Dog` class should have an additional attribute called `breed` and a method called `bark()`.
 
-
-
-<details>
-  <summary type="button">Solution</summary>
-
-``` r
-Dog <- R6Class("Dog",
-  inherit = Pet,
-  public = list(
-    breed = NULL,
-    
-    initialize = function(name, age, breed) {
-      super$initialize(name, "dog", age)
-      self$breed <- breed
-    },
-    
-    bark = function() {
-      cat("Woof! Woof!\n")
-    }
-  )
-)
-```
-</details>
 
 
 
@@ -4283,16 +3736,22 @@ Dog <- R6Class("Dog",
 # (PART) Data Visualization and Summarization{-}
 # Ggplot and dplyr
 
-We have learned so far how to perform simple and fast visualizations. Now that we have a notion of plots, we will use more complex and aesthetically better plots to present.
+**Learning Objectives:**
 
-To do this, we will use the `ggplot` object included in the `tidyverse` library (the `tidyverse` package includes a package called `ggplot2` which allows us to use the `ggplot` object). Previously we have already installed the `tidyverse` package, so now we only have to load the library:
+In this chapter, we will master the art of data storytelling. We will learn to create layered visualizations using `ggplot2`, customizing every aspect from aesthetics and scales to themes and labels. Additionally, we will gain proficiency in summarizing data with `dplyr` functions like `summarize()` and `group_by()`, all while deepening our understanding of the grammar of graphics approach.
+
+---
+
+Building on the basic plotting skills from previous chapters, we'll now create more sophisticated and visually polished visualizations. The `ggplot2` package provides a powerful and consistent framework for building graphics layer by layer.
+
+To get started, we'll use the `ggplot` object included in the `tidyverse` library (the `tidyverse` package includes `ggplot2` among its core packages). Since we've already installed `tidyverse` previously, we only need to load it:
 
 
 ``` r
 library(tidyverse)
 ```
 
-We are going to learn visualization techniques using our previous case/problem, so that we learn to use the `ggplot` object gradually with an already known case/problem.
+We'll learn these visualization techniques using our previous case/problem, allowing us to build up our `ggplot` skills gradually with familiar data.
 
 ## Creating the ggplot object
 
@@ -4307,11 +3766,11 @@ murders |>
   ggplot()
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-274-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-237-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 This code only shows us an empty box. This is because we haven't specified which variables to take from the data frame nor what type of plot we want.
 
-To add each component of the plot we are creating we will use *layers*. The `ggplot` object allows us to add layer by layer which component of the plot we want to add. The symbol to add layers to the `ggplot` object is the `+` symbol.
+To build our plot, we'll add components using *layers*. The `ggplot` system allows us to add one layer at a time, each specifying a different aspect of the visualization. We connect layers using the `+` operator.
 
 ## Aesthetic mapping layer
 First we will focus on the basic aesthetics, that is: what goes on the _**x-axis**_ and what we put on the _**y-axis**_. To do this we will use the aesthetic function which in R is `aes()`. For example, let's add the `population` data on the _x-axis_ and the `total` data on the _y-axis_. We don't have to use the `$` accessor because the `aes` function takes the `murders` table before the pipeline as a reference.
@@ -4325,7 +3784,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-275-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-238-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Now we have a box with the axes marked, but still without any data inside the box.
 
@@ -4342,7 +3801,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-276-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-239-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 In the same way, we can show lines connecting the data instead of points with the `geom_line()` function.
 
@@ -4356,9 +3815,9 @@ murders |>
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-277-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-240-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
-Up to this point we have created the same scatter plot that we saw in the previous chapter. The power of ggplot lies in the ease of adding components. For example, if we want each point in the scatter plot to have the state name, or even better the abbreviation `abb`, we just have to add it as a `label` attribute inside `aes` and add the `geom_text()` layer.
+Up to this point we have created the same scatter plot that we saw in the previous chapter. The power of ggplot lies in the ease of adding components. For example, to label each point with the state abbreviation (`abb`), we simply add it as a `label` attribute inside `aes` and include the `geom_text()` layer.
 
 
 ``` r
@@ -4371,7 +3830,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-278-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-241-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 In this plot we can already see that the upper right point corresponds to **CA** which is the abbreviation for the state of **California**.
 
@@ -4391,7 +3850,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-279-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-242-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Then, we can also edit the attributes of the `geoms`. For example, let's make the size of the points larger. To do this we edit inside `geom_points()`:
 
@@ -4406,7 +3865,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-280-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-243-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Having increased the size of the points, we can no longer see the text of the state abbreviations well. We can nudge the text on the _x-axis_ or on the _y-axis_. Since we are talking about several million people, let's nudge the letters 1.5 million to the right.
 
@@ -4421,7 +3880,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-281-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-244-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 To avoid entering such large numbers we can transform the population on the x-axis in the `aes()` function. Thus, once we express the data without counting the millions we would have to nudge the text only 1.5 points to the right:
 
@@ -4436,7 +3895,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-282-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-245-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 This transformation gives us the same result as before and the _x-axis_ is now easier to understand now that we can see the numbers.
 
@@ -4456,7 +3915,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-283-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-246-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 In the same way, we could do the transformation to base 10 logarithm:
 
@@ -4473,7 +3932,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-284-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-247-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 The transformation of the scale to base 10 logarithm is widely used in statistics and R provides us with a faster function to proceed with this scale transformation, the function `scale_x_log10()`, which gives us the same result as the previous plot.
 
@@ -4490,7 +3949,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-285-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-248-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 ## Label, title and legend layer
 We can also [change the labels](https://www.datanovia.com/en/blog/ggplot-legend-title-position-and-labels/) (`label` in English) of the plot. So far on the _x-axis_ we see that **population/10^6** appears and we can change it with the function `xlab()`. In the same way we can change on the _y-axis_ using `ylab()`. To add a title to the plot we will use the function `ggtitle()`. To change the name of the legend we will use the function `scale_color_discrete()`.
@@ -4512,7 +3971,9 @@ murders |>
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-286-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-249-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+
+> **Modern Alternative:** You can also use the `labs()` function to set multiple labels in a single layer: `labs(x = "...", y = "...", title = "...", color = "...")`. This is often cleaner for plots with many labels.
 
 ## Reference lines
 We can add reference lines, whether vertical with `geom_vline(xintercept = )`, horizontal with `geom_hline(yintercept = ...)` or diagonal with `geom_abline(intercept = )`, the latter asks us at what point it cuts the _y-axis_ and draws a line with a default slope of 1.
@@ -4541,7 +4002,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-287-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-250-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Or we could calculate the murder rate per million inhabitants throughout the US and draw a reference diagonal. In the case of the diagonal we have to express it in the same scale of the axis, therefore we have to convert it to `log10`.
 
@@ -4570,7 +4031,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-288-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-251-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can improve this reference line by making it dashed and gray. To do this, simply edit the `geom_abline()` function as follows:
 
@@ -4592,7 +4053,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-289-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-252-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 ## Changing the plot style
 The plot style using `ggplot()` can be easily changed. There are multiple themes we can use by loading the **ggthemes** library. We can, for example, use a widely used theme: the economist theme by adding the `theme_economist()` layer.
@@ -4617,7 +4078,7 @@ murders |>
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-290-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-253-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We still see overlapping abbreviations. We can make the names repel each other using the `geom_text_repel()` function instead of `geom_text()` that we are currently using. To use this function we need to call the **ggrepel** library.
 
@@ -4643,12 +4104,31 @@ murders |>
 #> increasing max.overlaps
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-291-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-254-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 This plot is visually much easier to understand and aesthetically much better than the default plot we created in previous chapters. We can explore more examples at this [link](https://rstudio-pubs-static.s3.amazonaws.com/228019_f0c39e05758a4a51b435b19dbd321c23.html).
 
+## Saving plots
+
+Once you've created a plot, you'll often want to save it to a file. The `ggsave()` function makes this easy:
+
+
+``` r
+# Save the last plot created
+ggsave("my_plot.png", width = 8, height = 6)
+
+# Or save a specific plot object
+p <- murders |> ggplot() + aes(x = population, y = total) + geom_point()
+ggsave("murders_plot.pdf", plot = p)
+```
+
+The function automatically detects the file type from the extension (`.png`, `.pdf`, `.svg`, etc.).
+
+---
+
 ## Summarizing data with dplyr
-An important part of exploratory analysis is knowing how to summarize a variable into data that is easy to understand.
+
+Visualization and data summarization go hand in hand. While plots help us *see* patterns in our data, summary statistics help us *quantify* those patterns. The `dplyr` package provides powerful functions for calculating summaries.
 
 The `tidyverse` package includes several packages, among them `dplyr` which makes it easier for us to summarize data from a variable. When we call the `tidyvere` library we are also calling all the functions of `dplyr`. To start using the functions of `dplyr` we are going to load the `heights` data frame which is in the `dslabs` library.
 
@@ -4796,9 +4276,9 @@ On average, the South region is more dangerous.
 ## Exercises
 This time we are going to perform exercises within the field of biology and for this we must remember the parts of a flower. This way we will give more sense to the problem:
 
-<img src="_assets/images/03-visualization/partes-de-flor.png" alt="Botanical diagram showing flower parts: sepal, petal, stamen, and pistil" width="150pt" style="display: block; margin: auto;" />
+<img src="_assets/images/03-visualization/flower-parts.png" alt="Botanical diagram showing flower parts: sepal, petal, stamen, and pistil" width="150pt" style="display: block; margin: auto;" />
 
-53. Load the `iris` data frame to your variable environment (`data(iris)`). In this data frame we find a list of characteristics of 150 flowers of 3 different types of species. Report a scatter plot of the sepal and petal length of the `iris` data frame.
+51. Load the `iris` data frame (`data(iris)`), which details the characteristics of 150 flowers across 3 species. Create a scatter plot visualizing the relationship between sepal length and petal length.
 
 
 
@@ -4813,7 +4293,7 @@ iris |>
 ```
 </details>
 
-54. From the visualization created in the previous question, color the points according to the species to which it belongs.
+52. Enhance the previous visualization by coloring the points to represent the species of each flower.
 
 
 
@@ -4828,12 +4308,7 @@ iris |>
 ```
 </details>
 
-55. Modify your previous plot so that the following elements appear:
-
-* Chart title: Relationship between sepal and petal size of different flowers
-* X-axis label: Sepal length (in cm)
-* Y-axis label: Petal length (in cm)
-* Legend title: Species
+53. Polish your plot by setting the title to "Relationship between sepal and petal size of different flowers", naming the x-axis "Sepal length (in cm)", the y-axis "Petal length (in cm)", and labeling the legend simply as "Species".
 
 
 
@@ -4852,7 +4327,7 @@ iris |>
 ```
 </details>
 
-56. Calculate a summary of the ratio between sepal length and petal length. This summary should show a data frame with the average, standard deviation and median of the ratio of these two dimensions mentioned.
+54. Generate a statistical summary of the ratio between sepal length and petal length, reporting a data frame that includes the average, standard deviation, and median of this ratio.
 
 
 
@@ -4862,11 +4337,11 @@ iris |>
 ``` r
 iris |>
   mutate(ratio = Sepal.Length / Petal.Length) |> 
-  summarize(promedio = mean(ratio), std_dev = sd(ratio), median_val = median(ratio))
+  summarize(avg = mean(ratio), std_dev = sd(ratio), median_val = median(ratio))
 ```
 </details>
 
-57. Make a summary of the ratio between sepal and petal length showing one row per species.
+55. Refine your previous ratio summary to show these statistics (average, standard deviation, and median) calculated separately for each species.
 
 
 
@@ -4877,10 +4352,17 @@ iris |>
 iris |>
   mutate(ratio = Sepal.Length / Petal.Length) |> 
   group_by(Species) |> 
-  summarize(promedio = mean(ratio), std_dev = sd(ratio), median_val = median(ratio))
+  summarize(avg = mean(ratio), std_dev = sd(ratio), median_val = median(ratio))
 ```
 </details>
 
+
+
+---
+
+## Key Takeaways
+
+This chapter emphasized a **layered approach** to visualization, building plots incrementally with aesthetics, geoms, and scales. We learned to map data to visual properties using `aes`, select the appropriate geometry (like `geom_point` or `geom_line`), and transform axes to reveal patterns in skewed data. Beyond the visuals, we explored how to customize themes and labels for clarity, and how to quantify insights using `dplyr` summarization tools before saving our work with `ggsave()`.
 
 
 <!--chapter:end:03-visualization/ggplot.Rmd-->
@@ -4895,12 +4377,7 @@ iris |>
 
 (*): Samuel Huntington in 1993 published an article called [Clash of Civilizations](https://web.archive.org/web/20100821191056/http://history.club.fatih.edu.tr/103%20Huntington%20Clash%20of%20Civilizations%20full%20text.htm)^[Full text of Huntington's article (in English)] where he defined Western countries as those located in the regions of North America, Northern/Southern/Western Europe and Australia and New Zealand.
 
-The process we are going to follow to solve the mentioned questions will be:
-
-1. Data Exploration
-2. Data Understanding
-3. Data analysis until finding the relevant ones to solve questions
-4. Visualization and summary
+To address these questions, we will follow a structured data science workflow. We'll start by **exploring the data** to understand its structure and content, then move to **in-depth analysis** to identify relevant variables. Finally, we will use **visualization and summarization** techniques to synthesize our findings and provide clear answers.
 
 First let's explore the structure of the data frame with `str()`:
 
@@ -5047,7 +4524,7 @@ gapminder |>
 Infant mortality is measured in number of children who die per 1,000 infants. This means that it already takes into account the population. In 2015 Peru had a higher infant mortality rate than Chile.
 
 ## Initial gapminder plots
-However, if we want to analyze global data, comparing country by country would take us much more time. Let's use `ggplot` to see if there is a relationship in our data.
+However, if we want to analyze global data, comparing countries one by one would be impractical. Let's use `ggplot` to see if there is a relationship in our data.
 
 Let's create a scatter plot with data from the **year 1990** of the fertility variable (`fertility`), which is the average number of children per woman, and the life expectancy variable (`life_expectancy`).
 
@@ -5061,7 +4538,7 @@ gapminder |>
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-321-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-285-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 From this graph we can see that countries where families have 7.5 children have a lower life expectancy. On the other hand, in countries with high life expectancy the average number of children is less than 2 children per family.
 
@@ -5077,7 +4554,7 @@ gapminder |>
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-322-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-286-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 In this graph, groups begin to be seen. Several European countries are in the upper left quadrant, while several African countries are in the lower right quadrant.
 
@@ -5098,7 +4575,7 @@ gapminder |>
   facet_grid(year ~ .)
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-323-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-287-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can make it even clearer which continent changed the most if we add the continent variable as a column.
 
@@ -5114,7 +4591,7 @@ gapminder |>
   facet_grid(year ~ continent)
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-324-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-288-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Having several columns for each continent makes it harder to understand because the columns become smaller. It is recommended to have few columns. So we invert the order between year and continent.
 
@@ -5130,9 +4607,9 @@ gapminder |>
   facet_grid(continent ~ year)
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-325-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-289-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
-Here the change by regions is much more evident and how the majority of countries have reduced fertility per family while increasing life expectancy. We are living longer than in the 60s and in turn having fewer children per family. These phenomena have occurred globally.
+Here the change by regions is much more evident: the majority of countries have reduced fertility per family while increasing life expectancy. We are living longer than in the 1960s and having fewer children per family. These trends have occurred across all continents.
 
 We don't always have to show all variables, in this case continents. We can continue applying filters so that it shows us a subset of continents that we want to compare. For example:
 
@@ -5149,13 +4626,13 @@ gapminder |>
   facet_grid(continent ~ year)
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-326-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-290-1.png" alt="" width="80%" style="display: block; margin: auto;" />
     
 In this case it would be visually better if the continents were not in separate rows, but could still be appreciated in the graph. To do this, we will use the wrap facet (`facet_wrap(~ x)`), where `x` is the variable we want to wrap. In our case it would be the year, instead of appearing in separate rows we can join and transpose them.
     
 
 ``` r
-vector_años <- c(1960, 2013)
+vector_years <- c(1960, 2013)
 vector_continents <- c("Europe", "Asia")
 
 gapminder |> 
@@ -5166,7 +4643,7 @@ gapminder |>
   facet_wrap( ~ year)
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-327-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-291-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can add more data by adding more data to the vectors. For example, let's add a cut in the middle between 1960 and 2013.
 
@@ -5183,7 +4660,7 @@ gapminder |>
   facet_wrap( ~ year)
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-328-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-292-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 ## Time series
 Time series are sequences of data measured at determined moments and ordered chronologically. R allows us to easily plot time series, we only need our data frames to include some time variable.
@@ -5200,11 +4677,11 @@ gapminder |>
   ggplot() +
   aes(x = year, y = fertility) +
   geom_point()
-#> Warning: Removed 1 row containing missing values or values outside the scale
-#> range (`geom_point()`).
+#> Warning: Removed 1 row containing missing values or values
+#> outside the scale range (`geom_point()`).
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-329-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-293-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We get a "warning" indicating that there are values that cannot be drawn because they are `NA` and are not available. This does not prevent showing the graph.
 
@@ -5217,11 +4694,11 @@ gapminder |>
   ggplot() +
   aes(x = year, y = fertility) +
   geom_line()
-#> Warning: Removed 1 row containing missing values or values outside the scale
-#> range (`geom_line()`).
+#> Warning: Removed 1 row containing missing values or values
+#> outside the scale range (`geom_line()`).
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-330-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-294-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 ### Multiple time series
 In multiple time series we seek comparison to analyze in a time series how the data evolved. For example, this would be the time series if we compare Peru, Bolivia and Chile:
@@ -5235,11 +4712,11 @@ gapminder |>
   ggplot() +
   aes(x = year, y = fertility, color = country) +
   geom_line()
-#> Warning: Removed 3 rows containing missing values or values outside the scale
-#> range (`geom_line()`).
+#> Warning: Removed 3 rows containing missing values or values
+#> outside the scale range (`geom_line()`).
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-331-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-295-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can also remove the legend and show the name of the countries as labels on the same graph. To do this we will first have to create a data frame using the function `data.frame()` that indicates the coordinates where we want each label to appear:
 
@@ -5272,17 +4749,17 @@ gapminder |> filter(country %in% countries) |>
   geom_line() +
   geom_text(data = labels, aes(x, y, label = country)) +
   theme(legend.position = "none")
-#> Warning: Removed 3 rows containing missing values or values outside the scale
-#> range (`geom_line()`).
+#> Warning: Removed 3 rows containing missing values or values
+#> outside the scale range (`geom_line()`).
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-333-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-297-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 
 ## Exercises
 For these exercises we will continue using the `gapminder` data frame.
 
-58. Create a scatter plot of fertility versus life expectancy for the American continent in 2000. Color the points according to the region they belong to.
+56. Generate a scatter plot comparing fertility rates and life expectancy for the Americas in the year 2000. Use color to differentiate between the regions within the continent.
 
 
 
@@ -5300,7 +4777,7 @@ gapminder |>
 
 > To create a vector of sequences we can use `X:Y`. This creates a vector that goes from number X to number Y
 
-59. The Vietnam War caused deaths in both the US (United States) and Vietnam. Create a chart that allows visualizing how life expectancy changed in each country. Hint: Filter these two countries, as well as the population from year 1955 to 1990 and this time series in a line chart.
+57. During the Vietnam War, both the US and Vietnam suffered significant losses. Create a line chart visualizing how life expectancy changed in both countries from 1955 to 1990 to observe the war's impact.
 
 
 
@@ -5319,7 +4796,7 @@ gapminder |>
 ```
 </details>
 
-60. After the Vietnam War, Pol Pot and Khmer Rouge took control of Cambodia from 1975 to 1979 in one of the bloodiest dictatorships in history. Add Cambodia to the previous chart to visualize the impact of this government on life expectancy in that country.
+58. Expand the previous chart to include Cambodia, allowing us to visualize the devastating impact of the Khmer Rouge regime (1975-1979) on life expectancy alongside the Vietnam War data.
 
 
 
@@ -5348,7 +4825,7 @@ We are going to use a transformation that allows us to obtain how much is the GD
 
 ``` r
 gapminder <- gapminder |> 
-  mutate(gdp_per_capita_per_day <- gdp/population/365)
+  mutate(gdp_per_capita_per_day = gdp/population/365)
 ```
 
 We could visualize this variable first by creating a histogram of it. A histogram in ggplot is nothing more than one of the `geoms` we have available, in this case it would be `geom_histogram(binwidth = x)`, where **x** is the width of the bar. For example, let's calculate the distribution of our created variable in the year 2010:
@@ -5361,11 +4838,11 @@ gapminder |>
   ggplot() +
   aes(gdp_per_capita_per_day) +
   geom_histogram(binwidth = 5)
-#> Warning: Removed 9 rows containing non-finite outside the scale range
-#> (`stat_bin()`).
+#> Warning: Removed 9 rows containing non-finite outside the
+#> scale range (`stat_bin()`).
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-341-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-305-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can filter out the **NA** so that we no longer get the low "warnings" with the function we saw previously `is.na()`. In this case since we don't want the **NA** we will negate the function by placing the symbol `!` at the beginning.
 
@@ -5380,7 +4857,7 @@ gapminder |>
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-342-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-306-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 At this point it should be quick to detect that there is a concentration of data from countries with low GDP per capita and we could be tempted to apply a scale transformation on the _x-axis_. Let's try with logarithm in base 2:
 
@@ -5396,9 +4873,11 @@ gapminder |>
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-343-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-307-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Let's be careful interpreting this data. We cannot say that it is a symmetric distribution, even when with this scale we are tempted to do so. Remember the scale and use it appropriately.
+
+> **Tip:** For smooth distribution curves, you can also use `geom_density()` instead of `geom_histogram()`. Density plots are particularly useful when comparing multiple groups on the same plot.
 
 ## Box plots with ggplot
 In the same way, box plots are one more `geom` within the available ones, for this we will use the `geom_boxplot()` layer.
@@ -5415,7 +4894,7 @@ gapminder |>
   geom_boxplot()
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-344-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-308-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Now let's zoom in. Within each continent we have regions, for example in the Americas we have South America, Central America, North America, and so on with each continent. Let's change the `continent` variable to `region`.
 
@@ -5429,7 +4908,7 @@ gapminder |>
   geom_boxplot()
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-345-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-309-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 As we can verify: this visualization allows us to infer very little. Before discarding a graph let's think if we can change the configuration to improve the visualization.
 
@@ -5446,7 +4925,7 @@ gapminder |>
   theme(axis.text.x = element_text(angle = 45, hjust = 1) )
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-346-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-310-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 The names are understood, but if we want to find the top 3 (either by median or average) we would have to look for them one by one. Let's reorder it, but first let's be aware of some previous considerations:
 
@@ -5484,7 +4963,7 @@ gapminder |>
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-348-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-312-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Note that a `mutate` has been placed after filtering the data. This is to guarantee that we are removing the **NA**. Otherwise, we risk that all values are **NA** and the reordering is not performed and remains default.
 
@@ -5502,7 +4981,7 @@ gapminder |>
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-349-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-313-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Although we can already differentiate it, in a box plot it is usually the fill (`fill` in English) of the box that is painted. So, let's change the `color` attribute to the `fill` attribute. And let's remove the legend on the _x-axis_. It is not necessary in this case where the regions are self-explanatory.
 
@@ -5519,7 +4998,7 @@ gapminder |>
   xlab("")
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-350-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-314-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 This graph helps us see the top 5, but since there are several regions concentrated in small values of GDP per capita we visually lose those regions. We need a scale transformation.
 
@@ -5539,7 +5018,7 @@ gapminder |>
   scale_y_continuous(trans = "log2")
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-351-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-315-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Sometimes it is necessary not only to show the boxes, but also where each of the data points is located. For this we can add the `geom_point()` layer that we had previously used to show the points of each data.
 
@@ -5558,7 +5037,7 @@ gapminder |>
   geom_point(size = 0.5)
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-352-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-316-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 ## Comparison of distributions
 To be able to solve the first question of the case we would have to compare the distributions of the "Western" countries versus the developing countries.
@@ -5623,7 +5102,7 @@ gapminder |>
   facet_grid(. ~ group)
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-355-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-319-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We see that the daily GDP per capita has a distribution with higher values compared to developing countries. However, the picture in one year is not everything. We are ready to see if the separation was the same 40 years back from the date in the example (2010). We are also going to add the `geom_histogram()` layer the color attribute to see the border of the bars which by default are grey.
 
@@ -5642,7 +5121,7 @@ gapminder |>
   facet_grid(year ~ group)
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-356-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-320-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Both groups, both "Western" and "Developing" have improved in that 40-year span, but developing countries have advanced more than Western countries.
 
@@ -5689,9 +5168,9 @@ gapminder |>
   facet_grid(year ~ group)
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-359-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-323-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
-We see now more clearly with comparable data how there are more countries within the developing region that increased per capita GDP, much more than developing countries. But this first inference is still visual, we need to compare how the median, range, etc. changed. For this we will use a box plot very similar to the previous one, but this time we will edit `geom_boxplot()` so that it shows us in a single graph how each region has changed from 1970 to 2010.
+We see now more clearly with comparable data how there are more countries within the developing region that increased per capita GDP, and by a larger margin than Western countries. But this first inference is still visual, we need to compare how the median, range, etc. changed. For this we will use a box plot very similar to the previous one, but this time we will edit `geom_boxplot()` so that it shows us in a single graph how each region has changed from 1970 to 2010.
 
 
 ``` r
@@ -5709,7 +5188,7 @@ gapminder |>
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-360-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-324-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We see how there are regions within Asia that have grown substantially. As we know from general culture, some countries in Asia are already powers, but today with these graphs we can understand well how much each region has changed until becoming a power.
 
@@ -5720,15 +5199,18 @@ Therefore, we can now answer both questions of the case:
 
 
 
-
 ## Exercises
 
-For this series of exercises we will use the `stars` data frame which tells us attributes of a series of stars such as their temperature, type and magnitude.
-The `magnitude` column is the absolute magnitude, where a more negative value of a star compared to another means it is more luminous.
+For this series of exercises we will use the `stars` data frame from the `dslabs` library. This dataset contains attributes of stars including their temperature, spectral type, and magnitude. The `magnitude` column represents absolute magnitude—a measure of intrinsic brightness where more negative values indicate greater luminosity.
 
-Make sure to load the data frame with `data(stars)` before starting.
 
-61. The temperature is in degrees Kelvin. Add the temp_celsius column using the following formula: C = K - 273.15. Report a scatter plot of temperature versus magnitude coloring according to star type. Also, change the scale of the _x-axis_ to logarithmic base 10.
+``` r
+library(dslabs)
+data(stars)
+head(stars)
+```
+
+59. The temperature data is currently in Kelvin. Create a new column `temp_celsius` using the formula $C = K - 273.15$, then visualize the relationship between temperature and magnitude. Color the points by star type and use a base-10 logarithmic scale for the x-axis to better display the wide range of temperatures.
 
 
 
@@ -5745,7 +5227,7 @@ stars |>
 ```
 </details>
 
-62. Since positive values indicate less brightness, invert the values of the previous graph using the `scale_y_reverse()` layer.
+60. Since lower magnitude values correspond to higher brightness, reverse the y-axis scale using `scale_y_reverse()` to make the plot more intuitive (brighter stars at the top).
 
 
 
@@ -5762,7 +5244,7 @@ stars |>
   scale_y_reverse()
 ```
 </details>
-63. The Sun is classified as a G-type star. Are G-type stars the most luminous? Create a box plot to compare medians of magnitude and determine which type of stars are the most luminous.
+61. The Sun is a G-type star. To determine if these are the most luminous, create a box plot comparing the magnitude distributions across different star types.
 
 
 
@@ -5782,6 +5264,13 @@ stars |>
 
 
 
+---
+
+## Key Takeaways
+
+In this chapter, we followed a complete **data exploration process**, starting with understanding the data structure before diving into visualization. We utilized **faceting** to reveal trends across categories and time, and used **time series** plots to track specific country trajectories. We also explored distributions using **histograms** and **box plots**, applying **scale transformations** to handle skewed economic data. Finally, we practiced **iterative refinement**, adjusting our plots step-by-step to tell a clearer story.
+
+
 <!--chapter:end:03-visualization/gapminder.Rmd-->
 
 
@@ -5796,6 +5285,8 @@ For example, we are not going to explain formulas for calculating probabilities 
 
 # Discrete Probabilities
 We will start with some basic principles of categorical data. Probabilities of this type are called discrete probabilities. Understanding the basic principles of discrete probabilities will help us understand continuous probabilities which are the most common in data science applications.
+
+In this chapter, we will master the foundations of discrete probability. We will start by calculating probabilities using mathematical definitions and then learn to estimate them using Monte Carlo simulations. We will leverage R functions like `sample()`, `replicate()`, and `mean()` to model random events, and use the `gtools` package to solve problems involving permutations and combinations. Finally, we will determine how to choose an adequate sample size to ensure our simulations yield reliable results.
 
 Recall that a discrete variable is a variable that cannot take some values within a minimum countable set, that is, it does not accept any value, only those that belong to the set.
 
@@ -5847,18 +5338,18 @@ results <- replicate(n_times, {
   })
 
 results
-#>   [1] "woman" "man"   "man"   "woman" "man"   "woman" "man"   "woman" "man"  
-#>  [10] "man"   "man"   "woman" "man"   "woman" "woman" "man"   "woman" "woman"
-#>  [19] "man"   "woman" "man"   "man"   "woman" "woman" "man"   "man"   "man"  
-#>  [28] "woman" "man"   "man"   "man"   "man"   "woman" "woman" "man"   "man"  
-#>  [37] "woman" "woman" "woman" "man"   "man"   "woman" "man"   "woman" "man"  
-#>  [46] "man"   "man"   "man"   "man"   "woman" "woman" "man"   "man"   "woman"
-#>  [55] "man"   "woman" "woman" "man"   "woman" "man"   "man"   "woman" "man"  
-#>  [64] "man"   "woman" "woman" "woman" "man"   "man"   "man"   "man"   "man"  
-#>  [73] "man"   "man"   "man"   "man"   "woman" "woman" "man"   "man"   "man"  
-#>  [82] "man"   "man"   "man"   "man"   "woman" "woman" "man"   "woman" "man"  
-#>  [91] "woman" "woman" "woman" "man"   "woman" "man"   "man"   "man"   "man"  
-#> [100] "man"
+#>   [1] "man"   "man"   "woman" "man"   "man"   "woman" "man"   "man"   "man"  
+#>  [10] "man"   "woman" "man"   "man"   "woman" "woman" "man"   "man"   "man"  
+#>  [19] "woman" "man"   "man"   "woman" "woman" "man"   "man"   "man"   "woman"
+#>  [28] "man"   "man"   "man"   "woman" "man"   "woman" "man"   "man"   "woman"
+#>  [37] "man"   "man"   "man"   "man"   "woman" "man"   "man"   "man"   "man"  
+#>  [46] "woman" "man"   "woman" "man"   "man"   "man"   "woman" "man"   "man"  
+#>  [55] "man"   "man"   "woman" "man"   "man"   "man"   "woman" "woman" "man"  
+#>  [64] "man"   "woman" "man"   "woman" "man"   "man"   "man"   "woman" "man"  
+#>  [73] "woman" "man"   "woman" "woman" "woman" "man"   "man"   "woman" "woman"
+#>  [82] "man"   "man"   "man"   "woman" "woman" "man"   "woman" "man"   "woman"
+#>  [91] "man"   "man"   "man"   "man"   "woman" "man"   "man"   "man"   "woman"
+#> [100] "woman"
 ```
 
 We can see what the result was for each of the 100 draws we simulated.
@@ -5870,19 +5361,19 @@ Now we will use the `table()` function to transform our `results` vector into a 
 table(results)
 #> results
 #>   man woman 
-#>    61    39
+#>    65    35
 ```
 
-If we store this result in a vector `tabla_results`, we can then use the `prop.table()` function to know the proportion of each value:
+If we store this result in a vector `results_table`, we can then use the `prop.table()` function to know the proportion of each value:
 
 
 ``` r
-tabla_results <- table(results)
+results_table <- table(results)
 
-prop.table(tabla_results)
+prop.table(results_table)
 #> results
 #>   man woman 
-#>  0.61  0.39
+#>  0.65  0.35
 ```
 
 We should not worry if the probability that it is a man has not come out exactly 60%. Recall that we are estimating the probability using a method that depends on the number of times we simulate the experiment. The more times we repeat the experiment the closer we will be to the value. For example, let's replicate this experiment now 10,000 times.
@@ -5899,12 +5390,12 @@ results <- replicate(n_times, {
 
   })
 
-tabla_results <- table(results)
+results_table <- table(results)
 
-prop.table(tabla_results)
+prop.table(results_table)
 #> results
-#>    man  woman 
-#> 0.6057 0.3943
+#>   man woman 
+#> 0.595 0.405
 ```
 
 We see how the value converges to 60%. We should not worry if the value varies by a few digits from the one presented in this book given that we are simulating a random event.
@@ -5932,33 +5423,33 @@ We have already learned the `rep()` function to create vectors faster. Another f
 
 
 ``` r
-greetings <- c("Hola", "Chau")
-names_list <- c("Andrés", "Josep", "Alonso", "Andrés", "Cesar", "Jeremy")
+greetings <- c("Hello", "Goodbye")
+names_list <- c("Andrew", "Joseph", "John", "Emily", "Cesar", "Jeremy")
 
-result <- expand.grid(saludo = greetings, nombre = names_list)
+result <- expand.grid(greeting = greetings, name = names_list)
 result
-#>    saludo nombre
-#> 1    Hola Andrés
-#> 2    Chau Andrés
-#> 3    Hola  Josep
-#> 4    Chau  Josep
-#> 5    Hola Alonso
-#> 6    Chau Alonso
-#> 7    Hola Andrés
-#> 8    Chau Andrés
-#> 9    Hola  Cesar
-#> 10   Chau  Cesar
-#> 11   Hola Jeremy
-#> 12   Chau Jeremy
+#>    greeting   name
+#> 1     Hello Andrew
+#> 2   Goodbye Andrew
+#> 3     Hello Joseph
+#> 4   Goodbye Joseph
+#> 5     Hello   John
+#> 6   Goodbye   John
+#> 7     Hello  Emily
+#> 8   Goodbye  Emily
+#> 9     Hello  Cesar
+#> 10  Goodbye  Cesar
+#> 11    Hello Jeremy
+#> 12  Goodbye Jeremy
 ```
 
 Finally, we have the `paste(x,y)` function, which concatenates two strings or vectors of strings adding a space in the middle.
 
 ``` r
-paste(result$saludo, result$nombre)
-#>  [1] "Hola Andrés" "Chau Andrés" "Hola Josep"  "Chau Josep"  "Hola Alonso"
-#>  [6] "Chau Alonso" "Hola Andrés" "Chau Andrés" "Hola Cesar"  "Chau Cesar" 
-#> [11] "Hola Jeremy" "Chau Jeremy"
+paste(result$greeting, result$name)
+#>  [1] "Hello Andrew"   "Goodbye Andrew" "Hello Joseph"   "Goodbye Joseph"
+#>  [5] "Hello John"     "Goodbye John"   "Hello Emily"    "Goodbye Emily" 
+#>  [9] "Hello Cesar"    "Goodbye Cesar"  "Hello Jeremy"   "Goodbye Jeremy"
 ```
 
 Thus, we can easily generate, for example, a deck of cards distributed in 4 suits: hearts, diamonds, spades, and clubs. The cards of each suit are numbered from 1 to 10, where 1 is the Ace, and followed by Jack, Queen, and King.
@@ -5972,10 +5463,10 @@ numbers <- c("Ace", "Two", "Three", "Four", "Five", "Six", "Seven",
 suits <- c("of Hearts", "of Diamonds", "of Spades", "of Clubs")
 
 # Create card combinations
-combination <- expand.grid(numero = numbers, palo = suits)
+combination <- expand.grid(number = numbers, suit = suits)
 
 # Concatenate vectors to have our final combination
-paste(combination$numero, combination$palo)
+paste(combination$number, combination$suit)
 #>  [1] "Ace of Hearts"     "Two of Hearts"     "Three of Hearts"  
 #>  [4] "Four of Hearts"    "Five of Hearts"    "Six of Hearts"    
 #>  [7] "Seven of Hearts"   "Eight of Hearts"   "Nine of Hearts"   
@@ -6002,7 +5493,7 @@ Let's calculate the probability that when choosing a card it is "King of Diamond
 
 ``` r
 # Store the combinationl in the variable deck
-deck <- paste(combination$numero, combination$palo)
+deck <- paste(combination$number, combination$suit)
 
 mean(deck == "King of Diamonds")
 #> [1] 0.01923077
@@ -6019,9 +5510,11 @@ mean(deck %in% queens)
 #> [1] 0.07692308
 ```
 
+This chapter highlighted two complementary approaches to probability. The **mathematical definition** ($P(A) = \frac{\text{favorable outcomes}}{\text{total outcomes}}$) gives us exact answers for simple problems. However, for more complex scenarios, **Monte Carlo simulation** allows us to estimate probabilities by replicating experiments thousands of times using `sample()` and `replicate()`. We learned that `mean(condition)` is an efficient way to calculate proportions in R, and that increasing the number of repetitions brings our simulation estimates closer to the true theoretical probability.
+
 
 ## Exercises
-64. Store in the variable `prob` the probability that when rolling a die you do **not** get the number 1. Using the variable `prob`, now calculate the probability that when rolling 3 times in a row, one after another, in none of those times the number 1 comes out.
+62. Calculate the probability of **not** rolling a 1 on a single die roll and store it in a variable named `prob`. Then, use this variable to determine the probability that the number 1 does not appear in three consecutive rolls.
 
 
 
@@ -6035,7 +5528,7 @@ prob * prob * prob
 ```
 </details>
 
-65. Given a container containing 5 blue marbles, 3 yellow, and 4 gray. What is the probability that if you choose a marble at random it is blue?
+63. Imagine a container holding 5 blue, 3 yellow, and 4 gray marbles. Determine the probability that a marble chosen at random is blue.
 
 <div align="center">
 <img src="_assets/images/04-statistics/probabilities-marbles.png" alt="Container with colored marbles: 5 blue, 3 yellow, and 4 gray" width="200pt" style="display: block; margin: auto;" />
@@ -6072,7 +5565,7 @@ The probability that the marble is blue is 41.67%.
 
 </details>
 
-66. What is the probability that when choosing a marble at random from the previous container it is **not** blue?
+64. Using the same container of marbles, calculate the probability that a randomly chosen marble is **not** blue.
 
 
 
@@ -6095,7 +5588,7 @@ $P(\sim~X)=1-P(X)=1-\frac{5}{12}=1-41.67\%=58.33\%$
 
 </details>
 
-67. Now we are going to take out a marble first, place it outside the box and take out another additional marble from the box. What is the probability that the first one is blue and the second is **not** blue? This time, instead of creating the marble vector, create the numerical variables: blue, yellow and gray assigning as value the number of marbles. Then calculate mathematics probabilities.
+65. Consider drawing two marbles from the container in sequence without replacing the first one. Calculate the probability that the first marble is blue and the second is **not** blue. Create numeric variables for each color count to perform this calculation.
 
 
 
@@ -6125,7 +5618,7 @@ This is called **sampling without replacement**. We have two events, we are taki
 
 </details>
 
-68. Now we will repeat the previous experiment, but after taking out the first marble we put it back in the box and take out one more marble at random. What is the probability that the first marble is blue and the second is **not** blue? Modify the R code you created previously to calculate this probability.
+66. Repeat the previous experiment, but this time **replace** the first marble before drawing the second one. Update your R code to calculate the probability that the first marble is blue and the second is **not** blue under these conditions.
 
 
 
@@ -6242,17 +5735,17 @@ Then, we would have to replicate this experiment over and over again, store the 
 ``` r
 n <- 10000
 
-resultado <- replicate(n, {
-      equipo <- sample(data_scientists, 2)
+result <- replicate(n, {
+      team <- sample(data_scientists, 2)
       
-      cumple_condicion <- (equipo[1] == "Pamela" & equipo[2] == "Enrique") | 
-                          (equipo[2] == "Pamela" & equipo[1] == "Enrique")
+      meets_condition <- (team[1] == "Pamela" & team[2] == "Enrique") | 
+                          (team[2] == "Pamela" & team[1] == "Enrique")
       
-      cumple_condicion
+      meets_condition
 })
 
-mean(resultado)
-#> [1] 0.021
+mean(result)
+#> [1] 0.0232
 ```
 
 Note that, as we saw previously, the value converges as we increase the number of times we repeat the experiment `n`. We have simulated repeating the experiment 10 thousand times. However, how many times would it be necessary to replicate the experiment to trust the results of the simulation?
@@ -6268,21 +5761,21 @@ n_times
 #> [10]   10240   20480   40960   81920  163840  327680  655360 1310720
 ```
 
-Then, we use the code we created to replicate the experiment to create a function called `probabilidad_por_muestra`:
+Then, we use the code we created to replicate the experiment to create a function called `probability_by_sample`:
 
 
 ``` r
-probabilidad_por_muestra <- function(n) {
-  resultado <- replicate(n, {
-    equipo <- sample(data_scientists, 2)
+probability_by_sample <- function(n) {
+  result <- replicate(n, {
+    team <- sample(data_scientists, 2)
     
-    cumple_condicion <- (equipo[1] == "Pamela" & equipo[2] == "Enrique") | 
-                        (equipo[2] == "Pamela" & equipo[1] == "Enrique")
+    meets_condition <- (team[1] == "Pamela" & team[2] == "Enrique") | 
+                        (team[2] == "Pamela" & team[1] == "Enrique")
     
-    cumple_condicion
+    meets_condition
   })
   
-  mean(resultado)
+  mean(result)
 }
 ```
 
@@ -6291,8 +5784,8 @@ We already have a function that allows us to replicate the experiment as many ti
 
 ``` r
 # Probability using functions:
-probabilidad_por_muestra(10000)
-#> [1] 0.02
+probability_by_sample(10000)
+#> [1] 0.0245
 ```
 
 Again, this is a simulation. So every time we execute that function the probability will vary as it is a random sample.
@@ -6301,12 +5794,12 @@ To apply a function on each of the values of a vector we use the function `sappl
 
 
 ``` r
-prob <- sapply(n_times, probabilidad_por_muestra)
+prob <- sapply(n_times, probability_by_sample)
 
 prob
-#>  [1] 0.05000000 0.00000000 0.02500000 0.00000000 0.03125000 0.01875000
-#>  [7] 0.02109375 0.02578125 0.02343750 0.02275391 0.02221680 0.02197266
-#> [13] 0.02169189 0.02250366 0.02242432 0.02216034 0.02201538
+#>  [1] 0.10000000 0.00000000 0.02500000 0.01250000 0.02812500 0.02968750
+#>  [7] 0.02031250 0.02265625 0.02089844 0.02119141 0.02397461 0.02197266
+#> [13] 0.02225342 0.02208862 0.02212219 0.02229462 0.02235031
 ```
 
 This gives us the probabilities depending on the number of times we repeat the experiment. Now let's place these results in a scatter plot to see how it converges
@@ -6315,18 +5808,18 @@ This gives us the probabilities depending on the number of times we repeat the e
 ``` r
 probabilities <- data.frame(
   n = n_times,
-  probabilidad = prob
+  probability = prob
 )
 
 probabilities |> 
   ggplot() +
-  aes(n, probabilidad) +
+  aes(n, probability) +
   geom_line() +
   geom_point() +
   xlab("# of times of the experiment")
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-404-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-369-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can also change the scale to zoom in on the probabilities for smaller experiment number values and add a reference line with the theoretical probability value calculated previously:
 
@@ -6334,7 +5827,7 @@ We can also change the scale to zoom in on the probabilities for smaller experim
 ``` r
 probabilities |> 
   ggplot() +
-  aes(n, probabilidad) +
+  aes(n, probability) +
   geom_line() +
   geom_point() +
   xlab("# of times of the experiment") +
@@ -6343,7 +5836,7 @@ probabilities |>
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-405-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-370-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We observe that, for this experiment, repeating the experiment 10 thousand times (x-axis = 3 because it is $10^3$) already gives us a good approximation to the real value.
 
@@ -6370,9 +5863,9 @@ To validate if any of the values are repeated we will use the `duplicated()` fun
 ``` r
 duplicated(colleagues)
 #>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#> [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#> [25] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#> [37] FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+#> [13]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+#> [25]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+#> [37] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
 #> [49] FALSE FALSE
 ```
 
@@ -6400,7 +5893,7 @@ results <- replicate(n_times, {
 
 # Probability:
 mean(results) 
-#> [1] 0.9713
+#> [1] 0.97
 ```
 
 We see that the estimated probability is very high, above 95%. What would happen if I have a room of 25 people?
@@ -6420,15 +5913,15 @@ results <- replicate(n_times, {    # Returns a logical vector
 
 # Probability:
 mean(results) 
-#> [1] 0.5724
+#> [1] 0.5618
 ```
 
-Let's now create the function `estima_probabilidad` and estimate using this function the probability of finding at least two people with the same birthday in a room of 25 people. This time we have to specify that the sampling is with "replacement" because by default the `sample()` function is "without replacement".
+Let's now create the function `estimate_probability` and estimate using this function the probability of finding at least two people with the same birthday in a room of 25 people. This time we have to specify that the sampling is with "replacement" because by default the `sample()` function is "without replacement".
 
 
 ``` r
 # Create the function
-estima_probabilidad <- function(classroom, n_times = 10000){
+estimate_probability <- function(classroom, n_times = 10000){
     results <- replicate(n_times, {    # Returns a logical vector
         colleagues <- sample(days, classroom, replace = TRUE)
         any(duplicated(colleagues))
@@ -6438,8 +5931,8 @@ estima_probabilidad <- function(classroom, n_times = 10000){
     mean(results) 
 }
 
-estima_probabilidad(25)
-#> [1] 0.5661
+estimate_probability(25)
+#> [1] 0.5707
 ```
 
 Finally, if we already have a function that calculates based on the number of people in a room we can create a numerical vector with the total number of people from different rooms and then apply the function we have created. The result can be stored in the variable `prob`.
@@ -6451,17 +5944,17 @@ Finally, if we already have a function that calculates based on the number of pe
 classrooms <- 1:80
 
 # Estimate probability depending on the number of students per room
-prob <- sapply(classrooms, estima_probabilidad)
+prob <- sapply(classrooms, estimate_probability)
 
 prob
-#>  [1] 0.0000 0.0023 0.0089 0.0174 0.0296 0.0408 0.0572 0.0760 0.0946 0.1153
-#> [11] 0.1376 0.1650 0.1898 0.2192 0.2524 0.2815 0.3183 0.3409 0.3837 0.4165
-#> [21] 0.4484 0.4760 0.5089 0.5328 0.5688 0.5977 0.6307 0.6552 0.6811 0.7090
-#> [31] 0.7247 0.7618 0.7734 0.7994 0.8182 0.8350 0.8480 0.8638 0.8865 0.8895
-#> [41] 0.9033 0.9140 0.9209 0.9313 0.9396 0.9479 0.9557 0.9600 0.9666 0.9725
-#> [51] 0.9714 0.9773 0.9811 0.9850 0.9862 0.9896 0.9895 0.9913 0.9941 0.9936
-#> [61] 0.9945 0.9959 0.9966 0.9976 0.9968 0.9977 0.9988 0.9981 0.9990 0.9990
-#> [71] 0.9994 0.9993 0.9995 0.9998 0.9997 0.9998 0.9997 0.9999 0.9999 0.9999
+#>  [1] 0.0000 0.0028 0.0097 0.0174 0.0265 0.0395 0.0572 0.0723 0.0940 0.1219
+#> [11] 0.1404 0.1639 0.2004 0.2340 0.2489 0.2879 0.3152 0.3423 0.3849 0.4074
+#> [21] 0.4501 0.4776 0.5059 0.5451 0.5712 0.5969 0.6226 0.6469 0.6775 0.7033
+#> [31] 0.7284 0.7519 0.7798 0.7958 0.8204 0.8349 0.8429 0.8672 0.8844 0.8942
+#> [41] 0.9006 0.9191 0.9228 0.9313 0.9413 0.9469 0.9545 0.9629 0.9643 0.9706
+#> [51] 0.9705 0.9763 0.9805 0.9846 0.9865 0.9908 0.9890 0.9918 0.9946 0.9947
+#> [61] 0.9947 0.9961 0.9967 0.9981 0.9972 0.9977 0.9979 0.9985 0.9986 0.9989
+#> [71] 0.9997 0.9996 0.9994 0.9998 0.9998 0.9999 0.9996 0.9996 1.0000 1.0000
 ```
 
 Thus, if we place it in a scatter plot we can see how the probability increases as there are more students:
@@ -6470,24 +5963,24 @@ Thus, if we place it in a scatter plot we can see how the probability increases 
 ``` r
 probabilities <- data.frame(
   n = classrooms,
-  probabilidad = prob
+  probability = prob
 )
 
 probabilities |> 
   ggplot() +
-  aes(n, probabilidad) +
+  aes(n, probability) +
   geom_point() +
   xlab("Number of students in each class")
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-414-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-379-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can now impress our friends from different groups by telling them that, if they are in a room of 60 people, "you can bet them" that there are two people in that room who have birthdays on the same day. It is not definitive, but the chances are very much in our favor.
 
 
 ## Exercises
 
-69. Two students of the _Data Science with R_ course, Alonso and Georgina, usually play chess in their free time. Given Georgina's experience, she has a 60% chance of winning every time she plays with Alonso. **Without using Monte Carlo simulation** What is the probability that when playing 4 times in a row, Alonso has won at least once.
+67. Alonso and Georgina play chess, and Georgina has a 60% chance of winning any given game. **Without using a simulation**, calculate the probability that Alonso wins at least one game out of four played.
 
 
 
@@ -6507,11 +6000,11 @@ prob <- 0.6^4
 ```
 </details>
 
-70. Estimate the previous probability using Monte Carlo simulation. Use the following code to generate a sample of 4 games, where Alonso has a 60% probability of losing to Georgina.
+68. Now, estimate the probability of Alonso winning at least one of four games using a Monte Carlo simulation. Assume Alonso has a 40% chance of winning each individual match.
 
 
 ``` r
-resultado_juegos <- sample(c("loses","wins"), 4, replace = TRUE, prob = c(0.6, 0.4))
+game_results <- sample(c("loses","wins"), 4, replace = TRUE, prob = c(0.6, 0.4))
 ```
 
 
@@ -6524,18 +6017,18 @@ resultado_juegos <- sample(c("loses","wins"), 4, replace = TRUE, prob = c(0.6, 0
 n_times <- 10000
 
 # Generate result of experiments that Alonso wins
-alonso_gana <- replicate(n_times, {
-    resultado_juegos <- sample(c("loses","wins"), 4, replace = TRUE, prob = c(0.6, 0.4))
-    any(resultado_juegos == "wins")
+alonso_wins <- replicate(n_times, {
+    game_results <- sample(c("loses","wins"), 4, replace = TRUE, prob = c(0.6, 0.4))
+    any(game_results == "wins")
 })
 
 # Estimate probability
-mean(alonso_gana)
+mean(alonso_wins)
 
 ```
 </details>
 
-71. In the previous exercise we used the probability that Alonso wins as 40%. Now, create the function `probabilidad_de_ganar` that takes as input the probability `p` that Alonso wins. Then, assign this sequence `seq(0.4, 0.95, 0.025)` in a vector `p` to, finally, apply the created function to each value of vector `p` and store the result in the variable `prob`. Report a scatter plot of vector `p` on the _x-axis_ and vector `prob` on the _y-axis_
+69. Generalize the previous simulation by creating a function `probability_of_winning` that accepts Alonso's win probability `p` as an argument. Use this function to simulate outcomes for a sequence of win probabilities from 0.4 to 0.95 (steps of 0.025) and visualize the results in a scatter plot.
 
 
 
@@ -6544,22 +6037,22 @@ mean(alonso_gana)
 
 ``` r
 # Create function
-probabilidad_de_ganar <- function(p){
+probability_of_winning <- function(p){
   n_times <- 10000
   
-  alonso_gana <- replicate(n_times, {
-      resultado_juegos <- sample(c("loses","wins"), 4, replace = TRUE, prob = c(1-p, p))
-      any(resultado_juegos == "wins")
+  alonso_wins <- replicate(n_times, {
+      game_results <- sample(c("loses","wins"), 4, replace = TRUE, prob = c(1-p, p))
+      any(game_results == "wins")
   })
   
-  mean(alonso_gana)
+  mean(alonso_wins)
 
 }
 
 # Create vector with different probabilities
 p <- seq(0.4, 0.95, 0.025)
 
-prob <- sapply(p, probabilidad_de_ganar)
+prob <- sapply(p, probability_of_winning)
 
 plot(p, prob, xlab="p: probability that Alonso wins in each game", 
      ylab="prob: prob. that Alonso wins at least one game")
@@ -6575,7 +6068,7 @@ Let's solve together this exercise that integrates everything we have learned in
 Monty Hall was a TV presenter who made famous a contest in his show which we are going to replicate below. We have three doors in front of us:
 
 <div align="center">
-<img src="_assets/images/04-statistics/monty-hall-cerradas.png" alt="Three closed doors labeled 1, 2, and 3 in the Monty Hall problem" width="400pt" style="display: block; margin: auto;" />
+<img src="_assets/images/04-statistics/monty-hall-closed.png" alt="Three closed doors labeled 1, 2, and 3 in the Monty Hall problem" width="400pt" style="display: block; margin: auto;" />
 </div>
 
 Behind one of these doors is a zero-kilometer car, while in the other two there is a goat. We, as contest participants, have to choose together which door to open. Whatever is behind it will be ours.
@@ -6583,7 +6076,7 @@ Behind one of these doors is a zero-kilometer car, while in the other two there 
 Suppose we have chosen door number 2. Once you announce our choice, Monty Hall tells us that he is going to help us and opens a door for us right now. He opens one of the other doors and it turns out there is a goat in door 3 that he opened.
 
 <div align="center">
-<img src="_assets/images/04-statistics/monty-hall-abierta.png" alt="Monty Hall problem with door 3 open showing a goat, doors 1 and 2 remain closed" width="400pt" style="display: block; margin: auto;" />
+<img src="_assets/images/04-statistics/monty-hall-open.png" alt="Monty Hall problem with door 3 open showing a goat, doors 1 and 2 remain closed" width="400pt" style="display: block; margin: auto;" />
 </div>
 
 Monty Hall asks us: 
@@ -6660,7 +6153,7 @@ results <- replicate(n_times, {
 })
 
 mean(results)
-#> [1] 0.3298
+#> [1] 0.3348
 ```
 
 We see that the probability obtained by Monte Carlo simulation is an estimation very close to the probability that we had intuitively calculated. That is, if we keep our choice of the door we chose we have a 33.33% probability of winning.
@@ -6687,7 +6180,7 @@ results <- replicate(n_times, {
 })
 
 mean(results)
-#> [1] 0.6627
+#> [1] 0.6599
 ```
 
 As we see, changing the door in this show gave us a probability of 66.66% of winning, while keeping our choice only 33.33%.
@@ -6705,19 +6198,27 @@ editor_options:
 # Continuous Probabilities
 Recall that a continuous variable is a variable that takes values along a continuum, that is, over an entire interval of values. An essential attribute of a continuous variable is that, unlike a discrete variable, it can never be measured exactly; the observed value depends largely on the precision of the measuring instruments. With a continuous variable, there is inevitably a measurement error. As an example, the height of a person (1.72m, 1.719m, 1.7186m....). Another example could be the time it takes an athlete to run 100 meters flat, since this time can take values such as 9.623 seconds; 10.456485 seconds; 12.456412 seconds; that is, an interval of values.
 
+::: {.callout-note}
+## Learning Objectives
+
+After completing this chapter, you will be able to:
+
+In this chapter, we will learn how to handle data that can take any value within a range. We will distinguish between empirical distributions, based on real data, and theoretical distributions, which model ideal behavior. We will use the Cumulative Distribution Function (CDF) to calculate probabilities for intervals and apply the normal distribution to model real-world continuous data. Additionally, we will learn to assess whether data fits a normal distribution using Q-Q plots and the Shapiro-Wilk test, and perform Monte Carlo simulations for continuous variables using `rnorm()`.
+:::
+
 For example, recall that in the `heights` data frame we have the heights of a group of university students.
 
 
 ``` r
 heights |> 
   filter(sex == "Male") |> # Filter only males
-  mutate(height_m = height/39.37) |> # Convert to centimeters
+  mutate(height_m = height/39.37) |> # Convert to meters
   ggplot() +
   aes(sex, height_m, color = height_m) +
   geom_point(position = position_jitterdodge())
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-433-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-398-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 When graphing the data distribution, we intuitively realize that it does not make sense to calculate the proportion of people who measure exactly 1.73m because it would also serve us if a person measures 1.731, 1.729, or any close value that is not exactly 1.73, whether due to how it was measured or any other type of error.
 
@@ -6727,13 +6228,13 @@ It makes more sense to analyze the data by intervals, as can be seen in this his
 ``` r
 heights |> 
   filter(sex == "Male") |> # Filter only males
-  mutate(height_m = height/39.37) |> # Convert to centimeters
+  mutate(height_m = height/39.37) |> # Convert to meters
   ggplot() +
   aes(height_m) +
   geom_histogram(binwidth = 0.05, color = "black")
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-434-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-399-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 It is much more practical to define a function that operates on intervals instead of unique values. For this we use the Cumulative Distribution Function (CDF).
 
@@ -6750,11 +6251,11 @@ men <- heights |>
   pull(height_m)
 ```
 
-Then, we can create the function `FDA` (CDF) that takes `x` as a variable and calculates the proportion of men who measure less than or equal to `x` within the data found in the `men` vector.
+Then, we can create the function `empirical_cdf` (CDF) that takes `x` as a variable and calculates the proportion of men who measure less than or equal to `x` within the data found in the `men` vector.
 
 
 ``` r
-FDA <- function(x){
+empirical_cdf <- function(x){
   mean(men <= x)
 }
 ```
@@ -6763,7 +6264,7 @@ Thus, if we want to calculate what the proportion of students who measure 1.73m 
 
 
 ``` r
-FDA(1.73)
+empirical_cdf(1.73)
 #> [1] 0.3768473
 ```
 
@@ -6780,30 +6281,30 @@ And then we enter the value 1.7526035 into our function to ask what is the propo
 
 ``` r
 median_val <- median(men)
-FDA(median_val)
+empirical_cdf(median_val)
 #> [1] 0.5073892
 ```
 
-So far we have calculated proportions with the cumulative distribution function FDA. However, if we want to know what is the **probability** that when choosing a man at random he measures 1.9m or less, we could use the same FDA. Since each student has the same chance of being chosen, the answer to the question would be the proportion of students who measure 1.9 or less.
+So far we have calculated proportions with the cumulative distribution function. However, if we want to know what is the **probability** that when choosing a man at random they measure 1.9m or less, we could use the same `empirical_cdf`. Since each student has the same chance of being chosen, the answer to the question would be the proportion of students who measure 1.9 or less.
 
 $F(1.9) = P(x \le 1.9)$
 
 
 ``` r
-FDA(1.9)
+empirical_cdf(1.9)
 #> [1] 0.9396552
 ```
 
 We observe that the probability is approximately 93.97%.
 
-If we now want to calculate the probability that someone chosen at random is taller than 1.80m, we first calculate the FDA for 1.8 and then obtain the complement.
+If we now want to calculate the probability that someone chosen at random is taller than 1.80m, we first calculate the CDF for 1.8 and then obtain the complement.
 
 $P(x > 1.8) = 1 - P(x \le 1.8)$
 
 
 ``` r
 # Probability of measuring 1.80m or less
-prob <- FDA(1.8)
+prob <- empirical_cdf(1.8)
 
 # Probability of measuring more than 1.80m
 1 - prob
@@ -6818,9 +6319,9 @@ $P(x > 1.6\ \cap\ x \le 1.95) = P(x \le 1.95) - P(x \le 1.6)$
 
 
 ``` r
-prob_1 <- FDA(1.95)
+prob_1 <- empirical_cdf(1.95)
 
-prob_2 <- FDA(1.6)
+prob_2 <- empirical_cdf(1.6)
 
 prob_1 - prob_2
 #> [1] 0.9445813
@@ -6839,20 +6340,20 @@ heights |>
   ggplot() +
   aes(height_m) +
   geom_histogram(binwidth = 0.05, color = "black") +
-  geom_density(aes(y = ..count..*0.05), colour = "blue", lty = 5)
+  geom_density(aes(y = after_stat(count)*0.05), colour = "blue", lty = 5)
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-443-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-408-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
-We see that the distribution has an approximately symmetric, bell shape. This distribution could be modeled using a [normal distribution](https://support.minitab.com/en-us/minitab/18/help-and-how-to/statistics/basic-statistics/supporting-topics/normality/what-is-the-normal-distribution/) (also called Gaussian distribution, Gauss curve, or Gauss bell). To do this, in R we will use the function `pnorm(x, average, std_dev)` to estimate the probability but using a normal distribution function with an average `promedio` and a standard deviation `desv_est`. In this way, we can estimate what is the probability that if we choose a value at random it is less than or equal to `x`.
+We see that the distribution has an approximately symmetric, bell shape. This distribution could be modeled using a [normal distribution](https://support.minitab.com/en-us/minitab/18/help-and-how-to/statistics/basic-statistics/supporting-topics/normality/what-is-the-normal-distribution/) (also called Gaussian distribution, Gauss curve, or Gauss bell). To do this, in R we will use the function `pnorm(x, average, std_dev)` to estimate the probability but using a normal distribution function with an average `average` and a standard deviation `std_dev`. In this way, we can estimate what is the probability that if we choose a value at random it is less than or equal to `x`.
 
 For example, let's calculate again the probability that when choosing a man at random he measures 1.65m or less, we could use the same FDA and now the `pnorm()` function.
 
 
 ``` r
 # Using the empirical distribution (real data):
-FDA(1.9)
+empirical_cdf(1.9)
 #> [1] 0.9396552
 
 # Using the theoretical normal distribution (approx. data):
@@ -6878,7 +6379,7 @@ data.frame(value = normal) |>
   aes(sec, value) +
   geom_line() +
   theme(axis.text.y = element_blank()) +
-  xlab("Height (Estatura)") +
+  xlab("Height (meters)") +
   ylab("") +
   ggtitle("Normal Distribution") +
   geom_area(aes(x = ifelse(sec < 1.9, sec, 0)), fill = "blue") +
@@ -6886,14 +6387,14 @@ data.frame(value = normal) |>
   labs(subtitle = paste("P(x <= 1.9) =", probability))
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-445-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-410-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 In the same way, we could estimate the probability that a person chosen at random measures more than 1.8m.
 
 
 ``` r
 # Using the empirical distribution (real data):
-1- FDA(1.8)
+1 - empirical_cdf(1.8)
 #> [1] 0.3583744
 
 # Using the theoretical normal distribution (approx. data):
@@ -6917,7 +6418,7 @@ data.frame(value = normal) |>
   aes(sec, value) +
   geom_line() +
   theme(axis.text.y = element_blank()) +
-  xlab("Height (Estatura)") +
+  xlab("Height (meters)") +
   ylab("") +
   ggtitle("Normal Distribution") +
   geom_area(aes(x = ifelse(sec > 1.8, sec, 0)), fill = "blue") +
@@ -6925,15 +6426,15 @@ data.frame(value = normal) |>
   labs(subtitle = paste("P(x > 1.8) =", probability))
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-447-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-412-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Finally, let's recalculate the probability that when choosing someone at random they measure more than 1.6m, but not more than 1.95m, we would have.
 
 
 ``` r
 # Using the empirical distribution (real data):
-prob_1 <- FDA(1.95)
-prob_2 <- FDA(1.6)
+prob_1 <- empirical_cdf(1.95)
+prob_2 <- empirical_cdf(1.6)
 prob_1 - prob_2
 #> [1] 0.9445813
 
@@ -6958,7 +6459,7 @@ data.frame(value = normal) |>
   aes(sec, value) +
   geom_line() +
   theme(axis.text.y = element_blank()) +
-  xlab("Height (Estatura)") +
+  xlab("Height (meters)") +
   ylab("") +
   ggtitle("Normal Distribution") +
   geom_area(aes(x = ifelse(sec > 1.6 & sec <= 1.95, sec, 0)), fill = "blue") +
@@ -6966,7 +6467,7 @@ data.frame(value = normal) |>
   labs(subtitle = paste("P(1.6 < x <= 1.95) =", probability))
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-449-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-414-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can plot a Q-Q plot, which is a scatter plot created by plotting two sets of quantiles against each other. The function `stat_qq(x)` creates a normal Q-Q plot. This function plots the data in sorted order against the quantiles of a standard Normal distribution. The function `stat_qq_line()` adds a reference line. Although understanding this requires advanced statistics, we can interpret it that if when using this function the correlation is very close to the line then our data is very likely to follow a normal distribution.
 
@@ -6981,7 +6482,7 @@ heights |>
   stat_qq_line()
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-450-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-415-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 The points seem to fall on a straight line. This gives us a good indication that assuming our height data comes from a population that is normally distributed is reasonable. Observe that the _y-axis_ plots the empirical quantiles and _x-axis_ plots the theoretical quantiles. The latter are the quantiles of the standard Normal distribution with mean 0 and standard deviation 1.
 
@@ -7001,13 +6502,19 @@ shapiro.test(men)
 
 The p-value is less than 0.05 so, although our distribution resembles a normal one, it does not pass the significance test.
 
+::: {.callout-tip}
+## Key Takeaways
+
+We have explored the differences between **empirical distributions**, derived directly from observed data using functions like `empirical_cdf()`, and **theoretical distributions**, which rely on mathematical models such as the normal distribution. We learned to use `pnorm(x, mean, sd)` to calculate cumulative probabilities, providing a powerful tool for analyzing continuous variables. Finally, we introduced **Q-Q plots** and the **Shapiro-Wilk test** as method to verify if our data follows a normal distribution, with a p-value greater than 0.05 indicating that the assumption of normality is reasonable.
+:::
+
 
 
 ## Exercises
 
 For the following exercises assume that the distribution of ages of students in the _Data Science with R_ course approximates a normal distribution with an average of 24 years and a standard deviation of 3. If we select a student at random:
 
-72. What is the probability that they are at most 23 years old?
+70. Given the parameters of our student age distribution, calculate the probability that a randomly chosen student is **at most** 23 years old.
 
 
 
@@ -7022,7 +6529,7 @@ pnorm(23, avg_e, std_dev_e)
 ```
 </details>
 
-73. What is the probability that they are older than 28 years?
+71. Determine the probability that a selected student is **older than** 28 years.
 
 
 
@@ -7037,7 +6544,7 @@ std_dev_e <- 3
 ```
 </details>
 
-74. What is the probability that they are older than 22, but at most 27 years old?
+72. Calculate the probability that a student is between 22 and 27 years old (older than 22 but at most 27).
 
 
 
@@ -7052,7 +6559,7 @@ pnorm(27, avg_e, std_dev_e ) - pnorm(22, avg_e, std_dev_e )
 ```
 </details>
 
-75. What is the probability that they are at most one standard deviation away from the average?
+73. Find the probability that a student's age falls within one standard deviation of the average (i.e., between `average - sd` and `average + sd`).
 
 
 
@@ -7109,7 +6616,7 @@ result <- paste("Sample:", length_val, ". Average:",
 mtext(result,3)
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-461-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-426-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can execute the code again to verify that it generates another distribution for us:
 
@@ -7127,7 +6634,7 @@ result <- paste("Sample:", length_val, ". Average:",
 mtext(result,3)
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-462-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-427-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can repeat this experiment of obtaining `n` random data that have approximately the same `average` and the same `std_dev` about 10 thousand times to calculate the proportion of times that a man measures more than 1.8m.
 
@@ -7141,7 +6648,7 @@ simulation_results <- replicate(n_times, {
 })
 
 mean(simulation_results)
-#> [1] 0.3336372
+#> [1] 0.3338273
 ```
 
 Thus, we have obtained practically the same value that we achieved in the previous section, but this time estimating using the Monte Carlo simulation.
@@ -7153,7 +6660,7 @@ Thus, we have obtained practically the same value that we achieved in the previo
 
 The distribution of the admission exam grades of the Univ. UNISM is distributed approximately normally. The average is 14.5 and the standard deviation is 1. We want to know the distribution of the first place. It is known that 5 thousand people apply once a year per exam and take a single exam.
 
-76. Generate 5 thousand grades about 1,000 times using Monte Carlo simulation and perform a histogram of the result.
+74. Generate 5 thousand grades about 1,000 times using Monte Carlo simulation and perform a histogram of the result.
 
 
 
@@ -7175,7 +6682,7 @@ shapiro.test(max_grades)
 ```
 </details>
 
-77. Modify the previous simulation to analyze the distribution of the average grades of each year.
+75. Now, modify your simulation to analyze the **distribution of the yearly averages**. Generate the sample average for each of the 1,000 simulations and plot the histogram.
 
 
 
@@ -7197,7 +6704,7 @@ shapiro.test(notas_avg)
 ```
 </details>
 
-78. Using the first Monte Carlo simulation created, calculate the probability that the first place in grades is greater than 18.5.
+76. Using the results from your first simulation (distribution of maximum grades), estimate the probability that the highest grade in a given year exceeds 18.5.
 
 
 
@@ -7228,15 +6735,23 @@ To infer means to draw a conclusion from general or particular facts. Statistica
 
 We estimate parameters of a population from a sample because very rarely we will be able to have access to all the data of the population. Such is the case of election polls, disease studies, etc.
 
-Recall previously some concepts such as expected value, standard error, among others, that will be useful to us to make inferences.
+::: {.callout-note}
+## Learning Objectives
+
+After completing this chapter, you will be able to:
+
+In this chapter, we will build the foundation for making valid conclusions from data. We will start by mastering the calculation of expected values and standard errors, which are critical for characterizing random variables. Then, we will explore the Central Limit Theorem to understand how sampling distributions behave. Finally, we will apply these concepts to estimate population parameters from sample data, calculating confidence intervals and margins of error to analyze real-world scenarios like election polling.
+:::
+
+We will introduce fundamental concepts such as **expected value** and **standard error**, which will be useful to us to make inferences.
 
 ## Expected Value
 Let's use the following case to understand this concept intuitively.
 
-> We have been hired in a casino to analyze if it is reasonable to install a roulette with 37 values ranging from 0 to 36. The house wants to open the game with a special offer if the ball lands on 0 or 21 paying 10 to 1. This means that if a player plays and wins we pay him 10 soles and if he loses he would pay us 1 sol.
+> We have been hired in a casino to analyze if it is reasonable to install a roulette with 37 values ranging from 0 to 36. The house wants to open the game with a special offer if the ball lands on 0 or 21 paying 10 to 1. This means that if a player plays and wins we pay them 10 dollars and if they lose they would pay us 1 dollar.
 
 <div align="center">
-<img src="_assets/images/04-statistics/ruleta-casino.png" alt="Casino roulette wheel with numbered red and black pockets" width="300pt" style="display: block; margin: auto;" />
+<img src="_assets/images/04-statistics/roulette-casino.png" alt="Casino roulette wheel with numbered red and black pockets" width="300pt" style="display: block; margin: auto;" />
 </div>
 
 With what we have learned so far we can simulate our game with the case data. We have 37 values, of which in 2 of them give a player a profit of +10 or a loss -1. Let's also define `prob_win` as the probability that a player wins.
@@ -7266,13 +6781,14 @@ plays <- 100000
 prob_win <- 2/37
 prob_lose <- 1 - prob_win
 
-sample_vec <- sample(c(10, -1), plays, replace = TRUE, prob = c(prob_win, prob_lose))
-
-hist(sample_vec)
+tibble(outcome = sample_vec) |>
+  ggplot(aes(x = factor(outcome))) +
+  geom_bar(fill = "steelblue") +
+  labs(x = "Outcome ($)", y = "Count", title = "Distribution of Roulette Outcomes")
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-473-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-438-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We have been using Monte Carlo simulation to estimate what the **mean** of the game results would be in real life.
 
@@ -7280,7 +6796,7 @@ We have been using Monte Carlo simulation to estimate what the **mean** of the g
 ``` r
 # Estimation of the mean by Monte Carlo simulation
 mean(sample_vec)
-#> [1] -0.41073
+#> [1] -1
 ```
 
 In addition, we have seen that, the more the sample grows, our **mean** in the Monte Carlo simulation converges to a value, in this case the probability of winning mainly in the roulette. That value to which it converges we will call **expected value**, which as its name indicates will be the value we expect to obtain in reality. The more the sample size grows the more our sample mean converges to this expected value. The notation we will use will be $E[X]$.
@@ -7324,7 +6840,7 @@ prob_lose <- 1 - prob_win
 sample_vec <- sample(c(10, -1), plays, replace = TRUE, prob = c(prob_win, prob_lose))
 
 sum(sample_vec)
-#> [1] -18
+#> [1] -7
 ```
 
 Finally, not only one person will play. Let's replicate this sample about 100,000 times to simulate the number of players we would have in a quarter.
@@ -7333,14 +6849,15 @@ Finally, not only one person will play. Let's replicate this sample about 100,00
 ``` r
 
 players <- 100000
-jugadas <- 40
+plays <- 40
 
 prob_win <- 2/37
 prob_lose <- 1 - prob_win
 
+set.seed(2025)
 winnings_simulation <- replicate(players, {
   
-  sample_vec <- sample(c(10, -1), jugadas, replace = TRUE, prob = c(prob_win, prob_lose))
+  sample_vec <- sample(c(10, -1), plays, replace = TRUE, prob = c(prob_win, prob_lose))
 
   sum(sample_vec)  
   
@@ -7352,10 +6869,13 @@ So far we have done the same as we have learned in previous chapters. However, w
 
 
 ``` r
-hist(winnings_simulation)
+tibble(winnings = winnings_simulation) |>
+  ggplot(aes(x = winnings)) +
+  geom_histogram(bins = 30, fill = "steelblue", color = "white") +
+  labs(x = "Total Winnings ($)", y = "Count", title = "Distribution of Player Winnings")
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-479-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-444-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 It is not a coincidence that if we create a histogram with all the winnings of all the players the result looks like a normal distribution. In fact, that was the main approach that George Pólya made in 1920 when he presented his **Central Limit Theorem**.
 
@@ -7402,19 +6922,19 @@ SE_sum
 
 With these two theoretical data, the expected value and the standard error, we can graph the normal curve of the sum of winnings of our game.
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-482-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-447-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 What does this mean? That if theoretically we can already graph the normal curve then we can also calculate the probability that the sum is greater or less than some value. This is the main advantage of the Central Limit Theorem since we can calculate probabilities of the population using this approximation and the data of a single sample.
 
 For example, if we want to know what is the probability that a player wins money after playing 40 times in roulette we would have to calculate the probability that $S$ is greater than **zero**, represented by the blue shaded area:
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-483-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-448-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 To perform this calculation in R we would use the `pnorm` function:
 
 
 ``` r
-# Probability of getting more than 0 soles having played 40 games:
+# Probability of getting more than 0 dollars having played 40 games:
 1- pnorm(0, E_sum, SE_sum)
 #> [1] 0.1513144
 ```
@@ -7423,9 +6943,9 @@ Let's validate that the Monte Carlo simulation approximates this theoretical val
 
 
 ``` r
-# Probability of getting more than 0 soles having played 40 games:
+# Probability of getting more than 0 dollars having played 40 games:
 mean(winnings_simulation > 0)
-#> [1] 0.16856
+#> [1] 0.16813
 ```
 
 We have used two ways to estimate the probability, the theoretical estimation using the central limit theorem and the Monte Carlo simulation. These two numbers are quite close to the real probability. In both cases, the larger the sample, the more reasonable our estimation will be.
@@ -7435,13 +6955,19 @@ On the other hand, the same happens if we wanted to analyze the average and not 
 1. Expected value of the average: $E[\overline{X}]=ap+b(1-p)$.
 2. Standard error of the average: $SE[\overline{X}]=|a-b|\sqrt{\frac{p(1-p) }{n}}$.
 
+::: {.callout-tip}
+## Key Takeaways
+
+This chapter provided the tools to quantify uncertainty. We learned that the **Expected Value**, $E[X]$, represents the long-term average outcome of a random variable. The **Central Limit Theorem** is the bridge that allows us to approximate the sum of independent samples using a normal distribution, regardless of the original population's shape. This theorem enables us to calculate the **Expected Value of the Sum** ($E[S_n] = n \cdot E[X]$) and the **Standard Error of the Sum** ($SE[S_n] = \sqrt{n} \cdot SE[X]$), empowering us to estimate probabilities and make inferences about a population without needing to measure every single individual.
+:::
+
 
 
 ## Exercises
 
 The admission exam of the National Univ. of San Marcos consists of 100 multiple choice questions (A, B, C, D, E) with a value of 20 points for each correct question and 1.125 for each wrong answer. We want to analyze what would happen if a student answers all 100 questions randomly and if there are chances of getting a vacancy knowing that minimum 900 points are needed to enter some career.
 
-79. What is the expected value of the points received by guessing a question?
+77. Consider a multiple-choice exam with 100 questions, where each correct answer awards 20 points and each wrong answer deducts 1.125 points. Determine the expected value of points a student would receive for a single question if they guessed randomly among the 5 options.
 
 
 
@@ -7449,21 +6975,21 @@ The admission exam of the National Univ. of San Marcos consists of 100 multiple 
   <summary type="button">Solution</summary>
 
 ``` r
-puntaje_a_favor <- 20
-puntaje_en_contra <- -1.125
+points_correct <- 20
+points_wrong <- -1.125
   
-prob_correcta <- 1/5
-prob_incorrecta <- 1 - prob_correcta
+prob_correct <- 1/5
+prob_wrong <- 1 - prob_correct
 
 # Expected value of guessing a question:
-E <- puntaje_a_favor * prob_correcta + puntaje_en_contra * prob_incorrecta
+E <- points_correct * prob_correct + points_wrong * prob_wrong
 
 E
 
 ```
 </details>
 
-80. What is the expected value of guessing the 100 questions?
+78. Based on the expected value for a single question, calculate the total expected value if a student guesses on all 100 questions of the exam.
 
 
 
@@ -7475,13 +7001,13 @@ E
 n <- 100
 
 # Expected value of the sum
-E_suma <- n * E
+E_sum <- n * E
 
-E_suma
+E_sum
 ```
 </details>
 
-81. What is the standard error of guessing the 100 questions?
+79. Calculate the standard error associated with the total score if a student guesses on all 100 questions.
 
 
 
@@ -7490,13 +7016,13 @@ E_suma
 
 ``` r
 # Standard error of the sum
-SE_suma <- sqrt(n)*abs(puntaje_a_favor - puntaje_en_contra) * sqrt(prob_correcta*prob_incorrecta)
+SE_sum <- sqrt(n)*abs(points_correct - points_wrong) * sqrt(prob_correct*prob_wrong)
 
-SE_suma
+SE_sum
 ```
 </details>
 
-82. Using the central limit theorem, What is the probability that a student obtains more than 900 points by marking all answers randomly?
+80. Using the Central Limit Theorem and the values calculated previously, determine the probability that a student guessing on all questions would achieve a score higher than 900 points.
 
 
 
@@ -7504,10 +7030,10 @@ SE_suma
   <summary type="button">Solution</summary>
 
 ``` r
-puntaje_minimo <- 900
+min_score <- 900
 
 # Probability of obtaining less than the minimum:
-prob <- pnorm(puntaje_minimo, E_suma, SE_suma)
+prob <- pnorm(min_score, E_sum, SE_sum)
 
 # Probability of obtaining more than the minimum:
 1 - prob
@@ -7521,7 +7047,7 @@ Conclusion: let's study before taking the exam. It is not reasonable to take the
 
 > Recall that `e-n` is the representation of $10^{-n}$.
 
-83. Using Monte Carlo simulation for the 22,000 applicants who apply each time, calculate the probability that a student obtains more than 900 points by marking all answers randomly.
+81. Validate your theoretical calculation by running a Monte Carlo simulation. Simulate the exam scores for 22,000 applicants guessing randomly and calculate the proportion who score above 900 points.
 
 
 
@@ -7531,17 +7057,18 @@ Conclusion: let's study before taking the exam. It is not reasonable to take the
 ``` r
 total <- 22000
 
-simulacion_admision <- replicate(total, {
-  puntaje_del_examen <- sample(c(puntaje_a_favor, puntaje_en_contra), n, replace = TRUE, prob = c(prob_correcta, prob_incorrecta) )
+set.seed(2025)
+admission_simulation <- replicate(total, {
+  exam_score <- sample(c(points_correct, points_wrong), n, replace = TRUE, prob = c(prob_correct, prob_wrong) )
 
-  sum(puntaje_del_examen)  
+  sum(exam_score)  
 })
 
 # Probability of obtaining more than 900 points:
-mean(simulacion_admision > 900)
+mean(admission_simulation > 900)
 
 # Histogram if we want to see the distribution of points obtained:
-hist(simulacion_admision)
+hist(admission_simulation)
 
 ```
 
@@ -7562,29 +7089,19 @@ We will analyze this following case.
 
 For example, these would be the results of the poll of a random sample of 10 people:
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-496-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-461-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Intuitively we know that we cannot deduce which party will win given that the sample is very small. To know which party will win we need to estimate as precisely as possible the parameter $p$ that represents the proportion of voters of the Blue Party in the population and the parameter $1-p$ that represents the proportion of voters of the Red party.
 
 Making some mathematical transformations to our theoretical estimates seen previously and defining $a=1$ as value if they vote Blue and $b=0$ if they do not vote for Blue, we can obtain the following theoretical estimates for this case:
 
-1. Expected value of each vote:
+By defining a vote for Blue as $a=1$ and a vote for others as $b=0$, we can derive theoretical estimates that link our sample data to the unknown population parameter $p$.
 
-$E[X]=p$
+First, consider the **expected value of a single vote**. Mathematically, $E[X]=p$. This confirms that the value we expect to obtain from a single random voter matches the proportion $p$ we are trying to find.
 
-We see that the value we expect to obtain per vote $E[X]$ matches the parameter $p$ that we are looking for.
+Next, we look at the **expected value of the average** across multiple surveys. If we were to conduct many surveys of $n$ respondents each, the average of these sample means, denoted as $E[\overline{X}]$, would also equal $p$. This reinforces that our sample mean is an unbiased estimator of the population proportion.
 
-2. Expected value of the average of votes:
-
-$E[\overline{X}]=p$
-
-If we do multiple surveys, all of $n$ respondents and calculate the mean $\overline{X}$ of each sample, these samples will follow a normal distribution with an expected value $E[\overline{X}]$ which, as we see, matches the parameter $p$ that we are estimating.
-
-3. Standard error of the average of votes:
-
-$SE[\overline{X}]=\sqrt{\frac{p(1-p) }{n}}$
-
-In the same way as in the previous point, the multiple surveys generate multiple means on which the standard error $SE[\overline{X}]$ can be calculated which will depend on the size $n$ of respondents.
+Finally, we must account for variability using the **standard error of the average**, defined as $SE[\overline{X}]=\sqrt{\frac{p(1-p) }{n}}$. This metric tells us how much the results of our multiple surveys would fluctuate around the true parameter $p$, taking into account the sample size $n$.
 
 The expected value of the average $E[\overline{X}]$, formula 2, is theoretically equal to the parameter $p$ that we are looking to estimate. However, without knowing how much $p$ is we would have to have multiple samples of $n$ respondents, then calculate the mean for each case $\overline{X}$ and finally calculate the average of these values. This is very expensive, so we will look for another way to estimate $E[\overline{X}]$.
 
@@ -7655,10 +7172,14 @@ SE_avg
 Now let's generate a scatter plot of both the different values of $p$ and the standard errors for each $p$.
 
 ``` r
-plot(p, SE_avg, ylim = c(0, 0.12))
+tibble(p = p, SE_avg = SE_avg) |>
+  ggplot(aes(x = p, y = SE_avg)) +
+  geom_point(color = "steelblue") +
+  coord_cartesian(ylim = c(0, 0.12)) +
+  labs(x = "Proportion (p)", y = "Standard Error", title = "Standard Error vs. Proportion")
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-499-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-464-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Thus, we see how we can obtain different standard errors of the average for different values of $p$.
 
@@ -7666,20 +7187,23 @@ Intuitively we had the notion of what would happen given a $p=80\%$. Now in the 
 
 
 ``` r
-plot(p, SE_avg, ylim = c(0, 0.12))
+coord_x <- 0.8
+coord_y <- sqrt(coord_x * (1 - coord_x)) / sqrt(n)
 
-coord_x <- 0.8 # Value on X axis
-coord_y <- max(SE_avg[p >= coord_x]) # Value on Y axis for value x
-
-# Add vertical and horizontal reference line
-abline(h = coord_y, v = coord_x, col = "blue", lty = 2)
+tibble(p = p, SE_avg = SE_avg) |>
+  ggplot(aes(x = p, y = SE_avg)) +
+  geom_point(color = "steelblue") +
+  geom_hline(yintercept = coord_y, linetype = "dashed", color = "blue") +
+  geom_vline(xintercept = coord_x, linetype = "dashed", color = "blue") +
+  coord_cartesian(ylim = c(0, 0.12)) +
+  labs(x = "Proportion (p)", y = "Standard Error", title = "SE at p = 80%")
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-500-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-465-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 With these values of $E[\overline{X}]=p=80\%$ and $SE[\overline{X}]=8.8\%$ of standard error we can calculate a range of one standard error around $80\%$, which would go from $71.2\%$ to $88.8\%$ and then calculate what would be the probability that the mean $\overline{X}$ found in one of the surveys falls in this range. Visually it would be:
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-501-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-466-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 In R, calculating the probability that a data point falls in the range of 1 standard error would be:
 
@@ -7692,7 +7216,7 @@ pnorm(1) - pnorm(-1)
 
 We can expand to have a greater range of **2 standard errors** around $80\%$ and increase our probability:
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-503-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-468-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 In R it would be:
 
@@ -7713,20 +7237,23 @@ If, on the contrary, the result was tighter, for example $p=55\%$, such a wide r
 
 
 ``` r
-plot(p, SE_avg, ylim = c(0, 0.12))
+coord_x <- 0.55
+coord_y <- sqrt(coord_x * (1 - coord_x)) / sqrt(n)
 
-coord_x <- 0.55 # Value on X axis
-coord_y <- max(SE_avg[p >= coord_x]) # Value on Y axis for value x
-
-# Add vertical and horizontal reference line
-abline(h = coord_y, v = coord_x, col = "blue", lty = 2)
+tibble(p = p, SE_avg = SE_avg) |>
+  ggplot(aes(x = p, y = SE_avg)) +
+  geom_point(color = "steelblue") +
+  geom_hline(yintercept = coord_y, linetype = "dashed", color = "blue") +
+  geom_vline(xintercept = coord_x, linetype = "dashed", color = "blue") +
+  coord_cartesian(ylim = c(0, 0.12)) +
+  labs(x = "Proportion (p)", y = "Standard Error", title = "SE at p = 55%")
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-505-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-470-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 If the real voting intention was $55\%$ we would have an expected value of the average $E[\overline{X}]=p=55\%$ and a corresponding standard error of the average $SE[\overline{X}]=11\%$. Again, by Central Limit Theorem we can calculate a range of **two standard errors** around $55\%$:
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-506-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-471-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 The calculation of the probability of being in that range in R would be the same because we continue in the range of 2 standard errors. Therefore the probability would be the same.
 
@@ -7752,26 +7279,33 @@ n <- 500
 p <- seq(0, 1, length = 100)
 SE_avg <- sqrt(p*(1-p))/sqrt(n)
 
-plot(p, SE_avg, ylim = c(0, 0.12))
+tibble(p = p, SE_avg = SE_avg) |>
+  ggplot(aes(x = p, y = SE_avg)) +
+  geom_point(color = "steelblue") +
+  coord_cartesian(ylim = c(0, 0.12)) +
+  labs(x = "Proportion (p)", y = "Standard Error", title = "SE vs Proportion (n = 500)")
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-508-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-473-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 This sample gives us smaller standard errors. For example, if the real proportion of voters of the Blue party was $p=55\%$ we would have $E[\overline{X}]=p=55\%$ and a $SE[\overline{X}]=2.2\%$:
 
 
 ``` r
-plot(p, SE_avg, ylim = c(0, 0.12))
+coord_x <- 0.55
+coord_y <- sqrt(coord_x * (1 - coord_x)) / sqrt(n)
 
-coord_x <- 0.55 # Value on X axis
-coord_y <- max(SE_avg[p >= coord_x]) # Value on Y axis for value x
-
-# Add vertical and horizontal reference line
-abline(h = coord_y, v = coord_x, col = "blue", lty = 2)
+tibble(p = p, SE_avg = SE_avg) |>
+  ggplot(aes(x = p, y = SE_avg)) +
+  geom_point(color = "steelblue") +
+  geom_hline(yintercept = coord_y, linetype = "dashed", color = "blue") +
+  geom_vline(xintercept = coord_x, linetype = "dashed", color = "blue") +
+  coord_cartesian(ylim = c(0, 0.12)) +
+  labs(x = "Proportion (p)", y = "Standard Error", title = "SE at p = 55% (n = 500)")
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-509-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-474-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 If we now calculate a range of two standard errors around $55\%$ we would have a range that goes from $50.6\%$ to $59.4\%$. Again, interpretation is that the mean that we find in our random survey has a 95% probability of being in that range.
 
@@ -7780,16 +7314,19 @@ We see then that this theoretical prediction, the standard error, becomes smalle
 
 ``` r
 p <- 0.5
-n <- seq(20, 5000, 20) # number of surveys increases by 20.
+n <- seq(20, 5000, 20)
 SE_avg <- sqrt(p*(1-p)/n)
 
-plot(n, SE_avg)
-
-abline(h = 0.015, v = 1000, col = "blue", lty = 2) # Add vertical and horizontal reference line
+tibble(n = n, SE_avg = SE_avg) |>
+  ggplot(aes(x = n, y = SE_avg)) +
+  geom_line(color = "steelblue") +
+  geom_hline(yintercept = 0.015, linetype = "dashed", color = "blue") +
+  geom_vline(xintercept = 1000, linetype = "dashed", color = "blue") +
+  labs(x = "Sample Size (n)", y = "Standard Error", title = "SE vs Sample Size (p = 50%)")
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-510-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-475-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 A sample of 1,000 people, for example, generates us a maximum standard error of 0.015 or 1.5%.
 
@@ -7834,24 +7371,15 @@ With this we would have that from a sample of 1100 people, we have estimated 56%
 
 Finally, let's see examples of the different surveys conducted in April and early May 2020 to measure voting intentions in the US.
 
-<img src="_assets/images/04-statistics/encuesta-EEUU.png" alt="Table of US election polls from April-May 2020 showing sample sizes, margins of error, and candidate percentages" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/04-statistics/polls-us.png" alt="Table of US election polls from April-May 2020 showing sample sizes, margins of error, and candidate percentages" width="80%" style="display: block; margin: auto;" />
 
 We see as columns:
 
-* **Poll**: Surveying company that conducted the study (Encuesta)
-* **Date**: Date of the survey (Fecha)
-* **Sample**: Number of respondents varying by pollster (Muestra)
-* **MoE**: Margin of error
-* **Candidates**: Candidates for the presidency. Their percentages do not sum 100% because blanks and nulls are omitted.
-* **Spread**: This is the estimation of by how much one candidate beats the other (Propagación).
+The table columns provide key details about each survey. The **Poll** column identifies the surveying company, while **Date** indicates when the survey was conducted. **Sample** shows the number of respondents, which varies by pollster, and **MoE** represents the margin of error. The **Candidates** columns display the backing for each presidential contender (note that percentages may not sum to 100% due to checking for blank or null votes). Finally, **Spread** estimates the lead one candidate holds over the other.
 
 If, on the other hand, we ask ourselves why larger surveys are not done, for example 50,000 people, the reason is that:
 
-1. The cost of surveying 50 thousand people is very expensive.
-2. Parameter estimation is a theoretical prediction, if we give a very small margin of error our results could be misinterpreted as absolute truths when we know that:
-2.1 Every person can change their opinion and we are only taking a snapshot of the moment.
-2.2 No matter how much effort is put in, no survey is totally random or they are not done in rural areas.
-2.3 We could survey people who say they will go to vote, but finally they will not do so, etc.
+You might wonder why we rely on smaller samples instead of surveying, say, 50,000 people. The primary constraint is cost; reaching such a large audience is prohibitively expensive. Furthermore, parameter estimation is inherently theoretical—providing a razor-thin margin of error implies a false sense of absolute certainty. In reality, voter opinions are fluid, no survey is perfectly random (often missing rural populations), and respondents who claim they will vote might ultimately stay home.
 
 ### Confidence Intervals
 Confidence intervals are a very useful concept widely used by Data Scientists. However, it is nothing more than another way of expressing what we have already learned so far.
@@ -8000,6 +7528,94 @@ $SE[\overline{X}]=\frac{\sigma}{\sqrt{n}}$
 
 Where $\overline{X}$ is the average of our random sample and $n$ is the sample size.
 
+### Example: Estimating Average Height
+
+Let's apply this to a real-world scenario. Suppose we want to estimate the average height of adult males in a population, but we can only measure a sample of 50 people.
+
+Using the `heights` dataset from `dslabs`, let's simulate this process:
+
+
+``` r
+# Load the heights data
+data(heights)
+
+# Our "population" (in reality, we wouldn't have access to this)
+population <- heights |>
+  filter(sex == "Male") |>
+  mutate(height_cm = height * 2.54) |>  # Convert to cm
+  pull(height_cm)
+
+# True population parameters (unknown in real life)
+true_mean <- mean(population)
+true_sd <- sd(population)
+
+cat("True population mean:", round(true_mean, 2), "cm\n")
+#> True population mean: 176.06 cm
+cat("True population SD:", round(true_sd, 2), "cm\n")
+#> True population SD: 9.17 cm
+```
+
+Now let's take a random sample and build a 95% confidence interval:
+
+
+``` r
+set.seed(42)  # For reproducibility
+n <- 50  # Sample size
+
+# Take a random sample
+sample_heights <- sample(population, n, replace = FALSE)
+
+# Sample statistics
+sample_mean <- mean(sample_heights)
+sample_sd <- sd(sample_heights)
+
+# Standard error of the mean
+SE <- sample_sd / sqrt(n)
+
+# 95% Confidence interval (2 standard errors)
+ci_lower <- sample_mean - 2 * SE
+ci_upper <- sample_mean + 2 * SE
+
+cat("Sample mean:", round(sample_mean, 2), "cm\n")
+#> Sample mean: 176.97 cm
+cat("Standard error:", round(SE, 2), "cm\n")
+#> Standard error: 1.44 cm
+cat("95% CI: [", round(ci_lower, 2), ",", round(ci_upper, 2), "] cm\n")
+#> 95% CI: [ 174.09 , 179.84 ] cm
+cat("Does CI contain true mean?", ci_lower <= true_mean & true_mean <= ci_upper, "\n")
+#> Does CI contain true mean? TRUE
+```
+
+Let's visualize this with a Monte Carlo simulation to verify that our confidence intervals work as expected:
+
+
+``` r
+set.seed(123)
+n_simulations <- 1000
+n <- 50
+
+results <- tibble(
+  sim_id = 1:n_simulations
+) |>
+  mutate(
+    sample_data = map(sim_id, ~ sample(population, n, replace = FALSE)),
+    sample_mean = map_dbl(sample_data, mean),
+    sample_sd = map_dbl(sample_data, sd),
+    SE = sample_sd / sqrt(n),
+    ci_lower = sample_mean - 2 * SE,
+    ci_upper = sample_mean + 2 * SE,
+    contains_true = ci_lower <= true_mean & true_mean <= ci_upper
+  )
+
+# Proportion of CIs that contain the true mean
+cat("Proportion of 95% CIs containing true mean:", 
+    round(mean(results$contains_true), 3), "\n")
+#> Proportion of 95% CIs containing true mean: 0.956
+```
+
+This confirms that approximately 95% of our confidence intervals capture the true population mean—exactly as the theory predicts!
+
+
 
 
 ## Exercises
@@ -8012,7 +7628,7 @@ library(dslabs)
 data(heights)
 ```
 
-84. Create the vector `x` to extract the heights data of each person. Then report the average and standard deviation of our population. Remember to convert height to meters
+82. Create a vector named `x` to extract the height data for all individuals in the dataset. Then, report the population's average and standard deviation, ensuring you convert the heights to meters first.
 
 
 
@@ -8037,7 +7653,7 @@ sd(x)
 
 > Most of the time we will not have access to the mean and standard deviation of the population because it is very large and highly expensive.
 
-85. Let's assume we do not have access to the population. We can only obtain a random sample of 100 people. Create a random sample with replacement and store these values in the vector called `X`. With the data from your sample, build a 95% confidence interval to estimate the average of the population.
+83. Assume we cannot access the entire population and can only obtain a random sample of 100 people. Simulate this by creating a random sample with replacement from `x`, storing the values in a vector called `X`. Using this sample data, construct a 95% confidence interval to estimate the population average.
 
 
 
@@ -8060,7 +7676,7 @@ ic <- c(mean(X) - 2*se, mean(X) + 2*se)
 ```
 </details>
 
-86. Using Monte Carlo simulation, repeat this sampling about 10 thousand times and validate the percentage of times that the confidence interval you generate from your sample includes the true population value.
+84. Validate your estimation method using a Monte Carlo simulation. Repeat the sampling process 10,000 times and calculate the percentage of expected confidence intervals that successfully capture the true population mean.
 
 
 
@@ -8068,20 +7684,21 @@ ic <- c(mean(X) - 2*se, mean(X) + 2*se)
   <summary type="button">Solution</summary>
 
 ``` r
-promedio_real <- mean(x)
+true_mean <- mean(x)
 
 N <- 100
-num_veces <- 10000
+n_times <- 10000
 
-simulacion <- replicate(num_veces, {
+set.seed(2025)
+simulation <- replicate(n_times, {
   X <- sample(x, N, replace = TRUE)
   se <- sd(X)/sqrt(N)
-  inferior <- mean(X) - 2*se
-  superior <- mean(X) + 2*se
-  between(promedio_real, inferior, superior)
+  lower <- mean(X) - 2*se
+  upper <- mean(X) + 2*se
+  between(true_mean, lower, upper)
 })
 
-mean(simulacion)
+mean(simulation)
 
 ```
 </details>
@@ -8103,6 +7720,8 @@ When analyzing this data, all these records have to be pre-processed. That is, t
 
 In the following chapters, we will see several common steps of the Data Wrangling process such as Importing data into R from files, converting data to tidy type, string processing, html processing, date and time formatting, and text mining.
 
+In this section, we will master the essential skills for getting data into R and reshaping it for analysis. We will start by learning how to **import data** from diverse sources, including CSV files, Excel spreadsheets, and web pages. Once loaded, we will explore how to **transform** data between "wide" and "tidy" (long) formats using `pivot_longer()` and `pivot_wider()`, ensuring our data is structured correctly for visualization and modeling. We will also cover how to **combine multiple datasets** using the powerful family of join functions (`left_join()`, `inner_join()`, etc.). Finally, we will delve into specialized processing techniques, including **web scraping**, **string manipulation** with regular expressions, **date conversion** with `lubridate`, and the fundamentals of **text mining** to extract insights from unstructured text.
+
 # Data import and consolidation
 
 ## Importing from files
@@ -8121,11 +7740,13 @@ This is the path where we can place our files to load them. If we want to load d
 
 
 ``` r
-setwd("c:/Documents/Proyectos/Archivos para R")
+setwd("c:/Documents/Projects/R Files")
 
 getwd()
-#> [1] "c:/Documents/Proyectos/Archivos para R"
+#> [1] "c:/Documents/Projects/R Files"
 ```
+
+> **Note**: While `setwd()` works, it is generally discouraged in reproducible workflows because it creates absolute paths that break when code is shared or moved. Consider using **RStudio Projects** combined with the `here` package, which provides `here::here()` to construct relative paths that work across different systems.
 
 For practical purposes, we are going to use a file already available in one of the previously installed packages, `dslabs`, when we analyzed the danger level to decide which US state to travel to. To do this, we can use the `system.file()` function and determine the path where the `dslabs` package was installed.
 
@@ -8205,15 +7826,7 @@ The functions we will use the most will be `read_csv()` and `read_excel()`. The 
 
 
 ``` r
-data_df <- read_csv("murders.csv")
-#> Rows: 51 Columns: 5
-#> ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-#> Delimiter: ","
-#> chr (3): state, abb, region
-#> dbl (2): population, total
-#> 
-#> ℹ Use `spec()` to retrieve the full column specification for this data.
-#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+data_df <- read_csv("murders.csv", show_col_types = FALSE)
 
 # Once imported we can remove the file if we wish
 file.remove("murders.csv")
@@ -8248,21 +7861,17 @@ The same syntax and logic would apply for importing an excel file. In this case 
 
 ``` r
 excel_example_path <- file.path(dslabs_path, "2010_bigfive_regents.xls")
-data_df_de_excel <- read_excel(excel_example_path)
+data_df_from_excel <- read_excel(excel_example_path)
 ```
 
 **readr** gives us 7 different types of functions for importing flat files:
 
-Table: (\#tab:date-format) readr functions for importing files
+The `readr` package provides a versatile suite of functions for importing flat files, each tailored to a specific delimiter or format. The most common is **`read_csv()`**, designed for comma-separated values. For tab-separated files, we use **`read_tsv()`**, while **`read_delim()`** offers a general-purpose solution for files with custom delimiters (like semicolons or pipes). Other specialized functions include **`read_fwf()`** for fixed-width files, **`read_table()`** for whitespace-separated columns, and **`read_log()`** for parsing standard web server logs.
 
-|Function     |Usage                                                           |
-|:------------|:---------------------------------------------------------------|
-|`read_csv()`   |Comma separated files|
-|`read_tsv()`  |Tab separated files|
-|`read_delim()`  |General delimited files|
-|`read_fwf()`  |Fixed width files|
-|`read_table()`  |Tabular files where columns are separated by white space|
-|`read_log()`  |Web log files|
+> **Tip**: For files that use semicolons as delimiters (common in European locales), use `read_csv2()` or `read_delim()` with `delim = ";"`. Also, if you encounter import issues, use `problems(data_df)` after importing to diagnose parsing errors.
+
+> [!TIP]
+> **Clean Column Names**: Interpreted data often has column names with spaces or capital letters (e.g., "Customer ID"). We highly recommend piping your data into `janitor::clean_names()` immediately after reading it to standardize everything to `snake_case` (e.g., "customer_id").
 
 ### Importing files from the internet
 We have seen how we can enter the full path to load a file directly from another source different from our working directory. In the same way, if we have a file in an internet path we can pass it directly to R since `read_csv()` and the other **readr** import functions support URL input as a parameter.
@@ -8273,8 +7882,8 @@ Here we see the import of grades from students of the Data Science with R course
 ``` r
 ##### Example 1:
 # Historical grades data
-url <- "https://dparedesi.github.io/DS-con-R/grades-estudiantes.csv"
-grades <- read_csv(url)
+url <- "https://dparedesi.github.io/DS-with-R-datasets/student-grades.csv"
+grades <- read_csv(url, show_col_types = FALSE)
 
 ```
 
@@ -8313,7 +7922,7 @@ We could also extract updated Covid-19 information.
 ##### Example 2:
 # Covid-19 Data
 url <- "https://covid.ourworldindata.org/data/owid-covid-data.csv"
-internet_data <- read_csv(url)
+internet_data <- read_csv(url, show_col_types = FALSE)
 
 internet_data |> 
   arrange(desc(date)) |> 
@@ -8362,15 +7971,7 @@ We notice that each row is an observation and each column represents a variable.
 ``` r
 fertility_path <- file.path(dslabs_path, "fertility-two-countries-example.csv")
 
-wide_data <- read_csv(fertility_path)
-#> Rows: 2 Columns: 57
-#> ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-#> Delimiter: ","
-#> chr  (1): country
-#> dbl (56): 1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, ...
-#> 
-#> ℹ Use `spec()` to retrieve the full column specification for this data.
-#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+wide_data <- read_csv(fertility_path, show_col_types = FALSE)
 
 wide_data
 #> # A tibble: 2 × 57
@@ -8476,7 +8077,7 @@ tidy_data |>
   geom_point()
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-550-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-518-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 #### pivot_wider function
 Sometimes, as we will see in the following section, it will be useful to go back from rows to columns. For this we will use the `pivot_wider()` function, where we specify `names_from` (the column containing the new column names) and `values_from` (the column containing the values). Additionally, we can use the `:` operator to indicate from which column to which column we want to select.
@@ -8498,17 +8099,9 @@ In the cases described above we had a situation with relatively ordered data. We
 
 
 ``` r
-ruta <- file.path(dslabs_path, "life-expectancy-and-fertility-two-countries-example.csv")
+path <- file.path(dslabs_path, "life-expectancy-and-fertility-two-countries-example.csv")
 
-data <- read_csv(ruta)
-#> Rows: 2 Columns: 113
-#> ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-#> Delimiter: ","
-#> chr   (1): country
-#> dbl (112): 1960_fertility, 1960_life_expectancy, 1961_fertility, 1961_life_e...
-#> 
-#> ℹ Use `spec()` to retrieve the full column specification for this data.
-#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+data <- read_csv(path, show_col_types = FALSE)
 
 data |> 
   select(1:5) #Report first 5 columns
@@ -8548,9 +8141,9 @@ We will use the `separate()` function to separate a column into multiple columns
 ``` r
 data |> 
   pivot_longer(cols = -country, names_to = "key_col", values_to = "value_col") |> 
-  separate(key_col, c("año", "other_var"), sep="_", extra = "merge")
+  separate(key_col, c("year", "other_var"), sep="_", extra = "merge")
 #> # A tibble: 224 × 4
-#>    country año   other_var       value_col
+#>    country year  other_var       value_col
 #>    <chr>   <chr> <chr>               <dbl>
 #>  1 Germany 1960  fertility            2.41
 #>  2 Germany 1960  life_expectancy     69.3 
@@ -8571,10 +8164,10 @@ We already have the year separated, but this data is still not _tidy data_ since
 ``` r
 data |> 
   pivot_longer(cols = -country, names_to = "key_col", values_to = "value_col") |> 
-  separate(key_col, c("año", "other_var"), sep="_", extra = "merge") |> 
+  separate(key_col, c("year", "other_var"), sep="_", extra = "merge") |> 
   pivot_wider(names_from = other_var, values_from = value_col)
 #> # A tibble: 112 × 4
-#>    country año   fertility life_expectancy
+#>    country year  fertility life_expectancy
 #>    <chr>   <chr>     <dbl>           <dbl>
 #>  1 Germany 1960       2.41            69.3
 #>  2 Germany 1961       2.44            69.8
@@ -8595,7 +8188,7 @@ In other cases, instead of separating a column we will want to join them. In fut
 
 ## Exercises
 
-87. Explore the following file: https://dparedesi.github.io/DS-con-R/uber_peru_2010.csv and import it into the `uber_peru_2010` object.
+85. Access the **Uber Peru 2010** dataset from [this link](https://dparedesi.github.io/DS-with-R-datasets/uber-peru-2010.csv) and attempt to import it into an object named `uber_peru_2010`. Pay attention to the delimiters used in the file.
 
 
 
@@ -8603,17 +8196,17 @@ In other cases, instead of separating a column we will want to join them. In fut
   <summary type="button">Solution</summary>
 
 ``` r
-url <- "https://dparedesi.github.io/DS-con-R/uber_peru_2010.csv"
+url <- "https://dparedesi.github.io/DS-with-R-datasets/uber-peru-2010.csv"
 
 # We will use read_csv since it is separated by commas
-uber_peru_2010 <- read_csv(url)
+uber_peru_2010 <- read_csv(url, show_col_types = FALSE)
 
 # Upon importing it we realize it is separated by ";"
 uber_peru_2010 |> 
   head()
 
 # Therefore we import again using read_delim
-uber_peru_2010 <- read_delim("external/uber_peru_2010.csv", 
+uber_peru_2010 <- read_delim("external/uber-peru-2010.csv", 
                              delim = ";", 
                              col_types = cols(.default = "c")
                              )
@@ -8625,7 +8218,7 @@ uber_peru_2010 |>
 </details>
 
 
-88. Explore the following file: https://www.datosabiertos.gob.pe/sites/default/files/DATASET_SINADEF.csv and import it into the `deaths` object.
+86. Import the **SINADEF** deaths registry from [this source](https://www.datosabiertos.gob.pe/sites/default/files/sinadef-deaths.csv) into an object called `deaths`. Ensure you handle the file encoding correctly to avoid character issues.
 
 
 
@@ -8633,8 +8226,8 @@ uber_peru_2010 |>
   <summary type="button">Solution</summary>
 
 ``` r
-url <- "https://www.datosabiertos.gob.pe/sites/default/files/DATASET_SINADEF.csv"
-url <- "https://dparedesi.github.io/DS-con-R/DATASET_SINADEF.csv"
+url <- "https://www.datosabiertos.gob.pe/sites/default/files/sinadef-deaths.csv"
+url <- "https://dparedesi.github.io/DS-with-R-datasets/sinadef-deaths.csv"
 
 # We will use read_delim because it is delimited by ";" and not by ","
 # Also we change the encoding to avoid error in loading
@@ -8644,7 +8237,7 @@ deaths <- read_delim(url, ";",
 </details>
 
 
-89. Download the file "https://dparedesi.github.io/DS-con-R/resources-other-idd.xlsx" and load the "Deflators" tab to the `data` object.
+87. Download the resource file from [this link](https://dparedesi.github.io/DS-with-R-datasets/resources-other-idd.xlsx) to a temporary location. Validating that the file exists, load the specific sheet named "Deflators" into an object named `data`.
 
 
 
@@ -8653,7 +8246,7 @@ deaths <- read_delim(url, ";",
 
 ``` r
 # Store the url
-url <- "https://dparedesi.github.io/DS-con-R/resources-other-idd.xlsx"
+url <- "https://dparedesi.github.io/DS-with-R-datasets/resources-other-idd.xlsx"
 
 # Create a temporary name & path for our file. See: ?tempfile
 temp_file <- tempfile()
@@ -8674,24 +8267,24 @@ For the following files run the following code so that you have access to the ob
 
 ``` r
 # GDP by countries
-url <- "https://dparedesi.github.io/DS-con-R/pbi.csv"
-pbi <- read_csv(url)
+url <- "https://dparedesi.github.io/DS-with-R-datasets/gdp.csv"
+gdp <- read_csv(url, show_col_types = FALSE)
 
 # Diseases by years by countries
-url <- "https://dparedesi.github.io/DS-con-R/enfermedades-evolutivo.csv"
-enfermedades_wide <- read_csv(url)
+url <- "https://dparedesi.github.io/DS-with-R-datasets/diseases-evolution.csv"
+diseases_wide <- read_csv(url, show_col_types = FALSE)
 
 # Number of female mayors
-url <- "https://dparedesi.github.io/DS-con-R/alcaldes-mujeres.csv"
-alcaldes_mujeres <- read_csv(url)
+url <- "https://dparedesi.github.io/DS-with-R-datasets/female-mayors.csv"
+female_mayors <- read_csv(url, show_col_types = FALSE)
 
 # Evolution of a university
-url <- "https://dparedesi.github.io/DS-con-R/universidad.csv"
-universidad <- read_csv(url)
+url <- "https://dparedesi.github.io/DS-with-R-datasets/university.csv"
+university <- read_csv(url, show_col_types = FALSE)
 
 ```
 
-90. Explore the `pbi` (GDP) object and convert it to _tidy data_. Then show a line graph differentiating the evolution of each country's GDP.
+88. Examine the structure of the `gdp` dataset. Transform it into a *tidy* format suitable for analysis, and then create a line plot visualizing the evolution of GDP over time for each country.
 
 
 
@@ -8700,22 +8293,22 @@ universidad <- read_csv(url)
 
 ``` r
 # To tidy data
-pbi <- pbi |> 
-  pivot_longer(cols = -pais, names_to = "año", values_to = "pbi",
-               names_transform = list(año = as.integer))
+gdp <- gdp |> 
+  pivot_longer(cols = -country, names_to = "year", values_to = "gdp",
+               names_transform = list(year = as.integer))
 
-pbi
+gdp
 
 # Visualization
-pbi |> 
+gdp |> 
   ggplot() +
-  aes(año, pbi, color=pais) +
+  aes(year, gdp, color=country) +
   geom_line()
 
 ```
 </details>
 
-91. Explore the `enfermedades_wide` object and convert it to _tidy data_.
+89. The `diseases_wide` object contains disease counts in a wide format. Reshape this dataframe into a *tidy* structure where the specific diseases are consolidated into a single column.
 
 
 
@@ -8724,21 +8317,21 @@ pbi |>
 
 ``` r
 # Solution
-enfermedades_1 <- enfermedades_wide |> 
-  pivot_longer(cols = c(-pais, -año, -poblacion), names_to = "enfermedad", values_to = "cantidad")
+diseases_1 <- diseases_wide |> 
+  pivot_longer(cols = c(-country, -year, -population), names_to = "disease", values_to = "count")
 
-enfermedades_1
+diseases_1
 
 # Alternative solution. Instead of indicating what to omit, we indicate what to take into account
-enfermedades_2 <- enfermedades_wide |> 
-  pivot_longer(cols = HepatitisA:Rubeola, names_to = "enfermedad", values_to = "cantidad")
+diseases_2 <- diseases_wide |> 
+  pivot_longer(cols = HepatitisA:Rubella, names_to = "disease", values_to = "count")
 
-enfermedades_2
+diseases_2
 
 ```
 </details>
 
-92. Explore the `alcaldes_mujeres` object and then convert it to _tidy data_
+90. Convert the `female_mayors` dataset, which is currently in a long format, into a *wide* format where the variables are spread across columns.
 
 
 
@@ -8746,13 +8339,13 @@ enfermedades_2
   <summary type="button">Solution</summary>
 
 ``` r
-alcaldes_mujeres <- alcaldes_mujeres |> 
+female_mayors <- female_mayors |> 
   pivot_wider(names_from = variable, values_from = total)
 
 ```
 </details>
 
-93. Explore the `universidad` object and then convert it to _tidy data_
+91. The `university` dataset is untidy. Reshape it by first pivoting longer to gather variables, separating the combined variable names, and then pivoting wider to achieve a final tidy structure.
 
 
 
@@ -8760,12 +8353,12 @@ alcaldes_mujeres <- alcaldes_mujeres |>
   <summary type="button">Solution</summary>
 
 ``` r
-universidad <- universidad |> 
-  pivot_longer(cols = -semestre, names_to = "variable", values_to = "valor") |> 
-  separate(variable, c("nombre", "variable2"), sep="_") |> 
-  pivot_wider(names_from = variable2, values_from = valor)
+university <- university |> 
+  pivot_longer(cols = -semester, names_to = "variable", values_to = "value") |> 
+  separate(variable, c("name", "variable2"), sep="_") |> 
+  pivot_wider(names_from = variable2, values_from = value)
 
-universidad
+university
 ```
 </details>
 
@@ -8784,88 +8377,79 @@ library(dplyr)
 
 This library includes a variety of functions to combine tables.
 
-Table: (\#tab:date-format) List of join functions
-
-|Function     |Usage                                                           |
-|:------------|:---------------------------------------------------------------|
-|`left_join()`   |Only keeps rows that have information in the first table.|
-|`right_join()`  |Only keeps rows that have information in the second table.|
-|`inner_join()`  |Only keeps rows that have information in both tables.    |
-|`full_join()`   |Keeps all rows from both tables.                      |
-|`semi_join()`   |Keeps the part of the first table for which we have information in the second.|
-|`anti_join()`   |Keeps the elements of the first table for which there is no information in the second.|
+The `dplyr` package offers a family of join functions to combine tables based on common keys. The most frequently used is **`left_join()`**, which preserves all rows from the first (left) table and appends matching data from the second. Conversely, **`right_join()`** keeps all rows from the second table. **`inner_join()`** is more restrictive, retaining only the rows that have matching keys in *both* tables, effectively filtering for the intersection. **`full_join()`** does the opposite, keeping *all* rows from both tables and filling missing values with `NA`. Finally, filtering joins like **`semi_join()`** (keeps rows in the first table that match the second) and **`anti_join()`** (keeps rows in the first table that do *not* match the second) are excellent for data validation and filtering without adding new columns.
 
 To see the join functions with examples we will use the following files:
 
 
 ``` r
-url_1 <- "https://dparedesi.github.io/DS-con-R/j_tarjeta.csv"
-url_2 <- "https://dparedesi.github.io/DS-con-R/j_cliente.csv"
+url_1 <- "https://dparedesi.github.io/DS-with-R-datasets/join-card.csv"
+url_2 <- "https://dparedesi.github.io/DS-with-R-datasets/join-customer.csv"
 
-data_1_tarjetas <- read_csv(url_1, col_types = cols(dni = col_character()))
-data_2_clientes <- read_csv(url_2, col_types = cols(dni = col_character()))
+card_data_1 <- read_csv(url_1, col_types = cols(id = col_character()))
+customer_data_2 <- read_csv(url_2, col_types = cols(id = col_character()))
 
-data_1_tarjetas
+card_data_1
 #> # A tibble: 6 × 3
-#>   dni      tipo_cliente tarjeta         
-#>   <chr>    <chr>        <chr>           
-#> 1 45860518 premium      VISA oro        
-#> 2 46534312 bronce       Mastercard Black
-#> 3 47564535 plata        VISA plantinum  
-#> 4 48987654 bronce       American Express
-#> 5 78765434 oro          VISA Signature  
-#> 6 41346556 premium      Diners Club
+#>   id       customer_type card            
+#>   <chr>    <chr>         <chr>           
+#> 1 45860518 premium       VISA gold       
+#> 2 46534312 bronze        Mastercard Black
+#> 3 47564535 silver        VISA platinum   
+#> 4 48987654 bronze        American Express
+#> 5 78765434 gold          VISA Signature  
+#> 6 41346556 premium       Diners Club
 
-data_2_clientes
+customer_data_2
 #> # A tibble: 8 × 4
-#>   dni      nombres   apellido_paterno apellido_materno
-#>   <chr>    <chr>     <chr>            <chr>           
-#> 1 49321442 Iver      Castro           Rivera          
-#> 2 47564535 Enrique   Gutierrez        Rivasplata      
-#> 3 48987654 Alexandra Cupe             Gaspar          
-#> 4 47542345 Christiam Olortegui        Roca            
-#> 5 41346556 Karen     Jara             Mory            
-#> 6 45860518 Hebert    Lopez            Chavez          
-#> 7 71234321 Jesus     Valle            Mariños         
-#> 8 73231243 Jenny     Sosa             Sosa
+#>   id       first_name last_name mother_last_name
+#>   <chr>    <chr>      <chr>     <chr>           
+#> 1 49321442 Iver       Castro    Rivera          
+#> 2 47564535 Enrique    Gutierrez Rivasplata      
+#> 3 48987654 Alexandra  Cupe      Gaspar          
+#> 4 47542345 Christiam  Olortegui Roca            
+#> 5 41346556 Karen      Jara      Mory            
+#> 6 45860518 Hebert     Lopez     Chavez          
+#> 7 71234321 Jesus      Valle     Mariños         
+#> 8 73231243 Jenny      Sosa      Sosa
 ```
 
 #### Left join
-Given two tables with the same identifier (in our case our identifier consists only of a single column: DNI), the left join function maintains the information of the first table and completes it with the data that crosses in the second table
+Given two tables with the same identifier (in our case our identifier consists only of a single column: ID), the left join function maintains the information of the first table and completes it with the data that crosses in the second table
 
 
 ``` r
-left_join(data_1_tarjetas, data_2_clientes, by = c("dni"))
+left_join(card_data_1, customer_data_2, by = c("id"))
 #> # A tibble: 6 × 6
-#>   dni      tipo_cliente tarjeta        nombres apellido_paterno apellido_materno
-#>   <chr>    <chr>        <chr>          <chr>   <chr>            <chr>           
-#> 1 45860518 premium      VISA oro       Hebert  Lopez            Chavez          
-#> 2 46534312 bronce       Mastercard Bl… <NA>    <NA>             <NA>            
-#> 3 47564535 plata        VISA plantinum Enrique Gutierrez        Rivasplata      
-#> 4 48987654 bronce       American Expr… Alexan… Cupe             Gaspar          
-#> 5 78765434 oro          VISA Signature <NA>    <NA>             <NA>            
-#> 6 41346556 premium      Diners Club    Karen   Jara             Mory
+#>   id       customer_type card             first_name last_name mother_last_name
+#>   <chr>    <chr>         <chr>            <chr>      <chr>     <chr>           
+#> 1 45860518 premium       VISA gold        Hebert     Lopez     Chavez          
+#> 2 46534312 bronze        Mastercard Black <NA>       <NA>      <NA>            
+#> 3 47564535 silver        VISA platinum    Enrique    Gutierrez Rivasplata      
+#> 4 48987654 bronze        American Express Alexandra  Cupe      Gaspar          
+#> 5 78765434 gold          VISA Signature   <NA>       <NA>      <NA>            
+#> 6 41346556 premium       Diners Club      Karen      Jara      Mory
 ```
 
-As we can see, the first three columns are exactly the same as we initially had and to the right of those columns we see the columns of the other table for the values ​​that did cross the data. In this case we are facing a data inconsistency since all customers of `data_1_tarjetas` should be in `data_2_clientes`. This inconsistency could lead us to have to map the data loss process, etc.
+As we can see, the first three columns are exactly the same as we initially had and to the right of those columns we see the columns of the other table for the values ​​that did cross the data. In this case we are facing a data inconsistency since all customers of `card_data_1` should be in `customer_data_2`. This inconsistency could lead us to have to map the data loss process, etc.
 
 #### Right join
 Given two tables with the same identifier, the right join function maintains the information of the second table and completes it with the data that crosses in the first table
 
 
 ``` r
-right_join(data_1_tarjetas, data_2_clientes, by = "dni")
+right_join(card_data_1, customer_data_2, by = "id")
 #> # A tibble: 8 × 6
-#>   dni      tipo_cliente tarjeta        nombres apellido_paterno apellido_materno
-#>   <chr>    <chr>        <chr>          <chr>   <chr>            <chr>           
-#> 1 45860518 premium      VISA oro       Hebert  Lopez            Chavez          
-#> 2 47564535 plata        VISA plantinum Enrique Gutierrez        Rivasplata      
-#> 3 48987654 bronce       American Expr… Alexan… Cupe             Gaspar          
-#> 4 41346556 premium      Diners Club    Karen   Jara             Mory            
-#> 5 49321442 <NA>         <NA>           Iver    Castro           Rivera          
-#> 6 47542345 <NA>         <NA>           Christ… Olortegui        Roca            
-#> 7 71234321 <NA>         <NA>           Jesus   Valle            Mariños         
-#> 8 73231243 <NA>         <NA>           Jenny   Sosa             Sosa
+#>   id       customer_type card             first_name last_name mother_last_name
+#>   <chr>    <chr>         <chr>            <chr>      <chr>     <chr>           
+#> 1 45860518 premium       VISA gold        Hebert     Lopez     Chavez          
+#> 2 47564535 silver        VISA platinum    Enrique    Gutierrez Rivasplata      
+#> 3 48987654 bronze        American Express Alexandra  Cupe      Gaspar          
+#> 4 41346556 premium       Diners Club      Karen      Jara      Mory            
+#> 5 49321442 <NA>          <NA>             Iver       Castro    Rivera          
+#> 6 47542345 <NA>          <NA>             Christiam  Olortegui Roca            
+#> 7 71234321 <NA>          <NA>             Jesus      Valle     Mariños         
+#> 8 73231243 <NA>          <NA>             Jenny      Sosa      Sosa
 ```
 
 The idea is the same as in `left_join`, only this time the `NA` are in the first two columns.
@@ -8875,14 +8459,14 @@ In this case we will only have the intersection of the tables. Only the result o
 
 
 ``` r
-inner_join(data_1_tarjetas, data_2_clientes, by = "dni")
+inner_join(card_data_1, customer_data_2, by = "id")
 #> # A tibble: 4 × 6
-#>   dni      tipo_cliente tarjeta        nombres apellido_paterno apellido_materno
-#>   <chr>    <chr>        <chr>          <chr>   <chr>            <chr>           
-#> 1 45860518 premium      VISA oro       Hebert  Lopez            Chavez          
-#> 2 47564535 plata        VISA plantinum Enrique Gutierrez        Rivasplata      
-#> 3 48987654 bronce       American Expr… Alexan… Cupe             Gaspar          
-#> 4 41346556 premium      Diners Club    Karen   Jara             Mory
+#>   id       customer_type card             first_name last_name mother_last_name
+#>   <chr>    <chr>         <chr>            <chr>      <chr>     <chr>           
+#> 1 45860518 premium       VISA gold        Hebert     Lopez     Chavez          
+#> 2 47564535 silver        VISA platinum    Enrique    Gutierrez Rivasplata      
+#> 3 48987654 bronze        American Express Alexandra  Cupe      Gaspar          
+#> 4 41346556 premium       Diners Club      Karen      Jara      Mory
 ```
 
 #### Full join
@@ -8890,35 +8474,37 @@ Full join is a total crossing of both. It shows us all the data that are in both
 
 
 ``` r
-full_join(data_1_tarjetas, data_2_clientes, by = "dni")
+full_join(card_data_1, customer_data_2, by = "id")
 #> # A tibble: 10 × 6
-#>    dni      tipo_cliente tarjeta       nombres apellido_paterno apellido_materno
-#>    <chr>    <chr>        <chr>         <chr>   <chr>            <chr>           
-#>  1 45860518 premium      VISA oro      Hebert  Lopez            Chavez          
-#>  2 46534312 bronce       Mastercard B… <NA>    <NA>             <NA>            
-#>  3 47564535 plata        VISA plantin… Enrique Gutierrez        Rivasplata      
-#>  4 48987654 bronce       American Exp… Alexan… Cupe             Gaspar          
-#>  5 78765434 oro          VISA Signatu… <NA>    <NA>             <NA>            
-#>  6 41346556 premium      Diners Club   Karen   Jara             Mory            
-#>  7 49321442 <NA>         <NA>          Iver    Castro           Rivera          
-#>  8 47542345 <NA>         <NA>          Christ… Olortegui        Roca            
-#>  9 71234321 <NA>         <NA>          Jesus   Valle            Mariños         
-#> 10 73231243 <NA>         <NA>          Jenny   Sosa             Sosa
+#>    id       customer_type card             first_name last_name mother_last_name
+#>    <chr>    <chr>         <chr>            <chr>      <chr>     <chr>           
+#>  1 45860518 premium       VISA gold        Hebert     Lopez     Chavez          
+#>  2 46534312 bronze        Mastercard Black <NA>       <NA>      <NA>            
+#>  3 47564535 silver        VISA platinum    Enrique    Gutierrez Rivasplata      
+#>  4 48987654 bronze        American Express Alexandra  Cupe      Gaspar          
+#>  5 78765434 gold          VISA Signature   <NA>       <NA>      <NA>            
+#>  6 41346556 premium       Diners Club      Karen      Jara      Mory            
+#>  7 49321442 <NA>          <NA>             Iver       Castro    Rivera          
+#>  8 47542345 <NA>          <NA>             Christiam  Olortegui Roca            
+#>  9 71234321 <NA>          <NA>             Jesus      Valle     Mariños         
+#> 10 73231243 <NA>          <NA>             Jenny      Sosa      Sosa
 ```
+
+> **Tip**: To join on multiple columns, use a vector: `by = c("col1", "col2")`. To join on columns with different names, use named vectors: `by = c("left_col" = "right_col")`.
 
 #### Semi join
 The case of the semi join is very similar to `left_join` with the difference that it only shows us the columns of the first table and eliminates the data that did not manage to cross (what in `left_join` comes out as NA). Also, none of the columns of table 2 appear. This is like doing a filter requesting the following: show me only the data from table 1 that is also in table 2.
 
 
 ``` r
-semi_join(data_1_tarjetas, data_2_clientes, by = "dni")
+semi_join(card_data_1, customer_data_2, by = "id")
 #> # A tibble: 4 × 3
-#>   dni      tipo_cliente tarjeta         
-#>   <chr>    <chr>        <chr>           
-#> 1 45860518 premium      VISA oro        
-#> 2 47564535 plata        VISA plantinum  
-#> 3 48987654 bronce       American Express
-#> 4 41346556 premium      Diners Club
+#>   id       customer_type card            
+#>   <chr>    <chr>         <chr>           
+#> 1 45860518 premium       VISA gold       
+#> 2 47564535 silver        VISA platinum   
+#> 3 48987654 bronze        American Express
+#> 4 41346556 premium       Diners Club
 ```
 
 #### Anti join
@@ -8926,12 +8512,12 @@ In the case of `anti_join` we have the opposite of `semi_join` since it shows th
 
 
 ``` r
-anti_join(data_1_tarjetas, data_2_clientes, by = "dni")
+anti_join(card_data_1, customer_data_2, by = "id")
 #> # A tibble: 2 × 3
-#>   dni      tipo_cliente tarjeta         
-#>   <chr>    <chr>        <chr>           
-#> 1 46534312 bronce       Mastercard Black
-#> 2 78765434 oro          VISA Signature
+#>   id       customer_type card            
+#>   <chr>    <chr>         <chr>           
+#> 1 46534312 bronze        Mastercard Black
+#> 2 78765434 gold          VISA Signature
 ```
 
 ### Joining without a common identifier
@@ -8942,18 +8528,18 @@ If we have two or more vectors of the same size we can create the union of the c
 
 
 ``` r
-vector_1 <- c("hola", "Has visto a", "el")
-vector_2 <- c("Julian", "Carla", "Miércoles")
+vector_1 <- c("hello", "Have you seen", "the")
+vector_2 <- c("Julian", "Carla", "Wednesday")
 
-resultado <- bind_cols(saludo = vector_1, sustantivos = vector_2)
+result <- bind_cols(greeting = vector_1, nouns = vector_2)
 
-resultado
+result
 #> # A tibble: 3 × 2
-#>   saludo      sustantivos
-#>   <chr>       <chr>      
-#> 1 hola        Julian     
-#> 2 Has visto a Carla      
-#> 3 el          Miércoles
+#>   greeting      nouns    
+#>   <chr>         <chr>    
+#> 1 hello         Julian   
+#> 2 Have you seen Carla    
+#> 3 the           Wednesday
 ```
 
 #### Union of tables
@@ -8961,42 +8547,42 @@ In the case of tables the use is the same. Likewise, we can also join the rows o
 
 
 ``` r
-tabla_1 <- data.frame(
-  nombre = c("Jhasury", "Thomas", "Andres", "Josep"),
-  apellido = c("Campos", "Gonzales", "Santiago", "Villaverde"),
-  direccion = c("Jr. los campos 471", "Av. Casuarinas 142", NA, "Av. Tupac Amaru 164"),
-  telefono = c("976567325", "956732587", "961445664", "987786453")
+table_1 <- data.frame(
+  name = c("Jhasury", "Thomas", "Andres", "Josep"),
+  surname = c("Campos", "Gonzales", "Santiago", "Villaverde"),
+  address = c("Jr. los campos 471", "Av. Casuarinas 142", NA, "Av. Tupac Amaru 164"),
+  phone = c("976567325", "956732587", "961445664", "987786453")
 )
 
-tabla_2 <- data.frame(
-  edad = c(21, 24, 19, 12),
-  signo = c("Aries", "Capricornio", "Sagitario", "Libra")
+table_2 <- data.frame(
+  age = c(21, 24, 19, 12),
+  sign = c("Aries", "Capricorn", "Sagittarius", "Libra")
 )
 
-# Create a table from row 2 to 3 of table 1
-tabla_3 <- tabla_1[2:3, ]
+# Create a table from row 2 to 3 of table_1
+table_3 <- table_1[2:3, ]
 ```
 
 Once we have our tables let's proceed to join them. We see that they do not have a common identifier.
 
 
 ``` r
-resultado <- bind_cols(tabla_1, tabla_2)
-resultado
-#>    nombre   apellido           direccion  telefono edad       signo
-#> 1 Jhasury     Campos  Jr. los campos 471 976567325   21       Aries
-#> 2  Thomas   Gonzales  Av. Casuarinas 142 956732587   24 Capricornio
-#> 3  Andres   Santiago                <NA> 961445664   19   Sagitario
-#> 4   Josep Villaverde Av. Tupac Amaru 164 987786453   12       Libra
+result <- bind_cols(table_1, table_2)
+result
+#>      name    surname             address     phone age        sign
+#> 1 Jhasury     Campos  Jr. los campos 471 976567325  21       Aries
+#> 2  Thomas   Gonzales  Av. Casuarinas 142 956732587  24   Capricorn
+#> 3  Andres   Santiago                <NA> 961445664  19 Sagittarius
+#> 4   Josep Villaverde Av. Tupac Amaru 164 987786453  12       Libra
 ```
 
-Likewise, we can join by rows like this:
+or joining by rows like this:
 
 
 ``` r
-resultado <- bind_rows(tabla_1, tabla_3)
-resultado
-#>    nombre   apellido           direccion  telefono
+result <- bind_rows(table_1, table_3)
+result
+#>      name    surname             address     phone
 #> 1 Jhasury     Campos  Jr. los campos 471 976567325
 #> 2  Thomas   Gonzales  Av. Casuarinas 142 956732587
 #> 3  Andres   Santiago                <NA> 961445664
@@ -9014,17 +8600,19 @@ library(tidyverse)
 library(rvest)
 ```
 
+> **Important**: When scraping websites, always respect the site's `robots.txt` file and terms of service. Avoid making excessive requests that could overload servers. For commercial use, consider whether the data is licensed or requires permission.
+
 The function we will use the most will be `read_html()` and as an argument we will place the url of the web from where we want to extract the data. We are not talking about a url that downloads a text file but a web page like this:
 
-<img src="_assets/images/05-wrangling/paises-hispanos.png" alt="Wikipedia table of Hispanic countries by population" width="80%" style="display: block; margin: auto;" />
+<img src="_assets/images/05-wrangling/hispanic-countries.png" alt="Wikipedia table of Hispanic countries by population" width="80%" style="display: block; margin: auto;" />
 
 Thus, we will use `read_html()` to store all the web html and then little by little access the table data in R.
 
 
 ``` r
-data_en_html <- read_html("https://es.wikipedia.org/wiki/Anexo:Pa%C3%ADses_hispanos_por_poblaci%C3%B3n")
+html_data <- read_html("https://es.wikipedia.org/wiki/Anexo:Pa%C3%ADses_hispanos_por_poblaci%C3%B3n")
 
-data_en_html
+html_data
 #> {html_document}
 #> <html class="client-nojs vector-feature-language-in-header-enabled vector-feature-language-in-main-page-header-disabled vector-feature-page-tools-pinned-disabled vector-feature-toc-pinned-clientpref-1 vector-feature-main-menu-pinned-disabled vector-feature-limited-width-clientpref-1 vector-feature-limited-width-content-enabled vector-feature-custom-font-size-clientpref-1 vector-feature-appearance-pinned-clientpref-1 vector-feature-night-mode-enabled skin-theme-clientpref-day vector-sticky-header-enabled vector-toc-available" lang="es" dir="ltr">
 #> [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
@@ -9035,8 +8623,8 @@ Now that we have the data stored in the object we have to go looking for the dat
 
 
 ``` r
-tablas_web <- data_en_html |> 
-  html_nodes("table")
+web_tables <- html_data |> 
+  html_elements("table")
 
 ```
 
@@ -9044,25 +8632,25 @@ Finally, we have to go index by index looking for the table that interests us. T
 
 
 ``` r
-# We format as table and store in wide_tabla
-tabla_en_bruto <- tablas_web[[1]] |> 
+# We format as table and store in raw_table
+raw_table <- web_tables[[1]] |> 
   html_table()
 
 # Change header names
-tabla_en_bruto <- tabla_en_bruto |> 
+raw_table <- raw_table |> 
   setNames(
-  c("N", "pais", "poblacion", "prop_poblacion", "cambio_medio", "link")
+  c("N", "country", "population", "pop_prop", "avg_change", "link")
   )
 
 # Convert to tibble
-tabla_en_bruto <- tabla_en_bruto |> 
+raw_table <- raw_table |> 
   as_tibble()
 
 # Report first rows
-tabla_en_bruto |> 
+raw_table |> 
   head(5)
 #> # A tibble: 1 × 2
-#>   N     pais                                                                    
+#>   N     country                                                                 
 #>   <lgl> <chr>                                                                   
 #> 1 NA    Este artículo o sección se encuentra desactualizado.La información sumi…
 ```
@@ -9080,23 +8668,23 @@ install.packages("Lahman")
 library(Lahman)
 
 # Top 10 players of the year 2016
-top_jugadores <- Batting |> 
+top_players <- Batting |> 
   filter(yearID == 2016) |>
   arrange(desc(HR)) |>    # sorted by number of "Home run"
   slice(1:10)    # Take from row 1 to 10
 
-top_jugadores <- top_jugadores |> as_tibble()
+top_players <- top_players |> as_tibble()
 
 # List of all baseball players from recent years
-maestra <- Master |> as_tibble()
+master <- Master |> as_tibble()
 
 # Awards won by players
-premios <- AwardsPlayers |>
+awards <- AwardsPlayers |>
   filter(yearID == 2016) |> 
   as_tibble()
 ```
 
-94. Using the `top_jugadores` object and the `Maestra` object, report the following fields `playerID`, `nameFirst`, `nameLast`, `HR` of the top 10 players of 2016.
+92. Using the `top_players` and `Master` datasets, join them to retrieve the `playerID`, first name, last name, and home runs (`HR`) for the top 10 players of 2016.
 
 
 
@@ -9104,14 +8692,14 @@ premios <- AwardsPlayers |>
   <summary type="button">Solution</summary>
 
 ``` r
-top_10 <- left_join(top_jugadores, maestra, by = "playerID") |> 
+top_10 <- left_join(top_players, master, by = "playerID") |> 
   select(playerID, nameFirst, nameLast, HR)
 
 top_10
 ```
 </details>
 
-95. Report the ID and names of the top 10 players who have won at least one prize, `premios` object, in 2016.
+93. Identify the **intersection** of top players and award winners. List the ID and names of the top 10 players from 2016 who also won at least one award that year.
 
 
 
@@ -9119,11 +8707,11 @@ top_10
   <summary type="button">Solution</summary>
 
 ``` r
-semi_join(top_10, premios, by = "playerID")
+semi_join(top_10, awards, by = "playerID")
 ```
 </details>
 
-96. Report the ID and names of the players who won at least one prize in 2016, but are not part of the top 10.
+94. Find the players who won awards in 2016 but did **not** make it into the top 10 list. Report their IDs and names.
 
 
 
@@ -9132,22 +8720,22 @@ semi_join(top_10, premios, by = "playerID")
 
 ``` r
 # First we calculate all prizes of those who are not top 10:
-ID_de_premiados_no_top <- anti_join(premios, top_10, by = "playerID") |> 
+non_top_award_ids <- anti_join(awards, top_10, by = "playerID") |> 
   select(playerID)
 
 # As a player could have obtained several prizes we obtain unique values
-ID_de_premiados_no_top <- unique(ID_de_premiados_no_top)
+non_top_award_ids <- unique(non_top_award_ids)
 
 # Then we cross with the master to obtain the names
-nombres_de_otros <- left_join(ID_de_premiados_no_top, maestra, by = "playerID") |> 
+other_names <- left_join(non_top_award_ids, master, by = "playerID") |> 
   select(playerID, nameFirst, nameLast)
 
-nombres_de_otros
+other_names
 
 ```
 </details>
 
-97. Store the tables from the following web page: http://www.stevetheump.com/Payrolls.htm which contains the payroll that each US baseball team pays as of February 2020 in the `html` object. Then, access the nodes using `html_nodes("table")` and store it in the `nodos` object. Finally, report node 4 in `html_table` format.
+95. Scrape the MLB payroll data from `http://www.stevetheump.com/Payrolls.htm`. Store the entire page html, extract the tables, and specifically isolate the fourth table (`node 4`), formatting it as a data frame.
 
 
 
@@ -9158,15 +8746,15 @@ nombres_de_otros
 url <- "http://www.stevetheump.com/Payrolls.htm"
 html <- read_html(url)
 
-nodos <- html |> 
-  html_nodes("table")
+nodes <- html |> 
+  html_elements("table")
 
-nodos[[4]] |> 
+nodes[[4]] |> 
   html_table()
 ```
 </details>
 
-98. From the `nodos` object created in the previous exercise, store node 4 in the `planilla_2019` object and node 5 in the `planilla_2018` object. Now format both tables so that the headers are: equipo (team), planilla_2019 or planilla_2018 according to the table. Finally, do a crossing of both tables by team name using `full_join()`.
+96. Using the scraped tables, prepare the 2019 payroll (node 4) and 2018 payroll (node 5) data. Standardize the column names to `team`, `payroll_2019`, and `payroll_2018` respectively. Finally, perform a **full join** to combine these datasets by team name.
 
 
 
@@ -9174,33 +8762,33 @@ nodos[[4]] |>
   <summary type="button">Solution</summary>
 
 ``` r
-planilla_2019 <- nodos[[4]] |> 
+payroll_2019 <- nodes[[4]] |> 
   html_table()
 
-planilla_2018 <- nodos[[5]] |> 
+payroll_2018 <- nodes[[5]] |> 
   html_table()
 
 ####### Payroll 2019: ################
 #We eliminate row 15 which is the league average:
-planilla_2019 <- planilla_2019[-15, ]
+payroll_2019 <- payroll_2019[-15, ]
 
 #We filter the requested columns:
-planilla_2019 <- planilla_2019 |> 
+payroll_2019 <- payroll_2019 |> 
   select(X2, X4) |> 
-  rename(equipo = X2, planilla_2019 = X4)
+  rename(team = X2, payroll_2019 = X4)
 
 # We eliminate row 1 since it is the source header
-planilla_2019 <- planilla_2019[-1,]
+payroll_2019 <- payroll_2019[-1,]
 
 ####### Payroll 2018: ################
 # We select the two columns that interest us and 
 #change name to headers
-planilla_2018 <- planilla_2018 |> 
+payroll_2018 <- payroll_2018 |> 
   select(Team, Payroll) |> 
-  rename(equipo = Team, planilla_2018 = Payroll)
+  rename(team = Team, payroll_2018 = Payroll)
 
 ####### Full join: ################
-full_join(planilla_2018, planilla_2019, by = "equipo")
+full_join(payroll_2018, payroll_2019, by = "team")
 ```
 </details>
 
@@ -9209,1511 +8797,35 @@ full_join(planilla_2018, planilla_2019, by = "equipo")
 <!--chapter:end:05-wrangling/importing-data.Rmd-->
 
 
-# String processing and text mining
-
-## Basic functions
-We have already learned how to import data and consolidate it. However, we cannot yet work with this data. We have to validate through string processing and ensure a minimum quality to be able to perform our analyses.
-
-For example, in the previous chapter we imported data from Wikipedia, however we did not focus on whether we could already perform operations or visualizations with our data.
-
-
-``` r
-library(rvest)
-url <- "https://es.wikipedia.org/wiki/Anexo:Pa%C3%ADses_hispanos_por_poblaci%C3%B3n"
-#url <- "https://es.wikipedia.org/wiki/Distribuci%C3%B3n_geogr%C3%A1fica_del_idioma_espa%C3%B1ol" #as a back up URL
-html_data <- read_html(url)
-
-web_tables <- html_data |>
-  html_nodes("body") |>
-  html_nodes("table")
-
-raw_table <- web_tables[[2]] |>
-  html_table()
-
-raw_table <- raw_table |> 
-  setNames(c("N", "pais", "poblacion", "prop_poblacion", "cambio_medio", "link")) 
-
-raw_table <- raw_table |>
-  as_tibble()
-
-raw_table |> head(5)
-
-```
-
-We may not have noticed, but we can observe columns with spaces or commas where there should be numbers. We can validate this not only by analyzing the class of the column, but also if we try to calculate the average of that variable.
-
-
-``` r
-class(raw_table$poblacion)
-
-mean(raw_table$poblacion)
-```
-
-We cannot do a direct conversion to number either because white spaces and commas are characters.
-
-
-``` r
-as.numeric(raw_table$poblacion)
-```
-
-There are so frequent and so many possible use cases that there are already multiple functions for processing strings included in the tidyverse library. Likewise, there is more than one way to process strings. It will always depend on how the raw data is found.
-
-### Replacing characters
-One of the basic functions that we will use the most will be replacing characters. We apply this function when we are sure that this change will not compromise the rest of the data. We have spaces and we have commas. So we could start by replacing one of the two to normalize them using the `str_replace_all(string, pattern, replacement)` function. In the pattern attribute we will use `\\s`, which comes from `space`. We are going to learn first to modify the data stored in a vector and then we will replicate it to our entire table.
-
-
-``` r
-library(tidyverse)
-library(stringr)
-
-population_vector <- tabla_en_bruto$poblacion
-
-population_vector <- str_replace_all(population_vector, "\\s", ",")
-
-population_vector
-```
-
-We have purposely taken all the values to be separated by commas because now we can easily use the `parse_number(vector)` function which not only replaces the commas with empty strings, but also removes any non-numeric value before the first number, which facilitates us if we had monetary values, and also converts the value from character type to numeric type.
-
-
-``` r
-population_vector <- parse_number(population_vector)
-
-# Additional example in case we had a monetary value:
-parse_number("$345,153")
-```
-
-This vector now allows us to perform mathematical operations or visualization of the distribution.
-
-``` r
-# Convert to millions
-population_vector <- population_vector/10^6
-
-# We remove the last value which is the world population:
-length_val <- length(population_vector)
-population_vector <- population_vector[-length_val]
-
-# Visualization
-boxplot(population_vector)
-```
-
-We already know which functions to use to transform the fields of our case. However, we have applied them to vectors. To mutate the columns of our table in raw form we will use the function `mutate(across(columns, function))` using the pipeline operator `|>`. Let's apply the first change of spaces by commas and not only to column 3, population, but also to column 5, medium change.
-
-
-``` r
-raw_table |> 
-  mutate(across(c(3,5), ~str_replace_all(., "\\s", ",")))
-
-```
-
-We have removed from the `str_replace_all` function the `string` attribute and replaced it with a dot `.`. And that dot `.` indicates that it will evaluate for each column `c(3,5)` of our table.
-
-Now, let's apply the parse_number function that we applied previously.
-
-
-``` r
-raw_table |> 
-  mutate(across(c(3,5), ~str_replace_all(., "\\s", ","))) |> 
-  mutate(across(c(3,5), ~parse_number(.)))
-```
-
-## Regular expressions
-A [regular expression](https://stringr.tidyverse.org/articles/regular-expressions.html)^[https://stringr.tidyverse.org/articles/regular-expressions.html] (or regex as it is known in English) is a pattern that describes a set of strings. We have already used regex in the previous section using only the pattern `\\s`. However, usually we will have many more use cases that will require a pattern that can convert a wider range of cases.
-
-Although we could analyze all possible use cases available in the documentation, we learn faster by use cases. Let's analyze a case that will allow us to learn some patterns little by little.
-
-In the `dslabs` library we found and used previously the height data, `heights`, of students from a university expressed in inches.
-
-
-``` r
-library(dslabs)
-data(heights)
-
-heights |> 
-  head(10)
-#>       sex height
-#> 1    Male     75
-#> 2    Male     70
-#> 3    Male     68
-#> 4    Male     74
-#> 5    Male     61
-#> 6  Female     65
-#> 7  Female     66
-#> 8  Female     62
-#> 9  Female     66
-#> 10   Male     67
-```
-
-These data were ready to be analyzed. However, that was not how it came from the source. The students had to fill out a survey and even when they were asked for their height in inches, they completed their height in inches, feet, centimeters, writing numbers, letters, etc. We can see the initial data from the form in the `reported_heights` data frame.
-
-
-``` r
-reported_heights |> 
-  head(10)
-#>             time_stamp    sex height
-#> 1  2014-09-02 13:40:36   Male     75
-#> 2  2014-09-02 13:46:59   Male     70
-#> 3  2014-09-02 13:59:20   Male     68
-#> 4  2014-09-02 14:51:53   Male     74
-#> 5  2014-09-02 15:16:15   Male     61
-#> 6  2014-09-02 15:16:16 Female     65
-#> 7  2014-09-02 15:16:19 Female     66
-#> 8  2014-09-02 15:16:21 Female     62
-#> 9  2014-09-02 15:16:21 Female     66
-#> 10 2014-09-02 15:16:22   Male     67
-```
-
-Although we might think that they entered the data correctly, we do not have to trust and it is always better to validate the quality of our data. There are multiple ways to validate, as we can see below:
-
-
-``` r
-heights <- reported_heights$height
-
-# Validation option 1: Random sample
-sample(heights, 100)
-#>   [1] "5' 11\"" "170"     "72"      "72"      "71"      "70.8661" "5.57"   
-#>   [8] "61"      "66"      "5'10''"  "70"      "74"      "73"      "175"    
-#>  [15] "2"       "69"      "72"      "66"      "68"      "75"      "5.5"    
-#>  [22] "0"       "71"      "69"      "67"      "73.22"   "5'7.5''" "68"     
-#>  [29] "62"      "64"      "70"      "71"      "67"      "61"      "67"     
-#>  [36] "163"     "69"      "5.11"    "6"       "77"      "68"      "5.51"   
-#>  [43] "67"      "68"      "176"     "67"      "67"      "67"      "68"     
-#>  [50] "60"      "70"      "158"     "73.2"    "65"      "168"     "66"     
-#>  [57] "65"      "70"      "69"      "71"      "66"      "67.3"    "69"     
-#>  [64] "66"      "66"      "70"      "70.5"    "70"      "69"      "74"     
-#>  [71] "72"      "68"      "70"      "5,8"     "51"      "69"      "69"     
-#>  [78] "65"      "69"      "180"     "68"      "67"      "68"      "68.4"   
-#>  [85] "70.86"   "72.45"   "67"      "69"      "5.8"     "180"     "183"    
-#>  [92] "180"     "167"     "175"     "74"      "68"      "72"      "67"     
-#>  [99] "63"      "72.05"
-
-# Validation option 2: convert to numbers and count if there are NAs
-x <- as.numeric(heights)
-#> Warning: NAs introduced by coercion
-sum(is.na(x))
-#> [1] 81
-
-# Validation option 3: add column of those that cannot be converted to number:
-reported_heights |> 
-  mutate(estatuta_numero = as.numeric(height)) |> 
-  filter(is.na(estatuta_numero)) |> 
-  head(10)
-#> Warning: There was 1 warning in `mutate()`.
-#> ℹ In argument: `estatuta_numero = as.numeric(height)`.
-#> Caused by warning:
-#> ! NAs introduced by coercion
-#>             time_stamp    sex                 height estatuta_numero
-#> 1  2014-09-02 15:16:28   Male                  5' 4"              NA
-#> 2  2014-09-02 15:16:37 Female                  165cm              NA
-#> 3  2014-09-02 15:16:52   Male                    5'7              NA
-#> 4  2014-09-02 15:16:56   Male                  >9000              NA
-#> 5  2014-09-02 15:16:56   Male                   5'7"              NA
-#> 6  2014-09-02 15:17:09 Female                   5'3"              NA
-#> 7  2014-09-02 15:18:00   Male 5 feet and 8.11 inches              NA
-#> 8  2014-09-02 15:19:48   Male                   5'11              NA
-#> 9  2014-09-04 00:46:45   Male                  5'9''              NA
-#> 10 2014-09-04 10:29:44   Male                 5'10''              NA
-```
-
-We might want to choose to eliminate these NA data as they are not significant with respect to the total of 1,095 data points. However, there are several of these data points that follow a determined pattern and instead of being discarded could be converted to the scale we have in the rest of the data. For example, there are people who entered their height as 5'7", which, for those who remember the conversion, can be converted because 1 foot is 12 inches. So $5*12+7=67$. And so, like that case, we can detect patterns, but we have, again, to be careful in detecting the exact pattern and not a very generic one that can change other use cases. If everyone followed the same pattern $x'y''$ or $x'y$ it would be much easier to convert it to inches by calculating $x*12+y$.
-
-Let's start by extracting our column to a single character vector with all the values that do not convert automatically to number or were entered in inches. We detect this if they measure more than 5 and up to 7 feet (from 1.5m to 2.1 meters). After that we will create the transformations little by little.
-
-
-``` r
-heights_error <- reported_heights |> 
-  filter(is.na(as.numeric(height)) | # Does not convert to number
-         (!is.na(as.numeric(height)) & as.numeric(height) >= 5 &
-            as.numeric(height) <= 7 ) # or entered in feet and not inches
-        ) |> 
-  pull(height)
-
-length(heights_error)
-#> [1] 168
-```
-
-Adding the condition of having entered in feet we have 168 errors. We cannot ignore 15.3% of errors.
-
-We will use the `str_detect(string, pattern)` function that will allow us to detect if a string matches a certain pattern. The result will be a logical value: `TRUE` or `FALSE` that we can use as an index to obtain the values that match in our vector.
-
-
-``` r
-indice <- str_detect(heights_error, "feet")
-
-heights_error[indice] # Match the pattern
-#> [1] "5 feet and 8.11 inches" "5 feet 7inches"         "5 feet 6 inches"
-heights_error[!indice] |> # Do not match the pattern
-  head(40) 
-#>  [1] "6"                      "5' 4\""                 "5.3"                   
-#>  [4] "165cm"                  "6"                      "5'7"                   
-#>  [7] ">9000"                  "5'7\""                  "5'3\""                 
-#> [10] "5.25"                   "5'11"                   "5.5"                   
-#> [13] "5'9''"                  "6"                      "6.5"                   
-#> [16] "5'10''"                 "5.8"                    "5"                     
-#> [19] "5.6"                    "5,3"                    "6'"                    
-#> [22] "6"                      "5.9"                    "6,8"                   
-#> [25] "5' 10"                  "5.5"                    "6.2"                   
-#> [28] "Five foot eight inches" "6.2"                    "5.8"                   
-#> [31] "5.1"                    "5.11"                   "5'5\""                 
-#> [34] "5'2\""                  "5.75"                   "5,4"                   
-#> [37] "7"                      "5.4"                    "6.1"                   
-#> [40] "5'3"
-```
-
-### Alternation
-`|` is the alternation operator that will choose between one or more possible values. In our case, we have indicated to detect if there is the word "feet", but we also have "ft" and "foot" to refer to the same thing in our data. Thus, we can create the pattern "feet" or "ft" or "foot".
-
-
-``` r
-indice <- str_detect(heights_error, "feet|ft|foot")
-
-heights_error[indice] # Match
-#> [1] "5 feet and 8.11 inches" "Five foot eight inches" "5 feet 7inches"        
-#> [4] "5ft 9 inches"           "5 ft 9 inches"          "5 feet 6 inches"
-```
-
-In the same way we can find the variations for inches and other symbols that we can remove:
-
-
-``` r
-indice <- str_detect(heights_error, "inches|in|''|\"|cm|and")
-
-heights_error[indice] # Match
-#>  [1] "5' 4\""                 "165cm"                  "5'7\""                 
-#>  [4] "5'3\""                  "5 feet and 8.11 inches" "5'9''"                 
-#>  [7] "5'10''"                 "Five foot eight inches" "5'5\""                 
-#> [10] "5'2\""                  "5'10''"                 "5'3''"                 
-#> [13] "5'7''"                  "5'3\""                  "5'6''"                 
-#> [16] "5'7.5''"                "5'7.5''"                "5'2\""                 
-#> [19] "5' 7.78\""              "5 feet 7inches"         "5'8\""                 
-#> [22] "5'11\""                 "5'7\""                  "5' 11\""               
-#> [25] "6'1\""                  "69\""                   "5' 7\""                
-#> [28] "5'10''"                 "5ft 9 inches"           "5 ft 9 inches"         
-#> [31] "5'11''"                 "5'8\""                  "5 feet 6 inches"       
-#> [34] "5'10''"                 "6'3\""                  "5'5''"                 
-#> [37] "5'7\""                  "6'4\""                  "170 cm"
-```
-
-In this case we have entered `''` to detect those who entered that symbol to denote inches and `\"` in case they used double quotes. In this latter case we have used `\` so that it does not generate an error when interpreting as closing the string.
-
-We could already start replacing based on the detected patterns:
-
-
-``` r
-heights_error <- str_replace_all(heights_error, "feet|ft|foot", "'")
-heights_error <- str_replace_all(heights_error, "inches|in|''|\"|cm|and", "")
-
-heights_error |> 
-  head(30)
-#>  [1] "6"             "5' 4"          "5.3"           "165"          
-#>  [5] "6"             "5'7"           ">9000"         "5'7"          
-#>  [9] "5'3"           "5 '  8.11 "    "5.25"          "5'11"         
-#> [13] "5.5"           "5'9"           "6"             "6.5"          
-#> [17] "5'10"          "5.8"           "5"             "5.6"          
-#> [21] "5,3"           "6'"            "6"             "5.9"          
-#> [25] "6,8"           "5' 10"         "5.5"           "6.2"          
-#> [29] "Five ' eight " "6.2"
-```
-
-As an additional effort, we could also look to solve that some people have written words instead of numbers. For this we create a function that replaces each word with a number and apply it to the vector:
-
-
-``` r
-words_to_number <- function(s){
-  str_to_lower(s) |>  
-    str_replace_all("zero", "0") |>
-    str_replace_all("one", "1") |>
-    str_replace_all("two", "2") |>
-    str_replace_all("three", "3") |>
-    str_replace_all("four", "4") |>
-    str_replace_all("five", "5") |>
-    str_replace_all("six", "6") |>
-    str_replace_all("seven", "7") |>
-    str_replace_all("eight", "8") |>
-    str_replace_all("nine", "9") |>
-    str_replace_all("ten", "10") |>
-    str_replace_all("eleven", "11")
-}
-
-heights_error <- words_to_number(heights_error)
-heights_error |> 
-  head(30)
-#>  [1] "6"          "5' 4"       "5.3"        "165"        "6"         
-#>  [6] "5'7"        ">9000"      "5'7"        "5'3"        "5 '  8.11 "
-#> [11] "5.25"       "5'11"       "5.5"        "5'9"        "6"         
-#> [16] "6.5"        "5'10"       "5.8"        "5"          "5.6"       
-#> [21] "5,3"        "6'"         "6"          "5.9"        "6,8"       
-#> [26] "5' 10"      "5.5"        "6.2"        "5 ' 8 "     "6.2"
-```
-
-### Anchoring
-Now that it is more standardized we can start with regex with more generic characteristics. For example, there is a person who has entered `6'`. It would be convenient to have everything in the form feet plus inches. With which we should have `6'0`. To achieve this we have to create a regex according to this generic situation. We will use the symbol `^` to anchor our validation to "start with" and the symbol `$` to match with the end of the string. Before replacing, let's first see who matches.
-
-
-``` r
-indice <- str_detect(heights_error, "^6'$")
-
-heights_error[indice] # Match
-#> [1] "6'"
-```
-
-This regex indicates that it starts with `6'` and that the expression ends there. We could still make it more generic to address those who, in the future, write 5 inches (1.52m) or 6 inches (1.82m). For this we will use brackets and inside them we will put all the values that we will accept.
-
-
-``` r
-indice <- str_detect(heights_error, "^[56]'$")
-
-heights_error[indice] # Match
-#> [1] "6'"
-```
-
-There is still only one result, but our regex is more generic now and we can already use it to replace. Before replacing in our vector we are going to do a test to learn how to create what we need from a pattern.
-
-
-``` r
-prueba <- c("5'", "6'")
-
-str_replace_all(prueba, "^([56])'$", "\\1'0")
-#> [1] "5'0" "6'0"
-```
-
-We have placed between parentheses to indicate that what is inside is our first value and we use `\\1` to refer to that first value. So we are indicating to write the first value, then a quote `'`, and then a zero `0`.
-
-Now we are ready to apply to our entire vector. We are going to make the change to consider not only 5 and 6, but up to the value of 7 inches (2.1m). Likewise, we are going to take the cases in which there is only a number without the foot symbol `'`.
-
-
-``` r
-heights_error <- str_replace_all(heights_error, "^([5-7])'$", "\\1'0")
-heights_error <- str_replace_all(heights_error, "^([5-7])$", "\\1'0")
-
-heights_error |> 
-  head(30)
-#>  [1] "6'0"        "5' 4"       "5.3"        "165"        "6'0"       
-#>  [6] "5'7"        ">9000"      "5'7"        "5'3"        "5 '  8.11 "
-#> [11] "5.25"       "5'11"       "5.5"        "5'9"        "6'0"       
-#> [16] "6.5"        "5'10"       "5.8"        "5'0"        "5.6"       
-#> [21] "5,3"        "6'0"        "6'0"        "5.9"        "6,8"       
-#> [26] "5' 10"      "5.5"        "6.2"        "5 ' 8 "     "6.2"
-```
-
-### Repetitions
-We can control how many times a pattern matches using repetition operators:
-
-Table: (\#tab:date-format) Repetition operators:
-
-|Operator      |Number of times                                         |
-|:------------|:---------------------------------------------------------------|
-|`?`  |0 or 1 time|
-|`+`  |1 or more times|
-|`*`  |0 or more times|
-
-For example, to find all cases where instead of using the foot symbol `'` they entered a comma, a period, or a space we will use the following pattern:
-
-
-``` r
-pattern <- "^([4-7])\\s*[,\\.]\\s*(\\d*)$"
-```
-
-Let's read the pattern:
-
-1. The string starts with a digit ranging from 4 to 7.
-2. `\\s` means that it is followed by a white space, but we use `*` to indicate that this character appears 0 or more times.
-3. After that space we will look for any of the following characters: `,`, a period `\\.` (to which we put double backslash because the period alone in a pattern means "any value").
-4. We use `\\s*` again to look for zero or more white spaces.
-5. Finally we indicate that the string ends there with a digit, to denote that look for any digit we use `\\d`, d for digit. And we add asterisk so that it keeps one or more digits that it finds.
-
-In summary: it starts with a number, then symbols and then a digit. Between the symbols there could be white spaces. That is our pattern.
-
-
-``` r
-index <- str_detect(heights_error, "^([4-7])\\s*[,\\.]\\s*(\\d*)$")
-
-heights_error[index] # Match
-#>  [1] "5.3"   "5.25"  "5.5"   "6.5"   "5.8"   "5.6"   "5,3"   "5.9"   "6,8"  
-#> [10] "5.5"   "6.2"   "6.2"   "5.8"   "5.1"   "5.11"  "5.75"  "5,4"   "5.4"  
-#> [19] "6.1"   "5.6"   "5.6"   "5.4"   "5.9"   "5.6"   "5.6"   "5.5"   "5.2"  
-#> [28] "5.5"   "5.5"   "6.5"   "5,8"   "5.11"  "5.5"   "6.7"   "5.1"   "5.6"  
-#> [37] "5.5"   "5.2"   "5.6"   "5.7"   "5.9"   "6.5"   "5.11"  "5 .11" "5.7"  
-#> [46] "5.5"   "5.8"   "5.8"   "5.1"   "5.11"  "5.7"   "5.9"   "5.2"   "5.5"  
-#> [55] "5.51"  "5.8"   "5.7"   "6.1"   "5.69"  "5.7"   "5.25"  "5.5"   "5.1"  
-#> [64] "6.3"   "5.5"   "5.7"   "5.57"  "5.7"
-```
-
-We already found the values that match the pattern, so we are ready to replace.
-
-
-``` r
-heights_error <- str_replace_all(
-                        heights_error, 
-                        "^([4-7])\\s*[,\\.]\\s*(\\d*)$", "\\1.\\2'0"
-                   )
-
-heights_error |> 
-  head(30)
-#>  [1] "6'0"        "5' 4"       "5.3'0"      "165"        "6'0"       
-#>  [6] "5'7"        ">9000"      "5'7"        "5'3"        "5 '  8.11 "
-#> [11] "5.25'0"     "5'11"       "5.5'0"      "5'9"        "6'0"       
-#> [16] "6.5'0"      "5'10"       "5.8'0"      "5'0"        "5.6'0"     
-#> [21] "5.3'0"      "6'0"        "6'0"        "5.9'0"      "6.8'0"     
-#> [26] "5' 10"      "5.5'0"      "6.2'0"      "5 ' 8 "     "6.2'0"
-```
-
-Another pattern we see now is when before or after the foot symbol `'` there is a white space. Let's make the change with what we learned and include cases where there are decimals:
-
-
-``` r
-index <- str_detect(heights_error, 
-                     "^([4-7]\\.?\\d*)\\s*'\\s*(\\d+\\.?\\d*)\\s*$")
-
-heights_error[index] |> # Match
-  head(30)
-#>  [1] "6'0"        "5' 4"       "5.3'0"      "6'0"        "5'7"       
-#>  [6] "5'7"        "5'3"        "5 '  8.11 " "5.25'0"     "5'11"      
-#> [11] "5.5'0"      "5'9"        "6'0"        "6.5'0"      "5'10"      
-#> [16] "5.8'0"      "5'0"        "5.6'0"      "5.3'0"      "6'0"       
-#> [21] "6'0"        "5.9'0"      "6.8'0"      "5' 10"      "5.5'0"     
-#> [26] "6.2'0"      "5 ' 8 "     "6.2'0"      "5.8'0"      "5.1'0"
-
-heights_error <- str_replace_all(
-                      heights_error, 
-                      "^([4-7]\\.?\\d*)\\s*'\\s*(\\d+\\.?\\d*)\\s*$",
-                      "\\1'\\2"
-                   )
-
-heights_error |> 
-  head(30)
-#>  [1] "6'0"    "5'4"    "5.3'0"  "165"    "6'0"    "5'7"    ">9000"  "5'7"   
-#>  [9] "5'3"    "5'8.11" "5.25'0" "5'11"   "5.5'0"  "5'9"    "6'0"    "6.5'0" 
-#> [17] "5'10"   "5.8'0"  "5'0"    "5.6'0"  "5.3'0"  "6'0"    "6'0"    "5.9'0" 
-#> [25] "6.8'0"  "5'10"   "5.5'0"  "6.2'0"  "5'8"    "6.2'0"
-```
-
-Likewise, we have the pattern in which they entered: feet + space + inches without any symbol. Let's make the change with what we learned.
-
-
-``` r
-index <- str_detect(heights_error, "^([4-7])\\s+(\\d*)\\s*$")
-
-heights_error[index] # Match
-#> [1] "5 11" "6 04"
-
-heights_error <- str_replace_all(
-                      heights_error, 
-                      "^([4-7])\\s+(\\d*)\\s*$", "\\1'\\2"
-                   )
-
-heights_error |> 
-  head(30)
-#>  [1] "6'0"    "5'4"    "5.3'0"  "165"    "6'0"    "5'7"    ">9000"  "5'7"   
-#>  [9] "5'3"    "5'8.11" "5.25'0" "5'11"   "5.5'0"  "5'9"    "6'0"    "6.5'0" 
-#> [17] "5'10"   "5.8'0"  "5'0"    "5.6'0"  "5.3'0"  "6'0"    "6'0"    "5.9'0" 
-#> [25] "6.8'0"  "5'10"   "5.5'0"  "6.2'0"  "5'8"    "6.2'0"
-```
-
-We are ready to put all the patterns together and the power of patterns is that they can serve us for future exercises. Thus, we will create a function where we will place each change that we can verify to a string.
-
-
-``` r
-format_errors <- function(cadena){
-  cadena |> 
-    str_replace_all("feet|ft|foot", "'") |> # Change feet for '
-    str_replace_all("inches|in|''|\"|cm|and", "") |> # Remove symbols
-    str_replace_all("^([5-7])'$", "\\1'0") |> # Adds 0 to 5', 6' or 7'
-    str_replace_all("^([5-7])$", "\\1'0") |> # Adds 0 to 5, 6 or 7
-    str_replace_all("^([4-7])\\s*[,\\.]\\s*(\\d*)$", "\\1.\\2'0") |> # Change 5.3' to 5.3'0
-    str_replace_all("^([4-7]\\.?\\d*)\\s*'\\s*(\\d+\\.?\\d*)\\s*$", "\\1'\\2") |> #Removes spaces in middle
-    str_replace_all("^([4-7])\\s+(\\d*)\\s*$", "\\1'\\2") |> # Adds '
-    str_replace("^([12])\\s*,\\s*(\\d*)$", "\\1.\\2") |> # Changes decimals from commas to dots
-    str_trim() #Removes spaces at start and end
-}
-
-```
-
-Thus, we have created two functions that could be useful to us if we were to work with surveys of the same type again.
-
-Before applying it to our entire table let's extract the values to a vector again to apply the created functions.
-
-
-``` r
-heights_error <- reported_heights |> 
-  filter(is.na(as.numeric(height)) | # Does not convert to number
-         (!is.na(as.numeric(height)) & as.numeric(height) >= 5 &
-            as.numeric(height) <= 7 ) # or entered in feet and not inches
-        ) |> 
-  pull(height)
-```
-
-Now let's apply the created functions:
-
-
-``` r
-formatted_heights <- heights_error |> 
-  words_to_number() |> 
-  format_errors()
-
-pattern <- "^([4-7]\\.?\\d*)\\s*'\\s*(\\d+\\.?\\d*)\\s*$"
-indice <- str_detect(formatted_heights, pattern)
-formatted_heights[!indice] # Do not match the pattern
-#>  [1] "165"       ">9000"     "2'33"      "1.70"      "yyy"       "6*12"     
-#>  [7] "69"        "708,661"   "649,606"   "728,346"   "170"       "7,283,465"
-```
-
-We have managed to reduce from 168 errors of 1095 records, 15.3% of errors, to 12 errors of 1095, 1% of errors. We can now apply to our initial table.
-
-
-``` r
-# Apply created formulas
-heights <- reported_heights |> 
-  mutate(height) |> 
-  mutate(height = words_to_number(height) |> format_errors())
-
-# Get random samples to validate quality
-random_indices <- sample(1:nrow(heights)) 
-heights[random_indices, ] |> 
-  head(15)
-#>               time_stamp    sex height
-#> 38   2014-09-02 15:16:31 Female  66.75
-#> 712  2015-10-05 16:26:29   Male     69
-#> 132  2014-09-02 15:16:59 Female     62
-#> 1079 2017-07-14 09:30:26   Male     65
-#> 917  2016-01-27 06:29:41 Female     64
-#> 929  2016-02-03 10:30:58   Male  68.89
-#> 163  2014-09-02 15:17:16 Female     64
-#> 397  2014-12-15 14:05:22 Female    5'3
-#> 634  2015-07-18 04:37:21   Male    175
-#> 921  2016-01-27 11:48:40   Male   73.2
-#> 494  2015-03-05 15:28:38   Male    168
-#> 107  2014-09-02 15:16:51 Female     61
-#> 728  2015-11-09 11:17:08   Male     72
-#> 370  2014-11-24 15:26:02   Male     67
-#> 805  2016-01-25 08:16:19   Male     67
-```
-
-We still have to do some conversions. However, since they follow a determined pattern we can use the `extract(source_column, new_columns, pattern, remove_source)` function to confirm creating new columns for each value of our pattern.
-
-
-``` r
-pattern <- "^([4-7]\\.?\\d*)\\s*'\\s*(\\d+\\.?\\d*)\\s*$"
-
-heights |> 
-  extract(height, c("feet", "inches"), regex = pattern, remove = FALSE) |> 
-  head(15)
-#>             time_stamp    sex height feet inches
-#> 1  2014-09-02 13:40:36   Male     75 <NA>   <NA>
-#> 2  2014-09-02 13:46:59   Male     70 <NA>   <NA>
-#> 3  2014-09-02 13:59:20   Male     68 <NA>   <NA>
-#> 4  2014-09-02 14:51:53   Male     74 <NA>   <NA>
-#> 5  2014-09-02 15:16:15   Male     61 <NA>   <NA>
-#> 6  2014-09-02 15:16:16 Female     65 <NA>   <NA>
-#> 7  2014-09-02 15:16:19 Female     66 <NA>   <NA>
-#> 8  2014-09-02 15:16:21 Female     62 <NA>   <NA>
-#> 9  2014-09-02 15:16:21 Female     66 <NA>   <NA>
-#> 10 2014-09-02 15:16:22   Male     67 <NA>   <NA>
-#> 11 2014-09-02 15:16:22   Male     72 <NA>   <NA>
-#> 12 2014-09-02 15:16:23   Male    6'0    6      0
-#> 13 2014-09-02 15:16:23   Male     69 <NA>   <NA>
-#> 14 2014-09-02 15:16:26   Male     68 <NA>   <NA>
-#> 15 2014-09-02 15:16:26   Male     69 <NA>   <NA>
-```
-
-Now that we have the data that matches the pattern in two other columns, and we know they are numbers, we can convert everything to number.
-
-
-``` r
-heights |> 
-  extract(height, c("feet", "inches"), regex = pattern, remove = FALSE) |> 
-  mutate(across(c("height", "feet", "inches"), ~as.numeric(.))) |> 
-  head(15)
-#> Warning: There was 1 warning in `mutate()`.
-#> ℹ In argument: `across(c("height", "feet", "inches"), ~as.numeric(.))`.
-#> Caused by warning:
-#> ! NAs introduced by coercion
-#>             time_stamp    sex height feet inches
-#> 1  2014-09-02 13:40:36   Male     75   NA     NA
-#> 2  2014-09-02 13:46:59   Male     70   NA     NA
-#> 3  2014-09-02 13:59:20   Male     68   NA     NA
-#> 4  2014-09-02 14:51:53   Male     74   NA     NA
-#> 5  2014-09-02 15:16:15   Male     61   NA     NA
-#> 6  2014-09-02 15:16:16 Female     65   NA     NA
-#> 7  2014-09-02 15:16:19 Female     66   NA     NA
-#> 8  2014-09-02 15:16:21 Female     62   NA     NA
-#> 9  2014-09-02 15:16:21 Female     66   NA     NA
-#> 10 2014-09-02 15:16:22   Male     67   NA     NA
-#> 11 2014-09-02 15:16:22   Male     72   NA     NA
-#> 12 2014-09-02 15:16:23   Male     NA    6      0
-#> 13 2014-09-02 15:16:23   Male     69   NA     NA
-#> 14 2014-09-02 15:16:26   Male     68   NA     NA
-#> 15 2014-09-02 15:16:26   Male     69   NA     NA
-```
-
-Now that our columns are numeric we can perform operations to calculate height.
-
-
-``` r
-heights |> 
-  extract(height, c("feet", "inches"), regex = pattern, remove = FALSE) |> 
-  mutate(across(c("height", "feet", "inches"), ~as.numeric(.))) |> 
-  mutate(fixed_heights = feet*12 + inches) |> 
-  head(15)
-#> Warning: There was 1 warning in `mutate()`.
-#> ℹ In argument: `across(c("height", "feet", "inches"), ~as.numeric(.))`.
-#> Caused by warning:
-#> ! NAs introduced by coercion
-#>             time_stamp    sex height feet inches fixed_heights
-#> 1  2014-09-02 13:40:36   Male     75   NA     NA            NA
-#> 2  2014-09-02 13:46:59   Male     70   NA     NA            NA
-#> 3  2014-09-02 13:59:20   Male     68   NA     NA            NA
-#> 4  2014-09-02 14:51:53   Male     74   NA     NA            NA
-#> 5  2014-09-02 15:16:15   Male     61   NA     NA            NA
-#> 6  2014-09-02 15:16:16 Female     65   NA     NA            NA
-#> 7  2014-09-02 15:16:19 Female     66   NA     NA            NA
-#> 8  2014-09-02 15:16:21 Female     62   NA     NA            NA
-#> 9  2014-09-02 15:16:21 Female     66   NA     NA            NA
-#> 10 2014-09-02 15:16:22   Male     67   NA     NA            NA
-#> 11 2014-09-02 15:16:22   Male     72   NA     NA            NA
-#> 12 2014-09-02 15:16:23   Male     NA    6      0            72
-#> 13 2014-09-02 15:16:23   Male     69   NA     NA            NA
-#> 14 2014-09-02 15:16:26   Male     68   NA     NA            NA
-#> 15 2014-09-02 15:16:26   Male     69   NA     NA            NA
-```
-
-Finally, we will do a validation of whether the height is in an interval and/or if it was expressed in centimeters or meters.
-
-
-``` r
-# We assume for a person a minimum 50" (1.2m) and max 84" (2.1m)
-min <- 50
-max <- 84
-
-heights <- heights |> 
-  extract(height, c("feet", "inches"), regex = pattern, remove = FALSE) |> 
-  mutate(across(c("height", "feet", "inches"), ~as.numeric(.))) |> 
-  mutate(fixed_heights = feet*12 + inches) |> 
-  mutate(final_height = case_when(
-    !is.na(height) & between(height, min, max) ~ height, #inches 
-    !is.na(height) & between(height/2.54, min, max) ~ height/2.54, #cm
-    !is.na(height) & between(height*100/2.54, min, max) ~ height*100/2.54, #meters
-    !is.na(fixed_heights) & inches < 12 & 
-      between(fixed_heights, min, max) ~ fixed_heights, #feet'inches
-    TRUE ~ as.numeric(NA)))
-#> Warning: There was 1 warning in `mutate()`.
-#> ℹ In argument: `across(c("height", "feet", "inches"), ~as.numeric(.))`.
-#> Caused by warning:
-#> ! NAs introduced by coercion
-
-# Random Sample:
-random_indices <- sample(1:nrow(heights)) 
-heights[random_indices, ] |> 
-  select(-time_stamp) |> # Shows all columns except time_stamp
-  head(10)
-#>         sex height feet inches fixed_heights final_height
-#> 856  Female  63.00   NA     NA            NA     63.00000
-#> 1003   Male  68.00   NA     NA            NA     68.00000
-#> 1059   Male 210.00   NA     NA            NA     82.67717
-#> 405    Male  71.00   NA     NA            NA     71.00000
-#> 888  Female  62.00   NA     NA            NA     62.00000
-#> 300    Male  72.00   NA     NA            NA     72.00000
-#> 470    Male  71.00   NA     NA            NA     71.00000
-#> 274    Male  66.00   NA     NA            NA     66.00000
-#> 427    Male  53.77   NA     NA            NA     53.77000
-#> 1087 Female  34.00   NA     NA            NA           NA
-```
-
-We already have our sample validated, we would only have to take the columns we need and start using the object for the analyses we need.
-
-
-``` r
-final_heights <- heights |> 
-  select(gender = sex, heights = final_height)
-
-final_heights |> 
-  head(10)
-#>    gender heights
-#> 1    Male      75
-#> 2    Male      70
-#> 3    Male      68
-#> 4    Male      74
-#> 5    Male      61
-#> 6  Female      65
-#> 7  Female      66
-#> 8  Female      62
-#> 9  Female      66
-#> 10   Male      67
-```
-
-## From strings to dates
-Regularly when we import data, we are not only going to want to transform numeric data. We will also have multiple cases where we need to transform our string to a date in some particular format. For this, we will use the `lubridate` library, included in `tidyverse`, which provides us with diverse functions to make date treatment more accessible.
-
-
-``` r
-library(lubridate)
-```
-
-When the text string is in the ISO 8601 date format (YYYY-MM-DD), we can directly use the `month()`, `day()`, `year()` function.
-
-
-``` r
-dates_char <- c("2010-05-19", "2020-05-06", "2010-02-03")
-
-str(dates_char)
-#>  chr [1:3] "2010-05-19" "2020-05-06" "2010-02-03"
-
-month(dates_char)
-#> [1] 5 5 2
-```
-
-However, we do not always have the date in that format and `lubridate()` gives other functions that are more flexible when coercing data. Look at this example:
-
-
-``` r
-dates <- c(20090101, "2009-01-02", "2009 01 03", "2009-1-4",
-       "2009-1, 5", "Created on 2009 1 6", "200901 !!! 07")
-
-str(dates)
-#>  chr [1:7] "20090101" "2009-01-02" "2009 01 03" "2009-1-4" "2009-1, 5" ...
-
-ymd(dates)
-#> [1] "2009-01-01" "2009-01-02" "2009-01-03" "2009-01-04" "2009-01-05"
-#> [6] "2009-01-06" "2009-01-07"
-```
-
-The first data entered was a number, but we already know that it coerces it to text. Then, we have different values entered, but all follow the same pattern. First is the year, then the month and then the day. When we know that first is the year, then month and then day we will use the `ymd()` function to convert all dates to ISO 8601 format.
-
-In the same way, we will have the following functions that we can use depending on the form in which we have the date from our source. In all cases it will be convenient for us to convert to ISO 8601 format. For example here we can see when it correctly recognizes the format and when the formatting fails.
-
-
-``` r
-x <- "28/03/89"
-ymd(x)
-#> [1] NA
-mdy(x)
-#> [1] NA
-ydm(x)
-#> [1] NA
-myd(x)
-#> [1] NA
-dmy(x)
-#> [1] "1989-03-28"
-dym(x)
-#> [1] NA
-```
-
-Finally, in the same way that we can use these functions of days, months and years, we can also use to refer to hours, minutes and seconds.
-
-
-``` r
-# Format with hours, minutes and seconds
-date_val <- "Feb/2/2012 12:34:56"
-mdy_hms(date_val)
-#> [1] "2012-02-02 12:34:56 UTC"
-
-# Additional data: Showing system date:
-now()
-#> [1] "2025-12-23 23:46:14 GMT"
-```
-
-
-
-## Exercises
-
-Before solving the following exercise run this Script:
-
-
-``` r
-ventas <- tibble(
-  mes = c("Abril", "Mayo", "Junio"),
-  ventas = c("s/32,124", "s/35,465", "S/38,332"),
-  ganancias = c("s/8,120", "s/9,432", "s/10,543")
-)
-```
-
-99. From the `ventas` object convert the sales and profits columns to numeric values.
-
-
-
-<details>
-  <summary type="button">Solution</summary>
-
-``` r
-# Solution 1
-ventas |> 
-  mutate(across(c(2,3), ~parse_number(.)))
-
-# Alternative solution, longer
-ventas |>
-  mutate(across(c(2,3), ~str_replace_all(., "\\S/|,", ""))) |> 
-  mutate(across(c(2,3), ~as.numeric(.)))
-```
-</details>
-
-
-100. Given the vector universities:
-
-
-``` r
-universidades <- c("U. Católica de Chile", "Univ Nacional Autónoma de México", 
-                   "Univ. Nacional de Ingeniería", "Universidad de los Andes", 
-                   "U de Barcelona", "California State University")
-```
-
-Clean the data to obtain the full name as shown below:
-
-```
-#> [1] "Universidad Católica de Chile"          
-#> [2] "Universidad Nacional Autónoma de México"
-#> [3] "Universidad Nacional de Ingeniería"     
-#> [4] "Universidad de los Andes"               
-#> [5] "Universidad de Barcelona"               
-#> [6] "California State University"
-```
-
-
-
-
-<details>
-  <summary type="button">Solution</summary>
-
-``` r
-universidades |> 
-    str_replace("^Univ\\.?\\s|^U\\.?\\s", "Universidad ")
-```
-</details>
-
-For the following exercises, we are going to work on the survey data conducted prior to Brexit in the UK. Run the Script first:
-
-
-``` r
-library(rvest)
-library(tidyverse)
-url <- "https://en.wikipedia.org/w/index.php?title=Opinion_polling_for_the_United_Kingdom_European_Union_membership_referendum&oldid=896735054"
-tabla <- read_html(url) |> html_nodes("table")
-encuestas <- tabla[[5]] |> html_table(fill = TRUE)
-```
-
-101. Update the `encuestas` object with the following names `c("fecha", "permanecer", "salir", "no_decide", "spread", "muestra", "encuestadora", "tipo", "notas")`. Not all polls have a percentage value in the `permanecer` (remain) column. Filter the columns so that only values containing the `%` symbol are shown.
-
-
-
-<details>
-  <summary type="button">Solution</summary>
-
-``` r
-names(encuestas) <- c("fecha", "permanecer", "salir", "no_decide", "spread",
-                  "muestra", "encuestadora", "tipo", "notas")
-encuestas <- encuestas[str_detect(encuestas$permanecer, "%"), ]
-encuestas 
-
-# If we want to validate the number of surveys:
-nrow(encuestas)
-```
-</details>
-
-
-102. Store the values of the `permanecer` column to the `permanecer` vector and convert the values to the numerical value of the percentage. That is, values from 0 to 1 (0.5 instead of 50%).
-
-
-
-<details>
-  <summary type="button">Solution</summary>
-
-``` r
-permanecer <- encuestas$permanecer
-
-# Solution 1:
-porcentajes <- parse_number(permanecer)/100
-
-# Solution 1:
-temp <- str_replace(permanecer, "%", "")
-porcentajes <- as.numeric(temp)/100
-
-# Solution 2:
-temp <- str_remove(permanecer, "%")
-porcentajes <- as.numeric(temp)/100
-
-```
-</details>
-
-
-103. We find in the `no_decide` column the value of "N/A" when by percentages of `permanecer` plus `salir` sum 100%. Therefore, `no_decide` should be zero in those cases and not "N/A". Store the values of `no_decide` in the `no_decide` vector and transform the "N/A" values to 0%
-
-
-
-<details>
-  <summary type="button">Solution</summary>
-
-``` r
-no_decide <- encuestas$no_decide
-
-str_replace(no_decide, "N/A", "0%")
-
-```
-</details>
-
-
-104. Create the function `formato_porcentaje(cadena)` where you consolidate the transformations performed in the previous exercises. Then test the function with the vector: `c("13.5%", "N/A", "10%")`
-
-
-
-<details>
-  <summary type="button">Solution</summary>
-
-``` r
-
-formato_porcentaje <- function(cadena){
-  cadena |> 
-    str_replace("N/A", "0%") |> 
-    parse_number()/100
-}
-
-# Function test:
-prueba <- c("13.5%", "N/A", "10%")
-
-formato_porcentaje(prueba)
-
-```
-</details>
-
-
-105. Modify the columns of the `encuestas` table to change the necessary values from text to numbers.
-
-
-
-<details>
-  <summary type="button">Solution</summary>
-
-``` r
-encuestas <- encuestas |> 
-  mutate(across(c("permanecer", "salir", "no_decide", "spread"), ~formato_porcentaje(.))) |> 
-  mutate(across(c("muestra"), ~parse_number(.)))
-```
-</details>
-
-
-106. Import the following file containing covid cases reported by the Ministry of Health of Peru from the following route: "https://www.datosabiertos.gob.pe/sites/default/files/DATOSABIERTOS_SISCOVID.csv" into the `covidPeru` object. Convert the birth date column to date type and create a histogram with the ages of the infected.
-
-
-
-<details>
-  <summary type="button">Solution</summary>
-
-``` r
-url <- "https://www.datosabiertos.gob.pe/sites/default/files/DATOSABIERTOS_SISCOVID.csv"
-covidPeru <- read_csv(url)
-
-# We look for those that do not follow the ISO 8601 standard:
-index <- str_detect(covidPeru$FECHA_NACIMIENTO, "\\d{4}-\\d{2}-\\d{2}")
-covidPeru$FECHA_NACIMIENTO[!index]
-
-# We see dates in DD/MM/YYYY format
-# Reemplazamos a formato ISO 8601:
-covidPeru <- covidPeru |> 
-  mutate(across("FECHA_NACIMIENTO", 
-            ~str_replace(., "(\\d{2})/(\\d{2})/(\\d{4})", "\\3-\\2-\\1")
-            ))
-
-# We search again for those that do not follow ISO 8601 standard:
-index <- str_detect(covidPeru$FECHA_NACIMIENTO, "\\d{4}-\\d{2}-\\d{2}")
-covidPeru$FECHA_NACIMIENTO[!index]
-
-# Convert column to date:
-covidPeru <- covidPeru |> 
-  mutate(across("FECHA_NACIMIENTO", ~ymd(.)))
-
-# Now that it is date format we create histogram:
-covidPeru |> 
-  mutate(edad = year(now()) - year(FECHA_NACIMIENTO)) |> 
-  pull(edad) |> 
-  hist()
-```
-</details>
-
-
-
-## Text Mining: Word Cloud
-Text mining is the discovery by computer of new information, previously unknown, by automatically extracting information from different written resources. Written resources can be websites, books, chats, comments, emails, reviews, articles, etc. Thus, text mining, also known as text data mining, approximately equivalent to text analysis, is the process of deriving high-quality information from text.
-
-The first text mining technique we will learn will be the construction of word clouds. For this, we will need to install packages developed exclusively for text mining and some libraries for text treatment that we had already used like `readr` or `stringr`:
-
-
-``` r
-install.packages("syuzhet")
-install.packages("tm")
-install.packages("wordcloud")
-
-library(syuzhet) # Functions get_
-library(stringr) # Functions str_
-library(tm) # text mining functions
-library(wordcloud) # Create cloud map
-```
-
-### Importing data
-Word maps or word clouds allow us to quickly identify which are the words that are repeated most in a text. They are very useful when we have fields that come from a form, for example, filled out by customers and we want to know what is being talked about more. It also helps us to analyze content in some book, magazine, etc.
-
-We are going to analyze the work "Niebla" written by the author Miguel de Unamuno. We will obtain the text from the [Project Gutenberg](www.gutenberg.org)^[www.gutenberg.org] website, which gives us access to a library of around 60 thousand free books. We will import the text using the `get_text_as_string()` function from the `syuzhet` library to import all the text as a string. This function is very useful if we wish to import large files. Then, we will use the `get_sentences()` function, to create a vector of sentences from the initial text.
-
-
-``` r
-url <- "http://www.gutenberg.org/files/49836/49836-0.txt"
-
-work <- get_text_as_string(url)
-
-sentences <- get_sentences(work)
-
-```
-
-### Text cleaning
-As we have learned previously, we do not have to go straight to analyze. Instead, we have to clean our data. The first thing we will do is eliminate the first rows that do not correspond to the work.
-
-
-``` r
-# We eliminate first rows of notes, prologue, post-prologue
-total_lines <- length(sentences)
-start_line <- 115
-end_line <- total_lines - start_line
-
-clean_text <- sentences[start_line:end_line]
-```
-
-Next we will use a regex to detect special encoding characters, such as line breaks and tabulations. For this we will use the regex `[[:cntrl:]]`. Likewise, we will convert all words to lower case to facilitate comparisons between words. Finally, as we want to analyze the words, we eliminate all punctuation marks.
-
-
-``` r
-clean_text <- clean_text |> 
-  str_replace_all("[[:cntrl:]]", " ") |> 
-  str_to_lower() |> 
-  removePunctuation() |> 
-  str_replace_all("—", " ")
-
-```
-
-On the other hand, the "tm" library, from _text mining_, provides us with functions and vectors to clean our data. We already used the `removePunctuation()` function. However, we also have the `stopwords("spanish")` function that calls a vector with _empty words_, that is, those with little value for analysis, such as some prepositions and fillers. In addition, we will use the `removeWords()` function to remove all words found in our _empty words_ vector.
-
-
-``` r
-clean_text <- removeWords(clean_text, words = stopwords("spanish"))
-```
-
-Finally, we eliminate excessive empty spaces, some of them created by the previous transformations.
-
-
-``` r
-clean_text <- stripWhitespace(clean_text)
-```
-
-### Creating the Corpus
-To be able to create a word map we need to apply the `VectorSource()` function to convert each row to a document and the `Corpus()` function that will allow us to create these documents as a data collection.
-
-
-``` r
-collection <- clean_text |> 
-  VectorSource() |>
-  Corpus()
-```
-
-We are ready to create our word map. For this we will use the `wordcloud()` library and the function of the same name.
-
-
-``` r
-wordcloud(collection, 
-          min.freq = 5,
-          max.words = 80, 
-          random.order = FALSE, 
-          colors = brewer.pal(name = "Dark2", n = 8)
-          )
-```
-
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-667-1.png" alt="" width="80%" style="display: block; margin: auto;" />
-
-### 2nd Data Cleaning
-In text mining we will frequently obtain a result that still requires cleaning more data. For example, we still see words like pronouns of little interest for analysis. We will use the `removeWords()` function again, but this time with a custom vector of the words we wish to remove.
-
-
-``` r
-to_remove <- c("usted", "pues", "tal", "tan", "así", "dijo", 
-               "cómo", "sino", "entonces", "aunque", "don", "doña")
-
-clean_text <- removeWords(clean_text, words = to_remove)
-
-collection <- clean_text |> 
-  VectorSource() |>
-  Corpus()
-
-wordcloud(collection, 
-          min.freq = 5,
-          max.words = 80, 
-          random.order = FALSE, 
-          colors = brewer.pal(name = "Dark2", n = 8)
-          )
-```
-
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-668-1.png" alt="" width="80%" style="display: block; margin: auto;" />
-
-Augusto and Eugenia, as we can assume, are the protagonists of **Niebla** and much of the action in this book occurs in the "house" of one or another protagonist, discussing relationships between "man" and "woman".
-
-### Word frequency
-We already have a visual idea of the most used words. However, we could also know exactly how many times a certain word appeared. For this we have to convert our collection to a matrix. For this we use the functions together `TermDocumentMatrix()`, `as.matrix()` and `rowSums()` which will leave us with a vector with the word frequency.
-
-
-``` r
-words_vec <- collection |> 
-  TermDocumentMatrix() |> 
-  as.matrix() |> 
-  rowSums() |> 
-  sort(decreasing = TRUE)
-
-words_vec |> 
-  head(20)
-#> augusto eugenia   mujer    casa   ahora    bien  hombre     ser   mismo     vez 
-#>     361     200     183     126     120     119     119      98      98      90 
-#>    ojos    vida      sé   cosas     fué   madre después   pobre   luego     dos 
-#>      86      84      82      71      71      71      71      69      69      69
-```
-
-With this vector it is easy to convert it to data frame, given that we have the names and values, and visualize it.
-
-
-``` r
-frequencies <- data.frame(
-  palabra = names(words_vec),
-  frecuencia = words_vec
-)
-
-# Visualization of top 10 words:
-frequencies[1:10,] |> 
-  ggplot() +
-  aes(frecuencia, y = reorder(palabra, frecuencia)) +
-  geom_bar(stat = "identity", color = "white", fill = "blue") +
-  geom_text(aes(label = frecuencia, hjust = 1.5), color = "white") +
-  labs(
-    x = NULL,
-    y = "Most used words in the work"
-  )
-
-```
-
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-670-1.png" alt="" width="80%" style="display: block; margin: auto;" />
-
-## Text Mining: Sentiment Analysis
-When we analyze texts we are not only going to want to know which are the words that are most utilized in texts, whether these are comments left by our customers, complaint requests, etc. It is also very useful to know the tone of the messages. This technique is known as sentiment analysis, which can be done very easily with the library that we have already used `syuzhet`.
-
-And what better place to analyze message tones than on Twitter. For this, we are going to download a history of Tweets from some Spanish-speaking character from the page vicinitas.io. This page allows us to download an excel given a public account:
-
-https://www.vicinitas.io/free-tools/download-user-tweets.
-
-<div align="center">
-<img src="_assets/images/05-wrangling/download-user-tweets.png" alt="Vicinitas.io interface for downloading user tweets from Twitter" width="80%" style="display: block; margin: auto;" />
-</div>
-
-For our example, we will use tweets from the account of the lawyer [Rosa María Palacios](https://twitter.com/rmapalacios)^[https://twitter.com/rmapalacios]. For this example the excel has already been uploaded to Github. We will download that excel directly from there to our computer to a temporary file and then we will read it using `read_excel()`.
-
-
-``` r
-url <- "https://dparedesi.github.io/DS-con-R/rmapalacios_user_tweets.xlsx"
-
-# Create a temporary name & path for our file.
-temp_file <- tempfile()
-
-# Download the file to our temp
-download.file(url, temp_file)
-
-# Import the excel
-posts <- read_excel(temp_file)
-
-# Remove the temporary file
-file.remove(temp_file)
-#> [1] TRUE
-```
-
-We have created our object `posts`, which has in the column `Text` the different _tweets_, _retweets_ and _replies_, performed. Although we could do a data analysis using the other columns, we are going to focus on the content and tone of the Tweets. For this, we are going to eliminate Retweets and replies, keeping only Tweets.
-
-
-``` r
-tweets <- posts |> 
-  filter(`Tweet Type` == "Tweet") |> 
-  pull(Text)
-
-```
-
-With what was learned doing word maps, let's create a map with the content of the publications.
-
-
-``` r
-tweets_limpio <- tweets |> 
-  removePunctuation() |> 
-  str_to_lower() |> 
-  str_replace_all("[[:cntrl:]]", " ") |> 
-  removeWords(words = stopwords("spanish")) |> 
-  removeWords(words = c("usted", "pues", "tal", "tan",
-                                      "así", "dijo", "cómo", "sino", 
-                                      "entonces", "aunque", "que"))
-
-collection <- tweets_limpio |> 
-  VectorSource() |>
-  Corpus()
-
-wordcloud(collection, 
-          min.freq = 5,
-          max.words = 80, 
-          random.order = FALSE, 
-          colors = brewer.pal(name = "Dark2", n = 8)
-          )
-```
-
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-674-1.png" alt="" width="80%" style="display: block; margin: auto;" />
-
-She is a lawyer, which makes a lot of sense that she posts content of what can or cannot be done. We could be more rigorous and seek to achieve this combination by adding underscores if the pattern is detected, but for the moment we are going to focus on the tone.
-
-With our object `tweets_limpio` we can obtain what the tone is using the function `get_nrc_sentiment()`, which gives us a score for each row of the vector according to the [NRC Emotion Lexicon](https://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm)^[https://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm]. The NRC Emotion Lexicon is a list of words and their associations with eight basic emotions (anger, fear, anticipation, trust, surprise, sadness, joy, and disgust) and two sentiments (negative and positive).
-
-
-``` r
-
-result <- get_nrc_sentiment(tweets_limpio, language = "spanish")
-
-result |> 
-  head(10)
-#>    anger anticipation disgust fear joy sadness surprise trust negative positive
-#> 1      0            1       0    2   1       3        0     3        5        3
-#> 2      4            0       3    5   0       3        0     0        7        0
-#> 3      0            0       0    0   0       0        0     0        0        0
-#> 4      0            1       1    1   1       1        1     1        1        2
-#> 5      0            2       0    1   3       1        0     4        0        4
-#> 6      0            0       0    0   0       0        0     0        0        0
-#> 7      1            1       0    3   0       1        0     1        3        0
-#> 8      0            0       0    0   0       1        0     0        2        3
-#> 9      1            0       1    1   0       1        0     0        1        0
-#> 10     0            0       0    0   0       0        0     0        0        0
-```
-
-We can perform some transformations to this data frame, but first we are going to create a translation function. Given that, we still have to translate the headers.
-
-
-``` r
-translate_emotions <- function(cadena){
-  case_when(
-    cadena == "anger" ~ "Ira",
-    cadena == "anticipation" ~ "Anticipación",
-    cadena == "disgust" ~ "Aversión",
-    cadena == "fear" ~ "Miedo",
-    cadena == "joy" ~ "Alegría",
-    cadena == "sadness" ~ "Tristeza",
-    cadena == "surprise" ~ "Asombro",
-    cadena == "trust" ~ "Confianza",
-    cadena == "negative" ~ "Negativo",
-    cadena == "positive" ~ "Positivo",
-    TRUE ~ cadena
-  )
-}
-```
-
-Now, with our function ready, we can transform our object `result` to obtain the frequencies of each emotion and sentiment.
-
-
-``` r
-# Summary of emotions/sentiments
-sentiments <- result |> 
-  pivot_longer(cols = everything(), names_to = "sentimiento", values_to = "count") |> 
-  mutate(sentimiento = translate_emotions(sentimiento)) |> 
-  group_by(sentimiento) |> 
-  summarise(total = sum(count))
-
-sentiments
-#> # A tibble: 10 × 2
-#>    sentimiento  total
-#>    <chr>        <dbl>
-#>  1 Alegría        547
-#>  2 Anticipación   903
-#>  3 Asombro        421
-#>  4 Aversión       810
-#>  5 Confianza     1369
-#>  6 Ira            803
-#>  7 Miedo         1342
-#>  8 Negativo      2334
-#>  9 Positivo      2117
-#> 10 Tristeza      1177
-```
-
-We see that we have the 8 emotions plus the 2 sentiments. Let's get the indices of the positive and negative sentiments:
-
-
-``` r
-index <- sentiments$sentimiento %in% c("Positivo", "Negativo") 
-```
-
-This vector will serve us to be able to visualize separately the emotions and sentiments.
-
-
-``` r
-# Visualization of emotions
-sentiments[!index,] |> 
-  ggplot() +
-  aes(sentimiento, total) +
-  geom_bar(aes(fill = sentimiento), stat = "identity") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  xlab(NULL) +
-  ylab("Total") +
-  ggtitle("Emotions in the Tweets of Rosa María Palacios")
-
-# Visualization of whether they are positive or negative sentiments:
-sentiments[index,] |> 
-  ggplot() +
-  aes(sentimiento, total) +
-  geom_bar(aes(fill = sentimiento), stat = "identity") +
-  xlab(NULL) +
-  ylab("Total") +
-  ggtitle("Sentiments of the Tweets of Rosa María Palacios")
-
-```
-
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-679-1.png" alt="" width="80%" style="display: block; margin: auto;" /><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-679-2.png" alt="" width="80%" style="display: block; margin: auto;" />
-
-This technique is very useful to us as a starting point for future analyses on the tonality of some determined text.
-
-
-
-
-## Exercises
-
-For these exercises we will use more books from Project Gutenberg. However, we will extract the text with an R library, the `gutenbergr` library.
-
-
-``` r
-install.packages("gutenbergr")
-
-library(gutenbergr)
-
-# Tibble: list of books in Gutenberg.org
-gutenberg_metadata
-
-# List of books in Spanish
-gutenberg_works(languages = "es")
-```
-
-
-107. The `gutenberg_download(id)` function downloads the text in a tibble type object with one row for each line. Download the book "El ingenioso hidalgo don Quijote de la Mancha" to the `descarga` object. Store the `text` column in the `obra` object and report the first 50 lines of the object.
-
-
-
-<details>
-  <summary type="button">Solution</summary>
-
-``` r
-descarga <- gutenberg_download(2000)
-
-obra <- descarga$text
-
-obra[1:50]
-```
-</details>
-
-
-108. Due to the number of lines in this work, take a random sample of 1,000 lines and store it in the `muestra` object. Remove words, punctuation marks, line breaks and other elements learned during this chapter. Store this transformation in the `muestra_limpia` object.
-
-
-
-<details>
-  <summary type="button">Solution</summary>
-
-``` r
-
-muestra <- sample(obra, 1000)
-
-muestra_limpia <- muestra |> 
-  str_replace("\xe1", "a") |> # We remove accents
-  str_replace("\xe9", "e") |> # We remove accents
-  str_replace("\xed", "i") |> # We remove accents
-  str_replace("\xf3", "o") |> # We remove accents
-  removePunctuation() |> 
-  str_to_lower() |> 
-  str_replace_all("[[:cntrl:]]", " ") |> 
-  removeWords(words = stopwords("spanish")) |> 
-  removeWords(words = c("usted", "pues", "tal", "tan",
-                                      "así", "dijo", "cómo", "sino", 
-                                      "entonces", "aunque", "que"))
-
-```
-</details>
-
-
-109. Create a word map from the `muestra_limpia` object.
-
-
-
-<details>
-  <summary type="button">Solution</summary>
-
-``` r
-
-coleccion <- muestra_limpia |> 
-  VectorSource() |>
-  Corpus()
-
-wordcloud(coleccion, 
-          min.freq = 5,
-          max.words = 80, 
-          random.order = FALSE, 
-          colors = brewer.pal(name = "Dark2", n = 8)
-          )
-
-```
-</details>
-
-
-110. Perform a sentiment analysis of the sample obtained.
-
-
-
-<details>
-  <summary type="button">Solution</summary>
-
-``` r
-resultado <- get_nrc_sentiment(muestra_limpia, language = "spanish")
-
-sentimientos <- resultado |> 
-  pivot_longer(cols = everything(), names_to = "sentimiento", values_to = "cantidad") |> 
-  mutate(sentimiento = trad_emociones(sentimiento)) |> 
-  group_by(sentimiento) |> 
-  summarise(total = sum(cantidad))
-
-index <- sentimientos$sentimiento %in% c("Positivo", "Negativo") 
-
-# Visualization of emotions
-sentimientos[!index,] |> 
-  ggplot() +
-  aes(sentimiento, total) +
-  geom_bar(aes(fill = sentimiento), stat = "identity") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  xlab(NULL) +
-  ylab("Total") +
-  ggtitle("Emociones en El Quijote")
-
-# Visualization of whether they are positive or negative sentiments:
-sentimientos[index,] |> 
-  ggplot() +
-  aes(sentimiento, total) +
-  geom_bar(aes(fill = sentimiento), stat = "identity") +
-  xlab(NULL) +
-  ylab("Total") +
-  ggtitle("Sentimientos en El Quijote")
-
-```
-</details>
-
-
-
-<!--chapter:end:05-wrangling/text-mining.Rmd-->
-
-
 # (PART) Machine learning {-}
 
 # Introduction {-}
-We have seen so far how to work with data. Performing analysis of what has happened allows us to take a determined action to change the course of a business. However, we can also use this data to predict.
 
-Predictive analysis is a technique that every Data Scientist must master, and _Machine learning_ provides us with robust algorithms to be able to make predictions.
+We have seen so far how to work with data: importing, cleaning, and visualizing it. Performing analysis of what has happened allows us to take a determined action to change the course of a business. However, the true power of data science lies in using this data to **predict** the future.
 
-_Machine learning_ is the study of computer algorithms that improve automatically through experience. Applications range from data mining programs that discover general rules in large datasets, to information filtering systems that automatically learn user interests [@mitchell1997]. It is seen as a subset of artificial intelligence. _Machine learning_ algorithms create a mathematical model based on sample data, known as "training data", to make predictions or decisions without being explicitly programmed to do so.
+Predictive analysis is a technique that every Data Scientist must master, and _Machine learning_ provides us with robust algorithms to make these predictions.
 
-A good _data scientist_ knows how to build prediction algorithms using _machine learning_. In the following chapters, we will see techniques both for discrete variables and for when we work with continuous variables from the two main machine learning approaches: supervised learning and unsupervised learning.
+_Machine learning_ is the study of computer algorithms that improve automatically through experience. It is a subset of artificial intelligence where algorithms create mathematical models based on sample data, known as "training data", to make predictions or decisions without being explicitly programmed to do so. Applications range from recommendation engines (like Netflix or Spotify) to fraud detection and self-driving cars [@mitchell1997].
+
+A good _data scientist_ knows how to build prediction algorithms using _machine learning_. In this book, we will focus on the two main approaches:
+
+We will explore two primary approaches to machine learning. **Supervised Learning** involves training models on labeled data where we know the correct answer, allowing us to predict outcomes for new, unseen data—either as numbers (regression) or categories (classification). In contrast, **Unsupervised Learning** deals with unlabeled data, where the goal is to discover hidden patterns, structures, or groupings (clustering) without a pre-defined answer key.
+
+<img src="_assets/images/06-machine-learning/ML.png" alt="Machine learning diagram showing supervised vs unsupervised learning branches" width="80%" style="display: block; margin: auto;" />
+
+Keep in mind that there are also other approaches, such as semi-supervised learning or **reinforcement learning** where the algorithm learns from a real or synthetic environment. These approaches will not be covered in this book, which focuses on the foundational techniques for starting out as a _data scientist_.
+
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+In this chapter, we will learn to distinguish between **supervised** and **unsupervised** learning approaches. We will implement core algorithms such as **k-Nearest Neighbors (kNN)**, **Logistic Regression**, and **Random Forest** for classification tasks, and build **regression models** to predict continuous variables. Additionally, we will evaluate model performance using essential metrics like **confusion matrices** and **ROC curves**, apply **clustering techniques** to segment data, and select the optimal model using the modern `tidymodels` framework.
+
+## Chapter Structure
+
+We will cover the two main approaches to machine learning:
+
+Our journey covers these two fundamental pillars. We begin with **Supervised Learning**, focusing on models that learn from historical data to predict future outcomes, covering both classification and regression problems. We then move to **Unsupervised Learning**, techniques designed to find structure in unlabeled data, such as grouping similar customers or reducing complex datasets to their essential features.
 
 <img src="_assets/images/06-machine-learning/ML.png" alt="Machine learning diagram showing supervised vs unsupervised learning branches" width="80%" style="display: block; margin: auto;" />
 
@@ -10723,22 +8835,32 @@ Keep in mind that there are also other approaches, such as semi-supervised learn
 
 
 # Supervised Learning
-To understand supervised learning intuitively, we will use a daily example. We have all been to the doctor and at some point told them that we have a sore throat, headache, and fever. They will ask us a few more questions and then tell us what illness we might have and what treatment to follow.
 
-Intuitively, we know that the doctor had to **train** initially from classes and books showing past cases, and study which symptoms are signs of each disease. Then, they started to **test** what they learned on a group of patients during their internship. Finally, when they were already trained, they had the license to be able to **apply** this learning to patients in their office or hospital.
+To understand supervised learning intuitively, we can compare it to how humans learn from examples. 
 
-This is an example of **supervised learning** because the **training** was performed from known data or _inputs_ which are labeled (sore throat, headache, fever) with the purpose of obtaining a result or _output_ that was also known and labeled (do they have the flu or not?). When a doctor **tests** what they learned, the patient inputs are known and also the output given by a more experienced doctor who can say how effective their training is. When the doctor goes out to see patients, they will only have _labeled inputs_ with the purpose of **predicting** a _labeled output_.
+Consider a doctor diagnosing patients. The doctor has **trained** for years using textbooks and case studies where the symptoms (inputs) and the correct diagnosis (output) were known. During their residency, they **test** their knowledge under the supervision of experienced mentors. Finally, once licensed, they **apply** this knowledge to diagnose new patients where the outcome is unknown.
 
-This is the logic that has been taken to computational algorithms. We can see it on Facebook, which collects a series of inputs, such as our likes, shares, etc., to predict what we might want to consume and shows it to us as a recommendation. And we will also see it in our work environment when we have inputs from our clients, such as consumption, purchasing power, place where they live, etc., to predict which of our products we predict they are more prone to buy and thus call them to offer that product.
+This is an example of **supervised learning**.
+This process mirrors **supervised learning**. First, the model undergoes a **Training** phase, learning from labeled data (like symptoms and their corresponding diagnoses). Next, during **Testing**, it is evaluated on new, unseen cases where the outcome is already known to verify its accuracy. finally, the model enters the **Prediction** phase, where it applies its learned knowledge to real-world data to generate diagnoses (predictions) for unknown cases.
+
+In machine learning terms:
+In machine learning terms, we have **Inputs** (features or predictors) which are the data points used to make a prediction, and **Outputs** (target or response), which are the values we aim to predict. The ultimate **Goal** is to learn the mathematical relationship between these inputs and outputs to accurately forecast outcomes for future data.
+
+> [!TIP]
+> **Key Terminology**
+> **Key Terminology**
+> In supervised learning, the **Input** (or Feature/Independent Variable) refers to the data used to make a prediction, such as patient symptoms or house characteristics. The **Output** (or Target/Dependent Variable) is the value we want to predict, like a medical diagnosis or a house price. We rely on **Labels**, which are the known "answers" in our training data, to teach the model.
+
+Common applications include:
+Common applications of these techniques include **Spam Detection** (classifying emails as "Spam" or "Not Spam"), **Credit Scoring** (predicting the likelihood of a customer repaying a loan), and **House Price Prediction** (estimating a property's value based on its location and size).
 
 ## Classification and Regression
-There are multiple supervised learning algorithms, but we will differentiate them into two according to the type of variable we handle.
 
-When the variable is discrete, we will call them **classification**. The examples above are proof of this. We have classified into two classes (flu or not) or several classes (product "x" to recommend).
+We divide supervised learning into two main types based on the target variable:
 
-When the variable is continuous, we will call them **regression**. Predicting house prices given the characteristics of the house such as size, price, etc. is one of the common examples of regression.
+We divide supervised learning into two main types based on the nature of the target variable. **Classification** is used when the target is a discrete category, such as determining if an email is spam (Yes/No) or predicting which product a customer will buy (A, B, or C). **Regression**, on the other hand, is used when the target is a continuous number, like estimating the price of a house or forecasting the number of units to be sold next month.
 
-In the following sections, we will learn some algorithms indicating whether they are classification or regression.
+In the following sections, we will learn algorithms for both tasks.
 
 ## kNN: k-Nearest Neighbors
 Let's start with a simple but very useful **classification** algorithm, the k-Nearest Neighbors algorithm (_kNN_).
@@ -10746,13 +8868,17 @@ Let's start with a simple but very useful **classification** algorithm, the k-Ne
 ### Two variables as input
 Let's start by understanding it visually. Imagine that we have two variables as _input_ and as _output_ it gives us whether it is Red Class or Blue Class. This data is our training data.
 
+> [!NOTE]
+> **When to use kNN?**
+> kNN is excellent for small datasets with few dimensions (variables) because it is simple and explains non-linear patterns well. However, it becomes very slow and less accurate as the dataset grows in size or number of variables (the "curse of dimensionality").
+
 <img src="_assets/images/06-machine-learning/kNN-train.png" alt="Training data points on a 2D plane with red and blue class labels" width="80%" style="display: block; margin: auto;" />
 
 Now that we have our training data, we will start using the test data. As we want to predict the class, the _output_, we will see how one of these data points would look visually and paint it yellow. Next, we calculate the distance between this point and the other data points.
 
 <img src="_assets/images/06-machine-learning/kNN-test.png" alt="Test point shown in yellow with distance lines to nearby training data points" width="80%" style="display: block; margin: auto;" />
 
-We have traced only some distances, but we could do it with all of them. For this example, we will take the k = 3 nearest neighbors.
+We have traced only some distances, but we could do it with all of them. For this example, we will take the **k = 3** nearest neighbors. Why 3? It is common to pick an odd number to avoid ties (where the vote is 50/50).
 
 <img src="_assets/images/06-machine-learning/kNN-classify.png" alt="k-NN classification showing 3 nearest neighbors (2 red, 1 blue), classifying test point as red" width="80%" style="display: block; margin: auto;" />
 
@@ -10892,21 +9018,21 @@ result_df |>
   geom_line()
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-702-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-581-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
-As we can see, for this case, starting from a certain number of nearest neighbors, the success rate of our algorithm begins to reduce. It will depend on each case to choose the best "k" for our model.
+As we can see, the accuracy (precision) changes with `k`. This illustrates a fundamental concept in Machine Learning:
+ 
+-   **Overfitting (Low k):** When `k` is too low (e.g., `k=1`), the model pays excessive attention to individual data points, including noise. It effectively "memorizes" the training data but fails to generalize to new, unseen examples.
+-   **Underfitting (High k):** Conversely, if `k` is too high (e.g., `k=50`), the model becomes overly simple, averaging out the signal and missing the distinct patterns that differentiate the classes.
+ 
+Finding the sweet spot between these two extremes is the goal of **Hyperparameter Tuning**. It will depend on each case to choose the best "k" for our model to balance this trade-off (often called the **Bias-Variance Tradeoff**).
 
 We have thus built our first machine learning model.
 
 ## tidymodels Framework
 Now that we have created our first machine learning model, we have seen ourselves with many lines of code. For example, to split the sample into training and test, to calculate the optimal "k", etc. To make the work easier, we will use the `tidymodels` framework. [tidymodels](https://www.tidymodels.org/)^[https://www.tidymodels.org/] is a collection of packages for modeling and machine learning using tidyverse principles. It provides a unified, modern interface for:
 
-- **rsample**: Data splitting and resampling
-- **recipes**: Feature engineering and preprocessing  
-- **parsnip**: Unified model specification
-- **tune**: Hyperparameter tuning
-- **yardstick**: Model evaluation metrics
-- **workflows**: Bundling recipes and models together
+It provides a unified, modern interface via a suite of specialized packages: **rsample** for data splitting and resampling, **recipes** for feature engineering and preprocessing, **parsnip** for specifying models, **tune** for hyperparameter optimization, **yardstick** for metrics and model evaluation, and **workflows** to bundle everything together.
 
 
 ``` r
@@ -10916,14 +9042,14 @@ install.packages('tidymodels')
 
 ``` r
 library(tidymodels)
-#> ── Attaching packages ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidymodels 1.4.1 ──
+#> ── Attaching packages ─────────── tidymodels 1.4.1 ──
 #> ✔ broom        1.0.11     ✔ tailor       0.1.0 
 #> ✔ dials        1.4.2      ✔ tune         2.0.1 
 #> ✔ infer        1.1.0      ✔ workflows    1.3.0 
 #> ✔ parsnip      1.4.0      ✔ workflowsets 1.1.1 
 #> ✔ recipes      1.3.1      ✔ yardstick    1.3.2 
 #> ✔ rsample      1.3.1
-#> ── Conflicts ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidymodels_conflicts() ──
+#> ── Conflicts ────────────── tidymodels_conflicts() ──
 #> ✖ NLP::annotate()         masks ggplot2::annotate()
 #> ✖ scales::discard()       masks purrr::discard()
 #> ✖ Matrix::expand()        masks tidyr::expand()
@@ -10939,7 +9065,7 @@ library(tidymodels)
 #> ✖ recipes::update()       masks Matrix::update(), stats::update()
 ```
 
-We are going to do another example with k-nearest neighbors, but this time using the functions of the Caret library. The data for this example will be obtained from the `ISLR` library, which contains the daily percentage returns for the S&P 500 stock index between 2001 and 2005. This data frame has 8 columns that we will use as _input_ and the last column that has two classes (whether the index goes up or down) that we will use as _output_ (See `?Smarket`).
+We are going to do another example with k-nearest neighbors, but this time using the functions of the **tidymodels** framework. The data for this example will be obtained from the `ISLR` library, which contains the daily percentage returns for the S&P 500 stock index between 2001 and 2005. This data frame has 8 columns that we will use as _input_ and the last column that has two classes (whether the index goes up or down) that we will use as _output_ (See `?Smarket`).
 
 
 ``` r
@@ -10968,7 +9094,7 @@ Smarket |>
 # We make some translations for ease of analysis
 Smarket <- Smarket |> 
   rename(Direction = Direction) |> 
-  mutate(Direction = ifelse(Direction == "Up", "Sube", "Baja")) |> 
+  mutate(Direction = ifelse(Direction == "Up", "Up", "Down")) |> 
   mutate(across(c("Direction"), ~as.factor(.)))
 ```
 
@@ -10994,9 +9120,11 @@ This function makes sampling data much simpler and returns a split object that w
 
 ### Training our prediction algorithm
 In tidymodels, we build models in a structured way using three key components:
-1. **Model specification** (`parsnip`): Define the type of model and its engine
-2. **Recipe** (`recipes`): Define preprocessing steps
-3. **Workflow** (`workflows`): Bundle recipe and model together
+In `tidymodels`, we build models in a structured way using three key components: **Model Specification** (via `parsnip`) to define the algorithm, **Recipes** (via `recipes`) to define preprocessing steps, and **Workflows** (via `workflows`) to bundle the model and recipe together into a single execution unit.
+
+Let's break down these components:
+
+Let's break down these components. The **Model Specification (`parsnip`)** tells R *what* kind of model we want (e.g., "nearest neighbor") and *which* computational engine to use (e.g., "kknn"), decoupling intent from implementation. The **Recipe (`recipes`)** acts as a blueprint for data processing, handling tasks like normalization (scaling variables) and converting categorical variables. Finally, the **Workflow (`workflows`)** container holds the model and recipe together, ensuring that the exact same preprocessing steps are applied automatically when predicting on new data.
 
 Let's start by specifying our k-nearest neighbors model. We use `tune()` as a placeholder for the `neighbors` parameter to indicate we want to find the optimal value.
 
@@ -11027,7 +9155,7 @@ knn_recipe <- recipe(Direction ~ ., data = SP_train) |>
 
 knn_recipe
 #> 
-#> ── Recipe ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ── Recipe ───────────────────────────────────────────
 #> 
 #> ── Inputs
 #> Number of variables by role
@@ -11035,7 +9163,8 @@ knn_recipe
 #> predictor: 8
 #> 
 #> ── Operations
-#> • Centering and scaling for: all_numeric_predictors()
+#> • Centering and scaling for:
+#>   all_numeric_predictors()
 ```
 
 ### Creating a Workflow
@@ -11049,16 +9178,16 @@ knn_workflow <- workflow() |>
   add_model(knn_spec)
 
 knn_workflow
-#> ══ Workflow ═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+#> ══ Workflow ═════════════════════════════════════════
 #> Preprocessor: Recipe
 #> Model: nearest_neighbor()
 #> 
-#> ── Preprocessor ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ── Preprocessor ─────────────────────────────────────
 #> 1 Recipe Step
 #> 
 #> • step_normalize()
 #> 
-#> ── Model ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ── Model ────────────────────────────────────────────
 #> K-Nearest Neighbor Model Specification (classification)
 #> 
 #> Main Arguments:
@@ -11107,7 +9236,7 @@ We can visualize the tuning results using `autoplot()`:
 autoplot(knn_tune_results)
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-712-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-591-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can see the accuracy for each value of "k". The `show_best()` function shows us the top performing values:
 
@@ -11144,16 +9273,16 @@ final_knn_workflow <- finalize_workflow(knn_workflow, best_k)
 SP_knn_trained <- fit(final_knn_workflow, data = SP_train)
 
 SP_knn_trained
-#> ══ Workflow [trained] ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+#> ══ Workflow [trained] ═══════════════════════════════
 #> Preprocessor: Recipe
 #> Model: nearest_neighbor()
 #> 
-#> ── Preprocessor ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ── Preprocessor ─────────────────────────────────────
 #> 1 Recipe Step
 #> 
 #> • step_normalize()
 #> 
-#> ── Model ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ── Model ────────────────────────────────────────────
 #> 
 #> Call:
 #> kknn::train.kknn(formula = ..y ~ ., data = data, ks = min_rows(44L,     data, 5))
@@ -11176,24 +9305,24 @@ SP_predictions <- augment(SP_knn_trained, new_data = SP_test)
 
 # View predictions
 SP_predictions |> 
-  select(Direction, .pred_class, .pred_Baja, .pred_Sube) |>
+  select(Direction, .pred_class, .pred_Down, .pred_Up) |>
   head(10)
 #> # A tibble: 10 × 4
-#>    Direction .pred_class .pred_Baja .pred_Sube
-#>    <fct>     <fct>            <dbl>      <dbl>
-#>  1 Sube      Sube            0.243      0.757 
-#>  2 Sube      Sube            0.404      0.596 
-#>  3 Baja      Baja            0.611      0.389 
-#>  4 Baja      Baja            0.977      0.0231
-#>  5 Sube      Sube            0.230      0.770 
-#>  6 Baja      Sube            0.472      0.528 
-#>  7 Baja      Baja            0.955      0.0447
-#>  8 Sube      Sube            0.0361     0.964 
-#>  9 Baja      Baja            0.522      0.478 
-#> 10 Baja      Baja            1          0
+#>    Direction .pred_class .pred_Down .pred_Up
+#>    <fct>     <fct>            <dbl>    <dbl>
+#>  1 Up        Up              0.243    0.757 
+#>  2 Up        Up              0.404    0.596 
+#>  3 Down      Down            0.611    0.389 
+#>  4 Down      Down            0.977    0.0231
+#>  5 Up        Up              0.230    0.770 
+#>  6 Down      Up              0.472    0.528 
+#>  7 Down      Down            0.955    0.0447
+#>  8 Up        Up              0.0361   0.964 
+#>  9 Down      Down            0.522    0.478 
+#> 10 Down      Down            1        0
 ```
 
-The `augment()` function adds three columns: `.pred_class` (the predicted class), and probability columns for each class (`.pred_Baja` and `.pred_Sube`). This makes it very easy to compare predictions with actual values.
+The `augment()` function adds three columns: `.pred_class` (the predicted class), and probability columns for each class (`.pred_Down` and `.pred_Up`). This makes it very easy to compare predictions with actual values.
 
 As we can see, for each test value the model calculates the estimated probability for each class. The algorithm assigns the class with the highest probability.
 
@@ -11206,9 +9335,9 @@ To evaluate our model, we use the `yardstick` package. The `conf_mat()` function
 SP_predictions |>
   conf_mat(truth = Direction, estimate = .pred_class)
 #>           Truth
-#> Prediction Baja Sube
-#>       Baja  132    4
-#>       Sube   19  158
+#> Prediction Down  Up
+#>       Down  132   4
+#>       Up     19 158
 
 # Calculate accuracy
 SP_predictions |>
@@ -11242,25 +9371,25 @@ Binary classifications, when the _outcome_ can take only two classes, yield this
 ### Accuracy
 We have already been using this term in our examples. The accuracy of the model can be calculated from the confusion matrix:
 
-$Accuracy=\frac{VP+VN}{VP+VN+FP+FN}$
+$Accuracy=\frac{TP+TN}{TP+TN+FP+FN}$
 
 The _accuracy_ of the model is the proportion of times the algorithm predicted correctly, regarding the total data evaluated.
 
 ### Sensitivity
 Sensitivity (also called true positive rate, recall, or probability of detection in some fields) measures the proportion of real positives that are correctly identified as such (for example, the percentage of sick people who are correctly identified as having the condition).
 
-$Sensitivity=\frac{VP}{VP+FN}$
+$Sensitivity=\frac{TP}{TP+FN}$
 
 ### Specificity
 Specificity (also called true negative rate) measures the proportion of real negatives that are correctly identified as such (for example, the percentage of healthy people who are correctly identified as not having the condition).
 
-$Specificity=\frac{VN}{VN+FP}$
+$Specificity=\frac{TN}{TN+FP}$
 
 
 
 ## Exercises
 
-111. Using the tidymodels library, partition the `iris` data frame in such a way as to have 70% training data and 30% test data.
+97. Using the tidymodels library, partition the `iris` data frame in such a way as to have 70% training data and 30% test data.
 
 
 
@@ -11276,7 +9405,7 @@ iris_test <- testing(iris_split)
 ```
 </details>
 
-112. Using tidymodels and the training data obtained in the previous exercise, create a k-nearest neighbor model with tuning. Plot the result.
+98. Using tidymodels and the training data obtained in the previous exercise, create a k-nearest neighbor model with tuning. Plot the result.
 
 
 
@@ -11307,7 +9436,7 @@ autoplot(iris_tune)
 ```
 </details>
 
-113. Use the model created in the previous exercise to predict the _outputs_ of the `test` object. Report the confusion matrix.
+99. Use the model created in the previous exercise to predict the _outputs_ of the `test` object. Report the confusion matrix.
 
 
 
@@ -11351,7 +9480,7 @@ heights_df <- GaltonFamilies |>
   slice_sample(n = 1) |> # random sample of 1 son per family
   ungroup() |>
   select(father, childHeight) |>
-  rename(son = childHeight, father = father) |> 
+  rename(son = childHeight) |> 
   mutate(father = father/39.37) |> # From inches to meters
   mutate(son = son/39.37) # From inches to meters
 ```
@@ -11367,7 +9496,7 @@ heights_df |>
   geom_abline(lty = 2)
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-726-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-605-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 As we can see, there is a positive correlation, such that the taller the father, the son grows to be taller as an adult. This line, however, is nothing more than a default line. The challenge lies in finding which line minimizes the distance of the points to this line, known as error minimization.
 
@@ -11421,6 +9550,9 @@ collect_metrics(lm_results)
 
 We see as main results the RMSE, which stands for root mean square error, and is the value that linear regression seeks to minimize. In addition, we have the R squared or $R^2$, which is the coefficient of determination which determines the quality of the model to replicate the results. The higher and closer to 1, the better the quality of the model.
 
+> [!WARNING]
+> **Correlation implies association, not causation**: A high $R^2$ or strong correlation means the variables move together, but it does **not** prove that one causes the other. There could be confounding variables at play.
+
 Now let's fit the final model and make predictions:
 
 
@@ -11439,6 +9571,9 @@ heights_predictions |>
 #>   <chr>   <chr>          <dbl>
 #> 1 rmse    standard      0.0642
 ```
+
+> [!TIP]
+> **Model Diagnostics**: In a rigorous analysis, you should also inspect the **residuals** (the difference between predicted and actual values). The `augment()` function includes a `.resid` column for this purpose. Plotting residuals helps verify that your model isn't missing non-linear patterns.
 
 If we wish we can also report the coefficients of the equation and visualize them:
 
@@ -11467,7 +9602,7 @@ heights_df |>
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-730-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-609-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 ## Multiple Linear Regression
 Now that we know linear regression we can execute a multiple linear regression model, which involves more than 1 variable as _input_. To do this, we will use the `diamonds` dataset containing the prices and other attributes of almost 54,000 diamonds.
@@ -11544,12 +9679,6 @@ Let's use our model to predict the prices of the test data.
 
 ``` r
 # Fit final model
-library(discrim)
-#> 
-#> Attaching package: 'discrim'
-#> The following object is masked from 'package:dials':
-#> 
-#>     smoothness
 diamonds_fit <- fit(diamonds_workflow, data = diamonds_train)
 
 # Extract coefficients
@@ -11591,16 +9720,16 @@ To do this let's recall the results of the model we created using the k-nearest 
 
 ``` r
 SP_knn_trained
-#> ══ Workflow [trained] ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+#> ══ Workflow [trained] ═══════════════════════════════
 #> Preprocessor: Recipe
 #> Model: nearest_neighbor()
 #> 
-#> ── Preprocessor ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ── Preprocessor ─────────────────────────────────────
 #> 1 Recipe Step
 #> 
 #> • step_normalize()
 #> 
-#> ── Model ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ── Model ────────────────────────────────────────────
 #> 
 #> Call:
 #> kknn::train.kknn(formula = ..y ~ ., data = data, ks = min_rows(44L,     data, 5))
@@ -11655,7 +9784,7 @@ show_best(SP2_knn_res, metric = "roc_auc")
 #> 4        11 roc_auc binary     0.957     5 0.00717 pre0_mod10_post0
 #> 5        10 roc_auc binary     0.955     5 0.00739 pre0_mod09_post0
 ```
-```
+
 We see that now ROC was used to select the most optimal model. The closer the ROC value is to 1 the better our model will be. With this model we can predict values from the test data.
 
 
@@ -11674,9 +9803,9 @@ SP2_predictions <- augment(SP2_knn_fit, new_data = SP_test)
 SP2_predictions |>
   conf_mat(truth = Direction, estimate = .pred_class)
 #>           Truth
-#> Prediction Baja Sube
-#>       Baja  135   15
-#>       Sube   16  147
+#> Prediction Down  Up
+#>       Down  135  15
+#>       Up     16 147
 
 SP2_predictions |>
   accuracy(truth = Direction, estimate = .pred_class)
@@ -11689,7 +9818,7 @@ SP2_predictions |>
 We see how our accuracy (_accuracy_) has increased from 91.99% to **93.27%**. This metric is highly recommended to improve the accuracy of our model, in addition to allowing us to more easily use it as a comparator between different models we can create.
 
 ## Selection of the Most Optimal Model
-We have learned how to create some machine learning models. As we must have noticed, with **caret** we follow the same pattern for partitioning, training, and prediction. The variation lies in how to pre-process the data and the parameter tuning. We could thus create multiple models, but finally we have to verify one which will serve us to make our predictions.
+We have learned how to create some machine learning models. As we must have noticed, with **tidymodels** we follow the same pattern for partitioning, training, and prediction. The variation lies in how to pre-process the data and the parameter tuning. We could thus create multiple models, but finally we have to verify one which will serve us to make our predictions.
 
 In this section, we are going to compare different predictive models accepting their default values and choose the best one using the tools presented in previous sections.
 
@@ -11731,17 +9860,15 @@ str(mlc_churn)
 # We translate outputs
 mlc_churn <- mlc_churn |> 
   rename(churn_status = churn) |> 
-  mutate(churn_status = ifelse(churn_status == "yes", "Sí", "No")) |> 
+  mutate(churn_status = ifelse(churn_status == "yes", "Yes", "No")) |> 
   mutate(churn_status = as.factor(churn_status))
   
 # Proportion of "Yes" and "No"s:
 prop.table(table(mlc_churn$churn_status))
 #> 
-#>     No     Sí 
+#>     No    Yes 
 #> 0.8586 0.1414
 ```
-
-We create now sample of training and test, 70% training.
 
 We create now sample of training and test, 70% training.
 
@@ -11962,19 +10089,26 @@ show_best(svm_res, metric = "roc_auc")
 ```
 
 ### Naive Bayes Model
-Naïve Bayes (NB), Naive Bayes is one of the simplest, yet powerful, algorithms for classification based on Bayes' Theorem.
+Naïve Bayes (NB) is one of the simplest, yet powerful, algorithms for classification. It is based on **Bayes' Theorem**, which describes the probability of an event, based on prior knowledge of conditions that might be related to the event. For example, if cancer is related to age, then, using Bayes' theorem, a person's age can be used to more accurately assess the probability that they have cancer.
 
 To use this model we will use the `naivebayes` library within tidymodels.
 
 
 ``` r
-install.packages("naivebayes")
-library(naivebayes) # Required for the engine
+install.packages(c("naivebayes", "discrim"))
+library(naivebayes) 
+library(discrim) # Required for parsnip integration
 ```
 
 
 ``` r
 # Spec
+library(discrim)
+#> 
+#> Attaching package: 'discrim'
+#> The following object is masked from 'package:dials':
+#> 
+#>     smoothness
 nb_spec <- naive_Bayes() |>
   set_engine("naivebayes") |>
   set_mode("classification")
@@ -12026,7 +10160,7 @@ all_metrics |>
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-755-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-634-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 For this case the random forest model (_RF_) seems to be the best. This is not surprising given that this algorithm is related to its ability to cope with different input types and require little preprocessing. We can make our models better by pre-processing data and changing the ad-hoc parameters of each model.
 
@@ -12051,9 +10185,9 @@ churn_predictions <- augment(optimal_model, new_data = churn_test)
 churn_predictions |>
   conf_mat(truth = churn_status, estimate = .pred_class)
 #>           Truth
-#> Prediction   No   Sí
-#>         No 1285   66
-#>         Sí    3  147
+#> Prediction   No  Yes
+#>        No  1285   66
+#>        Yes    3  147
 
 churn_predictions |>
   accuracy(truth = churn_status, estimate = .pred_class)
@@ -12069,7 +10203,7 @@ Thus, we have found how to create a customer churn prediction model given 19 pre
 
 ## Exercises
 
-114. The `attrition` data frame from the `modeldata` library shows data from a list of almost 1,500 employees of a company. Create a copy of this data frame and store it in the `trabajadores` object. Then, build an RF model with this data to predict the `Attrition` field (job desertion). Where the class "Yes" means they resigned and "No" means they still work.
+100. The `attrition` data frame from the `modeldata` library shows data from a list of almost 1,500 employees of a company. Create a copy of this data frame and store it in the `workers` object. Then, build an RF model with this data to predict the `Attrition` field (job desertion). Where the class "Yes" means they resigned and "No" means they still work.
 
 
 
@@ -12122,7 +10256,7 @@ collect_metrics(workers_rf_res)
 </details>
 
 
-115. Using the training data from the previous exercise, build the GLM model using tidymodels.
+101. Using the training data from the previous exercise, build the GLM model using tidymodels.
 
 
 
@@ -12153,7 +10287,7 @@ show_best(workers_glm_res, metric = "roc_auc")
 </details>
 
 
-116. Using the training data, build the SVM model.
+102. Using the training data, build the SVM model.
 
 
 
@@ -12184,7 +10318,7 @@ show_best(workers_svm_res, metric = "roc_auc")
 ```
 </details>
 
-117. From the created models, which is the most optimal?
+103. From the created models, which is the most optimal?
 
 
 
@@ -12192,19 +10326,26 @@ show_best(workers_svm_res, metric = "roc_auc")
   <summary type="button">Solution</summary>
 
 ``` r
-# We generate model list
-lista_de_modelos <- list(rf = trabajadores_modelo_rf,
-                         glmmet = workers_model_glm,
-                         svm = workers_model_svm)
+# Collect best metrics from each model
+rf_best <- show_best(workers_rf_res, metric = "roc_auc", n = 1)
+glm_best <- show_best(workers_glm_res, metric = "roc_auc", n = 1)
+svm_best <- show_best(workers_svm_res, metric = "roc_auc", n = 1)
 
-# We compare the models
-comparacion_modelos <- resamples(lista_de_modelos)
+# Create comparison tibble
+model_comparison <- bind_rows(
+  rf_best |> mutate(model = "Random Forest"),
+  glm_best |> mutate(model = "GLM"),
+  svm_best |> mutate(model = "SVM")
+)
 
-# We visualize the comparison
-bwplot(comparacion_modelos, metric = "ROC")
-
-# We obtain the summary of the comparison
-summary(comparacion_modelos, metric = "ROC")
+# Visualize
+model_comparison |>
+  ggplot(aes(x = reorder(model, mean), y = mean, fill = model)) +
+  geom_col() +
+  geom_errorbar(aes(ymin = mean - std_err, ymax = mean + std_err), width = 0.2) +
+  labs(y = "ROC AUC", x = "Model", title = "Model Comparison by ROC AUC") +
+  theme(legend.position = "none") +
+  coord_flip()
 
 ```
 
@@ -12213,7 +10354,7 @@ We see how the results overlap, so we could opt for the two that have the highes
 </details>
 
 
-118. Create the confusion matrices for the three models created.
+104. Create the confusion matrices for the three models created.
 
 
 
@@ -12221,14 +10362,28 @@ We see how the results overlap, so we could opt for the two that have the highes
   <summary type="button">Solution</summary>
 
 ``` r
-prediccion_rf <- predict(trabajadores_modelo_rf, trabajadores_test)
-confusionMatrix(prediccion_rf, trabajadores_test$renuncia)
+# Finalize and fit each model
+best_rf <- select_best(workers_rf_res, metric = "roc_auc")
+final_rf_wf <- finalize_workflow(rf_wf, best_rf)
+rf_fit <- fit(final_rf_wf, data = workers_train)
 
-prediccion_glm <- predict(trabajadores_modelo_glm, trabajadores_test)
-confusionMatrix(prediccion_glm, trabajadores_test$renuncia)
+best_glm <- select_best(workers_glm_res, metric = "roc_auc")
+final_glm_wf <- finalize_workflow(glm_wf, best_glm)
+glm_fit <- fit(final_glm_wf, data = workers_train)
 
-prediccion_svm <- predict(trabajadores_modelo_svm, trabajadores_test)
-confusionMatrix(prediccion_svm, trabajadores_test$renuncia)
+best_svm <- select_best(workers_svm_res, metric = "roc_auc")
+final_svm_wf <- finalize_workflow(svm_wf, best_svm)
+svm_fit <- fit(final_svm_wf, data = workers_train)
+
+# Predictions and confusion matrices
+rf_preds <- augment(rf_fit, new_data = workers_test)
+rf_preds |> conf_mat(truth = attrition_status, estimate = .pred_class)
+
+glm_preds <- augment(glm_fit, new_data = workers_test)
+glm_preds |> conf_mat(truth = attrition_status, estimate = .pred_class)
+
+svm_preds <- augment(svm_fit, new_data = workers_test)
+svm_preds |> conf_mat(truth = attrition_status, estimate = .pred_class)
 ```
 
 Keep in mind that the model with the highest `ROC` value will not necessarily have the highest `accuracy`. Therefore the choice of the model was performed in a previous step. The ROC better balances sensitivity with the [false positive rate](https://en.wikipedia.org/wiki/False_positive_rate).
@@ -12254,10 +10409,12 @@ If a company uses an algorithm to decide who to hire or fire based on historical
 *   **Scenario:** If a company historically didn't hire women for leadership roles, the training data will show that women are "less likely to succeed" in those roles.
 *   **Result:** The model creates a feedback loop, rejecting qualified female candidates because they don't match the historical pattern of "success".
 
-### What can we do?
-1.  **Audit your Data:** checking for representation balance (e.g., is one group significantly smaller?).
-2.  **Model Explainability:** Use tools like `DALEX` or `vip` (variable importance) to understand *why* the model is making a decision. If `MaritalStatus` is the top predictor for firing someone, is that ethical?
-3.  **Human in the Loop:** These models should support human decision-making, not replace it entirely.
+> [!IMPORTANT]
+> **What can we do?**
+>
+> 1.  **Audit your Data:** checking for representation balance (e.g., is one group significantly smaller?).
+> 2.  **Model Explainability:** Use tools like `DALEX` or `vip` (variable importance) to understand *why* the model is making a decision. If `MaritalStatus` is the top predictor for firing someone, is that ethical?
+> 3.  **Human in the Loop:** These models should support human decision-making, not replace it entirely.
 
 As Data Scientists, our responsibility extends beyond the AUC score. We must ensure our models do not harm individuals or groups.
 
@@ -12272,11 +10429,20 @@ editor_options:
 ---
 
 # Unsupervised Learning
+
 Now that we know how to create supervised learning algorithms, understanding unsupervised learning becomes an intuitive exercise.
 
 While in **supervised** learning we have a set of variables that we use to predict a certain output class (up/down, resign/not resign), in **unsupervised** learning we do not have expected output classes. In supervised learning we had training data and testing data that allowed us to validate the effectiveness of the model by its closeness to the known class. In unsupervised learning we do not have a default _output_. This in turn generates a great challenge because it is very difficult to know if we have already finished the work or if we can still generate another model with which we feel more satisfied.
 
 The simplest example to understand this type of learning is when we have our customer base and we want to segment them for the first time. In that case, we look for customers who behave in the same way, but being the first time, we don't know how many segments we can have. The challenge lies in determining the cut-off: how many segments do we seek to create?
+
+## Learning Objectives
+
+By the end of this section, you will be able to:
+
+By the end of this section, you will be able to clearly differentiate between supervised and unsupervised learning, understanding the distinct challenges of working with unlabeled data. We will apply the **k-means** clustering algorithm to segment data into optimal groups and use **hierarchical clustering** to visualize relationships through dendrograms. Furthermore, you will learn to evaluate the quality of these clusters using the **elbow** and **silhouette** methods, and perform basic **dimensionality reduction** to simplify complex datasets.
+
+## Applications of Unsupervised Learning
 
 The main applications of unsupervised learning are related to data **_clustering_**. Here, the goal is to find homogeneous subgroups within the data. These algorithms are based on the distance between observations. The customer segmentation example would be an example of _clustering_.
 
@@ -12310,7 +10476,7 @@ players |>
 
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-768-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-647-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 This method allows us to group based on the definition of centroids. We will define as many centroids as groups we want to obtain. Since for this case we know that there must be two teams, we will use 2 centroids (k = 2).
 
@@ -12349,11 +10515,11 @@ We can add this team assignment as one more column of our `players` data set to 
 
 ``` r
 # We add the cluster column
-players_agrupados <- players |> 
+players_grouped <- players |> 
                          mutate(cluster = team)
 
 # We visualize the players according to the grouping
-players_agrupados |> 
+players_grouped |> 
   ggplot() +
   aes(x, y, fill = factor(cluster)) +
   geom_point(size = 5, pch = 21) +
@@ -12362,7 +10528,7 @@ players_agrupados |>
   
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-773-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-652-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We have found two centroids until minimizing the sum of the squared differences between each centroid and the other points in the cluster. We can access and see how much this value is, given that it is part of the model results.
 
@@ -12388,10 +10554,10 @@ kmeans_model <- kmeans(players, centers = 3)
 
 team <- kmeans_model$cluster
 
-players_agrupados <- players |> 
+players_grouped <- players |> 
                          mutate(cluster = team)
 
-players_agrupados |> 
+players_grouped |> 
   ggplot() +
   aes(x, y, color = factor(cluster)) +
   geom_point(size = 5) +
@@ -12401,7 +10567,7 @@ kmeans_model$tot.withinss
 #> [1] 881.25
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-775-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-654-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 In this case we have found that the sum of squares within the clusters is smaller, so we could indicate that this grouping is more optimal than the grouping into two groups. However, the sum of squares is not necessarily the best indicator for choosing how many clusters to create.
 
@@ -12424,7 +10590,7 @@ To find the optimal "k" under this method, we will use the **elbow plot**, where
 fviz_nbclust(players, FUN = kmeans, method = "wss")
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-777-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-656-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 In this case the "elbow" is found at the value k = 2, from there the sum of squares reduces but at a slower rate.
 
@@ -12438,9 +10604,13 @@ To do this, we change the `method` parameter in the function and obtain the silh
 fviz_nbclust(players, FUN = kmeans, method = "silhouette")
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-778-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-657-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Here it is clearly seen that for a value of `k=2` we have the best average, making this our optimal number of groups.
+
+> [!TIP]
+> **Interpreting Silhouette Scores**
+Interpreting these scores is straightforward: a score close to **1** indicates that the data point is well-matched to its own cluster and distinct from neighbors, representing a strong grouping. A score near **0** suggests the point lies on the boundary between clusters, while a **negative** score implies the point may have been assigned to the wrong group. Generally, an average silhouette width above **0.5** signals a solid clustering structure.
 
 ### k-means for more than 2 variables
 The method we have learned can be easily extended to more variables. Only in this case it would no longer be possible to visualize it like the soccer team and we would only visualize the results of the grouping and the learned metrics.
@@ -12452,7 +10622,7 @@ To do this, we will use the following customer dataset, where we will find a dat
 url <- "http://archive.ics.uci.edu/ml/machine-learning-databases/00292/Wholesale%20customers%20data.csv"
 customers <- read_csv(url)
 #> Rows: 440 Columns: 8
-#> ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ── Column specification ────────────────────────────────
 #> Delimiter: ","
 #> dbl (8): Channel, Region, Fresh, Milk, Grocery, Frozen, Detergents_Paper, De...
 #> 
@@ -12464,29 +10634,32 @@ We are going to perform a grouping only considering the spending made on frozen 
 
 
 ``` r
-customers_filtrado <- customers |> 
+customers_filtered <- customers |> 
   select(Milk, Grocery, Frozen)
+
+# We scale the data to ensure equal weight for all variables
+customers_scaled <- as.data.frame(scale(customers_filtered))
 ```
 
 Once we have our data we would create a silhouette analysis to determine the best value of "k".
 
 
 ``` r
-fviz_nbclust(customers_filtrado, FUN = kmeans, method = "silhouette")
+fviz_nbclust(customers_scaled, FUN = kmeans, method = "silhouette")
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-781-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-660-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Again, we get that the recommended number of clusters is 2. Let's create the model for k = 2 and store the resulting cluster.
 
 
 ``` r
-modelo <- kmeans(customers_filtrado, centers = 2)
+model <- kmeans(customers_scaled, centers = 2)
 
-customers_agrupados <- customers_filtrado |> 
-                        mutate(cluster = modelo$cluster)
+customers_grouped <- customers_filtered |> 
+                        mutate(cluster = model$cluster)
 
-customers_agrupados
+customers_grouped
 #> # A tibble: 440 × 4
 #>     Milk Grocery Frozen cluster
 #>    <dbl>   <dbl>  <dbl>   <int>
@@ -12499,7 +10672,7 @@ customers_agrupados
 #>  7  3199    6975    480       1
 #>  8  4956    9426   1669       1
 #>  9  3648    6192    425       1
-#> 10 11093   18881   1159       2
+#> 10 11093   18881   1159       1
 #> # ℹ 430 more rows
 ```
 
@@ -12507,17 +10680,17 @@ Once we have grouped our data we can calculate the amount of data in each cluste
 
 
 ``` r
-customers_agrupados |> 
+customers_grouped |> 
   group_by(cluster) |> 
   summarise(total = n(), 
-            media_Milk = mean(Milk), 
-            media_Grocery = mean(Grocery),
-            media_Frozen = mean(Frozen))
+            mean_Milk = mean(Milk), 
+            mean_Grocery = mean(Grocery),
+            mean_Frozen = mean(Frozen))
 #> # A tibble: 2 × 5
-#>   cluster total media_Milk media_Grocery media_Frozen
-#>     <int> <int>      <dbl>         <dbl>        <dbl>
-#> 1       1   388      3955.         5386.        2902.
-#> 2       2    52     19534.        27094.        4341.
+#>   cluster total mean_Milk mean_Grocery mean_Frozen
+#>     <int> <int>     <dbl>        <dbl>       <dbl>
+#> 1       1   395     4056.        5628.       2864.
+#> 2       2    45    21070.       28341.       4898.
 ```
 
 Thus, we have learned to segment customers using machine learning.
@@ -12542,7 +10715,7 @@ players |>
   geom_text(nudge_x = 1.3, nudge_y = 1.3)
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-784-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-663-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 This algorithm searches for the two points with the shortest distance, the closest ones, and groups them. Then it searches for another two points with the smallest distance and asks: is the distance between these two new points less than the distance of these points to the previously created group? If the answer is yes, it groups them, otherwise it groups the closest point to the first created group.
 
@@ -12560,7 +10733,7 @@ Thus, the algorithm creates a higher hierarchy for this grouping.
 
 The algorithm continues until it finally creates a group that includes everyone as the highest hierarchy. In the following graph we can not only appreciate this but also on the y-axis the distance between each point or group of points.
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-788-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-667-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Up to here we haven't done more than generate hierarchies from the distances which will serve us later to determine how many clusters to generate. Let's create in R what has been advanced so far. The first thing we will do is calculate the distances between all points. To do this we will use the `dist()` function.
 
@@ -12593,7 +10766,7 @@ dend_model <- as.dendrogram(hierarchical_model)
 plot(dend_model)
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-792-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-671-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 So far we have only seen the hierarchy, but what interests us is the grouping. The grouping is done by the calculated distance (`h` parameter). Let's try with a distance of 60. We will use the `color_branches` and `color_labels` functions to make the changes visible.
 
@@ -12602,13 +10775,14 @@ So far we have only seen the hierarchy, but what interests us is the grouping. T
 cut_height <- 60
 
 dend_model |> 
-  color_branches(h = cut_height) |> 
-  color_labels(h = cut_height) |> 
+  color_branches(h = cut_height, col = c("red", "green", "blue", "orange")) |> 
+  color_labels(h = cut_height, col = c("red", "green", "blue", "orange")) |> 
   plot()
-#> Loading required namespace: colorspace
+#> Warning in get_col(col, k): Length of color vector was longer than the number
+#> of clusters - first k elements are used
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-793-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-672-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Since the highest hierarchy distance is approximately 50, then in this case it groups everyone into one large cluster. Let's try with a lower number, for example 40.
 
@@ -12617,13 +10791,15 @@ Since the highest hierarchy distance is approximately 50, then in this case it g
 cut_height <- 40
 
 dend_model |> 
-  color_branches(h = cut_height) |> 
-  color_labels(h = cut_height) |> 
+  color_branches(h = cut_height, col = c("red", "green", "blue")) |> 
+  color_labels(h = cut_height, col = c("red", "green", "blue")) |> 
   plot() |> 
   abline(h = cut_height, lty = 2)
+#> Warning in get_col(col, k): Length of color vector was longer than the number
+#> of clusters - first k elements are used
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-794-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-673-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 By making a cut at 40 we now have two clusters, in this case the red color and the green color. Let's try with a lower number, 28.
 
@@ -12636,9 +10812,10 @@ dend_model |>
   color_labels(h = cut_height) |> 
   plot() |> 
   abline(h = cut_height, lty = 2)
+#> Loading required namespace: colorspace
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-795-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-674-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Now we have three clusters and so we could continue until obtaining the clusters we need.
 
@@ -12654,7 +10831,7 @@ dend_model |>
   plot()
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-796-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-675-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We see that it gives us the same grouping whether we use distances or number of desired clusters.
 
@@ -12666,7 +10843,7 @@ To calculate how many clusters are optimal to create we will use the silhouette 
 fviz_nbclust(players, FUN = hcut, method = "silhouette")
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-797-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-676-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 It is not surprising that the value of `k` is also 2, which coincides with the number obtained in the k-means model.
 
@@ -12675,11 +10852,11 @@ Now that we have validated that the recommended number of clusters is 2, we calc
 
 
 ``` r
-players_agrupados <- players |> 
+players_grouped <- players |> 
                         mutate(cluster = cutree(hierarchical_model, k = 2)
                                )
 
-players_agrupados
+players_grouped
 #> # A tibble: 12 × 3
 #>        x     y cluster
 #>    <dbl> <dbl>   <int>
@@ -12701,14 +10878,14 @@ Finally, let's visualize the grouping performed with this method.
 
 
 ``` r
-players_agrupados |> 
+players_grouped |> 
   ggplot() +
   aes(x, y, color = factor(cluster)) +
   geom_point(size = 5) +
   theme(legend.position = "none")
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-799-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-678-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We see that the grouping is the same as with the previous method, basically because we are talking about two variables and two clusters.
 
@@ -12721,7 +10898,7 @@ For this case we are going to take as an example a credit card customer dataset,
 
 
 ``` r
-url <- "https://dparedesi.github.io/DS-con-R/cards_df_de_credito.csv"
+url <- "https://dparedesi.github.io/DS-with-R-datasets/credit-cards.csv"
 
 cards_df <- read_csv(url)
 ```
@@ -12746,7 +10923,7 @@ There is a strong correlation between the total purchases variable and the purch
 ``` r
 cards_df |> 
   ggplot() +
-  aes(x=purchases, y=purchases_primeros_tres_meses) +
+  aes(x=purchases, y=purchases_first_3_months) +
   geom_point() +
   labs(title="Customer Attributes",
        subtitle="Relationship between total purchases and first 3 months")
@@ -12759,14 +10936,14 @@ We could also validate the distribution of these variables.
 
 ``` r
 # We remove the purchases first 3 months variable
-cards_df <- cards_df[, !names(cards_df) == "purchases_primeros_tres_meses"]
+cards_df <- cards_df[, !names(cards_df) == "purchases_first_3_months"]
 
 cards_df |>
-  pivot_longer(cols = everything(), names_to = "atributos", values_to = "valores") |>
+  pivot_longer(cols = everything(), names_to = "attributes", values_to = "values") |>
   ggplot() +
-  aes(x=valores, fill=atributos) +
+  aes(x=values, fill=attributes) +
   geom_histogram(colour="black", show.legend=FALSE) +
-  facet_wrap(~atributos, scales="free_x") +
+  facet_wrap(~attributes, scales="free_x") +
   labs(x="Values", y="Frequency",
        title="Customer Attributes - Histogram")
 ```
@@ -12819,11 +10996,11 @@ We can verify that the distribution does not change, only the scale.
 
 ``` r
 cards_df_norm |>
-  pivot_longer(cols = everything(), names_to = "atributos", values_to = "valores") |>
+  pivot_longer(cols = everything(), names_to = "attributes", values_to = "values") |>
   ggplot() +
-  aes(x=valores, fill=atributos) +
+  aes(x=values, fill=attributes) +
   geom_histogram(colour="black", show.legend=FALSE) +
-  facet_wrap(~atributos, scales="free_x") +
+  facet_wrap(~attributes, scales="free_x") +
   labs(x="Values", y="Frequency",
        title="Customer Attributes - Histogram")
 
@@ -12836,7 +11013,7 @@ Data preparation and variable reduction is a necessary step when we create machi
 str(cards_df_norm)
 ```
 
-More advanced techniques such as [Principal Component Analysis](https://www.stat.cmu.edu/~cshalizi/uADA/12/lectures/ch18.pdf) (PCA) and [Singular Value Decomposition](https://math.mit.edu/classes/18.095/2016IAP/lec2/SVD_Notes.pdf) (SVD) are used to perform dimensionality reduction more rigorously so as not to lose so much data in our analysis. However, their interpretation is still under development due to the high mathematical complexity required for their understanding.
+More advanced techniques such as [Principal Component Analysis](https://www.stat.cmu.edu/~cshalizi/uADA/12/lectures/ch18.pdf) (PCA) and [Singular Value Decomposition](https://math.mit.edu/classes/18.095/2016IAP/lec2/SVD_Notes.pdf) (SVD) are used to perform dimensionality reduction more rigorously so as not to lose so much data in our analysis. These techniques are widely used in practice and well-documented, though they require a solid understanding of linear algebra for proper interpretation.
 
 
 
@@ -12850,14 +11027,14 @@ url <- "http://archive.ics.uci.edu/ml/machine-learning-databases/00488/Live.csv"
 posts <- read_csv(url)
 
 # We remove columns not relevant to the analysis
-columnas_no_relevantes <- c("status_type","status_id", "status_published", "Column1",
+irrelevant_columns <- c("status_type","status_id", "status_published", "Column1",
                             "Column2", "Column3", "Column4")
 
-data_posts <- posts[, !names(posts) %in% columnas_no_relevantes]
+data_posts <- posts[, !names(posts) %in% irrelevant_columns]
 
 ```
 
-119. With the `data_posts` object normalized (use `scale()` function) and create the `data_posts_norm` object. Build a silhouette plot to determine how many cluster groups are recommended using the **k-means** algorithm.
+105. With the `data_posts` object normalized (use `scale()` function) and create the `data_posts_norm` object. Build a silhouette plot to determine how many cluster groups are recommended using the **k-means** algorithm.
 
 
 
@@ -12871,7 +11048,7 @@ fviz_nbclust(data_posts_norm, FUN = kmeans, method = "silhouette")
 ```
 </details>
 
-120. With the `data_posts` object build a silhouette plot to determine how many cluster groups are recommended using the **hierarchical** algorithm.
+106. With the `data_posts` object build a silhouette plot to determine how many cluster groups are recommended using the **hierarchical** algorithm.
 
 
 
@@ -12883,7 +11060,7 @@ fviz_nbclust(data_posts, FUN = hcut, method = "silhouette")
 ```
 </details>
 
-121. If you had to remove a variable from the analysis, which variable would it be?
+107. If you had to remove a variable from the analysis, which variable would it be?
 
 
 
@@ -12902,7 +11079,7 @@ data_posts |>
 ```
 </details>
 
-122. Remove the `num_reactions` variable from the `data_posts_norm` object and the `data_posts` object and perform a silhouette analysis again using `data_posts_norm`. Does the number of clusters change?
+108. Remove the `num_reactions` variable from the `data_posts_norm` object and the `data_posts` object and perform a silhouette analysis again using `data_posts_norm`. Does the number of clusters change?
 
 
 
@@ -12919,7 +11096,7 @@ fviz_nbclust(data_posts_norm, FUN = kmeans, method = "silhouette")
 The number of clusters does not change because there exists another variable with the same behavior as this one.
 </details>
 
-123. Create the k-means model to group using the recommended number of clusters found. Use the `data_posts_norm` object for the creation of the model. Create the `data_posts_agrupados` object where the original data of `data_posts` is with the additional column `cluster_medias` indicating the cluster result of this model.
+109. Create the k-means model to group using the recommended number of clusters found. Use the `data_posts_norm` object for the creation of the model. Create the `data_posts_grouped` object where the original data of `data_posts` is with the additional column `cluster_kmeans` indicating the cluster result of this model.
 
 
 
@@ -12927,14 +11104,14 @@ The number of clusters does not change because there exists another variable wit
   <summary type="button">Solution</summary>
 
 ``` r
-modelo_kmedias <- kmeans(data_posts_norm, centers = 2)
+kmeans_model <- kmeans(data_posts_norm, centers = 2)
 
-data_posts_agrupados <- data_posts |> 
-                        mutate(cluster_kmedias = modelo_kmedias$cluster)
+data_posts_grouped <- data_posts |> 
+                        mutate(cluster_kmeans = kmeans_model$cluster)
 ```
 </details>
 
-124. Create the hierarchical model to group using the recommended number of clusters found. Use the `data_posts_norm` object for the creation of the model. Add to the `data_posts_agrupados` object the column `cluster_jer` to store the result of the grouping.
+110. Create the hierarchical model to group using the recommended number of clusters found. Use the `data_posts_norm` object for the creation of the model. Add to the `data_posts_grouped` object the column `cluster_hier` to store the result of the grouping.
 
 
 
@@ -12942,16 +11119,16 @@ data_posts_agrupados <- data_posts |>
   <summary type="button">Solution</summary>
 
 ``` r
-distancias <- dist(data_posts_norm)
-modelo_jerarquico <- hclust(distancias)
+distances <- dist(data_posts_norm)
+hier_model <- hclust(distances)
 
-data_posts_agrupados <- data_posts_agrupados |> 
-                        mutate(cluster_jer = cutree(modelo_jerarquico, k = 2)
+data_posts_grouped <- data_posts_grouped |> 
+                        mutate(cluster_hier = cutree(hier_model, k = 2)
                                )
 ```
 </details>
 
-125. Calculate the average of each value of the variables for each group of the k-means model.
+111. Calculate the average of each value of the variables for each group of the k-means model.
 
 
 
@@ -12959,14 +11136,14 @@ data_posts_agrupados <- data_posts_agrupados |>
   <summary type="button">Solution</summary>
 
 ``` r
-data_posts_agrupados |> 
-  select(-cluster_jer) |> 
-  group_by(cluster_kmedias) |> 
+data_posts_grouped |> 
+  select(-cluster_hier) |> 
+  group_by(cluster_kmeans) |> 
   summarise_all(list(mean))
 ```
 </details>
 
-126. Calculate the average of each value of the variables for each group of the hierarchical model.
+112. Calculate the average of each value of the variables for each group of the hierarchical model.
 
 
 
@@ -12974,9 +11151,9 @@ data_posts_agrupados |>
   <summary type="button">Solution</summary>
 
 ``` r
-data_posts_agrupados |> 
-  select(-cluster_kmedias) |> 
-  group_by(cluster_jer) |> 
+data_posts_grouped |> 
+  select(-cluster_kmeans) |> 
+  group_by(cluster_hier) |> 
   summarise_all(list(mean))
 ```
 </details>
@@ -12987,10 +11164,1937 @@ data_posts_agrupados |>
 <!--chapter:end:06-machine-learning/uml.Rmd-->
 
 
+# String processing and text mining
+
+## Basic functions
+We have already learned how to import data and consolidate it. However, we cannot yet work with this data. We have to validate through string processing and ensure a minimum quality to be able to perform our analyses.
+
+For example, in the previous chapter we imported data from Wikipedia, however we did not focus on whether we could already perform operations or visualizations with our data.
+
+
+``` r
+library(rvest)
+url <- "https://es.wikipedia.org/wiki/Anexo:Pa%C3%ADses_hispanos_por_poblaci%C3%B3n"
+#url <- "https://es.wikipedia.org/wiki/Distribuci%C3%B3n_geogr%C3%A1fica_del_idioma_espa%C3%B1ol" #as a back up URL
+html_data <- read_html(url)
+
+web_tables <- html_data |>
+  html_nodes("body") |>
+  html_nodes("table")
+
+raw_table <- web_tables[[2]] |>
+  html_table()
+
+raw_table <- raw_table |> 
+  setNames(c("N", "country", "population", "prop_population", "avg_change", "link")) 
+
+raw_table <- raw_table |>
+  as_tibble()
+
+raw_table |> head(5)
+
+```
+
+We may not have noticed, but we can observe columns with spaces or commas where there should be numbers. We can validate this not only by analyzing the class of the column, but also if we try to calculate the average of that variable.
+
+
+``` r
+class(raw_table$population)
+
+mean(raw_table$population)
+```
+
+We cannot do a direct conversion to number either because white spaces and commas are characters.
+
+
+``` r
+as.numeric(raw_table$population)
+```
+
+There are so frequent and so many possible use cases that there are already multiple functions for processing strings included in the tidyverse library. Likewise, there is more than one way to process strings. It will always depend on how the raw data is found.
+
+### Replacing characters
+One of the basic functions that we will use the most will be replacing characters. We apply this function when we are sure that this change will not compromise the rest of the data. We have spaces and we have commas. So we could start by replacing one of the two to normalize them using the `str_replace_all(string, pattern, replacement)` function. In the pattern attribute we will use `\\s`, which comes from `space`. We are going to learn first to modify the data stored in a vector and then we will replicate it to our entire table.
+
+
+``` r
+library(tidyverse)
+library(stringr)
+
+population_vector <- raw_table$population
+
+population_vector <- str_replace_all(population_vector, "\\s", ",")
+
+population_vector
+```
+
+We have purposely taken all the values to be separated by commas because now we can easily use the `parse_number(vector)` function which not only replaces the commas with empty strings, but also removes any non-numeric value before the first number, which facilitates us if we had monetary values, and also converts the value from character type to numeric type.
+
+
+``` r
+population_vector <- parse_number(population_vector)
+
+# Additional example in case we had a monetary value:
+parse_number("$345,153")
+```
+
+This vector now allows us to perform mathematical operations or visualization of the distribution.
+
+``` r
+# Convert to millions
+population_vector <- population_vector/10^6
+
+# We remove the last value which is the world population:
+length_val <- length(population_vector)
+population_vector <- population_vector[-length_val]
+
+# Visualization
+boxplot(population_vector)
+```
+
+We already know which functions to use to transform the fields of our case. However, we have applied them to vectors. To mutate the columns of our table in raw form we will use the function `mutate(across(columns, function))` using the pipeline operator `|>`. Let's apply the first change of spaces by commas and not only to column 3, population, but also to column 5, average change.
+
+
+``` r
+raw_table |> 
+  mutate(across(c(3,5), ~str_replace_all(., "\\s", ",")))
+
+```
+
+We have removed from the `str_replace_all` function the `string` attribute and replaced it with a dot `.`. And that dot `.` indicates that it will evaluate for each column `c(3,5)` of our table.
+
+Now, let's apply the parse_number function that we applied previously.
+
+
+``` r
+raw_table |> 
+  mutate(across(c(3,5), ~str_replace_all(., "\\s", ","))) |> 
+  mutate(across(c(3,5), ~parse_number(.)))
+```
+
+## Regular expressions
+A [regular expression](https://stringr.tidyverse.org/articles/regular-expressions.html)^[https://stringr.tidyverse.org/articles/regular-expressions.html] (or regex as it is known in English) is a pattern that describes a set of strings. We have already used regex in the previous section using only the pattern `\\s`. However, usually we will have many more use cases that will require a pattern that can convert a wider range of cases.
+
+Although we could analyze all possible use cases available in the documentation, we learn faster by use cases. Let's analyze a case that will allow us to learn some patterns little by little.
+
+In the `dslabs` library we found and used previously the height data, `heights`, of students from a university expressed in inches.
+
+
+``` r
+library(dslabs)
+library(tidyverse)
+data(heights)
+
+heights |> 
+  head(10)
+#>       sex height
+#> 1    Male     75
+#> 2    Male     70
+#> 3    Male     68
+#> 4    Male     74
+#> 5    Male     61
+#> 6  Female     65
+#> 7  Female     66
+#> 8  Female     62
+#> 9  Female     66
+#> 10   Male     67
+```
+
+These data were ready to be analyzed. However, that was not how it came from the source. The students had to fill out a survey and even when they were asked for their height in inches, they completed their height in inches, feet, centimeters, writing numbers, letters, etc. We can see the initial data from the form in the `reported_heights` data frame.
+
+
+``` r
+reported_heights |> 
+  head(10)
+#>             time_stamp    sex height
+#> 1  2014-09-02 13:40:36   Male     75
+#> 2  2014-09-02 13:46:59   Male     70
+#> 3  2014-09-02 13:59:20   Male     68
+#> 4  2014-09-02 14:51:53   Male     74
+#> 5  2014-09-02 15:16:15   Male     61
+#> 6  2014-09-02 15:16:16 Female     65
+#> 7  2014-09-02 15:16:19 Female     66
+#> 8  2014-09-02 15:16:21 Female     62
+#> 9  2014-09-02 15:16:21 Female     66
+#> 10 2014-09-02 15:16:22   Male     67
+```
+
+Although we might think that they entered the data correctly, we do not have to trust and it is always better to validate the quality of our data. There are multiple ways to validate, as we can see below:
+
+
+``` r
+heights <- reported_heights$height
+
+# Validation option 1: Random sample
+sample(heights, 100)
+#>   [1] "71"       "67"       "66"       "64"       "70"       "70"      
+#>   [7] "76"       "1"        "59"       "67.2"     "69"       "67"      
+#>  [13] "67"       "6"        "62"       "69"       "74"       "69"      
+#>  [19] "178"      "69"       "74"       "169"      "67"       "68.5"    
+#>  [25] "68.5"     "71"       "68"       "158"      "6.1"      "708,661" 
+#>  [31] "6.2"      "69"       "75"       "5'6"      "67"       "68.4"    
+#>  [37] "75"       "5.7"      "72"       "77"       "75"       "68"      
+#>  [43] "69"       "72"       "62"       "65"       "73"       "67"      
+#>  [49] "67"       "5.2"      "67.71"    "67"       "5'3"      "66"      
+#>  [55] "5'7.5''"  "69"       "65"       "150"      "69"       "5'11''"  
+#>  [61] "68.11024" "175"      "152"      "5' 10"    "65"       "74.5"    
+#>  [67] "70"       "72"       "73.22"    "63"       "5'9''"    "68.5"    
+#>  [73] "74"       "74"       "5'7\""    "6'3\""    "67"       "73.22"   
+#>  [79] "74"       "72.8346"  "67.72"    "175"      "5.69"     "69.3"    
+#>  [85] "5'10''"   "72"       "60"       "68"       "69"       "73"      
+#>  [91] "75"       "70"       "64"       "170"      "649,606"  "73"      
+#>  [97] "58"       "60"       "174"      "64.173"
+
+# Validation option 2: convert to numbers and count if there are NAs
+x <- as.numeric(heights)
+#> Warning: NAs introduced by coercion
+sum(is.na(x))
+#> [1] 81
+
+# Validation option 3: add column of those that cannot be converted to number:
+reported_heights |> 
+  mutate(numeric_height = as.numeric(height)) |> 
+  filter(is.na(numeric_height)) |> 
+  head(10)
+#> Warning: There was 1 warning in `mutate()`.
+#> ℹ In argument: `numeric_height = as.numeric(height)`.
+#> Caused by warning:
+#> ! NAs introduced by coercion
+#>             time_stamp    sex                 height numeric_height
+#> 1  2014-09-02 15:16:28   Male                  5' 4"             NA
+#> 2  2014-09-02 15:16:37 Female                  165cm             NA
+#> 3  2014-09-02 15:16:52   Male                    5'7             NA
+#> 4  2014-09-02 15:16:56   Male                  >9000             NA
+#> 5  2014-09-02 15:16:56   Male                   5'7"             NA
+#> 6  2014-09-02 15:17:09 Female                   5'3"             NA
+#> 7  2014-09-02 15:18:00   Male 5 feet and 8.11 inches             NA
+#> 8  2014-09-02 15:19:48   Male                   5'11             NA
+#> 9  2014-09-04 00:46:45   Male                  5'9''             NA
+#> 10 2014-09-04 10:29:44   Male                 5'10''             NA
+```
+
+We might want to choose to eliminate these NA data as they are not significant with respect to the total of 1,095 data points. However, there are several of these data points that follow a determined pattern and instead of being discarded could be converted to the scale we have in the rest of the data. For example, there are people who entered their height as 5'7", which, for those who remember the conversion, can be converted because 1 foot is 12 inches. So $5*12+7=67$. And so, like that case, we can detect patterns, but we have, again, to be careful in detecting the exact pattern and not a very generic one that can change other use cases. If everyone followed the same pattern $x'y''$ or $x'y$ it would be much easier to convert it to inches by calculating $x*12+y$.
+
+Let's start by extracting our column to a single character vector with all the values that do not convert automatically to number or were entered in inches. We detect this if they measure more than 5 and up to 7 feet (from 1.5m to 2.1 meters). After that we will create the transformations little by little.
+
+
+``` r
+problematic_heights <- reported_heights |> 
+  filter(is.na(as.numeric(height)) | # Does not convert to number
+         (!is.na(as.numeric(height)) & as.numeric(height) >= 5 &
+            as.numeric(height) <= 7 ) # or entered in feet and not inches
+        ) |> 
+  pull(height)
+
+length(problematic_heights)
+#> [1] 168
+```
+
+Adding the condition of having entered in feet we have 168 errors. We cannot ignore 15.3% of errors.
+
+We will use `str_view()` to visualize matches. This function is extremely helpful when debugging regular expressions as it highlights exactly what is matching your pattern.
+
+
+``` r
+# Let's visualize entries containing "feet"
+str_view(problematic_heights, "feet", match=TRUE)
+#>  [10] │ 5 <feet> and 8.11 inches
+#>  [82] │ 5 <feet> 7inches
+#> [140] │ 5 <feet> 6 inches
+```
+
+We can also use `str_detect(string, pattern)` to get a logical value (`TRUE`/`FALSE`) to filter our vector.
+
+
+``` r
+index <- str_detect(problematic_heights, "feet")
+
+problematic_heights[index] # Match the pattern
+#> [1] "5 feet and 8.11 inches" "5 feet 7inches"         "5 feet 6 inches"
+problematic_heights[!index] |> # Do not match the pattern
+  head(40) 
+#>  [1] "6"                      "5' 4\""                 "5.3"                   
+#>  [4] "165cm"                  "6"                      "5'7"                   
+#>  [7] ">9000"                  "5'7\""                  "5'3\""                 
+#> [10] "5.25"                   "5'11"                   "5.5"                   
+#> [13] "5'9''"                  "6"                      "6.5"                   
+#> [16] "5'10''"                 "5.8"                    "5"                     
+#> [19] "5.6"                    "5,3"                    "6'"                    
+#> [22] "6"                      "5.9"                    "6,8"                   
+#> [25] "5' 10"                  "5.5"                    "6.2"                   
+#> [28] "Five foot eight inches" "6.2"                    "5.8"                   
+#> [31] "5.1"                    "5.11"                   "5'5\""                 
+#> [34] "5'2\""                  "5.75"                   "5,4"                   
+#> [37] "7"                      "5.4"                    "6.1"                   
+#> [40] "5'3"
+```
+
+### Alternation
+`|` is the alternation operator that will choose between one or more possible values. In our case, we have indicated to detect if there is the word "feet", but we also have "ft" and "foot" to refer to the same thing in our data. Thus, we can create the pattern "feet" or "ft" or "foot".
+
+
+``` r
+# Visualize the matches
+str_view(problematic_heights, "feet|ft|foot", match=TRUE)
+#>  [10] │ 5 <feet> and 8.11 inches
+#>  [29] │ Five <foot> eight inches
+#>  [82] │ 5 <feet> 7inches
+#> [124] │ 5<ft> 9 inches
+#> [125] │ 5 <ft> 9 inches
+#> [140] │ 5 <feet> 6 inches
+```
+
+
+``` r
+index <- str_detect(problematic_heights, "feet|ft|foot")
+problematic_heights[index] # Match
+#> [1] "5 feet and 8.11 inches" "Five foot eight inches" "5 feet 7inches"        
+#> [4] "5ft 9 inches"           "5 ft 9 inches"          "5 feet 6 inches"
+```
+
+In the same way we can find the variations for inches and other symbols that we can remove:
+
+
+``` r
+index <- str_detect(problematic_heights, "inches|in|''|\"|cm|and")
+problematic_heights[index] # Match
+#>  [1] "5' 4\""                 "165cm"                  "5'7\""                 
+#>  [4] "5'3\""                  "5 feet and 8.11 inches" "5'9''"                 
+#>  [7] "5'10''"                 "Five foot eight inches" "5'5\""                 
+#> [10] "5'2\""                  "5'10''"                 "5'3''"                 
+#> [13] "5'7''"                  "5'3\""                  "5'6''"                 
+#> [16] "5'7.5''"                "5'7.5''"                "5'2\""                 
+#> [19] "5' 7.78\""              "5 feet 7inches"         "5'8\""                 
+#> [22] "5'11\""                 "5'7\""                  "5' 11\""               
+#> [25] "6'1\""                  "69\""                   "5' 7\""                
+#> [28] "5'10''"                 "5ft 9 inches"           "5 ft 9 inches"         
+#> [31] "5'11''"                 "5'8\""                  "5 feet 6 inches"       
+#> [34] "5'10''"                 "6'3\""                  "5'5''"                 
+#> [37] "5'7\""                  "6'4\""                  "170 cm"
+```
+
+In this case we have entered `''` to detect those who entered that symbol to denote inches and `\"` in case they used double quotes. In this latter case we have used `\` so that it does not generate an error when interpreting as closing the string.
+
+We could already start replacing based on the detected patterns:
+
+
+``` r
+problematic_heights <- str_replace_all(problematic_heights, "feet|ft|foot", "'")
+problematic_heights <- str_replace_all(problematic_heights, "inches|in|''|\"|cm|and", "")
+
+problematic_heights |> 
+  head(30)
+#>  [1] "6"             "5' 4"          "5.3"           "165"          
+#>  [5] "6"             "5'7"           ">9000"         "5'7"          
+#>  [9] "5'3"           "5 '  8.11 "    "5.25"          "5'11"         
+#> [13] "5.5"           "5'9"           "6"             "6.5"          
+#> [17] "5'10"          "5.8"           "5"             "5.6"          
+#> [21] "5,3"           "6'"            "6"             "5.9"          
+#> [25] "6,8"           "5' 10"         "5.5"           "6.2"          
+#> [29] "Five ' eight " "6.2"
+```
+
+As an additional effort, we could also look to solve that some people have written words instead of numbers. For this we create a function that replaces each word with a number and apply it to the vector:
+
+
+``` r
+words_to_number <- function(s){
+  str_to_lower(s) |>  
+    str_replace_all("zero", "0") |>
+    str_replace_all("one", "1") |>
+    str_replace_all("two", "2") |>
+    str_replace_all("three", "3") |>
+    str_replace_all("four", "4") |>
+    str_replace_all("five", "5") |>
+    str_replace_all("six", "6") |>
+    str_replace_all("seven", "7") |>
+    str_replace_all("eight", "8") |>
+    str_replace_all("nine", "9") |>
+    str_replace_all("ten", "10") |>
+    str_replace_all("eleven", "11")
+}
+
+problematic_heights <- words_to_number(problematic_heights)
+problematic_heights |> 
+  head(30)
+#>  [1] "6"          "5' 4"       "5.3"        "165"        "6"         
+#>  [6] "5'7"        ">9000"      "5'7"        "5'3"        "5 '  8.11 "
+#> [11] "5.25"       "5'11"       "5.5"        "5'9"        "6"         
+#> [16] "6.5"        "5'10"       "5.8"        "5"          "5.6"       
+#> [21] "5,3"        "6'"         "6"          "5.9"        "6,8"       
+#> [26] "5' 10"      "5.5"        "6.2"        "5 ' 8 "     "6.2"
+```
+
+### Anchoring
+Now that it is more standardized we can start with regex with more generic characteristics. For example, there is a person who has entered `6'`. It would be convenient to have everything in the form feet plus inches. With which we should have `6'0`. To achieve this we have to create a regex according to this generic situation. We will use the symbol `^` to anchor our validation to "start with" and the symbol `$` to match with the end of the string. Before replacing, let's first see who matches.
+
+
+``` r
+str_view(problematic_heights, "^6'$", match=TRUE)
+#> [22] │ <6'>
+```
+
+This regex indicates that it starts with `6'` and that the expression ends there. We could still make it more generic to address those who, in the future, write 5 inches (1.52m) or 6 inches (1.82m). For this we will use brackets and inside them we will put all the values that we will accept.
+
+
+``` r
+index <- str_detect(problematic_heights, "^[56]'$")
+problematic_heights[index] # Match
+#> [1] "6'"
+```
+
+There is still only one result, but our regex is more generic now and we can already use it to replace. Before replacing in our vector we are going to do a test to learn how to create what we need from a pattern.
+
+
+``` r
+test_vec <- c("5'", "6'")
+
+str_replace_all(test_vec, "^([56])'$", "\\1'0")
+#> [1] "5'0" "6'0"
+```
+
+We have placed between parentheses to indicate that what is inside is our first value and we use `\\1` to refer to that first value. So we are indicating to write the first value, then a quote `'`, and then a zero `0`.
+
+Now we are ready to apply to our entire vector. We are going to make the change to consider not only 5 and 6, but up to the value of 7 inches (2.1m). Likewise, we are going to take the cases in which there is only a number without the foot symbol `'`.
+
+
+``` r
+problematic_heights <- str_replace_all(problematic_heights, "^([5-7])'$", "\\1'0")
+problematic_heights <- str_replace_all(problematic_heights, "^([5-7])$", "\\1'0")
+
+problematic_heights |> 
+  head(30)
+#>  [1] "6'0"        "5' 4"       "5.3"        "165"        "6'0"       
+#>  [6] "5'7"        ">9000"      "5'7"        "5'3"        "5 '  8.11 "
+#> [11] "5.25"       "5'11"       "5.5"        "5'9"        "6'0"       
+#> [16] "6.5"        "5'10"       "5.8"        "5'0"        "5.6"       
+#> [21] "5,3"        "6'0"        "6'0"        "5.9"        "6,8"       
+#> [26] "5' 10"      "5.5"        "6.2"        "5 ' 8 "     "6.2"
+```
+
+### Repetitions
+We can control how many times a pattern matches using repetition operators:
+
+We can control how many times a pattern matches using repetition operators. The question mark **`?`** indicates that the preceding element matches **0 or 1** time (making it optional). The plus sign **`+`** requires **1 or more** matches, ensuring the element is present at least once. The asterisk **`*`** allows for **0 or more** matches, meaning the element can be absent or repeated indefinitely.
+
+For example, to find all cases where instead of using the foot symbol `'` they entered a comma, a period, or a space we will use the following pattern:
+
+
+``` r
+pattern <- "^([4-7])\\s*[,\\.]\\s*(\\d*)$"
+```
+
+Let's read the pattern:
+
+1. The string starts with a digit ranging from 4 to 7.
+2. `\\s` means that it is followed by a white space, but we use `*` to indicate that this character appears 0 or more times.
+3. After that space we will look for any of the following characters: `,`, a period `\\.` (to which we put double backslash because the period alone in a pattern means "any value").
+4. We use `\\s*` again to look for zero or more white spaces.
+5. Finally we indicate that the string ends there with a digit, to denote that look for any digit we use `\\d`, d for digit. And we add asterisk so that it keeps one or more digits that it finds.
+
+In summary: it starts with a number, then symbols and then a digit. Between the symbols there could be white spaces. That is our pattern.
+
+
+``` r
+str_view(problematic_heights, pattern, match=TRUE)
+#>  [3] │ <5.3>
+#> [11] │ <5.25>
+#> [13] │ <5.5>
+#> [16] │ <6.5>
+#> [18] │ <5.8>
+#> [20] │ <5.6>
+#> [21] │ <5,3>
+#> [24] │ <5.9>
+#> [25] │ <6,8>
+#> [27] │ <5.5>
+#> [28] │ <6.2>
+#> [30] │ <6.2>
+#> [31] │ <5.8>
+#> [32] │ <5.1>
+#> [33] │ <5.11>
+#> [36] │ <5.75>
+#> [37] │ <5,4>
+#> [39] │ <5.4>
+#> [40] │ <6.1>
+#> [42] │ <5.6>
+#> ... and 48 more
+```
+
+We already found the values that match the pattern, so we are ready to replace.
+
+
+``` r
+problematic_heights <- str_replace_all(
+                        problematic_heights, 
+                        "^([4-7])\\s*[,\\.]\\s*(\\d*)$", "\\1.\\2'0"
+                   )
+
+problematic_heights |> 
+  head(30)
+#>  [1] "6'0"        "5' 4"       "5.3'0"      "165"        "6'0"       
+#>  [6] "5'7"        ">9000"      "5'7"        "5'3"        "5 '  8.11 "
+#> [11] "5.25'0"     "5'11"       "5.5'0"      "5'9"        "6'0"       
+#> [16] "6.5'0"      "5'10"       "5.8'0"      "5'0"        "5.6'0"     
+#> [21] "5.3'0"      "6'0"        "6'0"        "5.9'0"      "6.8'0"     
+#> [26] "5' 10"      "5.5'0"      "6.2'0"      "5 ' 8 "     "6.2'0"
+```
+
+Another pattern we see now is when before or after the foot symbol `'` there is a white space. Let's make the change with what we learned and include cases where there are decimals:
+
+
+``` r
+index <- str_detect(problematic_heights, 
+                     "^([4-7]\\.?\\d*)\\s*'\\s*(\\d+\\.?\\d*)\\s*$")
+
+problematic_heights[index] |> # Match
+  head(30)
+#>  [1] "6'0"        "5' 4"       "5.3'0"      "6'0"        "5'7"       
+#>  [6] "5'7"        "5'3"        "5 '  8.11 " "5.25'0"     "5'11"      
+#> [11] "5.5'0"      "5'9"        "6'0"        "6.5'0"      "5'10"      
+#> [16] "5.8'0"      "5'0"        "5.6'0"      "5.3'0"      "6'0"       
+#> [21] "6'0"        "5.9'0"      "6.8'0"      "5' 10"      "5.5'0"     
+#> [26] "6.2'0"      "5 ' 8 "     "6.2'0"      "5.8'0"      "5.1'0"
+
+problematic_heights <- str_replace_all(
+                      problematic_heights, 
+                      "^([4-7]\\.?\\d*)\\s*'\\s*(\\d+\\.?\\d*)\\s*$",
+                      "\\1'\\2"
+                   )
+
+problematic_heights |> 
+  head(30)
+#>  [1] "6'0"    "5'4"    "5.3'0"  "165"    "6'0"    "5'7"    ">9000"  "5'7"   
+#>  [9] "5'3"    "5'8.11" "5.25'0" "5'11"   "5.5'0"  "5'9"    "6'0"    "6.5'0" 
+#> [17] "5'10"   "5.8'0"  "5'0"    "5.6'0"  "5.3'0"  "6'0"    "6'0"    "5.9'0" 
+#> [25] "6.8'0"  "5'10"   "5.5'0"  "6.2'0"  "5'8"    "6.2'0"
+```
+
+Likewise, we have the pattern in which they entered: feet + space + inches without any symbol. Let's make the change with what we learned.
+
+
+``` r
+index <- str_detect(problematic_heights, "^([4-7])\\s+(\\d*)\\s*$")
+
+problematic_heights[index] # Match
+#> [1] "5 11" "6 04"
+
+problematic_heights <- str_replace_all(
+                      problematic_heights, 
+                      "^([4-7])\\s+(\\d*)\\s*$", "\\1'\\2"
+                   )
+
+problematic_heights |> 
+  head(30)
+#>  [1] "6'0"    "5'4"    "5.3'0"  "165"    "6'0"    "5'7"    ">9000"  "5'7"   
+#>  [9] "5'3"    "5'8.11" "5.25'0" "5'11"   "5.5'0"  "5'9"    "6'0"    "6.5'0" 
+#> [17] "5'10"   "5.8'0"  "5'0"    "5.6'0"  "5.3'0"  "6'0"    "6'0"    "5.9'0" 
+#> [25] "6.8'0"  "5'10"   "5.5'0"  "6.2'0"  "5'8"    "6.2'0"
+```
+
+We are ready to put all the patterns together and the power of patterns is that they can serve us for future exercises. Thus, we will create a function where we will place each change that we can verify to a string.
+
+
+``` r
+format_errors <- function(string){
+  string |> 
+    str_replace_all("feet|ft|foot", "'") |> # Change feet for '
+    str_replace_all("inches|in|''|\"|cm|and", "") |> # Remove symbols
+    str_replace_all("^([5-7])'$", "\\1'0") |> # Adds 0 to 5', 6' or 7'
+    str_replace_all("^([5-7])$", "\\1'0") |> # Adds 0 to 5, 6 or 7
+    str_replace_all("^([4-7])\\s*[,\\.]\\s*(\\d*)$", "\\1.\\2'0") |> # Change 5.3' to 5.3'0
+    str_replace_all("^([4-7]\\.?\\d*)\\s*'\\s*(\\d+\\.?\\d*)\\s*$", "\\1'\\2") |> #Removes spaces in middle
+    str_replace_all("^([4-7])\\s+(\\d*)\\s*$", "\\1'\\2") |> # Adds '
+    str_replace("^([12])\\s*,\\s*(\\d*)$", "\\1.\\2") |> # Changes decimals from commas to dots
+    str_trim() #Removes spaces at start and end
+}
+
+```
+
+Thus, we have created two functions that could be useful to us if we were to work with surveys of the same type again.
+
+Before applying it to our entire table let's extract the values to a vector again to apply the created functions.
+
+
+``` r
+problematic_heights <- reported_heights |> 
+  filter(is.na(as.numeric(height)) | # Does not convert to number
+         (!is.na(as.numeric(height)) & as.numeric(height) >= 5 &
+            as.numeric(height) <= 7 ) # or entered in feet and not inches
+        ) |> 
+  pull(height)
+```
+
+Now let's apply the created functions:
+
+
+``` r
+formatted_heights <- problematic_heights |> 
+  words_to_number() |> 
+  format_errors()
+
+pattern <- "^([4-7]\\.?\\d*)\\s*'\\s*(\\d+\\.?\\d*)\\s*$"
+index <- str_detect(formatted_heights, pattern)
+formatted_heights[!index] # Do not match the pattern
+#>  [1] "165"       ">9000"     "2'33"      "1.70"      "yyy"       "6*12"     
+#>  [7] "69"        "708,661"   "649,606"   "728,346"   "170"       "7,283,465"
+```
+
+We have managed to reduce from 168 errors of 1095 records, 15.3% of errors, to 12 errors of 1095, 1% of errors. We can now apply to our initial table.
+
+
+``` r
+# Apply created formulas
+heights <- reported_heights |> 
+  mutate(height) |> 
+  mutate(height = words_to_number(height) |> format_errors())
+
+# Get random samples to validate quality
+random_indices <- sample(1:nrow(heights)) 
+heights[random_indices, ] |> 
+  head(15)
+#>               time_stamp    sex height
+#> 155  2014-09-02 15:17:12 Female     63
+#> 426  2015-01-06 22:58:54   Male   5'12
+#> 1029 2016-07-26 13:02:34   Male     67
+#> 326  2014-10-14 05:18:11   Male     71
+#> 789  2016-01-25 08:15:45 Female    5'5
+#> 985  2016-04-23 17:15:26   Male   67.5
+#> 39   2014-09-02 15:16:31   Male     72
+#> 822  2016-01-25 21:18:33   Male     68
+#> 986  2016-04-25 06:11:45   Male    180
+#> 137  2014-09-02 15:17:02   Male     68
+#> 455  2015-01-28 03:59:44   Male  5.5'0
+#> 589  2015-05-25 16:19:20   Male     69
+#> 1089 2017-09-04 07:28:40   Male     69
+#> 196  2014-09-02 15:18:30 Female  64.57
+#> 680  2015-09-01 22:45:11   Male     68
+```
+
+We still have to do some conversions. However, since they follow a determined pattern we can use the `extract(source_column, new_columns, pattern, remove_source)` function to confirm creating new columns for each value of our pattern.
+
+
+``` r
+pattern <- "^([4-7]\\.?\\d*)\\s*'\\s*(\\d+\\.?\\d*)\\s*$"
+
+heights |> 
+  extract(height, c("feet", "inches"), regex = pattern, remove = FALSE) |> 
+  head(15)
+#>             time_stamp    sex height feet inches
+#> 1  2014-09-02 13:40:36   Male     75 <NA>   <NA>
+#> 2  2014-09-02 13:46:59   Male     70 <NA>   <NA>
+#> 3  2014-09-02 13:59:20   Male     68 <NA>   <NA>
+#> 4  2014-09-02 14:51:53   Male     74 <NA>   <NA>
+#> 5  2014-09-02 15:16:15   Male     61 <NA>   <NA>
+#> 6  2014-09-02 15:16:16 Female     65 <NA>   <NA>
+#> 7  2014-09-02 15:16:19 Female     66 <NA>   <NA>
+#> 8  2014-09-02 15:16:21 Female     62 <NA>   <NA>
+#> 9  2014-09-02 15:16:21 Female     66 <NA>   <NA>
+#> 10 2014-09-02 15:16:22   Male     67 <NA>   <NA>
+#> 11 2014-09-02 15:16:22   Male     72 <NA>   <NA>
+#> 12 2014-09-02 15:16:23   Male    6'0    6      0
+#> 13 2014-09-02 15:16:23   Male     69 <NA>   <NA>
+#> 14 2014-09-02 15:16:26   Male     68 <NA>   <NA>
+#> 15 2014-09-02 15:16:26   Male     69 <NA>   <NA>
+```
+
+Now that we have the data that matches the pattern in two other columns, and we know they are numbers, we can convert everything to number.
+
+
+``` r
+heights |> 
+  extract(height, c("feet", "inches"), regex = pattern, remove = FALSE) |> 
+  mutate(across(c("height", "feet", "inches"), ~as.numeric(.))) |> 
+  head(15)
+#> Warning: There was 1 warning in `mutate()`.
+#> ℹ In argument: `across(c("height", "feet", "inches"),
+#>   ~as.numeric(.))`.
+#> Caused by warning:
+#> ! NAs introduced by coercion
+#>             time_stamp    sex height feet inches
+#> 1  2014-09-02 13:40:36   Male     75   NA     NA
+#> 2  2014-09-02 13:46:59   Male     70   NA     NA
+#> 3  2014-09-02 13:59:20   Male     68   NA     NA
+#> 4  2014-09-02 14:51:53   Male     74   NA     NA
+#> 5  2014-09-02 15:16:15   Male     61   NA     NA
+#> 6  2014-09-02 15:16:16 Female     65   NA     NA
+#> 7  2014-09-02 15:16:19 Female     66   NA     NA
+#> 8  2014-09-02 15:16:21 Female     62   NA     NA
+#> 9  2014-09-02 15:16:21 Female     66   NA     NA
+#> 10 2014-09-02 15:16:22   Male     67   NA     NA
+#> 11 2014-09-02 15:16:22   Male     72   NA     NA
+#> 12 2014-09-02 15:16:23   Male     NA    6      0
+#> 13 2014-09-02 15:16:23   Male     69   NA     NA
+#> 14 2014-09-02 15:16:26   Male     68   NA     NA
+#> 15 2014-09-02 15:16:26   Male     69   NA     NA
+```
+
+Now that our columns are numeric we can perform operations to calculate height.
+
+
+``` r
+heights |> 
+  extract(height, c("feet", "inches"), regex = pattern, remove = FALSE) |> 
+  mutate(across(c("height", "feet", "inches"), ~as.numeric(.))) |> 
+  mutate(fixed_heights = feet*12 + inches) |> 
+  head(15)
+#> Warning: There was 1 warning in `mutate()`.
+#> ℹ In argument: `across(c("height", "feet", "inches"),
+#>   ~as.numeric(.))`.
+#> Caused by warning:
+#> ! NAs introduced by coercion
+#>             time_stamp    sex height feet inches fixed_heights
+#> 1  2014-09-02 13:40:36   Male     75   NA     NA            NA
+#> 2  2014-09-02 13:46:59   Male     70   NA     NA            NA
+#> 3  2014-09-02 13:59:20   Male     68   NA     NA            NA
+#> 4  2014-09-02 14:51:53   Male     74   NA     NA            NA
+#> 5  2014-09-02 15:16:15   Male     61   NA     NA            NA
+#> 6  2014-09-02 15:16:16 Female     65   NA     NA            NA
+#> 7  2014-09-02 15:16:19 Female     66   NA     NA            NA
+#> 8  2014-09-02 15:16:21 Female     62   NA     NA            NA
+#> 9  2014-09-02 15:16:21 Female     66   NA     NA            NA
+#> 10 2014-09-02 15:16:22   Male     67   NA     NA            NA
+#> 11 2014-09-02 15:16:22   Male     72   NA     NA            NA
+#> 12 2014-09-02 15:16:23   Male     NA    6      0            72
+#> 13 2014-09-02 15:16:23   Male     69   NA     NA            NA
+#> 14 2014-09-02 15:16:26   Male     68   NA     NA            NA
+#> 15 2014-09-02 15:16:26   Male     69   NA     NA            NA
+```
+
+Finally, we will do a validation of whether the height is in an interval and/or if it was expressed in centimeters or meters.
+
+
+``` r
+# We assume for a person a minimum 50" (1.2m) and max 84" (2.1m)
+min <- 50
+max <- 84
+
+heights <- heights |> 
+  extract(height, c("feet", "inches"), regex = pattern, remove = FALSE) |> 
+  mutate(across(c("height", "feet", "inches"), ~as.numeric(.))) |> 
+  mutate(fixed_heights = feet*12 + inches) |> 
+  mutate(final_height = case_when(
+    !is.na(height) & between(height, min, max) ~ height, #inches 
+    !is.na(height) & between(height/2.54, min, max) ~ height/2.54, #cm
+    !is.na(height) & between(height*100/2.54, min, max) ~ height*100/2.54, #meters
+    !is.na(fixed_heights) & inches < 12 & 
+      between(fixed_heights, min, max) ~ fixed_heights, #feet'inches
+    TRUE ~ as.numeric(NA)))
+#> Warning: There was 1 warning in `mutate()`.
+#> ℹ In argument: `across(c("height", "feet", "inches"),
+#>   ~as.numeric(.))`.
+#> Caused by warning:
+#> ! NAs introduced by coercion
+
+# Random Sample:
+random_indices <- sample(1:nrow(heights)) 
+heights[random_indices, ] |> 
+  select(-time_stamp) |> # Shows all columns except time_stamp
+  head(10)
+#>         sex   height feet inches fixed_heights final_height
+#> 201  Female 67.00000   NA     NA            NA     67.00000
+#> 1006   Male 68.11024   NA     NA            NA     68.11024
+#> 651    Male 70.00000   NA     NA            NA     70.00000
+#> 545    Male 68.00000   NA     NA            NA     68.00000
+#> 617    Male 69.00000   NA     NA            NA     69.00000
+#> 17     Male 75.00000   NA     NA            NA     75.00000
+#> 102  Female 71.00000   NA     NA            NA     71.00000
+#> 71     Male 73.00000   NA     NA            NA     73.00000
+#> 80   Female 72.00000   NA     NA            NA     72.00000
+#> 643    Male 72.00000   NA     NA            NA     72.00000
+```
+
+We already have our sample validated, we would only have to take the columns we need and start using the object for the analyses we need.
+
+
+``` r
+final_heights <- heights |> 
+  select(gender = sex, heights = final_height)
+
+final_heights |> 
+  head(10)
+#>    gender heights
+#> 1    Male      75
+#> 2    Male      70
+#> 3    Male      68
+#> 4    Male      74
+#> 5    Male      61
+#> 6  Female      65
+#> 7  Female      66
+#> 8  Female      62
+#> 9  Female      66
+#> 10   Male      67
+```
+
+## From strings to dates
+Regularly when we import data, we are not only going to want to transform numeric data. We will also have multiple cases where we need to transform our string to a date in some particular format. For this, we will use the `lubridate` library, included in `tidyverse`, which provides us with diverse functions to make date treatment more accessible.
+
+
+``` r
+library(lubridate)
+```
+
+When the text string is in the ISO 8601 date format (YYYY-MM-DD), we can directly use the `month()`, `day()`, `year()` function.
+
+
+``` r
+dates_char <- c("2010-05-19", "2020-05-06", "2010-02-03")
+
+str(dates_char)
+#>  chr [1:3] "2010-05-19" "2020-05-06" "2010-02-03"
+
+month(dates_char)
+#> [1] 5 5 2
+```
+
+However, we do not always have the date in that format and `lubridate()` gives other functions that are more flexible when coercing data. Look at this example:
+
+
+``` r
+dates <- c(20090101, "2009-01-02", "2009 01 03", "2009-1-4",
+       "2009-1, 5", "Created on 2009 1 6", "200901 !!! 07")
+
+str(dates)
+#>  chr [1:7] "20090101" "2009-01-02" "2009 01 03" "2009-1-4" "2009-1, 5" ...
+
+ymd(dates)
+#> [1] "2009-01-01" "2009-01-02" "2009-01-03" "2009-01-04" "2009-01-05"
+#> [6] "2009-01-06" "2009-01-07"
+```
+
+The first data entered was a number, but we already know that it coerces it to text. Then, we have different values entered, but all follow the same pattern. First is the year, then the month and then the day. When we know that first is the year, then month and then day we will use the `ymd()` function to convert all dates to ISO 8601 format.
+
+In the same way, we will have the following functions that we can use depending on the form in which we have the date from our source. In all cases it will be convenient for us to convert to ISO 8601 format. For example here we can see when it correctly recognizes the format and when the formatting fails.
+
+
+``` r
+x <- "28/03/89"
+ymd(x)
+#> [1] NA
+mdy(x)
+#> [1] NA
+ydm(x)
+#> [1] NA
+myd(x)
+#> [1] NA
+dmy(x)
+#> [1] "1989-03-28"
+dym(x)
+#> [1] NA
+```
+
+Finally, in the same way that we can use these functions of days, months and years, we can also use to refer to hours, minutes and seconds.
+
+
+``` r
+# Format with hours, minutes and seconds
+date_val <- "Feb/2/2012 12:34:56"
+mdy_hms(date_val)
+#> [1] "2012-02-02 12:34:56 UTC"
+
+# Additional data: Showing system date:
+now()
+#> [1] "2025-12-25 01:33:58 GMT"
+```
+
+
+
+## Exercises
+
+Before solving the following exercise run this Script:
+
+
+``` r
+sales <- tibble(
+  month = c("April", "May", "June"),
+  revenue = c("s/32,124", "s/35,465", "S/38,332"),
+  profit = c("s/8,120", "s/9,432", "s/10,543")
+)
+```
+
+113. Convert the `revenue` and `profit` columns in the `sales` object to numeric values, removing any currency symbols or formatting characters.
+
+
+
+<details>
+  <summary type="button">Solution</summary>
+
+``` r
+# Solution 1
+sales |> 
+  mutate(across(c(2,3), ~parse_number(.)))
+
+# Alternative solution, longer
+sales |>
+  mutate(across(c(2,3), ~str_replace_all(., "\\S/|,", ""))) |> 
+  mutate(across(c(2,3), ~as.numeric(.)))
+```
+</details>
+
+
+114. Clean the `universities` vector so that all university names are standardized. Specifically, replace abbreviations like "Univ." or "U." at the beginning of the string with the full word "University ".
+
+
+
+
+<details>
+  <summary type="button">Solution</summary>
+
+``` r
+universities |> 
+    str_replace("^Univ\\.?\\s|^U\\.?\\s", "University ")
+```
+</details>
+
+For the following exercises, we are going to work on the survey data conducted prior to Brexit in the UK. Run the Script first:
+
+
+``` r
+library(rvest)
+library(tidyverse)
+url <- "https://en.wikipedia.org/w/index.php?title=Opinion_polling_for_the_United_Kingdom_European_Union_membership_referendum&oldid=896735054"
+table_html <- read_html(url) |> html_nodes("table")
+polls <- table_html[[5]] |> html_table(fill = TRUE)
+```
+
+115. Update the `polls` object by renaming columns to `c("date", "remain", "leave", "undecided", "spread", "sample", "pollster", "type", "notes")`. Then, filter the dataset to retain only rows where the `remain` column contains a percentage symbol ("%").
+
+
+
+<details>
+  <summary type="button">Solution</summary>
+
+``` r
+names(polls) <- c("date", "remain", "leave", "undecided", "spread",
+                  "sample", "pollster", "type", "notes")
+polls <- polls[str_detect(polls$remain, "%"), ]
+polls 
+
+# If we want to validate the number of polls:
+nrow(polls)
+```
+</details>
+
+
+116. Extract the `remain` column into a vector and convert the text percentages into proper numeric probabilities (e.g., convert "50%" to 0.5).
+
+
+
+<details>
+  <summary type="button">Solution</summary>
+
+``` r
+remain <- polls$remain
+
+# Solution 1:
+percentages <- parse_number(remain)/100
+
+# Solution 1:
+temp <- str_replace(remain, "%", "")
+percentages <- as.numeric(temp)/100
+
+# Solution 2:
+temp <- str_remove(remain, "%")
+percentages <- as.numeric(temp)/100
+
+```
+</details>
+
+
+117. In the `undecided` column, the value "N/A" appears when the sum of `remain` and `leave` equals 100%. Create a vector for `undecided` where these "N/A" values are replaced with "0%".
+
+
+
+<details>
+  <summary type="button">Solution</summary>
+
+``` r
+undecided <- polls$undecided
+
+str_replace(undecided, "N/A", "0%")
+
+```
+</details>
+
+
+118. encapsulate your cleaning logic into a single function named `format_percentage(string)`. Test this function with the vector `c("13.5%", "N/A", "10%")` to verify it handles both percentages and "N/A" values correctly.
+
+
+
+<details>
+  <summary type="button">Solution</summary>
+
+``` r
+
+format_percentage <- function(string){
+  string |> 
+    str_replace("N/A", "0%") |> 
+    parse_number()/100
+}
+
+# Function test:
+test_vec <- c("13.5%", "N/A", "10%")
+
+format_percentage(test_vec)
+
+```
+</details>
+
+
+119. Apply `format_percentage` to the `remain`, `leave`, `undecided`, and `spread` columns in the `polls` dataset. Also, ensure the `sample` column is converted to a numeric type.
+
+
+
+<details>
+  <summary type="button">Solution</summary>
+
+``` r
+polls <- polls |> 
+  mutate(across(c("remain", "leave", "undecided", "spread"), ~format_percentage(.))) |> 
+  mutate(across(c("sample"), ~parse_number(.)))
+```
+</details>
+
+
+120. Import the Peruvian COVID-19 dataset from [this URL](https://www.datosabiertos.gob.pe/sites/default/files/DATOSABIERTOS_SISCOVID.csv) into an object named `covid_peru`. Convert the birth date column (`FECHA_NACIMIENTO`) to a proper Date format and calculate the age distribution of the infected individuals using a histogram.
+
+
+
+<details>
+  <summary type="button">Solution</summary>
+
+``` r
+url <- "https://www.datosabiertos.gob.pe/sites/default/files/DATOSABIERTOS_SISCOVID.csv"
+covid_peru <- read_csv(url)
+
+# We look for those that do not follow the ISO 8601 standard:
+index <- str_detect(covid_peru$FECHA_NACIMIENTO, "\\d{4}-\\d{2}-\\d{2}")
+covid_peru$FECHA_NACIMIENTO[!index]
+
+# We see dates in DD/MM/YYYY format
+# We replace to ISO 8601 format:
+covid_peru <- covid_peru |> 
+  mutate(across("FECHA_NACIMIENTO", 
+            ~str_replace(., "(\\d{2})/(\\d{2})/(\\d{4})", "\\3-\\2-\\1")
+            ))
+
+# We search again for those that do not follow ISO 8601 standard:
+index <- str_detect(covid_peru$FECHA_NACIMIENTO, "\\d{4}-\\d{2}-\\d{2}")
+covid_peru$FECHA_NACIMIENTO[!index]
+
+# Convert column to date:
+covid_peru <- covid_peru |> 
+  mutate(across("FECHA_NACIMIENTO", ~ymd(.)))
+
+# Now that it is date format we create histogram:
+covid_peru |> 
+  mutate(age = year(now()) - year(FECHA_NACIMIENTO)) |> 
+  pull(age) |> 
+  hist()
+```
+</details>
+
+
+
+## Text Mining using Tidy Data
+
+Text mining is the discovery by computer of new information, previously unknown, by automatically extracting information from different written resources. Written resources can be websites, books, chats, comments, emails, reviews, articles, etc.
+
+To perform text mining efficiently in R, we will use the `tidytext` package. The "tidy" text format is defined as a table with one token per row. A token can be a word, a sentence, or a paragraph, but usually, it is single words. This structure allows us to use all the standard tools we've learned (`dplyr`, `ggplot2`) to analyze text.
+
+
+``` r
+# Install packages if you haven't yet
+# install.packages("tidytext")
+
+library(tidytext)
+library(tidyverse)
+library(stringr)
+library(syuzhet) # For sentiment analysis
+library(wordcloud) 
+```
+
+### Importing data and Tokenization
+Word maps or word clouds allow us to quickly identify which are the words that are repeated most in a text.
+
+We are going to analyze the work "Pride and Prejudice" written by the author Jane Austen. We will obtain the text from the [Project Gutenberg](www.gutenberg.org)^[www.gutenberg.org] website. We will use the `get_text_as_string()` function from `syuzhet` to import properly.
+
+
+``` r
+url <- "https://www.gutenberg.org/cache/epub/1342/pg1342.txt"
+
+# Import text as a single string
+pride_book <- get_text_as_string(url)
+
+# Convert to a data frame with sentences or just lines
+# Here we will split by newline to create a rudimentary structure
+text_df <- tibble(
+  text = str_split(pride_book, "\n")[[1]]
+)
+
+# Remove empty lines
+text_df <- text_df |> 
+  filter(text != "")
+
+head(text_df)
+#> # A tibble: 1 × 1
+#>   text                                                                          
+#>   <chr>                                                                         
+#> 1 "The Project Gutenberg eBook of Pride and Prejudice      This ebook is for th…
+```
+
+### Text cleaning and Tokenization
+
+Now we will clean the text and convert it to specific tokens (words). The `unnest_tokens()` function automatically:
+1. Splits text into tokens (words by default).
+2. Removes punctuation.
+3. Converts to lowercase.
+
+> **Note on AI:** This process of breaking text into "tokens" is exactly how Large Language Models like GPT-4 work. In **Chapter 14 (Data Science in the Age of AI)**, we will see that LLMs are essentially probabilistic engines that predict the next token in a sequence. Understanding how to handle tokens here is the foundation for understanding Generative AI.
+
+
+``` r
+# We eliminate first rows of notes/prologue if needed, though unnest_tokens handles a lot.
+# Let's clean some metadata lines roughly
+start_line <- 115
+text_df <- text_df[start_line:nrow(text_df), ]
+
+# Tokenize
+tidy_pride <- text_df |>
+  unnest_tokens(word, text)
+
+# See the result
+head(tidy_pride)
+#> # A tibble: 6 × 1
+#>   word 
+#>   <chr>
+#> 1 <NA> 
+#> 2 <NA> 
+#> 3 <NA> 
+#> 4 <NA> 
+#> 5 <NA> 
+#> 6 <NA>
+```
+
+Now we have a table where each row is a word. This is the "tidy" format.
+
+However, we clearly have words that do not add meaning (stop words), such as "the", "and", "of". We can remove them using a list of stop words. The `tm` package provides a good list for English.
+
+
+``` r
+library(tm)
+english_stop_words <- tibble(word = stopwords("english"))
+
+# Remove stop words using anti_join
+tidy_pride_clean <- tidy_pride |>
+  anti_join(english_stop_words, by = "word")
+
+head(tidy_pride_clean)
+#> # A tibble: 6 × 1
+#>   word 
+#>   <chr>
+#> 1 <NA> 
+#> 2 <NA> 
+#> 3 <NA> 
+#> 4 <NA> 
+#> 5 <NA> 
+#> 6 <NA>
+```
+
+We might also want to remove custom words or numbers that appeared in the extraction.
+
+
+``` r
+custom_stop_words <- tibble(word = c("mr", "mrs", "miss", "said", "will", 
+                                     "one", "much", "may", "can", "now", "sir", "lady"))
+
+tidy_pride_clean <- tidy_pride_clean |>
+  anti_join(custom_stop_words, by = "word") |>
+  filter(!str_detect(word, "^\\d+$")) # Remove pure numbers
+
+```
+
+### Word Cloud
+Now that we have our clean data, calculating word frequency is as simple as using `count()`.
+
+
+``` r
+word_counts <- tidy_pride_clean |>
+  count(word, sort = TRUE)
+
+head(word_counts)
+#> # A tibble: 6 × 2
+#>   word          n
+#>   <chr>     <int>
+#> 1 elizabeth   605
+#> 2 darcy       383
+#> 3 must        322
+#> 4 bennet      309
+#> 5 jane        274
+#> 6 bingley     262
+```
+
+We can create the word cloud directly from this data frame.
+
+
+``` r
+wordcloud(words = word_counts$word, 
+          freq = word_counts$n,
+          min.freq = 5,
+          max.words = 80, 
+          random.order = FALSE, 
+          colors = brewer.pal(name = "Dark2", n = 8))
+```
+
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-774-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+
+### Word Frequency Plot
+Since we have the data in a tidy format, plotting a bar chart of the most frequent words is straightforward with `ggplot2`.
+
+
+``` r
+word_counts |>
+  head(20) |>
+  ggplot(aes(n, reorder(word, n))) +
+  geom_col(fill = "blue") +
+  labs(y = NULL, x = "Frequency", title = "Most common words in Pride and Prejudice")
+```
+
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-775-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+
+## Sentiment Analysis
+Sentiment analysis allows us to know the tone of the messages. We will use the `syuzhet` package combined with our tidy data skills.
+
+Let's use the same example of tweets.
+
+
+``` r
+library(readxl)
+
+# Download tweets
+url <- "https://dparedesi.github.io/DS-with-R-datasets/rmapalacios-tweets.xlsx"
+temp_file <- tempfile()
+download.file(url, temp_file)
+posts <- read_excel(temp_file)
+file.remove(temp_file)
+#> [1] TRUE
+
+# Filter for tweets only and create a tidy dataframe
+tweets_df <- posts |> 
+  filter(`Tweet Type` == "Tweet") |> 
+  select(text = Text) |>
+  mutate(tweet_id = row_number()) 
+
+head(tweets_df)
+#> # A tibble: 6 × 2
+#>   text                                                                  tweet_id
+#>   <chr>                                                                    <int>
+#> 1 "Le agradezco mucho regidor.\nUna visita al niño y a su madre pueden…        1
+#> 2 "Esto esta prohibido en tantas normas que no se por donde empezar.\n…        2
+#> 3 "Nadie lo sabe y a los ministros sectoriales parece importarles poco…        3
+#> 4 "Ahora se llama \"trabajo remoto\" con el auspicio del Estado peruan…        4
+#> 5 "¿Y usted esta muy seguro que va a salir a trabajar el lunes 25? Vay…        5
+#> 6 "No saben como abundan. https://t.co/r1qMGOhGcR"                             6
+```
+
+Now we clean the tweets. `unnest_tokens` handles most of it, but for tweets, we might want to remove URL links first.
+
+
+``` r
+# Custom cleaning function for tweets before tokenization
+clean_tweets <- tweets_df |>
+  mutate(text = str_replace_all(text, "http\\S+", "")) |> # remove URLs
+  mutate(text = str_replace_all(text, "@\\S+", "")) # remove mentions
+
+# Get Sentiment scores for each tweet
+# syuzhet works well with the full text vector for scoring
+tweet_sentiments <- get_nrc_sentiment(clean_tweets$text, language = "spanish")
+
+# Combine with original data
+tweets_with_sentiment <- bind_cols(clean_tweets, tweet_sentiments)
+
+head(tweets_with_sentiment)
+#> # A tibble: 6 × 12
+#>   text    tweet_id anger anticipation disgust  fear   joy sadness surprise trust
+#>   <chr>      <int> <dbl>        <dbl>   <dbl> <dbl> <dbl>   <dbl>    <dbl> <dbl>
+#> 1 "Le ag…        1     0            1       0     2     1       3        0     3
+#> 2 "Esto …        2     4            0       3     5     0       3        0     0
+#> 3 "Nadie…        3     0            0       0     0     0       0        0     0
+#> 4 "Ahora…        4     0            1       0     0     1       0        1     1
+#> 5 "¿Y us…        5     0            2       0     1     3       2        0     4
+#> 6 "No sa…        6     0            0       0     0     0       0        0     0
+#> # ℹ 2 more variables: negative <dbl>, positive <dbl>
+```
+
+We can now reshape this data to visualize emotions using `pivot_longer`, just like we do with any tidy dataset.
+
+
+``` r
+translate_emotions <- function(string){
+  case_when(
+    string == "anger" ~ "Anger",
+    string == "anticipation" ~ "Anticipation",
+    string == "disgust" ~ "Disgust",
+    string == "fear" ~ "Fear",
+    string == "joy" ~ "Joy",
+    string == "sadness" ~ "Sadness",
+    string == "surprise" ~ "Surprise",
+    string == "trust" ~ "Trust",
+    string == "negative" ~ "Negative",
+    string == "positive" ~ "Positive",
+    TRUE ~ string
+  )
+}
+
+# Summarize totals
+sentiment_totals <- tweets_with_sentiment |> 
+  summarise(across(anger:positive, sum)) |>
+  pivot_longer(cols = everything(), names_to = "sentiment", values_to = "total") |>
+  mutate(sentiment = translate_emotions(sentiment))
+
+sentiment_totals
+#> # A tibble: 10 × 2
+#>    sentiment    total
+#>    <chr>        <dbl>
+#>  1 Anger          805
+#>  2 Anticipation   905
+#>  3 Disgust        807
+#>  4 Fear          1344
+#>  5 Joy            549
+#>  6 Sadness       1378
+#>  7 Surprise       421
+#>  8 Trust         1373
+#>  9 Negative      2535
+#> 10 Positive      2314
+```
+
+Visualizing:
+
+
+``` r
+# Separate positive/negative from specific emotions
+general_sentiments <- c("Positive", "Negative")
+
+sentiment_totals |>
+  filter(!sentiment %in% general_sentiments) |>
+  ggplot(aes(reorder(sentiment, total), total, fill = sentiment)) +
+  geom_col() +
+  coord_flip() +
+  labs(x = NULL, y = "Total Score", title = "Emotions in Tweets") +
+  theme(legend.position = "none")
+
+sentiment_totals |>
+  filter(sentiment %in% general_sentiments) |>
+  ggplot(aes(sentiment, total, fill = sentiment)) +
+  geom_col() +
+  labs(x = NULL, y = "Total Score", title = "Positive vs Negative Sentiment")
+```
+
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-779-1.png" alt="" width="80%" style="display: block; margin: auto;" /><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-779-2.png" alt="" width="80%" style="display: block; margin: auto;" />
+
+This tidy approach makes it much easier to inspect the data at every step and integrate valid data science workflows (filtering, joining, plotting) without learning a separate system just for text.
+
+
+
+## Exercises
+
+For these exercises we will use more books from Project Gutenberg using the `gutenbergr` library.
+
+
+``` r
+# install.packages("gutenbergr")
+library(gutenbergr)
+
+# Tibble: list of books in Gutenberg.org
+gutenberg_metadata
+
+# List of books in Spanish
+gutenberg_works(languages = "es")
+```
+
+121. Use `gutenberg_download(2000)` to download the text of "El ingenioso hidalgo don Quijote de la Mancha" and store the result in an object named `download`.
+
+
+
+<details>
+  <summary type="button">Solution</summary>
+
+``` r
+download <- gutenberg_download(2000)
+quijote_text <- download$text
+head(quijote_text)
+```
+</details>
+
+
+122. Extract a random sample of 1,000 lines from the text. Clean this sample by tokenizing into words and removing standard Spanish stop words.
+
+
+
+<details>
+  <summary type="button">Solution</summary>
+
+``` r
+set.seed(123)
+sample_lines <- tibble(text = sample(quijote_text, 1000))
+
+tidy_quijote <- sample_lines |>
+  unnest_tokens(word, text) |>
+  anti_join(spanish_stop_words, by = "word") |>
+  # Remove extra stop words if needed
+  filter(!word %in% c("don", "quijote", "sancho")) 
+
+```
+</details>
+
+
+123. Visualize the most frequent words in your cleaned Quijote sample using a word cloud.
+
+
+
+<details>
+  <summary type="button">Solution</summary>
+
+``` r
+quijote_counts <- tidy_quijote |>
+  count(word, sort = TRUE)
+
+wordcloud(words = quijote_counts$word, 
+          freq = quijote_counts$n,
+          min.freq = 2,
+          max.words = 80, 
+          colors = brewer.pal(8, "Dark2"))
+```
+</details>
+
+124. Analyze the sentiments present in your text sample to determine the overall emotional tone.
+
+
+
+<details>
+  <summary type="button">Solution</summary>
+
+``` r
+# Reconstruct text for syuzhet or do word-by-word sentiment if using tidytext lexicon
+# Using syuzhet on the original sample lines is often better for context, 
+# but let's try token-based simply for the exercise or just use the lines:
+
+# Extract sentiments from the lines
+quijote_sentiments <- get_nrc_sentiment(sample_lines$text, language = "spanish")
+
+# Summarize/Plot
+quijote_sentiments |>
+  summarise(across(everything(), sum)) |>
+  pivot_longer(everything(), names_to = "sentiment", values_to = "count") |>
+  ggplot(aes(reorder(sentiment, count), count)) +
+  geom_col(fill = "steelblue") +
+  coord_flip() +
+  labs(title = "Sentiments in Don Quijote Sample")
+```
+</details>
+
+
+
+<!--chapter:end:05-wrangling/text-mining.Rmd-->
+
+
+# (PART) Generative AI {-}
+
+# Data Science in the Age of AI {#genai-intro}
+
+The field of Data Science is in a state of constant evolution. We started by learning how to handle vectors and lists in Base R, we moved to the elegance of the **tidyverse** for data manipulation, and we explored the robustness of **tidymodels** for machine learning. Now, we are facing a new paradigm shift: **Generative AI**.
+
+Just as the calculator did not replace the mathematician, Large Language Models (LLMs) will not replace the Data Scientist. However, a Data Scientist using AI will likely replace one who does not.
+
+In this part of the book, we will demystify these "magic black boxes". We will learn what they are, how to control them programmatically from R, and how to use them to unlock unstructured data that was previously inaccessible.
+
+## What is a Large Language Model?
+
+To work effectively with LLMs, we must stop treating them as "people" and start treating them as **probabilistic engines**.
+
+### It's all about Probability
+
+At its most fundamental level, an LLM like GPT-4, Claude, or Llama is a "next token prediction machine". It has been trained on a massive corpus of text (books, websites, code repositories) to answer a simple statistical question:
+
+> *Given the sequence of text "The capital of France is...", what is the most likely next piece of text?*
+
+The model does not "know" geography. It knows that, statistically, the token "Paris" appears more frequently after that sequence than "London" or "Potato".
+
+### Tokens vs. Words
+
+We often think models read words, but they actually process **tokens**, which can be whole words, fragments, or even spaces. For instance, "apple" might be a single token, while a complex word like "antidisestablishmentarianism" could be split into four or five. A useful rule of thumb is that **1,000 tokens are roughly equivalent to 750 words**. This distinction is critical for two reasons: **Cost**, as you are billed by the token for both input and output; and **Context Window**, which serves as the model's short-term memory. A model with a 128k context window can effectively "remember" about 96,000 words of conversation before it begins to lose track of the beginning.
+
+### Temperature: Controlling Creativity
+
+One of the most important parameters you can control is **Temperature**, which dictates the randomness of the output. A temperature of **0** makes the model deterministic, always selecting the most probable next token—ideal for tasks requiring precision like data extraction, coding, or math. Conversely, raising the temperature to **1** or higher encourages the model to take risks and choose less likely tokens, making it suitable for creative writing, brainstorming, and poetry.
+
+> [!TIP]
+> **For Data Science, start at 0.** When writing code or extracting data, we want reliability, not creativity.
+
+## Setting Up Your AI Environment
+
+Before we write code, we must secure our environment. Accessing high-quality models usually requires an API Key (from OpenAI, Anthropic, Google, etc.).
+
+> [!DANGER]
+> **NEVER** paste your API key directly into your R script. If you push that script to GitHub, bots will steal your key in seconds and drain your bank account.
+*   **Anonymize:** If you must use a public tool, rename columns (`Client_A`, `Revenue_X`) and inject fake values before prompting.
+
+### The Solution: Local LLMs
+
+For sensitive data, the best solution is running a **Local LLM** on your own machine using tools like **Ollama** or **LM Studio**. This approach ensures 100% privacy and offline access, though it does come with trade-offs: it requires a capable computer (such as a Mac M-series or NVIDIA GPU), and local models are typically smaller and less capable than massive cloud models like GPT-4.
+
+### The `.Renviron` File
+
+The standard way to handle secrets in R is the `.Renviron` file. This file lives in your project's root or your home directory and is not tracked by Git (ensure it is in your `.gitignore`).
+
+1.  Open or create the file using R:
+    ```r
+    usethis::edit_r_environ()
+    ```
+2.  Add your keys in the following format:
+    ```bash
+    OPENAI_API_KEY="sk-proj-12345..."
+    ANTHROPIC_API_KEY="sk-ant-12345..."
+    GITHUB_PAT="ghp_12345..."
+    ```
+3.  Restart your R session.
+4.  Access them in R:
+    ```r
+    Sys.getenv("OPENAI_API_KEY")
+    ```
+
+## AI as the "Pair Programmer"
+
+The most immediate value of AI is not replacing your analysis, but accelerating the code you write to perform it.
+
+### The Great Refactorer
+
+We all have old code: nested `for` loops, variable names like `x1`, `x2`, and manual indexing. AI excels at modernizing legacy code.
+
+**Scenario:** You have this Base R code to filter and clean data:
+
+```r
+# Old Code
+data <- read.csv("sales.csv")
+clean_data <- data[data$amount > 100, ]
+clean_data$date <- as.Date(clean_data$date)
+final <- clean_data[order(clean_data$date), ]
+```
+
+**Prompt to AI:**
+> "Refactor this R code to use the `tidyverse` and the pipe (`|>`) operator. Ensure variable names are snake_case."
+
+**AI Output:**
+```r
+library(tidyverse)
+
+sales_data <- read_csv("sales.csv") |> 
+  filter(amount > 100) |> 
+  mutate(date = as.Date(date)) |> 
+  arrange(date)
+```
+
+### The Translator
+
+One of the hardest parts of learning R is knowing *which* package does what you want. You can describe your intent in plain English (or Spanish!) and get the function.
+
+**Example Prompt:**
+> "I have this R code using `purrr::map`. Can you explain what it does in simple terms and suggest if there is a more modern way to write it?"
+
+### Pro Tip: Prompt Engineering 101
+
+
+Getting good code from an LLM isn't magic; it's engineering. A high-quality prompt typically combines four key components. First, establish a **Role** ("You are an expert R programmer...") to frame the model's perspective. Second, clearly define the **Task** ("Write a function to..."). Third, set explicit **Constraints** ("Use `dplyr`, not base R; do not assume clean data"). Finally, specify the desired **Format** ("Return the code in a single block with comments") to ensure the output matches your needs.
+
+> [!TIP]
+> **Iterate.** Your first prompt uses vague terms. Your second prompt clarifies them. Your third prompt gets the perfect answer.
+> "I have a date column '2023-12-25'. I want to extract the week number of the year. Which `lubridate` function should I use?"
+
+**AI Output:**
+> "You should use `lubridate::isoweek()` or `lubridate::week()`."
+
+### The Regex Master
+
+Regular Expressions (Regex) are powerful but notoriously difficult to write. This is arguably the *best* use case for LLMs.
+
+**Scenario:** You have a column with messy Peru phone numbers: `(51) 999-999-999`, `+51 999 999 999`.
+
+**Prompt:**
+> "I have inconsistent phone numbers. Write a regex compatible with `stringr` to extract only the 9 digits of the mobile number, ignoring country code."
+
+**AI Output:**
+
+
+``` r
+library(stringr)
+phones <- c("(51) 987-654-321", "+51 987654321", "987 654 321")
+# The Pattern: Simple extraction of 9 consecutive digits
+clean_phones <- str_extract(phones, "\\d{9}") 
+print(clean_phones)
+#> [1] NA          "987654321" NA
+```
+
+
+### The Error Decoder
+
+R error messages can be cryptic.
+*   *"Error in result[[1]] : subscript out of bounds"*
+*   *"Error: aesthetics must be either length 1 or the same as the data"*
+
+Instead of staring at the screen, paste the error **and** the code chunk into the AI. It will usually pinpoint the exact mismatch in list lengths or ggplot layers.
+
+## The Risks: Hallucinations
+
+We cannot finish this introduction without a warning. LLMs are **people pleasers**. They want to give you an answer, even if they have to invent it.
+
+### The "Package" Hallucination
+It is common for an LLM to invent an R function that *should* exist but doesn't.
+
+> **User:** "How do I calculate the Gini coefficient in `dplyr`?"
+> **AI:** "Just use `summarize(gini = gini_coeff(income))`!"
+
+There is no `gini_coeff` function in `dplyr` default exports. It sounded plausible, but running it will crash your script. **Always verify functions in the Help tab (`?function_name`).**
+
+In the next chapter, we will stop chatting and start coding. We will build an engine to send data to the AI and get structured insights back.
+
+<!--chapter:end:08-genai/intro_llm.Rmd-->
+
+
+```
+# LLMs as an Analysis Engine {#genai-api}
+
+In the previous chapter, we treated AI as a chatbot that helps us write code. Now, we are going to flip the script. We will treat the Large Language Model as a **function** within our R code—a function that accepts unstructured text as input and returns structured data as output. This approach turns unstructured text into structured data with minimal code.
+
+This is the transition from "Chatting with AI" to "Building with AI".
+
+## The API Economy
+
+To interact with models programmatically, we use **APIs** (Application Programming Interfaces). Instead of a web interface, we send HTTP requests.
+
+While there are R packages like `openai`, `ellmer` or `chattr` that wrap these APIs, as a Data Scientist it is critical to understand how to build the connection yourself using `httr2`. This gives you full control over error handling, retries, and costs.
+
+### Prerequisite: The Setup
+
+Ensure you have your API key stored in the `.Renviron` file as discussed in the previous chapter.
+
+
+``` r
+library(tidyverse)
+library(httr2)
+library(jsonlite)
+
+# Reload environment if needed
+readRenviron(".Renviron")
+```
+
+## Building a Robust Request
+
+A production-quality API request needs more than just a URL. It needs **Authentication**, **Retry Logic**, and **Error Handling**.
+
+Let's build a wrapper function to query OpenAI's GPT-4o-mini (a cost-effective model).
+
+
+``` r
+query_openai <- function(prompt, system_prompt = "You are a helpful assistant.") {
+  
+  api_key <- Sys.getenv("OPENAI_API_KEY")
+  
+  if (api_key == "") stop("Error: OPENAI_API_KEY not found in environment.")
+  
+  # 1. Construct the Request
+  req <- request("https://api.openai.com/v1/chat/completions") |> 
+    req_headers(Authorization = paste("Bearer", api_key)) |> 
+    req_body_json(list(
+      model = "gpt-4o-mini",
+      messages = list(
+        list(role = "system", content = system_prompt),
+        list(role = "user", content = prompt)
+      ),
+      temperature = 0 # Deterministic for data tasks
+    )) |> 
+    # 2. Add Robustness: Retry 3 times if server fails (500) or rate limited (429)
+    req_retry(max_tries = 3, backoff = ~ 2) |> # Exponential backoff
+    req_throttle(rate = 100/60) # 100 requests per minute
+  
+  # 3. Perform Request & Handle Errors
+  response <- req_perform(req)
+  
+  # 4. Parse the content
+  result <- response |> resp_body_json()
+  return(result$choices[[1]]$message$content)
+}
+```
+
+Now we have a function `query_openai()` that we can use like any other R function.
+
+
+``` r
+query_openai("What is the capital of Peru?")
+# [1] "The capital of Peru is Lima."
+```
+
+## The Holy Grail: Structured Data extraction
+
+The biggest problem with LLMs is that they love to talk. If you ask for a sentiment score, they might say: *"Here is the sentiment score you requested based on my analysis: Positive."*
+
+We don't want that. We want `"Positive"`. Or even better, we want a JSON object.
+
+### Forcing JSON Output
+
+Most modern models support "JSON Mode". This guarantees the output is machine-readable valid JSON.
+
+Let's say we have a dataset of raw customer reviews and want to extract specific insights. We need to capture the **Sentiment** (Positive or Negative), a list of mentioned **Topics**, and the **Urgency** level—flagging it as 'High' if the user is angry or at risk of churning, and 'Low' otherwise.
+
+
+``` r
+extract_review_data <- function(review_text) {
+  
+  system_instructions <- "
+  You are a data extraction engine. 
+  Extract the following fields from the user review and return ONLY a JSON object:
+  - sentiment: 'Positive', 'Neutral', or 'Negative'
+  - topics: a list of strings (e.g., ['Price', 'UX'])
+  - urgency: 'High' if the user is angry/churning, else 'Low'
+  "
+  
+  # Note: To enforce strict JSON, we often need to tell the model in the prompt
+  # AND set response_format = { type: 'json_object' } if supported.
+  
+  response_json <- query_openai(review_text, system_label = system_instructions)
+  
+  # Parse JSON string to R list
+  return(fromJSON(response_json))
+}
+```
+
+## Batch Processing: The `purrr` Workflow
+
+Now, let's apply this to a Data Frame. When processing hundreds of rows, we **must** be careful.
+
+Now, let's apply this to a Data Frame. When processing hundreds of rows, we must be careful. First, we need to respect **Rate Limits**, as APIs will block you if you send too many requests too quickly (e.g., 1000 in a second). Second, consider **Cost** by always testing on a small sample like `head(df, 5)` before running the full job. Finally, ensure **Error Safety**: if row 99 fails, we want to capture that error gracefully so the entire loop doesn't crash.
+
+We use `purrr::map` with `possibly()` (or `safely()`) generally, but for API calls, adding a small `Sys.sleep()` is wise.
+
+
+``` r
+# Sample Data
+reviews_df <- tibble(
+  id = 1:3,
+  text = c(
+    "I love this product! Best purchase ever.",
+    "The delivery was late and the item is broken. I want a refund.",
+    "It's okay, but a bit expensive for what it is."
+  )
+)
+
+# 1. Create a Safe Function (returns NULL instead of crashing)
+safe_extract <- possibly(extract_review_data, otherwise = NULL)
+
+# 2. Iterate
+results_df <- reviews_df |> 
+  mutate(ai_data = map(text, function(t) {
+    Sys.sleep(0.5) # Be polite to the API
+    safe_extract(t)
+  })) |> 
+  # 3. Unnest the JSON structure
+  unnest_wider(ai_data)
+
+print(results_df)
+```
+
+**Resulting Data Frame:**
+
+| id | text | sentiment | topics | urgency |
+|:---|:-----|:----------|:-------|:--------|
+| 1 | I love... | Positive | ["Product"] | Low |
+| 2 | The delivery... | Negative | ["Shipping", "Product"] | High |
+| 3 | It's okay... | Neutral | ["Price"] | Low |
+
+## Summary
+
+We have turned an unstructured text column into usable columns for filtering and plotting. This is the true power of "LLMs as Data Engines".
+
+*   We use `httr2` for robust connections.
+*   We use System Prompts to force JSON structure.
+*   We use `purrr` and `unnest_wider` to flatten that AI insight back into our Tidyverse workflow.
+
+In the next chapter, we will discuss Ethics. But before that, there is one more superpower we need to unlock: **Embeddings**.
+
+## Beyond Generation: Embeddings
+
+So far, we have used LLMs to *generate* text. But they can also *understand* text by converting it into numbers. This is called an **Embedding**.
+
+An embedding is a list of numbers (a vector, e.g., 1536 numbers long) that represents the semantic meaning of a text.
+
+Consider the difference between a "Dog" and a "Puppy"; their corresponding vectors will be mathematically very close because they share similar semantic meanings. In contrast, "Dog" and "Sandwich" will be far apart. This capability powers **Semantic Search**. Unlike a standard keyword search that looks for exact matches like "Climate" or "Change"—and potentially misses relevant documents—a semantic search converts your query into a vector. It then finds documents with the closest vectors, allowing you to retrieve a report on "Global warming effect on maize" even if it doesn't contain the exact words from your query "Climate change impact on corn."
+
+### R Implementation
+
+Getting an embedding is just another API call:
+
+```r
+get_embedding <- function(text) {
+  req <- request("https://api.openai.com/v1/embeddings") |> 
+    req_headers(Authorization = paste("Bearer", Sys.getenv("OPENAI_API_KEY"))) |> 
+    req_body_json(list(
+      model = "text-embedding-3-small",
+      input = text
+    ))
+  
+  resp <- req_perform(req)
+  # Extract the vector
+  resp |> resp_body_json() |> pluck("data", 1, "embedding") |> unlist()
+}
+
+v1 <- get_embedding("The dog barked")
+v2 <- get_embedding("The canine made noise")
+# cosine_sim <- sum(v1 * v2) / (sqrt(sum(v1^2)) * sqrt(sum(v2^2)))
+# The result will be very high (close to 1).
+```
+
+This vectorization is the foundation of **RAG (Retrieval Augmented Generation)**, which allows you to chat with your own PDFs.
+
+
+<!--chapter:end:08-genai/llm_api.Rmd-->
+
+
+# Text Analysis with Embeddings {#genai-embeddings}
+
+In the previous chapters, we learned how to generate text and how to extract data from it. But what if we want to *understand* the relationship between thousands of documents without reading them?
+
+This is where **Embeddings** come in. They are arguably the most powerful yet underutilized tool in the AI toolkit for Data Scientists.
+
+## Beyond Bag-of-Words
+
+Traditional text mining techniques, such as word clouds or TF-IDF, treat text as a simple "bag of words," ignoring context. For example, the sentence "I sat on the **bank** of the river" and "I went to the **bank** to deposit money" are treated as identical because they both contain the word "bank," even though the meaning offers a completely different context. To a human—and to an Embedding model—these distinctions are clear.
+
+## What is an Embedding?
+
+An embedding is a translation of text into a **vector of numbers**.
+
+Imagine plotting words on a hypothetical 2D graph based on their meaning. In this space, **King** might sit at coordinates `(5, 5)`, with **Queen** located nearby at `(5, 7)` due to their semantic similarity. **Apple**, unrelated to royalty, would be positioned far away at `(10, 2)`. Modern embedding models like OpenAI's `text-embedding-3-small` scale this concept up massively, placing words not in two dimensions, but in **1,536 dimensions**. This high-dimensional space allows them to capture subtle nuances of meaning, tone, and context that simple coordinates cannot.
+
+## Getting Embeddings in R
+
+We can request embeddings using the same `httr2` workflow we built in the previous chapter, but hitting the `/embeddings` endpoint.
+
+
+``` r
+get_embedding <- function(text_input) {
+  
+  api_key <- Sys.getenv("OPENAI_API_KEY")
+  
+  req <- request("https://api.openai.com/v1/embeddings") |> 
+    req_headers(Authorization = paste("Bearer", api_key)) |> 
+    req_body_json(list(
+      model = "text-embedding-3-small",
+      input = text_input
+    ))
+  
+  resp <- req_perform(req)
+  result <- resp |> resp_body_json()
+  
+  # The embedding is a list of numbers
+  return(unlist(result$data[[1]]$embedding))
+}
+
+# Example
+vector_dog <- get_embedding("The dog barked")
+length(vector_dog) 
+# [1] 1536
+```
+
+## Visualizing Meaning (Dimensionality Reduction)
+
+We cannot visualize 1,536 dimensions. But we can use mathematical techniques like **PCA** (Principal Component Analysis) or **UMAP** to squash those dimensions down to 2, preserving relative distances.
+
+Let's assume we have a dataframe `news_df` with headlines and their calculated embeddings.
+
+
+``` r
+library(tidymodels)
+
+# Assume 'embeddings_mat' is a matrix where each row is an embedding vector
+pca_rec <- recipe(~., data = as.data.frame(embeddings_mat)) |> 
+  step_pca(all_predictors(), num_comp = 2)
+
+pca_prep <- prep(pca_rec)
+pca_data <- bake(pca_prep, new_data = NULL)
+
+# Add back the text labels
+plot_data <- pca_data |> 
+  bind_cols(news_df |> select(headline, category))
+
+# Plot
+plot_data |> 
+  ggplot(aes(x = PC1, y = PC2, color = category)) +
+  geom_point(alpha = 0.8) +
+  theme_minimal() +
+  labs(title = "Map of News Headlines")
+```
+
+If we did this correctly, we would see distinct "clusters". Sports news would cluster in one corner, politics in another, and technology in a third—even if they never share the exact same keywords!
+
+## Building a Semantic Search Engine
+
+The "Hello World" of Embeddings is **Semantic Search**, which fundamentally differs from traditional approaches. While a **Keyword Search** for "cheap phone" rigidly looks for the exact words "cheap" AND "phone," a **Semantic Search** for "budget friendly mobile" understands the underlying intent—that "budget" relates to "cheap" and "mobile" to "phone."
+
+Mathematically, this is calculated using **Cosine Similarity**. The closer the angle between two vectors, the more similar their meaning.
+
+
+``` r
+# Function to calculate Cosine Similarity
+cosine_sim <- function(a, b) {
+  sum(a * b) / (sqrt(sum(a^2)) * sqrt(sum(b^2)))
+}
+
+search_news <- function(query, data_vectors, data_text) {
+  
+  # 1. Embed the query
+  query_vec <- get_embedding(query)
+  
+  # 2. Compare against all document vectors
+  similarities <- apply(data_vectors, 1, function(doc_vec) {
+    cosine_sim(query_vec, doc_vec)
+  })
+  
+  # 3. Return top 3 matches
+  results <- tibble(
+    text = data_text,
+    score = similarities
+  ) |> 
+    arrange(desc(score)) |> 
+    head(3)
+  
+  return(results)
+}
+```
+
+Now you can search for concepts, not just keywords!
+
+## Summary: The AI Workflow
+
+We have completed our journey through Generative AI in R.
+
+We have completed our journey through Generative AI in R, covering three foundational pillars. We started by understanding that **Foundations** of models are probabilistic engines predicting tokens, not reasoning beings. Then, we moved to **APIs**, building robust pipelines to extract structured JSON data from unstructured text. Finally, we explored **Embeddings**, learning to represent text as numerical vectors to enable powerful search and clustering by meaning.
+
+The future of Data Science is hybrid. It combines the statistical rigor of tools like `tidymodels` with the semantic understanding of Large Language Models. You are now equipped to build that future.
+
+<!--chapter:end:08-genai/embeddings.Rmd-->
+
+
 # (PART) Real Cases {-}
 
 # Introduction {-}
-Below are some real cases presented based on what has been learned in this book. For the following cases, not only the concepts learned so far will be applied, but some complementary libraries that speed up data processing are also included.
+
+Having mastered the fundamentals of R programming, data transformation, and visualization, it's time to put these skills into practice with real-world scenarios. The following case studies demonstrate end-to-end data science workflows that you might encounter in professional settings.
+
+**In this chapter, you will:**
+
+-   Connect R to external APIs (Google Analytics) for automated data retrieval.
+-   Apply cleaning, transformation, and visualization to real estate market data.
+-   Practice the full workflow: problem definition → data access → analysis → insights.
+
+Each case introduces complementary libraries such as `googleAnalyticsR` for API access and `lubridate` for date manipulation, reinforcing patterns from earlier chapters while adding new practical tools.
 
 <!--chapter:end:07-real-cases/introduction.Rmd-->
 
@@ -12999,7 +13103,7 @@ Below are some real cases presented based on what has been learned in this book.
 
 In this case study, we will apply our data transformation and visualization skills to analyzing the real estate market. We will use the `txhousing` dataset provided by the `ggplot2` package, which contains information about housing sales in Texas.
 
-This dataset allows us to explore similar concepts to financial invoice factoring (tracking value over time, comparing categories, and analyzing volume) but with a much more stable and standardized data source.
+This dataset allows us to explore concepts like tracking value over time, comparing categories, and analyzing transaction volume—skills that transfer directly to financial analysis, sales reporting, and business intelligence.
 
 ## Objectives
 
@@ -13103,7 +13207,7 @@ total_market |>
   )
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-834-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-806-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We can clearly see the seasonality (peaks in summer) and the impact of the 2008 financial crisis (dip around 2008-2010), followed by a strong recovery.
 
@@ -13131,7 +13235,7 @@ city_trends |>
   )
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-835-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-807-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 Austin (green) clearly shows the steepest growth curve, especially post-2012.
 
@@ -13151,31 +13255,38 @@ city_inventory <- city_trends |>
 
 city_inventory |> 
   ggplot(aes(x = year, y = avg_inventory, color = city)) +
-  geom_line(size = 1) +
+  geom_line(linewidth = 1) +
   theme_fivethirtyeight() +
   labs(
     title = "Market Health: Months of Inventory",
-    subtitle = "Lower means simpler to sell (Seller's Market)",
+    subtitle = "Lower means easier to sell (Seller's Market)",
     color = "City"
   )
-#> Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-#> ℹ Please use `linewidth` instead.
-#> This warning is displayed once every 8 hours.
-#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 ```
 
-<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-836-1.png" alt="" width="80%" style="display: block; margin: auto;" />
+<img src="Data-Science-with-R_files/figure-html/unnamed-chunk-808-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
 We see a convergence around 2014-2015 where inventory became very tight across all major cities.
 
+## Try It Yourself
+
+1.  **Expand the Analysis**: Add "Fort Worth" to `major_cities` and re-run the median price comparison. How does it compare to the Big 4?
+
+2.  **Calculate Growth**: Compute the year-over-year percentage change in median price for Austin. Which year had the highest growth?
+
+3.  **Seasonality Deep Dive**: Which month typically has the highest sales volume? Create a boxplot of sales by month to visualize seasonal patterns.
+
 ## Conclusions
 
-Through this case study, we accessed a standardized dataset (`txhousing`) and performed key Data Science tasks:
-1.  **Cleaning**: Handling `NA`s and formatting dates.
-2.  **Aggregation**: Summarizing millions of dollars of volume into a clear trend line.
-3.  **Comparison**: Benchmarking different categories (Cities) against each other.
+Through this case study, we performed essential Data Science tasks on a real dataset:
 
-This workflow is identical to what is required for analyzing invoice portfolios, stock tickers, or customer churn cohorts, but uses a reliable data source that ensures our code is reproducible.
+1.  **Cleaning**: Handling `NA` values and formatting dates with `lubridate`.
+2.  **Aggregation**: Summarizing billions of dollars of volume into clear trend lines.
+3.  **Comparison**: Benchmarking cities against each other to identify leaders.
+4.  **Indicators**: Creating business-relevant metrics like months of inventory.
+
+> [!TIP]
+> This exact workflow applies to countless domains: stock prices, customer churn, inventory management, or any time-series business data. Master the pattern here, and you can adapt it anywhere.
 
 <!--chapter:end:07-real-cases/real-estate-analysis.Rmd-->
 
@@ -13187,6 +13298,9 @@ Understanding the audience that enters our website helps us make better decision
 ## Problem
 We have a website to which we already placed the Google Analytics code to understand visit statistics to my website, but I want reports that today the web does not provide us. We need to access the raw data to represent our own reports and access them even without having to enter the Google Analytics website.
 
+> [!IMPORTANT]
+> Google sunsetted Universal Analytics in July 2023. The `googleAnalyticsR` package now supports GA4. The concepts here remain valid, but the specific function parameters may differ. See the [package documentation](https://code.markedmondson.me/googleAnalyticsR/) for GA4-specific usage.
+
 ## Access to data
 We are going to assume for this case that we already have a google analytics account and we are already tracking data from our website through some view. For this case I am going to use the statistics to the website that you are currently reading.
 
@@ -13197,6 +13311,7 @@ To access the Google Analytics data we will use the [`googleAnalyticsR`](http://
 install.packages("googleAnalyticsR")
 library(googleAnalyticsR)
 library(lubridate)
+library(tidyverse)
 ```
 
 Then, we have to authenticate. To do this we will use the `ga_auth()` function, which will open a web page to log in with the account in which we have access to Google Analytics.
@@ -13215,19 +13330,19 @@ Now that we are authenticated we can bring all our accounts using the `ga_accoun
 account_list <- ga_account_list()
 ```
 
-From here we will search for the row of the website that interests us and from there we will obtain the `viewID` column. The viewID in Google Analytics for this website is the following:
+From here we will search for the row of the website that interests us and from there we will obtain the `propertyId` column. The Property ID in Google Analytics 4 for this website is the following:
 
 
 ``` r
-ga_id <- 218744945
+property_id <- 123456789 # Replace with your GA4 Property ID
 ```
 
 Finally, we need two variables of the date from when to when we want the data.
 
 
 ``` r
-from_date <- "2020-01-01"
-to_date <- "2020-03-31"
+from_date <- "2024-01-01"
+to_date <- "2024-03-31"
 ```
 
 Or if we wish we can only calculate the information of the last two months, or two days, etc.
@@ -13235,20 +13350,21 @@ Or if we wish we can only calculate the information of the last two months, or t
 
 ``` r
 # Two months ago until now
-from_date <- seq(now(), length = 2, by = "-2 months")[2] |> as_date() |> as.character()
-to_date <- now() |> as_date() |> as.character()
+# Two months ago until now
+from_date <- (today() - months(2)) |> as.character()
+to_date <- today() |> as.character()
 
 from_date
 to_date
 ```
 
-Thus, we can already make a call to obtain the data we need using the `google_analytics()` function.
+Thus, we can already make a call to obtain the data we need using the `ga_data()` function (the standard for GA4).
 
 
 ``` r
-history <- google_analytics(ga_id,
+history <- ga_data(property_id,
                  date_range = c(from_date, to_date),
-                 metrics = "users",
+                 metrics = "activeUsers",
                  dimensions = "date")
 ```
 
@@ -13264,20 +13380,20 @@ from_date <- seq(now(), length = 2, by = "-90 days")[2] |> as_date() |> as.chara
 to_date <- now() |> as_date() |> as.character()
 
 # We add the city as a dimension
-history <- google_analytics(ga_id,
+history <- ga_data(property_id,
                  date_range = c(from_date, to_date),
-                 metrics = "users",
-                 dimensions = c("cityID", "city"))
+                 metrics = "activeUsers",
+                 dimensions = "city")
 ```
 
-As we see, the dimension also allows a vector as input. We will create a histogram with the top 5 cities that visited this website in the last 90 days.
+As we see, the dimension also allows a vector as input. We will create a **bar chart** with the top 5 cities that visited this website in the last 90 days.
 
 
 ``` r
 history |> 
   filter(city != "(not set)") |>
   group_by(city) |> 
-  summarise(total = sum(users)) |> 
+  summarise(total = sum(activeUsers)) |> 
   mutate(proportion = total / sum(total)) |> 
   top_n(5, wt = proportion) |> 
   mutate(city = reorder(city, proportion, sum)) |> 
@@ -13294,214 +13410,338 @@ history |>
 Keep in mind that in this case there is an issue of recognition of IPs coming from Lima, Peru, and that is why they do not appear as the first visitor. At the time of performing this analysis they all appeared as "(not set)". However, if the same analysis is done by country and not by city, Peru is recognized and appears as one of the top visiting the web.
 
 ## Conclusion
-We see that it is very easy to access Google Analytics data. We can create our own reports directly from R to analyze as many dimensions as we need without having to use the reporting provided by Google Analytics.
+
+Accessing Google Analytics data programmatically opens powerful possibilities:
+
+-   **Automated Reporting**: Schedule R scripts to generate weekly/monthly reports.
+-   **Custom Metrics**: Combine GA data with internal business data for richer analysis.
+-   **Interactive Dashboards**: Use Shiny to create real-time analytics dashboards.
+
+With the `googleAnalyticsR` package, you can query any metric or dimension available in your GA account, transforming raw clickstream data into actionable business insights—all without leaving your R environment.
 
 <!--chapter:end:07-real-cases/google-analytics-case.Rmd-->
 
 
-# Data Science in the Age of AI {#genai-intro}
-
-The field of Data Science is evolving rapidly. Just as the transition from base R to the tidyverse transformed how we write code, the emergence of **Large Language Models (LLMs)** and **Generative AI** is transforming how we solve problems.
-
-In this chapter, we will explore how to integrate these powerful tools into your R workflow—not to replace your skills, but to amplify them.
-
-## What is a Large Language Model?
-
-At its core, a Large Language Model (like GPT-4, Claude, or Llama) is a probabilistic engine. It has been trained on vast amounts of text to predict the "next most likely token" (piece of a word) in a sequence. 
-
-While they can seem intelligent, it is crucial to remember:
-*   **They do not "know" facts:** They generate plausible-sounding text based on patterns.
-*   **They can hallucinate:** They can confidently state things that are completely false (especially about R packages that don't exist!).
-*   **They are non-deterministic:** Asking the same question twice might yield different answers.
-
-> [!WARNING]
-> **Trust, but Verify.** Never run code generated by an AI without understanding what it does. Always test it on a small sample of your data first.
-
-## Coding with AI: The "Pair Programmer"
-
-The most immediate application of GenAI for a Data Scientist is as a **Pair Programmer**. Tools like GitHub Copilot or simply chatting with ChatGPT/Claude can significantly speed up your coding.
-
-### 1. Explaining Complex Code
-Have you ever inherited a project with a complex chunk of code you don't understand? Paste it into an LLM and ask: *"Explain this R code step-by-step."*
-
-**Example Prompt:**
-> "I have this R code using `purrr::map`. Can you explain what it does in simple terms and suggest if there is a more modern way to write it?"
-
-### 2. Generating Boilerplate
-Writing the skeleton for a Shiny app or a complex ggplot theme can be tedious.
-
-**Example Prompt:**
-> "Create an R script that sets up a basic Shiny dashboard with a sidebar layout. It should generate a histogram of the `palmerpenguins` dataset."
-
-### 3. Regex: The Ultimate Use Case
-Regular Expressions (Regex) are powerful but famously difficult to remember. This is one of the best use cases for AI.
-
-**Scenario:** You have a dataset with messy phone numbers like `(51) 999-999-999`, `51 999 999 999`, and `+51999999999`. You want to extract just the digits.
-
-**Bad Way:** Spending an hour reading StackOverflow.
-**AI Way:** 
-
-> **Prompt:** "I have a column in R with Peruvian phone numbers in inconsistent formats (e.g., `(51) 987-654-321`). Write a regular expression to extract only the 9 digits of the mobile number, ignoring the country code +51. Show me how to use it with `stringr`."
-
-**Potential Output:**
-
-``` r
-library(stringr)
-
-phones <- c("(51) 987-654-321", "+51 987654321", "987 654 321")
-digits <- str_extract(phones, "(?<=51\\D{0,2})\\d{9}|\\d{9}")
-```
-*(Note: Always test the regex provided! AI often struggles with lookbehinds)*
-
-## Ethics & Risks in the AI Era
-
-While these tools are powerful, they come with significant risks that every Data Scientist must manage.
-
-### 1. Hallucinations & Fabrication
-LLMs are designed to generate *plausible* text, not *truth*.
-*   **The "Package" Problem:** An LLM might invent an R package like `shiny.dashboard.plus.ultra` because it sounds real. Always check CRAN.
-*   **False Confidence:** It will explain a concept incorrectly with 100% confidence.
-
-### 2. The Reproducibility Crisis
-Data Science relies on reproducibility. If you ask ChatGPT to write code for you:
-*   Will it write the same code tomorrow? (No).
-*   Can you cite "ChatGPT" as an author in a scientific paper? (Generally no).
-*   **Best Practice:** Treat AI-generated code as a first draft. You must review, test, and own the final code.
-
-### 3. Data Privacy & IP
-When using free external tools (like ChatGPT), remember: **If the service is free, you (and your data) might be the product.**
-
-*   **Never** paste PII (Personally Identifiable Information) like client names, IDs, or private financial data into a public LLM.
-*   **Corporate Policy:** Many companies ban public LLMs. Check if you have an internal instance (e.g., Enterprise Copilot).
-*   **Anonymize:** If you must use a public tool, rename columns (`Client_A`, `Revenue_X`) and inject fake values before prompting.
-
-In the next section, we will go a step further: interacting with LLMs programmatically using R.
-
-<!--chapter:end:08-genai/intro_llm.Rmd-->
-
-
-# LLMs as an Analysis Engine {#genai-api}
-
-In the previous section, we used AI as a coding assistant. Now, we will use it as a data processing engine.
-
-## The Evolution of NLP
-
-We saw in Chapter 5 (@ref(text-mining)) how to perform **Sentiment Analysis** using the `syuzhet` package and the NRC Lexicon. This approach is "Bag of Words"—it looks up each word in a dictionary.
-
-*   **Lexicon Approach:** "This movie was not bad." -> "Bad" is negative -> **Negative Sentiment** (fails to catch negation).
-*   **LLM Approach:** "This movie was not bad." -> Understands nuance -> **Positive/Neutral Sentiment**.
-
-## Interacting with APIs from R
-
-To use an LLM (like GPT-4o or Claude 3.5 Sonnet) from R, we typically use an API (Application Programming Interface). While there are packages like `elmer` or `openai` being developed, knowing how to do it with `httr2` is a fundamental skill.
-
-### Prerequisite: API Keys
-You need an API key from a provider (OpenAI, Anthropic, etc.). 
-**Never hardcode your key in a script.** Store it in your `.Renviron` file:
-
-```r
-# In your .Renviron file
-OPENAI_API_KEY="sk-..."
-```
-
-### Making a Request
-Here is a function to analyze sentiment using an LLM.
-
-
-``` r
-library(httr2)
-library(jsonlite)
-
-analyze_sentiment_llm <- function(text_input) {
-  
-  api_key <- Sys.getenv("OPENAI_API_KEY")
-  
-  # 1. Create the request
-  req <- request("https://api.openai.com/v1/chat/completions") |> 
-    req_headers(Authorization = paste("Bearer", api_key)) |> 
-    req_body_json(list(
-      model = "gpt-4o-mini",
-      messages = list(
-        list(role = "system", content = "You are a sentiment analysis bot. Respond ONLY with one word: 'Positive', 'Negative', or 'Neutral'."),
-        list(role = "user", content = text_input)
-      ),
-      temperature = 0
-    ))
-  
-  # 2. Perform the request
-  response <- req_perform(req)
-  
-  # 3. Parse the result
-  result <- response |> resp_body_json()
-  return(result$choices[[1]]$message$content)
-}
-
-# Testing it
-analyze_sentiment_llm("I absolutely hated the popcorn, but the movie was a masterpiece.")
-# LLM Result: "Positive" (likely, as it understands the core subject is the movie)
-```
-
-## Zero-Shot Classification
-
-One of the most powerful abilities of LLMs is **Zero-Shot Classification**. You don't need to train a model; you just describe the categories.
-
-Imagine you have customer feedback and want to categorize it into: "Pricing", "Usability", or "Feature Request".
-
-**Prompt:**
-> "Classify the following text into one of these categories: [Pricing, Usability, Feature Request]. Text: 'I can't find the export button.'"
-
-**R Implementation:**
-You would wrap the above prompt in a function similar to `analyze_sentiment_llm`. This replaces complex supervised learning pipelines for many simple tasks.
-
-## Text Cleaning with LLMs
-
-Another major use case is data cleaning. 
-
-**Scenario:** You have a column `Job_Title` with values like "Sr. Data Scientist", "Senior Data Scientist", "Data Scientist II", "Data Science Lead". You want to standardize them.
-
-Instead of writing 50 regex rules, you can send the unique values to an LLM:
-
-> "Map the following list of job titles to a standard taxonomy: [Data Scientist, Data Analyst, Data Engineer]. Return a CSV format."
-
-This approach turns unstructured text into structured data with minimal code.
-
-## Summary
-
-*   LLMs capture context that lexicons miss.
-*   `httr2` is your friend for connecting R to the AI ecosystem.
-*   Always handle API keys securely.
-*   AI is not free—monitor your usage costs.
-
-<!--chapter:end:08-genai/llm_api.Rmd-->
-
-
 # Appendix A: Responsible AI Checklist {#ethics-checklist}
 
-As we conclude this book, use this checklist before deploying any model or analysis to production.
+As we conclude this book, it is crucial to remember that technical skills are only half of the equation. Data science has real-world consequences. Before deploying any model, analysis, or reliable pipeline to production, use this checklist to ensure your work is robust, fair, and transparent.
 
-## 1. Data Quality & lineage
-- [ ] **Provenance:** Do I know exactly where this data came from?
-- [ ] **Consent:** Was the data collected with consent? Does it contain PII?
+This checklist is designed to be actionable for R users, pointing to specific packages and practices where applicable.
+
+## Data Quality & Lineage
+
+* "Garbage in, garbage out" applies to ethics as well as accuracy.*
+
+- [ ] **Provenance:** Do I know exactly where this data came from? Is the source trustworthy?
+- [ ] **Consent & Privacy:** Was the data collected with consent? Does it contain Personally Identifiable Information (PII)?
+    - *Tip:* Use packages like `introdat` or custom scripts to scan for patterns resembling PII (emails, SSNs) before data leaves your secure environment.
 - [ ] **Representation:** Does the training data match the real-world population it will be applied to?
+    - *Action:* Check distribution of key demographics in your train vs. production sets.
+- [ ] **Validation:** Have I validated the data schema and constraints?
+    - *Tool:* Use the **`pointblank`** or **`validator`** packages to define and enforce data quality rules (e.g., `col_vals_between(age, 0, 120)`).
 
-## 2. Fairness & Bias
+## Fairness & Bias
+
+*Algorithms can reinforce existing inequalities.*
+
 - [ ] **Protected Classes:** Have I checked performance across different groups (Gender, Age, Ethnicity)?
+- [ ] **Bias Detection:** Have I quantified the bias in my model?
+    - *Tool:* Use **`fairness`**, **`fairmodels`**, or **`dalex`** to calculate metrics like Disparate Impact or Equal Opportunity difference.
+    - *Example Code:* `fairness_check(explainer, protected = data$gender, privileged = "Male")`
 - [ ] **Proxy Variables:** Are there variables (like Zip Code) acting as proxies for protected classes?
 - [ ] **Impact:** Who could be harmed if this model makes a mistake? (e.g., Denying a loan vs. Recommending a bad movie).
 
-## 3. Transparency & Explainability
-- [ ] **Documentation:** Is the model card created? (Inputs, Outputs, Limitations).
+## Transparency & Explainability
+
+*Black boxes should not make high-stakes decisions.*
+
+- [ ] **Documentation:** Is the model card created? (Inputs, Outputs, Limitations, Intended Use).
 - [ ] **Explainability:** Can I explain to a non-technical stakeholder *why* the model made a specific prediction?
+    - *Tool:* Use **`dalex`**, **`lime`**, or **`iml`** to create feature contribution plots or breakdown plots.
 - [ ] **Feedback Loop:** Is there a mechanism for users to report errors or contest decisions?
 
-## 4. GenAI Specifics
-- [ ] **Fact-Checking:** Have I verified AI-generated code/facts against reliable sources?
+## Reproducibility & Integrity
+
+*Science must be reproducible.*
+
+- [ ] **Environment Sealing:** Is the R environment reproducible?
+    - *Tool:* Use **`renv`** to capture package versions in a `renv.lock` file.
+- [ ] **Randomness Control:** Are random seeds set (`set.seed()`) for key steps like splitting data or initializing weights?
+- [ ] **Code Versioning:** Is the code committed to version control (Git) with clear messages?
+
+## GenAI Specifics
+
+*If using Large Language Models (LLMs).*
+
+- [ ] **Fact-Checking:** Have I verified AI-generated code/facts against reliable sources? Hallucinations are common.
 - [ ] **Security:** Have I ensured no sensitive data is being sent to public APIs?
 - [ ] **Attribution:** Am I transparent about which parts of the work were AI-generated?
 
 > "With great power comes great responsibility." — *Stan Lee (and every Data Scientist)*
 
 <!--chapter:end:09-appendix/ethics_checklist.Rmd-->
+
+
+# Appendix B: Object Oriented Programming with R6 {#r6-intro}
+
+In R, Object-Oriented Programming (OOP) can be implemented in several ways. Traditionally, R has used systems called S3 and S4 for OOP.
+
+**S3** is an informal and flexible system. It is based on the idea of generic functions, which can have different methods depending on the class of the object they apply to. For example, the `print()` function is a generic function having different methods for printing different types of objects, such as vectors, lists, or data frames.
+
+
+``` r
+# Example of generic function in S3
+print(c(1, 2, 3))  # Prints a numeric vector
+#> [1] 1 2 3
+print(list(a = 1, b = 2))  # Prints a list
+#> $a
+#> [1] 1
+#> 
+#> $b
+#> [1] 2
+```
+
+**S4** is a more formal and structured system than S3. It defines classes and methods more explicitly, using special syntax. S4 is often used in packages requiring a more rigorous object structure, like Bioconductor.
+
+
+``` r
+# Example of class definition in S4
+setClass("Person", slots = c(name = "character", age = "numeric"))
+
+# Example of object creation in S4
+my_person <- new("Person", name = "John", age = 30)
+
+my_person
+#> An object of class "Person"
+#> Slot "name":
+#> [1] "John"
+#> 
+#> Slot "age":
+#> [1] 30
+```
+
+However, both S3 and S4 can be somewhat confusing and limited, especially for more complex projects. Luckily, there is a more modern and robust alternative: the R6 package. This package offers a more intuitive and efficient way to implement OOP in R, with features facilitating code organization, reuse, and maintenance. If you are new to OOP, don't worry about S3 and S4 details for now. With R6, you can learn basic OOP concepts more easily and apply them to your data analysis projects.
+
+## The R6 package: Classes, methods, encapsulation, and inheritance
+
+The R6 package implements a class and object system similar to other object-oriented programming languages like Python or Java. It provides a robust and efficient way to create objects with attributes and methods, allowing encapsulation and inheritance.
+
+
+``` r
+install.packages("R6")
+```
+
+
+``` r
+library(R6)
+```
+
+**Classes:**
+
+A class is like a blueprint or template for creating objects. It defines the attributes (data) and methods (functions) that objects of that class will have. In R6, classes are created with the `R6Class()` function.
+
+
+``` r
+
+# Define a "Person" class
+Person <- R6Class("Person",
+  public = list(
+    name = NULL,
+    age = NULL,
+    
+    # Constructor
+    initialize = function(name, age) {
+      self$name <- name
+      self$age <- age
+    },
+    
+    # Method to greet
+    greet = function() {
+      cat("Hello, my name is", self$name, "and I am", self$age, "years old.\n")
+    }
+  )
+)
+
+```
+
+In this example, a `Person` class is defined with `name` and `age` attributes, and `greet()` method. The `public` list defines public members of the class, i.e., attributes and methods accessible from outside the object.
+
+**Objects:**
+
+An object is an instance of a class. It is a concrete entity having attributes and methods defined by the class. In R6, objects are created with the `$new()` method.
+
+
+``` r
+# Create an object of class "Person"
+juan <- Person$new(name = "Juan", age = 30)
+
+juan
+#> <Person>
+#>   Public:
+#>     age: 30
+#>     clone: function (deep = FALSE) 
+#>     greet: function () 
+#>     initialize: function (name, age) 
+#>     name: Juan
+```
+
+**Methods:**
+
+Methods are functions operating on an object's attributes. They allow accessing and modifying object data, as well as performing other actions. In R6, methods are defined within the `public` list of the class.
+
+
+``` r
+# Call greet() method of object "juan"
+juan$greet()
+#> Hello, my name is Juan and I am 30 years old.
+```
+
+**Encapsulation:**
+
+Encapsulation is a mechanism allowing hiding internal details of an object and controlling access to its attributes. This protects object data and facilitates usage. In R6, encapsulation is achieved by distinguishing between public and private members.
+
+Public members are defined in `public` list and can be accessed from outside the object. Private members are defined in `private` list and can only be accessed from within the object, through methods.
+
+
+``` r
+# Define a "BankAccount" class with encapsulation
+BankAccount <- R6Class("BankAccount",
+  public = list(
+    holder = NULL,
+    
+    # Constructor
+    initialize = function(holder) {
+      self$holder <- holder
+      private$balance <- 0
+    },
+    
+    # Method to deposit money
+    deposit = function(amount) {
+      private$balance <- private$balance + amount
+    },
+    
+    # Method to withdraw money
+    withdraw = function(amount) {
+      if (amount <= private$balance) {
+        private$balance <- private$balance - amount
+      } else {
+        stop("Insufficient funds.")
+      }
+    },
+    
+    # Method to check balance
+    check_balance = function() {
+      return(private$balance)
+    }
+  ),
+  private = list(
+    balance = NULL
+  )
+)
+```
+
+**Inheritance:**
+
+Inheritance is a mechanism allowing creating new classes from existing classes, inheriting their attributes and methods. This facilitates code reuse and creation of class hierarchies. In R6, inheritance is specified with `inherit` argument of `R6Class()` function.
+
+
+``` r
+# Define a "Student" class inheriting from "Person"
+Student <- R6Class("Student",
+  inherit = Person,
+  public = list(
+    major = NULL,
+    
+    # Constructor
+    initialize = function(name, age, major) {
+      super$initialize(name, age)
+      self$major <- major
+    },
+    
+    # Method to show student info
+    show_info = function() {
+      super$greet()
+      cat("Major:", self$major, "\n")
+    }
+  )
+)
+
+# Create an object of class "Student"
+maria <- Student$new(name = "Maria", age = 20, major = "Engineering")
+
+# Call method show_info()
+maria$show_info()
+#> Hello, my name is Maria and I am 20 years old.
+#> Major: Engineering
+```
+
+In this example, `Student` class inherits from `Person` class. `Student` constructor calls parent class constructor (`super$initialize()`) to initialize inherited attributes. `show_info()` method calls parent class `greet()` method (`super$greet()`) and then shows student-specific information.
+
+With R6, you can create classes and objects with a high degree of flexibility and control, allowing you to apply OOP effectively in your data analysis projects.
+
+## Exercises
+
+125. Create a class called `Pet` with attributes `name`, `species` and `age`, and methods `introduce()` (showing name, species and age of pet) and `have_birthday()` (incrementing pet age by 1).
+
+
+
+<details>
+  <summary type="button">Solution</summary>
+
+``` r
+library(R6)
+
+Pet <- R6Class("Pet",
+  public = list(
+    name = NULL,
+    species = NULL,
+    age = NULL,
+    
+    initialize = function(name, species, age) {
+      self$name <- name
+      self$species <- species
+      self$age <- age
+    },
+    
+    introduce = function() {
+      cat("Hello, I am", self$name, ", a", self$species, "of", self$age, "years old.\n")
+    },
+    
+    have_birthday = function() {
+      self$age <- self$age + 1
+    }
+  )
+)
+```
+</details>
+
+126. Create a class called `Dog` inheriting from `Pet` class (from previous exercises). `Dog` class should have an additional attribute called `breed` and a method called `bark()`.
+
+
+
+<details>
+  <summary type="button">Solution</summary>
+
+``` r
+Dog <- R6Class("Dog",
+  inherit = Pet,
+  public = list(
+    breed = NULL,
+    
+    initialize = function(name, age, breed) {
+      super$initialize(name, "dog", age)
+      self$breed <- breed
+    },
+    
+    bark = function() {
+      cat("Woof! Woof!\n")
+    }
+  )
+)
+```
+</details>
+
+<!--chapter:end:09-appendix/R6_intro.Rmd-->
 
 ---
 output: html_document

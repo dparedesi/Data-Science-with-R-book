@@ -1,26 +1,40 @@
 # Supervised Learning
-To understand supervised learning intuitively, we will use a daily example. We have all been to the doctor and at some point told them that we have a sore throat, headache, and fever. They will ask us a few more questions and then tell us what illness we might have and what treatment to follow.
 
-Intuitively, we know that the doctor had to **train** initially from classes and books showing past cases, and study which symptoms are signs of each disease. Then, they started to **test** what they learned on a group of patients during their internship. Finally, when they were already trained, they had the license to be able to **apply** this learning to patients in their office or hospital.
+To understand supervised learning intuitively, we can compare it to how humans learn from examples. 
 
-This is an example of **supervised learning** because the **training** was performed from known data or _inputs_ which are labeled (sore throat, headache, fever) with the purpose of obtaining a result or _output_ that was also known and labeled (do they have the flu or not?). When a doctor **tests** what they learned, the patient inputs are known and also the output given by a more experienced doctor who can say how effective their training is. When the doctor goes out to see patients, they will only have _labeled inputs_ with the purpose of **predicting** a _labeled output_.
+Consider a doctor diagnosing patients. The doctor has **trained** for years using textbooks and case studies where the symptoms (inputs) and the correct diagnosis (output) were known. During their residency, they **test** their knowledge under the supervision of experienced mentors. Finally, once licensed, they **apply** this knowledge to diagnose new patients where the outcome is unknown.
 
-This is the logic that has been taken to computational algorithms. We can see it on Facebook, which collects a series of inputs, such as our likes, shares, etc., to predict what we might want to consume and shows it to us as a recommendation. And we will also see it in our work environment when we have inputs from our clients, such as consumption, purchasing power, place where they live, etc., to predict which of our products we predict they are more prone to buy and thus call them to offer that product.
+This is an example of **supervised learning**.
+This process mirrors **supervised learning**. First, the model undergoes a **Training** phase, learning from labeled data (like symptoms and their corresponding diagnoses). Next, during **Testing**, it is evaluated on new, unseen cases where the outcome is already known to verify its accuracy. finally, the model enters the **Prediction** phase, where it applies its learned knowledge to real-world data to generate diagnoses (predictions) for unknown cases.
+
+In machine learning terms:
+In machine learning terms, we have **Inputs** (features or predictors) which are the data points used to make a prediction, and **Outputs** (target or response), which are the values we aim to predict. The ultimate **Goal** is to learn the mathematical relationship between these inputs and outputs to accurately forecast outcomes for future data.
+
+> [!TIP]
+> **Key Terminology**
+> **Key Terminology**
+> In supervised learning, the **Input** (or Feature/Independent Variable) refers to the data used to make a prediction, such as patient symptoms or house characteristics. The **Output** (or Target/Dependent Variable) is the value we want to predict, like a medical diagnosis or a house price. We rely on **Labels**, which are the known "answers" in our training data, to teach the model.
+
+Common applications include:
+Common applications of these techniques include **Spam Detection** (classifying emails as "Spam" or "Not Spam"), **Credit Scoring** (predicting the likelihood of a customer repaying a loan), and **House Price Prediction** (estimating a property's value based on its location and size).
 
 ## Classification and Regression
-There are multiple supervised learning algorithms, but we will differentiate them into two according to the type of variable we handle.
 
-When the variable is discrete, we will call them **classification**. The examples above are proof of this. We have classified into two classes (flu or not) or several classes (product "x" to recommend).
+We divide supervised learning into two main types based on the target variable:
 
-When the variable is continuous, we will call them **regression**. Predicting house prices given the characteristics of the house such as size, price, etc. is one of the common examples of regression.
+We divide supervised learning into two main types based on the nature of the target variable. **Classification** is used when the target is a discrete category, such as determining if an email is spam (Yes/No) or predicting which product a customer will buy (A, B, or C). **Regression**, on the other hand, is used when the target is a continuous number, like estimating the price of a house or forecasting the number of units to be sold next month.
 
-In the following sections, we will learn some algorithms indicating whether they are classification or regression.
+In the following sections, we will learn algorithms for both tasks.
 
 ## kNN: k-Nearest Neighbors
 Let's start with a simple but very useful **classification** algorithm, the k-Nearest Neighbors algorithm (_kNN_).
 
 ### Two variables as input
 Let's start by understanding it visually. Imagine that we have two variables as _input_ and as _output_ it gives us whether it is Red Class or Blue Class. This data is our training data.
+
+> [!NOTE]
+> **When to use kNN?**
+> kNN is excellent for small datasets with few dimensions (variables) because it is simple and explains non-linear patterns well. However, it becomes very slow and less accurate as the dataset grows in size or number of variables (the "curse of dimensionality").
 
 ```{r, echo=FALSE, fig.alt="Training data points on a 2D plane with red and blue class labels"}
 knitr::include_graphics(file.path(img_path, "06-machine-learning", "kNN-train.png"))
@@ -32,7 +46,7 @@ Now that we have our training data, we will start using the test data. As we wan
 knitr::include_graphics(file.path(img_path, "06-machine-learning", "kNN-test.png"))
 ```
 
-We have traced only some distances, but we could do it with all of them. For this example, we will take the k = 3 nearest neighbors.
+We have traced only some distances, but we could do it with all of them. For this example, we will take the **k = 3** nearest neighbors. Why 3? It is common to pick an odd number to avoid ties (where the vote is 50/50).
 
 ```{r, echo=FALSE, fig.alt="k-NN classification showing 3 nearest neighbors (2 red, 1 blue), classifying test point as red"}
 knitr::include_graphics(file.path(img_path, "06-machine-learning", "kNN-classify.png"))
@@ -139,19 +153,19 @@ result_df |>
   geom_line()
 ```
 
-As we can see, for this case, starting from a certain number of nearest neighbors, the success rate of our algorithm begins to reduce. It will depend on each case to choose the best "k" for our model.
+As we can see, the accuracy (precision) changes with `k`. This illustrates a fundamental concept in Machine Learning:
+ 
+-   **Overfitting (Low k):** When `k` is too low (e.g., `k=1`), the model pays excessive attention to individual data points, including noise. It effectively "memorizes" the training data but fails to generalize to new, unseen examples.
+-   **Underfitting (High k):** Conversely, if `k` is too high (e.g., `k=50`), the model becomes overly simple, averaging out the signal and missing the distinct patterns that differentiate the classes.
+ 
+Finding the sweet spot between these two extremes is the goal of **Hyperparameter Tuning**. It will depend on each case to choose the best "k" for our model to balance this trade-off (often called the **Bias-Variance Tradeoff**).
 
 We have thus built our first machine learning model.
 
 ## tidymodels Framework
 Now that we have created our first machine learning model, we have seen ourselves with many lines of code. For example, to split the sample into training and test, to calculate the optimal "k", etc. To make the work easier, we will use the `tidymodels` framework. [tidymodels](https://www.tidymodels.org/)^[https://www.tidymodels.org/] is a collection of packages for modeling and machine learning using tidyverse principles. It provides a unified, modern interface for:
 
-- **rsample**: Data splitting and resampling
-- **recipes**: Feature engineering and preprocessing  
-- **parsnip**: Unified model specification
-- **tune**: Hyperparameter tuning
-- **yardstick**: Model evaluation metrics
-- **workflows**: Bundling recipes and models together
+It provides a unified, modern interface via a suite of specialized packages: **rsample** for data splitting and resampling, **recipes** for feature engineering and preprocessing, **parsnip** for specifying models, **tune** for hyperparameter optimization, **yardstick** for metrics and model evaluation, and **workflows** to bundle everything together.
 
 ```{r eval=FALSE}
 install.packages('tidymodels')
@@ -162,7 +176,7 @@ library(tidymodels)
 
 ```
 
-We are going to do another example with k-nearest neighbors, but this time using the functions of the Caret library. The data for this example will be obtained from the `ISLR` library, which contains the daily percentage returns for the S&P 500 stock index between 2001 and 2005. This data frame has 8 columns that we will use as _input_ and the last column that has two classes (whether the index goes up or down) that we will use as _output_ (See `?Smarket`).
+We are going to do another example with k-nearest neighbors, but this time using the functions of the **tidymodels** framework. The data for this example will be obtained from the `ISLR` library, which contains the daily percentage returns for the S&P 500 stock index between 2001 and 2005. This data frame has 8 columns that we will use as _input_ and the last column that has two classes (whether the index goes up or down) that we will use as _output_ (See `?Smarket`).
 
 ```{r eval=FALSE}
 install.packages("ISLR")
@@ -178,7 +192,7 @@ Smarket |>
 # We make some translations for ease of analysis
 Smarket <- Smarket |> 
   rename(Direction = Direction) |> 
-  mutate(Direction = ifelse(Direction == "Up", "Sube", "Baja")) |> 
+  mutate(Direction = ifelse(Direction == "Up", "Up", "Down")) |> 
   mutate(across(c("Direction"), ~as.factor(.)))
 ```
 
@@ -201,9 +215,11 @@ This function makes sampling data much simpler and returns a split object that w
 
 ### Training our prediction algorithm
 In tidymodels, we build models in a structured way using three key components:
-1. **Model specification** (`parsnip`): Define the type of model and its engine
-2. **Recipe** (`recipes`): Define preprocessing steps
-3. **Workflow** (`workflows`): Bundle recipe and model together
+In `tidymodels`, we build models in a structured way using three key components: **Model Specification** (via `parsnip`) to define the algorithm, **Recipes** (via `recipes`) to define preprocessing steps, and **Workflows** (via `workflows`) to bundle the model and recipe together into a single execution unit.
+
+Let's break down these components:
+
+Let's break down these components. The **Model Specification (`parsnip`)** tells R *what* kind of model we want (e.g., "nearest neighbor") and *which* computational engine to use (e.g., "kknn"), decoupling intent from implementation. The **Recipe (`recipes`)** acts as a blueprint for data processing, handling tasks like normalization (scaling variables) and converting categorical variables. Finally, the **Workflow (`workflows`)** container holds the model and recipe together, ensuring that the exact same preprocessing steps are applied automatically when predicting on new data.
 
 Let's start by specifying our k-nearest neighbors model. We use `tune()` as a placeholder for the `neighbors` parameter to indicate we want to find the optimal value.
 
@@ -301,11 +317,11 @@ SP_predictions <- augment(SP_knn_trained, new_data = SP_test)
 
 # View predictions
 SP_predictions |> 
-  select(Direction, .pred_class, .pred_Baja, .pred_Sube) |>
+  select(Direction, .pred_class, .pred_Down, .pred_Up) |>
   head(10)
 ```
 
-The `augment()` function adds three columns: `.pred_class` (the predicted class), and probability columns for each class (`.pred_Baja` and `.pred_Sube`). This makes it very easy to compare predictions with actual values.
+The `augment()` function adds three columns: `.pred_class` (the predicted class), and probability columns for each class (`.pred_Down` and `.pred_Up`). This makes it very easy to compare predictions with actual values.
 
 As we can see, for each test value the model calculates the estimated probability for each class. The algorithm assigns the class with the highest probability.
 
@@ -342,19 +358,19 @@ knitr::include_graphics(file.path(img_path, "06-machine-learning", "confusion-ma
 ### Accuracy
 We have already been using this term in our examples. The accuracy of the model can be calculated from the confusion matrix:
 
-$Accuracy=\frac{VP+VN}{VP+VN+FP+FN}$
+$Accuracy=\frac{TP+TN}{TP+TN+FP+FN}$
 
 The _accuracy_ of the model is the proportion of times the algorithm predicted correctly, regarding the total data evaluated.
 
 ### Sensitivity
 Sensitivity (also called true positive rate, recall, or probability of detection in some fields) measures the proportion of real positives that are correctly identified as such (for example, the percentage of sick people who are correctly identified as having the condition).
 
-$Sensitivity=\frac{VP}{VP+FN}$
+$Sensitivity=\frac{TP}{TP+FN}$
 
 ### Specificity
 Specificity (also called true negative rate) measures the proportion of real negatives that are correctly identified as such (for example, the percentage of healthy people who are correctly identified as not having the condition).
 
-$Specificity=\frac{VN}{VN+FP}$
+$Specificity=\frac{TN}{TN+FP}$
 
 `r if(params$hidden){"<!--"}`
 
@@ -452,7 +468,7 @@ heights_df <- GaltonFamilies |>
   slice_sample(n = 1) |> # random sample of 1 son per family
   ungroup() |>
   select(father, childHeight) |>
-  rename(son = childHeight, father = father) |> 
+  rename(son = childHeight) |> 
   mutate(father = father/39.37) |> # From inches to meters
   mutate(son = son/39.37) # From inches to meters
 ```
@@ -513,6 +529,9 @@ collect_metrics(lm_results)
 
 We see as main results the RMSE, which stands for root mean square error, and is the value that linear regression seeks to minimize. In addition, we have the R squared or $R^2$, which is the coefficient of determination which determines the quality of the model to replicate the results. The higher and closer to 1, the better the quality of the model.
 
+> [!WARNING]
+> **Correlation implies association, not causation**: A high $R^2$ or strong correlation means the variables move together, but it does **not** prove that one causes the other. There could be confounding variables at play.
+
 Now let's fit the final model and make predictions:
 
 ```{r eval=TRUE}
@@ -526,6 +545,9 @@ heights_predictions <- augment(heights_fit, new_data = heights_test)
 heights_predictions |>
   rmse(truth = son, estimate = .pred)
 ```
+
+> [!TIP]
+> **Model Diagnostics**: In a rigorous analysis, you should also inspect the **residuals** (the difference between predicted and actual values). The `augment()` function includes a `.resid` column for this purpose. Plotting residuals helps verify that your model isn't missing non-linear patterns.
 
 If we wish we can also report the coefficients of the equation and visualize them:
 
@@ -602,7 +624,6 @@ Let's use our model to predict the prices of the test data.
 
 ```{r eval=TRUE}
 # Fit final model
-library(discrim)
 diamonds_fit <- fit(diamonds_workflow, data = diamonds_train)
 
 # Extract coefficients
@@ -663,7 +684,7 @@ SP2_knn_res <- tune_grid(
 
 show_best(SP2_knn_res, metric = "roc_auc")
 ```
-```
+
 We see that now ROC was used to select the most optimal model. The closer the ROC value is to 1 the better our model will be. With this model we can predict values from the test data.
 
 ```{r eval=TRUE}
@@ -688,7 +709,7 @@ SP2_predictions |>
 We see how our accuracy (_accuracy_) has increased from 91.99% to **93.27%**. This metric is highly recommended to improve the accuracy of our model, in addition to allowing us to more easily use it as a comparator between different models we can create.
 
 ## Selection of the Most Optimal Model
-We have learned how to create some machine learning models. As we must have noticed, with **caret** we follow the same pattern for partitioning, training, and prediction. The variation lies in how to pre-process the data and the parameter tuning. We could thus create multiple models, but finally we have to verify one which will serve us to make our predictions.
+We have learned how to create some machine learning models. As we must have noticed, with **tidymodels** we follow the same pattern for partitioning, training, and prediction. The variation lies in how to pre-process the data and the parameter tuning. We could thus create multiple models, but finally we have to verify one which will serve us to make our predictions.
 
 In this section, we are going to compare different predictive models accepting their default values and choose the best one using the tools presented in previous sections.
 
@@ -707,14 +728,12 @@ str(mlc_churn)
 # We translate outputs
 mlc_churn <- mlc_churn |> 
   rename(churn_status = churn) |> 
-  mutate(churn_status = ifelse(churn_status == "yes", "Sí", "No")) |> 
+  mutate(churn_status = ifelse(churn_status == "yes", "Yes", "No")) |> 
   mutate(churn_status = as.factor(churn_status))
   
 # Proportion of "Yes" and "No"s:
 prop.table(table(mlc_churn$churn_status))
 ```
-
-We create now sample of training and test, 70% training.
 
 We create now sample of training and test, 70% training.
 
@@ -875,17 +894,19 @@ show_best(svm_res, metric = "roc_auc")
 ```
 
 ### Naive Bayes Model
-Naïve Bayes (NB), Naive Bayes is one of the simplest, yet powerful, algorithms for classification based on Bayes' Theorem.
+Naïve Bayes (NB) is one of the simplest, yet powerful, algorithms for classification. It is based on **Bayes' Theorem**, which describes the probability of an event, based on prior knowledge of conditions that might be related to the event. For example, if cancer is related to age, then, using Bayes' theorem, a person's age can be used to more accurately assess the probability that they have cancer.
 
 To use this model we will use the `naivebayes` library within tidymodels.
 
 ```{r eval=FALSE}
-install.packages("naivebayes")
-library(naivebayes) # Required for the engine
+install.packages(c("naivebayes", "discrim"))
+library(naivebayes) 
+library(discrim) # Required for parsnip integration
 ```
 
 ```{r eval=TRUE}
 # Spec
+library(discrim)
 nb_spec <- naive_Bayes() |>
   set_engine("naivebayes") |>
   set_mode("classification")
@@ -961,7 +982,7 @@ Thus, we have found how to create a customer churn prediction model given 19 pre
 
 ## Exercises
 
-`r ne`. The `attrition` data frame from the `modeldata` library shows data from a list of almost 1,500 employees of a company. Create a copy of this data frame and store it in the `trabajadores` object. Then, build an RF model with this data to predict the `Attrition` field (job desertion). Where the class "Yes" means they resigned and "No" means they still work.
+`r ne`. The `attrition` data frame from the `modeldata` library shows data from a list of almost 1,500 employees of a company. Create a copy of this data frame and store it in the `workers` object. Then, build an RF model with this data to predict the `Attrition` field (job desertion). Where the class "Yes" means they resigned and "No" means they still work.
 
 ```{r echo=FALSE}
 inc(params$hidden, ne)
@@ -1088,19 +1109,26 @@ inc(params$hidden, ne)
 <details>
   <summary type="button">Solution</summary>
 ```{r eval=FALSE}
-# We generate model list
-lista_de_modelos <- list(rf = trabajadores_modelo_rf,
-                         glmmet = workers_model_glm,
-                         svm = workers_model_svm)
+# Collect best metrics from each model
+rf_best <- show_best(workers_rf_res, metric = "roc_auc", n = 1)
+glm_best <- show_best(workers_glm_res, metric = "roc_auc", n = 1)
+svm_best <- show_best(workers_svm_res, metric = "roc_auc", n = 1)
 
-# We compare the models
-comparacion_modelos <- resamples(lista_de_modelos)
+# Create comparison tibble
+model_comparison <- bind_rows(
+  rf_best |> mutate(model = "Random Forest"),
+  glm_best |> mutate(model = "GLM"),
+  svm_best |> mutate(model = "SVM")
+)
 
-# We visualize the comparison
-bwplot(comparacion_modelos, metric = "ROC")
-
-# We obtain the summary of the comparison
-summary(comparacion_modelos, metric = "ROC")
+# Visualize
+model_comparison |>
+  ggplot(aes(x = reorder(model, mean), y = mean, fill = model)) +
+  geom_col() +
+  geom_errorbar(aes(ymin = mean - std_err, ymax = mean + std_err), width = 0.2) +
+  labs(y = "ROC AUC", x = "Model", title = "Model Comparison by ROC AUC") +
+  theme(legend.position = "none") +
+  coord_flip()
 
 ```
 
@@ -1118,14 +1146,28 @@ inc(params$hidden, ne)
 <details>
   <summary type="button">Solution</summary>
 ```{r eval=FALSE}
-prediccion_rf <- predict(trabajadores_modelo_rf, trabajadores_test)
-confusionMatrix(prediccion_rf, trabajadores_test$renuncia)
+# Finalize and fit each model
+best_rf <- select_best(workers_rf_res, metric = "roc_auc")
+final_rf_wf <- finalize_workflow(rf_wf, best_rf)
+rf_fit <- fit(final_rf_wf, data = workers_train)
 
-prediccion_glm <- predict(trabajadores_modelo_glm, trabajadores_test)
-confusionMatrix(prediccion_glm, trabajadores_test$renuncia)
+best_glm <- select_best(workers_glm_res, metric = "roc_auc")
+final_glm_wf <- finalize_workflow(glm_wf, best_glm)
+glm_fit <- fit(final_glm_wf, data = workers_train)
 
-prediccion_svm <- predict(trabajadores_modelo_svm, trabajadores_test)
-confusionMatrix(prediccion_svm, trabajadores_test$renuncia)
+best_svm <- select_best(workers_svm_res, metric = "roc_auc")
+final_svm_wf <- finalize_workflow(svm_wf, best_svm)
+svm_fit <- fit(final_svm_wf, data = workers_train)
+
+# Predictions and confusion matrices
+rf_preds <- augment(rf_fit, new_data = workers_test)
+rf_preds |> conf_mat(truth = attrition_status, estimate = .pred_class)
+
+glm_preds <- augment(glm_fit, new_data = workers_test)
+glm_preds |> conf_mat(truth = attrition_status, estimate = .pred_class)
+
+svm_preds <- augment(svm_fit, new_data = workers_test)
+svm_preds |> conf_mat(truth = attrition_status, estimate = .pred_class)
 ```
 
 Keep in mind that the model with the highest `ROC` value will not necessarily have the highest `accuracy`. Therefore the choice of the model was performed in a previous step. The ROC better balances sensitivity with the [false positive rate](https://en.wikipedia.org/wiki/False_positive_rate).
@@ -1151,10 +1193,12 @@ If a company uses an algorithm to decide who to hire or fire based on historical
 *   **Scenario:** If a company historically didn't hire women for leadership roles, the training data will show that women are "less likely to succeed" in those roles.
 *   **Result:** The model creates a feedback loop, rejecting qualified female candidates because they don't match the historical pattern of "success".
 
-### What can we do?
-1.  **Audit your Data:** checking for representation balance (e.g., is one group significantly smaller?).
-2.  **Model Explainability:** Use tools like `DALEX` or `vip` (variable importance) to understand *why* the model is making a decision. If `MaritalStatus` is the top predictor for firing someone, is that ethical?
-3.  **Human in the Loop:** These models should support human decision-making, not replace it entirely.
+> [!IMPORTANT]
+> **What can we do?**
+>
+> 1.  **Audit your Data:** checking for representation balance (e.g., is one group significantly smaller?).
+> 2.  **Model Explainability:** Use tools like `DALEX` or `vip` (variable importance) to understand *why* the model is making a decision. If `MaritalStatus` is the top predictor for firing someone, is that ethical?
+> 3.  **Human in the Loop:** These models should support human decision-making, not replace it entirely.
 
 As Data Scientists, our responsibility extends beyond the AUC score. We must ensure our models do not harm individuals or groups.
 

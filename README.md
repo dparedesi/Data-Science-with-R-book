@@ -6,10 +6,10 @@ output: github_document
 
 <!-- badges: start -->
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-[![R Version](https://img.shields.io/badge/R-4.4.2-blue.svg)](https://cran.r-project.org/)
+[![R Version](https://img.shields.io/badge/R-4.5.2-blue.svg)](https://cran.r-project.org/)
 <!-- badges: end -->
 
-> **Data Analysis and Prediction Algorithms with R, Second Edition**
+> **Data Analysis and Prediction Algorithms with R, Third Edition**
 > 
 > By Daniel Paredes Inilupu
 
@@ -40,7 +40,7 @@ output: github_document
 
 ## 🛠️ Technical Stack
 
-- **R**: 4.4.2+
+- **R**: 4.5.2+
 - **Framework**: [bookdown](https://bookdown.org/)
 - **ML**: [tidymodels](https://www.tidymodels.org/)
 - **Visualization**: [ggplot2](https://ggplot2.tidyverse.org/)
@@ -68,7 +68,7 @@ The output will be generated in the `docs/` folder.
 ├── 06.machine-learning/  Supervised & Unsupervised Learning
 ├── 07.real-cases/     Applied Case Studies
 ├── 08.genai/          Generative AI with R
-└── 09.appendix/       Ethics Checklist
+├── 09.appendix/       Ethics Checklist
 ```
 
 ## 📝 Citation
@@ -79,8 +79,8 @@ If you use this book in your work, please cite:
 @book{paredes2024datascience,
   author = {Paredes Inilupu, Daniel},
   title = {Data Science with R: Data Analysis and Prediction Algorithms},
-  year = {2024},
-  edition = {2nd},
+  year = {2025},
+  edition = {3rd},
   publisher = {Leanpub},
   url = {https://leanpub.com/dataScienceConR/}
 }
