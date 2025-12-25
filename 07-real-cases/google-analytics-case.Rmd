@@ -30,7 +30,7 @@ Now that we are authenticated we can bring all our accounts using the `ga_accoun
 
 ```{r include=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
 gar_set_client("gAnalytics.json")
-ga_auth(email = "daparedes281@gmail.com")
+ga_auth(email = "your-email@gmail.com")  # Use your Google Analytics email
 ```
 
 ```{r eval=FALSE}

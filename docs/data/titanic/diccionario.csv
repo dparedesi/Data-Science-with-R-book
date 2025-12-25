@@ -1,0 +1,13 @@
+﻿columna,descripcion
+IdPasajero,Código de identificación del pasajero
+Sobrevivio,Sobrevivió o no
+ClaseDelTicket,"Se venieron tickets en 1era, 2da o 3era clase"
+Nombre,Apellidos y nombres
+Genero,"Male si es hombre, female si es mujer"
+Edad,Edad
+Hermanos_o_esposas,Número de hermanos más cónyuges a bordo
+Padres_o_hijos,Numero de padres más hijos a bordo
+Ticket,Número del ticket
+Precio_Ticket,Precio del ticket
+Numero_Cabina,Número de la cabina donde se alojaba
+Puerto_embarque,Puerto de Embarque

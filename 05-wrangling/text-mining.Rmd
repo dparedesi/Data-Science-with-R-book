@@ -857,7 +857,7 @@ Let's use the same example of tweets.
 library(readxl)
 
 # Download tweets
-url <- "https://dparedesi.github.io/DS-with-R-datasets/rmapalacios-tweets.xlsx"
+url <- "https://dparedesi.github.io/Data-Science-with-R-book/data/rmapalacios-tweets.xlsx"
 temp_file <- tempfile()
 download.file(url, temp_file)
 posts <- read_excel(temp_file)

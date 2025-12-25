@@ -42,7 +42,7 @@ One of the most common ways to create data frames is by importing data from exte
 
     ```{r}
     library(readr)
-    url <- "https://dparedesi.github.io/DS-with-R-datasets/student-grades.csv"
+    url <- "https://dparedesi.github.io/Data-Science-with-R-book/data/student-grades.csv"
 
     # Import data from a CSV file called "student-grades.csv"
     grades <- read_csv(url)
