@@ -11,7 +11,7 @@ Merges a cover image (PNG/JPG) into an existing PDF book, ensuring the cover mat
 
 ## Quick Start
 
-1.  Ensure `_assets/cover.png` exists.
+1.  Ensure `assets/cover.png` exists.
 2.  Ensure `docs/Data-Science-with-R.pdf` exists.
 3.  Run the script: `python3 .agent/skills/merge-book-cover/scripts/merge_cover.py`
 
@@ -33,7 +33,7 @@ python3 -m pip install img2pdf pikepdf Pillow
 ### 2. Verify Files
 
 Ensure the source files are in place:
-*   Cover Image: `_assets/cover.png`
+*   Cover Image: `assets/cover.png`
 *   Book PDF: `docs/Data-Science-with-R.pdf`
 
 ### 3. Run Merge Script
@@ -56,7 +56,7 @@ Check the output file: `docs/Data-Science-with-R_FINAL.pdf`.
 | Problem | Cause | Solution |
 |---------|-------|----------|
 | `ModuleNotFoundError` | Missing Python packages | Run `python3 -m pip install ...` |
-| `FileNotFoundError` | Missing cover or book PDF | check paths `_assets/cover.png` and `docs/...` |
+| `FileNotFoundError` | Missing cover or book PDF | check paths `assets/cover.png` and `docs/...` |
 
 | Aspect Ratio issues | N/A | Script auto-calculates height based on width. |
 

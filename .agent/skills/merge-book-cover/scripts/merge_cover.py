@@ -26,7 +26,7 @@ except ImportError as e:
     sys.exit(1)
 
 # Settings
-COVER_IMG_PATH = "_assets/cover.png"
+COVER_IMG_PATH = "assets/cover.png"
 COVER_PDF_PATH = "cover_temp.pdf"
 BOOK_PDF_PATH = "docs/Data-Science-with-R.pdf"
 OUTPUT_PDF_PATH = "docs/Data-Science-with-R_FINAL.pdf"

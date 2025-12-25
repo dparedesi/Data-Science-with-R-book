@@ -685,7 +685,7 @@ div.csl-indent {
 <p>We have been hired in a casino to analyze if it is reasonable to install a roulette with 37 values ranging from 0 to 36. The house wants to open the game with a special offer if the ball lands on 0 or 21 paying 10 to 1. This means that if a player plays and wins we pay them 10 dollars and if they lose they would pay us 1 dollar.</p>
 </blockquote>
 <div align="center">
-<p><img src="_assets/images/04-statistics/roulette-casino.png" alt="Casino roulette wheel with numbered red and black pockets" width="300pt" style="display: block; margin: auto;" /></p>
+<p><img src="assets/images/04-statistics/roulette-casino.png" alt="Casino roulette wheel with numbered red and black pockets" width="300pt" style="display: block; margin: auto;" /></p>
 </div>
 <p>With what we have learned so far we can simulate our game with the case data. We have 37 values, of which in 2 of them give a player a profit of +10 or a loss -1. Let’s also define <code>prob_win</code> as the probability that a player wins.</p>
 <div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="statistical-inference.html#cb330-1" tabindex="-1"></a><span class="co"># Total times played</span></span>
@@ -744,7 +744,7 @@ abs(10 - -1)*sqrt(prob_win*prob_lose)
 <span id="cb334-6"><a href="statistical-inference.html#cb334-6" tabindex="-1"></a>sample_vec <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="sc">-</span><span class="dv">1</span>), plays, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(prob_win, prob_lose))</span>
 <span id="cb334-7"><a href="statistical-inference.html#cb334-7" tabindex="-1"></a></span>
 <span id="cb334-8"><a href="statistical-inference.html#cb334-8" tabindex="-1"></a><span class="fu">sum</span>(sample_vec)</span>
-<span id="cb334-9"><a href="statistical-inference.html#cb334-9" tabindex="-1"></a><span class="co">#&gt; [1] -7</span></span></code></pre></div>
+<span id="cb334-9"><a href="statistical-inference.html#cb334-9" tabindex="-1"></a><span class="co">#&gt; [1] -18</span></span></code></pre></div>
 <p>Finally, not only one person will play. Let’s replicate this sample about 100,000 times to simulate the number of players we would have in a quarter.</p>
 <div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="statistical-inference.html#cb335-1" tabindex="-1"></a></span>
 <span id="cb335-2"><a href="statistical-inference.html#cb335-2" tabindex="-1"></a>players <span class="ot">&lt;-</span> <span class="dv">100000</span></span>
@@ -1100,7 +1100,7 @@ Solution
 <span id="cb357-15"><a href="statistical-inference.html#cb357-15" tabindex="-1"></a><span class="co">#&gt; [1] 0.02993326</span></span></code></pre></div>
 <p>With this we would have that from a sample of 1100 people, we have estimated 56% voting intention for the Blue party with a margin of error of <span class="math inline">\(+- 2.99\%\)</span>.</p>
 <p>Finally, let’s see examples of the different surveys conducted in April and early May 2020 to measure voting intentions in the US.</p>
-<p><img src="_assets/images/04-statistics/polls-us.png" alt="Table of US election polls from April-May 2020 showing sample sizes, margins of error, and candidate percentages" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="assets/images/04-statistics/polls-us.png" alt="Table of US election polls from April-May 2020 showing sample sizes, margins of error, and candidate percentages" width="80%" style="display: block; margin: auto;" /></p>
 <p>We see as columns:</p>
 <p>The table columns provide key details about each survey. The <strong>Poll</strong> column identifies the surveying company, while <strong>Date</strong> indicates when the survey was conducted. <strong>Sample</strong> shows the number of respondents, which varies by pollster, and <strong>MoE</strong> represents the margin of error. The <strong>Candidates</strong> columns display the backing for each presidential contender (note that percentages may not sum to 100% due to checking for blank or null votes). Finally, <strong>Spread</strong> estimates the lead one candidate holds over the other.</p>
 <p>If, on the other hand, we ask ourselves why larger surveys are not done, for example 50,000 people, the reason is that:</p>

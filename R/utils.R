@@ -5,7 +5,7 @@
 #' Get Book Image Path
 #' 
 #' Helper function to construct image paths relative to book root.
-#' Uses the new `_assets/images/` directory structure.
+#' Uses the new `assets/images/` directory structure.
 #' 
 #' @param chapter Chapter folder name (e.g., "01-introduction")
 #' @param filename Image filename
@@ -14,7 +14,7 @@
 #' book_img("01-introduction", "rstudio.png")
 #' 
 book_img <- function(chapter, filename) {
-  file.path("_assets", "images", chapter, filename)
+  file.path("assets", "images", chapter, filename)
 }
 
 #' Format Large Numbers

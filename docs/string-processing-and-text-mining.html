@@ -807,20 +807,21 @@ div.csl-indent {
 <span id="cb549-32"><a href="string-processing-and-text-mining.html#cb549-32" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(numeric_height)) <span class="sc">|&gt;</span> </span>
 <span id="cb549-33"><a href="string-processing-and-text-mining.html#cb549-33" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span>
 <span id="cb549-34"><a href="string-processing-and-text-mining.html#cb549-34" tabindex="-1"></a><span class="co">#&gt; Warning: There was 1 warning in `mutate()`.</span></span>
-<span id="cb549-35"><a href="string-processing-and-text-mining.html#cb549-35" tabindex="-1"></a><span class="co">#&gt; ℹ In argument: `numeric_height = as.numeric(height)`.</span></span>
-<span id="cb549-36"><a href="string-processing-and-text-mining.html#cb549-36" tabindex="-1"></a><span class="co">#&gt; Caused by warning:</span></span>
-<span id="cb549-37"><a href="string-processing-and-text-mining.html#cb549-37" tabindex="-1"></a><span class="co">#&gt; ! NAs introduced by coercion</span></span>
-<span id="cb549-38"><a href="string-processing-and-text-mining.html#cb549-38" tabindex="-1"></a><span class="co">#&gt;             time_stamp    sex                 height numeric_height</span></span>
-<span id="cb549-39"><a href="string-processing-and-text-mining.html#cb549-39" tabindex="-1"></a><span class="co">#&gt; 1  2014-09-02 15:16:28   Male                  5&#39; 4&quot;             NA</span></span>
-<span id="cb549-40"><a href="string-processing-and-text-mining.html#cb549-40" tabindex="-1"></a><span class="co">#&gt; 2  2014-09-02 15:16:37 Female                  165cm             NA</span></span>
-<span id="cb549-41"><a href="string-processing-and-text-mining.html#cb549-41" tabindex="-1"></a><span class="co">#&gt; 3  2014-09-02 15:16:52   Male                    5&#39;7             NA</span></span>
-<span id="cb549-42"><a href="string-processing-and-text-mining.html#cb549-42" tabindex="-1"></a><span class="co">#&gt; 4  2014-09-02 15:16:56   Male                  &gt;9000             NA</span></span>
-<span id="cb549-43"><a href="string-processing-and-text-mining.html#cb549-43" tabindex="-1"></a><span class="co">#&gt; 5  2014-09-02 15:16:56   Male                   5&#39;7&quot;             NA</span></span>
-<span id="cb549-44"><a href="string-processing-and-text-mining.html#cb549-44" tabindex="-1"></a><span class="co">#&gt; 6  2014-09-02 15:17:09 Female                   5&#39;3&quot;             NA</span></span>
-<span id="cb549-45"><a href="string-processing-and-text-mining.html#cb549-45" tabindex="-1"></a><span class="co">#&gt; 7  2014-09-02 15:18:00   Male 5 feet and 8.11 inches             NA</span></span>
-<span id="cb549-46"><a href="string-processing-and-text-mining.html#cb549-46" tabindex="-1"></a><span class="co">#&gt; 8  2014-09-02 15:19:48   Male                   5&#39;11             NA</span></span>
-<span id="cb549-47"><a href="string-processing-and-text-mining.html#cb549-47" tabindex="-1"></a><span class="co">#&gt; 9  2014-09-04 00:46:45   Male                  5&#39;9&#39;&#39;             NA</span></span>
-<span id="cb549-48"><a href="string-processing-and-text-mining.html#cb549-48" tabindex="-1"></a><span class="co">#&gt; 10 2014-09-04 10:29:44   Male                 5&#39;10&#39;&#39;             NA</span></span></code></pre></div>
+<span id="cb549-35"><a href="string-processing-and-text-mining.html#cb549-35" tabindex="-1"></a><span class="co">#&gt; ℹ In argument: `numeric_height =</span></span>
+<span id="cb549-36"><a href="string-processing-and-text-mining.html#cb549-36" tabindex="-1"></a><span class="co">#&gt;   as.numeric(height)`.</span></span>
+<span id="cb549-37"><a href="string-processing-and-text-mining.html#cb549-37" tabindex="-1"></a><span class="co">#&gt; Caused by warning:</span></span>
+<span id="cb549-38"><a href="string-processing-and-text-mining.html#cb549-38" tabindex="-1"></a><span class="co">#&gt; ! NAs introduced by coercion</span></span>
+<span id="cb549-39"><a href="string-processing-and-text-mining.html#cb549-39" tabindex="-1"></a><span class="co">#&gt;             time_stamp    sex                 height numeric_height</span></span>
+<span id="cb549-40"><a href="string-processing-and-text-mining.html#cb549-40" tabindex="-1"></a><span class="co">#&gt; 1  2014-09-02 15:16:28   Male                  5&#39; 4&quot;             NA</span></span>
+<span id="cb549-41"><a href="string-processing-and-text-mining.html#cb549-41" tabindex="-1"></a><span class="co">#&gt; 2  2014-09-02 15:16:37 Female                  165cm             NA</span></span>
+<span id="cb549-42"><a href="string-processing-and-text-mining.html#cb549-42" tabindex="-1"></a><span class="co">#&gt; 3  2014-09-02 15:16:52   Male                    5&#39;7             NA</span></span>
+<span id="cb549-43"><a href="string-processing-and-text-mining.html#cb549-43" tabindex="-1"></a><span class="co">#&gt; 4  2014-09-02 15:16:56   Male                  &gt;9000             NA</span></span>
+<span id="cb549-44"><a href="string-processing-and-text-mining.html#cb549-44" tabindex="-1"></a><span class="co">#&gt; 5  2014-09-02 15:16:56   Male                   5&#39;7&quot;             NA</span></span>
+<span id="cb549-45"><a href="string-processing-and-text-mining.html#cb549-45" tabindex="-1"></a><span class="co">#&gt; 6  2014-09-02 15:17:09 Female                   5&#39;3&quot;             NA</span></span>
+<span id="cb549-46"><a href="string-processing-and-text-mining.html#cb549-46" tabindex="-1"></a><span class="co">#&gt; 7  2014-09-02 15:18:00   Male 5 feet and 8.11 inches             NA</span></span>
+<span id="cb549-47"><a href="string-processing-and-text-mining.html#cb549-47" tabindex="-1"></a><span class="co">#&gt; 8  2014-09-02 15:19:48   Male                   5&#39;11             NA</span></span>
+<span id="cb549-48"><a href="string-processing-and-text-mining.html#cb549-48" tabindex="-1"></a><span class="co">#&gt; 9  2014-09-04 00:46:45   Male                  5&#39;9&#39;&#39;             NA</span></span>
+<span id="cb549-49"><a href="string-processing-and-text-mining.html#cb549-49" tabindex="-1"></a><span class="co">#&gt; 10 2014-09-04 10:29:44   Male                 5&#39;10&#39;&#39;             NA</span></span></code></pre></div>
 <p>We might want to choose to eliminate these NA data as they are not significant with respect to the total of 1,095 data points. However, there are several of these data points that follow a determined pattern and instead of being discarded could be converted to the scale we have in the rest of the data. For example, there are people who entered their height as 5’7”, which, for those who remember the conversion, can be converted because 1 foot is 12 inches. So <span class="math inline">\(5*12+7=67\)</span>. And so, like that case, we can detect patterns, but we have, again, to be careful in detecting the exact pattern and not a very generic one that can change other use cases. If everyone followed the same pattern <span class="math inline">\(x&#39;y&#39;&#39;\)</span> or <span class="math inline">\(x&#39;y\)</span> it would be much easier to convert it to inches by calculating <span class="math inline">\(x*12+y\)</span>.</p>
 <p>Let’s start by extracting our column to a single character vector with all the values that do not convert automatically to number or were entered in inches. We detect this if they measure more than 5 and up to 7 feet (from 1.5m to 2.1 meters). After that we will create the transformations little by little.</p>
 <div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb550-1"><a href="string-processing-and-text-mining.html#cb550-1" tabindex="-1"></a>problematic_heights <span class="ot">&lt;-</span> reported_heights <span class="sc">|&gt;</span> </span>
@@ -1139,8 +1140,8 @@ div.csl-indent {
 <span id="cb572-3"><a href="string-processing-and-text-mining.html#cb572-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="st">&quot;height&quot;</span>, <span class="st">&quot;feet&quot;</span>, <span class="st">&quot;inches&quot;</span>), <span class="sc">~</span><span class="fu">as.numeric</span>(.))) <span class="sc">|&gt;</span> </span>
 <span id="cb572-4"><a href="string-processing-and-text-mining.html#cb572-4" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">15</span>)</span>
 <span id="cb572-5"><a href="string-processing-and-text-mining.html#cb572-5" tabindex="-1"></a><span class="co">#&gt; Warning: There was 1 warning in `mutate()`.</span></span>
-<span id="cb572-6"><a href="string-processing-and-text-mining.html#cb572-6" tabindex="-1"></a><span class="co">#&gt; ℹ In argument: `across(c(&quot;height&quot;, &quot;feet&quot;, &quot;inches&quot;),</span></span>
-<span id="cb572-7"><a href="string-processing-and-text-mining.html#cb572-7" tabindex="-1"></a><span class="co">#&gt;   ~as.numeric(.))`.</span></span>
+<span id="cb572-6"><a href="string-processing-and-text-mining.html#cb572-6" tabindex="-1"></a><span class="co">#&gt; ℹ In argument: `across(c(&quot;height&quot;, &quot;feet&quot;,</span></span>
+<span id="cb572-7"><a href="string-processing-and-text-mining.html#cb572-7" tabindex="-1"></a><span class="co">#&gt;   &quot;inches&quot;), ~as.numeric(.))`.</span></span>
 <span id="cb572-8"><a href="string-processing-and-text-mining.html#cb572-8" tabindex="-1"></a><span class="co">#&gt; Caused by warning:</span></span>
 <span id="cb572-9"><a href="string-processing-and-text-mining.html#cb572-9" tabindex="-1"></a><span class="co">#&gt; ! NAs introduced by coercion</span></span>
 <span id="cb572-10"><a href="string-processing-and-text-mining.html#cb572-10" tabindex="-1"></a><span class="co">#&gt;             time_stamp    sex height feet inches</span></span>
@@ -1166,8 +1167,8 @@ div.csl-indent {
 <span id="cb573-4"><a href="string-processing-and-text-mining.html#cb573-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fixed_heights =</span> feet<span class="sc">*</span><span class="dv">12</span> <span class="sc">+</span> inches) <span class="sc">|&gt;</span> </span>
 <span id="cb573-5"><a href="string-processing-and-text-mining.html#cb573-5" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">15</span>)</span>
 <span id="cb573-6"><a href="string-processing-and-text-mining.html#cb573-6" tabindex="-1"></a><span class="co">#&gt; Warning: There was 1 warning in `mutate()`.</span></span>
-<span id="cb573-7"><a href="string-processing-and-text-mining.html#cb573-7" tabindex="-1"></a><span class="co">#&gt; ℹ In argument: `across(c(&quot;height&quot;, &quot;feet&quot;, &quot;inches&quot;),</span></span>
-<span id="cb573-8"><a href="string-processing-and-text-mining.html#cb573-8" tabindex="-1"></a><span class="co">#&gt;   ~as.numeric(.))`.</span></span>
+<span id="cb573-7"><a href="string-processing-and-text-mining.html#cb573-7" tabindex="-1"></a><span class="co">#&gt; ℹ In argument: `across(c(&quot;height&quot;, &quot;feet&quot;,</span></span>
+<span id="cb573-8"><a href="string-processing-and-text-mining.html#cb573-8" tabindex="-1"></a><span class="co">#&gt;   &quot;inches&quot;), ~as.numeric(.))`.</span></span>
 <span id="cb573-9"><a href="string-processing-and-text-mining.html#cb573-9" tabindex="-1"></a><span class="co">#&gt; Caused by warning:</span></span>
 <span id="cb573-10"><a href="string-processing-and-text-mining.html#cb573-10" tabindex="-1"></a><span class="co">#&gt; ! NAs introduced by coercion</span></span>
 <span id="cb573-11"><a href="string-processing-and-text-mining.html#cb573-11" tabindex="-1"></a><span class="co">#&gt;             time_stamp    sex height feet inches fixed_heights</span></span>
@@ -1203,8 +1204,8 @@ div.csl-indent {
 <span id="cb574-14"><a href="string-processing-and-text-mining.html#cb574-14" tabindex="-1"></a>      <span class="fu">between</span>(fixed_heights, min, max) <span class="sc">~</span> fixed_heights, <span class="co">#feet&#39;inches</span></span>
 <span id="cb574-15"><a href="string-processing-and-text-mining.html#cb574-15" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">as.numeric</span>(<span class="cn">NA</span>)))</span>
 <span id="cb574-16"><a href="string-processing-and-text-mining.html#cb574-16" tabindex="-1"></a><span class="co">#&gt; Warning: There was 1 warning in `mutate()`.</span></span>
-<span id="cb574-17"><a href="string-processing-and-text-mining.html#cb574-17" tabindex="-1"></a><span class="co">#&gt; ℹ In argument: `across(c(&quot;height&quot;, &quot;feet&quot;, &quot;inches&quot;),</span></span>
-<span id="cb574-18"><a href="string-processing-and-text-mining.html#cb574-18" tabindex="-1"></a><span class="co">#&gt;   ~as.numeric(.))`.</span></span>
+<span id="cb574-17"><a href="string-processing-and-text-mining.html#cb574-17" tabindex="-1"></a><span class="co">#&gt; ℹ In argument: `across(c(&quot;height&quot;, &quot;feet&quot;,</span></span>
+<span id="cb574-18"><a href="string-processing-and-text-mining.html#cb574-18" tabindex="-1"></a><span class="co">#&gt;   &quot;inches&quot;), ~as.numeric(.))`.</span></span>
 <span id="cb574-19"><a href="string-processing-and-text-mining.html#cb574-19" tabindex="-1"></a><span class="co">#&gt; Caused by warning:</span></span>
 <span id="cb574-20"><a href="string-processing-and-text-mining.html#cb574-20" tabindex="-1"></a><span class="co">#&gt; ! NAs introduced by coercion</span></span>
 <span id="cb574-21"><a href="string-processing-and-text-mining.html#cb574-21" tabindex="-1"></a></span>
@@ -1288,7 +1289,7 @@ div.csl-indent {
 <span id="cb580-5"><a href="string-processing-and-text-mining.html#cb580-5" tabindex="-1"></a></span>
 <span id="cb580-6"><a href="string-processing-and-text-mining.html#cb580-6" tabindex="-1"></a><span class="co"># Additional data: Showing system date:</span></span>
 <span id="cb580-7"><a href="string-processing-and-text-mining.html#cb580-7" tabindex="-1"></a><span class="fu">now</span>()</span>
-<span id="cb580-8"><a href="string-processing-and-text-mining.html#cb580-8" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2025-12-25 01:33:58 GMT&quot;</span></span></code></pre></div>
+<span id="cb580-8"><a href="string-processing-and-text-mining.html#cb580-8" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2025-12-25 15:23:18 GMT&quot;</span></span></code></pre></div>
 </div>
 <div id="exercises-19" class="section level2 hasAnchor" number="13.4">
 <h2><span class="header-section-number">13.4</span> Exercises<a href="string-processing-and-text-mining.html#exercises-19" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -1578,7 +1579,7 @@ Solution
 <div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="string-processing-and-text-mining.html#cb599-1" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb599-2"><a href="string-processing-and-text-mining.html#cb599-2" tabindex="-1"></a></span>
 <span id="cb599-3"><a href="string-processing-and-text-mining.html#cb599-3" tabindex="-1"></a><span class="co"># Download tweets</span></span>
-<span id="cb599-4"><a href="string-processing-and-text-mining.html#cb599-4" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/DS-with-R-datasets/rmapalacios-tweets.xlsx&quot;</span></span>
+<span id="cb599-4"><a href="string-processing-and-text-mining.html#cb599-4" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/Data-Science-with-R-book/data/rmapalacios-tweets.xlsx&quot;</span></span>
 <span id="cb599-5"><a href="string-processing-and-text-mining.html#cb599-5" tabindex="-1"></a>temp_file <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()</span>
 <span id="cb599-6"><a href="string-processing-and-text-mining.html#cb599-6" tabindex="-1"></a><span class="fu">download.file</span>(url, temp_file)</span>
 <span id="cb599-7"><a href="string-processing-and-text-mining.html#cb599-7" tabindex="-1"></a>posts <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(temp_file)</span>

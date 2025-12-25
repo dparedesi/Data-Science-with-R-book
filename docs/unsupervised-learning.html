@@ -706,7 +706,7 @@ div.csl-indent {
 <p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-647-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>This method allows us to group based on the definition of centroids. We will define as many centroids as groups we want to obtain. Since for this case we know that there must be two teams, we will use 2 centroids (k = 2).</p>
 <p>The k-means algorithm then places these 2 points (centroids) randomly on the plane in a first iteration. Then, it calculates the distance between each center and the other data points. If it is closer to a centroid then it assigns it to centroid 1, otherwise to centroid 2.</p>
-<p><img src="_assets/images/06-machine-learning/kmeans-distance.png" alt="K-means iteration showing data points and distance calculations to two centroids" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="assets/images/06-machine-learning/kmeans-distance.png" alt="K-means iteration showing data points and distance calculations to two centroids" width="80%" style="display: block; margin: auto;" /></p>
 <p>A first grouping has already been performed. Now each centroid within each group is located at the mean of the other points in its group and another iteration occurs to reassign all points. This iteration is done over and over again until the centroids are fixed.</p>
 <p>To create this model in R we will use the function <code>kmeans(data, centers = k)</code>.</p>
 <div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="unsupervised-learning.html#cb494-1" tabindex="-1"></a>kmeans_model <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(players, <span class="at">centers =</span> <span class="dv">2</span>)</span>
@@ -717,7 +717,7 @@ div.csl-indent {
 <span id="cb494-6"><a href="unsupervised-learning.html#cb494-6" tabindex="-1"></a><span class="co">#&gt; 1 -11.33333 -0.5000000</span></span>
 <span id="cb494-7"><a href="unsupervised-learning.html#cb494-7" tabindex="-1"></a><span class="co">#&gt; 2  14.83333  0.1666667</span></span></code></pre></div>
 <p>This means that for these two centers the average distance to the other points is the minimum, therefore the algorithm assigns them to one group or another. Let’s see approximately where these centers are located if we marked them with an <strong>x</strong>.</p>
-<p><img src="_assets/images/06-machine-learning/kmeans-centers.png" alt="K-means result with two clusters and centroids marked with X" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="assets/images/06-machine-learning/kmeans-centers.png" alt="K-means result with two clusters and centroids marked with X" width="80%" style="display: block; margin: auto;" /></p>
 <p>Thus, once the model is created we can obtain the clustering results, team 1 or team 2.</p>
 <div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="unsupervised-learning.html#cb495-1" tabindex="-1"></a>team <span class="ot">&lt;-</span> kmeans_model<span class="sc">$</span>cluster</span></code></pre></div>
 <p>We can add this team assignment as one more column of our <code>players</code> data set to be able to visualize them in R.</p>
@@ -799,7 +799,7 @@ Interpreting these scores is straightforward: a score close to <strong>1</strong
 <div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="unsupervised-learning.html#cb502-1" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;http://archive.ics.uci.edu/ml/machine-learning-databases/00292/Wholesale%20customers%20data.csv&quot;</span></span>
 <span id="cb502-2"><a href="unsupervised-learning.html#cb502-2" tabindex="-1"></a>customers <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url)</span>
 <span id="cb502-3"><a href="unsupervised-learning.html#cb502-3" tabindex="-1"></a><span class="co">#&gt; Rows: 440 Columns: 8</span></span>
-<span id="cb502-4"><a href="unsupervised-learning.html#cb502-4" tabindex="-1"></a><span class="co">#&gt; ── Column specification ────────────────────────────────</span></span>
+<span id="cb502-4"><a href="unsupervised-learning.html#cb502-4" tabindex="-1"></a><span class="co">#&gt; ── Column specification ─────────────────────────────</span></span>
 <span id="cb502-5"><a href="unsupervised-learning.html#cb502-5" tabindex="-1"></a><span class="co">#&gt; Delimiter: &quot;,&quot;</span></span>
 <span id="cb502-6"><a href="unsupervised-learning.html#cb502-6" tabindex="-1"></a><span class="co">#&gt; dbl (8): Channel, Region, Fresh, Milk, Grocery, Frozen, Detergents_Paper, De...</span></span>
 <span id="cb502-7"><a href="unsupervised-learning.html#cb502-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
@@ -869,11 +869,11 @@ Interpreting these scores is straightforward: a score close to <strong>1</strong
 <p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-663-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>This algorithm searches for the two points with the shortest distance, the closest ones, and groups them. Then it searches for another two points with the smallest distance and asks: is the distance between these two new points less than the distance of these points to the previously created group? If the answer is yes, it groups them, otherwise it groups the closest point to the first created group.</p>
 <p>Let’s understand the algorithm graphically. Points 1 and 2 have the lowest hierarchy since they have the shortest distance. Then the algorithm searches for the next two closest points (point 9 and 12) and when comparing with the midpoint of 1 and 2 it opts to create a new group with a slightly higher hierarchy and so on.</p>
-<p><img src="_assets/images/06-machine-learning/hclust-one.png" alt="Initial hierarchical clustering step linking two closest points" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="assets/images/06-machine-learning/hclust-one.png" alt="Initial hierarchical clustering step linking two closest points" width="80%" style="display: block; margin: auto;" /></p>
 <p>However, now that we have point 7 and 11 and we calculate the distance, it turns out that that distance is not the smallest compared to the distances with the other existing groups. For example, 7 is closer to the midpoint of 1 and 2, and 11 is closer to the midpoint of 5 and 6.</p>
-<p><img src="_assets/images/06-machine-learning/hclust-two.png" alt="Hierarchical clustering merging additional nearby points into groups" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="assets/images/06-machine-learning/hclust-two.png" alt="Hierarchical clustering merging additional nearby points into groups" width="80%" style="display: block; margin: auto;" /></p>
 <p>Thus, the algorithm creates a higher hierarchy for this grouping.</p>
-<p><img src="_assets/images/06-machine-learning/hclust-three.png" alt="Dendrogram showing hierarchical clustering tree structure with higher groupings" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="assets/images/06-machine-learning/hclust-three.png" alt="Dendrogram showing hierarchical clustering tree structure with higher groupings" width="80%" style="display: block; margin: auto;" /></p>
 <p>The algorithm continues until it finally creates a group that includes everyone as the highest hierarchy. In the following graph we can not only appreciate this but also on the y-axis the distance between each point or group of points.</p>
 <p><img src="Data-Science-with-R_files/figure-html/unnamed-chunk-667-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>Up to here we haven’t done more than generate hierarchies from the distances which will serve us later to determine how many clusters to generate. Let’s create in R what has been advanced so far. The first thing we will do is calculate the distances between all points. To do this we will use the <code>dist()</code> function.</p>
@@ -974,7 +974,7 @@ Interpreting these scores is straightforward: a score close to <strong>1</strong
 <h2><span class="header-section-number">12.5</span> Dimensionality Reduction<a href="unsupervised-learning.html#dimensionality-reduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We have created clusters with a controlled number of variables. However, we are going to encounter in many cases many more variables that make interpretation difficult and it is important to identify if two variables have the same behavior to be able to take only one of them.</p>
 <p>For this case we are going to take as an example a credit card customer dataset, adaptation of the <a href="https://www.kaggle.com/arjunbhasin2013/ccdata">public dataset in Kaggle</a>, from the following route.</p>
-<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="unsupervised-learning.html#cb519-1" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/DS-with-R-datasets/credit-cards.csv&quot;</span></span>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="unsupervised-learning.html#cb519-1" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/Data-Science-with-R-book/data/credit-cards.csv&quot;</span></span>
 <span id="cb519-2"><a href="unsupervised-learning.html#cb519-2" tabindex="-1"></a></span>
 <span id="cb519-3"><a href="unsupervised-learning.html#cb519-3" tabindex="-1"></a>cards_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url)</span></code></pre></div>
 <p>We have more than 8 thousand customers with 13 attributes. We will analyze if there are strongly correlated variables. To do this we will use the <code>corrplot</code> library.</p>

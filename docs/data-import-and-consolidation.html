@@ -764,7 +764,7 @@ div.csl-indent {
 <p>Here we see the import of grades from students of the Data Science with R course.</p>
 <div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="data-import-and-consolidation.html#cb384-1" tabindex="-1"></a><span class="do">##### Example 1:</span></span>
 <span id="cb384-2"><a href="data-import-and-consolidation.html#cb384-2" tabindex="-1"></a><span class="co"># Historical grades data</span></span>
-<span id="cb384-3"><a href="data-import-and-consolidation.html#cb384-3" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/DS-with-R-datasets/student-grades.csv&quot;</span></span>
+<span id="cb384-3"><a href="data-import-and-consolidation.html#cb384-3" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/Data-Science-with-R-book/data/student-grades.csv&quot;</span></span>
 <span id="cb384-4"><a href="data-import-and-consolidation.html#cb384-4" tabindex="-1"></a>grades <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="data-import-and-consolidation.html#cb385-1" tabindex="-1"></a>grades <span class="ot">&lt;-</span> grades <span class="sc">|&gt;</span></span>
 <span id="cb385-2"><a href="data-import-and-consolidation.html#cb385-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total =</span> (P1 <span class="sc">+</span> P2 <span class="sc">+</span> P3 <span class="sc">+</span> P4 <span class="sc">+</span> P5 <span class="sc">+</span> P6)<span class="sc">/</span><span class="dv">30</span><span class="sc">*</span><span class="dv">20</span>)</span>
@@ -998,13 +998,13 @@ div.csl-indent {
 <div id="exercises-14" class="section level2 hasAnchor" number="10.3">
 <h2><span class="header-section-number">10.3</span> Exercises<a href="data-import-and-consolidation.html#exercises-14" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol start="85" style="list-style-type: decimal">
-<li>Access the <strong>Uber Peru 2010</strong> dataset from <a href="https://dparedesi.github.io/DS-with-R-datasets/uber-peru-2010.csv">this link</a> and attempt to import it into an object named <code>uber_peru_2010</code>. Pay attention to the delimiters used in the file.</li>
+<li>Access the <strong>Uber Peru 2010</strong> dataset from <a href="https://dparedesi.github.io/Data-Science-with-R-book/data/uber-peru-2010.csv">this link</a> and attempt to import it into an object named <code>uber_peru_2010</code>. Pay attention to the delimiters used in the file.</li>
 </ol>
 <details>
 <summary type="button">
 Solution
 </summary>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="data-import-and-consolidation.html#cb400-1" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/DS-with-R-datasets/uber-peru-2010.csv&quot;</span></span>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="data-import-and-consolidation.html#cb400-1" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/Data-Science-with-R-book/data/uber-peru-2010.csv&quot;</span></span>
 <span id="cb400-2"><a href="data-import-and-consolidation.html#cb400-2" tabindex="-1"></a></span>
 <span id="cb400-3"><a href="data-import-and-consolidation.html#cb400-3" tabindex="-1"></a><span class="co"># We will use read_csv since it is separated by commas</span></span>
 <span id="cb400-4"><a href="data-import-and-consolidation.html#cb400-4" tabindex="-1"></a>uber_peru_2010 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
@@ -1030,7 +1030,7 @@ Solution
 Solution
 </summary>
 <div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="data-import-and-consolidation.html#cb401-1" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://www.datosabiertos.gob.pe/sites/default/files/sinadef-deaths.csv&quot;</span></span>
-<span id="cb401-2"><a href="data-import-and-consolidation.html#cb401-2" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/DS-with-R-datasets/sinadef-deaths.csv&quot;</span></span>
+<span id="cb401-2"><a href="data-import-and-consolidation.html#cb401-2" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/Data-Science-with-R-book/data/sinadef-deaths.csv&quot;</span></span>
 <span id="cb401-3"><a href="data-import-and-consolidation.html#cb401-3" tabindex="-1"></a></span>
 <span id="cb401-4"><a href="data-import-and-consolidation.html#cb401-4" tabindex="-1"></a><span class="co"># We will use read_delim because it is delimited by &quot;;&quot; and not by &quot;,&quot;</span></span>
 <span id="cb401-5"><a href="data-import-and-consolidation.html#cb401-5" tabindex="-1"></a><span class="co"># Also we change the encoding to avoid error in loading</span></span>
@@ -1038,14 +1038,14 @@ Solution
 <span id="cb401-7"><a href="data-import-and-consolidation.html#cb401-7" tabindex="-1"></a>                          <span class="at">local =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">&quot;latin1&quot;</span>))</span></code></pre></div>
 </details>
 <ol start="87" style="list-style-type: decimal">
-<li>Download the resource file from <a href="https://dparedesi.github.io/DS-with-R-datasets/resources-other-idd.xlsx">this link</a> to a temporary location. Validating that the file exists, load the specific sheet named “Deflators” into an object named <code>data</code>.</li>
+<li>Download the resource file from <a href="https://dparedesi.github.io/Data-Science-with-R-book/data/resources-other-idd.xlsx">this link</a> to a temporary location. Validating that the file exists, load the specific sheet named “Deflators” into an object named <code>data</code>.</li>
 </ol>
 <details>
 <summary type="button">
 Solution
 </summary>
 <div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="data-import-and-consolidation.html#cb402-1" tabindex="-1"></a><span class="co"># Store the url</span></span>
-<span id="cb402-2"><a href="data-import-and-consolidation.html#cb402-2" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/DS-with-R-datasets/resources-other-idd.xlsx&quot;</span></span>
+<span id="cb402-2"><a href="data-import-and-consolidation.html#cb402-2" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/Data-Science-with-R-book/data/resources-other-idd.xlsx&quot;</span></span>
 <span id="cb402-3"><a href="data-import-and-consolidation.html#cb402-3" tabindex="-1"></a></span>
 <span id="cb402-4"><a href="data-import-and-consolidation.html#cb402-4" tabindex="-1"></a><span class="co"># Create a temporary name &amp; path for our file. See: ?tempfile</span></span>
 <span id="cb402-5"><a href="data-import-and-consolidation.html#cb402-5" tabindex="-1"></a>temp_file <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()</span>
@@ -1061,19 +1061,19 @@ Solution
 </details>
 <p>For the following files run the following code so that you have access to the objects referred to in the problems:</p>
 <div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="data-import-and-consolidation.html#cb403-1" tabindex="-1"></a><span class="co"># GDP by countries</span></span>
-<span id="cb403-2"><a href="data-import-and-consolidation.html#cb403-2" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/DS-with-R-datasets/gdp.csv&quot;</span></span>
+<span id="cb403-2"><a href="data-import-and-consolidation.html#cb403-2" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/Data-Science-with-R-book/data/gdp.csv&quot;</span></span>
 <span id="cb403-3"><a href="data-import-and-consolidation.html#cb403-3" tabindex="-1"></a>gdp <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb403-4"><a href="data-import-and-consolidation.html#cb403-4" tabindex="-1"></a></span>
 <span id="cb403-5"><a href="data-import-and-consolidation.html#cb403-5" tabindex="-1"></a><span class="co"># Diseases by years by countries</span></span>
-<span id="cb403-6"><a href="data-import-and-consolidation.html#cb403-6" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/DS-with-R-datasets/diseases-evolution.csv&quot;</span></span>
+<span id="cb403-6"><a href="data-import-and-consolidation.html#cb403-6" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/Data-Science-with-R-book/data/diseases-evolution.csv&quot;</span></span>
 <span id="cb403-7"><a href="data-import-and-consolidation.html#cb403-7" tabindex="-1"></a>diseases_wide <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb403-8"><a href="data-import-and-consolidation.html#cb403-8" tabindex="-1"></a></span>
 <span id="cb403-9"><a href="data-import-and-consolidation.html#cb403-9" tabindex="-1"></a><span class="co"># Number of female mayors</span></span>
-<span id="cb403-10"><a href="data-import-and-consolidation.html#cb403-10" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/DS-with-R-datasets/female-mayors.csv&quot;</span></span>
+<span id="cb403-10"><a href="data-import-and-consolidation.html#cb403-10" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/Data-Science-with-R-book/data/female-mayors.csv&quot;</span></span>
 <span id="cb403-11"><a href="data-import-and-consolidation.html#cb403-11" tabindex="-1"></a>female_mayors <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb403-12"><a href="data-import-and-consolidation.html#cb403-12" tabindex="-1"></a></span>
 <span id="cb403-13"><a href="data-import-and-consolidation.html#cb403-13" tabindex="-1"></a><span class="co"># Evolution of a university</span></span>
-<span id="cb403-14"><a href="data-import-and-consolidation.html#cb403-14" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/DS-with-R-datasets/university.csv&quot;</span></span>
+<span id="cb403-14"><a href="data-import-and-consolidation.html#cb403-14" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/Data-Science-with-R-book/data/university.csv&quot;</span></span>
 <span id="cb403-15"><a href="data-import-and-consolidation.html#cb403-15" tabindex="-1"></a>university <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <ol start="88" style="list-style-type: decimal">
 <li>Examine the structure of the <code>gdp</code> dataset. Transform it into a <em>tidy</em> format suitable for analysis, and then create a line plot visualizing the evolution of GDP over time for each country.</li>
@@ -1149,8 +1149,8 @@ Solution
 <p>This library includes a variety of functions to combine tables.</p>
 <p>The <code>dplyr</code> package offers a family of join functions to combine tables based on common keys. The most frequently used is <strong><code>left_join()</code></strong>, which preserves all rows from the first (left) table and appends matching data from the second. Conversely, <strong><code>right_join()</code></strong> keeps all rows from the second table. <strong><code>inner_join()</code></strong> is more restrictive, retaining only the rows that have matching keys in <em>both</em> tables, effectively filtering for the intersection. <strong><code>full_join()</code></strong> does the opposite, keeping <em>all</em> rows from both tables and filling missing values with <code>NA</code>. Finally, filtering joins like <strong><code>semi_join()</code></strong> (keeps rows in the first table that match the second) and <strong><code>anti_join()</code></strong> (keeps rows in the first table that do <em>not</em> match the second) are excellent for data validation and filtering without adding new columns.</p>
 <p>To see the join functions with examples we will use the following files:</p>
-<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="data-import-and-consolidation.html#cb409-1" tabindex="-1"></a>url_1 <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/DS-with-R-datasets/join-card.csv&quot;</span></span>
-<span id="cb409-2"><a href="data-import-and-consolidation.html#cb409-2" tabindex="-1"></a>url_2 <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/DS-with-R-datasets/join-customer.csv&quot;</span></span>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="data-import-and-consolidation.html#cb409-1" tabindex="-1"></a>url_1 <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/Data-Science-with-R-book/data/join-card.csv&quot;</span></span>
+<span id="cb409-2"><a href="data-import-and-consolidation.html#cb409-2" tabindex="-1"></a>url_2 <span class="ot">&lt;-</span> <span class="st">&quot;https://dparedesi.github.io/Data-Science-with-R-book/data/join-customer.csv&quot;</span></span>
 <span id="cb409-3"><a href="data-import-and-consolidation.html#cb409-3" tabindex="-1"></a></span>
 <span id="cb409-4"><a href="data-import-and-consolidation.html#cb409-4" tabindex="-1"></a>card_data_1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url_1, <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">id =</span> <span class="fu">col_character</span>()))</span>
 <span id="cb409-5"><a href="data-import-and-consolidation.html#cb409-5" tabindex="-1"></a>customer_data_2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url_2, <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">id =</span> <span class="fu">col_character</span>()))</span>
@@ -1332,7 +1332,7 @@ Solution
 <p><strong>Important</strong>: When scraping websites, always respect the site’s <code>robots.txt</code> file and terms of service. Avoid making excessive requests that could overload servers. For commercial use, consider whether the data is licensed or requires permission.</p>
 </blockquote>
 <p>The function we will use the most will be <code>read_html()</code> and as an argument we will place the url of the web from where we want to extract the data. We are not talking about a url that downloads a text file but a web page like this:</p>
-<p><img src="_assets/images/05-wrangling/hispanic-countries.png" alt="Wikipedia table of Hispanic countries by population" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="assets/images/05-wrangling/hispanic-countries.png" alt="Wikipedia table of Hispanic countries by population" width="80%" style="display: block; margin: auto;" /></p>
 <p>Thus, we will use <code>read_html()</code> to store all the web html and then little by little access the table data in R.</p>
 <div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="data-import-and-consolidation.html#cb421-1" tabindex="-1"></a>html_data <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">&quot;https://es.wikipedia.org/wiki/Anexo:Pa%C3%ADses_hispanos_por_poblaci%C3%B3n&quot;</span>)</span>
 <span id="cb421-2"><a href="data-import-and-consolidation.html#cb421-2" tabindex="-1"></a></span>

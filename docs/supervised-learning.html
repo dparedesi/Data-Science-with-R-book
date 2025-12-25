@@ -701,11 +701,11 @@ Common applications of these techniques include <strong>Spam Detection</strong> 
 <strong>When to use kNN?</strong>
 kNN is excellent for small datasets with few dimensions (variables) because it is simple and explains non-linear patterns well. However, it becomes very slow and less accurate as the dataset grows in size or number of variables (the “curse of dimensionality”).</p>
 </blockquote>
-<p><img src="_assets/images/06-machine-learning/kNN-train.png" alt="Training data points on a 2D plane with red and blue class labels" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="assets/images/06-machine-learning/kNN-train.png" alt="Training data points on a 2D plane with red and blue class labels" width="80%" style="display: block; margin: auto;" /></p>
 <p>Now that we have our training data, we will start using the test data. As we want to predict the class, the <em>output</em>, we will see how one of these data points would look visually and paint it yellow. Next, we calculate the distance between this point and the other data points.</p>
-<p><img src="_assets/images/06-machine-learning/kNN-test.png" alt="Test point shown in yellow with distance lines to nearby training data points" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="assets/images/06-machine-learning/kNN-test.png" alt="Test point shown in yellow with distance lines to nearby training data points" width="80%" style="display: block; margin: auto;" /></p>
 <p>We have traced only some distances, but we could do it with all of them. For this example, we will take the <strong>k = 3</strong> nearest neighbors. Why 3? It is common to pick an odd number to avoid ties (where the vote is 50/50).</p>
-<p><img src="_assets/images/06-machine-learning/kNN-classify.png" alt="k-NN classification showing 3 nearest neighbors (2 red, 1 blue), classifying test point as red" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="assets/images/06-machine-learning/kNN-classify.png" alt="k-NN classification showing 3 nearest neighbors (2 red, 1 blue), classifying test point as red" width="80%" style="display: block; margin: auto;" /></p>
 <p>We notice that if we focus only on the 3 nearest neighbors, there are more reds than blues, so our prediction will be that this point must be Class R (red).</p>
 <p>Calculating the distance on a Cartesian plane is relatively simple, we only have variables as input: on the x-axis and y-axis. However, the same logic can be taken to more variables.</p>
 </div>
@@ -1088,7 +1088,7 @@ In <code>tidymodels</code>, we build models in a structured way using three key 
 <p>We have already used confusion matrices in our two previous examples. Now it is our turn to properly understand its definition as well as some of the evaluation metrics of this matrix.</p>
 <p>A confusion matrix, also known as an error matrix, allows us to visualize the performance of an algorithm, generally a supervised learning one (in unsupervised learning it is generally called a matching matrix). Each row of the matrix represents the instances in a predicted class, while each column represents the instances in a real class (or vice versa). The name derives from the fact that it makes it easy to see if the system confuses two classes (i.e., commonly mislabeling one as another).</p>
 <p>Binary classifications, when the <em>outcome</em> can take only two classes, yield this following confusion matrix.</p>
-<p><img src="_assets/images/06-machine-learning/confusion-matrix.png" alt="2x2 confusion matrix with True Positive, False Positive, True Negative, False Negative cells" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="assets/images/06-machine-learning/confusion-matrix.png" alt="2x2 confusion matrix with True Positive, False Positive, True Negative, False Negative cells" width="80%" style="display: block; margin: auto;" /></p>
 <div id="accuracy" class="section level3 hasAnchor" number="11.4.1">
 <h3><span class="header-section-number">11.4.1</span> Accuracy<a href="supervised-learning.html#accuracy" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We have already been using this term in our examples. The accuracy of the model can be calculated from the confusion matrix:</p>

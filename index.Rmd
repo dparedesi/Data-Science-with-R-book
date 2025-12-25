@@ -34,12 +34,10 @@ knitr::write_bib(c(
 ), 'packages.bib')
 
 # Image path pointing to centralized assets folder
-img_path <- "_assets/images"
+img_path <- "assets/images"
 inc <- function(f, x) {if (!f){eval.parent(substitute(x <- x + 1))}}
 ne <- 1
 
-most_freq_countries <- read_csv("_assets/data/paises_mas_frec.csv")
-str_countries <- toString(most_freq_countries$text)
 ```
 
 # Preface {-}
